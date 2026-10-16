@@ -1,0 +1,18 @@
+{
+  "name": "DBoard Designer",
+  "short_name": "DBoard",
+  "description": "Distribution board design software for electricians: breaker and cable sizing, DIN rail layout, diagrams, PDF and Excel export.",
+  "id": "/",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#EBEFF2",
+  "theme_color": "#0B6B8E",
+  "categories": ["productivity", "utilities", "business"],
+  "icons": [
+    {"src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}

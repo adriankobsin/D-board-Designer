@@ -1,0 +1,715 @@
+1|Konfiguracja
+2|Rozdzielnica
+3|Obwody
+4|Aparaty
+5|Kontrole
+6|Schemat
+7|Eksport
+8|Pomoc
+9|Język
+10|Norma
+11|Zasilanie
+12|Nazwa projektu
+13|Logo firmy
+14|Nazwa firmy
+15|Firma i zasilanie
+16|Firma
+17|Pomoc: jak działa platforma
+18|Sekcje
+19|Prześlij logo…
+20|Wyświetlane obok logo i w eksportach
+21|Wyświetlane u góry strony, na schemacie i w PDF. Eksport do Excela zawiera tylko nazwę firmy.
+22|Zasilanie i założenia projektowe
+23|Ustawienia zasilania
+24|Rodzaj zasilania
+25|Napięcie zasilania
+26|Jednofazowe
+27|Trójfazowe
+28|Niskie napięcie
+29|Niskie napięcie AC / DC
+30|Rozdzielnice niskiego napięcia
+31|Zmiana dostosowuje obwody do wybranego zasilania.
+32|Wartości domyślne wynikają z wybranej normy i można je zmienić. Obciążalności kabli są orientacyjne, dla metody ułożenia C i miedzi. Sprawdź każdą wartość w wydaniu normy i krajowych zmianach, według których projektujesz.
+33|Przewidywany prąd zwarciowy (kA)
+34|Prąd zwarciowy akumulatora (kA)
+35|Z karty katalogowej akumulatora lub ładowarki. Baterie kwasowo-ołowiowe mogą dawać kilka kA. Dla ogólnych wyłączników DC przyjęto 5 kA.
+36|Oba bieguny (2P, nieuziemiony lub izolowany)
+37|Tylko dodatni (1P, ujemny uziemiony lub wspólny)
+38|Bieguny wyłączników
+39|Temperatura otoczenia kabli (°C)
+40|Temperatura wewnątrz obudowy (°C)
+41|Wartość odniesienia to {1} °C
+42|Współczynnik jednoczesności
+43|Jednoczesność
+44|Kabel zasilający
+45|Długość kabla zasilającego (m)
+46|Wymuszony prąd znamionowy wyłącznika głównego (A)
+47|Puste pole oznacza wybór automatyczny
+48|Cu XLPE 90 °C
+49|Cu PVC 70 °C
+50|XLPE 90
+51|Limit spadku napięcia dla oświetlenia (%)
+52|Limit dla pozostałych obwodów (%)
+53|Krytyczne (nawigacja, zęza, łączność)
+54|Krytyczne (spadek {1} %)
+55|Oświetlenie (spadek {1} %)
+56|Inne (spadek {1} %)
+57|{1} domyślnie {2} %
+58|Domyślnie dla niskiego napięcia {1} %
+59|Dopuszczalna moc strat obudowy (W)
+60|Opcjonalnie, z karty katalogowej obudowy
+61|Bilans faz i zasilanie główne
+62|Modułów na szynie DIN
+63|Domyślne szerokości aparatów
+64|Szerokość RCBO
+65|1 moduł (kompaktowy)
+66|2 moduły (1P+N)
+67|1 moduł
+68|Modułów: {1}
+69|Modułów: {1} (kompaktowe)
+70|Modułów: {1} (1P+N)
+71|Moduł: {1} = 18 mm
+72|Modułów: {1} · {2} mm
+73|Modułów: {1} × 18 mm = {2} mm
+74|{1} · {2} moduł
+75|{1} · modułów: {2}
+76|Umieszczaj moduły sterujące na osobnych szynach
+77|Układ przechodzi na nową szynę, gdy aparat się nie mieści. Rzędy mają rozstaw 150 mm, ponieważ zamontowano moduły Lutron z adaptacyjną fazą.
+78|Seria MCB
+79|Seria RCBO
+80|Rozłącznik główny lub zasilanie
+81|Ogólny (wartości domyślne normy)
+82|Preferowany zakres zabezpieczeń
+83|Wybierz serię producenta: układ użyje jej szerokości modułów, kontrole jej zdolności wyłączania, zakresu prądów i charakterystyk, a zestawienie materiałów ją wymieni. Zostaw „Ogólny”, aby użyć wartości domyślnych normy.
+84|Bez wybranej serii rozłącznik główny i ogranicznik przepięć zajmują 2 lub 4 moduły, MCB 1 moduł na biegun (2 przy dwubiegunowym wyłączaniu okrętowym), RCBO 1 moduł (kompaktowy) dla 1P+N i 4 moduły dla 3P+N. Wybierz serię producenta w Konfiguracji lub przyciskiem Użyj powyżej, aby zastąpić je rzeczywistymi szerokościami.
+85|Uwzględnij ogranicznik przepięć
+86|Zacznij od pustej rozdzielnicy
+87|Wczytaj ponownie rozdzielnicę przykładową
+88|Zacznij od nowa lub wczytaj przykład
+89|Szybki kalkulator wyłączników
+90|Wpisz moc odbiornika albo jego prąd, jeśli go znasz. Pokaże prąd obliczeniowy, wyłącznik do użycia i kabel.
+91|lub prąd A
+92|Pozorna
+93|Moc pozorna
+94|Moc W
+95|Obciążenie W
+96|Współczynnik mocy
+97|PF
+98|, PF
+99|Długość kabla m
+100|Długość m
+101|Dodaj obwód
+102|+ Obwód
+103|+ Moduł DIN
+104|+ Własny aparat
+105|Automatycznie zrównoważ fazy
+106|Przenumeruj
+107|Usuń obwód
+108|Usuń obwód {1}
+109|Usuń moduł
+110|Usuń {1}
+111|Tabela obwodów
+112|Obwody zasilane ze strefy modułu Lutron korzystają z wyłącznika zasilającego modułu, więc ich kabel jest sprawdzany względem jego prądu znamionowego. Współczynnik grupowania mnoży obciążalność kabla (użyj 1, jeśli go nie ma).
+113|Ozn.
+114|Oznaczenie
+115|Nazwa
+116|Rodzaj obwodu
+117|Rodzaj
+118|Faza
+119|Zasilany z
+120|Wyłącznik bezpośredni
+121|{1} strefa {2}
+122|Strefa {1}: {2}
+123|Strefa {1}
+124|Strefy
+125|wolna
+126|brak
+127|Prąd znamionowy
+128|Prąd znamionowy A
+129|In A
+130|Ib A
+131|Icn kA
+132|Icu kA
+133|Charakterystyka
+134|Charakterystyki
+135|Bieguny
+136|Przekrój
+137|Przekrój mm²
+138|Kabel
+139|Grp
+140|Zapotrzebowanie
+141|ΔU
+142|ΔU %
+143|Spadek napięcia
+144|Stan
+145|OK
+146|Błąd
+147|Do przeglądu
+148|Uwaga
+149|Uwagi
+150|Uwagi do rozdzielnicy
+151|Układ rozdzielnicy
+152|Układ
+153|Szyny
+154|Przenieś
+155|↑ Szyna wyżej
+156|↓ Szyna niżej
+157|← Wcześniej
+158|Później →
+159|Dopasuj do ekranu
+160|Dopasowano do ekranu
+161|Pełny rozmiar
+162|Cały wiersz w tabeli
+163|Wybierz aparat, aby edytować go tutaj. Przeciągnij aparat, aby przesunąć go wzdłuż szyn.
+164|Usuń
+165|Potwierdź usunięcie
+166|Anuluj
+167|Usuń
+168|Usuń ogranicznik przepięć
+169|Usuń rozłącznik główny
+170|Przywróć ogranicznik przepięć
+171|Przywróć rozłącznik główny
+172|Ochrona przeciwprzepięciowa
+173|Przepięcia
+174|SPD
+175|SPD · Ochrona przeciwprzepięciowa
+176|SPD Ochrona przeciwprzepięciowa
+177|Główny
+178|Zasilanie główne
+179|Odłącznik
+180|Wyłącznik zasilający
+181|Kabel zasilający
+182|Długość zasilania m
+183|Obciążenie zasilania
+184|Zasil. m
+185|Faza zasilania
+186|Zasilanie {1}
+187|zasilanie {1} A
+188|Wejście A
+189|Aparat
+190|Rodzaj aparatu
+191|Moduł
+192|Moduł do dodania
+193|Moduły
+194|Moduły w tej rozdzielnicy
+195|Szerokość
+196|Szerokość (moduły)
+197|Szerokość, moduły
+198|Model
+199|Rodzina
+200|Producent
+201|Marka
+202|Seria
+203|Pasujące serie
+204|Opis
+205|Przeszukaj bibliotekę
+206|Szukaj modelu, rodziny, napięcia
+207|Szukaj urządzeń zabezpieczających
+208|Szukaj serii lub normy
+209|Wszystkie marki
+210|Wszystkie rodziny
+211|Wszyscy producenci
+212|Wszystkie rodzaje
+213|Dodaj
+214|Dodaj moduły DIN
+215|Użyj
+216|W użyciu
+217|DIN
+218|Biblioteka aparatów DIN
+219|Biblioteka zabezpieczeń obwodów
+220|Lista aparatów
+221|Źródło sprawdzone
+222|Typowe
+223|Płyta zaciskowa przewodów
+224|Procesor sterujący
+225|Interfejs / WE/WY
+226|Sieć / dystrybucja
+227|Zasilacz
+228|Sterowanie silnikami
+229|Łączenie
+230|Ściemnianie
+231|DALI
+232|Brama DALI
+233|EcoSystem
+234|Cyfrowe (HomeWorks)
+235|Ściemnianie z adaptacyjną fazą
+236|Ściemniacz z adaptacyjną fazą
+237|Sterowanie fazowe / 20 A
+238|0–10 V / łączenie
+239|Ściemniacz 0–10 V
+240|Brama QSX
+241|Procesor QSX
+242|Brama KNX DALI
+243|Interfejs KNX IP
+244|Router KNX IP
+245|Analogowe WE/WY KNX
+246|Wejście binarne KNX
+247|Aktor ściemniający KNX
+248|Licznik energii KNX
+249|Aktor ogrzewania KNX
+250|Logika / sterowanie KNX
+251|Zasilacz KNX
+252|Aktor rolet KNX
+253|Aktor łączący KNX
+254|Aktor uniwersalny KNX
+255|MCB
+256|RCBO
+257|RCCB (różnicówka grupowa)
+258|MCCB (zasilanie główne)
+259|RCD
+260|Cieplne
+261|Ciepło
+262|Straty ≈
+263|Ciepło w obudowie ≈
+264|Obudowa ≈
+265|BTU/h
+266|Maks. faza
+267|Maks. °C
+268|Asymetria
+269|Bilans
+270|Podłączona
+271|Moc podłączona
+272|Podłączona {1} kW · zapotrzebowanie {2} kW · {3} kVA · maks. faza {4} A
+273|Obciążenie faz (po jednoczesności {1})
+274|Obciążenie szyn zbiorczych (po jednoczesności {1})
+275|przy jednoczesności {1}
+276|Najgorszy spadek napięcia od końca do końca
+277|Prąd obliczeniowy
+278|Kontrole projektowe
+279|Kontrola
+280|Sprawdź układ rozdzielnicy
+281|Sprawdzono względem limitu każdego modułu
+282|Zasilanych: {1}
+283|Błędy: {1} · do przeglądu: {2}
+284|Oświetlenie
+285|Gniazda
+286|AV / elektronika
+287|HVAC / pompa
+288|Grzałka / bojler
+289|Kuchnia / urządzenia
+290|Inne
+291|Przewód neutralny
+292|Dodatni +
+293|Ujemny −
+294|Schemat wieloliniowy
+295|Schemat wieloliniowy · {1}
+296|Zasilanie {1}
+297|OBWÓD
+298|ZABEZPIECZENIE
+299|KABEL
+300|OBCIĄŻENIE
+301|SZYNA
+302|Rysunek PDF i tabela
+303|Rysunek układu rozdzielnicy z nazwami obwodów, schemat wieloliniowy, tabela obwodów i sumy mocy w formacie A4 poziomo, z Twoim logo na każdej stronie.
+304|Dołącz zestawienie materiałów
+305|Zapisz PDF
+306|Skoroszyt Excel
+307|Arkusze: tabela obwodów, moduły Lutron, zestawienie materiałów, bilans faz, moc i projekt. Zawiera nazwę firmy; pliki Excel z tego narzędzia nie mogą osadzać obrazu logo.
+308|Zapisz Excel
+309|Tabela CSV
+310|Prosta tabela obwodów do importu do innych narzędzi.
+311|Zapisz CSV
+312|Plik projektu
+313|Zapisz cały projekt jako JSON albo otwórz wcześniej zapisany.
+314|Zapisz projekt
+315|Otwórz projekt…
+316|Otwórz projekt
+317|Rozdzielnica jest też zapisywana w tej przeglądarce w trakcie pracy. Każdy eksport otwiera okno zapisu.
+318|Zamknij
+319|Data
+320|Auto
+321|Auto ({1})
+322|Przyjęta zdolność wyłączania {1} kA
+323|ogólny · asymetria {1} %
+324|{1} · asymetria {2} %
+325|przez {1} ({2} A) · {3}
+326|miedź {1}, prąd {2} A, spadek napięcia {3} % z {4} V (limit {5} %)
+327|{1} V DC (niskie napięcie)
+328|{1} V AC (niskie napięcie)
+329|12, 24 lub 48 V DC i 24 V AC, jak na jachtach i łodziach.
+330|Układ szyn DIN: {1}
+331|Wybierz obraz mniejszy niż 4 MB.
+332|Nie udało się zapisać pliku w tym miejscu.
+333|Nie udało się zapisać: {1}
+334|Biblioteka Excel nie została wczytana.
+335|Dodano logo
+336|Usunięto rozłącznik główny z rozdzielnicy
+337|Biblioteka PDF nie została wczytana.
+338|Fazy zrównoważono ponownie
+339|Wczytano projekt
+340|Usunięto ogranicznik przepięć
+341|Zapisano {1}
+342|Ten plik nie jest projektem DBoard Designer.
+343|Nie udało się odczytać tego obrazu.
+344|{1} zastosowano do MCB.
+345|{1} zastosowano do RCBO.
+346|{1} zastosowano do rozłącznika głównego.
+347|Dodano {1} jako {2}. Zobacz go na karcie Rozdzielnica.
+348|Usunięto {1}
+349|Już na pierwszej szynie.
+350|Na następnej szynie nie ma aparatu, obok którego można go umieścić. Przeciągnij go.
+351|Zasilanie niskim napięciem: 24 V DC. Obciążenia są w watach, prąd to P ÷ V.
+352|Zasilanie trójfazowe. Obwody są rozłożone na L1, L2 i L3.
+353|Zasilanie jednofazowe.
+354|Wszystkie kontrole tej rozdzielnicy zakończone pomyślnie.
+355|Wpisz moc lub prąd.
+356|Nie umieszczono jeszcze modułów DIN. Dodaj jeden z biblioteki poniżej.
+357|Brak obwodów. Dodaj jeden, aby zacząć tabelę.
+358|Brak pasujących aparatów.
+359|Brak pasującego wyposażenia.
+360|IEC 60364-4-41 wymaga ochrony RCD 30 mA dla gniazd i obwodów urządzeń przenośnych.
+361|BS 7671 411.3.3 wymaga ochrony RCD 30 mA dla gniazd do 20 A i większości obwodów odbiorczych w budynkach mieszkalnych.
+362|NEC 210.8 i 210.12 wymagają ochrony GFCI i AFCI w wielu obwodach gniazd i odgałęzień. Potwierdź wydanie przyjęte lokalnie.
+363|AS/NZS 3000 wymaga ochrony RCD w obwodach odbiorczych gniazd i oświetlenia.
+364|Okrętowe instalacje AC zwykle stosują dwubiegunowe wyłączanie i ochronę RCD 30 mA w obwodach odbiorczych. Potwierdź z przepisami towarzystwa klasyfikacyjnego i bandery.
+365|ABYC E-11 wymaga ochrony GFCI gniazd i dwubiegunowego zabezpieczenia odgałęzień. Potwierdź z aktualnym wydaniem.
+366|Bardzo niskie napięcie AC: RCD nie jest potrzebny w obwodach SELV. Spadek napięcia jest zwykle ograniczeniem długości kabla.
+367|Bardzo niskie napięcie DC: RCD nie jest potrzebny w obwodach SELV. Dobierz każdy wyłącznik z prądu (I = P ÷ V), zabezpiecz kabel i używaj urządzeń do DC. Praktyka okrętowa (ISO 10133, ABYC E-11) dopuszcza 3 % spadku napięcia w obwodach krytycznych, jak światła nawigacyjne i pompy zęzowe, oraz 10 % w pozostałych.
+368|Kontrole obejmują prąd obliczeniowy względem prądu wyłącznika i kabla, spadek napięcia, wymóg RCD, prąd zwarciowy oraz limity wejścia, strefy i temperatury Lutron. Impedancja pętli zwarcia, dyskryminacja i selektywność nie są tu obliczane.
+369|DBoard Designer jest pomocą w projektowaniu. Obciążalności kabli, limity spadku napięcia i dane Lutron są orientacyjne; przed wykonaniem sprawdź je w aktualnym wydaniu normy, w dokumentacji producenta i z wykwalifikowanym inżynierem.
+370|DBoard Designer
+371|Designer
+372|Przykładowa kabina i rozdzielnica AV
+373|{1} obejmuje {2}–{3} A; {4} A jest poza tym zakresem.
+374|{1} nie ma charakterystyki {2} ({3}).
+375|Zasilanie {1} niesie {2} A, powyżej prądu wejściowego {3} A.
+376|{1} jest przeznaczony na {2}; napięcie fazowe układu to {3} V.
+377|{1} dopuszcza {2} C w obudowie; wartość projektowa to {3} C.
+378|Wyłącznik zasilający {1} na {2} A jest poniżej obciążenia {3} A.
+379|Kabel zasilający {1} niesie {2} A, mniej niż wyłącznik {3} A.
+380|Spadek napięcia zasilania {1} wynosi {2} %.
+381|Prąd zasilania {1} przekracza największy wyłącznik tej serii.
+382|Prąd zwarciowy {1} kA przekracza zdolność wyłączania {2} kA wyłącznika zasilającego.
+383|Prąd obliczeniowy przekracza największy wyłącznik tej serii.
+384|Prąd obliczeniowy {1} A przekracza wyłącznik {2} A.
+385|Kabel {1} mm² niesie {2} A, mniej niż wyłącznik {3} A. Zwiększ przekrój lub zmniejsz wyłącznik.
+386|Spadek napięcia {1} % przekracza cel {2} %.
+387|Obwód „{1}” nie ma RCBO. {2}
+388|Prąd zwarciowy {1} kA przekracza zdolność wyłączania {2} kA urządzenia {3}.
+389|Prąd zwarciowy {1} kA przekracza zdolność wyłączania {2} kA przyjętą dla tej normy.
+390|{1} nie ma wersji trójfazowej. Wybierz serię RCBO 4P lub MCB z grupowym RCD.
+391|{1} to aparat 4P i nie może chronić obwodu jednofazowego.
+392|{1} ma {2} stref; strefa {3} nie istnieje.
+393|Prąd strefy {1} A przekracza prąd znamionowy strefy {2} A.
+394|Obciążenie strefy {1} W przekracza limit {2} W dla strefy {3}.
+395|{1} nie przełącza obciążeń.
+396|Strefa {1} modułu {2} jest współdzielona z {3}.
+397|{1} nie jest tu wymieniony jako przystosowany do DC dla {2} V. Wybierz serię DC albo użyj Ogólnego i określ urządzenie do DC.
+398|Nie wybrano serii DC, więc przyjęto ogólny wyłącznik termomagnetyczny do DC o zdolności 5 kA.
+399|Maksymalny prąd fazy przekracza największy prąd zasilania głównego w bibliotece.
+400|Maksymalny prąd fazy {1} A przekracza zasilanie główne {2} A.
+401|Kabel zasilający główny {1} mm² niesie {2} A, mniej niż zasilanie główne {3} A.
+402|Spadek napięcia na zasilaniu głównym {1} % zużywa część całkowitego zapasu.
+403|Asymetria faz wynosi {1} % powyżej średniej. Użyj automatycznego bilansowania lub przenieś obwody.
+404|Moduły z adaptacyjną fazą wymagają obniżenia mocy strefy przy temperaturze otoczenia 30–40 C. Zobacz notę aplikacyjną Lutron nr 466.
+405|Moduły z adaptacyjną fazą wymagają 150 mm między szynami DIN i 200 mm wolnego miejsca nad górną szyną.
+406|Szacowana moc strat {1} W przekracza dopuszczalną moc strat obudowy {2} W.
+407|Moduły na szynę DIN: {1}, od Lutron, Crestron, Control4 i MDT KNX. Dane Lutron pochodzą z noty aplikacyjnej nr 466 (rev. T, maj 2026) i specyfikacji, Crestron ze stron produktów, Control4 z kart katalogowych, a MDT z list produktów i cen (1 moduł = 18 mm). Jeśli źródło nie podaje wartości, pokazano ? lub –. Aktory KNX są zasilane z magistrali, więc do zasilania liczy się tylko strona obciążenia. Przed zamówieniem sprawdź aktualną kartę katalogową producenta.
+408|Bardzo niskie napięcie {1} V AC: I = P ÷ (V × PF). Wyłączniki są standardowe do AC; niskie napięcie podnosi prąd, więc o kablu zwykle decydują przekrój i spadek napięcia.
+409|Rozdzielnica satelitarna {1} cali z modułami mocy DIN i sterownikami EcoSystem.
+410|Serii: {1}, producentów: {2}. Prądy, zdolności i szerokości to wartości katalogowe na poziomie serii: „Źródło sprawdzone” oznacza, że potwierdziła je strona producenta lub dystrybutora, „Typowe” – że są to powszechne wartości katalogowe do potwierdzenia w karcie katalogowej. Naciśnij Użyj, aby zastosować serię w tej rozdzielnicy.
+411|Na dole Konfiguracji <b>Zacznij od pustej rozdzielnicy</b> czyści wszystko, a <b>Wczytaj ponownie rozdzielnicę przykładową</b> przywraca przykładową kabinę i rozdzielnicę AV.
+412|Wybierz Niskie napięcie AC / DC jako rodzaj zasilania. Prądy wyłączników i przekroje kabli korzystają wtedy z serii do DC, a rozdzielnica rysuje szyny dodatnią i ujemną zamiast faz.
+413|Rozdzielnica zasilania sterowania z 8 wyłącznikami obwodów odgałęźnych i interfejsami modułów.
+414|Rozdzielnica ściemniania / łączenia, do 4 modułów mocy DIN (lub 3 plus zasilacz QSPS). 120–240 V.
+415|Prąd stały: I = P ÷ V bez współczynnika mocy. Łuki DC nie gasną samoczynnie, więc każdy wyłącznik musi być przystosowany do DC co najmniej na napięcie ładowania (około 1,25 × napięcie znamionowe {1} V), a polaryzację oznaczoną na urządzeniu trzeba zachować. Zdolność wyłączania wynika z prądu zwarciowego akumulatora lub źródła (wpisano {2} kA).
+416|Rysowany jest każdy przewód: każda faza z własnej szyny fazowej, a neutralny z szyny N. Przerywana ramka wokół biegunów oznacza wyłącznik, który wyłącza także przewód neutralny; Δ oznacza RCD. Jednobiegunowe MCB przepuszczają przewód neutralny. Linie przerywane pokazują obwody przełączane przez strefę modułu Lutron.
+417|Rysowany jest każdy przewód: dodatni (czerwony) i ujemny (ciemny) z dwóch szyn zbiorczych. Przerywana ramka wokół biegunów oznacza wyłącznik dwubiegunowy. Wyłączniki jednobiegunowe są tylko w przewodzie dodatnim.
+418|Wykonaj te kroki od pierwszego ekranu do gotowego PDF. W każdej chwili możesz przejść do dowolnego kroku; każda karta aktualizuje tę samą rozdzielnicę.
+419|W wersji instalowalnej użyj opcji Zainstaluj lub Dodaj do ekranu głównego w przeglądarce. Wtedy otwiera się na pełnym ekranie i działa offline.
+420|Otwórz <b>Kontrole</b>. Narzędzie sprawdza, czy każdy wyłącznik obejmuje obciążenie i chroni swój kabel, czy spadek napięcia mieści się w limicie, czy ochrona RCD jest tam, gdzie wymaga jej norma, czy zdolność wyłączania obejmuje prąd zwarciowy oraz czy zachowano limity modułów i stref Lutron (obciążenie, prąd, napięcie, temperatura). Sprawdza też zasilanie główne i jego kabel, asymetrię faz i ciepło w obudowie. <b>Błąd</b> oznacza: popraw przed wykonaniem, <b>Do przeglądu</b> – przyjrzyj się i zdecyduj, a uwagi mają charakter informacyjny.
+421|Otwórz <b>Obwody</b> i naciśnij <b>Dodaj obwód</b>. Dla każdego obwodu wpisz nazwę, rodzaj, moc w watach, współczynnik mocy, fazę, długość kabla, zabezpieczenie (MCB lub RCBO) i charakterystykę. Narzędzie dobiera kabel, wybiera prąd wyłącznika i oblicza prąd oraz spadek napięcia. <b>Automatycznie zrównoważ fazy</b> rozkłada obciążenie na L1, L2 i L3, a <b>Przenumeruj</b> porządkuje oznaczenia. W rozdzielnicy niskiego napięcia szybki kalkulator u góry od razu podaje wyłącznik dla obciążenia.
+422|Otwórz <b>Schemat</b>, aby zobaczyć wieloliniowy schemat połączeń. Każdy przewód fazowy jest rysowany z szyny fazowej, a neutralny z szyny N. Przerywana ramka oznacza wyłączniki wyłączające przewód neutralny, trójkąt – RCD, a linie przerywane – obwody przełączane przez strefę Lutron. Każdy obwód pokazuje kabel, zabezpieczenie, pasek obciążenia i stan.
+423|Otwórz <b>Aparaty</b>, aby przeglądać sprzęt sterujący na szynę DIN firm Lutron, Crestron, Control4 i MDT KNX (procesory, interfejsy, zasilacze, moduły ściemniania, łączenia i rolet, bramy) z filtrem marki oraz bibliotekę wyłączników (Schneider, ABB, Siemens, Legrand, Hager, Eaton, Chint). Naciśnij <b>Dodaj</b> przy module, aby umieścić go w rozdzielnicy. Po powrocie do <b>Obwody</b> wybierz moduł i strefę (kanał), z której zasilany jest obwód. Każdy moduł dostaje też własny wyłącznik zasilający. Naciśnij <b>Użyj</b> przy serii wyłączników, aby ustawić ją jako domyślną dla MCB, RCBO lub rozłącznika głównego.
+424|Otwórz <b>Eksport</b>. <b>Zapisz PDF</b> tworzy układ rozdzielnicy, schemat wieloliniowy, tabelę obwodów i sumy mocy; zaznacz <b>Dołącz zestawienie materiałów</b>, jeśli chcesz dodać tę listę. <b>Zapisz Excel</b> i <b>Zapisz CSV</b> dają tabelę dla innych narzędzi. <b>Zapisz projekt</b> zapisuje cały projekt w pliku, który możesz później otworzyć przyciskiem <b>Otwórz projekt</b>.
+425|Otwórz <b>Rozdzielnica</b>, aby zobaczyć szyny DIN z każdym aparatem i nazwą jego obwodu. Kliknij aparat, aby otworzyć inspektor: edytuj go, przesuń wzdłuż szyny lub na inną szynę albo usuń. Przyciskami <b>+ Obwód</b>, <b>+ Moduł DIN</b> lub <b>+ Własny aparat</b> dodasz elementy także tutaj. Możesz zmienić rozłącznik główny i przywrócić usunięty rozłącznik lub ogranicznik przepięć przyciskami przywracania. <b>Dopasuj do ekranu</b> i <b>Pełny rozmiar</b> przełączają powiększenie.
+426|Otwórz <b>Konfiguracja</b>. Nazwij rozdzielnicę, dodaj nazwę firmy i logo (pojawią się u góry strony i w PDF) oraz wybierz <b>normę</b> i <b>rodzaj zasilania</b>: jednofazowe, trójfazowe lub niskie napięcie AC / DC (12, 24, 48 V DC albo 24 V AC dla rozdzielnic okrętowych i podobnych). Następnie ustaw temperatury otoczenia, współczynnik jednoczesności, kabel zasilający, limity spadku napięcia, serię wyłączników, liczbę modułów na szynie DIN oraz czy RCBO zajmują 1, czy 2 moduły.
+427|Prądy znamionowe, limity spadku napięcia i dane producentów są orientacyjne. Przed wykonaniem sprawdź je w aktualnym wydaniu normy, w dokumentacji producenta i z wykwalifikowanym inżynierem.
+428|Rozdzielnica jest przechowywana w tej przeglądarce w trakcie pracy. Użyj Zapisz projekt, aby zachować kopię lub przenieść ją na inne urządzenie.
+429|(następny prąd znamionowy z szeregu, nie mniejszy niż prąd obliczeniowy) {1}
+430|dwubiegunowy
+431|dwubiegunowy, do DC
+432|Rozdzielnice i obudowy DIN Lutron (odniesienie)
+433|Jak działa DBoard Designer
+434|Warto wiedzieć
+435|Zacznij od Konfiguracji
+436|Skonfiguruj projekt
+437|Dodaj obwody
+438|Przeczytaj kontrole
+439|Przejrzyj schemat
+440|Twoja praca zapisuje się automatycznie
+441|Zainstaluj jak aplikację
+442|Zawsze sprawdzaj
+443|Linia
+444|Projekt
+445|Wyłącznik
+446|Wyłączniki
+447|opcjonalnie
+448|źródło
+449|, kabel
+450|Zastosowano do sum faz
+451|Ustala szerokość wyłącznika i schemat
+452|Obudowa niskiego napięcia HomeWorks QS.
+453|Obudowa przelotowa z interfejsami modułów.
+454|Rozdzielnica 120 V na szynę DIN ze złączkami.
+455|Rozdzielnica DIN {1} V {2} z wyłącznikami AFCI {3} A.
+456|Ogranicznik przepięć, typ 2.
+457|SPD typ 2
+458|TYP 2
+459|trójfazowe
+460|{1} (AC okrętowe)
+461|GŁÓWNY {1}
+462|Szyna {1} V DC
+463|Szyna {1} V AC
+464|SZYNA {1}
+465|użyte,
+466|Zestawienie materiałów
+467|Układ rozdzielnicy (szyny {1} do {2})
+468|(strona {1} z {2})
+469|Pomoc projektowa. Przed wykonaniem sprawdź wartości znamionowe w wydaniu normy, kartach katalogowych producentów i u wykwalifikowanego inżyniera.
+470|Faza
+471|Zabezpieczenie
+472|Obciążalność kabla A
+473|Tabela obwodów
+474|Moduły DIN
+475|Fazy
+476|Zasilanie A
+477|Wyłącznik zasilania A
+478|Kabel zasilania mm2
+479|Moduły (18 mm)
+480|Ciepło BTU/h
+481|Prąd A (po uwzględnieniu jednoczesności)
+482|Zasilanie główne A
+483|Asymetria %
+484|Moc przyłączeniowa kW
+485|Moc szczytowa kW (po uwzględnieniu jednoczesności)
+486|Moc pozorna kVA
+487|Straty mocy W
+488|System
+489|Prąd zwarciowy kA
+490|Temperatura otoczenia kabla C
+491|Rozłącznik główny
+492|Ogólny
+493|Bezpośrednio
+494|Pozycja
+495|Ilość
+496|Obciążenie faz po uwzględnieniu jednoczesności
+497|Przyłączeniowa {1} kW · szczytowa {2} kW · {3} kVA · PF {4}
+498|Kabel zasilania głównego {1} mm² {2}
+499|Pełny rozmiar, przewiń w bok
+500|Dodano {1} × {2}. Zobacz na karcie Rozdzielnica.
+501|Ilość
+502|DC
+503|Napięcie (V)
+504|Prąd (A)
+505|Rezystancja (Ω)
+506|Moc (W)
+507|Prawo Ohma i moc
+508|Wybierz, co obliczyć, i wpisz dwie znane wartości.
+509|Oblicz
+510|Wzór
+511|Wpisz wartości większe od zera.
+512|Moc prądu przemiennego i współczynnik mocy
+513|Oblicza prąd oraz moc czynną, pozorną i bierną dla odbiorników jedno- i trójfazowych.
+514|Napięcie przewodowe (V)
+515|Znane wartości
+516|Prąd i współczynnik mocy
+517|Moc czynna i współczynnik mocy
+518|Moc pozorna i współczynnik mocy
+519|Moc czynna i bierna
+520|Moc czynna (kW)
+521|Moc pozorna (kVA)
+522|Moc bierna (kvar)
+523|Współczynnik mocy musi mieścić się między 0 a 1.
+524|Prąd
+525|Moc czynna
+526|Moc bierna
+527|Kąt fazowy
+528|Kompensacja współczynnika mocy
+529|Dobiera baterię kondensatorów potrzebną do podniesienia współczynnika mocy.
+530|Obecny współczynnik mocy
+531|Docelowy współczynnik mocy
+532|Wartość docelowa musi być wyższa niż obecny współczynnik mocy.
+533|Wielkość kondensatorów (kvar)
+534|Moc pozorna przed
+535|Moc pozorna po
+536|Zmniejszenie prądu
+537|Przekrój kabla
+538|Znajduje najmniejszy kabel miedziany, który przenosi obciążenie i mieści się w dopuszczalnym spadku napięcia.
+539|Obciążenie podane jako
+540|Moc (kW)
+541|Długość kabla (m)
+542|Limit spadku napięcia (%)
+543|Typ kabla
+544|Otoczenie (°C)
+545|Współczynnik grupowania
+546|Obciążalność kabla
+547|Sugerowany wyłącznik
+548|Przewody miedziane, metoda referencyjna C. Sprawdź z normą i sposobem ułożenia.
+549|Żaden kabel z tabeli nie spełnia limitu. Skróć trasę, poluzuj limit lub użyj kabli równoległych.
+550|Spadek napięcia dla wybranego kabla i najdłuższa trasa, jaką może obsłużyć.
+551|Przekrój kabla (mm²)
+552|Spadek napięcia (V)
+553|Spadek napięcia (%)
+554|Napięcie na odbiorniku
+555|Najdłuższa trasa w limicie
+556|W granicach limitu.
+557|Limit przekroczony. Użyj większego kabla lub krótszej trasy.
+558|Układy rezystorów i prawa Kirchhoffa
+559|Rezystory połączone szeregowo i równolegle z napięciem i prądem na każdym.
+560|Połączenie
+561|Równolegle
+562|Napięcie zasilania (V)
+563|Wartości rezystorów (Ω), oddzielone przecinkami lub spacjami
+564|Wpisz od 1 do 12 wartości rezystancji większych od zera.
+565|Rezystor
+566|Rezystancja całkowita
+567|Prąd całkowity
+568|Moc całkowita
+569|Napięciowe prawo Kirchhoffa (KVL): suma napięć w zamkniętym oczku wynosi zero, więc spadki na rezystorach sumują się do napięcia zasilania.
+570|Prądowe prawo Kirchhoffa (KCL): prąd wpływający do węzła równa się prądowi wypływającemu, więc prądy gałęzi sumują się do prądu całkowitego.
+571|Zależności gwiazda i trójkąt
+572|Napięcie i prąd przewodowy oraz fazowy w odbiorniku trójfazowym.
+573|Połączenie
+574|Gwiazda (Y)
+575|Trójkąt (Δ)
+576|Wartości przewodowe
+577|Wartości fazowe
+578|Napięcie fazowe (V)
+579|Prąd przewodowy (A)
+580|Prąd fazowy (A)
+581|Narzędzia elektryka
+582|Szybkie kalkulatory do codziennej pracy. Każdy wynik pokazuje wzór i użyte liczby. Traktuj je jako wskazówki i sprawdzaj z normą.
+583|Narzędzia
+584|Korzystaj z narzędzi
+585|Otwórz <b>Narzędzia</b>, aby korzystać z szybkich kalkulatorów elektryka, niezależnych od rozdzielnicy. <b>Prawo Ohma i moc</b> wyznacza napięcie, prąd, rezystancję lub moc z dowolnych dwóch wartości. <b>Moc prądu przemiennego i współczynnik mocy</b> obejmuje odbiorniki jedno- i trójfazowe, a <b>Kompensacja współczynnika mocy</b> dobiera baterię kondensatorów. <b>Przekrój kabla</b> wybiera najmniejszy kabel miedziany dla obciążenia, długości i limitu spadku napięcia według tych samych tabel co obwody, a <b>Spadek napięcia</b> sprawdza wybrany kabel. <b>Układy rezystorów</b> rozwiązują obwody szeregowe i równoległe prawami Kirchhoffa, a <b>Zależności gwiazda i trójkąt</b> przeliczają wartości przewodowe i fazowe. Każdy wynik pokazuje wzór i użyte liczby.
+586|Rezystancja kabla
+587|Rezystancja przewodu miedzianego lub aluminiowego. Oblicz rezystancję, długość lub przekrój, na przykład by oszacować odległość do usterki.
+588|Materiał
+589|Miedź
+590|Aluminium
+591|Mierzone jako
+592|Jeden przewód
+593|Pętla (tam i z powrotem)
+594|Temperatura przewodu (°C)
+595|Następny przekrój standardowy
+596|Rezystywność w tej temperaturze
+597|Rezystancja na metr
+598|Pomiar pętli obejmuje przewód tam i z powrotem, więc pokazana długość to odległość w jedną stronę.
+599|Rezystywność w 20 °C: miedź 0,017241, aluminium 0,028264 Ω·mm²/m. Współczynnik temperaturowy: miedź 0,00393, aluminium 0,00403 na °C.
+600|Faza 1 brązowy, faza 2 czarny, faza 3 szary, neutralny niebieski, ochronny żółto-zielony (IEC 60446).
+601|Uziemienie ochronne z samoczynnym wyłączeniem zasilania (układy TN, TT lub IT), główne połączenie wyrównawcze wchodzących instalacji metalowych i części przewodzących dostępnych.
+602|Faza 1 brązowy, faza 2 czarny, faza 3 szary, neutralny niebieski, ochronny żółto-zielony. Starsze instalacje używają czerwonego, żółtego, niebieskiego i czarnego.
+603|Uziemienie ochronne z samoczynnym wyłączeniem. Impedancja pętli zwarcia musi mieścić się w granicach tabel, z głównym połączeniem wyrównawczym instalacji.
+604|Ustalone są tylko przewód neutralny (biały lub szary) i uziemienie urządzeń (zielony lub goły). Kolory faz zależą od lokalnej praktyki, zwykle czarny, czerwony i niebieski przy 208 V.
+605|Artykuł 250: system uziomów, przewody uziemiające urządzeń i tylko jedno połączenie neutralny-uziemienie przy rozłączniku głównym.
+606|Uziemienie żółto-zielone, neutralny czarny lub jasnoniebieski, przewody czynne w innych kolorach, np. czerwony, biały i niebieski albo brązowy, czarny i szary.
+607|System z wielokrotnie uziemionym przewodem neutralnym (MEN), z neutralnym połączonym z ziemią w rozdzielnicy głównej i głównym przewodem uziemiającym do uziomu.
+608|Faza brązowy, neutralny niebieski, ochronny żółto-zielony (praktyka IEC 60446).
+609|Przewód ochronny jest połączony z systemem połączeń wyrównawczych jednostki. Neutralny i uziemienie łączy się tylko przy źródle (agregat lub transformator separacyjny), nigdy przy przyłączu brzegowym.
+610|Faza czarny, druga faza czerwony, trzecia niebieski, neutralny biały, przewód uziemiający zielony lub żółto-zielony.
+611|Przewód uziemiający AC jest połączony z ujemnym biegunem DC jednostki w jednym punkcie. Neutralny i uziemienie łączy się tylko przy źródle (agregat lub transformator separacyjny).
+612|Tak
+613|Nie
+614|Spadek napięcia, oświetlenie
+615|Spadek napięcia, pozostałe obwody
+616|Współczynnik obciążenia ciągłego
+617|Prądy znamionowe wyłączników
+618|Charakterystyki wyzwalania
+619|Wyłączanie dwubiegunowe
+620|Tak, dwubiegunowe
+621|Nie, zwykle jednobiegunowe
+622|Ochrona RCD lub GFCI
+623|Kolory przewodów
+624|Uziemienie i połączenia wyrównawcze
+625|Porównaj normy
+626|Spadek oświetlenie
+627|Spadek pozostałe
+628|Obciążenie ciągłe
+629|Dwubiegunowe
+630|Zestawienie norm
+631|Tylko informacyjnie. Przed wykorzystaniem sprawdź każdą wartość w aktualnym wydaniu normy i lokalnych zmianach.
+632|Klimatyzacja
+633|Wentylator / wentylacja
+634|Silnik
+635|Pompa wody
+636|Winda / ster strumieniowy
+637|Kuchenka / piekarnik
+638|Chłodzenie
+639|Pralka / suszarka
+640|Podgrzewacz wody
+641|Ogrzewanie przewodowe / podłogowe
+642|Gniazda zewnętrzne / pokładowe
+643|Urządzenia basenowe / spa
+644|Ładowarka EV
+645|Ładowarka akumulatorów
+646|Falownik / UPS
+647|Sieć / IT
+648|Bezpieczeństwo / alarm
+649|Oświetlenie awaryjne
+650|Zasilanie rozdzielnicy podrzędnej
+651|Diagnostyka usterek i normy
+652|W Narzędziach <b>Rezystancja kabla</b> wyznacza rezystancję, długość lub przekrój kabla miedzianego albo aluminiowego, na przykład by oszacować odległość do usterki. <b>Zestawienie norm</b> na dole podaje dla każdej normy limity spadku napięcia, prądy znamionowe wyłączników, zasady RCD, kolory przewodów i uziemienie. Służy tylko informacyjnie, sprawdź w aktualnym wydaniu normy.
+653|Pompa zęzowa / drenażowa
+654|Warsztat / elektronarzędzia
+655|Urządzenia nawigacyjne
+656|Łączność
+657|Zaloguj się
+658|Utwórz konto
+659|Utwórz konto
+660|Adres e-mail
+661|Hasło
+662|Potwierdź hasło
+663|Imię
+664|Nazwisko
+665|Kraj
+666|Nie pamiętasz hasła?
+667|Zapamiętaj mnie na tym urządzeniu
+668|Wyloguj się
+669|Panel
+670|Ustawienia konta
+671|Nowa rozdzielnica
+672|Moje zapisane projekty
+673|Otwórz
+674|Zmień nazwę
+675|Duplikuj
+676|Utwórz nową rozdzielnicę
+677|Ostatnio otwierane projekty
+678|Zapisz profil
+679|Zmień hasło
+680|Usuń konto
+681|Firma (opcjonalnie)
+682|Zawód
+683|Zresetuj hasło
+684|Wyślij link resetujący
+685|Sprawdź skrzynkę e-mail
+686|Otwórz projektanta
+687|Zapisane projekty
+688|Wyślij opinię
+689|Konto
+690|Witaj
+691|Pokaż
+692|Ukryj
+693|Wróć do logowania
+694|Wybierz kraj
+695|Wybierz zawód
+696|Wyślij e-mail ponownie
+697|Regulamin
+698|Polityka prywatności
+699|Elektryk
+700|Inżynier elektryk
+701|Montażysta rozdzielnic
+702|Integrator systemów
+703|Student
+704|Profil
+705|Zaktualizuj hasło
+706|Obecne hasło
+707|Nowe hasło
+708|Potwierdź nowe hasło
+709|Szukaj projektów
+710|Zapisano na koncie
+711|Zapisywanie…
+712|Tylko to urządzenie
+713|Zapisz na koncie
+714|Nieprawidłowy e-mail lub hasło.
+715|Wybierz nowe hasło

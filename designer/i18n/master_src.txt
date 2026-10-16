@@ -1,0 +1,384 @@
+Setup
+Panel
+Circuits
+Equipment
+Checks
+Diagram
+Export
+Help
+Language
+Standard
+Supply
+Project name
+Company logo
+Company name
+Company and supply
+Company
+Help: how the platform works
+Sections
+Upload logo…
+Shown beside the logo and on exports
+Shown at the top of the page, in the diagram and in the PDF. The Excel export carries the company name only.
+Supply and design basis
+Supply settings
+Supply type
+Supply voltage
+Single phase
+Three phase
+Low voltage
+Low voltage AC / DC
+Low voltage boards
+Switching adjusts the circuits to suit.
+Defaults follow the chosen standard and can be overridden. Cable ratings are indicative reference-method C values for copper. Confirm every figure against the edition and national amendments you design to.
+Prospective fault level (kA)
+Battery short-circuit current (kA)
+From the battery or charger datasheet. Lead-acid banks can deliver several kA. Generic DC breakers assumed 5 kA.
+Both poles (2P, ungrounded or isolated)
+Positive only (1P, negative earthed or common)
+Breaker poles
+Cable ambient (°C)
+Inside-enclosure ambient (°C)
+Reference is {1} °C
+Diversity factor
+Diversity
+Incomer cable
+Incomer cable length (m)
+Incomer rating override (A)
+Blank selects automatically
+Cu XLPE 90 °C
+Cu PVC 70 °C
+XLPE 90
+Lighting voltage-drop limit (%)
+Other circuits limit (%)
+Critical (nav, bilge, comms)
+Critical ({1} % drop)
+Lighting ({1} % drop)
+Other ({1} % drop)
+{1} default {2} %
+Low-voltage default {1} %
+Enclosure dissipation rating (W)
+Optional, from the enclosure datasheet
+Phase balance and incomer
+Modules per DIN rail
+Default device widths
+RCBO width
+1 module (compact)
+2 modules (1P+N)
+1 module
+{1} modules
+{1} module (compact)
+{1} modules (1P+N)
+{1} module = 18 mm
+{1} modules · {2} mm
+{1} modules × 18 mm = {2} mm
+{1} · {2} module
+{1} · {2} modules
+Put control modules on their own rails
+Layout wraps to a new rail when a device does not fit. Rows use 150 mm pitch because phase-adaptive Lutron modules are fitted.
+MCB series
+RCBO series
+Main switch or incomer
+Generic (standard defaults)
+Preferred protection range
+Pick a manufacturer series and the layout uses its module widths, the checks use its breaking capacity, rating range and curves, and the bill of materials names it. Leave on Generic to use the standard defaults.
+With no series selected, main switch and SPD take 2 or 4 modules, MCBs 1 module per pole (2 with double-pole marine switching), RCBOs 1 module (compact) for 1P+N and 4 modules for 3P+N. Choose a manufacturer series in Setup or with Use above to replace these with real widths.
+Include surge protection device
+Start an empty board
+Reload the example board
+Start fresh or reload the example
+Quick breaker calculator
+Enter the power of a load, or its current if you know it. It shows the design current, the breaker to use and the cable.
+or current A
+Apparent
+Apparent power
+Power W
+Load W
+Power factor
+PF
+, PF
+Cable length m
+Length m
+Add circuit
++ Circuit
++ DIN module
++ Custom device
+Auto-balance phases
+Renumber
+Delete circuit
+Delete circuit {1}
+Delete module
+Remove {1}
+Circuit schedule
+Circuits fed from a Lutron module zone share the module's feed breaker, so their cable is checked against that breaker rating. Grouping factor multiplies the cable rating (use 1 if none).
+Ref
+Reference
+Name
+Circuit type
+Type
+Phase
+Fed from
+Direct breaker
+{1} zone {2}
+Zone {1}: {2}
+Zone {1}
+Zones
+free
+none
+Rating
+Rating A
+In A
+Ib A
+Icn kA
+Icu kA
+Curve
+Curves
+Poles
+Size
+Size mm²
+Cable
+Grp
+Demand
+VD
+VD %
+Voltage drop
+Status
+OK
+Fail
+Review
+Note
+Notes
+Panel notes
+Panel layout
+Layout
+Rails
+Move
+↑ Rail up
+↓ Rail down
+← Earlier
+Later →
+Fit to screen
+Fitted to the screen
+Full size
+Full row in schedule
+Select a device to edit it here. Drag a device to move it along the rails.
+Delete
+Confirm delete
+Cancel
+Remove
+Remove SPD
+Remove main breaker
+Restore SPD
+Restore main breaker
+Surge protection
+Surge
+SPD
+SPD · Surge protection
+SPD Surge protection
+Main
+Incomer
+Isolator
+Feed breaker
+Feed cable
+Feed length m
+Feed load
+Feed m
+Feed phase
+Feed {1}
+feed {1} A
+Input A
+Device
+Device type
+Module
+Module to add
+Modules
+Modules on this board
+Width
+Width (modules)
+Width, modules
+Model
+Family
+Manufacturer
+Brand
+Series
+Series that fit
+Description
+Search library
+Search model, family, voltage
+Search protection devices
+Search series or standard
+All brands
+All families
+All manufacturers
+All types
+Add
+Add DIN modules
+Use
+In use
+DIN
+DIN equipment library
+Circuit protection library
+Equipment list
+Source checked
+Typical
+Wire landing board
+Control processor
+Interface / IO
+Network / distribution
+Power supply
+Motor control
+Switching
+Dimming
+DALI
+DALI gateway
+EcoSystem
+Digital (HomeWorks)
+Phase-adaptive dimming
+Phase-adaptive dimmer
+Phase control / 20 A
+0–10 V / switching
+0–10 V dimmer
+QSX gateway
+QSX processor
+KNX DALI gateway
+KNX IP interface
+KNX IP router
+KNX analogue I/O
+KNX binary input
+KNX dimming actuator
+KNX energy meter
+KNX heating actuator
+KNX logic / control
+KNX power supply
+KNX shutter actuator
+KNX switch actuator
+KNX universal actuator
+MCB
+RCBO
+RCCB (group RCD)
+MCCB (incomer)
+RCD
+Thermal
+Heat
+Dissipation ≈
+Heat in enclosure ≈
+Enclosure ≈
+BTU/h
+Max phase
+Max °C
+Imbalance
+Balance
+Connected
+Connected load
+Connected {1} kW · demand {2} kW · {3} kVA · max phase {4} A
+Phase loading (after diversity {1})
+Bus loading (after diversity {1})
+at {1} diversity
+Worst end-to-end drop
+Design current
+Design checks
+Check
+Check the panel layout
+Checked against each module limit
+Check
+Fed
+{1} fed
+{1} fail · {2} review
+Lighting
+Socket outlets
+AV / electronics
+HVAC / pump
+Heater / boiler
+Galley / appliance
+Other
+Neutral
+Positive +
+Negative −
+Multi-line diagram
+Multi-line diagram · {1}
+Supply {1}
+CIRCUIT
+PROTECTION
+CABLE
+LOAD
+RAIL
+Panel
+Export
+PDF drawing and schedule
+Panel layout drawing with circuit names, multi-line diagram, circuit schedule and power totals on A4 landscape, with your logo on each page.
+Include bill of materials
+Save PDF
+Excel workbook
+Schedule, Lutron modules, bill of materials, phase balance, power and project sheets. Holds the company name; Excel files from this tool cannot embed the logo image.
+Save Excel
+CSV schedule
+Plain circuit schedule for import into other tools.
+Save CSV
+Project file
+Save the whole design as JSON, or open one you saved earlier.
+Save project
+Open project…
+Open project
+The board also saves in this browser while you work. Exports open a save prompt each time.
+Close
+Date
+Auto
+Auto ({1})
+Assumed breaker capacity {1} kA
+generic · imbalance {1} %
+{1} · imbalance {2} %
+via {1} ({2} A) · {3}
+copper {1}, rating {2} A, voltage drop {3} % of {4} V (limit {5} %)
+{1} V DC (low voltage)
+{1} V AC (low voltage)
+12, 24 or 48 V DC and 24 V AC, as used on yachts and boats.
+Marine AC
+Low voltage DC and AC
+DIN rail layout of {1}
+Zone 1
+Later
+Choose an image under 4 MB.
+Could not save the file here.
+Could not save: {1}
+Excel library did not load.
+Logo added
+Main breaker removed from the panel
+PDF library did not load.
+Phases rebalanced
+Project loaded
+SPD removed
+Saved {1}
+That file is not a DBoard Designer project.
+That image could not be read.
+{1} applied to MCBs.
+{1} applied to RCBOs.
+{1} applied to the main switch.
+{1} added as {2}. See it on the Panel tab.
+Deleted {1}
+Already on the first rail.
+No device on the next rail to place it beside. Drag it instead.
+Low-voltage supply: 24 V DC. Loads are in watts, current is P ÷ V.
+Three-phase supply. Circuits spread across L1, L2 and L3.
+Single-phase supply.
+All checks pass for the current board.
+Could not save the file here.
+Enter a power or a current.
+No DIN modules placed yet. Add one from the library below.
+No circuits yet. Add one to start the schedule.
+No devices match.
+No equipment matches.
+IEC 60364-4-41 expects 30 mA RCD protection on socket-outlets and on circuits for portable equipment.
+BS 7671 411.3.3 requires 30 mA RCD protection for socket-outlets rated up to 20 A and most final circuits in domestic premises.
+NEC 210.8 and 210.12 call for GFCI and AFCI protection on many receptacle and branch circuits. Confirm the edition adopted locally.
+AS/NZS 3000 requires RCD protection on final subcircuits for socket-outlets and lighting.
+Marine AC installations normally use double-pole switching and 30 mA RCD protection on final circuits. Confirm against class and flag rules.
+ABYC E-11 expects GFCI protection on receptacles and double-pole branch protection. Confirm against the current edition.
+Extra-low-voltage AC: no RCD is needed for SELV circuits. Voltage drop is the usual limit on cable length.
+Extra-low-voltage DC: no RCD is needed for SELV circuits. Size each breaker from the current (I = P ÷ V), protect the cable, and use DC-rated devices. Marine practice (ISO 10133, ABYC E-11) allows 3 % voltage drop for critical circuits such as navigation lights and bilge pumps and 10 % for the rest.
+Checks cover design current against breaker and cable rating, voltage drop, RCD expectation, fault level, Lutron input, zone and temperature limits. Earth-fault loop impedance, discrimination and selectivity are not calculated here.
+DBoard Designer is a design aid. Cable ratings, voltage-drop limits and Lutron data are indicative; check them against the current edition of your standard, the manufacturer's submittal and a qualified engineer before building.
+DBoard Designer
+Designer
+Example cabin and AV board
+New board
+New circuit
+{1} {2} covers {3}–{4} A; {5} A is outside that range.

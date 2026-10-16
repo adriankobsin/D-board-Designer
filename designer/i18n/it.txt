@@ -1,0 +1,715 @@
+1|Impostazione
+2|Quadro
+3|Circuiti
+4|Apparecchi
+5|Verifiche
+6|Schema
+7|Esporta
+8|Guida
+9|Lingua
+10|Norma
+11|Alimentazione
+12|Nome del progetto
+13|Logo aziendale
+14|Nome dell'azienda
+15|Azienda e alimentazione
+16|Azienda
+17|Guida: come funziona la piattaforma
+18|Sezioni
+19|Carica logo…
+20|Mostrato accanto al logo e nelle esportazioni
+21|Mostrato in alto nella pagina, nello schema e nel PDF. L'esportazione Excel contiene solo il nome dell'azienda.
+22|Alimentazione e base di progetto
+23|Impostazioni di alimentazione
+24|Tipo di alimentazione
+25|Tensione di alimentazione
+26|Monofase
+27|Trifase
+28|Bassa tensione
+29|Bassa tensione CA / CC
+30|Quadri in bassa tensione
+31|Il cambio adegua di conseguenza i circuiti.
+32|I valori predefiniti seguono la norma scelta e possono essere modificati. Le portate dei cavi sono valori indicativi del metodo di posa C per il rame. Verifichi ogni cifra con l'edizione e le modifiche nazionali con cui progetta.
+33|Corrente di cortocircuito presunta (kA)
+34|Corrente di cortocircuito della batteria (kA)
+35|Dalla scheda tecnica della batteria o del caricabatterie. Le batterie al piombo possono erogare diversi kA. Per gli interruttori CC generici si assumono 5 kA.
+36|Entrambi i poli (2P, non a terra o isolato)
+37|Solo positivo (1P, negativo a terra o comune)
+38|Poli degli interruttori
+39|Temperatura ambiente dei cavi (°C)
+40|Temperatura all'interno del quadro (°C)
+41|Il riferimento è {1} °C
+42|Fattore di contemporaneità
+43|Contemporaneità
+44|Cavo di arrivo
+45|Lunghezza del cavo di arrivo (m)
+46|Portata di arrivo imposta (A)
+47|Se vuoto, la scelta è automatica
+48|Cu XLPE 90 °C
+49|Cu PVC 70 °C
+50|XLPE 90
+51|Limite di caduta di tensione illuminazione (%)
+52|Limite degli altri circuiti (%)
+53|Critico (navigazione, sentina, comunicazioni)
+54|Critico (caduta del {1} %)
+55|Illuminazione (caduta del {1} %)
+56|Altro (caduta del {1} %)
+57|{1} predefinito {2} %
+58|Predefinito bassa tensione {1} %
+59|Potenza dissipabile del quadro (W)
+60|Facoltativo, dalla scheda tecnica del quadro
+61|Bilanciamento delle fasi e arrivo
+62|Moduli per guida DIN
+63|Larghezze predefinite degli apparecchi
+64|Larghezza RCBO
+65|1 modulo (compatto)
+66|2 moduli (1P+N)
+67|1 modulo
+68|{1} moduli
+69|{1} modulo (compatto)
+70|{1} moduli (1P+N)
+71|{1} modulo = 18 mm
+72|{1} moduli · {2} mm
+73|{1} moduli × 18 mm = {2} mm
+74|{1} · {2} modulo
+75|{1} · {2} moduli
+76|Metti i moduli di controllo su guide proprie
+77|La disposizione passa a una nuova guida quando un apparecchio non entra. Le file hanno un passo di 150 mm perché sono montati moduli Lutron a fase adattiva.
+78|Serie MCB
+79|Serie RCBO
+80|Interruttore generale o arrivo
+81|Generico (valori predefiniti della norma)
+82|Intervallo di protezione preferito
+83|Scelga una serie di un costruttore: la disposizione usa le sue larghezze dei moduli, le verifiche usano il suo potere di interruzione, l'intervallo di portate e le curve, e la distinta materiali la riporta. Lasci Generico per usare i valori predefiniti della norma.
+84|Senza serie selezionata, interruttore generale e SPD occupano 2 o 4 moduli, gli MCB 1 modulo per polo (2 con interruzione bipolare navale), gli RCBO 1 modulo (compatto) in 1P+N e 4 moduli in 3P+N. Scelga una serie di un costruttore in Impostazione o con Usa qui sopra per sostituirli con larghezze reali.
+85|Includi dispositivo di protezione da sovratensioni
+86|Inizia un quadro vuoto
+87|Ricarica il quadro di esempio
+88|Ricomincia da zero o ricarica l'esempio
+89|Calcolatore rapido di interruttori
+90|Inserisca la potenza di un carico, o la sua corrente se la conosce. Mostra la corrente di progetto, l'interruttore da usare e il cavo.
+91|o corrente A
+92|Apparente
+93|Potenza apparente
+94|Potenza W
+95|Carico W
+96|Fattore di potenza
+97|PF
+98|, PF
+99|Lunghezza cavo m
+100|Lunghezza m
+101|Aggiungi circuito
+102|+ Circuito
+103|+ Modulo DIN
+104|+ Apparecchio personalizzato
+105|Bilancia le fasi automaticamente
+106|Rinumera
+107|Elimina circuito
+108|Elimina circuito {1}
+109|Elimina modulo
+110|Rimuovi {1}
+111|Tabella dei circuiti
+112|I circuiti alimentati da una zona di modulo Lutron condividono l'interruttore di alimentazione del modulo, quindi il loro cavo è verificato rispetto a quella portata. Il fattore di raggruppamento moltiplica la portata del cavo (usi 1 se assente).
+113|Rif.
+114|Riferimento
+115|Nome
+116|Tipo di circuito
+117|Tipo
+118|Fase
+119|Alimentato da
+120|Interruttore diretto
+121|{1} zona {2}
+122|Zona {1}: {2}
+123|Zona {1}
+124|Zone
+125|libera
+126|nessuno
+127|Portata
+128|Portata A
+129|In A
+130|Ib A
+131|Icn kA
+132|Icu kA
+133|Curva
+134|Curve
+135|Poli
+136|Sezione
+137|Sezione mm²
+138|Cavo
+139|Grp
+140|Richiesta
+141|ΔV
+142|ΔV %
+143|Caduta di tensione
+144|Stato
+145|OK
+146|Errore
+147|Da rivedere
+148|Nota
+149|Note
+150|Note del quadro
+151|Disposizione del quadro
+152|Disposizione
+153|Guide
+154|Sposta
+155|↑ Guida su
+156|↓ Guida giù
+157|← Prima
+158|Dopo →
+159|Adatta allo schermo
+160|Adattato allo schermo
+161|Dimensione reale
+162|Riga intera nella tabella
+163|Selezioni un apparecchio per modificarlo qui. Trascini un apparecchio per spostarlo lungo le guide.
+164|Elimina
+165|Conferma eliminazione
+166|Annulla
+167|Rimuovi
+168|Rimuovi SPD
+169|Rimuovi interruttore generale
+170|Ripristina SPD
+171|Ripristina interruttore generale
+172|Protezione da sovratensioni
+173|Sovratensione
+174|SPD
+175|SPD · Protezione da sovratensioni
+176|SPD Protezione da sovratensioni
+177|Generale
+178|Arrivo
+179|Sezionatore
+180|Interruttore di alimentazione
+181|Cavo di alimentazione
+182|Lunghezza alimentazione m
+183|Carico di alimentazione
+184|Alim. m
+185|Fase di alimentazione
+186|Alimentazione {1}
+187|alimentazione {1} A
+188|Ingresso A
+189|Apparecchio
+190|Tipo di apparecchio
+191|Modulo
+192|Modulo da aggiungere
+193|Moduli
+194|Moduli di questo quadro
+195|Larghezza
+196|Larghezza (moduli)
+197|Larghezza, moduli
+198|Modello
+199|Famiglia
+200|Costruttore
+201|Marca
+202|Serie
+203|Serie adatte
+204|Descrizione
+205|Cerca nella libreria
+206|Cerca modello, famiglia, tensione
+207|Cerca dispositivi di protezione
+208|Cerca serie o norma
+209|Tutte le marche
+210|Tutte le famiglie
+211|Tutti i costruttori
+212|Tutti i tipi
+213|Aggiungi
+214|Aggiungi moduli DIN
+215|Usa
+216|In uso
+217|DIN
+218|Libreria apparecchi DIN
+219|Libreria di protezione dei circuiti
+220|Elenco apparecchi
+221|Fonte verificata
+222|Tipico
+223|Scheda di attestazione cavi
+224|Processore di controllo
+225|Interfaccia / I/O
+226|Rete / distribuzione
+227|Alimentatore
+228|Controllo motori
+229|Commutazione
+230|Regolazione
+231|DALI
+232|Gateway DALI
+233|EcoSystem
+234|Digitale (HomeWorks)
+235|Regolazione a fase adattiva
+236|Regolatore a fase adattiva
+237|Controllo di fase / 20 A
+238|0–10 V / commutazione
+239|Regolatore 0–10 V
+240|Gateway QSX
+241|Processore QSX
+242|Gateway KNX DALI
+243|Interfaccia KNX IP
+244|Router KNX IP
+245|I/O analogico KNX
+246|Ingresso binario KNX
+247|Attuatore di regolazione KNX
+248|Contatore di energia KNX
+249|Attuatore di riscaldamento KNX
+250|Logica / controllo KNX
+251|Alimentatore KNX
+252|Attuatore per tapparelle KNX
+253|Attuatore di commutazione KNX
+254|Attuatore universale KNX
+255|MCB
+256|RCBO
+257|RCCB (differenziale di gruppo)
+258|MCCB (arrivo)
+259|RCD
+260|Termico
+261|Calore
+262|Dissipazione ≈
+263|Calore nel quadro ≈
+264|Quadro ≈
+265|BTU/h
+266|Fase max
+267|°C max
+268|Squilibrio
+269|Bilanciamento
+270|Collegata
+271|Carico collegato
+272|Collegata {1} kW · richiesta {2} kW · {3} kVA · fase max {4} A
+273|Carico delle fasi (dopo contemporaneità {1})
+274|Carico delle sbarre (dopo contemporaneità {1})
+275|con contemporaneità {1}
+276|Peggiore caduta di tensione da capo a capo
+277|Corrente di progetto
+278|Verifiche di progetto
+279|Verifica
+280|Verifica la disposizione del quadro
+281|Verificato rispetto al limite di ogni modulo
+282|{1} alimentati
+283|{1} errori · {2} da rivedere
+284|Illuminazione
+285|Prese
+286|AV / elettronica
+287|Climatizzazione / pompa
+288|Riscaldatore / caldaia
+289|Cucina / elettrodomestici
+290|Altro
+291|Neutro
+292|Positivo +
+293|Negativo −
+294|Schema multifilare
+295|Schema multifilare · {1}
+296|Alimentazione {1}
+297|CIRCUITO
+298|PROTEZIONE
+299|CAVO
+300|CARICO
+301|GUIDA
+302|Disegno PDF e tabella
+303|Disegno della disposizione del quadro con nomi dei circuiti, schema multifilare, tabella dei circuiti e totali di potenza in A4 orizzontale, con il suo logo su ogni pagina.
+304|Includi distinta materiali
+305|Salva PDF
+306|Cartella Excel
+307|Fogli di tabella circuiti, moduli Lutron, distinta materiali, bilanciamento delle fasi, potenza e progetto. Contiene il nome dell'azienda; i file Excel di questo strumento non possono incorporare l'immagine del logo.
+308|Salva Excel
+309|Tabella CSV
+310|Tabella dei circuiti semplice da importare in altri strumenti.
+311|Salva CSV
+312|File di progetto
+313|Salvi l'intero progetto come JSON, oppure ne apra uno salvato in precedenza.
+314|Salva progetto
+315|Apri progetto…
+316|Apri progetto
+317|Il quadro viene salvato anche in questo browser mentre lavora. Ogni esportazione apre una finestra di salvataggio.
+318|Chiudi
+319|Data
+320|Auto
+321|Auto ({1})
+322|Potere di interruzione presunto {1} kA
+323|generico · squilibrio {1} %
+324|{1} · squilibrio {2} %
+325|tramite {1} ({2} A) · {3}
+326|rame {1}, portata {2} A, caduta di tensione {3} % di {4} V (limite {5} %)
+327|{1} V CC (bassa tensione)
+328|{1} V CA (bassa tensione)
+329|12, 24 o 48 V CC e 24 V CA, come su yacht e imbarcazioni.
+330|Disposizione guide DIN di {1}
+331|Scelga un'immagine inferiore a 4 MB.
+332|Impossibile salvare il file qui.
+333|Impossibile salvare: {1}
+334|La libreria Excel non è stata caricata.
+335|Logo aggiunto
+336|Interruttore generale rimosso dal quadro
+337|La libreria PDF non è stata caricata.
+338|Fasi ribilanciate
+339|Progetto caricato
+340|SPD rimosso
+341|{1} salvato
+342|Quel file non è un progetto di DBoard Designer.
+343|Impossibile leggere quell'immagine.
+344|{1} applicato agli MCB.
+345|{1} applicato agli RCBO.
+346|{1} applicato all'interruttore generale.
+347|{1} aggiunto come {2}. Lo veda nella scheda Quadro.
+348|{1} eliminato
+349|Già sulla prima guida.
+350|Nessun apparecchio sulla guida successiva accanto a cui collocarlo. Lo trascini invece.
+351|Alimentazione in bassa tensione: 24 V CC. I carichi sono in watt, la corrente è P ÷ V.
+352|Alimentazione trifase. I circuiti sono distribuiti su L1, L2 e L3.
+353|Alimentazione monofase.
+354|Tutte le verifiche sono superate per questo quadro.
+355|Inserisca una potenza o una corrente.
+356|Nessun modulo DIN collocato. Ne aggiunga uno dalla libreria qui sotto.
+357|Ancora nessun circuito. Ne aggiunga uno per iniziare la tabella.
+358|Nessun apparecchio corrisponde.
+359|Nessun apparecchio corrisponde.
+360|La IEC 60364-4-41 prevede la protezione RCD da 30 mA sulle prese e sui circuiti per apparecchi portatili.
+361|La BS 7671 411.3.3 richiede la protezione RCD da 30 mA per le prese fino a 20 A e per la maggior parte dei circuiti terminali domestici.
+362|Le NEC 210.8 e 210.12 richiedono la protezione GFCI e AFCI su molti circuiti di prese e derivati. Confermi l'edizione adottata localmente.
+363|La AS/NZS 3000 richiede la protezione RCD sui sottocircuiti terminali di prese e illuminazione.
+364|Gli impianti navali in CA usano normalmente l'interruzione bipolare e la protezione RCD da 30 mA sui circuiti terminali. Verifichi con le regole di classe e di bandiera.
+365|La ABYC E-11 prevede la protezione GFCI sulle prese e la protezione bipolare dei derivati. Verifichi con l'edizione corrente.
+366|Bassissima tensione CA: nei circuiti SELV non serve l'RCD. La caduta di tensione è di solito il limite di lunghezza del cavo.
+367|Bassissima tensione CC: nei circuiti SELV non serve l'RCD. Dimensioni ogni interruttore dalla corrente (I = P ÷ V), protegga il cavo e usi dispositivi idonei alla CC. La pratica navale (ISO 10133, ABYC E-11) consente il 3 % di caduta di tensione per i circuiti critici come luci di navigazione e pompe di sentina e il 10 % per il resto.
+368|Le verifiche coprono la corrente di progetto rispetto alla portata di interruttore e cavo, la caduta di tensione, l'aspettativa di RCD, il livello di cortocircuito e i limiti di ingresso, zona e temperatura Lutron. Impedenza dell'anello di guasto, discriminazione e selettività non sono calcolate qui.
+369|DBoard Designer è un ausilio alla progettazione. Le portate dei cavi, i limiti di caduta di tensione e i dati Lutron sono indicativi; li verifichi con l'edizione corrente della sua norma, la documentazione del costruttore e un ingegnere qualificato prima di costruire.
+370|DBoard Designer
+371|Designer
+372|Cabina e quadro AV di esempio
+373|{1} copre {2}–{3} A; {4} A è fuori da questo intervallo.
+374|{1} non prevede una curva {2} ({3}).
+375|L'alimentazione di {1} porta {2} A, sopra la sua portata d'ingresso di {3} A.
+376|{1} è previsto per {2}; la tensione fase-neutro del sistema è {3} V.
+377|{1} ammette {2} C nel quadro; il valore di progetto è {3} C.
+378|L'interruttore di alimentazione di {1}, {2} A, è inferiore al suo carico di {3} A.
+379|Il cavo di alimentazione di {1} porta {2} A, meno dell'interruttore da {3} A.
+380|La caduta di tensione dell'alimentazione di {1} è {2} %.
+381|La corrente di alimentazione di {1} supera il più grande interruttore di questa serie.
+382|Il livello di cortocircuito di {1} kA supera il potere di interruzione di {2} kA dell'interruttore di alimentazione.
+383|La corrente di progetto supera il più grande interruttore di questa serie.
+384|La corrente di progetto di {1} A supera l'interruttore da {2} A.
+385|Il cavo da {1} mm² porta {2} A, meno dell'interruttore da {3} A. Aumenti la sezione o riduca l'interruttore.
+386|La caduta di tensione del {1} % supera l'obiettivo del {2} %.
+387|Il circuito «{1}» non ha RCBO. {2}
+388|Il livello di cortocircuito di {1} kA supera il potere di interruzione di {2} kA di {3}.
+389|Il livello di cortocircuito di {1} kA supera il potere di interruzione di {2} kA presunto per questa norma.
+390|{1} non ha versione trifase. Scelga una serie RCBO 4P o un MCB con RCD di gruppo.
+391|{1} è un apparecchio 4P e non può proteggere un circuito monofase.
+392|{1} ha {2} zone; la zona {3} non esiste.
+393|La corrente di zona di {1} A supera la portata di zona di {2} A.
+394|Il carico di zona di {1} W supera il limite di {2} W della zona {3}.
+395|{1} non commuta carichi.
+396|La zona {1} di {2} è condivisa con {3}.
+397|{1} non risulta idoneo alla CC a {2} V. Scelga una serie CC, oppure usi Generico e specifichi un dispositivo idoneo alla CC.
+398|Nessuna serie CC scelta, quindi si assume un interruttore magnetotermico generico idoneo alla CC a 5 kA.
+399|La corrente massima di fase supera la più grande portata di arrivo della libreria.
+400|La corrente massima di fase di {1} A supera l'arrivo da {2} A.
+401|Il cavo di arrivo da {1} mm² porta {2} A, meno dell'arrivo da {3} A.
+402|La caduta di tensione dell'arrivo del {1} % consuma parte del margine totale.
+403|Lo squilibrio delle fasi è del {1} % sopra la media. Usi il bilanciamento automatico o sposti dei circuiti.
+404|I moduli a fase adattiva richiedono un declassamento per zona con 30–40 C di temperatura ambiente. Vedere la nota applicativa Lutron n. 466.
+405|I moduli a fase adattiva richiedono 150 mm tra le guide DIN e 200 mm liberi sopra la guida superiore.
+406|La dissipazione stimata di {1} W supera la potenza dissipabile del quadro di {2} W.
+407|{1} moduli per guida DIN di Lutron, Crestron, Control4 e MDT KNX. I dati Lutron provengono dalla nota applicativa n. 466 (rev. T, maggio 2026) e dalle schede tecniche, quelli Crestron dalle pagine prodotto, quelli Control4 dalle schede tecniche e quelli MDT dai listini e dalle pagine prodotto (1 modulo = 18 mm). Dove una fonte non indica un valore, appare ? o –. Gli attuatori KNX sono alimentati dal bus, quindi per l'alimentazione conta solo il lato carico. Verifichi la scheda tecnica aggiornata del costruttore prima di ordinare.
+408|Bassissima tensione {1} V CA: I = P ÷ (V × PF). Gli interruttori sono di tipo CA standard; la bassa tensione fa salire la corrente, quindi spesso sezione del cavo e caduta di tensione decidono il cavo.
+409|Quadro satellite da {1} pollici con moduli di potenza DIN e controllori EcoSystem.
+410|{1} serie di {2} costruttori. Portate, poteri di interruzione e larghezze sono valori di catalogo a livello di serie: «Fonte verificata» indica che una pagina del costruttore o di un distributore li ha confermati, «Tipico» che sono cifre comuni di catalogo da confermare sulla scheda tecnica. Prema Usa per applicare una serie a questo quadro.
+411|In fondo a Impostazione, <b>Inizia un quadro vuoto</b> cancella tutto e <b>Ricarica il quadro di esempio</b> riporta la cabina e il quadro AV di esempio.
+412|Scelga Bassa tensione CA / CC come tipo di alimentazione. Le portate degli interruttori e le sezioni dei cavi usano allora serie idonee alla CC, e il quadro disegna sbarre positiva e negativa al posto delle fasi.
+413|Quadro di potenza di controllo con 8 interruttori di derivazione e interfacce per moduli.
+414|Quadro di regolazione / commutazione, fino a 4 moduli di potenza DIN (o 3 più un alimentatore QSPS). 120–240 V.
+415|Corrente continua: I = P ÷ V, senza fattore di potenza. Gli archi in CC non si autoestinguono, quindi ogni interruttore deve essere idoneo alla CC almeno alla tensione di carica (circa 1,25 × la tensione nominale di {1} V) e va rispettata ogni polarità indicata sul dispositivo. Il potere di interruzione è fissato dalla corrente di cortocircuito della batteria o della sorgente ({2} kA inseriti).
+416|Viene disegnato ogni conduttore: ogni fase dalla sua sbarra e il neutro dalla sbarra N. Un riquadro tratteggiato attorno ai poli indica un interruttore che interrompe anche il neutro; un Δ indica l'RCD. Gli MCB unipolari lasciano passare il neutro. Le linee tratteggiate mostrano i circuiti commutati da una zona di modulo Lutron.
+417|Viene disegnato ogni conduttore: positivo (rosso) e negativo (scuro) dalle due sbarre. Un riquadro tratteggiato attorno ai poli indica un interruttore bipolare. Gli interruttori unipolari stanno solo sul positivo.
+418|Segua questi passaggi dalla prima schermata al PDF finito. Può passare a qualsiasi passaggio in qualsiasi momento; ogni scheda aggiorna lo stesso quadro.
+419|Nella versione installabile, usi l'opzione Installa o Aggiungi alla schermata Home del browser. Poi si apre a schermo intero e funziona offline.
+420|Apra <b>Verifiche</b>. Lo strumento controlla che ogni interruttore copra il carico e protegga il suo cavo, che la caduta di tensione resti sotto il limite, che la protezione RCD sia presente dove la norma la richiede, che il potere di interruzione copra il livello di cortocircuito e che i limiti dei moduli e delle zone Lutron (carico, corrente, tensione, temperatura) siano rispettati. Controlla anche portata e cavo di arrivo, squilibrio delle fasi e calore nel quadro. <b>Errore</b> significa correggere prima di costruire, <b>Da rivedere</b> significa guardare e decidere, e le note sono informative.
+421|Apra <b>Circuiti</b> e prema <b>Aggiungi circuito</b>. Per ogni circuito inserisca nome, tipo, potenza in watt, fattore di potenza, fase, lunghezza del cavo, protezione (MCB o RCBO) e curva. Lo strumento dimensiona il cavo, sceglie la portata dell'interruttore e calcola corrente e caduta di tensione. <b>Bilancia le fasi automaticamente</b> distribuisce il carico su L1, L2 e L3, e <b>Rinumera</b> riordina i riferimenti. Su un quadro in bassa tensione, il calcolatore rapido in alto dà subito l'interruttore per un carico.
+422|Apra <b>Schema</b> per lo schema elettrico multifilare. Ogni conduttore di fase è disegnato dalla sua sbarra e il neutro dalla sbarra N. Un riquadro tratteggiato indica gli interruttori che interrompono il neutro, un triangolo l'RCD, e le linee tratteggiate i circuiti commutati da una zona Lutron. Ogni circuito mostra cavo, protezione, barra di carico e stato.
+423|Apra <b>Apparecchi</b> per sfogliare gli apparecchi di controllo per guida DIN di Lutron, Crestron, Control4 e MDT KNX (processori, interfacce, alimentatori, moduli di regolazione, commutazione e tapparelle, gateway) con un filtro per marca, e la libreria di interruttori (Schneider, ABB, Siemens, Legrand, Hager, Eaton, Chint). Prema <b>Aggiungi</b> su un modulo per collocarlo nel quadro. Tornato in <b>Circuiti</b>, scelga il modulo e la zona (canale) da cui è alimentato un circuito. Ogni modulo riceve anche un proprio interruttore di alimentazione. Prema <b>Usa</b> su una serie di interruttori per renderla predefinita per MCB, RCBO o interruttore generale.
+424|Apra <b>Esporta</b>. <b>Salva PDF</b> produce la disposizione del quadro, lo schema multifilare, la tabella dei circuiti e i totali di potenza; spunti <b>Includi distinta materiali</b> se vuole aggiungere quell'elenco. <b>Salva Excel</b> e <b>Salva CSV</b> forniscono la tabella per altri strumenti. <b>Salva progetto</b> memorizza l'intero progetto in un file che potrà riaprire più tardi con <b>Apri progetto</b>.
+425|Apra <b>Quadro</b> per vedere le guide DIN disegnate con ogni apparecchio e il nome del suo circuito. Faccia clic su un apparecchio per aprire l'ispettore: lo modifichi, lo sposti lungo la guida o su un'altra guida, oppure lo elimini. Usi <b>+ Circuito</b>, <b>+ Modulo DIN</b> o <b>+ Apparecchio personalizzato</b> per aggiungere elementi anche qui. Può cambiare l'interruttore generale e ripristinare un generale o un SPD eliminato con i pulsanti di ripristino. <b>Adatta allo schermo</b> e <b>Dimensione reale</b> cambiano lo zoom.
+426|Apra <b>Impostazione</b>. Dia un nome al quadro, aggiunga il nome dell'azienda e il logo (compaiono in alto nella pagina e nel PDF) e scelga la <b>norma</b> e il <b>tipo di alimentazione</b>: monofase, trifase oppure bassa tensione CA / CC (12, 24, 48 V CC o 24 V CA per quadri navali e simili). Poi imposti temperature ambiente, fattore di contemporaneità, cavo di arrivo, limiti di caduta di tensione, la serie di interruttori da usare, quanti moduli entrano in una guida DIN e se gli RCBO occupano 1 o 2 moduli.
+427|Portate, limiti di caduta di tensione e dati dei costruttori sono indicativi. Li verifichi con l'edizione corrente della sua norma, la documentazione del costruttore e un ingegnere qualificato prima di costruire.
+428|Il quadro viene conservato in questo browser mentre lavora. Usi Salva progetto per tenerne una copia o spostarlo su un altro dispositivo.
+429|(portata normalizzata successiva pari o superiore alla corrente di progetto) {1}
+430|bipolare
+431|bipolare, idoneo alla CC
+432|Quadri e involucri DIN Lutron (riferimento)
+433|Come funziona DBoard Designer
+434|Da sapere
+435|Inizi da Impostazione
+436|Impostare il progetto
+437|Aggiungere i circuiti
+438|Leggere le verifiche
+439|Esaminare lo schema
+440|Il suo lavoro viene salvato automaticamente
+441|Lo installi come un'app
+442|Verifichi sempre
+443|Linea
+444|Progetto
+445|Interruttore
+446|Interruttori
+447|facoltativo
+448|fonte
+449|, cavo
+450|Applicato ai totali di fase
+451|Imposta la larghezza dell'interruttore e lo schema
+452|Quadro in bassa tensione HomeWorks QS.
+453|Involucro passante con interfacce per moduli.
+454|Quadro su guida DIN da 120 V con morsetti.
+455|Quadro DIN da {1} V {2} con interruttori AFCI da {3} A.
+456|Dispositivo di protezione da sovratensioni, tipo 2.
+457|SPD tipo 2
+458|TIPO 2
+459|trifase
+460|{1} (CA navale)
+461|GENERALE {1}
+462|Sbarra {1} V CC
+463|Sbarra {1} V CA
+464|GUIDA {1}
+465|usati,
+466|Distinta base
+467|Disposizione del quadro (guide {1} a {2})
+468|(pagina {1} di {2})
+469|Ausilio alla progettazione. Verificare le portate con l'edizione della norma, le schede tecniche dei produttori e un tecnico qualificato prima della realizzazione.
+470|Fase
+471|Protezione
+472|Portata cavo A
+473|Schema circuiti
+474|Moduli DIN
+475|Fasi
+476|Alimentazione A
+477|Interruttore di alimentazione A
+478|Cavo di alimentazione mm2
+479|Moduli (18 mm)
+480|Calore BTU/h
+481|Corrente A (dopo contemporaneità)
+482|Montante A
+483|Squilibrio %
+484|Potenza installata kW
+485|Potenza richiesta kW (dopo contemporaneità)
+486|Potenza apparente kVA
+487|Dissipazione W
+488|Sistema
+489|Corrente di guasto kA
+490|Temperatura ambiente cavo C
+491|Interruttore generale
+492|Generico
+493|Diretto
+494|Articolo
+495|Q.tà
+496|Carico delle fasi dopo contemporaneità
+497|Installata {1} kW · richiesta {2} kW · {3} kVA · PF {4}
+498|Cavo montante {1} mm² {2}
+499|Dimensione reale, scorri di lato
+500|{1} × {2} aggiunti. Vedili nella scheda Quadro.
+501|Quantità
+502|CC
+503|Tensione (V)
+504|Corrente (A)
+505|Resistenza (Ω)
+506|Potenza (W)
+507|Legge di Ohm e potenza
+508|Scegli cosa calcolare, poi inserisci i due valori noti.
+509|Calcola
+510|Formula
+511|Inserisci valori maggiori di zero.
+512|Potenza in c.a. e fattore di potenza
+513|Calcola corrente e potenze attiva, apparente e reattiva per carichi monofase e trifase.
+514|Tensione concatenata (V)
+515|Valori noti
+516|Corrente e fattore di potenza
+517|Potenza attiva e fattore di potenza
+518|Potenza apparente e fattore di potenza
+519|Potenza attiva e reattiva
+520|Potenza attiva (kW)
+521|Potenza apparente (kVA)
+522|Potenza reattiva (kvar)
+523|Il fattore di potenza deve essere compreso tra 0 e 1.
+524|Corrente
+525|Potenza attiva
+526|Potenza reattiva
+527|Angolo di fase
+528|Rifasamento
+529|Dimensiona la batteria di condensatori necessaria per aumentare il fattore di potenza.
+530|Fattore di potenza attuale
+531|Fattore di potenza desiderato
+532|Il valore desiderato deve essere maggiore del fattore di potenza attuale.
+533|Taglia dei condensatori (kvar)
+534|Potenza apparente prima
+535|Potenza apparente dopo
+536|Riduzione di corrente
+537|Sezione del cavo
+538|Trova il cavo in rame più piccolo che sopporta il carico e mantiene la caduta di tensione entro il limite.
+539|Il carico è dato come
+540|Potenza (kW)
+541|Lunghezza del cavo (m)
+542|Limite caduta di tensione (%)
+543|Tipo di cavo
+544|Ambiente (°C)
+545|Fattore di raggruppamento
+546|Portata del cavo
+547|Interruttore suggerito
+548|Conduttori in rame, metodo di riferimento C. Verificare con la norma e il metodo di posa.
+549|Nessun cavo della tabella rispetta il limite. Accorcia il percorso, allenta il limite o usa cavi in parallelo.
+550|Caduta di tensione per un cavo scelto e la lunghezza massima che può servire.
+551|Sezione del cavo (mm²)
+552|Caduta di tensione (V)
+553|Caduta di tensione (%)
+554|Tensione al carico
+555|Lunghezza massima entro il limite
+556|Entro il limite.
+557|Limite superato. Usa un cavo più grande o un percorso più corto.
+558|Reti di resistenze e leggi di Kirchhoff
+559|Resistenze in serie e in parallelo con tensione e corrente di ciascuna.
+560|Collegamento
+561|Parallelo
+562|Tensione di alimentazione (V)
+563|Valori delle resistenze (Ω), separati da virgole o spazi
+564|Inserisci da 1 a 12 valori di resistenza maggiori di zero.
+565|Resistenza
+566|Resistenza totale
+567|Corrente totale
+568|Potenza totale
+569|Legge di Kirchhoff delle tensioni (KVL): le tensioni lungo una maglia chiusa sommano a zero, quindi le cadute sulle resistenze sommano la tensione di alimentazione.
+570|Legge di Kirchhoff delle correnti (KCL): la corrente entrante in un nodo è uguale a quella uscente, quindi le correnti dei rami sommano la corrente totale.
+571|Relazioni stella e triangolo
+572|Tensione e corrente concatenate e di fase in un carico trifase.
+573|Collegamento
+574|Stella (Y)
+575|Triangolo (Δ)
+576|Valori di linea
+577|Valori di fase
+578|Tensione di fase (V)
+579|Corrente di linea (A)
+580|Corrente di fase (A)
+581|Strumenti dell'elettricista
+582|Calcolatori rapidi per il lavoro quotidiano. Ogni risultato mostra la formula e i numeri usati. Usali come guida e verifica con la tua norma.
+583|Strumenti
+584|Usare gli strumenti
+585|Apri <b>Strumenti</b> per calcolatori rapidi da elettricista, indipendenti dal quadro. <b>Legge di Ohm e potenza</b> ricava tensione, corrente, resistenza o potenza da due valori qualsiasi. <b>Potenza in c.a. e fattore di potenza</b> copre carichi monofase e trifase, e <b>Rifasamento</b> dimensiona una batteria di condensatori. <b>Sezione del cavo</b> sceglie il cavo in rame più piccolo per carico, lunghezza e limite di caduta di tensione con le stesse tabelle dei circuiti, e <b>Caduta di tensione</b> verifica un cavo scelto. <b>Reti di resistenze</b> risolve circuiti serie e parallelo con le leggi di Kirchhoff, e <b>Relazioni stella e triangolo</b> converte i valori di linea e di fase. Ogni risultato mostra la formula e i numeri usati.
+586|Resistenza del cavo
+587|Resistenza di un conduttore in rame o alluminio. Calcola resistenza, lunghezza o sezione, ad esempio per stimare la distanza di un guasto.
+588|Materiale
+589|Rame
+590|Alluminio
+591|Misurato come
+592|Un conduttore
+593|Anello (andata e ritorno)
+594|Temperatura del conduttore (°C)
+595|Sezione normalizzata successiva
+596|Resistività a questa temperatura
+597|Resistenza per metro
+598|Una misura ad anello comprende il conduttore di andata e ritorno, quindi la lunghezza indicata è la distanza di sola andata.
+599|Resistività a 20 °C: rame 0,017241, alluminio 0,028264 Ω·mm²/m. Coefficiente di temperatura: rame 0,00393, alluminio 0,00403 per °C.
+600|Fase 1 marrone, fase 2 nero, fase 3 grigio, neutro blu, conduttore di protezione giallo-verde (IEC 60446).
+601|Messa a terra di protezione con interruzione automatica dell'alimentazione (sistemi TN, TT o IT), collegamento equipotenziale principale delle tubazioni metalliche entranti e delle masse.
+602|Fase 1 marrone, fase 2 nero, fase 3 grigio, neutro blu, conduttore di protezione giallo-verde. Gli impianti più vecchi usano rosso, giallo, blu e nero.
+603|Messa a terra di protezione con interruzione automatica. L'impedenza dell'anello di guasto deve restare entro i limiti delle tabelle, con collegamento equipotenziale principale delle tubazioni.
+604|Solo il neutro (bianco o grigio) e la terra delle apparecchiature (verde o nudo) sono prescritti. I colori delle fasi seguono la prassi locale, di solito nero, rosso e blu a 208 V.
+605|Articolo 250: sistema di dispersori, conduttori di terra delle apparecchiature e un solo collegamento neutro-terra al sezionatore generale.
+606|Terra giallo-verde, neutro nero o azzurro, attivi in altri colori come rosso, bianco e blu, oppure marrone, nero e grigio.
+607|Sistema a neutro multiplo messo a terra (MEN) con il neutro collegato a terra al quadro principale e un conduttore di terra principale verso il dispersore.
+608|Fase marrone, neutro blu, conduttore di protezione giallo-verde (prassi IEC 60446).
+609|Il conduttore di protezione è collegato al sistema di equipotenzialità della barca. Neutro e terra sono uniti solo alla sorgente (generatore o trasformatore di isolamento), mai alla presa di banchina.
+610|Fase nera, seconda fase rossa, terza blu, neutro bianco, conduttore di terra verde o giallo-verde.
+611|Il conduttore di terra c.a. è collegato al negativo c.c. della barca in un solo punto. Neutro e terra sono uniti solo alla sorgente (generatore o trasformatore di isolamento).
+612|Sì
+613|No
+614|Caduta di tensione, illuminazione
+615|Caduta di tensione, altri circuiti
+616|Fattore di carico continuo
+617|Taglie degli interruttori
+618|Curve di intervento
+619|Sezionamento bipolare
+620|Sì, bipolare
+621|No, di norma è unipolare
+622|Protezione con RCD o GFCI
+623|Colori dei conduttori
+624|Messa a terra e collegamenti equipotenziali
+625|Confronta le norme
+626|Caduta illuminazione
+627|Caduta altri
+628|Carico continuo
+629|Bipolare
+630|Riferimento alle norme
+631|Solo a titolo di riferimento. Verifica ogni valore con l'edizione vigente della norma e le varianti locali prima di farvi affidamento.
+632|Condizionamento
+633|Ventola / ventilazione
+634|Motore
+635|Pompa dell'acqua
+636|Verricello / elica di prua
+637|Cucina / forno
+638|Refrigerazione
+639|Lavatrice / asciugatrice
+640|Scaldacqua
+641|Traccia elettrica / riscaldamento a pavimento
+642|Prese esterne / di coperta
+643|Apparecchiature piscina / spa
+644|Caricatore per auto elettriche
+645|Caricabatterie
+646|Inverter / UPS
+647|Rete / IT
+648|Sicurezza / allarme
+649|Illuminazione di emergenza
+650|Alimentazione di sottoquadro
+651|Ricerca guasti e norme
+652|In Strumenti, <b>Resistenza del cavo</b> trova resistenza, lunghezza o sezione di un cavo in rame o alluminio, ad esempio per stimare la distanza di un guasto. Il <b>Riferimento alle norme</b> in fondo elenca per ogni norma limiti di caduta di tensione, taglie degli interruttori, regole RCD, colori dei conduttori e messa a terra. È solo di riferimento: verifica con l'edizione vigente.
+653|Pompa di sentina / di drenaggio
+654|Officina / utensili elettrici
+655|Apparecchiature di navigazione
+656|Comunicazioni
+657|Accedi
+658|Crea un account
+659|Crea account
+660|Indirizzo email
+661|Password
+662|Conferma password
+663|Nome
+664|Cognome
+665|Paese
+666|Password dimenticata?
+667|Ricordami su questo dispositivo
+668|Esci
+669|Dashboard
+670|Impostazioni account
+671|Nuovo quadro
+672|I miei progetti salvati
+673|Apri
+674|Rinomina
+675|Duplica
+676|Crea un nuovo quadro di distribuzione
+677|Progetti aperti di recente
+678|Salva profilo
+679|Cambia password
+680|Elimina account
+681|Azienda (facoltativo)
+682|Professione
+683|Reimposta la password
+684|Invia link di reimpostazione
+685|Controlla la tua email
+686|Apri il designer
+687|Progetti salvati
+688|Invia feedback
+689|Account
+690|Benvenuto
+691|Mostra
+692|Nascondi
+693|Torna all'accesso
+694|Seleziona il paese
+695|Seleziona la professione
+696|Invia di nuovo l'email
+697|Termini e condizioni
+698|Informativa sulla privacy
+699|Elettricista
+700|Ingegnere elettrico
+701|Quadrista
+702|Integratore di sistemi
+703|Studente
+704|Profilo
+705|Aggiorna password
+706|Password attuale
+707|Nuova password
+708|Conferma nuova password
+709|Cerca progetti
+710|Salvato nel tuo account
+711|Salvataggio…
+712|Solo su questo dispositivo
+713|Salva nell'account
+714|Email o password non corretti.
+715|Scegli una nuova password

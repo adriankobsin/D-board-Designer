@@ -1,0 +1,4 @@
+-- Run this ONCE in the Supabase SQL editor after you have registered and verified your own account.
+-- Replace the address. Only the SQL editor (or the service role) can do this; the app can never promote a user.
+update public.profiles set role = 'admin' where lower(email) = lower('you@example.com');
+select id, email, role, status from public.profiles where role = 'admin';

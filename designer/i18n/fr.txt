@@ -1,0 +1,715 @@
+1|Configuration
+2|Tableau
+3|Circuits
+4|Équipements
+5|Vérifications
+6|Schéma
+7|Export
+8|Aide
+9|Langue
+10|Norme
+11|Alimentation
+12|Nom du projet
+13|Logo de l'entreprise
+14|Nom de l'entreprise
+15|Entreprise et alimentation
+16|Entreprise
+17|Aide : fonctionnement de la plateforme
+18|Sections
+19|Téléverser un logo…
+20|Affiché à côté du logo et dans les exports
+21|Affiché en haut de la page, dans le schéma et dans le PDF. L'export Excel ne contient que le nom de l'entreprise.
+22|Alimentation et base de conception
+23|Paramètres d'alimentation
+24|Type d'alimentation
+25|Tension d'alimentation
+26|Monophasé
+27|Triphasé
+28|Basse tension
+29|Basse tension CA / CC
+30|Tableaux basse tension
+31|Le changement adapte les circuits en conséquence.
+32|Les valeurs par défaut suivent la norme choisie et peuvent être modifiées. Les courants admissibles des câbles sont des valeurs indicatives du mode de pose C pour le cuivre. Vérifiez chaque valeur selon l'édition et les amendements nationaux de votre projet.
+33|Courant de court-circuit présumé (kA)
+34|Courant de court-circuit de la batterie (kA)
+35|D'après la fiche technique de la batterie ou du chargeur. Les batteries au plomb peuvent débiter plusieurs kA. Les disjoncteurs CC génériques sont supposés à 5 kA.
+36|Les deux pôles (2P, non mis à la terre ou isolé)
+37|Positif seulement (1P, négatif à la terre ou commun)
+38|Pôles des disjoncteurs
+39|Température ambiante des câbles (°C)
+40|Température dans le coffret (°C)
+41|La référence est {1} °C
+42|Facteur de foisonnement
+43|Foisonnement
+44|Câble d'arrivée
+45|Longueur du câble d'arrivée (m)
+46|Calibre d'arrivée imposé (A)
+47|Laisser vide pour un choix automatique
+48|Cu XLPE 90 °C
+49|Cu PVC 70 °C
+50|XLPE 90
+51|Limite de chute de tension éclairage (%)
+52|Limite des autres circuits (%)
+53|Critique (navigation, cale, communications)
+54|Critique (chute de {1} %)
+55|Éclairage (chute de {1} %)
+56|Autre (chute de {1} %)
+57|{1} par défaut {2} %
+58|Valeur par défaut basse tension {1} %
+59|Puissance dissipable du coffret (W)
+60|Facultatif, d'après la fiche technique du coffret
+61|Équilibrage des phases et arrivée
+62|Modules par rail DIN
+63|Largeurs d'appareils par défaut
+64|Largeur du RCBO
+65|1 module (compact)
+66|2 modules (1P+N)
+67|1 module
+68|{1} modules
+69|{1} module (compact)
+70|{1} modules (1P+N)
+71|{1} module = 18 mm
+72|{1} modules · {2} mm
+73|{1} modules × 18 mm = {2} mm
+74|{1} · {2} module
+75|{1} · {2} modules
+76|Placer les modules de commande sur leurs propres rails
+77|La disposition passe à un nouveau rail quand un appareil ne tient pas. Les rangées ont un pas de 150 mm car des modules Lutron à variation de phase sont installés.
+78|Série MCB
+79|Série RCBO
+80|Interrupteur principal ou arrivée
+81|Générique (valeurs par défaut de la norme)
+82|Plage de protection préférée
+83|Choisissez une série de fabricant : la disposition utilise ses largeurs de module, les vérifications utilisent son pouvoir de coupure, sa plage de calibres et ses courbes, et la nomenclature la mentionne. Laissez « Générique » pour utiliser les valeurs par défaut de la norme.
+84|Sans série choisie, l'interrupteur principal et le parafoudre occupent 2 ou 4 modules, les MCB 1 module par pôle (2 avec coupure bipolaire marine), les RCBO 1 module (compact) en 1P+N et 4 modules en 3P+N. Choisissez une série de fabricant dans Configuration ou avec Utiliser ci-dessus pour obtenir les vraies largeurs.
+85|Inclure un parafoudre
+86|Commencer un tableau vide
+87|Recharger le tableau d'exemple
+88|Repartir de zéro ou recharger l'exemple
+89|Calculateur rapide de disjoncteur
+90|Saisissez la puissance d'une charge, ou son courant si vous le connaissez. Il affiche le courant de calcul, le disjoncteur à utiliser et le câble.
+91|ou courant A
+92|Apparente
+93|Puissance apparente
+94|Puissance W
+95|Charge W
+96|Facteur de puissance
+97|PF
+98|, PF
+99|Longueur de câble m
+100|Longueur m
+101|Ajouter un circuit
+102|+ Circuit
+103|+ Module DIN
+104|+ Appareil personnalisé
+105|Équilibrer les phases
+106|Renuméroter
+107|Supprimer le circuit
+108|Supprimer le circuit {1}
+109|Supprimer le module
+110|Retirer {1}
+111|Tableau des circuits
+112|Les circuits alimentés par une zone de module Lutron partagent le disjoncteur d'alimentation du module : leur câble est donc vérifié par rapport à ce calibre. Le facteur de groupement multiplie le courant admissible du câble (utilisez 1 s'il n'y en a pas).
+113|Rep.
+114|Référence
+115|Nom
+116|Type de circuit
+117|Type
+118|Phase
+119|Alimenté par
+120|Disjoncteur direct
+121|{1} zone {2}
+122|Zone {1} : {2}
+123|Zone {1}
+124|Zones
+125|libre
+126|aucun
+127|Calibre
+128|Calibre A
+129|In A
+130|Ib A
+131|Icn kA
+132|Icu kA
+133|Courbe
+134|Courbes
+135|Pôles
+136|Section
+137|Section mm²
+138|Câble
+139|Grp
+140|Appel
+141|ΔU
+142|ΔU %
+143|Chute de tension
+144|État
+145|OK
+146|Échec
+147|À revoir
+148|Note
+149|Notes
+150|Notes du tableau
+151|Disposition du tableau
+152|Disposition
+153|Rails
+154|Déplacer
+155|↑ Rail au-dessus
+156|↓ Rail en dessous
+157|← Plus tôt
+158|Plus tard →
+159|Ajuster à l'écran
+160|Ajusté à l'écran
+161|Taille réelle
+162|Ligne entière dans le tableau
+163|Sélectionnez un appareil pour le modifier ici. Faites glisser un appareil pour le déplacer le long des rails.
+164|Supprimer
+165|Confirmer la suppression
+166|Annuler
+167|Retirer
+168|Retirer le parafoudre
+169|Retirer l'interrupteur principal
+170|Rétablir le parafoudre
+171|Rétablir l'interrupteur principal
+172|Parafoudre
+173|Surtension
+174|SPD
+175|SPD · Parafoudre
+176|SPD Parafoudre
+177|Principal
+178|Arrivée
+179|Sectionneur
+180|Disjoncteur d'alimentation
+181|Câble d'alimentation
+182|Longueur d'alimentation m
+183|Charge d'alimentation
+184|Alim. m
+185|Phase d'alimentation
+186|Alimentation {1}
+187|alimentation {1} A
+188|Entrée A
+189|Appareil
+190|Type d'appareil
+191|Module
+192|Module à ajouter
+193|Modules
+194|Modules de ce tableau
+195|Largeur
+196|Largeur (modules)
+197|Largeur, modules
+198|Modèle
+199|Famille
+200|Fabricant
+201|Marque
+202|Série
+203|Séries adaptées
+204|Description
+205|Rechercher dans la bibliothèque
+206|Rechercher modèle, famille, tension
+207|Rechercher des appareils de protection
+208|Rechercher une série ou une norme
+209|Toutes les marques
+210|Toutes les familles
+211|Tous les fabricants
+212|Tous les types
+213|Ajouter
+214|Ajouter des modules DIN
+215|Utiliser
+216|Utilisée
+217|DIN
+218|Bibliothèque d'équipements DIN
+219|Bibliothèque de protection des circuits
+220|Liste d'équipements
+221|Source vérifiée
+222|Typique
+223|Carte de raccordement
+224|Processeur de commande
+225|Interface / E/S
+226|Réseau / distribution
+227|Alimentation électrique
+228|Commande de moteur
+229|Commutation
+230|Variation
+231|DALI
+232|Passerelle DALI
+233|EcoSystem
+234|Numérique (HomeWorks)
+235|Variation à découpage de phase adaptatif
+236|Variateur à découpage de phase adaptatif
+237|Découpage de phase / 20 A
+238|0–10 V / commutation
+239|Variateur 0–10 V
+240|Passerelle QSX
+241|Processeur QSX
+242|Passerelle KNX DALI
+243|Interface KNX IP
+244|Routeur KNX IP
+245|E/S analogiques KNX
+246|Entrée binaire KNX
+247|Actionneur de variation KNX
+248|Compteur d'énergie KNX
+249|Actionneur de chauffage KNX
+250|Logique / commande KNX
+251|Alimentation KNX
+252|Actionneur de volets KNX
+253|Actionneur de commutation KNX
+254|Actionneur universel KNX
+255|MCB
+256|RCBO
+257|RCCB (différentiel de groupe)
+258|MCCB (arrivée)
+259|DDR
+260|Thermique
+261|Chaleur
+262|Dissipation ≈
+263|Chaleur dans le coffret ≈
+264|Coffret ≈
+265|BTU/h
+266|Phase max.
+267|°C max.
+268|Déséquilibre
+269|Équilibre
+270|Raccordée
+271|Charge raccordée
+272|Raccordée {1} kW · appel {2} kW · {3} kVA · phase max. {4} A
+273|Charge des phases (après foisonnement {1})
+274|Charge des barres (après foisonnement {1})
+275|au foisonnement {1}
+276|Pire chute de tension de bout en bout
+277|Courant de calcul
+278|Vérifications de conception
+279|Vérifier
+280|Vérifier la disposition du tableau
+281|Vérifié selon la limite de chaque module
+282|{1} alimentés
+283|{1} échec · {2} à revoir
+284|Éclairage
+285|Prises de courant
+286|Audio-vidéo / électronique
+287|CVC / pompe
+288|Chauffage / chaudière
+289|Cuisine / appareils
+290|Autre
+291|Neutre
+292|Positif +
+293|Négatif −
+294|Schéma multifilaire
+295|Schéma multifilaire · {1}
+296|Alimentation {1}
+297|CIRCUIT
+298|PROTECTION
+299|CÂBLE
+300|CHARGE
+301|RAIL
+302|Dessin PDF et tableau
+303|Dessin de la disposition du tableau avec noms des circuits, schéma multifilaire, tableau des circuits et totaux de puissance en A4 paysage, avec votre logo sur chaque page.
+304|Inclure la nomenclature
+305|Enregistrer le PDF
+306|Classeur Excel
+307|Feuilles : tableau des circuits, modules Lutron, nomenclature, équilibrage des phases, puissance et projet. Contient le nom de l'entreprise ; les fichiers Excel de cet outil ne peuvent pas intégrer l'image du logo.
+308|Enregistrer Excel
+309|Tableau CSV
+310|Tableau des circuits simple à importer dans d'autres outils.
+311|Enregistrer le CSV
+312|Fichier de projet
+313|Enregistrez toute la conception en JSON, ou ouvrez-en une enregistrée plus tôt.
+314|Enregistrer le projet
+315|Ouvrir un projet…
+316|Ouvrir un projet
+317|Le tableau est aussi enregistré dans ce navigateur pendant votre travail. Les exports ouvrent à chaque fois une fenêtre d'enregistrement.
+318|Fermer
+319|Date
+320|Auto
+321|Auto ({1})
+322|Pouvoir de coupure supposé {1} kA
+323|générique · déséquilibre {1} %
+324|{1} · déséquilibre {2} %
+325|via {1} ({2} A) · {3}
+326|cuivre {1}, calibre {2} A, chute de tension {3} % de {4} V (limite {5} %)
+327|{1} V CC (basse tension)
+328|{1} V CA (basse tension)
+329|12, 24 ou 48 V CC et 24 V CA, comme sur les yachts et les bateaux.
+330|Disposition des rails DIN de {1}
+331|Choisissez une image de moins de 4 Mo.
+332|Impossible d'enregistrer le fichier ici.
+333|Enregistrement impossible : {1}
+334|La bibliothèque Excel ne s'est pas chargée.
+335|Logo ajouté
+336|Interrupteur principal retiré du tableau
+337|La bibliothèque PDF ne s'est pas chargée.
+338|Phases rééquilibrées
+339|Projet chargé
+340|Parafoudre retiré
+341|{1} enregistré
+342|Ce fichier n'est pas un projet DBoard Designer.
+343|Cette image n'a pas pu être lue.
+344|{1} appliqué aux MCB.
+345|{1} appliqué aux RCBO.
+346|{1} appliqué à l'interrupteur principal.
+347|{1} ajouté en tant que {2}. Voyez-le dans l'onglet Tableau.
+348|{1} supprimé
+349|Déjà sur le premier rail.
+350|Aucun appareil sur le rail suivant à côté duquel le placer. Faites-le glisser à la place.
+351|Alimentation basse tension : 24 V CC. Les charges sont en watts, le courant est P ÷ V.
+352|Alimentation triphasée. Les circuits sont répartis sur L1, L2 et L3.
+353|Alimentation monophasée.
+354|Toutes les vérifications sont satisfaites pour ce tableau.
+355|Saisissez une puissance ou un courant.
+356|Aucun module DIN placé. Ajoutez-en un depuis la bibliothèque ci-dessous.
+357|Aucun circuit pour l'instant. Ajoutez-en un pour commencer le tableau.
+358|Aucun appareil ne correspond.
+359|Aucun équipement ne correspond.
+360|L'IEC 60364-4-41 prévoit une protection par DDR de 30 mA sur les prises de courant et sur les circuits d'appareils portatifs.
+361|La BS 7671 411.3.3 exige une protection par DDR de 30 mA pour les prises jusqu'à 20 A et la plupart des circuits terminaux des locaux d'habitation.
+362|Les NEC 210.8 et 210.12 demandent une protection GFCI et AFCI sur de nombreux circuits de prises et de dérivation. Confirmez l'édition adoptée localement.
+363|L'AS/NZS 3000 exige une protection par DDR sur les circuits terminaux de prises et d'éclairage.
+364|Les installations CA marines utilisent normalement la coupure bipolaire et une protection par DDR de 30 mA sur les circuits terminaux. Vérifiez auprès des règles de la société de classification et du pavillon.
+365|L'ABYC E-11 prévoit une protection GFCI sur les prises et une protection bipolaire des dérivations. Vérifiez selon l'édition en vigueur.
+366|Très basse tension CA : aucun DDR n'est nécessaire pour les circuits TBTS. La chute de tension est généralement la limite de longueur du câble.
+367|Très basse tension CC : aucun DDR n'est nécessaire pour les circuits TBTS. Dimensionnez chaque disjoncteur d'après le courant (I = P ÷ V), protégez le câble et utilisez des appareils prévus pour le CC. La pratique marine (ISO 10133, ABYC E-11) admet 3 % de chute de tension pour les circuits critiques comme les feux de navigation et les pompes de cale, et 10 % pour le reste.
+368|Les vérifications couvrent le courant de calcul par rapport au calibre du disjoncteur et du câble, la chute de tension, l'exigence de DDR, le courant de court-circuit, ainsi que les limites d'entrée, de zone et de température Lutron. L'impédance de boucle de défaut, la discrimination et la sélectivité ne sont pas calculées ici.
+369|DBoard Designer est une aide à la conception. Les courants admissibles des câbles, les limites de chute de tension et les données Lutron sont indicatifs ; vérifiez-les avec l'édition en vigueur de votre norme, le dossier du fabricant et un ingénieur qualifié avant la réalisation.
+370|DBoard Designer
+371|Designer
+372|Exemple de cabine et tableau audio-vidéo
+373|{1} couvre {2}–{3} A ; {4} A est hors de cette plage.
+374|{1} ne propose pas de courbe {2} ({3}).
+375|L'alimentation de {1} porte {2} A, au-dessus de son calibre d'entrée de {3} A.
+376|{1} est prévu pour {2} ; la tension phase-neutre du système est de {3} V.
+377|{1} admet {2} C dans le coffret ; la valeur de calcul est {3} C.
+378|Le disjoncteur d'alimentation de {1}, {2} A, est inférieur à sa charge de {3} A.
+379|Le câble d'alimentation de {1} porte {2} A, moins que le disjoncteur de {3} A.
+380|La chute de tension de l'alimentation de {1} est de {2} %.
+381|Le courant d'alimentation de {1} dépasse le plus gros disjoncteur de cette série.
+382|Le courant de court-circuit de {1} kA dépasse le pouvoir de coupure de {2} kA du disjoncteur d'alimentation.
+383|Le courant de calcul dépasse le plus gros disjoncteur de cette série.
+384|Le courant de calcul de {1} A dépasse le disjoncteur de {2} A.
+385|Le câble de {1} mm² porte {2} A, moins que le disjoncteur de {3} A. Augmentez la section ou réduisez le disjoncteur.
+386|La chute de tension de {1} % dépasse l'objectif de {2} %.
+387|Le circuit « {1} » n'a pas de RCBO. {2}
+388|Le courant de court-circuit de {1} kA dépasse le pouvoir de coupure de {2} kA de {3}.
+389|Le courant de court-circuit de {1} kA dépasse le pouvoir de coupure de {2} kA supposé pour cette norme.
+390|{1} n'existe pas en version triphasée. Choisissez une série RCBO 4P ou un MCB avec un DDR de groupe.
+391|{1} est un appareil 4P et ne peut pas protéger un circuit monophasé.
+392|{1} a {2} zones ; la zone {3} n'existe pas.
+393|Le courant de zone de {1} A dépasse le calibre de zone de {2} A.
+394|La charge de zone de {1} W dépasse la limite de {2} W de la zone {3}.
+395|{1} ne commute pas de charges.
+396|La zone {1} de {2} est partagée avec {3}.
+397|{1} n'est pas indiqué comme prévu pour le CC à {2} V ici. Choisissez une série CC, ou utilisez Générique et précisez un appareil prévu pour le CC.
+398|Aucune série CC choisie : un disjoncteur thermomagnétique générique prévu pour le CC est supposé à 5 kA.
+399|Le courant de phase maximal dépasse le plus gros calibre d'arrivée de la bibliothèque.
+400|Le courant de phase maximal de {1} A dépasse l'arrivée de {2} A.
+401|Le câble d'arrivée de {1} mm² porte {2} A, moins que l'arrivée de {3} A.
+402|La chute de tension de l'arrivée de {1} % consomme une partie de la marge totale.
+403|Le déséquilibre des phases est de {1} % au-dessus de la moyenne. Utilisez l'équilibrage automatique ou déplacez des circuits.
+404|Les modules à variation de phase adaptatif demandent un déclassement par zone à 30–40 C de température ambiante.  Voir la note d'application Lutron n° 466.
+405|Les modules à variation de phase adaptatif demandent 150 mm entre les rails DIN et 200 mm de dégagement au-dessus du rail supérieur.
+406|La dissipation estimée de {1} W dépasse la puissance dissipable du coffret de {2} W.
+407|{1} modules sur rail DIN de Lutron, Crestron, Control4 et MDT KNX. Les données Lutron proviennent de la note d'application n° 466 (rév. T, mai 2026) et des dossiers techniques, Crestron de ses pages produit, Control4 de ses fiches techniques et MDT de ses listes de produits et de prix (1 module = 18 mm). Lorsqu'une source n'indique pas de valeur, elle apparaît comme ? ou –. Les actionneurs KNX sont alimentés par le bus, donc seule leur partie charge compte dans l'alimentation. Vérifiez la fiche technique actuelle du fabricant avant de commander.
+408|Très basse tension {1} V CA : I = P ÷ (V × PF). Les disjoncteurs sont des types CA standard ; la basse tension fait monter le courant, donc la section du câble et la chute de tension décident le plus souvent du câble.
+409|Coffret satellite de {1} pouces avec modules de puissance DIN et contrôleurs EcoSystem.
+410|{1} séries de {2} fabricants. Les calibres, pouvoirs de coupure et largeurs sont des valeurs de catalogue au niveau de la série : « Source vérifiée » signifie qu'une page de fabricant ou de distributeur les a confirmées, « Typique » qu'il s'agit de valeurs courantes de catalogue à confirmer sur la fiche technique. Appuyez sur Utiliser pour appliquer une série à ce tableau.
+411|En bas de Configuration, <b>Commencer un tableau vide</b> efface tout et <b>Recharger le tableau d'exemple</b> rétablit l'exemple de cabine et de tableau audio-vidéo.
+412|Choisissez Basse tension CA / CC comme type d'alimentation. Les calibres de disjoncteurs et les sections de câbles utilisent alors des séries prévues pour le CC, et le tableau dessine des barres positive et négative au lieu de phases.
+413|Tableau de commande avec 8 disjoncteurs de dérivation et interfaces de modules.
+414|Tableau de variation / commutation, jusqu'à 4 modules de puissance DIN (ou 3 plus une alimentation QSPS). 120–240 V.
+415|Courant continu : I = P ÷ V, sans facteur de puissance. Les arcs en courant continu ne s'éteignent pas d'eux-mêmes ; chaque disjoncteur doit donc être prévu pour le CC au moins à la tension de charge (environ 1,25 × la tension nominale de {1} V), et toute polarité indiquée sur l'appareil doit être respectée. Le pouvoir de coupure dépend du courant de court-circuit de la batterie ou de la source ({2} kA saisis).
+416|Chaque conducteur est dessiné : chaque phase depuis sa barre de phase et le neutre depuis la barre N. Un cadre en pointillés autour des pôles indique un disjoncteur qui coupe aussi le neutre ; un Δ indique le DDR. Les MCB unipolaires laissent passer le neutre. Les lignes en pointillés montrent les circuits commutés par une zone de module Lutron.
+417|Chaque conducteur est dessiné : positif (rouge) et négatif (foncé) depuis les deux barres. Un cadre en pointillés autour des pôles indique un disjoncteur bipolaire. Les disjoncteurs unipolaires sont placés uniquement sur le positif.
+418|Suivez ces étapes depuis le premier écran jusqu'au PDF terminé. Vous pouvez passer à n'importe quelle étape à tout moment ; chaque onglet met à jour le même tableau.
+419|Dans la version installable, utilisez l'option Installer ou Ajouter à l'écran d'accueil de votre navigateur. Elle s'ouvre alors en plein écran et fonctionne hors ligne.
+420|Ouvrez <b>Vérifications</b>. L'outil contrôle que chaque disjoncteur couvre la charge et protège son câble, que la chute de tension reste sous votre limite, que la protection par DDR est présente là où la norme l'exige, que le pouvoir de coupure couvre le courant de court-circuit, et que les limites des modules et zones Lutron (charge, courant, tension, température) sont respectées. Il vérifie aussi le calibre et le câble d'arrivée, le déséquilibre des phases et la chaleur du coffret. <b>Échec</b> signifie à corriger avant la réalisation, <b>À revoir</b> signifie à examiner et à décider, et les notes sont informatives.
+421|Ouvrez <b>Circuits</b> et appuyez sur <b>Ajouter un circuit</b>. Pour chaque circuit, saisissez un nom, un type, la puissance en watts, le facteur de puissance, la phase, la longueur de câble, la protection (MCB ou RCBO) et la courbe. L'outil dimensionne le câble, choisit le calibre du disjoncteur et calcule le courant et la chute de tension. <b>Équilibrer les phases</b> répartit la charge sur L1, L2 et L3, et <b>Renuméroter</b> remet les repères en ordre. Sur un tableau basse tension, le calculateur rapide en haut donne tout de suite le disjoncteur pour une charge.
+422|Ouvrez <b>Schéma</b> pour le schéma de câblage multifilaire. Chaque conducteur de phase est dessiné depuis sa barre de phase et le neutre depuis la barre N. Un cadre en pointillés signale les disjoncteurs qui coupent le neutre, un triangle le DDR, et des lignes en pointillés les circuits commutés par une zone Lutron. Chaque circuit affiche câble, protection, barre de charge et état.
+423|Ouvrez <b>Équipements</b> pour parcourir les équipements de commande sur rail DIN de Lutron, Crestron, Control4 et MDT KNX (processeurs, interfaces, alimentations, modules de variation, de commutation et de volets, passerelles) avec un filtre de marque, ainsi que la bibliothèque de disjoncteurs (Schneider, ABB, Siemens, Legrand, Hager, Eaton, Chint). Appuyez sur <b>Ajouter</b> sur un module pour le placer dans le tableau. De retour dans <b>Circuits</b>, choisissez le module et la zone (canal) qui alimente un circuit. Chaque module reçoit aussi son propre disjoncteur d'alimentation. Appuyez sur <b>Utiliser</b> sur une série de disjoncteurs pour en faire la valeur par défaut des MCB, des RCBO ou de l'interrupteur principal.
+424|Ouvrez <b>Export</b>. <b>Enregistrer le PDF</b> produit la disposition du tableau, le schéma multifilaire, le tableau des circuits et les totaux de puissance ; cochez <b>Inclure la nomenclature</b> pour ajouter cette liste. <b>Enregistrer Excel</b> et <b>Enregistrer le CSV</b> fournissent le tableau pour d'autres outils. <b>Enregistrer le projet</b> stocke toute la conception dans un fichier que vous pourrez rouvrir plus tard avec <b>Ouvrir un projet</b>.
+425|Ouvrez <b>Tableau</b> pour voir les rails DIN dessinés avec chaque appareil et le nom de son circuit. Cliquez sur un appareil pour ouvrir l'inspecteur : modifiez-le, déplacez-le le long du rail ou vers un autre rail, ou supprimez-le. Utilisez <b>+ Circuit</b>, <b>+ Module DIN</b> ou <b>+ Appareil personnalisé</b> pour ajouter des éléments ici aussi. Vous pouvez changer l'interrupteur principal et rétablir un interrupteur principal ou un parafoudre supprimé avec les boutons de rétablissement. <b>Ajuster à l'écran</b> et <b>Taille réelle</b> changent le zoom.
+426|Ouvrez <b>Configuration</b>. Donnez un nom au tableau, ajoutez le nom de votre entreprise et votre logo (ils apparaissent en haut de la page et dans le PDF), puis choisissez la <b>norme</b> et le <b>type d'alimentation</b> : monophasé, triphasé ou basse tension CA / CC (12, 24, 48 V CC ou 24 V CA pour les tableaux marins et similaires). Réglez ensuite les températures ambiantes, le facteur de foisonnement, le câble d'arrivée, les limites de chute de tension, la série de disjoncteurs à utiliser, le nombre de modules par rail DIN et si les RCBO occupent 1 ou 2 modules.
+427|Les calibres, limites de chute de tension et données des fabricants sont indicatifs. Vérifiez-les avec l'édition en vigueur de votre norme, le dossier du fabricant et un ingénieur qualifié avant la réalisation.
+428|Le tableau est conservé dans ce navigateur pendant votre travail. Utilisez Enregistrer le projet pour garder une copie ou la transférer vers un autre appareil.
+429|(calibre normalisé suivant égal ou supérieur au courant de calcul) {1}
+430|bipolaire
+431|bipolaire, prévu pour le CC
+432|Tableaux et coffrets DIN Lutron (référence)
+433|Fonctionnement de DBoard Designer
+434|Bon à savoir
+435|Commencer par la Configuration
+436|Configurer le projet
+437|Ajouter vos circuits
+438|Lire les vérifications
+439|Examiner le schéma
+440|Votre travail est enregistré automatiquement
+441|Installez-le comme une application
+442|Toujours vérifier
+443|Ligne
+444|Projet
+445|Disjoncteur
+446|Disjoncteurs
+447|facultatif
+448|source
+449|, câble
+450|Appliqué aux totaux de phase
+451|Définit la largeur des disjoncteurs et le schéma
+452|Coffret basse tension HomeWorks QS.
+453|Coffret de passage avec interfaces de modules.
+454|Tableau sur rail DIN 120 V avec bornes.
+455|Tableau de disjoncteurs DIN {1} V {2} avec disjoncteurs AFCI de {3} A.
+456|Parafoudre, type 2.
+457|SPD type 2
+458|TYPE 2
+459|triphasé
+460|{1} (CA marine)
+461|PRINCIPAL {1}
+462|Barre {1} V CC
+463|Barre {1} V CA
+464|RAIL {1}
+465|utilisés,
+466|Nomenclature
+467|Implantation du tableau (rails {1} à {2})
+468|(page {1} sur {2})
+469|Aide à la conception. Vérifiez les valeurs nominales avec l'édition de la norme, les fiches techniques des fabricants et un ingénieur qualifié avant la réalisation.
+470|Ph
+471|Protection
+472|Courant admissible câble A
+473|Tableau des circuits
+474|Modules DIN
+475|Phases
+476|Alimentation A
+477|Disjoncteur d'alimentation A
+478|Câble d'alimentation mm2
+479|Modules (18 mm)
+480|Chaleur BTU/h
+481|Courant A (après foisonnement)
+482|Arrivée A
+483|Déséquilibre %
+484|Puissance installée kW
+485|Puissance appelée kW (après foisonnement)
+486|Puissance apparente kVA
+487|Dissipation W
+488|Système
+489|Courant de défaut kA
+490|Température ambiante câble C
+491|Interrupteur général
+492|Générique
+493|Direct
+494|Article
+495|Qté
+496|Charge des phases après foisonnement
+497|Installée {1} kW · appelée {2} kW · {3} kVA · PF {4}
+498|Câble d'arrivée {1} mm² {2}
+499|Taille réelle, défilement latéral
+500|{1} × {2} ajoutés. Voir dans l’onglet Tableau.
+501|Quantité
+502|CC
+503|Tension (V)
+504|Courant (A)
+505|Résistance (Ω)
+506|Puissance (W)
+507|Loi d'Ohm et puissance
+508|Choisissez la grandeur à trouver, puis saisissez les deux valeurs connues.
+509|Calculer
+510|Formule
+511|Saisissez des valeurs supérieures à zéro.
+512|Puissance alternative et facteur de puissance
+513|Calcule le courant et les puissances active, apparente et réactive pour les charges monophasées et triphasées.
+514|Tension composée (V)
+515|Valeurs connues
+516|Courant et facteur de puissance
+517|Puissance active et facteur de puissance
+518|Puissance apparente et facteur de puissance
+519|Puissance active et réactive
+520|Puissance active (kW)
+521|Puissance apparente (kVA)
+522|Puissance réactive (kvar)
+523|Le facteur de puissance doit être compris entre 0 et 1.
+524|Courant
+525|Puissance active
+526|Puissance réactive
+527|Angle de phase
+528|Correction du facteur de puissance
+529|Dimensionne la batterie de condensateurs nécessaire pour relever le facteur de puissance.
+530|Facteur de puissance actuel
+531|Facteur de puissance visé
+532|La valeur visée doit être supérieure au facteur de puissance actuel.
+533|Taille des condensateurs (kvar)
+534|Puissance apparente avant
+535|Puissance apparente après
+536|Réduction du courant
+537|Section du câble
+538|Trouve le plus petit câble en cuivre qui supporte la charge et garde la chute de tension dans la limite.
+539|La charge est donnée en
+540|Puissance (kW)
+541|Longueur du câble (m)
+542|Limite de chute de tension (%)
+543|Type de câble
+544|Ambiance (°C)
+545|Facteur de groupement
+546|Courant admissible du câble
+547|Disjoncteur suggéré
+548|Conducteurs en cuivre, méthode de référence C. Vérifiez avec votre norme et le mode de pose.
+549|Aucun câble du tableau ne respecte la limite. Raccourcissez le trajet, assouplissez la limite ou utilisez des câbles en parallèle.
+550|Chute de tension pour un câble choisi et la plus longue distance qu'il peut desservir.
+551|Section du câble (mm²)
+552|Chute de tension (V)
+553|Chute de tension (%)
+554|Tension à la charge
+555|Plus longue distance dans la limite
+556|Dans la limite.
+557|Limite dépassée. Utilisez un câble plus gros ou un trajet plus court.
+558|Réseaux de résistances et lois de Kirchhoff
+559|Résistances en série et en parallèle avec la tension et le courant de chacune.
+560|Montage
+561|Parallèle
+562|Tension d'alimentation (V)
+563|Valeurs des résistances (Ω), séparées par des virgules ou des espaces
+564|Saisissez de 1 à 12 valeurs de résistance supérieures à zéro.
+565|Résistance
+566|Résistance totale
+567|Courant total
+568|Puissance totale
+569|Loi des mailles de Kirchhoff (KVL) : la somme des tensions dans une boucle fermée est nulle, donc les chutes de tension aux bornes des résistances égalent la tension d'alimentation.
+570|Loi des nœuds de Kirchhoff (KCL) : le courant entrant dans un nœud égale le courant sortant, donc les courants des branches égalent le courant total.
+571|Relations étoile et triangle
+572|Tension et courant composés et simples d'une charge triphasée.
+573|Couplage
+574|Étoile (Y)
+575|Triangle (Δ)
+576|Valeurs composées
+577|Valeurs simples
+578|Tension simple (V)
+579|Courant de ligne (A)
+580|Courant de phase (A)
+581|Outils de l'électricien
+582|Calculateurs rapides pour le travail quotidien. Chaque résultat montre la formule et les chiffres utilisés. À considérer comme des repères, à vérifier avec votre norme.
+583|Outils
+584|Utiliser les outils
+585|Ouvrez <b>Outils</b> pour des calculateurs d'électricien rapides, indépendants du tableau. <b>Loi d'Ohm et puissance</b> donne la tension, le courant, la résistance ou la puissance à partir de deux valeurs quelconques. <b>Puissance alternative et facteur de puissance</b> couvre les charges monophasées et triphasées, et <b>Correction du facteur de puissance</b> dimensionne une batterie de condensateurs. <b>Section du câble</b> choisit le plus petit câble en cuivre pour une charge, une longueur et une limite de chute de tension avec les mêmes tables que les circuits, et <b>Chute de tension</b> vérifie un câble choisi. <b>Réseaux de résistances</b> résout les circuits série et parallèle avec les lois de Kirchhoff, et <b>Relations étoile et triangle</b> convertit les valeurs composées et simples. Chaque résultat montre la formule et les chiffres utilisés.
+586|Résistance du câble
+587|Résistance d'un conducteur en cuivre ou en aluminium. Calculez la résistance, la longueur ou la section, par exemple pour estimer la distance d'un défaut.
+588|Matériau
+589|Cuivre
+590|Aluminium
+591|Mesuré en
+592|Un conducteur
+593|Boucle (aller-retour)
+594|Température du conducteur (°C)
+595|Section normalisée suivante
+596|Résistivité à cette température
+597|Résistance par mètre
+598|Une mesure en boucle couvre le conducteur aller et retour ; la longueur indiquée est donc la distance simple.
+599|Résistivité à 20 °C : cuivre 0,017241, aluminium 0,028264 Ω·mm²/m. Coefficient de température : cuivre 0,00393, aluminium 0,00403 par °C.
+600|Phase 1 marron, phase 2 noir, phase 3 gris, neutre bleu, terre de protection vert-jaune (IEC 60446).
+601|Mise à la terre de protection avec coupure automatique de l'alimentation (schémas TN, TT ou IT), liaison équipotentielle principale des canalisations métalliques entrantes et des masses.
+602|Phase 1 marron, phase 2 noir, phase 3 gris, neutre bleu, terre de protection vert-jaune. Les anciennes installations utilisent rouge, jaune, bleu et noir.
+603|Mise à la terre de protection avec coupure automatique. L'impédance de la boucle de défaut doit rester dans les limites des tableaux, avec liaison équipotentielle principale des canalisations.
+604|Seuls le neutre (blanc ou gris) et la terre des équipements (vert ou nu) sont imposés. Les couleurs de phase suivent la pratique locale, souvent noir, rouge et bleu à 208 V.
+605|Article 250 : système d'électrodes de terre, conducteurs de terre des équipements, et une seule liaison neutre-terre au sectionneur d'entrée.
+606|Terre vert-jaune, neutre noir ou bleu clair, conducteurs actifs d'autres couleurs comme rouge, blanc et bleu, ou marron, noir et gris.
+607|Système à neutre multi-mis à la terre (MEN) avec le neutre relié à la terre au tableau principal, et un conducteur de terre principal vers la prise de terre.
+608|Phase marron, neutre bleu, terre de protection vert-jaune (pratique IEC 60446).
+609|Le conducteur de protection est relié au système d'équipotentialité du bateau. Neutre et terre ne sont reliés qu'à la source (groupe électrogène ou transformateur d'isolement), jamais à la prise de quai.
+610|Phase noire, deuxième phase rouge, troisième bleue, neutre blanc, conducteur de terre vert ou vert-jaune.
+611|Le conducteur de terre AC est relié au négatif DC du bateau en un seul point. Neutre et terre ne sont reliés qu'à la source (groupe électrogène ou transformateur d'isolement).
+612|Oui
+613|Non
+614|Chute de tension, éclairage
+615|Chute de tension, autres circuits
+616|Facteur de charge continue
+617|Calibres des disjoncteurs
+618|Courbes de déclenchement
+619|Coupure bipolaire
+620|Oui, bipolaire
+621|Non, le unipolaire est courant
+622|Protection par RCD ou GFCI
+623|Couleurs des conducteurs
+624|Mise à la terre et liaisons équipotentielles
+625|Comparer les normes
+626|Chute éclairage
+627|Chute autres
+628|Charge continue
+629|Bipolaire
+630|Référence des normes
+631|À titre indicatif uniquement. Vérifiez chaque valeur avec l'édition en vigueur de la norme et les amendements locaux avant de vous y fier.
+632|Climatisation
+633|Ventilateur / ventilation
+634|Moteur
+635|Pompe à eau
+636|Treuil / propulseur
+637|Cuisinière / four
+638|Réfrigération
+639|Lave-linge / sèche-linge
+640|Chauffe-eau
+641|Traçage / plancher chauffant
+642|Prises extérieures / de pont
+643|Équipement piscine / spa
+644|Borne de recharge VE
+645|Chargeur de batterie
+646|Onduleur / UPS
+647|Réseau / informatique
+648|Sécurité / alarme
+649|Éclairage de secours
+650|Alimentation de tableau divisionnaire
+651|Dépannage et normes
+652|Dans Outils, <b>Résistance du câble</b> trouve la résistance, la longueur ou la section d'un câble en cuivre ou en aluminium, par exemple pour estimer la distance d'un défaut. La <b>Référence des normes</b>, en bas, liste pour chaque norme les limites de chute de tension, les calibres de disjoncteurs, les règles RCD, les couleurs de conducteurs et la mise à la terre. Elle est donnée à titre indicatif, à confirmer avec l'édition en vigueur.
+653|Pompe de cale / de puisard
+654|Atelier / outillage électrique
+655|Équipement de navigation
+656|Communications
+657|Se connecter
+658|Créer un compte
+659|Créer le compte
+660|Adresse e-mail
+661|Mot de passe
+662|Confirmer le mot de passe
+663|Prénom
+664|Nom
+665|Pays
+666|Mot de passe oublié ?
+667|Se souvenir de moi sur cet appareil
+668|Se déconnecter
+669|Tableau de bord
+670|Paramètres du compte
+671|Nouveau tableau
+672|Mes projets enregistrés
+673|Ouvrir
+674|Renommer
+675|Dupliquer
+676|Créer un nouveau tableau de distribution
+677|Projets ouverts récemment
+678|Enregistrer le profil
+679|Changer le mot de passe
+680|Supprimer le compte
+681|Société (facultatif)
+682|Profession
+683|Réinitialiser votre mot de passe
+684|Envoyer le lien de réinitialisation
+685|Vérifiez votre e-mail
+686|Ouvrir le designer
+687|Projets enregistrés
+688|Envoyer un avis
+689|Compte
+690|Bienvenue
+691|Afficher
+692|Masquer
+693|Retour à la connexion
+694|Sélectionnez votre pays
+695|Sélectionnez votre profession
+696|Renvoyer l'e-mail
+697|Conditions générales
+698|Politique de confidentialité
+699|Électricien
+700|Ingénieur électricien
+701|Tableautier
+702|Intégrateur de systèmes
+703|Étudiant
+704|Profil
+705|Mettre à jour le mot de passe
+706|Mot de passe actuel
+707|Nouveau mot de passe
+708|Confirmer le nouveau mot de passe
+709|Rechercher des projets
+710|Enregistré dans votre compte
+711|Enregistrement…
+712|Cet appareil uniquement
+713|Enregistrer dans le compte
+714|E-mail ou mot de passe incorrect.
+715|Choisissez un nouveau mot de passe

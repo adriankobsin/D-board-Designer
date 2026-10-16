@@ -1,0 +1,98 @@
+"""Import feature: real Worker + real front-end, TEST-ONLY mocks for Supabase and the Anthropic API (see mock_*.js)."""
+import json, sys, urllib.request, urllib.error, os
+from PIL import Image, ImageDraw
+from playwright.sync_api import sync_playwright
+BASE='http://localhost:8799'; MOCK='http://127.0.0.1:54321'; AI='http://127.0.0.1:54400'; res=[]
+def ok(n,c,i=''): res.append(bool(c)); print(('PASS ' if c else 'FAIL ')+n+(' :: '+str(i) if not c and i else ''))
+def jget(u): return json.loads(urllib.request.urlopen(u).read())
+def post(path,body): return json.loads(urllib.request.urlopen(urllib.request.Request(MOCK+path,json.dumps(body).encode(),{'Content-Type':'application/json'})).read() or b'{}')
+def http(method,url,body=None,headers=None):
+    r=urllib.request.Request(url,body if isinstance(body,bytes) else (json.dumps(body).encode() if body is not None else None),headers or {},method=method)
+    try: x=urllib.request.urlopen(r); return x.status, json.loads(x.read() or b'{}')
+    except urllib.error.HTTPError as e: return e.code, json.loads(e.read() or b'{}')
+os.makedirs('/tmp/imp',exist_ok=True)
+im=Image.new('RGB',(3000,2000),(200,200,205)); d=ImageDraw.Draw(im)
+for r in range(2):
+    d.rectangle([100,300+r*800,2900,380+r*800],fill=(120,120,125))
+    for i in range(12): d.rectangle([150+i*220,250+r*800,150+i*220+190,650+r*800],fill=(235,235,235),outline=(40,40,40),width=4); d.text((170+i*220,320+r*800),f'C{16+i}',fill=(0,0,0))
+im.save('/tmp/imp/panel.jpg',quality=90)
+Image.new('RGB',(1200,800),(255,255,255)).save('/tmp/imp/schem.pdf')
+post('/__test/reset',{}); urllib.request.urlopen(AI+'/__mode/photo')
+with sync_playwright() as p:
+    b=p.chromium.launch(); c=b.new_context(accept_downloads=True,viewport={'width':1400,'height':900}); pg=c.new_page(); errs=[]
+    pg.on('pageerror',lambda e:errs.append(str(e))); pg.on('console',lambda m:errs.append(m.text) if m.type=='error' else None)
+    pg.goto(BASE); pg.wait_for_selector('.sa-auth'); pg.click('[data-m=register]')
+    for k,v in dict(first_name='Ira',last_name='Import',email='ira@example.com',password='Passw0rd!!',password2='Passw0rd!!').items(): pg.fill('#'+k,v)
+    pg.select_option('#country',index=9); pg.select_option('#occupation','Panel Builder'); pg.check('#terms'); pg.click('#saGo'); pg.wait_for_selector('text=Check your email')
+    post('/__test/confirm',{'email':'ira@example.com'}); pg.goto(BASE); pg.wait_for_selector('#saForm'); pg.fill('#email','ira@example.com'); pg.fill('#password','Passw0rd!!'); pg.click('#saGo'); pg.wait_for_selector('text=Welcome, Ira')
+    # unauthenticated API
+    code,_=http('POST',BASE+'/api/import/analyze',{'files':[]}); ok('analyze refuses anonymous call (401)',code==401,code)
+    pg.click('#saas [data-sa=import]'); pg.wait_for_selector('#impFile',state='attached'); ok('import page opens from dashboard', pg.is_visible('text=Add photos or a PDF'))
+    ok('read button disabled with no files', pg.is_disabled('[data-sa=imprun]'))
+    pg.set_input_files('#impFile','/tmp/imp/panel.jpg'); pg.wait_for_selector('#saas img'); ok('photo added and previewed', True)
+    pg.click('[data-sa=imprun]'); pg.wait_for_selector('#impT',timeout=15000); ok('review table shown', True)
+    pg.screenshot(path='/tmp/imp_review.png',full_page=True)
+    rows=pg.locator('#impT tbody tr').count(); ok('all 12 devices listed', rows==12, rows)
+    ok('low-confidence row highlighted', pg.locator('#impT tbody tr[style*="warn-bg"]').count()>=1)
+    ok('reader issues shown', pg.is_visible('text=Glare on the right-hand label strip'))
+    last=jget(AI+'/__last')['last']
+    ok('Worker sent key from secret, forced tool, one image', last['key']=='test-anthropic-key' and last['tool_choice']['name']=='record_panel' and last['blocks'].count('image:image/jpeg')==1, last)
+    ok('request carried a system prompt', last['system_len']>500)
+    ok('API key never reaches the browser', 'test-anthropic-key' not in pg.content())
+    # edit: rename a label, delete a row, add a device, set standard
+    pg.fill('#impT tbody tr:nth-child(4) [data-f=label]','Salon sockets EDITED')
+    pg.click('#impT tbody tr:nth-child(12) [data-sa=imprm]'); pg.wait_for_function('document.querySelectorAll("#impT tbody tr").length==11') if False else pg.wait_for_timeout(300)
+    ok('row deleted', pg.locator('#impT tbody tr').count()==11)
+    pg.click('[data-sa=impadd]'); pg.wait_for_timeout(300); ok('row added', pg.locator('#impT tbody tr').count()==12)
+    pg.fill('#impT tbody tr:last-child [data-f=label]','Extra lights'); pg.fill('#impT tbody tr:last-child [data-f=rating]','6'); pg.fill('#impT tbody tr:last-child [data-f=ref]','C99')
+    pg.select_option('#impSys','3p400'); pg.select_option('#impStd','iso')
+    pg.fill('#impName','Galley board (imported)')
+    pg.click('#impCreate'); pg.wait_for_selector('.wrap',state='visible',timeout=15000); pg.wait_for_selector('.sa-dlg',timeout=8000)
+    note=pg.inner_text('.sa-dlg'); ok('post-create notes mention estimated loads', 'estimated' in note and 'rotation' in note, note[:200])
+    pg.click('.sa-dlg [data-sa=close]')
+    S=pg.evaluate("JSON.parse(JSON.stringify(S))")
+    ok('board name and standard applied', S['name']=='Galley board (imported)' and S['std']=='iso' and S['sysId']=='3p400')
+    ok('6 circuits (6 read, 1 deleted, 1 added)', len(S['circuits'])==6, [c['ref'] for c in S['circuits']])
+    c1=[c for c in S['circuits'] if c['ref']=='C1'][0]
+    ok('as-found breaker rating and curve kept', c1['inO']==16 and c1['curve']=='B' and c1['prot']=='RCBO' and c1['P']==2300 and c1['name']=='Salon sockets EDITED', c1)
+    c4=[c for c in S['circuits'] if c['ref']=='C4'][0]; ok('3-pole breaker became 3-phase circuit with stated load', c4['phase']=='3P' and c4['P']==11000 and c4['type']=='hvac', c4)
+    c3=[c for c in S['circuits'] if c['ref']=='C3'][0]; ok('cable size and length kept', c3['size']==1.5 and c3['len']==18, c3)
+    c5=[c for c in S['circuits'] if c['ref']=='C5']; ok('unreadable rating handled (circuit kept, estimated)', len(c5)==1 and c5[0]['inO']==0 and c5[0]['P']>0, c5)
+    ok('incomer, SPD and other devices mapped', S['incomer']==63 and S['incPoles']=='4P' and S['spd'] is True and len(S['custom'])>=3, (S['incomer'],S['incPoles'],S['spd'],len(S['custom'])))
+    ok('order follows panel reading order', S['order'][0].startswith('x:') or S['order'][0].startswith('c:'))
+    # cloud save + checks tab + exports
+    pg.wait_for_timeout(2200); ok('imported board saved to cloud', jget(MOCK+'/__test/state')['projects']==1)
+    ok('import events recorded', {e['event'] for e in jget(MOCK+'/__test/state')['usage']}>={'import_analyzed','import_created'})
+    pg.click('#tabs >> text=Panel'); pg.wait_for_timeout(500); ok('panel drawing renders', pg.locator('#view svg').count()>0)
+    pg.click('#tabs >> text=Diagram'); pg.wait_for_timeout(500); ok('diagram renders', pg.locator('#view svg').count()>0)
+    pg.click('#tabs >> text=Export')
+    with pg.expect_download(timeout=8000) as dl: pg.click('#view button:has-text("CSV")')
+    f=dl.value.path(); txt=open(f,encoding='utf8').read(); ok('CSV schedule has edited label and added circuit', 'Salon sockets EDITED' in txt and 'Extra lights' in txt)
+    with pg.expect_download(timeout=15000) as dl2: pg.click('#view button:has-text("PDF")')
+    ok('PDF exports', dl2.value.suggested_filename.endswith('.pdf'))
+    with pg.expect_download(timeout=15000) as dl3: pg.click('#view button:has-text("Excel")')
+    ok('Excel exports', dl3.value.suggested_filename.endswith('.xlsx'))
+    # PDF schematic path
+    urllib.request.urlopen(AI+'/__mode/schem')
+    pg.click('.quick .sa-ub'); pg.click('.sa-menu [data-sa=import]'); pg.wait_for_selector('#impFile',state='attached')
+    pg.set_input_files('#impFile','/tmp/imp/schem.pdf'); pg.click('[data-sa=imprun]'); pg.wait_for_selector('#impT',timeout=15000)
+    last=jget(AI+'/__last')['last']; ok('PDF sent as a document block', 'document:application/pdf' in last['blocks'], last['blocks'])
+    ok('schematic values prefilled (standard, supply)', pg.input_value('#impStd')=='iso' and pg.input_value('#impSys')=='3p400')
+    ok('PDF preview frame present', pg.locator('iframe').count()==1)
+    pg.click('[data-sa=impback]'); pg.wait_for_selector('#impFile',state='attached'); ok('start over resets', pg.locator('#impT').count()==0)
+    # mixing pdf + photo refused client side
+    pg.set_input_files('#impFile','/tmp/imp/schem.pdf'); pg.wait_for_selector('#saas b:has-text("PDF")'); pg.set_input_files('#impFile','/tmp/imp/panel.jpg'); pg.wait_for_selector('.sa-msg.bad'); ok('pdf + photo mix refused', 'either one PDF' in pg.inner_text('.sa-msg.bad'))
+    # server-side validation
+    tok=pg.evaluate("SA.session.access_token"); H={'Authorization':'Bearer '+tok,'Content-Type':'application/json'}
+    code,j=http('POST',BASE+'/api/import/analyze',{'files':[{'mime':'application/x-msdownload','data':'QUJD'}]},H); ok('bad mime rejected (400)',code==400,(code,j))
+    code,j=http('POST',BASE+'/api/import/analyze',{'files':[{'mime':'image/jpeg','data':'not base64!!'}]},H); ok('bad base64 rejected (400)',code==400,(code,j))
+    code,j=http('POST',BASE+'/api/import/analyze',{'files':[{'mime':'image/jpeg','data':'QUJD'}]*5},H); ok('more than 4 photos rejected (400)',code==400,(code,j))
+    urllib.request.urlopen(AI+'/__mode/empty'); code,j=http('POST',BASE+'/api/import/analyze',{'files':[{'mime':'image/jpeg','data':'QUJD'}]},H); ok('unusable model answer handled (502)',code==502,(code,j))
+    urllib.request.urlopen(AI+'/__mode/fail429'); code,j=http('POST',BASE+'/api/import/analyze',{'files':[{'mime':'image/jpeg','data':'QUJD'}]},H); ok('busy model handled (503, friendly)',code==503 and 'busy' in j.get('error',''),(code,j))
+    urllib.request.urlopen(AI+'/__mode/photo')
+    n=sum(1 for e in jget(MOCK+'/__test/state')['usage'] if e['event']=='import_analyzed')
+    for _ in range(max(0,4-n)): http('POST',BASE+'/api/import/analyze',{'files':[{'mime':'image/jpeg','data':'QUJD'}]},H)
+    code,j=http('POST',BASE+'/api/import/analyze',{'files':[{'mime':'image/jpeg','data':'QUJD'}]},H); ok('daily limit enforced (429)',code==429,(code,j))
+    ok('no JS errors', not [e for e in errs if 'Failed to load resource' not in e], errs[:4])
+    b.close()
+bad=sum(1 for r in res if not r); print(len(res)-bad,'passed',bad,'failed'); sys.exit(1 if bad else 0)

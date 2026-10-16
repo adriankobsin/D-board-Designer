@@ -1,0 +1,715 @@
+1|Configurare
+2|Tablou
+3|Circuite
+4|Echipamente
+5|Verificări
+6|Schemă
+7|Export
+8|Ajutor
+9|Limbă
+10|Standard
+11|Alimentare
+12|Numele proiectului
+13|Siglă companie
+14|Numele companiei
+15|Companie și alimentare
+16|Companie
+17|Ajutor: cum funcționează platforma
+18|Secțiuni
+19|Încarcă sigla…
+20|Afișat lângă siglă și în exporturi
+21|Afișat în partea de sus a paginii, în schemă și în PDF. Exportul Excel conține doar numele companiei.
+22|Alimentare și bază de proiectare
+23|Setări de alimentare
+24|Tip de alimentare
+25|Tensiune de alimentare
+26|Monofazat
+27|Trifazat
+28|Joasă tensiune
+29|Joasă tensiune c.a. / c.c.
+30|Tablouri de joasă tensiune
+31|Schimbarea adaptează circuitele în consecință.
+32|Valorile implicite urmează standardul ales și pot fi modificate. Curenții admisibili ai cablurilor sunt valori orientative pentru metoda de pozare C la cupru. Confirmați fiecare valoare cu ediția și modificările naționale după care proiectați.
+33|Curent de scurtcircuit prezumat (kA)
+34|Curent de scurtcircuit al bateriei (kA)
+35|Din fișa tehnică a bateriei sau a încărcătorului. Bateriile cu plumb pot debita câțiva kA. Pentru întreruptoarele generice de c.c. se presupun 5 kA.
+36|Ambii poli (2P, neîmpământat sau izolat)
+37|Doar pozitiv (1P, negativ împământat sau comun)
+38|Polii întreruptoarelor
+39|Temperatura ambiantă a cablului (°C)
+40|Temperatura din interiorul carcasei (°C)
+41|Referința este {1} °C
+42|Factor de simultaneitate
+43|Simultaneitate
+44|Cablu de alimentare principal
+45|Lungimea cablului principal (m)
+46|Valoare impusă pentru întreruptorul general (A)
+47|Lăsat gol, se alege automat
+48|Cu XLPE 90 °C
+49|Cu PVC 70 °C
+50|XLPE 90
+51|Limită de cădere de tensiune pentru iluminat (%)
+52|Limită pentru celelalte circuite (%)
+53|Critic (navigație, santină, comunicații)
+54|Critic (cădere de {1} %)
+55|Iluminat (cădere de {1} %)
+56|Altele (cădere de {1} %)
+57|{1} implicit {2} %
+58|Implicit pentru joasă tensiune {1} %
+59|Putere disipată admisă de carcasă (W)
+60|Opțional, din fișa tehnică a carcasei
+61|Echilibrul fazelor și alimentarea principală
+62|Module pe șina DIN
+63|Lățimi implicite ale aparatelor
+64|Lățimea RCBO
+65|1 modul (compact)
+66|2 module (1P+N)
+67|1 modul
+68|{1} module
+69|{1} modul (compact)
+70|{1} module (1P+N)
+71|{1} modul = 18 mm
+72|{1} module · {2} mm
+73|{1} module × 18 mm = {2} mm
+74|{1} · {2} modul
+75|{1} · {2} module
+76|Pune modulele de comandă pe șine proprii
+77|Aranjarea trece pe o șină nouă când un aparat nu încape. Rândurile au pasul de 150 mm pentru că sunt montate module Lutron cu fază adaptivă.
+78|Serie MCB
+79|Serie RCBO
+80|Întrerupător general sau sosire
+81|Generic (valori implicite ale standardului)
+82|Domeniu de protecție preferat
+83|Alegeți o serie de la un producător: aranjarea folosește lățimile ei de modul, verificările folosesc capacitatea de rupere, domeniul de curenți și curbele, iar lista de materiale o menționează. Lăsați pe Generic pentru valorile implicite ale standardului.
+84|Fără o serie selectată, întreruptorul general și SPD ocupă 2 sau 4 module, MCB-urile 1 modul pe pol (2 cu întrerupere bipolară navală), RCBO-urile 1 modul (compact) la 1P+N și 4 module la 3P+N. Alegeți o serie de la un producător în Configurare sau cu Folosește mai sus ca să înlocuiți aceste valori cu lățimi reale.
+85|Include dispozitiv de protecție la supratensiuni
+86|Pornește un tablou gol
+87|Reîncarcă tabloul exemplu
+88|Începe din nou sau reîncarcă exemplul
+89|Calculator rapid de disjunctoare
+90|Introduceți puterea unei sarcini sau curentul ei, dacă îl știți. Se afișează curentul de calcul, disjunctorul de folosit și cablul.
+91|sau curent A
+92|Aparentă
+93|Putere aparentă
+94|Putere W
+95|Sarcină W
+96|Factor de putere
+97|FP
+98|, FP
+99|Lungime cablu m
+100|Lungime m
+101|Adaugă circuit
+102|+ Circuit
+103|+ Modul DIN
+104|+ Aparat personalizat
+105|Echilibrează fazele automat
+106|Renumerotează
+107|Șterge circuitul
+108|Șterge circuitul {1}
+109|Șterge modulul
+110|Elimină {1}
+111|Tabel de circuite
+112|Circuitele alimentate dintr-o zonă a unui modul Lutron folosesc împreună disjunctorul de alimentare al modulului, deci cablul lor este verificat față de acea valoare. Factorul de grupare înmulțește curentul admisibil al cablului (folosiți 1 dacă nu există).
+113|Ref.
+114|Referință
+115|Nume
+116|Tip de circuit
+117|Tip
+118|Fază
+119|Alimentat din
+120|Disjunctor direct
+121|{1} zona {2}
+122|Zona {1}: {2}
+123|Zona {1}
+124|Zone
+125|liberă
+126|niciunul
+127|Valoare
+128|Valoare A
+129|In A
+130|Ib A
+131|Icn kA
+132|Icu kA
+133|Curbă
+134|Curbe
+135|Poli
+136|Secțiune
+137|Secțiune mm²
+138|Cablu
+139|Grp
+140|Cerere
+141|ΔU
+142|ΔU %
+143|Cădere de tensiune
+144|Stare
+145|OK
+146|Eșec
+147|De revăzut
+148|Notă
+149|Note
+150|Note despre tablou
+151|Aranjarea tabloului
+152|Aranjare
+153|Șine
+154|Mută
+155|↑ Șină mai sus
+156|↓ Șină mai jos
+157|← Mai devreme
+158|Mai târziu →
+159|Potrivește pe ecran
+160|Potrivit pe ecran
+161|Dimensiune reală
+162|Rând întreg în tabel
+163|Selectați un aparat pentru a-l edita aici. Trageți un aparat pentru a-l muta de-a lungul șinelor.
+164|Șterge
+165|Confirmă ștergerea
+166|Anulează
+167|Elimină
+168|Elimină SPD
+169|Elimină întreruptorul general
+170|Restabilește SPD
+171|Restabilește întreruptorul general
+172|Protecție la supratensiuni
+173|Supratensiune
+174|SPD
+175|SPD · Protecție la supratensiuni
+176|SPD Protecție la supratensiuni
+177|General
+178|Sosire
+179|Separator
+180|Disjunctor de alimentare
+181|Cablu de alimentare
+182|Lungime alimentare m
+183|Sarcină alimentare
+184|Alim. m
+185|Faza de alimentare
+186|Alimentare {1}
+187|alimentare {1} A
+188|Intrare A
+189|Aparat
+190|Tip de aparat
+191|Modul
+192|Modul de adăugat
+193|Module
+194|Module din acest tablou
+195|Lățime
+196|Lățime (module)
+197|Lățime, module
+198|Model
+199|Familie
+200|Producător
+201|Marcă
+202|Serie
+203|Serii potrivite
+204|Descriere
+205|Caută în bibliotecă
+206|Caută model, familie, tensiune
+207|Caută dispozitive de protecție
+208|Caută serie sau standard
+209|Toate mărcile
+210|Toate familiile
+211|Toți producătorii
+212|Toate tipurile
+213|Adaugă
+214|Adaugă module DIN
+215|Folosește
+216|Folosit
+217|DIN
+218|Bibliotecă de echipamente DIN
+219|Bibliotecă de protecție a circuitelor
+220|Listă de echipamente
+221|Sursă verificată
+222|Tipic
+223|Placă de conectare cabluri
+224|Procesor de comandă
+225|Interfață / I/O
+226|Rețea / distribuție
+227|Sursă de alimentare
+228|Comandă motoare
+229|Comutare
+230|Reglaj
+231|DALI
+232|Gateway DALI
+233|EcoSystem
+234|Digital (HomeWorks)
+235|Reglaj cu fază adaptivă
+236|Variator cu fază adaptivă
+237|Control de fază / 20 A
+238|0–10 V / comutare
+239|Variator 0–10 V
+240|Gateway QSX
+241|Procesor QSX
+242|Gateway KNX DALI
+243|Interfață KNX IP
+244|Router KNX IP
+245|I/O analogic KNX
+246|Intrare binară KNX
+247|Actuator de reglaj KNX
+248|Contor de energie KNX
+249|Actuator de încălzire KNX
+250|Logică / comandă KNX
+251|Sursă de alimentare KNX
+252|Actuator pentru jaluzele KNX
+253|Actuator de comutare KNX
+254|Actuator universal KNX
+255|MCB
+256|RCBO
+257|RCCB (diferențial de grup)
+258|MCCB (sosire)
+259|RCD
+260|Termic
+261|Căldură
+262|Disipare ≈
+263|Căldură în carcasă ≈
+264|Carcasă ≈
+265|BTU/h
+266|Fază max.
+267|°C max.
+268|Dezechilibru
+269|Echilibru
+270|Conectată
+271|Sarcină conectată
+272|Conectată {1} kW · cerere {2} kW · {3} kVA · fază max. {4} A
+273|Încărcarea fazelor (după simultaneitate {1})
+274|Încărcarea barelor (după simultaneitate {1})
+275|la simultaneitate {1}
+276|Cea mai mare cădere de tensiune capăt la capăt
+277|Curent de calcul
+278|Verificări de proiectare
+279|Verifică
+280|Verifică aranjarea tabloului
+281|Verificat față de limita fiecărui modul
+282|{1} alimentate
+283|{1} eșecuri · {2} de revăzut
+284|Iluminat
+285|Prize
+286|AV / electronice
+287|HVAC / pompă
+288|Încălzitor / boiler
+289|Bucătărie / aparate
+290|Altele
+291|Neutru
+292|Pozitiv +
+293|Negativ −
+294|Schemă multifilară
+295|Schemă multifilară · {1}
+296|Alimentare {1}
+297|CIRCUIT
+298|PROTECȚIE
+299|CABLU
+300|SARCINĂ
+301|ȘINĂ
+302|Desen PDF și tabel
+303|Desen al aranjării tabloului cu numele circuitelor, schema multifilară, tabelul de circuite și totalurile de putere pe A4 vedere, cu sigla dumneavoastră pe fiecare pagină.
+304|Include lista de materiale
+305|Salvează PDF
+306|Registru Excel
+307|Foi pentru tabelul de circuite, module Lutron, lista de materiale, echilibrul fazelor, putere și proiect. Conține numele companiei; fișierele Excel din acest instrument nu pot încorpora imaginea siglei.
+308|Salvează Excel
+309|Tabel CSV
+310|Tabel simplu de circuite pentru import în alte instrumente.
+311|Salvează CSV
+312|Fișier de proiect
+313|Salvați întregul proiect ca JSON sau deschideți unul salvat mai devreme.
+314|Salvează proiectul
+315|Deschide proiect…
+316|Deschide proiect
+317|Tabloul se salvează și în acest browser cât lucrați. Fiecare export deschide o fereastră de salvare.
+318|Închide
+319|Data
+320|Auto
+321|Auto ({1})
+322|Capacitate de rupere presupusă {1} kA
+323|generic · dezechilibru {1} %
+324|{1} · dezechilibru {2} %
+325|prin {1} ({2} A) · {3}
+326|cupru {1}, valoare {2} A, cădere de tensiune {3} % din {4} V (limită {5} %)
+327|{1} V c.c. (joasă tensiune)
+328|{1} V c.a. (joasă tensiune)
+329|12, 24 sau 48 V c.c. și 24 V c.a., ca pe iahturi și bărci.
+330|Aranjarea șinelor DIN pentru {1}
+331|Alegeți o imagine sub 4 MB.
+332|Fișierul nu a putut fi salvat aici.
+333|Nu s-a putut salva: {1}
+334|Biblioteca Excel nu s-a încărcat.
+335|Siglă adăugată
+336|Întreruptorul general a fost eliminat din tablou
+337|Biblioteca PDF nu s-a încărcat.
+338|Faze reechilibrate
+339|Proiect încărcat
+340|SPD eliminat
+341|{1} salvat
+342|Acel fișier nu este un proiect DBoard Designer.
+343|Imaginea nu a putut fi citită.
+344|{1} aplicat la MCB-uri.
+345|{1} aplicat la RCBO-uri.
+346|{1} aplicat la întreruptorul general.
+347|{1} adăugat ca {2}. Vedeți-l în fila Tablou.
+348|{1} șters
+349|Deja pe prima șină.
+350|Nu există niciun aparat pe șina următoare lângă care să fie plasat. Trageți-l în schimb.
+351|Alimentare de joasă tensiune: 24 V c.c. Sarcinile sunt în wați, curentul este P ÷ V.
+352|Alimentare trifazată. Circuitele sunt distribuite pe L1, L2 și L3.
+353|Alimentare monofazată.
+354|Toate verificările sunt îndeplinite pentru acest tablou.
+355|Introduceți o putere sau un curent.
+356|Niciun modul DIN plasat încă. Adăugați unul din biblioteca de mai jos.
+357|Niciun circuit încă. Adăugați unul pentru a începe tabelul.
+358|Niciun aparat nu se potrivește.
+359|Niciun echipament nu se potrivește.
+360|IEC 60364-4-41 prevede protecție RCD de 30 mA pe prize și pe circuitele pentru echipamente portabile.
+361|BS 7671 411.3.3 cere protecție RCD de 30 mA pentru prizele de până la 20 A și pentru majoritatea circuitelor terminale din locuințe.
+362|NEC 210.8 și 210.12 cer protecție GFCI și AFCI pe multe circuite de prize și de derivație. Confirmați ediția adoptată local.
+363|AS/NZS 3000 cere protecție RCD pe subcircuitele terminale de prize și iluminat.
+364|Instalațiile navale de c.a. folosesc de obicei întrerupere bipolară și protecție RCD de 30 mA pe circuitele terminale. Confirmați cu regulile societății de clasificare și ale pavilionului.
+365|ABYC E-11 prevede protecție GFCI pe prize și protecție bipolară a derivațiilor. Confirmați cu ediția în vigoare.
+366|C.a. de foarte joasă tensiune: nu este nevoie de RCD pentru circuitele SELV. Căderea de tensiune este de obicei limita lungimii cablului.
+367|C.c. de foarte joasă tensiune: nu este nevoie de RCD pentru circuitele SELV. Dimensionați fiecare disjunctor după curent (I = P ÷ V), protejați cablul și folosiți dispozitive pentru c.c. Practica navală (ISO 10133, ABYC E-11) admite 3 % cădere de tensiune pentru circuitele critice, precum luminile de navigație și pompele de santină, și 10 % pentru restul.
+368|Verificările acoperă curentul de calcul față de valoarea disjunctorului și a cablului, căderea de tensiune, cerința de RCD, curentul de scurtcircuit și limitele de intrare, zonă și temperatură Lutron. Impedanța buclei de defect, discriminarea și selectivitatea nu sunt calculate aici.
+369|DBoard Designer este un ajutor de proiectare. Curenții admisibili ai cablurilor, limitele căderii de tensiune și datele Lutron sunt orientative; verificați-le cu ediția în vigoare a standardului dumneavoastră, documentația producătorului și un inginer calificat înainte de execuție.
+370|DBoard Designer
+371|Designer
+372|Cabină și tablou AV exemplu
+373|{1} acoperă {2}–{3} A; {4} A este în afara acestui domeniu.
+374|{1} nu are curbă {2} ({3}).
+375|Alimentarea lui {1} duce {2} A, peste valoarea sa de intrare de {3} A.
+376|{1} este dimensionat pentru {2}; tensiunea fază-neutru a sistemului este {3} V.
+377|{1} admite {2} C în carcasă; valoarea de proiectare este {3} C.
+378|Disjunctorul de alimentare al lui {1}, de {2} A, este sub sarcina sa de {3} A.
+379|Cablul de alimentare al lui {1} duce {2} A, mai puțin decât disjunctorul de {3} A.
+380|Căderea de tensiune a alimentării lui {1} este {2} %.
+381|Curentul de alimentare al lui {1} depășește cel mai mare disjunctor din această serie.
+382|Curentul de scurtcircuit de {1} kA depășește capacitatea de rupere de {2} kA a disjunctorului de alimentare.
+383|Curentul de calcul depășește cel mai mare disjunctor din această serie.
+384|Curentul de calcul de {1} A depășește disjunctorul de {2} A.
+385|Cablul de {1} mm² duce {2} A, mai puțin decât disjunctorul de {3} A. Măriți secțiunea sau micșorați disjunctorul.
+386|Căderea de tensiune de {1} % depășește ținta de {2} %.
+387|Circuitul „{1}” nu are RCBO. {2}
+388|Curentul de scurtcircuit de {1} kA depășește capacitatea de rupere de {2} kA a lui {3}.
+389|Curentul de scurtcircuit de {1} kA depășește capacitatea de rupere de {2} kA presupusă pentru acest standard.
+390|{1} nu are variantă trifazată. Alegeți o serie RCBO 4P sau un MCB cu RCD de grup.
+391|{1} este un aparat 4P și nu poate proteja un circuit monofazat.
+392|{1} are {2} zone; zona {3} nu există.
+393|Curentul zonei de {1} A depășește valoarea zonei de {2} A.
+394|Sarcina zonei de {1} W depășește limita de {2} W pentru zona {3}.
+395|{1} nu comută sarcini.
+396|Zona {1} din {2} este partajată cu {3}.
+397|{1} nu este listat aici ca avizat pentru c.c. la {2} V. Alegeți o serie de c.c. sau folosiți Generic și specificați un dispozitiv pentru c.c.
+398|Nicio serie de c.c. aleasă, deci se presupune un disjunctor termomagnetic generic pentru c.c. la 5 kA.
+399|Curentul maxim de fază depășește cea mai mare valoare de sosire din bibliotecă.
+400|Curentul maxim de fază de {1} A depășește sosirea de {2} A.
+401|Cablul de sosire de {1} mm² duce {2} A, mai puțin decât sosirea de {3} A.
+402|Căderea de tensiune a sosirii de {1} % consumă o parte din marja totală.
+403|Dezechilibrul fazelor este cu {1} % peste medie. Folosiți echilibrarea automată sau mutați circuite.
+404|Modulele cu fază adaptivă cer reducerea puterii pe zonă la 30–40 C temperatură ambiantă. Vezi nota de aplicație Lutron nr. 466.
+405|Modulele cu fază adaptivă cer 150 mm între șinele DIN și 200 mm liberi deasupra șinei de sus.
+406|Disiparea estimată de {1} W depășește puterea disipată admisă de carcasă de {2} W.
+407|{1} module pentru șină DIN de la Lutron, Crestron, Control4 și MDT KNX. Datele Lutron provin din nota de aplicație nr. 466 (rev. T, mai 2026) și din fișe tehnice, cele Crestron din paginile de produs, cele Control4 din fișele tehnice, iar cele MDT din listele de produse și prețuri (1 modul = 18 mm). Unde o sursă nu indică o valoare, apare ? sau –. Actuatoarele KNX sunt alimentate de magistrală, deci doar partea de sarcină contează pentru alimentare. Verificați fișa tehnică actuală a producătorului înainte de comandă.
+408|Foarte joasă tensiune {1} V c.a.: I = P ÷ (V × FP). Disjunctoarele sunt de tip c.a. obișnuit; joasa tensiune face curentul mare, deci secțiunea cablului și căderea de tensiune decid de obicei cablul.
+409|Tablou satelit de {1} inci cu module de putere DIN și controlere EcoSystem.
+410|{1} serii de la {2} producători. Valorile, capacitățile și lățimile sunt valori de catalog la nivel de serie: „Sursă verificată” înseamnă că o pagină a producătorului sau a unui distribuitor le-a confirmat, „Tipic” că sunt cifre uzuale de catalog de confirmat în fișa tehnică. Apăsați Folosește pentru a aplica o serie acestui tablou.
+411|În partea de jos a Configurării, <b>Pornește un tablou gol</b> șterge tot, iar <b>Reîncarcă tabloul exemplu</b> readuce cabina și tabloul AV exemplu.
+412|Alegeți Joasă tensiune c.a. / c.c. ca tip de alimentare. Valorile disjunctoarelor și secțiunile cablurilor folosesc atunci serii pentru c.c., iar tabloul desenează bare pozitivă și negativă în loc de faze.
+413|Tablou de putere de comandă cu 8 disjunctoare de derivație și interfețe de module.
+414|Tablou de reglaj / comutare, până la 4 module de putere DIN (sau 3 plus o sursă QSPS). 120–240 V.
+415|Curent continuu: I = P ÷ V, fără factor de putere. Arcurile de c.c. nu se sting singure, deci fiecare disjunctor trebuie să fie avizat pentru c.c. cel puțin la tensiunea de încărcare (circa 1,25 × tensiunea nominală de {1} V), iar polaritatea marcată pe aparat trebuie respectată. Capacitatea de rupere este stabilită de curentul de scurtcircuit al bateriei sau sursei ({2} kA introduși).
+416|Fiecare conductor este desenat: fiecare fază de la bara ei de fază, iar neutrul de la bara N. O casetă punctată în jurul polilor marchează un disjunctor care întrerupe și neutrul; un Δ marchează RCD-ul. MCB-urile unipolare lasă neutrul să treacă. Liniile punctate arată circuitele comutate de o zonă a unui modul Lutron.
+417|Fiecare conductor este desenat: pozitiv (roșu) și negativ (închis) de la cele două bare. O casetă punctată în jurul polilor marchează un disjunctor bipolar. Disjunctoarele unipolare stau doar pe pozitiv.
+418|Urmați acești pași de la primul ecran până la PDF-ul final. Puteți sări la orice pas în orice moment; fiecare filă actualizează același tablou.
+419|În versiunea instalabilă, folosiți opțiunea Instalează sau Adaugă pe ecranul principal din browser. Apoi se deschide pe tot ecranul și funcționează offline.
+420|Deschideți <b>Verificări</b>. Instrumentul testează dacă fiecare disjunctor acoperă sarcina și își protejează cablul, dacă căderea de tensiune rămâne sub limita dvs., dacă există protecție RCD acolo unde o cere standardul, dacă capacitatea de rupere acoperă curentul de scurtcircuit și dacă limitele modulelor și zonelor Lutron (sarcină, curent, tensiune, temperatură) sunt respectate. Verifică și valoarea și cablul de sosire, dezechilibrul fazelor și căldura din carcasă. <b>Eșec</b> înseamnă de corectat înainte de execuție, <b>De revăzut</b> înseamnă de analizat și decis, iar notele sunt informative.
+421|Deschideți <b>Circuite</b> și apăsați <b>Adaugă circuit</b>. Pentru fiecare circuit introduceți nume, tip, putere în wați, factor de putere, fază, lungime cablu, protecție (MCB sau RCBO) și curbă. Instrumentul dimensionează cablul, alege valoarea disjunctorului și calculează curentul și căderea de tensiune. <b>Echilibrează fazele automat</b> distribuie sarcina pe L1, L2 și L3, iar <b>Renumerotează</b> ordonează referințele. Pe un tablou de joasă tensiune, calculatorul rapid de sus dă imediat disjunctorul pentru o sarcină.
+422|Deschideți <b>Schemă</b> pentru schema de cablare multifilară. Fiecare conductor de fază este desenat de la bara de fază, iar neutrul de la bara N. O casetă punctată marchează disjunctoarele care întrerup neutrul, un triunghi marchează RCD-ul, iar liniile punctate arată circuitele comutate de o zonă Lutron. Fiecare circuit arată cablu, protecție, bară de sarcină și stare.
+423|Deschideți <b>Echipamente</b> pentru a parcurge echipamentele de comandă pe șină DIN de la Lutron, Crestron, Control4 și MDT KNX (procesoare, interfețe, surse, module de reglaj, comutare și jaluzele, gateway-uri) cu filtru de marcă, plus biblioteca de disjunctoare (Schneider, ABB, Siemens, Legrand, Hager, Eaton, Chint). Apăsați <b>Adaugă</b> pe un modul ca să-l plasați în tablou. Înapoi la <b>Circuite</b>, alegeți modulul și zona (canalul) din care este alimentat un circuit. Fiecare modul primește și propriul disjunctor de alimentare. Apăsați <b>Folosește</b> pe o serie de disjunctoare ca s-o faceți implicită pentru MCB-uri, RCBO-uri sau întreruptorul general.
+424|Deschideți <b>Export</b>. <b>Salvează PDF</b> produce aranjarea tabloului, schema multifilară, tabelul de circuite și totalurile de putere; bifați <b>Include lista de materiale</b> dacă doriți să fie adăugată. <b>Salvează Excel</b> și <b>Salvează CSV</b> dau tabelul pentru alte instrumente. <b>Salvează proiectul</b> stochează întregul proiect într-un fișier pe care îl puteți redeschide mai târziu cu <b>Deschide proiect</b>.
+425|Deschideți <b>Tablou</b> pentru a vedea șinele DIN desenate cu fiecare aparat și numele circuitului său. Faceți clic pe un aparat ca să deschideți inspectorul: editați-l, mutați-l pe șină sau pe altă șină ori ștergeți-l. Folosiți <b>+ Circuit</b>, <b>+ Modul DIN</b> sau <b>+ Aparat personalizat</b> ca să adăugați elemente și aici. Puteți schimba întreruptorul general și puteți readuce un general sau un SPD șters cu butoanele de restabilire. <b>Potrivește pe ecran</b> și <b>Dimensiune reală</b> schimbă zoomul.
+426|Deschideți <b>Configurare</b>. Dați un nume tabloului, adăugați numele companiei și sigla (apar în partea de sus a paginii și în PDF) și alegeți <b>standardul</b> și <b>tipul de alimentare</b>: monofazat, trifazat sau joasă tensiune c.a. / c.c. (12, 24, 48 V c.c. sau 24 V c.a. pentru tablouri navale și similare). Apoi stabiliți temperaturile ambiante, factorul de simultaneitate, cablul principal, limitele căderii de tensiune, seria de disjunctoare dorită, câte module încap pe o șină DIN și dacă RCBO-urile ocupă 1 sau 2 module.
+427|Valorile, limitele căderii de tensiune și datele producătorilor sunt orientative. Verificați-le cu ediția în vigoare a standardului dumneavoastră, documentația producătorului și un inginer calificat înainte de execuție.
+428|Tabloul este păstrat în acest browser cât lucrați. Folosiți Salvează proiectul pentru a păstra o copie sau a o muta pe alt dispozitiv.
+429|(următoarea valoare standard egală sau mai mare decât curentul de calcul) {1}
+430|bipolar
+431|bipolar, pentru c.c.
+432|Tablouri și carcase DIN Lutron (referință)
+433|Cum funcționează DBoard Designer
+434|Bine de știut
+435|Începeți cu Configurarea
+436|Configurați proiectul
+437|Adăugați circuitele
+438|Citiți verificările
+439|Revedeți schema
+440|Munca dvs. se salvează automat
+441|Instalați-l ca pe o aplicație
+442|Verificați întotdeauna
+443|Linie
+444|Proiect
+445|Disjunctor
+446|Disjunctoare
+447|opțional
+448|sursă
+449|, cablu
+450|Aplicat la totalurile de fază
+451|Stabilește lățimea disjunctorului și schema
+452|Carcasă de joasă tensiune HomeWorks QS.
+453|Carcasă de trecere cu interfețe de module.
+454|Tablou pe șină DIN de 120 V cu cleme.
+455|Tablou DIN de {1} V {2} cu disjunctoare AFCI de {3} A.
+456|Dispozitiv de protecție la supratensiuni, tip 2.
+457|SPD tip 2
+458|TIP 2
+459|trifazat
+460|{1} (c.a. naval)
+461|GENERAL {1}
+462|Bară {1} V c.c.
+463|Bară {1} V c.a.
+464|ȘINĂ {1}
+465|folosite,
+466|Lista de materiale
+467|Amplasarea tabloului (șine {1} până la {2})
+468|(pagina {1} din {2})
+469|Ajutor de proiectare. Verificați valorile nominale cu ediția standardului, fișele tehnice ale producătorilor și un inginer calificat înainte de execuție.
+470|Ph
+471|Protecție
+472|Curent admisibil cablu A
+473|Tabel circuite
+474|Module DIN
+475|Faze
+476|Alimentare A
+477|Disjunctor de alimentare A
+478|Cablu de alimentare mm2
+479|Module (18 mm)
+480|Căldură BTU/h
+481|Curent A (după simultaneitate)
+482|Sosire A
+483|Dezechilibru %
+484|Putere instalată kW
+485|Putere cerută kW (după simultaneitate)
+486|Putere aparentă kVA
+487|Disipare W
+488|Sistem
+489|Curent de defect kA
+490|Temperatura ambiantă cablu C
+491|Întrerupător general
+492|Generic
+493|Direct
+494|Articol
+495|Cant.
+496|Încărcarea fazelor după simultaneitate
+497|Instalată {1} kW · cerută {2} kW · {3} kVA · PF {4}
+498|Cablu de sosire {1} mm² {2}
+499|Dimensiune reală, derulați lateral
+500|{1} × {2} adăugate. Le vedeți în fila Tablou.
+501|Cantitate
+502|CC
+503|Tensiune (V)
+504|Curent (A)
+505|Rezistență (Ω)
+506|Putere (W)
+507|Legea lui Ohm și puterea
+508|Alegeți ce calculați, apoi introduceți cele două valori cunoscute.
+509|Calculați
+510|Formulă
+511|Introduceți valori mai mari decât zero.
+512|Puterea în c.a. și factorul de putere
+513|Calculează curentul și puterile activă, aparentă și reactivă pentru sarcini monofazate și trifazate.
+514|Tensiune de linie (V)
+515|Valori cunoscute
+516|Curent și factor de putere
+517|Putere activă și factor de putere
+518|Putere aparentă și factor de putere
+519|Putere activă și reactivă
+520|Putere activă (kW)
+521|Putere aparentă (kVA)
+522|Putere reactivă (kvar)
+523|Factorul de putere trebuie să fie între 0 și 1.
+524|Curent
+525|Putere activă
+526|Putere reactivă
+527|Unghi de fază
+528|Corecția factorului de putere
+529|Dimensionează bateria de condensatoare necesară pentru a crește factorul de putere.
+530|Factor de putere actual
+531|Factor de putere țintă
+532|Ținta trebuie să fie mai mare decât factorul de putere actual.
+533|Mărimea condensatoarelor (kvar)
+534|Putere aparentă înainte
+535|Putere aparentă după
+536|Reducerea curentului
+537|Secțiunea cablului
+538|Găsește cel mai mic cablu de cupru care suportă sarcina și ține căderea de tensiune în limită.
+539|Sarcina este dată ca
+540|Putere (kW)
+541|Lungimea cablului (m)
+542|Limita căderii de tensiune (%)
+543|Tip cablu
+544|Ambient (°C)
+545|Factor de grupare
+546|Curent admisibil al cablului
+547|Disjunctor sugerat
+548|Conductoare de cupru, metoda de referință C. Verificați cu standardul și modul de instalare.
+549|Niciun cablu din tabel nu respectă limita. Scurtați traseul, relaxați limita sau folosiți cabluri în paralel.
+550|Căderea de tensiune pentru un cablu ales și cel mai lung traseu pe care îl poate deservi.
+551|Secțiunea cablului (mm²)
+552|Cădere de tensiune (V)
+553|Cădere de tensiune (%)
+554|Tensiune la sarcină
+555|Cel mai lung traseu în limită
+556|În limită.
+557|Limită depășită. Folosiți un cablu mai mare sau un traseu mai scurt.
+558|Rețele de rezistoare și legile lui Kirchhoff
+559|Rezistoare în serie și în paralel, cu tensiunea și curentul fiecăruia.
+560|Conexiune
+561|Paralel
+562|Tensiune de alimentare (V)
+563|Valorile rezistoarelor (Ω), separate prin virgule sau spații
+564|Introduceți între 1 și 12 valori de rezistență mai mari decât zero.
+565|Rezistor
+566|Rezistență totală
+567|Curent total
+568|Putere totală
+569|Legea tensiunilor a lui Kirchhoff (KVL): tensiunile dintr-o buclă închisă însumează zero, deci căderile pe rezistoare însumează tensiunea de alimentare.
+570|Legea curenților a lui Kirchhoff (KCL): curentul care intră într-un nod este egal cu cel care iese, deci curenții ramurilor însumează curentul total.
+571|Relații stea și triunghi
+572|Tensiunea și curentul de linie și de fază ale unei sarcini trifazate.
+573|Conexiune
+574|Stea (Y)
+575|Triunghi (Δ)
+576|Valori de linie
+577|Valori de fază
+578|Tensiune de fază (V)
+579|Curent de linie (A)
+580|Curent de fază (A)
+581|Instrumentele electricianului
+582|Calculatoare rapide pentru munca de zi cu zi. Fiecare rezultat arată formula și cifrele folosite. Considerați-le ghiduri și verificați cu standardul dumneavoastră.
+583|Instrumente
+584|Folosiți instrumentele
+585|Deschideți <b>Instrumente</b> pentru calculatoare rapide de electrician, independente de tablou. <b>Legea lui Ohm și puterea</b> află tensiunea, curentul, rezistența sau puterea din oricare două valori. <b>Puterea în c.a. și factorul de putere</b> acoperă sarcini monofazate și trifazate, iar <b>Corecția factorului de putere</b> dimensionează o baterie de condensatoare. <b>Secțiunea cablului</b> alege cel mai mic cablu de cupru pentru o sarcină, o lungime și o limită a căderii de tensiune folosind aceleași tabele ca circuitele, iar <b>Căderea de tensiune</b> verifică un cablu ales. <b>Rețele de rezistoare</b> rezolvă circuite serie și paralel cu legile lui Kirchhoff, iar <b>Relații stea și triunghi</b> convertește valorile de linie și de fază. Fiecare rezultat arată formula și cifrele folosite.
+586|Rezistența cablului
+587|Rezistența unui conductor din cupru sau aluminiu. Calculați rezistența, lungimea sau secțiunea, de exemplu pentru a estima distanța unei defecțiuni.
+588|Material
+589|Cupru
+590|Aluminiu
+591|Măsurat ca
+592|Un conductor
+593|Buclă (dus-întors)
+594|Temperatura conductorului (°C)
+595|Următoarea secțiune standard
+596|Rezistivitate la această temperatură
+597|Rezistență pe metru
+598|O măsurare în buclă acoperă conductorul dus-întors, deci lungimea afișată este distanța într-un singur sens.
+599|Rezistivitate la 20 °C: cupru 0,017241, aluminiu 0,028264 Ω·mm²/m. Coeficient de temperatură: cupru 0,00393, aluminiu 0,00403 pe °C.
+600|Faza 1 maro, faza 2 negru, faza 3 gri, nul albastru, conductor de protecție verde-galben (IEC 60446).
+601|Legare la pământ de protecție cu deconectare automată a alimentării (sisteme TN, TT sau IT), legătură echipotențială principală a conductelor metalice care intră și a maselor.
+602|Faza 1 maro, faza 2 negru, faza 3 gri, nul albastru, conductor de protecție verde-galben. Instalațiile mai vechi folosesc roșu, galben, albastru și negru.
+603|Legare la pământ de protecție cu deconectare automată. Impedanța buclei de defect trebuie să rămână în limitele tabelelor, cu legătură echipotențială principală a conductelor.
+604|Doar nulul (alb sau gri) și pământul echipamentelor (verde sau gol) sunt fixate. Culorile fazelor urmează practica locală, de obicei negru, roșu și albastru la 208 V.
+605|Articolul 250: sistem de electrozi de legare la pământ, conductoare de pământ ale echipamentelor și o singură legătură nul-pământ la separatorul de intrare.
+606|Pământ verde-galben, nul negru sau albastru deschis, conductoare active în alte culori precum roșu, alb și albastru, sau maro, negru și gri.
+607|Sistem cu nul multiplu pus la pământ (MEN), cu nulul legat la pământ la tabloul principal și un conductor principal de legare la pământ către electrod.
+608|Fază maro, nul albastru, conductor de protecție verde-galben (practica IEC 60446).
+609|Conductorul de protecție este legat la sistemul de egalizare a potențialului al ambarcațiunii. Nulul și pământul se leagă doar la sursă (generator sau transformator de izolare), niciodată la conexiunea de țărm.
+610|Faza neagră, a doua fază roșie, a treia albastră, nul alb, conductor de pământ verde sau verde-galben.
+611|Conductorul de pământ c.a. este legat la negativul c.c. al ambarcațiunii într-un singur punct. Nulul și pământul se leagă doar la sursă (generator sau transformator de izolare).
+612|Da
+613|Nu
+614|Cădere de tensiune, iluminat
+615|Cădere de tensiune, alte circuite
+616|Factor de sarcină continuă
+617|Curenți nominali ai disjunctoarelor
+618|Curbe de declanșare
+619|Separare bipolară
+620|Da, bipolar
+621|Nu, de obicei este unipolar
+622|Protecție cu RCD sau GFCI
+623|Culorile conductoarelor
+624|Legare la pământ și egalizarea potențialelor
+625|Compară standardele
+626|Cădere iluminat
+627|Cădere altele
+628|Sarcină continuă
+629|Bipolar
+630|Referință standarde
+631|Doar cu titlu de referință. Verificați fiecare valoare cu ediția în vigoare a standardului și cu amendamentele locale înainte de a vă baza pe ea.
+632|Aer condiționat
+633|Ventilator / ventilație
+634|Motor
+635|Pompă de apă
+636|Troliu / elice de manevră
+637|Aragaz / cuptor
+638|Refrigerare
+639|Mașină de spălat / uscător
+640|Boiler
+641|Încălzire de însoțire / în pardoseală
+642|Prize exterioare / de punte
+643|Echipamente piscină / spa
+644|Încărcător VE
+645|Încărcător de baterii
+646|Invertor / UPS
+647|Rețea / IT
+648|Securitate / alarmă
+649|Iluminat de urgență
+650|Alimentare tablou secundar
+651|Depanare și standarde
+652|În Instrumente, <b>Rezistența cablului</b> află rezistența, lungimea sau secțiunea unui cablu de cupru sau aluminiu, de exemplu pentru a estima la ce distanță este o defecțiune. <b>Referința standarde</b> de la final listează pentru fiecare standard limitele căderii de tensiune, curenții nominali ai disjunctoarelor, regulile RCD, culorile conductoarelor și legarea la pământ. Este doar orientativă, verificați cu ediția în vigoare.
+653|Pompă de santină / de drenaj
+654|Atelier / scule electrice
+655|Echipamente de navigație
+656|Comunicații
+657|Autentificare
+658|Creează un cont
+659|Creează cont
+660|Adresă de e-mail
+661|Parolă
+662|Confirmă parola
+663|Prenume
+664|Nume
+665|Țară
+666|Ai uitat parola?
+667|Ține-mă minte pe acest dispozitiv
+668|Deconectare
+669|Panou principal
+670|Setările contului
+671|Tablou nou
+672|Proiectele mele salvate
+673|Deschide
+674|Redenumește
+675|Duplică
+676|Creează un tablou de distribuție nou
+677|Proiecte deschise recent
+678|Salvează profilul
+679|Schimbă parola
+680|Șterge contul
+681|Companie (opțional)
+682|Ocupație profesională
+683|Resetează-ți parola
+684|Trimite linkul de resetare
+685|Verifică-ți e-mailul
+686|Deschide designerul
+687|Proiecte salvate
+688|Trimite feedback
+689|Cont
+690|Bun venit
+691|Arată
+692|Ascunde
+693|Înapoi la autentificare
+694|Alege țara
+695|Alege ocupația
+696|Retrimite e-mailul
+697|Termeni și condiții
+698|Politica de confidențialitate
+699|Electrician
+700|Inginer electrician
+701|Constructor de tablouri
+702|Integrator de sisteme
+703|Student
+704|Profil
+705|Actualizează parola
+706|Parola actuală
+707|Parola nouă
+708|Confirmă parola nouă
+709|Caută proiecte
+710|Salvat în contul tău
+711|Se salvează…
+712|Doar pe acest dispozitiv
+713|Salvează în cont
+714|E-mailul sau parola sunt incorecte.
+715|Alege o parolă nouă

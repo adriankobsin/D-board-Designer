@@ -1,0 +1,715 @@
+1|Einrichtung
+2|Schalttafel
+3|Stromkreise
+4|Geräte
+5|Prüfungen
+6|Schaltplan
+7|Export
+8|Hilfe
+9|Sprache
+10|Norm
+11|Netz
+12|Projektname
+13|Firmenlogo
+14|Firmenname
+15|Firma und Netz
+16|Firma
+17|Hilfe: So funktioniert die Plattform
+18|Bereiche
+19|Logo hochladen…
+20|Wird neben dem Logo und in den Exporten angezeigt
+21|Wird oben auf der Seite, im Schaltplan und im PDF angezeigt. Der Excel-Export enthält nur den Firmennamen.
+22|Netz und Auslegungsgrundlage
+23|Netzeinstellungen
+24|Netzart
+25|Netzspannung
+26|Einphasig
+27|Dreiphasig
+28|Niederspannung
+29|Niederspannung AC / DC
+30|Niederspannungsverteiler
+31|Die Umstellung passt die Stromkreise an.
+32|Die Vorgaben folgen der gewählten Norm und können überschrieben werden. Die Kabelbelastbarkeiten sind Richtwerte der Verlegeart C für Kupfer. Prüfen Sie jeden Wert anhand der Ausgabe und der nationalen Änderungen, nach denen Sie planen.
+33|Zu erwartender Kurzschlussstrom (kA)
+34|Kurzschlussstrom der Batterie (kA)
+35|Aus dem Datenblatt der Batterie oder des Ladegeräts. Blei-Säure-Batterien können mehrere kA liefern. Für Standard-DC-Schutzschalter werden 5 kA angenommen.
+36|Beide Pole (2P, ungeerdet oder isoliert)
+37|Nur Pluspol (1P, Minus geerdet oder gemeinsam)
+38|Schutzschalterpole
+39|Kabel-Umgebungstemperatur (°C)
+40|Temperatur im Gehäuse (°C)
+41|Bezugswert ist {1} °C
+42|Gleichzeitigkeitsfaktor
+43|Gleichzeitigkeit
+44|Zuleitung
+45|Länge der Zuleitung (m)
+46|Vorgabe Bemessungsstrom Einspeisung (A)
+47|Leer lassen für automatische Wahl
+48|Cu XLPE 90 °C
+49|Cu PVC 70 °C
+50|XLPE 90
+51|Grenze Spannungsfall Beleuchtung (%)
+52|Grenze Spannungsfall übrige Stromkreise (%)
+53|Kritisch (Navigation, Bilge, Kommunikation)
+54|Kritisch ({1} % Abfall)
+55|Beleuchtung ({1} % Abfall)
+56|Sonstige ({1} % Abfall)
+57|{1} Vorgabe {2} %
+58|Niederspannungs-Vorgabe {1} %
+59|Verlustleistung des Gehäuses (W)
+60|Optional, aus dem Datenblatt des Gehäuses
+61|Phasenverteilung und Einspeisung
+62|Module pro Hutschiene
+63|Standardbreiten der Geräte
+64|Breite FI/LS
+65|1 Modul (kompakt)
+66|2 Module (1P+N)
+67|1 Modul
+68|{1} Module
+69|{1} Modul (kompakt)
+70|{1} Module (1P+N)
+71|{1} Modul = 18 mm
+72|{1} Module · {2} mm
+73|{1} Module × 18 mm = {2} mm
+74|{1} · {2} Modul
+75|{1} · {2} Module
+76|Steuermodule auf eigene Schienen setzen
+77|Das Layout springt auf eine neue Schiene, wenn ein Gerät nicht passt. Die Reihen haben 150 mm Abstand, weil phasenanschnittfähige Lutron-Module verbaut sind.
+78|LS-Serie
+79|FI/LS-Serie
+80|Hauptschalter oder Einspeisung
+81|Allgemein (Normvorgaben)
+82|Bevorzugter Schutzbereich
+83|Wählen Sie eine Herstellerserie: Das Layout verwendet deren Modulbreiten, die Prüfungen nutzen deren Schaltvermögen, Strombereich und Kennlinien, und die Stückliste führt sie auf. Bei „Allgemein“ gelten die Normvorgaben.
+84|Ohne gewählte Serie belegen Hauptschalter und Überspannungsschutz 2 oder 4 Module, LS-Schalter 1 Modul pro Pol (2 bei zweipoligem Schalten in der Schifffahrt), FI/LS 1 Modul (kompakt) bei 1P+N und 4 Module bei 3P+N. Wählen Sie unter Einrichtung oder mit „Verwenden“ oben eine Herstellerserie, um echte Breiten zu verwenden.
+85|Überspannungsschutz einbeziehen
+86|Leere Verteilung beginnen
+87|Beispielverteilung neu laden
+88|Neu beginnen oder Beispiel neu laden
+89|Schneller Schutzschalter-Rechner
+90|Geben Sie die Leistung einer Last ein, oder ihren Strom, falls bekannt. Angezeigt werden der Bemessungsstrom, der passende Schutzschalter und das Kabel.
+91|oder Strom A
+92|Scheinleistung
+93|Scheinleistung
+94|Leistung W
+95|Last W
+96|Leistungsfaktor
+97|PF
+98|, PF
+99|Kabellänge m
+100|Länge m
+101|Stromkreis hinzufügen
+102|+ Stromkreis
+103|+ DIN-Modul
+104|+ Eigenes Gerät
+105|Phasen automatisch ausgleichen
+106|Neu nummerieren
+107|Stromkreis löschen
+108|Stromkreis {1} löschen
+109|Modul löschen
+110|{1} entfernen
+111|Stromkreisliste
+112|Stromkreise, die über eine Lutron-Modulzone versorgt werden, teilen sich den Einspeise-Schutzschalter des Moduls; ihr Kabel wird daher gegen dessen Nennstrom geprüft. Der Häufungsfaktor multipliziert die Strombelastbarkeit (1 verwenden, wenn keiner nötig).
+113|Nr.
+114|Bezeichnung
+115|Name
+116|Stromkreisart
+117|Art
+118|Phase
+119|Versorgt von
+120|Direkter Schutzschalter
+121|{1} Zone {2}
+122|Zone {1}: {2}
+123|Zone {1}
+124|Zonen
+125|frei
+126|keine
+127|Bemessung
+128|Bemessung A
+129|In A
+130|Ib A
+131|Icn kA
+132|Icu kA
+133|Kennlinie
+134|Kennlinien
+135|Pole
+136|Querschnitt
+137|Querschnitt mm²
+138|Kabel
+139|Grp
+140|Bedarf
+141|ΔU
+142|ΔU %
+143|Spannungsfall
+144|Status
+145|OK
+146|Fehler
+147|Prüfen
+148|Hinweis
+149|Hinweise
+150|Hinweise zur Schalttafel
+151|Schalttafel-Layout
+152|Layout
+153|Schienen
+154|Verschieben
+155|↑ Schiene höher
+156|↓ Schiene tiefer
+157|← Früher
+158|Später →
+159|An Bildschirm anpassen
+160|An Bildschirm angepasst
+161|Originalgröße
+162|Ganze Zeile in der Liste
+163|Wählen Sie ein Gerät, um es hier zu bearbeiten. Ziehen Sie ein Gerät, um es entlang der Schienen zu verschieben.
+164|Löschen
+165|Löschen bestätigen
+166|Abbrechen
+167|Entfernen
+168|Überspannungsschutz entfernen
+169|Hauptschalter entfernen
+170|Überspannungsschutz wiederherstellen
+171|Hauptschalter wiederherstellen
+172|Überspannungsschutz
+173|ÜSS
+174|SPD
+175|SPD · Überspannungsschutz
+176|SPD Überspannungsschutz
+177|Haupt
+178|Einspeisung
+179|Trennschalter
+180|Einspeise-Schutzschalter
+181|Einspeisekabel
+182|Einspeiselänge m
+183|Einspeiselast
+184|Einspeisung m
+185|Einspeisephase
+186|Einspeisung {1}
+187|Einspeisung {1} A
+188|Eingang A
+189|Gerät
+190|Gerätetyp
+191|Modul
+192|Hinzuzufügendes Modul
+193|Module
+194|Module in dieser Verteilung
+195|Breite
+196|Breite (Module)
+197|Breite, Module
+198|Modell
+199|Familie
+200|Hersteller
+201|Marke
+202|Serie
+203|Passende Serien
+204|Beschreibung
+205|Bibliothek durchsuchen
+206|Modell, Familie, Spannung suchen
+207|Schutzgeräte suchen
+208|Serie oder Norm suchen
+209|Alle Marken
+210|Alle Familien
+211|Alle Hersteller
+212|Alle Arten
+213|Hinzufügen
+214|DIN-Module hinzufügen
+215|Verwenden
+216|In Verwendung
+217|DIN
+218|DIN-Geräte-Bibliothek
+219|Bibliothek der Schutzgeräte
+220|Geräteliste
+221|Quelle geprüft
+222|Typisch
+223|Anschlussplatine
+224|Steuerprozessor
+225|Schnittstelle / E/A
+226|Netzwerk / Verteilung
+227|Netzteil
+228|Motorsteuerung
+229|Schalten
+230|Dimmen
+231|DALI
+232|DALI-Gateway
+233|EcoSystem
+234|Digital (HomeWorks)
+235|Phasenanschnitt-Dimmen
+236|Phasenanschnitt-Dimmer
+237|Phasenanschnitt / 20 A
+238|0–10 V / Schalten
+239|0–10-V-Dimmer
+240|QSX-Gateway
+241|QSX-Prozessor
+242|KNX-DALI-Gateway
+243|KNX-IP-Schnittstelle
+244|KNX-IP-Router
+245|KNX-Analog-E/A
+246|KNX-Binäreingang
+247|KNX-Dimmaktor
+248|KNX-Energiezähler
+249|KNX-Heizungsaktor
+250|KNX-Logik / Steuerung
+251|KNX-Spannungsversorgung
+252|KNX-Jalousieaktor
+253|KNX-Schaltaktor
+254|KNX-Universalaktor
+255|LS
+256|FI/LS
+257|FI (Gruppen-RCD)
+258|Leistungsschalter (Einspeisung)
+259|RCD
+260|Thermik
+261|Wärme
+262|Verlustleistung ≈
+263|Wärme im Gehäuse ≈
+264|Gehäuse ≈
+265|BTU/h
+266|Max. Phase
+267|Max. °C
+268|Unsymmetrie
+269|Symmetrie
+270|Angeschlossen
+271|Anschlusswert
+272|Angeschlossen {1} kW · Bedarf {2} kW · {3} kVA · max. Phase {4} A
+273|Phasenbelastung (nach Gleichzeitigkeit {1})
+274|Schienenbelastung (nach Gleichzeitigkeit {1})
+275|bei Gleichzeitigkeit {1}
+276|Größter Spannungsfall gesamt
+277|Bemessungsstrom
+278|Auslegungsprüfungen
+279|Prüfen
+280|Schalttafel-Layout prüfen
+281|Gegen die Grenzen jedes Moduls geprüft
+282|{1} versorgt
+283|{1} Fehler · {2} zu prüfen
+284|Beleuchtung
+285|Steckdosen
+286|AV / Elektronik
+287|Klima / Pumpe
+288|Heizung / Boiler
+289|Küche / Geräte
+290|Sonstige
+291|Neutralleiter
+292|Plus +
+293|Minus −
+294|Mehrliniendiagramm
+295|Mehrliniendiagramm · {1}
+296|Netz {1}
+297|STROMKREIS
+298|SCHUTZ
+299|KABEL
+300|LAST
+301|SCHIENE
+302|PDF-Zeichnung und Liste
+303|Zeichnung der Schalttafel mit Stromkreisnamen, Mehrliniendiagramm, Stromkreisliste und Leistungssummen im A4-Querformat, mit Ihrem Logo auf jeder Seite.
+304|Stückliste einbeziehen
+305|PDF speichern
+306|Excel-Arbeitsmappe
+307|Blätter für Stromkreisliste, Lutron-Module, Stückliste, Phasenverteilung, Leistung und Projekt. Enthält den Firmennamen; Excel-Dateien dieses Werkzeugs können das Logo nicht einbetten.
+308|Excel speichern
+309|CSV-Liste
+310|Einfache Stromkreisliste zum Import in andere Werkzeuge.
+311|CSV speichern
+312|Projektdatei
+313|Speichern Sie den gesamten Entwurf als JSON oder öffnen Sie einen früher gespeicherten.
+314|Projekt speichern
+315|Projekt öffnen…
+316|Projekt öffnen
+317|Die Verteilung wird während der Arbeit auch in diesem Browser gespeichert. Beim Export öffnet sich jedes Mal ein Speicherdialog.
+318|Schließen
+319|Datum
+320|Automatisch
+321|Automatisch ({1})
+322|Angenommenes Schaltvermögen {1} kA
+323|allgemein · Unsymmetrie {1} %
+324|{1} · Unsymmetrie {2} %
+325|über {1} ({2} A) · {3}
+326|Kupfer {1}, Bemessung {2} A, Spannungsfall {3} % von {4} V (Grenze {5} %)
+327|{1} V DC (Niederspannung)
+328|{1} V AC (Niederspannung)
+329|12, 24 oder 48 V DC und 24 V AC, wie auf Yachten und Booten üblich.
+330|Hutschienen-Layout von {1}
+331|Wählen Sie ein Bild unter 4 MB.
+332|Die Datei konnte hier nicht gespeichert werden.
+333|Speichern nicht möglich: {1}
+334|Die Excel-Bibliothek wurde nicht geladen.
+335|Logo hinzugefügt
+336|Hauptschalter aus der Schalttafel entfernt
+337|Die PDF-Bibliothek wurde nicht geladen.
+338|Phasen neu verteilt
+339|Projekt geladen
+340|Überspannungsschutz entfernt
+341|{1} gespeichert
+342|Diese Datei ist kein DBoard-Designer-Projekt.
+343|Das Bild konnte nicht gelesen werden.
+344|{1} auf LS-Schalter angewendet.
+345|{1} auf FI/LS-Schalter angewendet.
+346|{1} auf den Hauptschalter angewendet.
+347|{1} als {2} hinzugefügt. Sehen Sie es im Reiter Schalttafel.
+348|{1} gelöscht
+349|Bereits auf der ersten Schiene.
+350|Kein Gerät auf der nächsten Schiene, neben dem es platziert werden könnte. Ziehen Sie es stattdessen.
+351|Niederspannungsnetz: 24 V DC. Lasten in Watt, Strom ist P ÷ V.
+352|Dreiphasennetz. Die Stromkreise verteilen sich auf L1, L2 und L3.
+353|Einphasennetz.
+354|Alle Prüfungen für diese Verteilung bestanden.
+355|Geben Sie eine Leistung oder einen Strom ein.
+356|Noch keine DIN-Module platziert. Fügen Sie unten aus der Bibliothek eines hinzu.
+357|Noch keine Stromkreise. Fügen Sie einen hinzu, um die Liste zu beginnen.
+358|Keine passenden Geräte.
+359|Keine passenden Geräte.
+360|IEC 60364-4-41 erwartet 30-mA-RCD-Schutz für Steckdosen und für Stromkreise mit tragbaren Betriebsmitteln.
+361|BS 7671 411.3.3 verlangt 30-mA-RCD-Schutz für Steckdosen bis 20 A und die meisten Endstromkreise in Wohngebäuden.
+362|NEC 210.8 und 210.12 verlangen GFCI- und AFCI-Schutz für viele Steckdosen- und Abzweigstromkreise. Prüfen Sie die vor Ort eingeführte Ausgabe.
+363|AS/NZS 3000 verlangt RCD-Schutz für Endstromkreise von Steckdosen und Beleuchtung.
+364|Wechselstromanlagen auf Schiffen verwenden üblicherweise zweipoliges Schalten und 30-mA-RCD-Schutz in Endstromkreisen. Prüfen Sie dies anhand der Klassifikations- und Flaggenregeln.
+365|ABYC E-11 erwartet GFCI-Schutz für Steckdosen und zweipoligen Abzweigschutz. Prüfen Sie dies anhand der aktuellen Ausgabe.
+366|Schutzkleinspannung AC: Für SELV-Stromkreise ist kein RCD nötig. Der Spannungsfall begrenzt meist die Kabellänge.
+367|Schutzkleinspannung DC: Für SELV-Stromkreise ist kein RCD nötig. Dimensionieren Sie jeden Schutzschalter nach dem Strom (I = P ÷ V), schützen Sie das Kabel und verwenden Sie DC-taugliche Geräte. Die Praxis in der Schifffahrt (ISO 10133, ABYC E-11) erlaubt 3 % Spannungsfall für kritische Stromkreise wie Navigationslichter und Bilgepumpen und 10 % für die übrigen.
+368|Die Prüfungen decken Bemessungsstrom gegen Schutzschalter- und Kabelbelastbarkeit, Spannungsfall, RCD-Erwartung, Kurzschlussstrom sowie Lutron-Eingang, -Zonen und -Temperaturgrenzen ab. Schleifenimpedanz, Diskriminierung und Selektivität werden hier nicht berechnet.
+369|DBoard Designer ist eine Planungshilfe. Kabelbelastbarkeiten, Grenzen des Spannungsfalls und Lutron-Daten sind Richtwerte; prüfen Sie sie vor dem Bau anhand der aktuellen Ausgabe Ihrer Norm, der Herstellerunterlagen und mit einer qualifizierten Fachkraft.
+370|DBoard Designer
+371|Designer
+372|Beispiel Kabine und AV-Verteilung
+373|{1} deckt {2}–{3} A ab; {4} A liegt außerhalb dieses Bereichs.
+374|{1} führt keine {2}-Kennlinie ({3}).
+375|Die Einspeisung von {1} führt {2} A, über dem Eingangsnennstrom von {3} A.
+376|{1} ist für {2} ausgelegt; die Leiter-Neutralleiter-Spannung des Systems beträgt {3} V.
+377|{1} erlaubt {2} C im Gehäuse; der Auslegungswert ist {3} C.
+378|Der Einspeise-Schutzschalter von {1} mit {2} A liegt unter seiner Last von {3} A.
+379|Das Einspeisekabel von {1} führt {2} A, weniger als der Schutzschalter mit {3} A.
+380|Der Spannungsfall der Einspeisung von {1} beträgt {2} %.
+381|Der Einspeisestrom von {1} liegt über dem größten Schutzschalter dieser Serie.
+382|Der Kurzschlussstrom {1} kA liegt über dem Schaltvermögen von {2} kA des Einspeise-Schutzschalters.
+383|Der Bemessungsstrom liegt über dem größten Schutzschalter dieser Serie.
+384|Der Bemessungsstrom {1} A liegt über dem Schutzschalter mit {2} A.
+385|Das Kabel {1} mm² führt {2} A, weniger als der Schutzschalter mit {3} A. Größeres Kabel wählen oder den Schutzschalter verkleinern.
+386|Der Spannungsfall {1} % liegt über dem Ziel von {2} %.
+387|Der Stromkreis „{1}“ hat keinen FI/LS. {2}
+388|Der Kurzschlussstrom {1} kA liegt über dem Schaltvermögen von {2} kA von {3}.
+389|Der Kurzschlussstrom {1} kA liegt über dem für diese Norm angenommenen Schaltvermögen von {2} kA.
+390|{1} hat keine 3-phasige Ausführung. Wählen Sie eine 4P-FI/LS-Serie oder einen LS mit Gruppen-RCD.
+391|{1} ist ein 4P-Gerät und kann keinen einphasigen Stromkreis schützen.
+392|{1} hat {2} Zonen; Zone {3} existiert nicht.
+393|Der Zonenstrom {1} A liegt über der Zonenbemessung von {2} A.
+394|Die Zonenlast {1} W liegt über der Grenze von {2} W für Zone {3}.
+395|{1} schaltet keine Lasten.
+396|Zone {1} von {2} wird mit {3} geteilt.
+397|{1} ist hier nicht als DC-tauglich für {2} V angegeben. Wählen Sie eine DC-Serie oder nutzen Sie „Allgemein“ und legen Sie ein DC-taugliches Gerät fest.
+398|Keine DC-Serie gewählt, daher wird ein allgemeiner DC-tauglicher thermisch-magnetischer Schutzschalter mit 5 kA angenommen.
+399|Der maximale Phasenstrom liegt über der größten Einspeisebemessung der Bibliothek.
+400|Der maximale Phasenstrom {1} A liegt über der Einspeisung mit {2} A.
+401|Die Zuleitung {1} mm² führt {2} A, weniger als die Einspeisung mit {3} A.
+402|Der Spannungsfall der Zuleitung {1} % verbraucht einen Teil des Gesamtspielraums.
+403|Die Phasenunsymmetrie liegt {1} % über dem Mittel. Nutzen Sie den automatischen Ausgleich oder verschieben Sie Stromkreise.
+404|Phasenanschnitt-Module brauchen bei 30–40 C Raumtemperatur eine Zonen-Leistungsminderung. Siehe Lutron App Note #466.
+405|Phasenanschnitt-Module brauchen 150 mm zwischen den Hutschienen und 200 mm freien Raum über der obersten Schiene.
+406|Die geschätzte Verlustleistung {1} W überschreitet die Gehäusebemessung von {2} W.
+407|{1} Hutschienen-Module von Lutron, Crestron, Control4 und MDT KNX. Die Lutron-Daten stammen aus Application Note #466 (Rev. T, Mai 2026) und Datenblättern, Crestron von den Produktseiten, Control4 aus den Datenblättern und MDT aus den Produkt- und Preislisten (1 Modul = 18 mm). Wo eine Quelle keinen Wert nennt, steht ? oder –. KNX-Aktoren werden über den Bus versorgt, daher zählt nur ihre Lastseite zur Einspeisung. Prüfen Sie vor der Bestellung das aktuelle Herstellerdatenblatt.
+408|{1} V AC Kleinspannung: I = P ÷ (V × PF). Die Schutzschalter sind übliche AC-Typen; durch die niedrige Spannung wird der Strom hoch, daher bestimmen meist Kabelquerschnitt und Spannungsfall das Kabel.
+409|{1} Zoll Satelliten-Verteiler mit DIN-Leistungsmodulen und EcoSystem-Steuerungen.
+410|{1} Serien von {2} Herstellern. Bemessungsströme, Schaltvermögen und Breiten sind Katalogwerte auf Serienebene: „Quelle geprüft“ heißt, eine Hersteller- oder Händlerseite hat sie bestätigt; „Typisch“ heißt, es sind gängige Katalogwerte, die im Datenblatt zu prüfen sind. Mit „Verwenden“ übernehmen Sie eine Serie für diese Verteilung.
+411|Unten in der Einrichtung löscht <b>Leere Verteilung beginnen</b> alles, und <b>Beispielverteilung neu laden</b> bringt die Beispiel-Kabine mit AV-Verteilung zurück.
+412|Wählen Sie Niederspannung AC / DC als Netzart. Schutzschalter und Kabelquerschnitte verwenden dann DC-taugliche Serien, und die Tafel zeigt Plus- und Minusschienen statt Phasen.
+413|Steuerstromverteiler mit 8 Leitungsschutzschaltern und Modulschnittstellen.
+414|Dimm-/Schaltverteiler für bis zu 4 DIN-Leistungsmodule (oder 3 plus ein QSPS-Netzteil). 120–240 V.
+415|Gleichstrom: I = P ÷ V ohne Leistungsfaktor. Gleichstromlichtbögen verlöschen nicht von selbst; daher muss jeder Schutzschalter mindestens für die Ladespannung (etwa 1,25 × die Nennspannung von {1} V) DC-tauglich sein, und auf dem Gerät angegebene Polaritäten sind einzuhalten. Das Schaltvermögen richtet sich nach dem Kurzschlussstrom der Batterie oder Quelle ({2} kA eingegeben).
+416|Jeder Leiter wird gezeichnet: jeder Außenleiter von seiner Phasenschiene und der Neutralleiter von der N-Schiene. Ein gestrichelter Kasten um die Pole kennzeichnet einen Schutzschalter, der auch den Neutralleiter schaltet; ein Δ kennzeichnet den RCD. Einpolige LS führen den Neutralleiter durch. Gestrichelte Linien zeigen Stromkreise, die über eine Lutron-Modulzone geschaltet werden.
+417|Jeder Leiter wird gezeichnet: Plus (rot) und Minus (dunkel) von den beiden Sammelschienen. Ein gestrichelter Kasten um die Pole kennzeichnet einen zweipoligen Schutzschalter. Einpolige Schutzschalter liegen nur im Pluspol.
+418|Folgen Sie diesen Schritten vom ersten Bildschirm bis zum fertigen PDF. Sie können jederzeit zu jedem Schritt springen; jeder Reiter aktualisiert dieselbe Verteilung.
+419|In der installierbaren Version nutzen Sie die Option „Installieren“ oder „Zum Home-Bildschirm“ Ihres Browsers. Sie öffnet sich dann im Vollbild und funktioniert offline.
+420|Öffnen Sie <b>Prüfungen</b>. Das Werkzeug prüft, ob jeder Schutzschalter die Last abdeckt und sein Kabel schützt, ob der Spannungsfall unter Ihrer Grenze bleibt, ob RCD-Schutz dort vorhanden ist, wo die Norm ihn verlangt, ob das Schaltvermögen den Kurzschlussstrom abdeckt und ob die Grenzen der Lutron-Module und -Zonen (Last, Strom, Spannung, Temperatur) eingehalten werden. Zusätzlich werden Einspeisung, Zuleitung, Phasenunsymmetrie und Gehäusewärme geprüft. <b>Fehler</b> heißt: vor dem Bau beheben; <b>Prüfen</b> heißt: ansehen und entscheiden; Hinweise dienen der Information.
+421|Öffnen Sie <b>Stromkreise</b> und drücken Sie <b>Stromkreis hinzufügen</b>. Geben Sie für jeden Stromkreis Name, Art, Leistung in Watt, Leistungsfaktor, Phase, Kabellänge, Schutz (LS oder FI/LS) und Kennlinie ein. Das Werkzeug dimensioniert das Kabel, wählt den Nennstrom des Schutzschalters und berechnet Strom und Spannungsfall. <b>Phasen automatisch ausgleichen</b> verteilt die Last auf L1, L2 und L3, und <b>Neu nummerieren</b> ordnet die Bezeichnungen. Bei einer Niederspannungsverteilung liefert der Schnellrechner oben sofort den Schutzschalter für eine Last.
+422|Öffnen Sie <b>Schaltplan</b> für das Mehrlinien-Schaltbild. Jeder Außenleiter wird von seiner Phasenschiene gezeichnet und der Neutralleiter von der N-Schiene. Ein gestrichelter Kasten kennzeichnet Schutzschalter, die den Neutralleiter schalten, ein Dreieck den RCD, und gestrichelte Linien zeigen Stromkreise, die über eine Lutron-Zone geschaltet werden. Jeder Stromkreis zeigt Kabel, Schutz, Lastbalken und Status.
+423|Öffnen Sie <b>Geräte</b>, um DIN-Schienen-Steuergeräte von Lutron, Crestron, Control4 und MDT KNX (Prozessoren, Schnittstellen, Netzteile, Dimm-, Schalt- und Jalousiemodule, Gateways) mit Markenfilter sowie die Schutzgeräte-Bibliothek (Schneider, ABB, Siemens, Legrand, Hager, Eaton, Chint) zu durchsuchen. Drücken Sie bei einem Modul auf <b>Hinzufügen</b>, um es in der Verteilung zu platzieren. Wählen Sie dann unter <b>Stromkreise</b> Modul und Zone (Kanal), von der ein Stromkreis versorgt wird. Jedes Modul erhält außerdem einen eigenen Einspeise-Schutzschalter. Drücken Sie bei einer Schutzschalter-Serie auf <b>Verwenden</b>, um sie zum Standard für LS, FI/LS oder den Hauptschalter zu machen.
+424|Öffnen Sie <b>Export</b>. <b>PDF speichern</b> erzeugt das Layout der Schalttafel, das Mehrlinien-Schaltbild, die Stromkreisliste und die Leistungssummen; haken Sie <b>Stückliste einbeziehen</b> an, wenn diese Liste ergänzt werden soll. <b>Excel speichern</b> und <b>CSV speichern</b> liefern die Liste für andere Werkzeuge. <b>Projekt speichern</b> legt den gesamten Entwurf als Datei ab, die Sie später mit <b>Projekt öffnen</b> wieder öffnen können.
+425|Öffnen Sie <b>Schalttafel</b>, um die Hutschienen mit allen Geräten und deren Stromkreisnamen zu sehen. Klicken Sie ein Gerät an, um den Inspektor zu öffnen: bearbeiten, entlang der Schiene oder auf eine andere Schiene verschieben oder löschen. Mit <b>+ Stromkreis</b>, <b>+ DIN-Modul</b> oder <b>+ Eigenes Gerät</b> fügen Sie auch hier etwas hinzu. Sie können den Hauptschalter ändern und einen gelöschten Hauptschalter oder Überspannungsschutz mit den Schaltflächen zum Wiederherstellen zurückholen. <b>An Bildschirm anpassen</b> und <b>Originalgröße</b> schalten den Zoom um.
+426|Öffnen Sie <b>Einrichtung</b>. Geben Sie der Verteilung einen Namen, tragen Sie Firmenname und Logo ein (sie erscheinen oben auf der Seite und im PDF) und wählen Sie die <b>Norm</b> und die <b>Netzart</b>: einphasig, dreiphasig oder Niederspannung AC / DC (12, 24, 48 V DC oder 24 V AC für Schiffe und ähnliche Verteilungen). Legen Sie dann Umgebungstemperaturen, Gleichzeitigkeitsfaktor, Zuleitung, Grenzen des Spannungsfalls, die gewünschte Schutzschalter-Serie, die Modulzahl pro Hutschiene und fest, ob FI/LS 1 oder 2 Module belegen.
+427|Bemessungswerte, Grenzen des Spannungsfalls und Herstellerdaten sind Richtwerte. Prüfen Sie sie vor dem Bau anhand der aktuellen Ausgabe Ihrer Norm, der Herstellerunterlagen und mit einer qualifizierten Fachkraft.
+428|Die Verteilung wird während der Arbeit in diesem Browser gespeichert. Mit „Projekt speichern“ sichern Sie eine Kopie oder übertragen sie auf ein anderes Gerät.
+429|(nächste Normbemessung bei oder über dem Bemessungsstrom) {1}
+430|2-polig
+431|2-polig, DC-tauglich
+432|Lutron-DIN-Verteiler und Gehäuse (Referenz)
+433|So funktioniert DBoard Designer
+434|Gut zu wissen
+435|Mit der Einrichtung beginnen
+436|Das Projekt einrichten
+437|Stromkreise hinzufügen
+438|Die Prüfungen lesen
+439|Den Schaltplan ansehen
+440|Ihre Arbeit wird automatisch gespeichert
+441|Wie eine App installieren
+442|Immer prüfen
+443|Linie
+444|Projekt
+445|Schutzschalter
+446|Schutzschalter
+447|optional
+448|Quelle
+449|, Kabel
+450|Auf die Phasensummen angewendet
+451|Legt die Schutzschalterbreite und den Schaltplan fest
+452|HomeWorks-QS-Niederspannungsgehäuse.
+453|Durchgangsgehäuse mit Modulschnittstellen.
+454|120-V-Hutschienen-Verteiler mit Klemmen.
+455|{1} V {2} Hutschienen-Verteiler mit {3}-A-AFCI-Schutzschaltern.
+456|Überspannungsschutzgerät, Typ 2.
+457|SPD Typ 2
+458|TYP 2
+459|3-phasig
+460|{1} (Schiff, AC)
+461|HAUPT {1}
+462|Schiene {1} V DC
+463|Schiene {1} V AC
+464|SCHIENE {1}
+465|belegt,
+466|Stückliste
+467|Schalttafel-Layout (Reihen {1} bis {2})
+468|(Seite {1} von {2})
+469|Planungshilfe. Bemessungswerte vor dem Bau anhand der Normausgabe, der Herstellerdatenblätter und einer Fachkraft prüfen.
+470|Ph
+471|Schutz
+472|Kabelbelastbarkeit A
+473|Aufstellung
+474|DIN-Module
+475|Phasen
+476|Einspeisung A
+477|Einspeise-Schutzschalter A
+478|Einspeisekabel mm2
+479|Module (18 mm)
+480|Wärme BTU/h
+481|Strom A (nach Gleichzeitigkeit)
+482|Haupteinspeisung A
+483|Unsymmetrie %
+484|Anschlusswert kW
+485|Leistungsbedarf kW (nach Gleichzeitigkeit)
+486|Scheinleistung kVA
+487|Verlustleistung W
+488|System
+489|Kurzschlussstrom kA
+490|Kabel-Umgebungstemp. C
+491|Hauptschalter
+492|Allgemein
+493|Direkt
+494|Position
+495|Menge
+496|Phasenbelastung nach Gleichzeitigkeit
+497|Anschlusswert {1} kW · Bedarf {2} kW · {3} kVA · PF {4}
+498|Einspeisekabel {1} mm² {2}
+499|Originalgröße, seitlich scrollen
+500|{1} × {2} hinzugefügt. Sie sind im Reiter Schalttafel zu sehen.
+501|Anzahl
+502|DC
+503|Spannung (V)
+504|Strom (A)
+505|Widerstand (Ω)
+506|Leistung (W)
+507|Ohmsches Gesetz und Leistung
+508|Wählen Sie die gesuchte Größe und geben Sie die zwei bekannten Werte ein.
+509|Gesucht
+510|Formel
+511|Geben Sie Werte größer als null ein.
+512|Wechselstromleistung und Leistungsfaktor
+513|Berechnet Strom sowie Wirk-, Schein- und Blindleistung für einphasige und dreiphasige Lasten.
+514|Außenleiterspannung (V)
+515|Bekannte Werte
+516|Strom und Leistungsfaktor
+517|Wirkleistung und Leistungsfaktor
+518|Scheinleistung und Leistungsfaktor
+519|Wirk- und Blindleistung
+520|Wirkleistung (kW)
+521|Scheinleistung (kVA)
+522|Blindleistung (kvar)
+523|Der Leistungsfaktor muss zwischen 0 und 1 liegen.
+524|Strom
+525|Wirkleistung
+526|Blindleistung
+527|Phasenwinkel
+528|Blindleistungskompensation
+529|Dimensioniert die Kondensatorbatterie zur Anhebung des Leistungsfaktors.
+530|Aktueller Leistungsfaktor
+531|Ziel-Leistungsfaktor
+532|Der Zielwert muss über dem aktuellen Leistungsfaktor liegen.
+533|Kondensatorleistung (kvar)
+534|Scheinleistung vorher
+535|Scheinleistung nachher
+536|Stromreduzierung
+537|Kabelquerschnitt
+538|Findet das kleinste Kupferkabel, das die Last trägt und den Spannungsfall im Grenzwert hält.
+539|Last ist angegeben als
+540|Leistung (kW)
+541|Kabellänge (m)
+542|Grenzwert Spannungsfall (%)
+543|Kabeltyp
+544|Umgebung (°C)
+545|Häufungsfaktor
+546|Strombelastbarkeit des Kabels
+547|Empfohlener Schutzschalter
+548|Kupferleiter, Referenzverlegeart C. Mit Ihrer Norm und der Verlegeart abgleichen.
+549|Kein Kabel der Tabelle erfüllt den Grenzwert. Strecke kürzen, Grenzwert lockern oder parallele Kabel verwenden.
+550|Spannungsfall für ein gewähltes Kabel und die längste Strecke, die es versorgen kann.
+551|Kabelquerschnitt (mm²)
+552|Spannungsfall (V)
+553|Spannungsfall (%)
+554|Spannung am Verbraucher
+555|Längste Strecke innerhalb des Grenzwerts
+556|Innerhalb des Grenzwerts.
+557|Grenzwert überschritten. Größeres Kabel oder kürzere Strecke verwenden.
+558|Widerstandsnetzwerke und Kirchhoffsche Gesetze
+559|Reihen- und Parallelschaltung von Widerständen mit Spannung und Strom an jedem.
+560|Schaltung
+561|Parallel
+562|Versorgungsspannung (V)
+563|Widerstandswerte (Ω), durch Komma oder Leerzeichen getrennt
+564|Geben Sie 1 bis 12 Widerstandswerte größer als null ein.
+565|Widerstand
+566|Gesamtwiderstand
+567|Gesamtstrom
+568|Gesamtleistung
+569|Kirchhoffsches Spannungsgesetz (KVL): Die Spannungen in einer geschlossenen Masche summieren sich zu null, also ergeben die Spannungsabfälle an den Widerständen die Versorgungsspannung.
+570|Kirchhoffsches Stromgesetz (KCL): Der in einen Knoten fließende Strom entspricht dem herausfließenden, also ergeben die Zweigströme den Gesamtstrom.
+571|Stern- und Dreieckschaltung
+572|Außenleiter- und Strangspannung und -strom einer dreiphasigen Last.
+573|Schaltungsart
+574|Stern (Y)
+575|Dreieck (Δ)
+576|Außenleiterwerte
+577|Strangwerte
+578|Strangspannung (V)
+579|Außenleiterstrom (A)
+580|Strangstrom (A)
+581|Elektriker-Werkzeuge
+582|Schnelle Rechner für den Alltag. Jedes Ergebnis zeigt die Formel und die verwendeten Zahlen. Als Richtwerte verstehen und mit Ihrer Norm abgleichen.
+583|Werkzeuge
+584|Die Werkzeuge nutzen
+585|Öffnen Sie <b>Werkzeuge</b> für schnelle Elektriker-Rechner, die unabhängig von der Schalttafel funktionieren. <b>Ohmsches Gesetz und Leistung</b> liefert Spannung, Strom, Widerstand oder Leistung aus zwei beliebigen Werten. <b>Wechselstromleistung und Leistungsfaktor</b> deckt ein- und dreiphasige Lasten ab, und <b>Blindleistungskompensation</b> dimensioniert eine Kondensatorbatterie. <b>Kabelquerschnitt</b> wählt das kleinste Kupferkabel für Last, Länge und Spannungsfall-Grenzwert mit denselben Tabellen wie die Stromkreise, und <b>Spannungsfall</b> prüft ein gewähltes Kabel. <b>Widerstandsnetzwerke</b> löst Reihen- und Parallelschaltungen mit den Kirchhoffschen Gesetzen, und <b>Stern- und Dreieckschaltung</b> rechnet Außenleiter- und Strangwerte um. Jedes Ergebnis zeigt die Formel und die verwendeten Zahlen.
+586|Kabelwiderstand
+587|Widerstand eines Kupfer- oder Aluminiumleiters. Berechnen Sie Widerstand, Länge oder Querschnitt, zum Beispiel um die Fehlerentfernung abzuschätzen.
+588|Werkstoff
+589|Kupfer
+590|Aluminium
+591|Gemessen als
+592|Ein Leiter
+593|Schleife (hin und zurück)
+594|Leitertemperatur (°C)
+595|Nächste Normgröße
+596|Spezifischer Widerstand bei dieser Temperatur
+597|Widerstand pro Meter
+598|Eine Schleifenmessung erfasst den Leiter hin und zurück, die angezeigte Länge ist daher die einfache Entfernung.
+599|Spezifischer Widerstand bei 20 °C: Kupfer 0,017241, Aluminium 0,028264 Ω·mm²/m. Temperaturkoeffizient: Kupfer 0,00393, Aluminium 0,00403 je °C.
+600|Außenleiter L1 braun, L2 schwarz, L3 grau, Neutralleiter blau, Schutzleiter grün-gelb (IEC 60446).
+601|Schutzerdung mit automatischer Abschaltung der Stromversorgung (TN-, TT- oder IT-Systeme), Hauptpotentialausgleich für eingeführte Metallleitungen und leitfähige Körper.
+602|L1 braun, L2 schwarz, L3 grau, Neutralleiter blau, Schutzleiter grün-gelb. Ältere Anlagen verwenden Rot, Gelb, Blau und Schwarz.
+603|Schutzerdung mit automatischer Abschaltung. Die Fehlerschleifenimpedanz muss innerhalb der Tabellengrenzwerte bleiben, mit Hauptschutzpotentialausgleich der Versorgungsleitungen.
+604|Nur Neutralleiter (weiß oder grau) und Geräteerdung (grün oder blank) sind festgelegt. Die Phasenfarben folgen der örtlichen Praxis, meist schwarz, rot und blau bei 208 V.
+605|Artikel 250: Erdungselektrodensystem, Geräte-Erdungsleiter und nur eine Neutralleiter-Erde-Verbindung am Hauptschalter.
+606|Schutzleiter grün-gelb, Neutralleiter schwarz oder hellblau, Aktivleiter in anderen Farben wie Rot, Weiß und Blau oder Braun, Schwarz und Grau.
+607|Mehrfach geerdetes Neutralleitersystem (MEN), bei dem der Neutralleiter an der Hauptverteilung mit Erde verbunden ist, und ein Haupterdungsleiter zum Erder.
+608|Außenleiter braun, Neutralleiter blau, Schutzleiter grün-gelb (Praxis nach IEC 60446).
+609|Der Schutzleiter ist mit dem Potentialausgleich des Boots verbunden. Neutralleiter und Erde werden nur an der Quelle (Generator oder Trenntransformator) verbunden, nie am Landanschluss.
+610|Außenleiter schwarz, zweiter rot, dritter blau, Neutralleiter weiß, Schutzleiter grün oder grün-gelb.
+611|Der AC-Schutzleiter ist an einem Punkt mit dem DC-Minus des Boots verbunden. Neutralleiter und Erde werden nur an der Quelle (Generator oder Trenntransformator) verbunden.
+612|Ja
+613|Nein
+614|Spannungsfall, Beleuchtung
+615|Spannungsfall, übrige Stromkreise
+616|Faktor für Dauerlast
+617|Bemessungsströme der Schutzschalter
+618|Auslösekennlinien
+619|Zweipolige Abschaltung
+620|Ja, zweipolig
+621|Nein, einpolig ist üblich
+622|RCD- oder GFCI-Schutz
+623|Aderfarben
+624|Erdung und Potentialausgleich
+625|Normen vergleichen
+626|Spannungsfall Beleuchtung
+627|Spannungsfall übrige
+628|Dauerlast
+629|Zweipolig
+630|Normenübersicht
+631|Nur zur Orientierung. Jeden Wert vor der Verwendung mit der aktuellen Normausgabe und den örtlichen Änderungen abgleichen.
+632|Klimaanlage
+633|Lüfter / Lüftung
+634|Motor
+635|Wasserpumpe
+636|Winde / Bugstrahlruder
+637|Herd / Backofen
+638|Kühlung
+639|Waschmaschine / Trockner
+640|Warmwasserbereiter
+641|Begleit- / Fußbodenheizung
+642|Außen- / Decksteckdosen
+643|Pool- / Spa-Technik
+644|E-Auto-Ladegerät
+645|Batterieladegerät
+646|Wechselrichter / USV
+647|Netzwerk / IT
+648|Sicherheit / Alarm
+649|Notbeleuchtung
+650|Unterverteiler-Einspeisung
+651|Fehlersuche und Normen
+652|Unter Werkzeuge ermittelt <b>Kabelwiderstand</b> Widerstand, Länge oder Querschnitt eines Kupfer- oder Aluminiumkabels, zum Beispiel um die Fehlerentfernung abzuschätzen. Die <b>Normenübersicht</b> am Ende listet für jede Norm Spannungsfall-Grenzwerte, Schutzschalter-Bemessungsströme, RCD-Regeln, Aderfarben und Erdung. Sie dient nur zur Orientierung, bitte mit der aktuellen Ausgabe abgleichen.
+653|Bilgen- / Sumpfpumpe
+654|Werkstatt / Elektrowerkzeuge
+655|Navigationsgeräte
+656|Kommunikation
+657|Anmelden
+658|Konto erstellen
+659|Konto erstellen
+660|E-Mail-Adresse
+661|Passwort
+662|Passwort bestätigen
+663|Vorname
+664|Nachname
+665|Land
+666|Passwort vergessen?
+667|Auf diesem Gerät angemeldet bleiben
+668|Abmelden
+669|Übersicht
+670|Kontoeinstellungen
+671|Neuer Verteiler
+672|Meine gespeicherten Projekte
+673|Öffnen
+674|Umbenennen
+675|Duplizieren
+676|Neuen Verteiler erstellen
+677|Zuletzt geöffnete Projekte
+678|Profil speichern
+679|Passwort ändern
+680|Konto löschen
+681|Firma (optional)
+682|Beruf
+683|Passwort zurücksetzen
+684|Link zum Zurücksetzen senden
+685|Prüfen Sie Ihre E-Mails
+686|Designer öffnen
+687|Gespeicherte Projekte
+688|Feedback senden
+689|Konto
+690|Willkommen
+691|Anzeigen
+692|Verbergen
+693|Zurück zur Anmeldung
+694|Land auswählen
+695|Beruf auswählen
+696|E-Mail erneut senden
+697|Nutzungsbedingungen
+698|Datenschutzerklärung
+699|Elektriker
+700|Elektroingenieur
+701|Schaltschrankbauer
+702|Systemintegrator
+703|Student
+704|Profil
+705|Passwort aktualisieren
+706|Aktuelles Passwort
+707|Neues Passwort
+708|Neues Passwort bestätigen
+709|Projekte suchen
+710|In Ihrem Konto gespeichert
+711|Speichern…
+712|Nur auf diesem Gerät
+713|Im Konto speichern
+714|E-Mail oder Passwort falsch.
+715|Neues Passwort wählen

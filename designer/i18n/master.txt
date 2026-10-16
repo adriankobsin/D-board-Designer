@@ -1,0 +1,715 @@
+1|Setup
+2|Panel
+3|Circuits
+4|Equipment
+5|Checks
+6|Diagram
+7|Export
+8|Help
+9|Language
+10|Standard
+11|Supply
+12|Project name
+13|Company logo
+14|Company name
+15|Company and supply
+16|Company
+17|Help: how the platform works
+18|Sections
+19|Upload logo…
+20|Shown beside the logo and on exports
+21|Shown at the top of the page, in the diagram and in the PDF. The Excel export carries the company name only.
+22|Supply and design basis
+23|Supply settings
+24|Supply type
+25|Supply voltage
+26|Single phase
+27|Three phase
+28|Low voltage
+29|Low voltage AC / DC
+30|Low voltage boards
+31|Switching adjusts the circuits to suit.
+32|Defaults follow the chosen standard and can be overridden. Cable ratings are indicative reference-method C values for copper. Confirm every figure against the edition and national amendments you design to.
+33|Prospective fault level (kA)
+34|Battery short-circuit current (kA)
+35|From the battery or charger datasheet. Lead-acid banks can deliver several kA. Generic DC breakers assumed 5 kA.
+36|Both poles (2P, ungrounded or isolated)
+37|Positive only (1P, negative earthed or common)
+38|Breaker poles
+39|Cable ambient (°C)
+40|Inside-enclosure ambient (°C)
+41|Reference is {1} °C
+42|Diversity factor
+43|Diversity
+44|Incomer cable
+45|Incomer cable length (m)
+46|Incomer rating override (A)
+47|Blank selects automatically
+48|Cu XLPE 90 °C
+49|Cu PVC 70 °C
+50|XLPE 90
+51|Lighting voltage-drop limit (%)
+52|Other circuits limit (%)
+53|Critical (nav, bilge, comms)
+54|Critical ({1} % drop)
+55|Lighting ({1} % drop)
+56|Other ({1} % drop)
+57|{1} default {2} %
+58|Low-voltage default {1} %
+59|Enclosure dissipation rating (W)
+60|Optional, from the enclosure datasheet
+61|Phase balance and incomer
+62|Modules per DIN rail
+63|Default device widths
+64|RCBO width
+65|1 module (compact)
+66|2 modules (1P+N)
+67|1 module
+68|{1} modules
+69|{1} module (compact)
+70|{1} modules (1P+N)
+71|{1} module = 18 mm
+72|{1} modules · {2} mm
+73|{1} modules × 18 mm = {2} mm
+74|{1} · {2} module
+75|{1} · {2} modules
+76|Put control modules on their own rails
+77|Layout wraps to a new rail when a device does not fit. Rows use 150 mm pitch because phase-adaptive Lutron modules are fitted.
+78|MCB series
+79|RCBO series
+80|Main switch or incomer
+81|Generic (standard defaults)
+82|Preferred protection range
+83|Pick a manufacturer series and the layout uses its module widths, the checks use its breaking capacity, rating range and curves, and the bill of materials names it. Leave on Generic to use the standard defaults.
+84|With no series selected, main switch and SPD take 2 or 4 modules, MCBs 1 module per pole (2 with double-pole marine switching), RCBOs 1 module (compact) for 1P+N and 4 modules for 3P+N. Choose a manufacturer series in Setup or with Use above to replace these with real widths.
+85|Include surge protection device
+86|Start an empty board
+87|Reload the example board
+88|Start fresh or reload the example
+89|Quick breaker calculator
+90|Enter the power of a load, or its current if you know it. It shows the design current, the breaker to use and the cable.
+91|or current A
+92|Apparent
+93|Apparent power
+94|Power W
+95|Load W
+96|Power factor
+97|PF
+98|, PF
+99|Cable length m
+100|Length m
+101|Add circuit
+102|+ Circuit
+103|+ DIN module
+104|+ Custom device
+105|Auto-balance phases
+106|Renumber
+107|Delete circuit
+108|Delete circuit {1}
+109|Delete module
+110|Remove {1}
+111|Circuit schedule
+112|Circuits fed from a Lutron module zone share the module's feed breaker, so their cable is checked against that breaker rating. Grouping factor multiplies the cable rating (use 1 if none).
+113|Ref
+114|Reference
+115|Name
+116|Circuit type
+117|Type
+118|Phase
+119|Fed from
+120|Direct breaker
+121|{1} zone {2}
+122|Zone {1}: {2}
+123|Zone {1}
+124|Zones
+125|free
+126|none
+127|Rating
+128|Rating A
+129|In A
+130|Ib A
+131|Icn kA
+132|Icu kA
+133|Curve
+134|Curves
+135|Poles
+136|Size
+137|Size mm²
+138|Cable
+139|Grp
+140|Demand
+141|VD
+142|VD %
+143|Voltage drop
+144|Status
+145|OK
+146|Fail
+147|Review
+148|Note
+149|Notes
+150|Panel notes
+151|Panel layout
+152|Layout
+153|Rails
+154|Move
+155|↑ Rail up
+156|↓ Rail down
+157|← Earlier
+158|Later →
+159|Fit to screen
+160|Fitted to the screen
+161|Full size
+162|Full row in schedule
+163|Select a device to edit it here. Drag a device to move it along the rails.
+164|Delete
+165|Confirm delete
+166|Cancel
+167|Remove
+168|Remove SPD
+169|Remove main breaker
+170|Restore SPD
+171|Restore main breaker
+172|Surge protection
+173|Surge
+174|SPD
+175|SPD · Surge protection
+176|SPD Surge protection
+177|Main
+178|Incomer
+179|Isolator
+180|Feed breaker
+181|Feed cable
+182|Feed length m
+183|Feed load
+184|Feed m
+185|Feed phase
+186|Feed {1}
+187|feed {1} A
+188|Input A
+189|Device
+190|Device type
+191|Module
+192|Module to add
+193|Modules
+194|Modules on this board
+195|Width
+196|Width (modules)
+197|Width, modules
+198|Model
+199|Family
+200|Manufacturer
+201|Brand
+202|Series
+203|Series that fit
+204|Description
+205|Search library
+206|Search model, family, voltage
+207|Search protection devices
+208|Search series or standard
+209|All brands
+210|All families
+211|All manufacturers
+212|All types
+213|Add
+214|Add DIN modules
+215|Use
+216|In use
+217|DIN
+218|DIN equipment library
+219|Circuit protection library
+220|Equipment list
+221|Source checked
+222|Typical
+223|Wire landing board
+224|Control processor
+225|Interface / IO
+226|Network / distribution
+227|Power supply
+228|Motor control
+229|Switching
+230|Dimming
+231|DALI
+232|DALI gateway
+233|EcoSystem
+234|Digital (HomeWorks)
+235|Phase-adaptive dimming
+236|Phase-adaptive dimmer
+237|Phase control / 20 A
+238|0–10 V / switching
+239|0–10 V dimmer
+240|QSX gateway
+241|QSX processor
+242|KNX DALI gateway
+243|KNX IP interface
+244|KNX IP router
+245|KNX analogue I/O
+246|KNX binary input
+247|KNX dimming actuator
+248|KNX energy meter
+249|KNX heating actuator
+250|KNX logic / control
+251|KNX power supply
+252|KNX shutter actuator
+253|KNX switch actuator
+254|KNX universal actuator
+255|MCB
+256|RCBO
+257|RCCB (group RCD)
+258|MCCB (incomer)
+259|RCD
+260|Thermal
+261|Heat
+262|Dissipation ≈
+263|Heat in enclosure ≈
+264|Enclosure ≈
+265|BTU/h
+266|Max phase
+267|Max °C
+268|Imbalance
+269|Balance
+270|Connected
+271|Connected load
+272|Connected {1} kW · demand {2} kW · {3} kVA · max phase {4} A
+273|Phase loading (after diversity {1})
+274|Bus loading (after diversity {1})
+275|at {1} diversity
+276|Worst end-to-end drop
+277|Design current
+278|Design checks
+279|Check
+280|Check the panel layout
+281|Checked against each module limit
+282|{1} fed
+283|{1} fail · {2} review
+284|Lighting
+285|Socket outlets
+286|AV / electronics
+287|HVAC / pump
+288|Heater / boiler
+289|Galley / appliance
+290|Other
+291|Neutral
+292|Positive +
+293|Negative −
+294|Multi-line diagram
+295|Multi-line diagram · {1}
+296|Supply {1}
+297|CIRCUIT
+298|PROTECTION
+299|CABLE
+300|LOAD
+301|RAIL
+302|PDF drawing and schedule
+303|Panel layout drawing with circuit names, multi-line diagram, circuit schedule and power totals on A4 landscape, with your logo on each page.
+304|Include bill of materials
+305|Save PDF
+306|Excel workbook
+307|Schedule, Lutron modules, bill of materials, phase balance, power and project sheets. Holds the company name; Excel files from this tool cannot embed the logo image.
+308|Save Excel
+309|CSV schedule
+310|Plain circuit schedule for import into other tools.
+311|Save CSV
+312|Project file
+313|Save the whole design as JSON, or open one you saved earlier.
+314|Save project
+315|Open project…
+316|Open project
+317|The board also saves in this browser while you work. Exports open a save prompt each time.
+318|Close
+319|Date
+320|Auto
+321|Auto ({1})
+322|Assumed breaker capacity {1} kA
+323|generic · imbalance {1} %
+324|{1} · imbalance {2} %
+325|via {1} ({2} A) · {3}
+326|copper {1}, rating {2} A, voltage drop {3} % of {4} V (limit {5} %)
+327|{1} V DC (low voltage)
+328|{1} V AC (low voltage)
+329|12, 24 or 48 V DC and 24 V AC, as used on yachts and boats.
+330|DIN rail layout of {1}
+331|Choose an image under 4 MB.
+332|Could not save the file here.
+333|Could not save: {1}
+334|Excel library did not load.
+335|Logo added
+336|Main breaker removed from the panel
+337|PDF library did not load.
+338|Phases rebalanced
+339|Project loaded
+340|SPD removed
+341|Saved {1}
+342|That file is not a DBoard Designer project.
+343|That image could not be read.
+344|{1} applied to MCBs.
+345|{1} applied to RCBOs.
+346|{1} applied to the main switch.
+347|{1} added as {2}. See it on the Panel tab.
+348|Deleted {1}
+349|Already on the first rail.
+350|No device on the next rail to place it beside. Drag it instead.
+351|Low-voltage supply: 24 V DC. Loads are in watts, current is P ÷ V.
+352|Three-phase supply. Circuits spread across L1, L2 and L3.
+353|Single-phase supply.
+354|All checks pass for the current board.
+355|Enter a power or a current.
+356|No DIN modules placed yet. Add one from the library below.
+357|No circuits yet. Add one to start the schedule.
+358|No devices match.
+359|No equipment matches.
+360|IEC 60364-4-41 expects 30 mA RCD protection on socket-outlets and on circuits for portable equipment.
+361|BS 7671 411.3.3 requires 30 mA RCD protection for socket-outlets rated up to 20 A and most final circuits in domestic premises.
+362|NEC 210.8 and 210.12 call for GFCI and AFCI protection on many receptacle and branch circuits. Confirm the edition adopted locally.
+363|AS/NZS 3000 requires RCD protection on final subcircuits for socket-outlets and lighting.
+364|Marine AC installations normally use double-pole switching and 30 mA RCD protection on final circuits. Confirm against class and flag rules.
+365|ABYC E-11 expects GFCI protection on receptacles and double-pole branch protection. Confirm against the current edition.
+366|Extra-low-voltage AC: no RCD is needed for SELV circuits. Voltage drop is the usual limit on cable length.
+367|Extra-low-voltage DC: no RCD is needed for SELV circuits. Size each breaker from the current (I = P ÷ V), protect the cable, and use DC-rated devices. Marine practice (ISO 10133, ABYC E-11) allows 3 % voltage drop for critical circuits such as navigation lights and bilge pumps and 10 % for the rest.
+368|Checks cover design current against breaker and cable rating, voltage drop, RCD expectation, fault level, Lutron input, zone and temperature limits. Earth-fault loop impedance, discrimination and selectivity are not calculated here.
+369|DBoard Designer is a design aid. Cable ratings, voltage-drop limits and Lutron data are indicative; check them against the current edition of your standard, the manufacturer's submittal and a qualified engineer before building.
+370|DBoard Designer
+371|Designer
+372|Example cabin and AV board
+373|{1} covers {2}–{3} A; {4} A is outside that range.
+374|{1} does not list a {2} curve ({3}).
+375|{1} feed carries {2} A, above its {3} A input rating.
+376|{1} is rated {2}; the system line-neutral voltage is {3} V.
+377|{1} allows {2} C inside the enclosure; the design value is {3} C.
+378|{1} feed breaker {2} A is below its load of {3} A.
+379|{1} feed cable carries {2} A, below the {3} A breaker.
+380|{1} feed voltage drop is {2} %.
+381|{1} feed current is above the largest breaker in this series.
+382|Fault level {1} kA is above the {2} kA breaking capacity of the feed breaker.
+383|Design current exceeds the largest breaker in this series.
+384|Design current {1} A is above the {2} A breaker.
+385|Cable {1} mm² carries {2} A, below the {3} A breaker. Size up or lower the breaker.
+386|Voltage drop {1} % is above the {2} % target.
+387|{1} circuit has no RCBO. {2}
+388|Fault level {1} kA is above the {2} kA breaking capacity of {3}.
+389|Fault level {1} kA is above the {2} kA breaking capacity assumed for this standard.
+390|{1} has no 3-phase version. Pick a 4P RCBO series or use an MCB with a group RCD.
+391|{1} is a 4P device and cannot protect a single-phase circuit.
+392|{1} has {2} zones; zone {3} does not exist.
+393|Zone current {1} A is above the {2} A zone rating.
+394|Zone load {1} W is above the {2} W limit for zone {3}.
+395|{1} does not switch loads.
+396|Zone {1} of {2} is shared with {3}.
+397|{1} is not listed as DC rated for {2} V here. Pick a DC series, or use Generic and specify a DC-rated device.
+398|No DC series chosen, so a generic DC-rated thermal-magnetic breaker is assumed at 5 kA.
+399|Maximum phase current is above the largest incomer rating in the library.
+400|Maximum phase current {1} A is above the {2} A incomer.
+401|Incomer cable {1} mm² carries {2} A, below the {3} A incomer.
+402|Incomer voltage drop {1} % uses part of the total allowance.
+403|Phase imbalance is {1} % above the average. Use Auto-balance or move circuits.
+404|Phase-adaptive modules need zone derating at 30–40 C room ambient. See Lutron App Note #466.
+405|Phase-adaptive modules want 150 mm between DIN rails and 200 mm clear above the top rail.
+406|Estimated dissipation {1} W exceeds the {2} W enclosure rating.
+407|{1} DIN-rail modules from Lutron, Crestron, Control4 and MDT KNX. Lutron data comes from Application Note #466 (rev T, May 2026) and spec submittals, Crestron from its product pages, Control4 from its data sheets, and MDT from its product and price lists (1 module = 18 mm). Where a source did not state a value it is shown as ? or –. KNX actuators are bus powered, so only their load side counts toward the feed. Verify against the current manufacturer datasheet before ordering.
+408|{1} V AC extra-low voltage: I = P ÷ (V × PF). Breakers are standard AC types; the low voltage makes the current high, so cable size and voltage drop usually decide the cable.
+409|{1} in satellite panel with DIN power modules and EcoSystem controllers.
+410|{1} series from {2} manufacturers. Ratings, capacities and widths are series-level catalogue values: “Source checked” means a manufacturer or distributor page confirmed them, “Typical” means they are common catalogue figures to confirm on the datasheet. Press Use to apply a series to this board.
+411|At the bottom of Setup, <b>Start an empty board</b> clears everything and <b>Reload the example board</b> brings back the sample cabin and AV panel.
+412|Choose Low voltage AC / DC as the supply type. Breaker ratings and cable sizes then use DC-rated series, and the panel draws positive and negative bars instead of phases.
+413|Control power panel with 8 branch circuit breakers and module interfaces.
+414|Dimming / switching panel, up to 4 DIN power modules (or 3 plus one QSPS supply). 120–240 V.
+415|Direct current: I = P ÷ V with no power factor. DC arcs do not self-extinguish, so every breaker must be DC rated for at least the charging voltage (about 1.25 × the {1} V nominal), and any polarity marked on the device must be followed. Breaking capacity is set by the battery or source short-circuit current ({2} kA entered).
+416|Every conductor is drawn: each live from its phase bus and the neutral from the N bus. A dashed box around the poles marks a breaker that also switches the neutral; a Δ marks the RCD. Single-pole MCBs pass the neutral straight through. Dashed lines show circuits switched by a Lutron module zone.
+417|Every conductor is drawn: positive (red) and negative (dark) from the two busbars. A dashed box around the poles marks a double-pole breaker. Single-pole breakers sit in the positive only.
+418|Follow these steps from the first screen to the finished PDF. You can jump to any step at any time; every tab updates the same board.
+419|In the installable version, use your browser's Install or Add to Home Screen option. It then opens full screen and works offline.
+420|Open <b>Checks</b>. The tool tests that each breaker covers the load and protects its cable, that voltage drop stays under your limit, that RCD protection is present where the standard asks for it, that breaker breaking capacity covers the fault level, and that Lutron module and zone limits (load, current, voltage, temperature) are respected. It also checks the incomer rating and cable, phase imbalance and enclosure heat. <b>Fail</b> means fix it before building, <b>Review</b> means look at it and decide, and notes are for information.
+421|Open <b>Circuits</b> and press <b>Add circuit</b>. For each circuit enter a name, type, power in watts, power factor, phase, cable length, protection (MCB or RCBO) and curve. The tool sizes the cable, picks the breaker rating and works out current and voltage drop. <b>Auto-balance phases</b> spreads the load over L1, L2 and L3, and <b>Renumber</b> tidies the references. On a low-voltage board, the quick calculator at the top gives the breaker for a load straight away.
+422|Open <b>Diagram</b> for the multi-line wiring diagram. Every live conductor is drawn from its phase bus and the neutral from the N bus. A dashed box marks breakers that switch the neutral, a triangle marks the RCD, and dashed lines show circuits switched by a Lutron zone. Each circuit shows cable, protection, load bar and status.
+423|Open <b>Equipment</b> to browse DIN-rail control equipment from Lutron, Crestron, Control4 and MDT KNX (processors, interfaces, power supplies, dimming, switching and shutter modules, gateways) with a brand filter, and the breaker library (Schneider, ABB, Siemens, Legrand, Hager, Eaton, Chint). Press <b>Add</b> on a module to place it on the board. Back in <b>Circuits</b>, choose the module and zone (channel) a circuit is fed from. Each module also gets its own feed breaker. Press <b>Use</b> on a breaker series to make it the default for MCBs, RCBOs or the main.
+424|Open <b>Export</b>. <b>Save PDF</b> produces the panel layout, the multi-line diagram, the circuit schedule and power totals; tick <b>Include bill of materials</b> if you want that list added. <b>Save Excel</b> and <b>Save CSV</b> give the schedule for other tools. <b>Save project</b> stores the whole design as a file you can reopen later with <b>Open project</b>.
+425|Open <b>Panel</b> to see the DIN rails drawn with every device and its circuit name. Click a device to open the inspector: edit it, move it along the rail or to another rail, or delete it. Use <b>+ Circuit</b>, <b>+ DIN module</b> or <b>+ Custom device</b> to add things here too. You can change the main breaker, and bring back a deleted main or surge protector with the restore buttons. <b>Fit to screen</b> and <b>Full size</b> switch the zoom.
+426|Open <b>Setup</b>. Give the board a name, add your company name and logo (they appear at the top of the page and on the PDF), and pick the <b>standard</b> and <b>supply type</b>: single phase, three phase, or low voltage AC / DC (12, 24, 48 V DC or 24 V AC for marine and similar boards). Then set ambient temperatures, diversity factor, the incomer cable, voltage-drop limits, the breaker series you want to use, how many modules fit on a DIN rail, and whether RCBOs take 1 or 2 modules.
+427|Ratings, voltage-drop limits and manufacturer data are indicative. Check them against the current edition of your standard, the manufacturer's submittal and a qualified engineer before building.
+428|The board is kept in this browser as you work. Use Save project to keep a copy or move it to another device.
+429|(next standard rating at or above the design current) {1}
+430|2-pole
+431|2-pole, DC rated
+432|Lutron DIN panels and enclosures (reference)
+433|How DBoard Designer works
+434|Good to know
+435|Start with Setup
+436|Set up the project
+437|Add your circuits
+438|Read the checks
+439|Review the diagram
+440|Your work is saved automatically
+441|Install it like an app
+442|Always verify
+443|Line
+444|Project
+445|Breaker
+446|Breakers
+447|optional
+448|source
+449|, cable
+450|Applied to phase totals
+451|Sets breaker width and the diagram
+452|HomeWorks QS low-voltage enclosure.
+453|Feed-through panel enclosure with module interfaces.
+454|120 V DIN rail panel with terminal blocks.
+455|{1} V {2} DIN breaker panel with {3} A AFCI breakers.
+456|Surge protective device, type 2.
+457|SPD type 2
+458|TYPE 2
+459|3-phase
+460|{1} (marine AC)
+461|MAIN {1}
+462|Bus {1} V DC
+463|Bus {1} V AC
+464|RAIL {1}
+465|used,
+466|Bill of materials
+467|Panel layout (rails {1} to {2})
+468|(page {1} of {2})
+469|Design aid. Verify ratings against the standard edition, manufacturer datasheets and a qualified engineer before building.
+470|Ph
+471|Protection
+472|Cable rating A
+473|Schedule
+474|DIN modules
+475|Phases
+476|Feed A
+477|Feed breaker A
+478|Feed cable mm2
+479|Modules (18 mm)
+480|Heat BTU/h
+481|Current A (after diversity)
+482|Incomer A
+483|Imbalance %
+484|Connected kW
+485|Demand kW (after diversity)
+486|Apparent kVA
+487|Dissipation W
+488|System
+489|Fault level kA
+490|Cable ambient C
+491|Main switch
+492|Generic
+493|Direct
+494|Item
+495|Qty
+496|Phase loading after diversity
+497|Connected {1} kW · demand {2} kW · {3} kVA · PF {4}
+498|Incomer cable {1} mm² {2}
+499|Full size, scroll sideways
+500|{1} × {2} added. See them on the Panel tab.
+501|Quantity
+502|DC
+503|Voltage (V)
+504|Current (A)
+505|Resistance (Ω)
+506|Power (W)
+507|Ohm's law and power
+508|Pick what to find, then enter the two values you know.
+509|Find
+510|Formula
+511|Enter values above zero.
+512|AC power and power factor
+513|Works out current, real, apparent and reactive power for single and three phase loads.
+514|Line voltage (V)
+515|Known values
+516|Current and power factor
+517|Real power and power factor
+518|Apparent power and power factor
+519|Real and reactive power
+520|Real power (kW)
+521|Apparent power (kVA)
+522|Reactive power (kvar)
+523|Power factor must be between 0 and 1.
+524|Current
+525|Real power
+526|Reactive power
+527|Phase angle
+528|Power factor correction
+529|Size the capacitor bank needed to raise the power factor.
+530|Present power factor
+531|Target power factor
+532|The target must be higher than the present power factor.
+533|Capacitor size (kvar)
+534|Apparent power before
+535|Apparent power after
+536|Current reduction
+537|Cable size
+538|Finds the smallest copper cable that carries the load and keeps voltage drop within the limit.
+539|Load is given as
+540|Power (kW)
+541|Cable length (m)
+542|Voltage drop limit (%)
+543|Cable type
+544|Ambient (°C)
+545|Grouping factor
+546|Cable rating
+547|Suggested breaker
+548|Copper conductors, reference method C. Confirm against your standard and the installation method.
+549|No cable in the table meets the limit. Shorten the run, relax the limit or use parallel cables.
+550|Voltage drop for a cable you have chosen, and the longest run it can serve.
+551|Cable size (mm²)
+552|Voltage drop (V)
+553|Voltage drop (%)
+554|Voltage at the load
+555|Longest run within the limit
+556|Within the limit.
+557|Over the limit. Use a larger cable or a shorter run.
+558|Resistor networks and Kirchhoff's laws
+559|Series and parallel resistors with the voltage and current in each one.
+560|Network
+561|Parallel
+562|Supply voltage (V)
+563|Resistor values (Ω), separated by commas or spaces
+564|Enter between 1 and 12 resistor values above zero.
+565|Resistor
+566|Total resistance
+567|Total current
+568|Total power
+569|Kirchhoff’s voltage law (KVL): the voltages around a closed loop add up to zero, so the drops across the resistors add up to the supply.
+570|Kirchhoff’s current law (KCL): the current into a node equals the current out of it, so the branch currents add up to the total.
+571|Star and delta relationships
+572|Line and phase voltage and current in a three phase load.
+573|Connection
+574|Star (wye)
+575|Delta
+576|Line values
+577|Phase values
+578|Phase voltage (V)
+579|Line current (A)
+580|Phase current (A)
+581|Electrician's tools
+582|Quick calculators for everyday work. Each result shows the formula and the numbers behind it. Treat them as guides and check against your standard.
+583|Tools
+584|Use the Tools
+585|Open <b>Tools</b> for quick electrician's calculators that work on their own, away from the board. Use <b>Ohm's law and power</b> to find voltage, current, resistance or power from any two values. <b>AC power and power factor</b> covers single and three phase loads, and <b>Power factor correction</b> sizes a capacitor bank. <b>Cable size</b> picks the smallest copper cable for a load, length and voltage-drop limit using the same tables as the circuits, and <b>Voltage drop</b> checks a cable you have chosen. <b>Resistor networks</b> solves series and parallel circuits with Kirchhoff's laws, and <b>Star and delta</b> converts line and phase values. Each result shows the formula and the numbers used.
+586|Cable resistance
+587|Resistance of a copper or aluminium conductor. Solve for resistance, length or size, for example to estimate fault distance.
+588|Material
+589|Copper
+590|Aluminium
+591|Measured as
+592|One conductor
+593|Loop (out and back)
+594|Conductor temperature (°C)
+595|Next standard size
+596|Resistivity at this temperature
+597|Resistance per metre
+598|A loop reading covers the conductor out and back, so the length shown is the one-way distance.
+599|Resistivity at 20 °C: copper 0.017241, aluminium 0.028264 Ω·mm²/m. Temperature coefficient: copper 0.00393, aluminium 0.00403 per °C.
+600|Line 1 brown, line 2 black, line 3 grey, neutral blue, protective earth green-yellow (IEC 60446).
+601|Protective earthing with automatic disconnection of supply (TN, TT or IT systems), main equipotential bonding of incoming metal services and exposed conductive parts.
+602|Line 1 brown, line 2 black, line 3 grey, neutral blue, protective earth green-yellow. Older installations use red, yellow, blue and black.
+603|Protective earthing with automatic disconnection. Earth-fault loop impedance must stay within the table limits, with main protective bonding of services.
+604|Only the neutral (white or grey) and the equipment ground (green or bare) are fixed. Phase colours follow local practice, commonly black, red and blue at 208 V.
+605|Article 250: grounding electrode system, equipment grounding conductors, and one neutral-to-ground bond at the service disconnect only.
+606|Earth green-yellow, neutral black or light blue, actives in other colours such as red, white and blue, or brown, black and grey.
+607|Multiple earthed neutral (MEN) system with the neutral linked to earth at the main switchboard, and a main earthing conductor to the earth electrode.
+608|Line brown, neutral blue, protective earth green-yellow (IEC 60446 practice).
+609|Protective conductor joined to the boat bonding system. Neutral and earth are joined only at the source (generator or isolation transformer), never at the shore connection.
+610|Hot black, second hot red, third hot blue, neutral white, grounding conductor green or green-yellow.
+611|AC grounding conductor joined to the boat DC negative at one point. Neutral and ground are joined only at the source (generator or isolation transformer).
+612|Yes
+613|No
+614|Voltage drop, lighting
+615|Voltage drop, other circuits
+616|Continuous load factor
+617|Breaker ratings
+618|Trip curves
+619|Double-pole switching
+620|Yes, double-pole
+621|No, single-pole is normal
+622|RCD or GFCI protection
+623|Wire colours
+624|Earthing and bonding
+625|Compare standards
+626|Lighting drop
+627|Other drop
+628|Continuous load
+629|Double-pole
+630|Standards reference
+631|Reference only. Confirm every value against the current edition of the standard and local amendments before you rely on it.
+632|Air conditioning
+633|Fan / ventilation
+634|Motor
+635|Water pump
+636|Winch / thruster
+637|Cooker / oven
+638|Refrigeration
+639|Washer / dryer
+640|Water heater
+641|Trace / underfloor heating
+642|Outdoor / deck sockets
+643|Pool / spa equipment
+644|EV charger
+645|Battery charger
+646|Inverter / UPS
+647|Networking / IT
+648|Security / alarm
+649|Emergency lighting
+650|Sub-board feed
+651|Troubleshooting and standards
+652|In Tools, <b>Cable resistance</b> finds the resistance, length or size of a copper or aluminium cable, for example to estimate how far away a fault is. The <b>Standards reference</b> at the bottom lists voltage-drop limits, breaker ratings, RCD rules, wire colours and earthing for each standard. It is for reference only, so confirm it against the current edition.
+653|Bilge / sump pump
+654|Workshop / power tools
+655|Navigation equipment
+656|Communications
+657|Sign in
+658|Create an account
+659|Create account
+660|Email address
+661|Password
+662|Confirm password
+663|First name
+664|Last name
+665|Country
+666|Forgot password?
+667|Remember me on this device
+668|Sign out
+669|Dashboard
+670|Account settings
+671|New board
+672|My Saved Projects
+673|Open
+674|Rename
+675|Duplicate
+676|Create New Distribution Board
+677|Recently Opened Projects
+678|Save profile
+679|Change password
+680|Delete account
+681|Company (optional)
+682|Professional occupation
+683|Reset your password
+684|Send reset link
+685|Check your email
+686|Open designer
+687|Saved projects
+688|Send feedback
+689|Account
+690|Welcome
+691|Show
+692|Hide
+693|Back to sign in
+694|Select your country
+695|Select your occupation
+696|Resend email
+697|Terms and Conditions
+698|Privacy Policy
+699|Electrician
+700|Electrical Engineer
+701|Panel Builder
+702|System Integrator
+703|Student
+704|Profile
+705|Update password
+706|Current password
+707|New password
+708|Confirm new password
+709|Search projects
+710|Saved to your account
+711|Saving…
+712|This device only
+713|Save to account
+714|Email or password is incorrect.
+715|Choose a new password

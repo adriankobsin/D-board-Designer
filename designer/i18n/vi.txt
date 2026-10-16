@@ -1,0 +1,715 @@
+1|Thiết lập
+2|Tủ điện
+3|Mạch
+4|Thiết bị
+5|Kiểm tra
+6|Sơ đồ
+7|Xuất
+8|Trợ giúp
+9|Ngôn ngữ
+10|Tiêu chuẩn
+11|Nguồn cấp
+12|Tên dự án
+13|Logo công ty
+14|Tên công ty
+15|Công ty và nguồn cấp
+16|Công ty
+17|Trợ giúp: nền tảng hoạt động thế nào
+18|Các mục
+19|Tải logo lên…
+20|Hiển thị cạnh logo và trong các bản xuất
+21|Hiển thị ở đầu trang, trong sơ đồ và trong PDF. Bản xuất Excel chỉ có tên công ty.
+22|Nguồn cấp và cơ sở thiết kế
+23|Cài đặt nguồn cấp
+24|Loại nguồn cấp
+25|Điện áp nguồn
+26|Một pha
+27|Ba pha
+28|Điện áp thấp
+29|Điện áp thấp AC / DC
+30|Tủ điện điện áp thấp
+31|Việc chuyển đổi sẽ điều chỉnh các mạch cho phù hợp.
+32|Giá trị mặc định theo tiêu chuẩn đã chọn và có thể ghi đè. Khả năng tải của cáp là giá trị tham khảo theo phương pháp lắp đặt C cho đồng. Hãy xác nhận từng số liệu theo ấn bản và sửa đổi quốc gia mà bạn thiết kế.
+33|Dòng ngắn mạch dự kiến (kA)
+34|Dòng ngắn mạch của ắc quy (kA)
+35|Lấy từ bảng dữ liệu ắc quy hoặc bộ sạc. Bình ắc quy chì-axit có thể cấp vài kA. Với aptomat DC thông dụng, giả định 5 kA.
+36|Cả hai cực (2P, không nối đất hoặc cách ly)
+37|Chỉ cực dương (1P, cực âm nối đất hoặc chung)
+38|Số cực aptomat
+39|Nhiệt độ môi trường của cáp (°C)
+40|Nhiệt độ bên trong vỏ tủ (°C)
+41|Giá trị tham chiếu là {1} °C
+42|Hệ số đồng thời
+43|Đồng thời
+44|Cáp cấp nguồn chính
+45|Chiều dài cáp cấp nguồn chính (m)
+46|Ghi đè định mức đầu vào (A)
+47|Để trống sẽ tự động chọn
+48|Cu XLPE 90 °C
+49|Cu PVC 70 °C
+50|XLPE 90
+51|Giới hạn sụt áp chiếu sáng (%)
+52|Giới hạn các mạch khác (%)
+53|Quan trọng (hàng hải, hầm tàu, liên lạc)
+54|Quan trọng (sụt {1} %)
+55|Chiếu sáng (sụt {1} %)
+56|Khác (sụt {1} %)
+57|{1} mặc định {2} %
+58|Mặc định điện áp thấp {1} %
+59|Công suất tỏa nhiệt cho phép của vỏ tủ (W)
+60|Tùy chọn, lấy từ bảng dữ liệu vỏ tủ
+61|Cân bằng pha và đầu vào
+62|Số mô-đun trên thanh DIN
+63|Độ rộng thiết bị mặc định
+64|Độ rộng RCBO
+65|1 mô-đun (nhỏ gọn)
+66|2 mô-đun (1P+N)
+67|1 mô-đun
+68|{1} mô-đun
+69|{1} mô-đun (nhỏ gọn)
+70|{1} mô-đun (1P+N)
+71|{1} mô-đun = 18 mm
+72|{1} mô-đun · {2} mm
+73|{1} mô-đun × 18 mm = {2} mm
+74|{1} · {2} mô-đun
+75|{1} · {2} mô-đun
+76|Đặt mô-đun điều khiển trên thanh riêng
+77|Bố trí sẽ xuống thanh mới khi một thiết bị không vừa. Các hàng có bước 150 mm vì có lắp mô-đun Lutron pha thích ứng.
+78|Dòng MCB
+79|Dòng RCBO
+80|Công tắc tổng hoặc đầu vào
+81|Chung (mặc định theo tiêu chuẩn)
+82|Dải bảo vệ ưu tiên
+83|Chọn một dòng của hãng: bố trí dùng độ rộng mô-đun của dòng đó, phần kiểm tra dùng khả năng cắt, dải dòng định mức và đường cong của nó, và bảng vật tư nêu tên dòng đó. Để ở Chung để dùng mặc định của tiêu chuẩn.
+84|Khi chưa chọn dòng, công tắc tổng và chống sét lan truyền chiếm 2 hoặc 4 mô-đun, MCB 1 mô-đun mỗi cực (2 với cắt hai cực hàng hải), RCBO 1 mô-đun (nhỏ gọn) cho 1P+N và 4 mô-đun cho 3P+N. Hãy chọn dòng của hãng trong Thiết lập hoặc dùng Dùng ở trên để thay bằng độ rộng thực.
+85|Gồm thiết bị chống sét lan truyền
+86|Bắt đầu tủ trống
+87|Tải lại tủ mẫu
+88|Làm mới hoặc tải lại ví dụ
+89|Máy tính aptomat nhanh
+90|Nhập công suất của tải, hoặc dòng điện nếu bạn biết. Công cụ cho biết dòng thiết kế, aptomat nên dùng và cáp.
+91|hoặc dòng A
+92|Biểu kiến
+93|Công suất biểu kiến
+94|Công suất W
+95|Tải W
+96|Hệ số công suất
+97|PF
+98|, PF
+99|Chiều dài cáp m
+100|Chiều dài m
+101|Thêm mạch
+102|+ Mạch
+103|+ Mô-đun DIN
+104|+ Thiết bị tùy chỉnh
+105|Tự cân bằng pha
+106|Đánh số lại
+107|Xóa mạch
+108|Xóa mạch {1}
+109|Xóa mô-đun
+110|Gỡ {1}
+111|Bảng mạch
+112|Các mạch được cấp từ một vùng của mô-đun Lutron dùng chung aptomat cấp nguồn của mô-đun, nên cáp của chúng được kiểm tra theo định mức đó. Hệ số nhóm nhân với khả năng tải của cáp (dùng 1 nếu không có).
+113|Mã
+114|Tham chiếu
+115|Tên
+116|Loại mạch
+117|Loại
+118|Pha
+119|Cấp từ
+120|Aptomat trực tiếp
+121|{1} vùng {2}
+122|Vùng {1}: {2}
+123|Vùng {1}
+124|Vùng
+125|trống
+126|không có
+127|Định mức
+128|Định mức A
+129|In A
+130|Ib A
+131|Icn kA
+132|Icu kA
+133|Đường cong
+134|Các đường cong
+135|Số cực
+136|Tiết diện
+137|Tiết diện mm²
+138|Cáp
+139|Nhóm
+140|Nhu cầu
+141|ΔU
+142|ΔU %
+143|Sụt áp
+144|Trạng thái
+145|Đạt
+146|Lỗi
+147|Xem lại
+148|Ghi chú
+149|Ghi chú
+150|Ghi chú tủ điện
+151|Bố trí tủ điện
+152|Bố trí
+153|Thanh DIN
+154|Di chuyển
+155|↑ Lên thanh trên
+156|↓ Xuống thanh dưới
+157|← Sớm hơn
+158|Muộn hơn →
+159|Vừa màn hình
+160|Đã vừa màn hình
+161|Kích thước thật
+162|Cả hàng trong bảng
+163|Chọn một thiết bị để sửa tại đây. Kéo thiết bị để di chuyển dọc theo các thanh.
+164|Xóa
+165|Xác nhận xóa
+166|Hủy
+167|Gỡ
+168|Gỡ chống sét
+169|Gỡ công tắc tổng
+170|Khôi phục chống sét
+171|Khôi phục công tắc tổng
+172|Chống sét lan truyền
+173|Xung
+174|SPD
+175|SPD · Chống sét lan truyền
+176|SPD Chống sét lan truyền
+177|Tổng
+178|Đầu vào
+179|Cầu dao cách ly
+180|Aptomat cấp nguồn
+181|Cáp cấp nguồn
+182|Chiều dài cấp nguồn m
+183|Tải cấp nguồn
+184|Cấp m
+185|Pha cấp nguồn
+186|Cấp nguồn {1}
+187|cấp nguồn {1} A
+188|Đầu vào A
+189|Thiết bị
+190|Loại thiết bị
+191|Mô-đun
+192|Mô-đun cần thêm
+193|Mô-đun
+194|Mô-đun trong tủ này
+195|Độ rộng
+196|Độ rộng (mô-đun)
+197|Độ rộng, mô-đun
+198|Kiểu
+199|Họ sản phẩm
+200|Nhà sản xuất
+201|Thương hiệu
+202|Dòng
+203|Dòng phù hợp
+204|Mô tả
+205|Tìm trong thư viện
+206|Tìm kiểu, họ, điện áp
+207|Tìm thiết bị bảo vệ
+208|Tìm dòng hoặc tiêu chuẩn
+209|Tất cả thương hiệu
+210|Tất cả họ sản phẩm
+211|Tất cả nhà sản xuất
+212|Tất cả loại
+213|Thêm
+214|Thêm mô-đun DIN
+215|Dùng
+216|Đang dùng
+217|DIN
+218|Thư viện thiết bị DIN
+219|Thư viện bảo vệ mạch
+220|Danh sách thiết bị
+221|Nguồn đã kiểm
+222|Điển hình
+223|Bo đấu dây
+224|Bộ xử lý điều khiển
+225|Giao diện / I/O
+226|Mạng / phân phối
+227|Nguồn điện
+228|Điều khiển động cơ
+229|Đóng cắt
+230|Điều chỉnh sáng
+231|DALI
+232|Cổng DALI
+233|EcoSystem
+234|Kỹ thuật số (HomeWorks)
+235|Điều chỉnh sáng pha thích ứng
+236|Bộ điều sáng pha thích ứng
+237|Điều khiển pha / 20 A
+238|0–10 V / đóng cắt
+239|Bộ điều sáng 0–10 V
+240|Cổng QSX
+241|Bộ xử lý QSX
+242|Cổng KNX DALI
+243|Giao diện KNX IP
+244|Bộ định tuyến KNX IP
+245|I/O tương tự KNX
+246|Ngõ vào nhị phân KNX
+247|Bộ chấp hành điều sáng KNX
+248|Đồng hồ điện năng KNX
+249|Bộ chấp hành sưởi KNX
+250|Logic / điều khiển KNX
+251|Nguồn điện KNX
+252|Bộ chấp hành rèm KNX
+253|Bộ chấp hành đóng cắt KNX
+254|Bộ chấp hành đa năng KNX
+255|MCB
+256|RCBO
+257|RCCB (chống dòng rò theo nhóm)
+258|MCCB (đầu vào)
+259|RCD
+260|Nhiệt
+261|Nhiệt
+262|Tỏa nhiệt ≈
+263|Nhiệt trong vỏ tủ ≈
+264|Vỏ tủ ≈
+265|BTU/h
+266|Pha tối đa
+267|°C tối đa
+268|Lệch pha
+269|Cân bằng
+270|Đã đấu nối
+271|Tải đấu nối
+272|Đấu nối {1} kW · nhu cầu {2} kW · {3} kVA · pha tối đa {4} A
+273|Tải theo pha (sau hệ số đồng thời {1})
+274|Tải thanh cái (sau hệ số đồng thời {1})
+275|với hệ số đồng thời {1}
+276|Sụt áp từ đầu đến cuối tệ nhất
+277|Dòng thiết kế
+278|Kiểm tra thiết kế
+279|Kiểm tra
+280|Kiểm tra bố trí tủ điện
+281|Đã kiểm theo giới hạn của từng mô-đun
+282|{1} được cấp
+283|{1} lỗi · {2} cần xem lại
+284|Chiếu sáng
+285|Ổ cắm
+286|AV / điện tử
+287|HVAC / bơm
+288|Máy sưởi / bình đun
+289|Bếp / thiết bị
+290|Khác
+291|Trung tính
+292|Dương +
+293|Âm −
+294|Sơ đồ đa dây
+295|Sơ đồ đa dây · {1}
+296|Nguồn {1}
+297|MẠCH
+298|BẢO VỆ
+299|CÁP
+300|TẢI
+301|THANH
+302|Bản vẽ PDF và bảng
+303|Bản vẽ bố trí tủ điện với tên mạch, sơ đồ đa dây, bảng mạch và tổng công suất trên khổ A4 ngang, có logo của bạn trên mỗi trang.
+304|Gồm bảng vật tư
+305|Lưu PDF
+306|Sổ Excel
+307|Các trang tính gồm bảng mạch, mô-đun Lutron, bảng vật tư, cân bằng pha, công suất và dự án. Có tên công ty; tệp Excel của công cụ này không nhúng được ảnh logo.
+308|Lưu Excel
+309|Bảng CSV
+310|Bảng mạch đơn giản để nhập vào công cụ khác.
+311|Lưu CSV
+312|Tệp dự án
+313|Lưu toàn bộ thiết kế dạng JSON, hoặc mở một tệp đã lưu trước đó.
+314|Lưu dự án
+315|Mở dự án…
+316|Mở dự án
+317|Tủ điện cũng được lưu trong trình duyệt này khi bạn làm việc. Mỗi lần xuất sẽ mở hộp thoại lưu.
+318|Đóng
+319|Ngày
+320|Tự động
+321|Tự động ({1})
+322|Khả năng cắt giả định {1} kA
+323|chung · lệch pha {1} %
+324|{1} · lệch pha {2} %
+325|qua {1} ({2} A) · {3}
+326|đồng {1}, định mức {2} A, sụt áp {3} % của {4} V (giới hạn {5} %)
+327|{1} V DC (điện áp thấp)
+328|{1} V AC (điện áp thấp)
+329|12, 24 hoặc 48 V DC và 24 V AC, như trên du thuyền và tàu thuyền.
+330|Bố trí thanh DIN của {1}
+331|Hãy chọn ảnh dưới 4 MB.
+332|Không thể lưu tệp tại đây.
+333|Không thể lưu: {1}
+334|Thư viện Excel chưa tải được.
+335|Đã thêm logo
+336|Đã gỡ công tắc tổng khỏi tủ điện
+337|Thư viện PDF chưa tải được.
+338|Đã cân bằng lại các pha
+339|Đã tải dự án
+340|Đã gỡ chống sét
+341|Đã lưu {1}
+342|Tệp đó không phải là dự án DBoard Designer.
+343|Không đọc được ảnh đó.
+344|Đã áp dụng {1} cho các MCB.
+345|Đã áp dụng {1} cho các RCBO.
+346|Đã áp dụng {1} cho công tắc tổng.
+347|Đã thêm {1} dưới tên {2}. Xem trong thẻ Tủ điện.
+348|Đã xóa {1}
+349|Đã ở thanh đầu tiên.
+350|Không có thiết bị trên thanh kế tiếp để đặt cạnh. Hãy kéo nó thay thế.
+351|Nguồn điện áp thấp: 24 V DC. Tải tính bằng watt, dòng điện là P ÷ V.
+352|Nguồn ba pha. Các mạch được chia đều lên L1, L2 và L3.
+353|Nguồn một pha.
+354|Tất cả kiểm tra đều đạt với tủ điện này.
+355|Hãy nhập công suất hoặc dòng điện.
+356|Chưa đặt mô-đun DIN nào. Hãy thêm một mô-đun từ thư viện bên dưới.
+357|Chưa có mạch nào. Hãy thêm một mạch để bắt đầu bảng.
+358|Không có thiết bị phù hợp.
+359|Không có thiết bị phù hợp.
+360|IEC 60364-4-41 yêu cầu bảo vệ RCD 30 mA cho ổ cắm và các mạch thiết bị di động.
+361|BS 7671 411.3.3 yêu cầu bảo vệ RCD 30 mA cho ổ cắm đến 20 A và hầu hết các mạch cuối trong nhà ở.
+362|NEC 210.8 và 210.12 yêu cầu bảo vệ GFCI và AFCI cho nhiều mạch ổ cắm và mạch nhánh. Hãy xác nhận ấn bản được áp dụng tại địa phương.
+363|AS/NZS 3000 yêu cầu bảo vệ RCD cho các mạch cuối của ổ cắm và chiếu sáng.
+364|Hệ thống điện AC hàng hải thường dùng cắt hai cực và bảo vệ RCD 30 mA cho các mạch cuối. Hãy đối chiếu quy định của đăng kiểm và cờ tàu.
+365|ABYC E-11 yêu cầu bảo vệ GFCI cho ổ cắm và bảo vệ hai cực cho mạch nhánh. Hãy đối chiếu với ấn bản hiện hành.
+366|AC điện áp cực thấp: mạch SELV không cần RCD. Sụt áp thường là giới hạn chiều dài cáp.
+367|DC điện áp cực thấp: mạch SELV không cần RCD. Chọn từng aptomat theo dòng điện (I = P ÷ V), bảo vệ cáp và dùng thiết bị định mức DC. Thực hành hàng hải (ISO 10133, ABYC E-11) cho phép sụt áp 3 % với mạch quan trọng như đèn hàng hải và bơm hầm tàu, và 10 % với phần còn lại.
+368|Phần kiểm tra bao gồm dòng thiết kế so với định mức aptomat và cáp, sụt áp, yêu cầu RCD, mức ngắn mạch, và các giới hạn đầu vào, vùng và nhiệt độ của Lutron. Trở kháng vòng sự cố, tính phân biệt và tính chọn lọc không được tính ở đây.
+369|DBoard Designer là công cụ hỗ trợ thiết kế. Khả năng tải của cáp, giới hạn sụt áp và dữ liệu Lutron chỉ mang tính tham khảo; hãy đối chiếu với ấn bản hiện hành của tiêu chuẩn, hồ sơ của nhà sản xuất và một kỹ sư có chuyên môn trước khi thi công.
+370|DBoard Designer
+371|Designer
+372|Cabin và tủ AV mẫu
+373|{1} bao phủ {2}–{3} A; {4} A nằm ngoài dải này.
+374|{1} không có đường cong {2} ({3}).
+375|Nguồn cấp của {1} mang {2} A, vượt định mức đầu vào {3} A.
+376|{1} định mức {2}; điện áp pha-trung tính của hệ thống là {3} V.
+377|{1} cho phép {2} C trong vỏ tủ; giá trị thiết kế là {3} C.
+378|Aptomat cấp nguồn {2} A của {1} thấp hơn tải {3} A.
+379|Cáp cấp nguồn của {1} mang {2} A, thấp hơn aptomat {3} A.
+380|Sụt áp nguồn cấp của {1} là {2} %.
+381|Dòng cấp nguồn của {1} vượt aptomat lớn nhất của dòng này.
+382|Mức ngắn mạch {1} kA vượt khả năng cắt {2} kA của aptomat cấp nguồn.
+383|Dòng thiết kế vượt aptomat lớn nhất của dòng này.
+384|Dòng thiết kế {1} A vượt aptomat {2} A.
+385|Cáp {1} mm² mang {2} A, thấp hơn aptomat {3} A. Hãy tăng tiết diện hoặc giảm aptomat.
+386|Sụt áp {1} % vượt mục tiêu {2} %.
+387|Mạch “{1}” không có RCBO. {2}
+388|Mức ngắn mạch {1} kA vượt khả năng cắt {2} kA của {3}.
+389|Mức ngắn mạch {1} kA vượt khả năng cắt {2} kA giả định cho tiêu chuẩn này.
+390|{1} không có phiên bản ba pha. Hãy chọn dòng RCBO 4P hoặc MCB kèm RCD nhóm.
+391|{1} là thiết bị 4P và không thể bảo vệ mạch một pha.
+392|{1} có {2} vùng; vùng {3} không tồn tại.
+393|Dòng vùng {1} A vượt định mức vùng {2} A.
+394|Tải vùng {1} W vượt giới hạn {2} W của vùng {3}.
+395|{1} không đóng cắt tải.
+396|Vùng {1} của {2} đang dùng chung với {3}.
+397|{1} không được liệt kê là định mức DC cho {2} V ở đây. Hãy chọn dòng DC, hoặc dùng Chung và chỉ định thiết bị định mức DC.
+398|Chưa chọn dòng DC, nên giả định aptomat nhiệt-từ định mức DC thông dụng ở 5 kA.
+399|Dòng pha lớn nhất vượt định mức đầu vào lớn nhất trong thư viện.
+400|Dòng pha lớn nhất {1} A vượt đầu vào {2} A.
+401|Cáp đầu vào {1} mm² mang {2} A, thấp hơn đầu vào {3} A.
+402|Sụt áp đầu vào {1} % chiếm một phần mức cho phép tổng.
+403|Lệch pha cao hơn trung bình {1} %. Hãy dùng tự cân bằng hoặc chuyển bớt mạch.
+404|Mô-đun pha thích ứng cần giảm tải theo vùng khi nhiệt độ phòng 30–40 C. Xem ghi chú ứng dụng Lutron số 466.
+405|Mô-đun pha thích ứng cần 150 mm giữa các thanh DIN và 200 mm trống phía trên thanh trên cùng.
+406|Công suất tỏa nhiệt ước tính {1} W vượt mức cho phép của vỏ tủ {2} W.
+407|{1} mô-đun gắn thanh DIN của Lutron, Crestron, Control4 và MDT KNX. Dữ liệu Lutron lấy từ ghi chú ứng dụng số 466 (bản T, tháng 5/2026) và hồ sơ kỹ thuật, Crestron từ trang sản phẩm, Control4 từ bảng dữ liệu, MDT từ danh sách sản phẩm và giá (1 mô-đun = 18 mm). Khi nguồn không nêu giá trị, hiển thị ? hoặc –. Bộ chấp hành KNX được cấp nguồn qua bus nên chỉ phía tải được tính vào nguồn cấp. Hãy kiểm tra bảng dữ liệu hiện hành của nhà sản xuất trước khi đặt hàng.
+408|Điện áp cực thấp {1} V AC: I = P ÷ (V × PF). Aptomat là loại AC thông thường; điện áp thấp làm dòng điện lớn nên tiết diện cáp và sụt áp thường quyết định loại cáp.
+409|Tủ vệ tinh {1} inch với mô-đun công suất DIN và bộ điều khiển EcoSystem.
+410|{1} dòng từ {2} nhà sản xuất. Định mức, khả năng cắt và độ rộng là giá trị danh mục theo cấp dòng: “Nguồn đã kiểm” nghĩa là trang của nhà sản xuất hoặc nhà phân phối đã xác nhận, “Điển hình” nghĩa là số liệu danh mục thông dụng cần xác nhận trên bảng dữ liệu. Nhấn Dùng để áp dụng một dòng cho tủ này.
+411|Ở cuối Thiết lập, <b>Bắt đầu tủ trống</b> xóa mọi thứ và <b>Tải lại tủ mẫu</b> đưa lại cabin và tủ AV mẫu.
+412|Chọn Điện áp thấp AC / DC làm loại nguồn cấp. Khi đó định mức aptomat và tiết diện cáp dùng các dòng DC, và tủ vẽ thanh cái dương và âm thay cho các pha.
+413|Tủ cấp nguồn điều khiển với 8 aptomat mạch nhánh và giao diện mô-đun.
+414|Tủ điều sáng / đóng cắt, tối đa 4 mô-đun công suất DIN (hoặc 3 mô-đun cộng một nguồn QSPS). 120–240 V.
+415|Dòng một chiều: I = P ÷ V, không có hệ số công suất. Hồ quang DC không tự tắt, nên mỗi aptomat phải có định mức DC ít nhất bằng điện áp sạc (khoảng 1,25 × điện áp danh định {1} V), và phải tuân theo mọi cực tính ghi trên thiết bị. Khả năng cắt do dòng ngắn mạch của ắc quy hoặc nguồn quyết định (đã nhập {2} kA).
+416|Mọi dây dẫn đều được vẽ: mỗi dây pha từ thanh cái pha của nó và dây trung tính từ thanh N. Khung nét đứt quanh các cực đánh dấu aptomat cắt cả dây trung tính; ký hiệu Δ đánh dấu RCD. MCB một cực cho dây trung tính đi thẳng qua. Đường nét đứt cho thấy các mạch được vùng mô-đun Lutron đóng cắt.
+417|Mọi dây dẫn đều được vẽ: dương (đỏ) và âm (tối) từ hai thanh cái. Khung nét đứt quanh các cực đánh dấu aptomat hai cực. Aptomat một cực chỉ đặt ở cực dương.
+418|Làm theo các bước này từ màn hình đầu tiên đến bản PDF hoàn chỉnh. Bạn có thể nhảy đến bất kỳ bước nào bất cứ lúc nào; mỗi thẻ cập nhật cùng một tủ điện.
+419|Ở bản có thể cài đặt, hãy dùng tùy chọn Cài đặt hoặc Thêm vào màn hình chính của trình duyệt. Sau đó ứng dụng mở toàn màn hình và chạy được khi không có mạng.
+420|Mở <b>Kiểm tra</b>. Công cụ kiểm tra xem mỗi aptomat có đủ cho tải và bảo vệ cáp của nó không, sụt áp có nằm dưới giới hạn của bạn không, có bảo vệ RCD ở nơi tiêu chuẩn yêu cầu không, khả năng cắt có bao phủ mức ngắn mạch không, và các giới hạn mô-đun và vùng Lutron (tải, dòng, điện áp, nhiệt độ) có được tuân thủ không. Công cụ cũng kiểm tra định mức và cáp đầu vào, lệch pha và nhiệt trong vỏ tủ. <b>Lỗi</b> nghĩa là phải sửa trước khi thi công, <b>Xem lại</b> nghĩa là xem xét rồi quyết định, còn ghi chú chỉ để tham khảo.
+421|Mở <b>Mạch</b> và nhấn <b>Thêm mạch</b>. Với mỗi mạch, nhập tên, loại, công suất theo watt, hệ số công suất, pha, chiều dài cáp, bảo vệ (MCB hoặc RCBO) và đường cong. Công cụ chọn cáp, chọn định mức aptomat và tính dòng điện cùng sụt áp. <b>Tự cân bằng pha</b> chia tải đều lên L1, L2 và L3, còn <b>Đánh số lại</b> sắp xếp gọn các mã. Với tủ điện áp thấp, máy tính nhanh ở trên cho biết ngay aptomat cho một tải.
+422|Mở <b>Sơ đồ</b> để xem sơ đồ đấu dây đa dây. Mỗi dây pha được vẽ từ thanh cái pha của nó và dây trung tính từ thanh N. Khung nét đứt đánh dấu aptomat cắt dây trung tính, hình tam giác đánh dấu RCD, và đường nét đứt cho thấy các mạch được vùng Lutron đóng cắt. Mỗi mạch hiển thị cáp, bảo vệ, thanh tải và trạng thái.
+423|Mở <b>Thiết bị</b> để duyệt thiết bị điều khiển gắn thanh DIN của Lutron, Crestron, Control4 và MDT KNX (bộ xử lý, giao diện, nguồn điện, mô-đun điều sáng, đóng cắt và rèm, cổng kết nối) với bộ lọc thương hiệu, cùng thư viện aptomat (Schneider, ABB, Siemens, Legrand, Hager, Eaton, Chint). Nhấn <b>Thêm</b> trên một mô-đun để đặt vào tủ. Quay lại <b>Mạch</b>, chọn mô-đun và vùng (kênh) cấp nguồn cho mạch. Mỗi mô-đun cũng có aptomat cấp nguồn riêng. Nhấn <b>Dùng</b> trên một dòng aptomat để đặt làm mặc định cho MCB, RCBO hoặc công tắc tổng.
+424|Mở <b>Xuất</b>. <b>Lưu PDF</b> tạo bản bố trí tủ điện, sơ đồ đa dây, bảng mạch và tổng công suất; chọn <b>Gồm bảng vật tư</b> nếu muốn thêm danh sách đó. <b>Lưu Excel</b> và <b>Lưu CSV</b> cho bảng dùng ở công cụ khác. <b>Lưu dự án</b> lưu toàn bộ thiết kế thành một tệp mà bạn có thể mở lại sau bằng <b>Mở dự án</b>.
+425|Mở <b>Tủ điện</b> để xem các thanh DIN được vẽ cùng từng thiết bị và tên mạch của nó. Nhấp vào một thiết bị để mở bảng kiểm tra: sửa nó, di chuyển dọc thanh hoặc sang thanh khác, hoặc xóa nó. Dùng <b>+ Mạch</b>, <b>+ Mô-đun DIN</b> hoặc <b>+ Thiết bị tùy chỉnh</b> để thêm ngay tại đây. Bạn có thể đổi công tắc tổng và khôi phục công tắc tổng hoặc chống sét đã xóa bằng các nút khôi phục. <b>Vừa màn hình</b> và <b>Kích thước thật</b> chuyển đổi mức thu phóng.
+426|Mở <b>Thiết lập</b>. Đặt tên cho tủ, thêm tên công ty và logo (chúng hiện ở đầu trang và trong PDF), rồi chọn <b>tiêu chuẩn</b> và <b>loại nguồn cấp</b>: một pha, ba pha hoặc điện áp thấp AC / DC (12, 24, 48 V DC hoặc 24 V AC cho tủ hàng hải và tương tự). Sau đó đặt nhiệt độ môi trường, hệ số đồng thời, cáp cấp nguồn chính, giới hạn sụt áp, dòng aptomat muốn dùng, số mô-đun vừa một thanh DIN, và RCBO chiếm 1 hay 2 mô-đun.
+427|Định mức, giới hạn sụt áp và dữ liệu nhà sản xuất chỉ mang tính tham khảo. Hãy đối chiếu với ấn bản hiện hành của tiêu chuẩn, hồ sơ của nhà sản xuất và một kỹ sư có chuyên môn trước khi thi công.
+428|Tủ điện được lưu trong trình duyệt này khi bạn làm việc. Dùng Lưu dự án để giữ một bản sao hoặc chuyển sang thiết bị khác.
+429|(định mức chuẩn kế tiếp bằng hoặc lớn hơn dòng thiết kế) {1}
+430|hai cực
+431|hai cực, định mức DC
+432|Tủ và vỏ DIN Lutron (tham khảo)
+433|DBoard Designer hoạt động thế nào
+434|Nên biết
+435|Bắt đầu với Thiết lập
+436|Thiết lập dự án
+437|Thêm các mạch
+438|Đọc phần kiểm tra
+439|Xem lại sơ đồ
+440|Công việc của bạn được lưu tự động
+441|Cài đặt như một ứng dụng
+442|Luôn kiểm chứng
+443|Dòng
+444|Dự án
+445|Aptomat
+446|Aptomat
+447|tùy chọn
+448|nguồn
+449|, cáp
+450|Áp dụng cho tổng theo pha
+451|Đặt độ rộng aptomat và sơ đồ
+452|Vỏ tủ điện áp thấp HomeWorks QS.
+453|Vỏ tủ xuyên suốt với giao diện mô-đun.
+454|Tủ thanh DIN 120 V có đầu nối.
+455|Tủ aptomat DIN {1} V {2} với aptomat AFCI {3} A.
+456|Thiết bị chống sét lan truyền, loại 2.
+457|SPD loại 2
+458|LOẠI 2
+459|ba pha
+460|{1} (AC hàng hải)
+461|TỔNG {1}
+462|Thanh cái {1} V DC
+463|Thanh cái {1} V AC
+464|THANH {1}
+465|đã dùng,
+466|Bảng kê vật tư
+467|Bố trí tủ điện (thanh ray {1} đến {2})
+468|(trang {1} trên {2})
+469|Công cụ hỗ trợ thiết kế. Hãy kiểm tra các thông số định mức theo phiên bản tiêu chuẩn, tài liệu kỹ thuật của nhà sản xuất và kỹ sư có chuyên môn trước khi thi công.
+470|Pha
+471|Bảo vệ
+472|Dòng cho phép của cáp A
+473|Bảng mạch
+474|Mô-đun DIN
+475|Các pha
+476|Nguồn cấp A
+477|Aptomat cấp nguồn A
+478|Cáp cấp nguồn mm2
+479|Mô-đun (18 mm)
+480|Nhiệt BTU/h
+481|Dòng điện A (sau hệ số đồng thời)
+482|Đầu vào chính A
+483|Lệch pha %
+484|Công suất kết nối kW
+485|Công suất yêu cầu kW (sau hệ số đồng thời)
+486|Công suất biểu kiến kVA
+487|Tổn hao W
+488|Hệ thống
+489|Dòng sự cố kA
+490|Nhiệt độ môi trường cáp C
+491|Công tắc tổng
+492|Chung
+493|Trực tiếp
+494|Hạng mục
+495|SL
+496|Tải các pha sau hệ số đồng thời
+497|Kết nối {1} kW · yêu cầu {2} kW · {3} kVA · PF {4}
+498|Cáp đầu vào {1} mm² {2}
+499|Kích thước đầy đủ, cuộn ngang
+500|Đã thêm {1} × {2}. Xem ở tab Tủ điện.
+501|Số lượng
+502|DC
+503|Điện áp (V)
+504|Dòng điện (A)
+505|Điện trở (Ω)
+506|Công suất (W)
+507|Định luật Ohm và công suất
+508|Chọn đại lượng cần tìm, rồi nhập hai giá trị đã biết.
+509|Tìm
+510|Công thức
+511|Nhập các giá trị lớn hơn 0.
+512|Công suất AC và hệ số công suất
+513|Tính dòng điện, công suất thực, biểu kiến và phản kháng cho tải một pha và ba pha.
+514|Điện áp dây (V)
+515|Giá trị đã biết
+516|Dòng điện và hệ số công suất
+517|Công suất thực và hệ số công suất
+518|Công suất biểu kiến và hệ số công suất
+519|Công suất thực và phản kháng
+520|Công suất thực (kW)
+521|Công suất biểu kiến (kVA)
+522|Công suất phản kháng (kvar)
+523|Hệ số công suất phải nằm trong khoảng 0 đến 1.
+524|Dòng điện
+525|Công suất thực
+526|Công suất phản kháng
+527|Góc pha
+528|Bù hệ số công suất
+529|Chọn bộ tụ bù cần thiết để nâng hệ số công suất.
+530|Hệ số công suất hiện tại
+531|Hệ số công suất mục tiêu
+532|Mục tiêu phải cao hơn hệ số công suất hiện tại.
+533|Dung lượng tụ bù (kvar)
+534|Công suất biểu kiến trước
+535|Công suất biểu kiến sau
+536|Giảm dòng điện
+537|Tiết diện cáp
+538|Tìm cáp đồng nhỏ nhất chịu được tải và giữ sụt áp trong giới hạn.
+539|Tải được cho dưới dạng
+540|Công suất (kW)
+541|Chiều dài cáp (m)
+542|Giới hạn sụt áp (%)
+543|Loại cáp
+544|Môi trường (°C)
+545|Hệ số nhóm cáp
+546|Dòng cho phép của cáp
+547|Aptomat đề xuất
+548|Dây đồng, phương pháp tham chiếu C. Hãy đối chiếu với tiêu chuẩn và cách lắp đặt của bạn.
+549|Không cáp nào trong bảng đạt giới hạn. Hãy rút ngắn tuyến, nới giới hạn hoặc dùng cáp song song.
+550|Sụt áp của cáp bạn đã chọn và chiều dài tối đa mà cáp có thể phục vụ.
+551|Tiết diện cáp (mm²)
+552|Sụt áp (V)
+553|Sụt áp (%)
+554|Điện áp tại tải
+555|Chiều dài tối đa trong giới hạn
+556|Trong giới hạn.
+557|Vượt giới hạn. Hãy dùng cáp lớn hơn hoặc tuyến ngắn hơn.
+558|Mạch điện trở và định luật Kirchhoff
+559|Điện trở nối tiếp và song song, kèm điện áp và dòng điện trên từng điện trở.
+560|Cách nối
+561|Song song
+562|Điện áp nguồn (V)
+563|Giá trị điện trở (Ω), cách nhau bằng dấu phẩy hoặc dấu cách
+564|Nhập từ 1 đến 12 giá trị điện trở lớn hơn 0.
+565|Điện trở
+566|Tổng điện trở
+567|Tổng dòng điện
+568|Tổng công suất
+569|Định luật Kirchhoff về điện áp (KVL): tổng điện áp quanh một vòng kín bằng 0, nên tổng sụt áp trên các điện trở bằng điện áp nguồn.
+570|Định luật Kirchhoff về dòng điện (KCL): dòng điện vào một nút bằng dòng điện ra khỏi nút, nên tổng dòng các nhánh bằng dòng tổng.
+571|Quan hệ sao và tam giác
+572|Điện áp và dòng điện dây và pha của tải ba pha.
+573|Kiểu đấu
+574|Sao (Y)
+575|Tam giác (Δ)
+576|Giá trị dây
+577|Giá trị pha
+578|Điện áp pha (V)
+579|Dòng điện dây (A)
+580|Dòng điện pha (A)
+581|Công cụ cho thợ điện
+582|Máy tính nhanh cho công việc hằng ngày. Mỗi kết quả hiển thị công thức và các số đã dùng. Hãy xem đây là hướng dẫn và đối chiếu với tiêu chuẩn của bạn.
+583|Công cụ
+584|Dùng các công cụ
+585|Mở <b>Công cụ</b> để dùng các máy tính nhanh dành cho thợ điện, hoạt động độc lập với tủ điện. <b>Định luật Ohm và công suất</b> tìm điện áp, dòng điện, điện trở hoặc công suất từ hai giá trị bất kỳ. <b>Công suất AC và hệ số công suất</b> dành cho tải một pha và ba pha, còn <b>Bù hệ số công suất</b> chọn bộ tụ bù. <b>Tiết diện cáp</b> chọn cáp đồng nhỏ nhất theo tải, chiều dài và giới hạn sụt áp, dùng cùng bảng với các mạch, còn <b>Sụt áp</b> kiểm tra cáp bạn đã chọn. <b>Mạch điện trở</b> giải mạch nối tiếp và song song bằng định luật Kirchhoff, còn <b>Quan hệ sao và tam giác</b> đổi giữa giá trị dây và pha. Mỗi kết quả hiển thị công thức và các số đã dùng.
+586|Điện trở của cáp
+587|Điện trở của dây dẫn đồng hoặc nhôm. Tìm điện trở, chiều dài hoặc tiết diện, ví dụ để ước tính khoảng cách đến điểm sự cố.
+588|Vật liệu
+589|Đồng
+590|Nhôm
+591|Cách đo
+592|Một dây dẫn
+593|Vòng (đi và về)
+594|Nhiệt độ dây dẫn (°C)
+595|Tiết diện chuẩn tiếp theo
+596|Điện trở suất ở nhiệt độ này
+597|Điện trở trên mỗi mét
+598|Phép đo vòng bao gồm dây dẫn đi và về, nên chiều dài hiển thị là khoảng cách một chiều.
+599|Điện trở suất ở 20 °C: đồng 0,017241, nhôm 0,028264 Ω·mm²/m. Hệ số nhiệt độ: đồng 0,00393, nhôm 0,00403 trên mỗi °C.
+600|Pha 1 nâu, pha 2 đen, pha 3 xám, trung tính xanh dương, dây đất bảo vệ xanh lá-vàng (IEC 60446).
+601|Nối đất bảo vệ kèm tự động ngắt nguồn (hệ TN, TT hoặc IT), liên kết đẳng thế chính cho các đường ống kim loại đi vào và các phần dẫn điện hở.
+602|Pha 1 nâu, pha 2 đen, pha 3 xám, trung tính xanh dương, dây đất bảo vệ xanh lá-vàng. Hệ thống cũ dùng đỏ, vàng, xanh dương và đen.
+603|Nối đất bảo vệ kèm tự động ngắt. Tổng trở vòng sự cố chạm đất phải nằm trong giới hạn của bảng, cùng liên kết bảo vệ chính cho các đường ống.
+604|Chỉ dây trung tính (trắng hoặc xám) và dây tiếp đất thiết bị (xanh lá hoặc trần) được quy định cố định. Màu pha theo thông lệ địa phương, thường là đen, đỏ và xanh dương ở 208 V.
+605|Điều 250: hệ thống cực nối đất, dây tiếp đất thiết bị và chỉ một liên kết trung tính–đất tại thiết bị ngắt nguồn vào.
+606|Đất xanh lá-vàng, trung tính đen hoặc xanh dương nhạt, dây pha các màu khác như đỏ, trắng và xanh dương, hoặc nâu, đen và xám.
+607|Hệ thống trung tính nối đất nhiều điểm (MEN), trung tính nối với đất tại tủ điện chính, và dây nối đất chính tới cực nối đất.
+608|Pha nâu, trung tính xanh dương, dây đất bảo vệ xanh lá-vàng (theo thông lệ IEC 60446).
+609|Dây bảo vệ nối với hệ thống liên kết của tàu. Trung tính và đất chỉ được nối tại nguồn (máy phát hoặc biến áp cách ly), không bao giờ nối tại điểm cấp điện từ bờ.
+610|Dây nóng đen, dây nóng thứ hai đỏ, thứ ba xanh dương, trung tính trắng, dây tiếp đất xanh lá hoặc xanh lá-vàng.
+611|Dây tiếp đất AC nối với cực âm DC của tàu tại một điểm. Trung tính và đất chỉ được nối tại nguồn (máy phát hoặc biến áp cách ly).
+612|Có
+613|Không
+614|Sụt áp, chiếu sáng
+615|Sụt áp, các mạch khác
+616|Hệ số tải liên tục
+617|Dòng định mức của aptomat
+618|Đường cong ngắt
+619|Ngắt hai cực
+620|Có, hai cực
+621|Không, thường dùng một cực
+622|Bảo vệ RCD hoặc GFCI
+623|Màu dây dẫn
+624|Nối đất và liên kết đẳng thế
+625|So sánh các tiêu chuẩn
+626|Sụt áp chiếu sáng
+627|Sụt áp khác
+628|Tải liên tục
+629|Hai cực
+630|Tra cứu tiêu chuẩn
+631|Chỉ để tham khảo. Hãy đối chiếu từng giá trị với phiên bản hiện hành của tiêu chuẩn và các sửa đổi địa phương trước khi sử dụng.
+632|Điều hòa không khí
+633|Quạt / thông gió
+634|Động cơ
+635|Bơm nước
+636|Tời / chân vịt mũi
+637|Bếp / lò nướng
+638|Làm lạnh
+639|Máy giặt / máy sấy
+640|Bình nước nóng
+641|Sưởi dây / sưởi sàn
+642|Ổ cắm ngoài trời / trên boong
+643|Thiết bị hồ bơi / spa
+644|Trạm sạc xe điện
+645|Bộ sạc ắc quy
+646|Biến tần / UPS
+647|Mạng / CNTT
+648|An ninh / báo động
+649|Chiếu sáng khẩn cấp
+650|Cấp nguồn cho tủ phụ
+651|Xử lý sự cố và tiêu chuẩn
+652|Trong Công cụ, <b>Điện trở của cáp</b> tìm điện trở, chiều dài hoặc tiết diện của cáp đồng hoặc nhôm, ví dụ để ước tính điểm sự cố cách bao xa. <b>Tra cứu tiêu chuẩn</b> ở cuối liệt kê cho từng tiêu chuẩn giới hạn sụt áp, dòng định mức aptomat, quy định RCD, màu dây và nối đất. Chỉ để tham khảo, hãy đối chiếu với phiên bản hiện hành.
+653|Bơm la canh / bơm hố thu
+654|Xưởng / dụng cụ điện
+655|Thiết bị hàng hải
+656|Liên lạc
+657|Đăng nhập
+658|Tạo tài khoản
+659|Tạo tài khoản
+660|Địa chỉ email
+661|Mật khẩu
+662|Xác nhận mật khẩu
+663|Tên
+664|Họ
+665|Quốc gia
+666|Quên mật khẩu?
+667|Ghi nhớ tôi trên thiết bị này
+668|Đăng xuất
+669|Bảng điều khiển
+670|Cài đặt tài khoản
+671|Tủ điện mới
+672|Dự án đã lưu của tôi
+673|Mở
+674|Đổi tên
+675|Nhân bản
+676|Tạo tủ phân phối điện mới
+677|Dự án mở gần đây
+678|Lưu hồ sơ
+679|Đổi mật khẩu
+680|Xóa tài khoản
+681|Công ty (không bắt buộc)
+682|Nghề nghiệp
+683|Đặt lại mật khẩu
+684|Gửi liên kết đặt lại
+685|Kiểm tra email của bạn
+686|Mở trình thiết kế
+687|Dự án đã lưu
+688|Gửi phản hồi
+689|Tài khoản
+690|Chào mừng
+691|Hiện
+692|Ẩn
+693|Quay lại đăng nhập
+694|Chọn quốc gia
+695|Chọn nghề nghiệp
+696|Gửi lại email
+697|Điều khoản và điều kiện
+698|Chính sách quyền riêng tư
+699|Thợ điện
+700|Kỹ sư điện
+701|Thợ lắp tủ điện
+702|Tích hợp hệ thống
+703|Sinh viên
+704|Hồ sơ
+705|Cập nhật mật khẩu
+706|Mật khẩu hiện tại
+707|Mật khẩu mới
+708|Xác nhận mật khẩu mới
+709|Tìm dự án
+710|Đã lưu vào tài khoản
+711|Đang lưu…
+712|Chỉ trên thiết bị này
+713|Lưu vào tài khoản
+714|Email hoặc mật khẩu không đúng.
+715|Chọn mật khẩu mới

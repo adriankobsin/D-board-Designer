@@ -11,8 +11,8 @@
   },
   // Public settings (safe in source control). Replace with your own project values, or set them in the dashboard.
   "vars": {
-    "SUPABASE_URL": "",
-    "SUPABASE_ANON_KEY": "",
+    "SUPABASE_URL": "https://lnplifeexjwbjpsbexew.supabase.co",
+    "SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxucGxpZmVleGp3Ympwc2JleGV3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIwMjcyODMsImV4cCI6MjEwNzYwMzI4M30.oZxY2i6PDZofm0SB9s70NfXgIU1jICFlFru_beDVtLI",
     "REQUIRE_LOGIN": "true"
   }
   // Secret (never put in this file). Set with:  npx wrangler secret put SUPABASE_SERVICE_ROLE_KEY

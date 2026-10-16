@@ -1,0 +1,19 @@
+{
+  // Cloudflare Worker that serves DBoard Designer and its small admin API.
+  "name": "d-board-designer",
+  "main": "src/worker.js",
+  "compatibility_date": "2025-09-01",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": true,
+    "not_found_handling": "single-page-application"
+  },
+  // Public settings (safe in source control). Replace with your own project values, or set them in the dashboard.
+  "vars": {
+    "SUPABASE_URL": "",
+    "SUPABASE_ANON_KEY": "",
+    "REQUIRE_LOGIN": "true"
+  }
+  // Secret (never put in this file). Set with:  npx wrangler secret put SUPABASE_SERVICE_ROLE_KEY
+}

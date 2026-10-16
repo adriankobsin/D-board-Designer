@@ -1,0 +1,11 @@
+{
+  "name": "dboard-designer-saas",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "bash build.sh",
+    "dev": "npm run build && wrangler dev",
+    "deploy": "npm run build && wrangler deploy"
+  },
+  "devDependencies": { "wrangler": "^4" }
+}

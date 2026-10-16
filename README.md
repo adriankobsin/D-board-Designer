@@ -15,6 +15,15 @@ Nothing privileged is in the browser. The service-role key exists only as a Work
 checked on the server on every `/api/admin/*` call (token validated with Supabase, then `profiles.role = 'admin'` and
 `status = 'active'`), and row access is enforced in the database by RLS.
 
+Live site: https://d-board-designer.adriankobsin.workers.dev (Cloudflare Worker `d-board-designer`, deployed from the
+GitHub repo `adriankobsin/D-board-Designer`, branch `Main`).
+
+**How updates reach the site.** Cloudflare is connected to the repo (Workers & Pages, d-board-designer, Settings, Builds:
+build command `npm run build`, deploy command `npx wrangler deploy`). Every push to `Main` builds and deploys automatically,
+usually within a couple of minutes. A failed build leaves the previous version live. Changes to the database are the one
+thing that is **not** automatic: new SQL in `supabase/migrations/` must be run in the Supabase SQL Editor. Secrets and
+Supabase Auth settings change only when you change them.
+
 **If Supabase is not configured the app works exactly as before** (local storage, no login). Set the variables below
 to switch the account system on.
 
@@ -44,6 +53,9 @@ Authentication, URL Configuration:
 - **Redirect URLs**: the same URL and `https://d-board-designer.adriankobsin.workers.dev/**`. Add `http://localhost:8787/**` for local runs.
 
 Authentication, Emails, SMTP Settings: enable custom SMTP (host, port, user, password, verified sender address).
+**Do this before inviting anyone.** Supabase's built-in sender allows only a few emails per hour for the whole project, so
+sign-ups fail with `429: email rate limit exceeded` once it is used up. After custom SMTP is on, raise Auth, Rate Limits,
+"Emails sent per hour". For short tests only you can switch off Confirm email, then switch it back on.
 In Email Templates keep `{{ .ConfirmationURL }}` in **Confirm signup** and **Reset password**.
 
 Set a minimum password length of 8 or more. The app also enforces 8+ characters with a letter and a number.
@@ -61,7 +73,8 @@ Before a public launch also review Auth rate limits and enable CAPTCHA (Auth, Bo
    npx wrangler secret put SUPABASE_SERVICE_ROLE_KEY
    npx wrangler secret put ANTHROPIC_API_KEY      # only if you want panel import
    ```
-   or Cloudflare dashboard, Workers, your Worker, Settings, Variables and Secrets, add a **Secret**.
+   or Cloudflare dashboard, Workers, your Worker, Settings, **Variables and Secrets** (the Runtime one, not the Builds one), add a **Secret**,
+   then press Deploy. Import switches on only when **both** secrets are present.
 3. Deploy:
    ```
    npm install
@@ -112,7 +125,7 @@ suspend other admins or themselves. Every status change is logged in `admin_acti
   user, profile and projects; the last remaining admin cannot be deleted).
 - **Offline**: the designer shell is cached; cloud projects need a connection to load; edits retry on reconnect while the tab stays open.
 
-## 7. Panel import from a photo or PDF
+## 6. Panel import from a photo or PDF
 
 **Dashboard, Import** (or the profile menu, Import a panel). Add up to four photos of one panel, or one PDF
 (schematic, single-line diagram or circuit schedule). The Worker sends them to a vision model, which transcribes every
@@ -134,7 +147,7 @@ cause misses or wrong digits, which is why the review step is mandatory. Always 
 panel before issuing the result as as-built documentation. The reading itself could not be tested here without an API
 key (see Testing).
 
-## 6. Testing
+## 7. Testing
 
 ```
 python3 pgtest/rls_test.py          # database policies against real local Postgres 16 (stubs Supabase roles/auth schema): 47 checks
@@ -181,9 +194,20 @@ inviting beta users.
 | Import: "reading service rejected the server key" | Wrong or revoked `ANTHROPIC_API_KEY` |
 | Import: daily limit reached | Raise `IMPORT_DAILY_LIMIT` |
 | Import returns few or wrong devices | Retake straight-on without glare, add close-ups of each row, add a note (e.g. label language) |
+| Sign-up fails for new users (first one worked) | Supabase's built-in email limit (`429: email rate limit exceeded` in Auth logs). Set up custom SMTP (section 2) and raise the hourly limit |
+| The site opens a Cloudflare Access login ("Log in to d-board-designer - Cloudflare Workers") | Cloudflare Access is switched on for the workers.dev address. Workers, d-board-designer, Settings, Domains and Routes: disable Cloudflare Access (and for Preview URLs). If needed delete the application "d-board-designer - Cloudflare Workers" in Zero Trust, Access controls, Applications |
+| Updates do not appear | Check Workers, d-board-designer, Deployments for a failed build. Hard-refresh once for the service worker cache |
+| Import still says not switched on after adding keys | The secrets must be in Settings, Variables and Secrets (Runtime), named exactly `ANTHROPIC_API_KEY` and `SUPABASE_SERVICE_ROLE_KEY`, then Deploy. `/api/health` shows `"admin":true` when the service-role secret is visible |
 | Admin: 403 | `profiles.role` is not `admin`, or the account is suspended |
 | Console: CSP connect-src violation | The page may only call your configured Supabase origin; check `SUPABASE_URL` |
 | Old version after deploy | Service worker cache; hard-refresh once (bump `VERSION` in `src_app/sw.js` each release) |
+
+## Making changes
+
+Edit the sources (`designer/`, `src_app/`, `src/`), run `bash build.sh` to rebuild `public/`, commit and push to `Main`.
+`public/` is committed on purpose, so the deploy works even if the build step is skipped. Bump `VERSION` in
+`src_app/sw.js` for releases that change the front end so installed copies refresh. The in-app Help is `renderHelp()` in
+`designer/ui.js`; keep it in step with this README when features change.
 
 ## Data and privacy
 

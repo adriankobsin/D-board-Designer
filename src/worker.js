@@ -85,7 +85,7 @@ async function api(request, env, url) {
   const path = url.pathname;
   const method = request.method;
 
-  if (path === '/api/health') return json({ ok: true, configured: configured(env), admin: Boolean(env.SUPABASE_SERVICE_ROLE_KEY) });
+  if (path === '/api/health') return json({ ok: true, configured: configured(env), admin: Boolean(env.SUPABASE_SERVICE_ROLE_KEY), anthropic: Boolean(env.ANTHROPIC_API_KEY) });
 
   if (path === '/api/config' && method === 'GET') {
     if (!configured(env)) return json({ configured: false, requireLogin: false });

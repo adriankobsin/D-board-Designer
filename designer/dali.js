@@ -74,9 +74,23 @@ let dQ = '', dBrand = '', dKindF = '', dMountF = '';
 
 /* ---------- state ---------- */
 function dS(){ if (!S.dali || !Array.isArray(S.dali.units)) S.dali = {units: []}; return S.dali; }
+/* DALI controllers that sit in the main panel (Lutron, Crestron, MDT modules on the Panel tab) */
+function dPanelCtl(lib){
+  const m = lib.model, f = lib.fam || '';
+  if (f === 'DALI'){ const ln = /(^|[^0-9])1DAL/.test(m) ? 1 : 2; return {ln, max:64, sup:250, as:'Bus current per link is not given in the data used. 250 mA (the DALI-2 maximum) is assumed. Confirm it in the controller datasheet.'}; }
+  if (/DALI gateway/.test(f) && lib.brand === 'Crestron') return {ln:2, max:64, sup:250, as:'Internal DALI power assumed at 250 mA per loop. Confirm it in the datasheet.'};
+  if (/DALI gateway/.test(f)){ const ln = /DABC4/.test(m) ? 4 : /DA642/.test(m) ? 2 : 1; return {ln, max: /DABC4/.test(m) ? 32 : 64, sup:0, as:'Bus supply not stated; add a DALI bus power supply to each line.'}; }
+  return null;
+}
+function dControllers(){
+  const out = [];
+  S.modules.forEach(m => { const lib = libOf(m.model), pc = lib && dPanelCtl(lib); if (pc) out.push({u: m, panel: true, c: {m: m.model, b: lib.brand || '', art: '', k:'master', mt:'din', du: lib.din || 0, ln: pc.ln, sup: pc.sup, max: pc.max, as: pc.as, panel: true}}); });
+  dS().units.forEach(u => { const c = dCat(u.model); if (c && c.k === 'master') out.push({u, panel: false, c: Object.assign({max: 64}, c)}); });
+  return out;
+}
 function dLines(){
   const out = [];
-  dS().units.forEach(u => { const c = dCat(u.model); if (c && c.k === 'master') for (let n = 1; n <= c.ln; n++) out.push({id: u.id + ':' + n, u, c, n, label: u.id + ' line ' + n}); });
+  dControllers().forEach(k => { for (let n = 1; n <= k.c.ln; n++) out.push({id: k.u.id + ':' + n, u: k.u, c: k.c, n, max: k.c.max || 64, panel: k.panel, label: k.u.id + (k.panel ? ' link ' : ' line ') + n}); });
   return out;
 }
 function daliFix(){
@@ -103,7 +117,7 @@ function daliChecks(){
   if (!n) return out;
   if (!A.lines.length) out.push({lvl:'warn', ref:'DALI', msg:'There is no DALI master or gateway, so no DALI line exists. Add one to connect the drivers.'});
   A.lines.forEach(l => {
-    if (l.addr > 64) out.push({lvl:'err', ref:l.label, msg:`${l.addr} DALI addresses are used. One line allows 64.`});
+    if (l.addr > l.max) out.push({lvl:'err', ref:l.label, msg:`${l.addr} DALI addresses are used. This line allows ${l.max}.`});
     if (!l.sup && (l.members.length || l.psus.length)) out.push({lvl:'warn', ref:l.label, msg:'No bus power supply is connected to this line. Link a DALI power supply to it.'});
     else if (l.sup && l.mA > l.sup) out.push({lvl:'err', ref:l.label, msg:`Devices draw ${+l.mA.toFixed(1)} mA but the ${l.supBy} guarantees ${l.sup} mA.`});
     else if (l.sup && l.mA > l.sup * 0.8) out.push({lvl:'warn', ref:l.label, msg:`Bus load is ${Math.round(l.mA / l.sup * 100)} % of the ${l.sup} mA supply. Keep some margin.`});
@@ -111,6 +125,7 @@ function daliChecks(){
     if (l.psus.length && l.c.sup) out.push({lvl:'info', ref:l.label, msg:'The master has a built-in bus supply, but a separate one is linked. Only the separate one is counted.'});
   });
   if (A.free.length) out.push({lvl:'warn', ref:'DALI', msg:`${A.free.length} DALI device${A.free.length > 1 ? 's are' : ' is'} not connected to a line: ${A.free.slice(0, 6).map(u => u.id).join(', ')}${A.free.length > 6 ? '...' : ''}.`});
+  [...new Set(A.lines.filter(l => l.c.as && (l.members.length || l.psus.length)).map(l => l.u.id))].forEach(id => out.push({lvl:'info', ref:id, msg:A.lines.find(l => l.u.id === id).c.as}));
   const asu = [...new Set(A.units.filter(u => dCat(u.model).as).map(u => u.model))];
   if (asu.length) out.push({lvl:'info', ref:'DALI', msg:`${asu.length} DALI model${asu.length > 1 ? 's use' : ' uses'} assumed figures (shown as Assumed in the library). Confirm them on the datasheet.`});
   return out;
@@ -119,11 +134,12 @@ function dBom(){
   const m = {}; dS().units.forEach(u => { const c = dCat(u.model); if (c) m[u.model] = (m[u.model] || 0) + 1; });
   return Object.keys(m).map(k => { const c = dCat(k); return [`${c.b} ${c.m}${c.art ? ' (' + c.art + ')' : ''} - DALI ${DKIND[c.k].toLowerCase()}, ${DMOUNT[c.mt].toLowerCase()}`, m[k]]; });
 }
-function dadd(model, q){
+function dadd(model, q, want){
   const c = dCat(model); if (!c) return;
   for (let i = 0; i < q; i++){
     const A = dAnalyse(), us = dS().units; let link = '';
-    if (c.k !== 'master'){ const l = A.lines.find(x => c.k === 'psu' ? !x.psus.length && !x.c.sup : x.addr + c.ad <= 64); link = l ? l.id : ''; }
+    if (c.k !== 'master' && want && A.by[want]) link = want;
+    else if (c.k !== 'master'){ const l = A.lines.find(x => c.k === 'psu' ? !x.psus.length && !x.c.sup : x.addr + c.ad <= x.max); link = l ? l.id : ''; }
     us.push({id: nextId(us, 'D'), model, label:'', link});
   }
 }
@@ -166,21 +182,21 @@ function dBox(it, x, y, u, A, col, o = {}){
   it.push(dText(x + 10, y + 56, dClip(u.label || c.b, 22), {z:9, c:'ink2'}));
 }
 function dNet(){
-  const A = dAnalyse(), secs = [], masters = A.units.filter(u => dCat(u.model).k === 'master');
-  masters.forEach(mu => {
-    const mc = dCat(mu.model), info = A.lines.filter(l => l.u === mu).map(l => { const items = l.psus.concat(l.members); const rows = Math.max(1, Math.ceil(items.length / DPER)); return {l, items, rows, h: 34 + rows * DROW}; });
+  const A = dAnalyse(), secs = [], masters = dControllers();
+  masters.forEach(({u: mu, c: mc}) => {
+    const info = A.lines.filter(l => l.u === mu).map(l => { const items = l.psus.concat(l.members); const rows = Math.max(1, Math.ceil(items.length / DPER)); return {l, items, rows, h: 34 + rows * DROW}; });
     const H = info.reduce((a, i) => a + i.h, 0) + 6, it = [];
     it.push(dRect(16, 3, 190, H - 6, 'surf2', 'ink', {sw:1.8}));
     it.push(dText(28, 24, mu.id, {b:1, z:13})); it.push(dText(28, 41, dClip(mc.m, 24), {z:11, b:1}));
-    it.push(dText(28, 56, `${mc.b} ${mc.art}`, {z:9, c:'ink2'})); it.push(dText(28, 70, `${mc.ln} line${mc.ln > 1 ? 's' : ''} · DIN ${mc.du} DU`, {z:9, c:'ink2'}));
-    it.push(dText(28, 84, mc.sup ? `Built-in supply ${mc.sup} mA / line` : 'Needs bus power supply', {z:9, c:'ink2'}));
+    it.push(dText(28, 56, mc.panel ? `${mc.b} · in the main panel` : `${mc.b} ${mc.art}`, {z:9, c:'ink2'})); it.push(dText(28, 70, `${mc.ln} ${mc.panel ? 'link' : 'line'}${mc.ln > 1 ? 's' : ''}${mc.panel ? '' : ' · DIN ' + mc.du + ' DU'}`, {z:9, c:'ink2'}));
+    it.push(dText(28, 84, mc.sup ? `${mc.as && mc.panel ? 'Assumed supply' : 'Built-in supply'} ${mc.sup} mA / ${mc.panel ? 'link' : 'line'}` : 'Needs bus power supply', {z:9, c:'ink2'}));
     if (mu.label) it.push(dText(28, 98, dClip(mu.label, 26), {z:9, c:'ink2'}));
     let y0 = 3;
     info.forEach(({l, items, rows, h}) => {
-      const col = DPAL[l.ci], over = l.addr > 64 || (l.sup && l.mA > l.sup) || (!l.sup && items.length);
+      const col = DPAL[l.ci], over = l.addr > l.max || (l.sup && l.mA > l.sup) || (!l.sup && items.length);
       const rng = l.members.length ? `A00-${String(Math.max(0, l.addr - 1)).padStart(2, '0')}` : 'no devices';
       it.push(dRect(DX0, y0 + 6, 12, 12, col, 'none', {rx:2}));
-      it.push(dText(DX0 + 20, y0 + 16, `Line ${l.n} · ${rng} · ${l.addr}/64 addresses · ${+l.mA.toFixed(1)}/${l.sup || '?'} mA${l.sup ? ' (' + l.supBy + ')' : ' · no bus supply'}`, {z:11, b:1, c: over ? 'bad' : 'ink'}));
+      it.push(dText(DX0 + 20, y0 + 16, `${l.panel ? 'Link' : 'Line'} ${l.n} · ${rng} · ${l.addr}/${l.max} addresses · ${+l.mA.toFixed(1)}/${l.sup || '?'} mA${l.sup ? ' (' + l.supBy + ')' : ' · no bus supply'}`, {z:11, b:1, c: over ? 'bad' : 'ink'}));
       const by0 = y0 + 40;
       it.push(dLine(206, by0, 222, by0, col, {sw:3}));
       if (rows > 1) it.push(dLine(222, by0, 222, by0 + (rows - 1) * DROW, col, {sw:3}));
@@ -210,8 +226,10 @@ const DU = 44, DRH = 150;
 function dLay(){
   const A = dAnalyse(), secs = [], cols = Math.max(12, Math.min(48, +S.cols || 24)), din = [], rem = [];
   const place = (u, bands) => { const c = dCat(u.model); (c.mt === 'din' ? din : rem).push({u, c, bands}); };
-  A.units.filter(u => dCat(u.model).k === 'master').forEach(mu => {
-    const ls = A.lines.filter(l => l.u === mu); place(mu, ls.map(l => DPAL[l.ci]));
+  const panelCtl = [];
+  dControllers().forEach(k => {
+    const ls = A.lines.filter(l => l.u === k.u);
+    if (k.panel) panelCtl.push({k, ls}); else place(k.u, ls.map(l => DPAL[l.ci]));
     ls.forEach(l => l.psus.concat(l.members).forEach(u => place(u, [DPAL[l.ci]])));
   });
   A.free.forEach(u => place(u, ['#8A929B']));
@@ -238,6 +256,12 @@ function dLay(){
     });
     secs.push({h: DRH + 94, items: it});
   });
+  if (panelCtl.length){
+    const it = [], h = 30 + panelCtl.reduce((n, p) => n + p.ls.length, 0) * 18;
+    it.push(dText(16, 18, 'DALI controllers in the main panel (drawn on the Panel tab)', {b:1, z:12}));
+    let y = 38; panelCtl.forEach(p => p.ls.forEach(l => { it.push(dRect(16, y - 10, 12, 12, DPAL[l.ci], 'none', {rx:2})); it.push(dText(36, y, `${p.k.u.id} ${p.k.c.m} · link ${l.n} · ${l.members.length} device${l.members.length === 1 ? '' : 's'} · ${l.addr}/${l.max} addresses`, {z:11})); y += 18; }));
+    secs.unshift({h, items: it});
+  }
   if (rem.length){
     const it = [], CW = 230, per = 5;
     it.push(dText(16, 18, `Remote drivers and devices (${rem.length}), not on the rail`, {b:1, z:12}));
@@ -305,8 +329,16 @@ function daliLibCard(){
 /* ---------- DALI tab ---------- */
 function dLinkSelect(u, A){
   const c = dCat(u.model); if (c.k === 'master') return '<span class="muted">is a master</span>';
-  const opts = A.lines.map(l => `<option value="${l.id}" ${u.link === l.id ? 'selected' : ''}>${esc(l.label)} · ${l.addr}/64 addr · ${+l.mA.toFixed(1)}/${l.sup || '?'} mA</option>`).join('');
-  return `<select data-dk="link" data-id="${u.id}" aria-label="DALI link for ${u.id}"><option value="">${A.lines.length ? 'Not connected' : 'No master yet'}</option>${opts}</select>`;
+  return `<select data-dk="link" data-id="${u.id}" aria-label="DALI link for ${u.id}"><option value="">${A.lines.length ? 'Not connected' : 'No controller yet'}</option>${dLineOpts(A, u.link)}</select>`;
+}
+function dLineOpts(A, cur){
+  const groups = []; A.lines.forEach(l => { let g = groups.find(x => x.u === l.u); if (!g) groups.push(g = {u: l.u, c: l.c, ls: []}); g.ls.push(l); });
+  return groups.map(g => `<optgroup label="${esc(g.u.id + ' · ' + g.c.m + (g.c.panel ? ' (in panel)' : ''))}">${g.ls.map(l => `<option value="${l.id}" ${cur === l.id ? 'selected' : ''}>${l.panel ? 'Link' : 'Line'} ${l.n} · ${l.addr}/${l.max} addr · ${+l.mA.toFixed(1)}/${l.sup || '?'} mA</option>`).join('')}</optgroup>`).join('');
+}
+function dCtlCard(A){
+  const cs = dControllers();
+  if (!cs.length) return '<div class="card"><h3>DALI controllers in this project</h3><p class="muted" style="margin-top:8px">No DALI controller yet. Add a DALI module from the Equipment tab (Lutron, Crestron or MDT, shown on the Panel tab) or a DALI master or gateway below, then connect drivers to its links.</p></div>';
+  return `<div class="card"><h3>DALI controllers in this project</h3><div class="scroll"><table style="min-width:640px"><thead><tr><th>Controller</th><th>Where</th><th>Link</th><th>Devices</th><th>Addresses</th><th>Bus load</th></tr></thead><tbody>${cs.map(k => A.lines.filter(l => l.u === k.u).map((l, i) => `<tr>${i ? '<td></td><td></td>' : `<td class="mono"><b>${k.u.id}</b> ${esc(k.c.m)}<div class="note">${esc(k.c.b)}</div></td><td>${k.panel ? 'Main panel (Panel tab)' : 'DALI tab'}</td>`}<td><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:${DPAL[l.ci]};margin-right:6px"></span>${l.panel ? 'Link' : 'Line'} ${l.n}</td><td class="mono">${l.members.length}</td><td class="mono">${l.addr}/${l.max}</td><td class="mono">${+l.mA.toFixed(1)}/${l.sup || '?'} mA</td></tr>`).join('')).join('')}</tbody></table></div></div>`;
 }
 function renderDali(){
   const A = dAnalyse(), us = A.units, ck = daliChecks(), models = [...new Set(us.map(u => u.model))], lay = dLay(), net = dNet();
@@ -315,14 +347,15 @@ function renderDali(){
   const picker = `<select id="daddmodel" aria-label="DALI model">${brands.map(b => `<optgroup label="${b}">${DALI_CAT.filter(c => c.b === b).map(c => `<option value="${esc(c.m)}">${esc(c.m)} · ${c.mt === 'din' ? 'DIN' : 'remote'}</option>`).join('')}</optgroup>`).join('')}</select>`;
   const stack1 = dStack(net.map(s => s)), stack2 = dStack(lay.secs);
   return `<div class="card"><div class="row" style="justify-content:space-between"><h2>DALI network</h2><div class="stats"><span>Lines <b>${A.lines.length}</b></span><span>Devices <b>${us.length}</b></span><span>On DIN rail <b>${lay.dinCount}</b> (${lay.dinDU} DU)</span><span>Remote <b>${lay.remCount}</b></span><span>Not connected <b>${A.free.length}</b></span></div></div>
-   <p class="note" style="margin:6px 0 0;max-width:80ch">Add DALI masters, bus supplies and drivers here or from the DALI library on the Equipment tab. Each driver is connected to one DALI line of a master. Addresses are handed out in order on each line, up to 64.</p>
+   <p class="note" style="margin:6px 0 0;max-width:80ch">Add DALI masters, bus supplies and drivers here or from the DALI library on the Equipment tab. Each driver is connected to one link of a DALI controller. Controllers placed in the panel (for example a Lutron QSN2-2DALUNV-D) appear here automatically, as do masters added below. Addresses are handed out in order on each line, up to 64.</p>
    ${ck.length ? `<ul class="checks" style="margin-top:12px">${ck.sort((a, b) => ord[a.lvl] - ord[b.lvl]).map(c => `<li><span class="lvl ${c.lvl}">${lv[c.lvl]}</span><span class="mono">${esc(c.ref)}</span><span>${esc(c.msg)}</span></li>`).join('')}</ul>` : us.length ? '<p class="muted" style="margin-top:10px">All DALI line checks pass.</p>' : ''}</div>
+  ${dCtlCard(A)}
   <div class="card"><h3>Quantities</h3>
-   <div class="row" style="margin:8px 0 12px">${picker}<input type="number" id="daddqty" class="qty" value="1" min="1" max="50" step="1" aria-label="Quantity" inputmode="numeric"><button class="btn pri" data-a="dadd2">Add to DALI network</button>${us.length ? '<button class="btn" data-a="dclear">Remove all DALI</button>' : ''}</div>
+   <div class="row" style="margin:8px 0 12px">${picker}<select id="daddlink" aria-label="Connect to"><option value="">Connect to: first free link</option>${dLineOpts(A, '')}</select><input type="number" id="daddqty" class="qty" value="1" min="1" max="50" step="1" aria-label="Quantity" inputmode="numeric"><button class="btn pri" data-a="dadd2">Add to DALI network</button>${us.length ? '<button class="btn" data-a="dclear">Remove all DALI</button>' : ''}</div>
    ${models.length ? `<div class="scroll"><table style="min-width:620px"><thead><tr><th>Model</th><th>Type</th><th>Mounting</th><th>Quantity</th><th></th></tr></thead><tbody>${models.map(m => { const c = dCat(m), n = us.filter(u => u.model === m).length; return `<tr><td class="mono"><b>${esc(m)}</b><div class="note">${c.b}${c.art ? ' · ' + esc(c.art) : ''}</div></td><td>${DKIND[c.k]}</td><td>${c.mt === 'din' ? 'DIN ' + c.du + ' DU' : DMOUNT[c.mt]}</td><td style="width:110px"><input type="number" class="dqty" data-model="${esc(m)}" value="${n}" min="1" max="99" step="1" aria-label="Quantity of ${esc(m)}" inputmode="numeric"></td><td><button class="btn sm" data-a="dgone" data-model="${esc(m)}" aria-label="Remove all ${esc(m)}">Remove</button></td></tr>`; }).join('')}</tbody></table></div>` : '<p class="muted">No DALI equipment yet. Pick a model above, or browse the DALI library on the Equipment tab.</p>'}</div>
-  ${us.length ? `<div class="card"><h3>DALI modules</h3><div class="scroll"><table class="stack" style="min-width:900px"><thead><tr><th>Ref</th><th>Model</th><th>Mounting</th><th>Name / location</th><th>DALI link</th><th>Address</th><th>mA</th><th></th></tr></thead><tbody>${us.map(u => { const c = dCat(u.model), l = A.by[u.link]; return `<tr><td class="mono">${u.id}</td><td><b>${esc(c.m)}</b><div class="note">${c.b} · ${DKIND[c.k]}</div></td><td>${c.mt === 'din' ? 'DIN ' + c.du + ' DU' : DMOUNT[c.mt]}</td><td><input type="text" data-dk="label" data-id="${u.id}" value="${esc(u.label)}" placeholder="e.g. Kitchen downlights" aria-label="Name for ${u.id}" maxlength="40"></td><td style="min-width:220px">${dLinkSelect(u, A)}</td><td class="mono">${c.k === 'master' ? c.ln + ' lines' : c.k === 'psu' ? 'bus supply' : l ? dAddr(l, u) || '–' : '–'}</td><td class="mono" style="text-align:right">${c.k === 'master' || c.k === 'psu' ? '–' : c.ma}</td><td><button class="btn sm" data-a="ddel" data-id="${u.id}" aria-label="Remove ${u.id}">✕</button></td></tr>`; }).join('')}</tbody></table></div></div>
-  <div class="card"><div class="row" style="justify-content:space-between"><h2>DALI network schematic</h2><span class="note">Separate from the panel schematic. Colour = DALI line; dashed boxes are remote devices.</span></div>
-   <div class="scroll" style="margin-top:10px">${stack1.items.length ? dSvg(stack1.items, DW, stack1.H) : '<p class="muted">Add a DALI master or gateway to draw the network.</p>'}</div></div>
+  ${us.length ? `<div class="card"><h3>DALI modules</h3><div class="scroll"><table class="stack" style="min-width:900px"><thead><tr><th>Ref</th><th>Model</th><th>Mounting</th><th>Name / location</th><th>DALI link</th><th>Address</th><th>mA</th><th></th></tr></thead><tbody>${us.map(u => { const c = dCat(u.model), l = A.by[u.link]; return `<tr><td class="mono">${u.id}</td><td><b>${esc(c.m)}</b><div class="note">${c.b} · ${DKIND[c.k]}</div></td><td>${c.mt === 'din' ? 'DIN ' + c.du + ' DU' : DMOUNT[c.mt]}</td><td><input type="text" data-dk="label" data-id="${u.id}" value="${esc(u.label)}" placeholder="e.g. Kitchen downlights" aria-label="Name for ${u.id}" maxlength="40"></td><td style="min-width:220px">${dLinkSelect(u, A)}</td><td class="mono">${c.k === 'master' ? c.ln + ' lines' : c.k === 'psu' ? 'bus supply' : l ? dAddr(l, u) || '–' : '–'}</td><td class="mono" style="text-align:right">${c.k === 'master' || c.k === 'psu' ? '–' : c.ma}</td><td><button class="btn sm" data-a="ddel" data-id="${u.id}" aria-label="Remove ${u.id}">✕</button></td></tr>`; }).join('')}</tbody></table></div></div>` : ''}
+  ${(A.lines.length || us.length) ? `<div class="card"><div class="row" style="justify-content:space-between"><h2>DALI network schematic</h2><span class="note">Separate from the panel schematic. Colour = DALI line; dashed boxes are remote devices.</span></div>
+   <div class="scroll" style="margin-top:10px">${stack1.items.length ? dSvg(stack1.items, DW, stack1.H) : '<p class="muted">Add a DALI controller to the panel, or a master below, to draw the network.</p>'}</div></div>
   <div class="card"><div class="row" style="justify-content:space-between"><h2>DALI module layout</h2><span class="note">DIN-rail strip for DIN items (${lay.cols} DU per rail, 1 DU = 17.5 mm) and a separate area for remote drivers.</span></div>
    <div class="scroll" style="margin-top:10px">${stack2.items.length ? dSvg(stack2.items, DW, stack2.H) : '<p class="muted">Nothing to lay out yet.</p>'}</div></div>` : ''}`;
 }
@@ -342,7 +375,7 @@ document.addEventListener('change', e => {
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-a]'); if (!b) return; const a = b.dataset.a;
   if (a === 'dadd'){ const q = qtyOf(b.parentNode.querySelector('.qty')); dadd(b.dataset.model, q); calc(); persist(); toast(q > 1 ? `${q} × ${b.dataset.model} added. Open the DALI tab to connect them.` : `${b.dataset.model} added. Open the DALI tab to connect it.`); renderTabs(); }
-  else if (a === 'dadd2'){ dadd($('#daddmodel').value, qtyOf('#daddqty')); refresh(true); }
+  else if (a === 'dadd2'){ dadd($('#daddmodel').value, qtyOf('#daddqty'), $('#daddlink').value); refresh(true); }
   else if (a === 'ddel'){ ddel(b.dataset.id); refresh(true); }
   else if (a === 'dgone'){ dS().units.filter(u => u.model === b.dataset.model).map(u => u.id).forEach(ddel); refresh(true); }
   else if (a === 'dclear'){ S.dali = {units: []}; refresh(true); }

@@ -398,7 +398,7 @@ function renderDali(){
   ${us.length ? `<div class="card"><h3>DALI modules</h3><div class="scroll"><table class="stack" style="min-width:900px"><thead><tr><th>Ref</th><th>Model</th><th>Mounting</th><th>Name / location</th><th>DALI link</th><th>Address</th><th>mA</th><th></th></tr></thead><tbody>${us.map(u => { const c = dCat(u.model), l = A.by[u.link]; return `<tr><td class="mono">${u.id}</td><td><b>${esc(c.m)}</b><div class="note">${c.b} · ${DKIND[c.k]}</div></td><td>${c.mt === 'din' ? 'DIN ' + c.du + ' DU' : DMOUNT[c.mt]}</td><td><input type="text" data-dk="label" data-id="${u.id}" value="${esc(u.label)}" placeholder="e.g. Kitchen downlights" aria-label="Name for ${u.id}" maxlength="40"></td><td style="min-width:220px">${dLinkSelect(u, A)}</td><td class="mono">${c.k === 'master' ? c.ln + ' lines' : c.k === 'psu' ? 'bus supply' : l ? dAddr(l, u) || '–' : '–'}</td><td class="mono" style="text-align:right">${c.k === 'master' || c.k === 'psu' ? '–' : c.ma}</td><td><button class="btn sm" data-a="ddel" data-id="${u.id}" aria-label="Remove ${u.id}">✕</button></td></tr>`; }).join('')}</tbody></table></div></div>` : ''}
   ${(A.lines.length || us.length) ? `<div class="card"><div class="row" style="justify-content:space-between"><h2>DALI network schematic</h2><span class="note">Separate from the panel schematic. Colour = DALI line; dashed boxes are remote devices.</span></div>
    <div class="scroll" style="margin-top:10px">${stack1.items.length ? dSvg(stack1.items, DW, stack1.H) : '<p class="muted">Add a DALI controller to the panel, or a master below, to draw the network.</p>'}</div></div>
-  <div class="card"><div class="row" style="justify-content:space-between"><h2>DALI module layout</h2><span class="note">DIN-rail strip for DIN items (${lay.cols} DU per rail, 1 DU = 17.5 mm) and a separate area for remote drivers.</span></div>
+  <div class="card"><div class="row" style="justify-content:space-between"><h2>DALI module layout</h2><span class="note">DIN-rail strip for DIN items (${lay.cols} DU per rail, 1 DU = 17.5 mm; they are also on the Panel tab) and a separate area for remote drivers.</span></div>
    <div class="scroll" style="margin-top:10px">${stack2.items.length ? dSvg(stack2.items, DW, stack2.H) : '<p class="muted">Nothing to lay out yet.</p>'}</div></div>` : ''}`;
 }
 
@@ -441,3 +441,28 @@ function dCustomEdit(t){
   dFixCustom(c);
   daliFix(); refresh(true);
 }
+
+/* ---------- DIN-rail DALI devices on the Panel tab ---------- */
+function daliPanelDevs(S){
+  const out = []; if (!S.dali || !Array.isArray(S.dali.units)) return out;
+  const A = dAnalyse();
+  S.dali.units.forEach(u => {
+    const c = dCat(u.model); if (!c || c.mt !== 'din' || !(c.du > 0)) return;
+    const l = A.by[u.link], hasAd = c.k !== 'psu' && c.k !== 'master';
+    out.push({key: 'd:' + u.id, kind: 'dali', ref: u.id, rating: null, label: u.label || c.m, w: Math.max(1, Math.ceil(c.du)), sec: S.seg ? 2 : 1, ph: 'N', dali: u.id, dc: c, band: l ? DPAL[l.ci] : '#8A929B', addr: l && hasAd ? dAddr(l, u) : '', lnk: l ? l.label : ''});
+  });
+  return out;
+}
+function dModelOpts(cur){
+  const all = dAllCat(), brands = [...new Set(all.map(c => c.b))];
+  return brands.map(b => `<optgroup label="${esc(b)}">${all.filter(c => c.b === b).map(c => `<option value="${esc(c.m)}" ${c.m === cur ? 'selected' : ''}>${esc(c.m)} · ${c.mt === 'din' ? 'DIN' : 'remote'}</option>`).join('')}</optgroup>`).join('');
+}
+function dPanelAdd(){
+  const din = dAllCat().filter(c => c.mt === 'din' && c.du > 0), brands = [...new Set(din.map(c => c.b))];
+  return `<div class="row" style="margin-top:8px"><select id="adddali" aria-label="DALI module to add" style="max-width:190px">${brands.map(b => `<optgroup label="${esc(b)}">${din.filter(c => c.b === b).map(c => `<option value="${esc(c.m)}">${esc(c.m)}</option>`).join('')}</optgroup>`).join('')}</select><button class="btn sm" data-a="addd">+ DALI module</button></div>`;
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-a="addd"]'); if (!b) return;
+  const sl = $('#adddali'); if (!sl || !sl.value) return;
+  dadd(sl.value, qtyOf('#addqty')); const us = dS().units; sel = 'd:' + us[us.length - 1].id; delArm = null; refresh(true);
+});

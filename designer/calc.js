@@ -467,6 +467,7 @@ function buildDevices(S, R){
     if (r.nodin) return;
     devs.push({key:'m:' + m.id, kind:'lutron', ref:m.id, rating:null, label:m.model, w:r.w, sec:S.seg ? 2 : 1, ph:r.ph, mod:m.id, lib:r.lib});
   });
+  if (typeof daliPanelDevs === 'function'){ try { daliPanelDevs(S).forEach(d => devs.push(d)); } catch (e) {} }
   const keys = devs.map(d => d.key);
   S.order = (S.order || []).filter(k => keys.includes(k));
   keys.forEach(k => { if (k !== 'inc' && k !== 'spd' && !S.order.includes(k)) S.order.push(k); });

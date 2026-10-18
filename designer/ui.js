@@ -23,7 +23,7 @@ function fix(){
   S.circuits.forEach(c => { if (c.mod){ const m = S.modules.find(x => x.id === c.mod), z = m && (libOf(m.model) || {}).zones; if (!z) c.mod = ''; else if (c.zone > z) c.zone = z; } });
   const std = STD[S.std];
   S.circuits.forEach(c => { if (!std.curves.includes(c.curve)) c.curve = std.curves[0]; });
-  daliFix();
+  try { daliFix(); } catch (e) { console.warn('DALI data skipped', e); }
 }
 function calc(){
   fix();
@@ -439,7 +439,7 @@ function renderEquipment(){
   <div class="card"><div class="row" style="justify-content:space-between"><h2>DIN equipment library</h2><div class="row"><input type="text" id="libq" placeholder="Search model, family, voltage" value="${esc(libQ)}" style="min-width:220px" aria-label="Search library"><select id="libbrand" aria-label="Brand"><option value="">All brands</option>${brands.map(b => `<option value="${esc(b)}" ${libBrand === b ? 'selected' : ''}>${b}</option>`).join('')}</select><select id="libfam" aria-label="Family"><option value="">All families</option>${fams.map(f => `<option value="${esc(f)}" ${libFam === f ? 'selected' : ''}>${f}</option>`).join('')}</select></div></div>
   <p class="note" style="margin:6px 0 10px">${LIB.length} DIN-rail modules from Lutron, Crestron, Control4 and MDT KNX. Lutron data comes from Application Note #466 (rev T, May 2026) and spec submittals, Crestron from its product pages, Control4 from its data sheets, and MDT from its product and price lists (1 module = 18 mm). Where a source did not state a value it is shown as ? or –. KNX actuators are bus powered, so only their load side counts toward the feed. Verify against the current manufacturer datasheet before ordering.</p>
   <div class="scroll" style="max-height:520px;overflow-y:auto"><table style="min-width:1220px"><thead><tr><th>Model</th><th>Family</th><th>Line</th><th>Supply</th><th>DIN</th><th>mm</th><th>Zones</th><th>Input A</th><th>BTU/h</th><th>Max °C</th><th>g</th><th>Notes</th><th></th></tr></thead><tbody id="libbody">${libRows()}</tbody></table></div></div>
-  ${daliLibCard()}
+  ${(() => { try { return daliLibCard(); } catch (e) { return ''; } })()}
   <div class="card"><div class="row" style="justify-content:space-between"><h2>Circuit protection library</h2><div class="row"><input type="text" id="brkq" placeholder="Search series or standard" value="${esc(brkQ)}" style="min-width:200px" aria-label="Search protection devices"><select id="brkmfr" aria-label="Manufacturer"><option value="">All manufacturers</option>${[...new Set(BRK.map(b => b.mfr))].map(m => `<option value="${esc(m)}" ${brkMfr === m ? 'selected' : ''}>${m}</option>`).join('')}</select><select id="brkkind" aria-label="Device type"><option value="">All types</option>${Object.keys(KIND).map(k => `<option value="${k}" ${brkKind === k ? 'selected' : ''}>${KIND[k]}</option>`).join('')}</select></div></div>
   <p class="note" style="margin:6px 0 10px">${BRK.length} series from ${new Set(BRK.map(b => b.mfr)).size} manufacturers. Ratings, capacities and widths are series-level catalogue values: “Source checked” means a manufacturer or distributor page confirmed them, “Typical” means they are common catalogue figures to confirm on the datasheet. Press Use to apply a series to this board.</p>
   <div class="scroll" style="max-height:520px;overflow-y:auto"><table style="min-width:1180px"><thead><tr><th>Manufacturer</th><th>Series</th><th>Type</th><th>Poles</th><th>Rating A</th><th>Curves</th><th>Icn kA</th><th>Icu kA</th><th>Width, modules</th><th>RCD</th><th>Notes</th><th></th></tr></thead><tbody id="brkbody">${brkRows()}</tbody></table></div></div>
@@ -453,7 +453,7 @@ function renderChecks(){
   const bars = act.map(p => `<div class="bar-r"><span class="mono">${busLab(p)}</span><div class="bar-t"><div class="bar-f" style="width:${R.ph[p] / mx * 100}%;background:${PHV[p]}"></div></div><span class="mono">${fmt(R.ph[p], 1)} A · ${fmt(R.power.phW[p] / 1000, 2)} kW</span></div>`).join('');
   const lv = {err:'Fail', warn:'Review', info:'Note'};
   const order = {err:0, warn:1, info:2};
-  const items = R.checks.concat(daliChecks()).sort((a, b) => order[a.lvl] - order[b.lvl]);
+  const items = R.checks.concat((() => { try { return daliChecks(); } catch (e) { return []; } })()).sort((a, b) => order[a.lvl] - order[b.lvl]);
   return `<div class="card"><h2>Phase balance and incomer</h2><div class="bars" style="margin-top:12px">${bars}</div>
    <div class="stats" style="margin-top:14px"><span>Connected load <b>${fmt(R.power.conn / 1000, 2)} kW</b></span><span>Demand <b>${fmt(R.power.dem / 1000, 2)} kW</b></span>${isDC(S) ? '' : `<span>Apparent <b>${fmt(R.power.kva / 1000, 2)} kVA</b></span><span>PF <b>${fmt(R.power.pf, 2)}</b></span>`}<span>Diversity <b>${S.diversity}</b></span><span>Max phase <b>${fmt(R.inc.Imax, 1)} A</b></span><span>Imbalance <b>${fmt(R.inc.imb, 0)} %</b></span><span>Incomer <b>${R.inc.In || '–'} A</b>, cable <b>${R.inc.cab.size} mm²</b></span><span>Worst end-to-end drop <b>${fmt(R.worstVd, 2)} %</b></span><span>Heat in enclosure ≈ <b>${fmt(R.heatW, 0)} W</b></span></div>
    ${S.phases === 3 ? '<div class="row" style="margin-top:12px"><button class="btn" data-a="bal">Auto-balance phases</button></div>' : ''}</div>
@@ -588,7 +588,7 @@ function bomRows(){
   if (S.spd) add('spd', `Surge protective device ${S.phases === 3 ? '3P+N' : '1P+N'} type 2`);
   S.modules.forEach(m => { const r = R.m[m.id]; if (!r.lv) add('f' + r.In, `${sn(mS)}MCB ${r.In} A (module feed)`); add('m' + m.model, `${r.lib.brand || 'Lutron'} ${m.model} (${r.lib.fam})`); });
   S.circuits.forEach(c => { if (c.mod) return; const r = R.c[c.id], ser = c.prot === 'RCBO' ? rS : mS; add(c.prot + r.curve + r.In + r.thr + (ser ? ser.id : ''), `${sn(ser)}${c.prot} ${r.thr ? (c.prot === 'RCBO' ? '3P+N' : '3P') : (isLV(S) ? (dpOf(S) ? '2P' : '1P') + (isDC(S) ? ' DC' : '') : (STD[S.std].dp || c.prot === 'RCBO' ? '1P+N' : '1P'))} ${r.curve === 'Std' ? '' : r.curve}${r.In} A${c.prot === 'RCBO' ? ' 30 mA' : ''}`); });
-  return Object.values(map).map(x => [x.d, x.q]).concat(dBom());
+  return Object.values(map).map(x => [x.d, x.q]).concat((() => { try { return dBom(); } catch (e) { return []; } })());
 }
 async function dl(name, data){
   let d = null; try { d = await claude.use('downloads'); } catch (e) {}
@@ -766,7 +766,7 @@ function exportPDF(){
   };
   for (let r0 = 0; r0 < B.rows; r0 += RPP){ if (r0){ doc.addPage(); logo(); } panelPage(r0, Math.min(B.rows, r0 + RPP)); }
   pdfDiagram(doc, logo, PW, ML); doc.setTextColor(0);
-  dPdf(doc, logo, PW, ML);
+  try { dPdf(doc, logo, PW, ML); } catch (e) { console.warn('DALI pages skipped', e); }
   doc.addPage(); logo(); doc.setFont('helvetica', 'bold'); doc.setFontSize(13); doc.text(PT('Circuit schedule'), ML, 14);
   const cols = [['Ref', 12], ['Description', 48], ['Fed from', 22], ['Ph', 12], ['Load W', 16], ['Ib A', 13], ['Protection', 26], ['Cable', 38], ['Len m', 12], ['Iz A', 12], ['VD %', 13], ['Status', 14]];
   const rows = schedRows(); let y = 22;
@@ -846,7 +846,7 @@ function labelTables(){
 }
 function draw(){
   const v = $('#view');
-  v.innerHTML = ({setup: renderSetup, panel: renderPanel, circuits: renderCircuits, equipment: renderEquipment, checks: renderChecks, diagram: renderDiagram, dali: renderDali, tools: renderTools, export: renderExport, help: renderHelp})[tab]();
+  v.innerHTML = ({setup: renderSetup, panel: renderPanel, circuits: renderCircuits, equipment: renderEquipment, checks: renderChecks, diagram: renderDiagram, dali: () => { try { return renderDali(); } catch (e) { return '<div class="card"><p class="muted">The DALI page could not be drawn for this board.</p></div>'; } }, tools: renderTools, export: renderExport, help: renderHelp})[tab]();
   if (tab === 'panel') bindPanel();
   if (tab === 'circuits') updateCircuitCells();
   labelTables();

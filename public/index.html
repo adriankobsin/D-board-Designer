@@ -1440,11 +1440,11 @@ const DALI_CAT = (() => {
   ].forEach(x => D('OSRAM', x[0], 'driver', 'rem', {ch:x[1], ad:x[1], w:x[2], out:x[3], note:'OPTOTRONIC DALI LED driver. No DIN-rail OSRAM DALI driver was found.', src:x[4], v:x[5], as:osAs}));
   return out;
 })();
-const dCat = m => DALI_CAT.find(x => x.m === m);
+const dCat = m => DALI_CAT.find(x => x.m === m) || ((typeof S !== 'undefined' && S && S.dali && S.dali.custom) || []).find(x => x.m === m);
 let dQ = '', dBrand = '', dKindF = '', dMountF = '';
 
 /* ---------- state ---------- */
-function dS(){ if (!S.dali || !Array.isArray(S.dali.units)) S.dali = {units: []}; return S.dali; }
+function dS(){ if (!S.dali || !Array.isArray(S.dali.units)) S.dali = {units: []}; if (!Array.isArray(S.dali.custom)) S.dali.custom = []; return S.dali; }
 /* DALI controllers that sit in the main panel (Lutron, Crestron, MDT modules on the Panel tab) */
 function dPanelCtl(lib){
   const m = lib.model, f = lib.fam || '';
@@ -1711,11 +1711,52 @@ function dCtlCard(A){
   if (!cs.length) return '<div class="card"><h3>DALI controllers in this project</h3><p class="muted" style="margin-top:8px">No DALI controller yet. Add a DALI module from the Equipment tab (Lutron, Crestron or MDT, shown on the Panel tab) or a DALI master or gateway below, then connect drivers to its links.</p></div>';
   return `<div class="card"><h3>DALI controllers in this project</h3><div class="scroll"><table style="min-width:640px"><thead><tr><th>Controller</th><th>Where</th><th>Link</th><th>Devices</th><th>Addresses</th><th>Bus load</th></tr></thead><tbody>${cs.map(k => A.lines.filter(l => l.u === k.u).map((l, i) => `<tr>${i ? '<td></td><td></td>' : `<td class="mono"><b>${k.u.id}</b> ${esc(k.c.m)}<div class="note">${esc(k.c.b)}</div></td><td>${k.panel ? 'Main panel (Panel tab)' : 'DALI tab'}</td>`}<td><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:${DPAL[l.ci]};margin-right:6px"></span>${l.panel ? 'Link' : 'Line'} ${l.n}</td><td class="mono">${l.members.length}</td><td class="mono">${l.addr}/${l.max}</td><td class="mono">${+l.mA.toFixed(1)}/${l.sup || '?'} mA</td></tr>`).join('')).join('')}</tbody></table></div></div>`;
 }
+let dpQ = '', dpKind = '';
+const dAllCat = () => DALI_CAT.concat(dS().custom);
+function dPickList(){
+  const q = dpQ.trim().toLowerCase();
+  return dAllCat().filter(c => (!dpKind || c.k === dpKind) && (!q || (c.m + ' ' + c.b + ' ' + c.art + ' ' + c.out + ' ' + DKIND[c.k]).toLowerCase().includes(q)));
+}
+function dPickOpts(keep){
+  const list = dPickList(), brands = [...new Set(list.map(c => c.b))];
+  return list.length ? brands.map(b => `<optgroup label="${esc(b)}">${list.filter(c => c.b === b).map(c => `<option value="${esc(c.m)}" ${c.m === keep ? 'selected' : ''}>${esc(c.m)} · ${c.mt === 'din' ? 'DIN' : 'remote'}</option>`).join('')}</optgroup>`).join('') : '<option value="">No match</option>';
+}
+function dPicker(){
+  return `<input type="search" id="dsearch" placeholder="Search driver, brand, article" value="${esc(dpQ)}" style="min-width:210px" aria-label="Search DALI devices"><select id="dfkind" aria-label="Filter by type"><option value="">All types</option>${Object.keys(DKIND).map(k => `<option value="${k}" ${dpKind === k ? 'selected' : ''}>${DKIND[k]}</option>`).join('')}</select><select id="daddmodel" aria-label="DALI model">${dPickOpts('')}</select><span class="note" id="dcount">${dPickList().length} match${dPickList().length === 1 ? '' : 'es'}</span>`;
+}
+const dNum = (v, lo, hi, d) => { v = parseFloat(v); return isFinite(v) ? Math.min(hi, Math.max(lo, v)) : d; };
+function dFixCustom(c){
+  c.k = DKIND[c.k] ? c.k : 'driver'; c.mt = DMOUNT[c.mt] ? c.mt : 'rem';
+  c.du = c.mt === 'din' ? dNum(c.du, 0.5, 12, 1) : 0; c.ch = Math.round(dNum(c.ch, 0, 16, 0));
+  const dev = c.k !== 'master' && c.k !== 'psu';
+  c.ad = dev ? Math.round(dNum(c.ad, 0, 64, 1)) : 0; c.ma = dev ? dNum(c.ma, 0, 250, 2) : 0;
+  c.ln = c.k === 'master' ? Math.round(dNum(c.ln, 1, 4, 1)) : 0; c.sup = c.k === 'master' || c.k === 'psu' ? dNum(c.sup, 0, 500, 0) : 0;
+  c.w = dNum(c.w, 0, 100000, 0); c.b = 'Custom'; c.custom = 1; c.art = c.art || ''; c.src = ''; c.as = ''; return c;
+}
+function dCustomAdd(f){
+  const name = String(f.name || '').trim().slice(0, 40); if (!name){ toast('Give the custom device a name.'); return false; }
+  const cust = dS().custom; let m = name; if (DALI_CAT.some(x => x.m === m) || cust.some(x => x.m === m)) m = name + ' (custom)'; let n = 2; while (DALI_CAT.some(x => x.m === m) || cust.some(x => x.m === m)) m = name + ' (custom ' + n++ + ')';
+  cust.push(dFixCustom({m, k: f.k, mt: f.mt, du: f.du, ch: f.ch, ad: f.ad, ma: f.ma, ln: f.ln, sup: f.sup, w: f.w, out: f.out || '', note: 'Custom device entered by hand.'}));
+  return m;
+}
+function dCustomCard(){
+  const cu = dS().custom, us = dS().units, sel = (o, v) => Object.keys(o).map(k => `<option value="${k}" ${v === k ? 'selected' : ''}>${o[k]}</option>`).join('');
+  const f = (id, label, inp) => `<label class="fld"><span>${label}</span>${inp}</label>`, n = (id, v, extra = '') => `<input type="number" id="${id}" value="${v}" ${extra}>`;
+  return `<div class="card"><h3>Custom DALI device</h3>
+   <p class="note" style="margin:6px 0 10px;max-width:80ch">Add a driver, supply, controller or input that is not in the library and type in its figures. It then appears in the model list above and can be connected to a link like any other device.</p>
+   <div class="grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px">
+   ${f('', 'Name', '<input type="text" id="cname" placeholder="e.g. Tridonic 75 W CC" maxlength="40">')}${f('', 'Type', `<select id="ckind">${sel(DKIND, 'driver')}</select>`)}${f('', 'Mounting', `<select id="cmount">${sel(DMOUNT, 'rem')}</select>`)}
+   ${f('', 'DIN width, DU (17.5 mm)', n('cdu', 1, 'min="0.5" max="12" step="0.5"'))}${f('', 'DALI addresses used', n('cad', 1, 'min="0" max="64" step="1"'))}${f('', 'DALI current, mA', n('cma', 2, 'min="0" max="250" step="0.5"'))}
+   ${f('', 'Channels', n('cch', 1, 'min="0" max="16" step="1"'))}${f('', 'Lines (controller)', n('cln', 1, 'min="1" max="4" step="1"'))}${f('', 'Bus supply mA (supply or controller)', n('csup', 0, 'min="0" max="500" step="10"'))}
+   ${f('', 'Power, W', n('cw', 0, 'min="0" step="1"'))}${f('', 'Output / notes', '<input type="text" id="cout" placeholder="e.g. 700 mA, 2-42 V" maxlength="60">')}${f('', 'Quantity', n('ccqty', 1, 'min="1" max="50" step="1"'))}</div>
+   <div class="row" style="margin-top:12px"><button class="btn pri" data-a="dcust">Create and add</button><span class="note">Address and mA apply to drivers and inputs. Lines and bus supply apply to controllers and supplies. DIN width applies when the mounting is DIN rail.</span></div>
+   ${cu.length ? `<h3 style="margin-top:18px">Your custom devices</h3><div class="scroll"><table style="min-width:1000px"><thead><tr><th>Name</th><th>Type</th><th>Mounting</th><th>DU</th><th>Addr.</th><th>mA</th><th>Ch.</th><th>Lines</th><th>Supply mA</th><th>W</th><th>Output</th><th>In use</th><th></th></tr></thead><tbody>${cu.map(c => { const q = (k, v, w, ex = '') => `<td style="width:${w}px"><input type="number" data-ck="${k}" data-model="${esc(c.m)}" value="${v}" ${ex} aria-label="${k} of ${esc(c.m)}"></td>`; return `<tr><td><input type="text" data-ck="m" data-model="${esc(c.m)}" value="${esc(c.m)}" maxlength="40" aria-label="Name"></td><td><select data-ck="k" data-model="${esc(c.m)}">${sel(DKIND, c.k)}</select></td><td><select data-ck="mt" data-model="${esc(c.m)}">${sel(DMOUNT, c.mt)}</select></td>${q('du', c.du, 70, 'step="0.5"')}${q('ad', c.ad, 66)}${q('ma', c.ma, 70, 'step="0.5"')}${q('ch', c.ch, 60)}${q('ln', c.ln, 60)}${q('sup', c.sup, 80, 'step="10"')}${q('w', c.w, 70)}<td><input type="text" data-ck="out" data-model="${esc(c.m)}" value="${esc(c.out)}" maxlength="60"></td><td class="mono">${us.filter(u => u.model === c.m).length}</td><td><button class="btn sm" data-a="dcustdel" data-model="${esc(c.m)}" aria-label="Delete ${esc(c.m)}">✕</button></td></tr>`; }).join('')}</tbody></table></div>` : ''}</div>`;
+}
 function renderDali(){
   const A = dAnalyse(), us = A.units, ck = daliChecks(), models = [...new Set(us.map(u => u.model))], lay = dLay(), net = dNet();
   const lv = {err:'Fail', warn:'Review', info:'Note'}, ord = {err:0, warn:1, info:2};
   const brands = [...new Set(DALI_CAT.map(c => c.b))];
-  const picker = `<select id="daddmodel" aria-label="DALI model">${brands.map(b => `<optgroup label="${b}">${DALI_CAT.filter(c => c.b === b).map(c => `<option value="${esc(c.m)}">${esc(c.m)} · ${c.mt === 'din' ? 'DIN' : 'remote'}</option>`).join('')}</optgroup>`).join('')}</select>`;
+  const picker = dPicker();
   const stack1 = dStack(net.map(s => s)), stack2 = dStack(lay.secs);
   return `<div class="card"><div class="row" style="justify-content:space-between"><h2>DALI network</h2><div class="stats"><span>Lines <b>${A.lines.length}</b></span><span>Devices <b>${us.length}</b></span><span>On DIN rail <b>${lay.dinCount}</b> (${lay.dinDU} DU)</span><span>Remote <b>${lay.remCount}</b></span><span>Not connected <b>${A.free.length}</b></span></div></div>
    <p class="note" style="margin:6px 0 0;max-width:80ch">Add DALI masters, bus supplies and drivers here or from the DALI library on the Equipment tab. Each driver is connected to one link of a DALI controller. Controllers placed in the panel (for example a Lutron QSN2-2DALUNV-D) appear here automatically, as do masters added below. Addresses are handed out in order on each line, up to 64.</p>
@@ -1724,6 +1765,7 @@ function renderDali(){
   <div class="card"><h3>Quantities</h3>
    <div class="row" style="margin:8px 0 12px">${picker}<select id="daddlink" aria-label="Connect to"><option value="">Connect to: first free link</option>${dLineOpts(A, '')}</select><input type="number" id="daddqty" class="qty" value="1" min="1" max="50" step="1" aria-label="Quantity" inputmode="numeric"><button class="btn pri" data-a="dadd2">Add to DALI network</button>${us.length ? '<button class="btn" data-a="dclear">Remove all DALI</button>' : ''}</div>
    ${models.length ? `<div class="scroll"><table style="min-width:620px"><thead><tr><th>Model</th><th>Type</th><th>Mounting</th><th>Quantity</th><th></th></tr></thead><tbody>${models.map(m => { const c = dCat(m), n = us.filter(u => u.model === m).length; return `<tr><td class="mono"><b>${esc(m)}</b><div class="note">${c.b}${c.art ? ' · ' + esc(c.art) : ''}</div></td><td>${DKIND[c.k]}</td><td>${c.mt === 'din' ? 'DIN ' + c.du + ' DU' : DMOUNT[c.mt]}</td><td style="width:110px"><input type="number" class="dqty" data-model="${esc(m)}" value="${n}" min="1" max="99" step="1" aria-label="Quantity of ${esc(m)}" inputmode="numeric"></td><td><button class="btn sm" data-a="dgone" data-model="${esc(m)}" aria-label="Remove all ${esc(m)}">Remove</button></td></tr>`; }).join('')}</tbody></table></div>` : '<p class="muted">No DALI equipment yet. Pick a model above, or browse the DALI library on the Equipment tab.</p>'}</div>
+  ${dCustomCard()}
   ${us.length ? `<div class="card"><h3>DALI modules</h3><div class="scroll"><table class="stack" style="min-width:900px"><thead><tr><th>Ref</th><th>Model</th><th>Mounting</th><th>Name / location</th><th>DALI link</th><th>Address</th><th>mA</th><th></th></tr></thead><tbody>${us.map(u => { const c = dCat(u.model), l = A.by[u.link]; return `<tr><td class="mono">${u.id}</td><td><b>${esc(c.m)}</b><div class="note">${c.b} · ${DKIND[c.k]}</div></td><td>${c.mt === 'din' ? 'DIN ' + c.du + ' DU' : DMOUNT[c.mt]}</td><td><input type="text" data-dk="label" data-id="${u.id}" value="${esc(u.label)}" placeholder="e.g. Kitchen downlights" aria-label="Name for ${u.id}" maxlength="40"></td><td style="min-width:220px">${dLinkSelect(u, A)}</td><td class="mono">${c.k === 'master' ? c.ln + ' lines' : c.k === 'psu' ? 'bus supply' : l ? dAddr(l, u) || '–' : '–'}</td><td class="mono" style="text-align:right">${c.k === 'master' || c.k === 'psu' ? '–' : c.ma}</td><td><button class="btn sm" data-a="ddel" data-id="${u.id}" aria-label="Remove ${u.id}">✕</button></td></tr>`; }).join('')}</tbody></table></div></div>` : ''}
   ${(A.lines.length || us.length) ? `<div class="card"><div class="row" style="justify-content:space-between"><h2>DALI network schematic</h2><span class="note">Separate from the panel schematic. Colour = DALI line; dashed boxes are remote devices.</span></div>
    <div class="scroll" style="margin-top:10px">${stack1.items.length ? dSvg(stack1.items, DW, stack1.H) : '<p class="muted">Add a DALI controller to the panel, or a master below, to draw the network.</p>'}</div></div>
@@ -1733,10 +1775,13 @@ function renderDali(){
 
 /* ---------- events ---------- */
 document.addEventListener('input', e => {
+  if (e.target.id === 'dsearch'){ dpQ = e.target.value; const sl = $('#daddmodel'), keep = sl.value; sl.innerHTML = dPickOpts(keep); $('#dcount').textContent = dPickList().length + ' match' + (dPickList().length === 1 ? '' : 'es'); return; }
   if (e.target.id === 'dq'){ dQ = e.target.value; const b = $('#dbody'); if (b) b.innerHTML = dRows(); }
 });
 document.addEventListener('change', e => {
   const t = e.target;
+  if (t.id === 'dfkind'){ dpKind = t.value; const sl = $('#daddmodel'); sl.innerHTML = dPickOpts(sl.value); $('#dcount').textContent = dPickList().length + ' match' + (dPickList().length === 1 ? '' : 'es'); return; }
+  if (t.dataset && t.dataset.ck){ dCustomEdit(t); return; }
   if (t.id === 'dbrand'){ dBrand = t.value; $('#dbody').innerHTML = dRows(); return; }
   if (t.id === 'dkind'){ dKindF = t.value; $('#dbody').innerHTML = dRows(); return; }
   if (t.id === 'dmount'){ dMountF = t.value; $('#dbody').innerHTML = dRows(); return; }
@@ -1749,8 +1794,24 @@ document.addEventListener('click', e => {
   else if (a === 'dadd2'){ dadd($('#daddmodel').value, qtyOf('#daddqty'), $('#daddlink').value); refresh(true); }
   else if (a === 'ddel'){ ddel(b.dataset.id); refresh(true); }
   else if (a === 'dgone'){ dS().units.filter(u => u.model === b.dataset.model).map(u => u.id).forEach(ddel); refresh(true); }
+  else if (a === 'dcust'){
+    const g = id => ($('#' + id) || {}).value, m = dCustomAdd({name: g('cname'), k: g('ckind'), mt: g('cmount'), du: g('cdu'), ad: g('cad'), ma: g('cma'), ch: g('cch'), ln: g('cln'), sup: g('csup'), w: g('cw'), out: g('cout')});
+    if (m){ dadd(m, qtyOf('#ccqty'), $('#daddlink').value); refresh(true); toast(m + ' added.'); }
+  }
+  else if (a === 'dcustdel'){ const m = b.dataset.model; dS().units.filter(u => u.model === m).map(u => u.id).forEach(ddel); S.dali.custom = S.dali.custom.filter(c => c.m !== m); refresh(true); }
   else if (a === 'dclear'){ S.dali = {units: []}; refresh(true); }
 });
+
+function dCustomEdit(t){
+  const c = dS().custom.find(x => x.m === t.dataset.model); if (!c) return; const k = t.dataset.ck;
+  if (k === 'm'){
+    let v = String(t.value || '').trim().slice(0, 40) || c.m, nm = v, n = 2;
+    while (nm !== c.m && (DALI_CAT.some(x => x.m === nm) || S.dali.custom.some(x => x.m === nm))) nm = v + ' (' + n++ + ')';
+    S.dali.units.forEach(u => { if (u.model === c.m) u.model = nm; }); c.m = nm;
+  } else c[k] = (k === 'out' || k === 'kind' || k === 'k' || k === 'mt') ? t.value : t.value;
+  dFixCustom(c);
+  daliFix(); refresh(true);
+}
 
 /* ========== DBoard Designer interface ========== */
 const $ = (s, r = document) => r.querySelector(s);
@@ -2568,7 +2629,7 @@ function renderHelp(){
    ['Check the panel layout', 'Open <b>Panel</b> to see the DIN rails drawn with every device and its circuit name. Click a device to open the inspector: edit it, move it along the rail or to another rail, or delete it. Use <b>+ Circuit</b>, <b>+ DIN module</b> or <b>+ Custom device</b> to add things here too. You can change the main breaker, and bring back a deleted main or surge protector with the restore buttons. <b>Fit to screen</b> and <b>Full size</b> switch the zoom.'],
    ['Read the checks', 'Open <b>Checks</b>. The tool tests that each breaker covers the load and protects its cable, that voltage drop stays under your limit, that RCD protection is present where the standard asks for it, that breaker breaking capacity covers the fault level, and that Lutron module and zone limits (load, current, voltage, temperature) are respected. It also checks the incomer rating and cable, phase imbalance and enclosure heat. <b>Fail</b> means fix it before building, <b>Review</b> means look at it and decide, and notes are for information.'],
    ['Review the diagram', 'Open <b>Diagram</b> for the multi-line wiring diagram. Every live conductor is drawn from its phase bus and the neutral from the N bus. A dashed box marks breakers that switch the neutral, a triangle marks the RCD, and dashed lines show circuits switched by a Lutron zone. Each circuit shows cable, protection, load bar and status.'],
-   ['Plan the DALI lighting network', 'Open <b>Equipment</b> and scroll to the <b>DALI equipment library</b>: Lunatone, OSRAM and LTECH masters and gateways, bus power supplies, push-button couplers, relays and dimmers or drivers, both DIN-rail and remote types. Filter by brand, type or <b>DIN rail only</b>, set a quantity and press <b>Add</b>. Then open the <b>DALI</b> tab. DALI controller modules you place in the panel (Lutron, Crestron, MDT) are listed there automatically under <b>DALI controllers in this project</b>, each with its links, and you can connect drivers to the link you choose. Under <b>Quantities</b> you can add models, change a quantity or remove a model. In <b>DALI modules</b> give each device a name or location, choose the <b>DALI link</b> (a line of a master) it connects to, or delete it. The tool hands out addresses on each line (up to 64) and checks bus current against the bus supply. The <b>DALI network schematic</b> and the <b>DALI module layout</b> (a DIN-rail strip plus a separate area for remote drivers) are drawn below, separate from the panel schematic, and both are included in the PDF, with a DALI sheet in the Excel file and DALI items in the bill of materials.'],
+   ['Plan the DALI lighting network', 'Open <b>Equipment</b> and scroll to the <b>DALI equipment library</b>: Lunatone, OSRAM and LTECH masters and gateways, bus power supplies, push-button couplers, relays and dimmers or drivers, both DIN-rail and remote types. Filter by brand, type or <b>DIN rail only</b>, set a quantity and press <b>Add</b>. Then open the <b>DALI</b> tab. DALI controller modules you place in the panel (Lutron, Crestron, MDT) are listed there automatically under <b>DALI controllers in this project</b>, each with its links, and you can connect drivers to the link you choose. Under <b>Quantities</b> you can search the model list by name, brand or article, and filter it by type. If a driver is not in the library, use <b>Custom DALI device</b> to type in its addresses, DALI current, mounting and other figures; custom devices can be edited or deleted there. Also under Quantities you can add models, change a quantity or remove a model. In <b>DALI modules</b> give each device a name or location, choose the <b>DALI link</b> (a line of a master) it connects to, or delete it. The tool hands out addresses on each line (up to 64) and checks bus current against the bus supply. The <b>DALI network schematic</b> and the <b>DALI module layout</b> (a DIN-rail strip plus a separate area for remote drivers) are drawn below, separate from the panel schematic, and both are included in the PDF, with a DALI sheet in the Excel file and DALI items in the bill of materials.'],
    ['Use the Tools', 'Open <b>Tools</b> for quick electrician\'s calculators that work on their own, away from the board. Use <b>Ohm\'s law and power</b> to find voltage, current, resistance or power from any two values. <b>AC power and power factor</b> covers single and three phase loads, and <b>Power factor correction</b> sizes a capacitor bank. <b>Cable size</b> picks the smallest copper cable for a load, length and voltage-drop limit using the same tables as the circuits, and <b>Voltage drop</b> checks a cable you have chosen. <b>Resistor networks</b> solves series and parallel circuits with Kirchhoff\'s laws, and <b>Star and delta</b> converts line and phase values. Each result shows the formula and the numbers used.'],
    ['Export', 'Open <b>Export</b>. <b>Save PDF</b> produces the panel layout, the multi-line diagram, the circuit schedule and power totals; tick <b>Include bill of materials</b> if you want that list added. <b>Save Excel</b> and <b>Save CSV</b> give the schedule for other tools. <b>Save project</b> stores the whole design as a file you can reopen later with <b>Open project</b>. Boards created by <b>Import a panel</b> export exactly the same way.']
   ];

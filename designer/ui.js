@@ -23,6 +23,7 @@ function fix(){
   S.circuits.forEach(c => { if (c.mod){ const m = S.modules.find(x => x.id === c.mod), z = m && (libOf(m.model) || {}).zones; if (!z) c.mod = ''; else if (c.zone > z) c.zone = z; } });
   const std = STD[S.std];
   S.circuits.forEach(c => { if (!std.curves.includes(c.curve)) c.curve = std.curves[0]; });
+  daliFix();
 }
 function calc(){
   fix();
@@ -438,6 +439,7 @@ function renderEquipment(){
   <div class="card"><div class="row" style="justify-content:space-between"><h2>DIN equipment library</h2><div class="row"><input type="text" id="libq" placeholder="Search model, family, voltage" value="${esc(libQ)}" style="min-width:220px" aria-label="Search library"><select id="libbrand" aria-label="Brand"><option value="">All brands</option>${brands.map(b => `<option value="${esc(b)}" ${libBrand === b ? 'selected' : ''}>${b}</option>`).join('')}</select><select id="libfam" aria-label="Family"><option value="">All families</option>${fams.map(f => `<option value="${esc(f)}" ${libFam === f ? 'selected' : ''}>${f}</option>`).join('')}</select></div></div>
   <p class="note" style="margin:6px 0 10px">${LIB.length} DIN-rail modules from Lutron, Crestron, Control4 and MDT KNX. Lutron data comes from Application Note #466 (rev T, May 2026) and spec submittals, Crestron from its product pages, Control4 from its data sheets, and MDT from its product and price lists (1 module = 18 mm). Where a source did not state a value it is shown as ? or –. KNX actuators are bus powered, so only their load side counts toward the feed. Verify against the current manufacturer datasheet before ordering.</p>
   <div class="scroll" style="max-height:520px;overflow-y:auto"><table style="min-width:1220px"><thead><tr><th>Model</th><th>Family</th><th>Line</th><th>Supply</th><th>DIN</th><th>mm</th><th>Zones</th><th>Input A</th><th>BTU/h</th><th>Max °C</th><th>g</th><th>Notes</th><th></th></tr></thead><tbody id="libbody">${libRows()}</tbody></table></div></div>
+  ${daliLibCard()}
   <div class="card"><div class="row" style="justify-content:space-between"><h2>Circuit protection library</h2><div class="row"><input type="text" id="brkq" placeholder="Search series or standard" value="${esc(brkQ)}" style="min-width:200px" aria-label="Search protection devices"><select id="brkmfr" aria-label="Manufacturer"><option value="">All manufacturers</option>${[...new Set(BRK.map(b => b.mfr))].map(m => `<option value="${esc(m)}" ${brkMfr === m ? 'selected' : ''}>${m}</option>`).join('')}</select><select id="brkkind" aria-label="Device type"><option value="">All types</option>${Object.keys(KIND).map(k => `<option value="${k}" ${brkKind === k ? 'selected' : ''}>${KIND[k]}</option>`).join('')}</select></div></div>
   <p class="note" style="margin:6px 0 10px">${BRK.length} series from ${new Set(BRK.map(b => b.mfr)).size} manufacturers. Ratings, capacities and widths are series-level catalogue values: “Source checked” means a manufacturer or distributor page confirmed them, “Typical” means they are common catalogue figures to confirm on the datasheet. Press Use to apply a series to this board.</p>
   <div class="scroll" style="max-height:520px;overflow-y:auto"><table style="min-width:1180px"><thead><tr><th>Manufacturer</th><th>Series</th><th>Type</th><th>Poles</th><th>Rating A</th><th>Curves</th><th>Icn kA</th><th>Icu kA</th><th>Width, modules</th><th>RCD</th><th>Notes</th><th></th></tr></thead><tbody id="brkbody">${brkRows()}</tbody></table></div></div>
@@ -451,7 +453,7 @@ function renderChecks(){
   const bars = act.map(p => `<div class="bar-r"><span class="mono">${busLab(p)}</span><div class="bar-t"><div class="bar-f" style="width:${R.ph[p] / mx * 100}%;background:${PHV[p]}"></div></div><span class="mono">${fmt(R.ph[p], 1)} A · ${fmt(R.power.phW[p] / 1000, 2)} kW</span></div>`).join('');
   const lv = {err:'Fail', warn:'Review', info:'Note'};
   const order = {err:0, warn:1, info:2};
-  const items = R.checks.slice().sort((a, b) => order[a.lvl] - order[b.lvl]);
+  const items = R.checks.concat(daliChecks()).sort((a, b) => order[a.lvl] - order[b.lvl]);
   return `<div class="card"><h2>Phase balance and incomer</h2><div class="bars" style="margin-top:12px">${bars}</div>
    <div class="stats" style="margin-top:14px"><span>Connected load <b>${fmt(R.power.conn / 1000, 2)} kW</b></span><span>Demand <b>${fmt(R.power.dem / 1000, 2)} kW</b></span>${isDC(S) ? '' : `<span>Apparent <b>${fmt(R.power.kva / 1000, 2)} kVA</b></span><span>PF <b>${fmt(R.power.pf, 2)}</b></span>`}<span>Diversity <b>${S.diversity}</b></span><span>Max phase <b>${fmt(R.inc.Imax, 1)} A</b></span><span>Imbalance <b>${fmt(R.inc.imb, 0)} %</b></span><span>Incomer <b>${R.inc.In || '–'} A</b>, cable <b>${R.inc.cab.size} mm²</b></span><span>Worst end-to-end drop <b>${fmt(R.worstVd, 2)} %</b></span><span>Heat in enclosure ≈ <b>${fmt(R.heatW, 0)} W</b></span></div>
    ${S.phases === 3 ? '<div class="row" style="margin-top:12px"><button class="btn" data-a="bal">Auto-balance phases</button></div>' : ''}</div>
@@ -586,7 +588,7 @@ function bomRows(){
   if (S.spd) add('spd', `Surge protective device ${S.phases === 3 ? '3P+N' : '1P+N'} type 2`);
   S.modules.forEach(m => { const r = R.m[m.id]; if (!r.lv) add('f' + r.In, `${sn(mS)}MCB ${r.In} A (module feed)`); add('m' + m.model, `${r.lib.brand || 'Lutron'} ${m.model} (${r.lib.fam})`); });
   S.circuits.forEach(c => { if (c.mod) return; const r = R.c[c.id], ser = c.prot === 'RCBO' ? rS : mS; add(c.prot + r.curve + r.In + r.thr + (ser ? ser.id : ''), `${sn(ser)}${c.prot} ${r.thr ? (c.prot === 'RCBO' ? '3P+N' : '3P') : (isLV(S) ? (dpOf(S) ? '2P' : '1P') + (isDC(S) ? ' DC' : '') : (STD[S.std].dp || c.prot === 'RCBO' ? '1P+N' : '1P'))} ${r.curve === 'Std' ? '' : r.curve}${r.In} A${c.prot === 'RCBO' ? ' 30 mA' : ''}`); });
-  return Object.values(map).map(x => [x.d, x.q]);
+  return Object.values(map).map(x => [x.d, x.q]).concat(dBom());
 }
 async function dl(name, data){
   let d = null; try { d = await claude.use('downloads'); } catch (e) {}
@@ -612,6 +614,7 @@ function exportXLSX(){
   XLSX.utils.book_append_sheet(wb, mk([SCHED_HEAD.map(h => T(h))].concat(schedRows()), [6, 28, 16, 14, 8, 9, 6, 8, 8, 18, 6, 20, 9, 12, 7, 8]), sheetName('Schedule'));
   const eq = [['Ref', 'Model', 'Family', 'Feed phase', 'Feed A', 'Feed breaker A', 'Feed cable mm2', 'Modules (18 mm)', 'Heat BTU/h'].map(h => T(h))].concat(S.modules.map(m => { const r = R.m[m.id]; return [m.id, m.model, r.lib.fam, r.ph, +r.Ib.toFixed(2), r.In, r.cab.size, r.lib.din, r.lib.btu]; }));
   XLSX.utils.book_append_sheet(wb, mk(eq, [6, 20, 24, 10, 8, 14, 14, 14, 11]), sheetName('DIN modules'));
+  if (dS().units.length){ const A = dAnalyse(); XLSX.utils.book_append_sheet(wb, mk([['Ref', 'Model', 'Brand', 'Article', 'Type', 'Mounting', 'DIN DU', 'DALI line', 'Address', 'DALI mA', 'Name / location'].map(h => T(h))].concat(A.units.map(x => { const c = dCat(x.model), l = A.by[x.link]; return [x.id, c.m, c.b, c.art, DKIND[c.k], DMOUNT[c.mt], c.du || '', l ? l.label : '', l && c.k !== 'psu' ? dAddr(l, x) : '', c.k === 'master' || c.k === 'psu' ? '' : c.ma, x.label || '']; })), [6, 36, 10, 16, 24, 22, 8, 14, 10, 8, 24]), sheetName('DALI')); XLSX.utils.book_append_sheet(wb, mk([['Line', 'Master', 'Devices', 'Addresses (max 64)', 'Bus load mA', 'Bus supply mA', 'Supply from'].map(h => T(h))].concat(A.lines.map(l => [l.label, l.c.m, l.members.length, l.addr, +l.mA.toFixed(1), l.sup || '', l.supBy || ''])), [14, 30, 9, 18, 12, 14, 18]), sheetName('DALI lines')); }
   XLSX.utils.book_append_sheet(wb, mk([[T('Item'), T('Qty')]].concat(bomRows()), [52, 6]), sheetName('Bill of materials'));
   const ph = [[T('Phase'), T('Current A (after diversity)')]].concat((S.phases === 3 ? ['L1', 'L2', 'L3'] : ['L1']).map(p => [p + ' (A, ' + (R.power.phW[p] / 1000).toFixed(2) + ' kW)', +R.ph[p].toFixed(2)])).concat([[T('Incomer A'), R.inc.In], [T('Imbalance %'), +R.inc.imb.toFixed(1)], [T('Connected kW'), +(R.power.conn / 1000).toFixed(2)], [T('Demand kW (after diversity)'), +(R.power.dem / 1000).toFixed(2)], [T('Apparent kVA'), +(R.power.kva / 1000).toFixed(2)], [T('Power factor'), +R.power.pf.toFixed(2)], [T('Dissipation W'), +R.heatW.toFixed(0)]]);
   XLSX.utils.book_append_sheet(wb, mk(ph, [28, 26]), sheetName('Phases'));
@@ -763,6 +766,7 @@ function exportPDF(){
   };
   for (let r0 = 0; r0 < B.rows; r0 += RPP){ if (r0){ doc.addPage(); logo(); } panelPage(r0, Math.min(B.rows, r0 + RPP)); }
   pdfDiagram(doc, logo, PW, ML); doc.setTextColor(0);
+  dPdf(doc, logo, PW, ML);
   doc.addPage(); logo(); doc.setFont('helvetica', 'bold'); doc.setFontSize(13); doc.text(PT('Circuit schedule'), ML, 14);
   const cols = [['Ref', 12], ['Description', 48], ['Fed from', 22], ['Ph', 12], ['Load W', 16], ['Ib A', 13], ['Protection', 26], ['Cable', 38], ['Len m', 12], ['Iz A', 12], ['VD %', 13], ['Status', 14]];
   const rows = schedRows(); let y = 22;
@@ -789,7 +793,7 @@ function renderExport(){
 }
 
 /* ---------- router and events ---------- */
-const TABS = [['setup', 'Setup'], ['panel', 'Panel'], ['circuits', 'Circuits'], ['equipment', 'Equipment'], ['checks', 'Checks'], ['diagram', 'Diagram'], ['tools', 'Tools'], ['export', 'Export']];
+const TABS = [['setup', 'Setup'], ['panel', 'Panel'], ['circuits', 'Circuits'], ['equipment', 'Equipment'], ['checks', 'Checks'], ['diagram', 'Diagram'], ['dali', 'DALI'], ['tools', 'Tools'], ['export', 'Export']];
 const TICON = {
   setup:'<path d="M4 6h10M18 6h2M4 12h2M10 12h10M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="8" cy="12" r="2"/><circle cx="18" cy="18" r="2"/>',
   panel:'<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M8 5v2M12 5v2M16 5v2M8 11v2M12 11v2M8 17v2M12 17v2"/>',
@@ -797,6 +801,7 @@ const TICON = {
   equipment:'<path d="M12 3v4M9 3v4M15 3v4"/><rect x="6" y="7" width="12" height="7" rx="2"/><path d="M12 14v4a3 3 0 0 0 3 3h2"/>',
   checks:'<circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16 9.5"/>',
   diagram:'<path d="M3 5h5M3 12h5M3 19h5M8 5v14M8 12h6M14 9h7v6h-7zM8 19h13"/>',
+  dali:'<circle cx="12" cy="5" r="2.2"/><path d="M12 7.2V12M5 12h14M5 12v3.5M12 12v3.5M19 12v3.5"/><rect x="3" y="15.5" width="4" height="5" rx="1"/><rect x="10" y="15.5" width="4" height="5" rx="1"/><rect x="17" y="15.5" width="4" height="5" rx="1"/>',
   tools:'<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3.5 17.5a1.8 1.8 0 0 0 2.5 2.5l5.8-5.8a4 4 0 0 0 5.4-5.4l-2.4 2.4-2.1-.6-.6-2.1z"/>',
   export:'<path d="M12 3v12M7 10l5 5 5-5M4 20h16"/>'};
 
@@ -809,6 +814,7 @@ function renderHelp(){
    ['Check the panel layout', 'Open <b>Panel</b> to see the DIN rails drawn with every device and its circuit name. Click a device to open the inspector: edit it, move it along the rail or to another rail, or delete it. Use <b>+ Circuit</b>, <b>+ DIN module</b> or <b>+ Custom device</b> to add things here too. You can change the main breaker, and bring back a deleted main or surge protector with the restore buttons. <b>Fit to screen</b> and <b>Full size</b> switch the zoom.'],
    ['Read the checks', 'Open <b>Checks</b>. The tool tests that each breaker covers the load and protects its cable, that voltage drop stays under your limit, that RCD protection is present where the standard asks for it, that breaker breaking capacity covers the fault level, and that Lutron module and zone limits (load, current, voltage, temperature) are respected. It also checks the incomer rating and cable, phase imbalance and enclosure heat. <b>Fail</b> means fix it before building, <b>Review</b> means look at it and decide, and notes are for information.'],
    ['Review the diagram', 'Open <b>Diagram</b> for the multi-line wiring diagram. Every live conductor is drawn from its phase bus and the neutral from the N bus. A dashed box marks breakers that switch the neutral, a triangle marks the RCD, and dashed lines show circuits switched by a Lutron zone. Each circuit shows cable, protection, load bar and status.'],
+   ['Plan the DALI lighting network', 'Open <b>Equipment</b> and scroll to the <b>DALI equipment library</b>: Lunatone, OSRAM and LTECH masters and gateways, bus power supplies, push-button couplers, relays and dimmers or drivers, both DIN-rail and remote types. Filter by brand, type or <b>DIN rail only</b>, set a quantity and press <b>Add</b>. Then open the <b>DALI</b> tab. Under <b>Quantities</b> you can add models, change a quantity or remove a model. In <b>DALI modules</b> give each device a name or location, choose the <b>DALI link</b> (a line of a master) it connects to, or delete it. The tool hands out addresses on each line (up to 64) and checks bus current against the bus supply. The <b>DALI network schematic</b> and the <b>DALI module layout</b> (a DIN-rail strip plus a separate area for remote drivers) are drawn below, separate from the panel schematic, and both are included in the PDF, with a DALI sheet in the Excel file and DALI items in the bill of materials.'],
    ['Use the Tools', 'Open <b>Tools</b> for quick electrician\'s calculators that work on their own, away from the board. Use <b>Ohm\'s law and power</b> to find voltage, current, resistance or power from any two values. <b>AC power and power factor</b> covers single and three phase loads, and <b>Power factor correction</b> sizes a capacitor bank. <b>Cable size</b> picks the smallest copper cable for a load, length and voltage-drop limit using the same tables as the circuits, and <b>Voltage drop</b> checks a cable you have chosen. <b>Resistor networks</b> solves series and parallel circuits with Kirchhoff\'s laws, and <b>Star and delta</b> converts line and phase values. Each result shows the formula and the numbers used.'],
    ['Export', 'Open <b>Export</b>. <b>Save PDF</b> produces the panel layout, the multi-line diagram, the circuit schedule and power totals; tick <b>Include bill of materials</b> if you want that list added. <b>Save Excel</b> and <b>Save CSV</b> give the schedule for other tools. <b>Save project</b> stores the whole design as a file you can reopen later with <b>Open project</b>. Boards created by <b>Import a panel</b> export exactly the same way.']
   ];
@@ -817,6 +823,7 @@ function renderHelp(){
    ['Reading a panel photo or PDF', 'A photo is read on a best-effort basis. Take it straight on with the door open and no glare, switch the flash off if labels reflect it, and add close-ups of each row for large boards. PDFs with real text read best. Always check ratings, phases and labels against the real panel before you issue the result as as-built documentation. Each person can run a limited number of readings per day.'],
    ['Your account', 'Use the profile menu for Account settings: edit your details, change your password, download all your data, or delete your account. Use Feedback on the Dashboard to tell us what to improve.'],
    ['Install it like an app', 'In the installable version, use your browser\'s Install or Add to Home Screen option. It then opens full screen and works offline.'],
+   ['DALI figures','Lunatone figures were read from its product pages. Where LTECH or OSRAM pages did not state DALI current or mounting, the library marks the item Assumed (2 mA per device). Neither brand has a DIN-rail DALI driver in the library; the LTECH bus supply and relay are DIN-rail. Check each item on the datasheet before ordering.'],
    ['Start fresh or reload the example', 'At the bottom of Setup, <b>Start an empty board</b> clears everything and <b>Reload the example board</b> brings back the sample cabin and AV panel.'],
    ['Low voltage boards', 'Choose Low voltage AC / DC as the supply type. Breaker ratings and cable sizes then use DC-rated series, and the panel draws positive and negative bars instead of phases.'],
    ['Troubleshooting and standards', 'In Tools, <b>Cable resistance</b> finds the resistance, length or size of a copper or aluminium cable, for example to estimate how far away a fault is. The <b>Standards reference</b> at the bottom lists voltage-drop limits, breaker ratings, RCD rules, wire colours and earthing for each standard. It is for reference only, so confirm it against the current edition.'],
@@ -839,7 +846,7 @@ function labelTables(){
 }
 function draw(){
   const v = $('#view');
-  v.innerHTML = ({setup: renderSetup, panel: renderPanel, circuits: renderCircuits, equipment: renderEquipment, checks: renderChecks, diagram: renderDiagram, tools: renderTools, export: renderExport, help: renderHelp})[tab]();
+  v.innerHTML = ({setup: renderSetup, panel: renderPanel, circuits: renderCircuits, equipment: renderEquipment, checks: renderChecks, diagram: renderDiagram, dali: renderDali, tools: renderTools, export: renderExport, help: renderHelp})[tab]();
   if (tab === 'panel') bindPanel();
   if (tab === 'circuits') updateCircuitCells();
   labelTables();
@@ -979,7 +986,7 @@ document.addEventListener('click', e => {
   else if (a === 'edit'){ tab = 'circuits'; refresh(true); const row = $(`[data-row="${b.dataset.id}"]`); if (row){ row.scrollIntoView({block: 'center'}); row.style.outline = '2px solid var(--accent)'; } }
   else if (a === 'mv'){ const i = S.order.indexOf(sel), j = i + (+b.dataset.d); if (i >= 0 && j >= 0 && j < S.order.length){ [S.order[i], S.order[j]] = [S.order[j], S.order[i]]; refresh(true); } }
   else if (a === 'reset'){ S = exampleProject(); sel = null; syncHeader(); refresh(true); }
-  else if (a === 'clear'){ const e0 = exampleProject(); S = Object.assign(e0, {name: 'New board', circuits: [], modules: [], order: []}); sel = null; syncHeader(); refresh(true); }
+  else if (a === 'clear'){ const e0 = exampleProject(); S = Object.assign(e0, {name: 'New board', circuits: [], modules: [], order: [], dali: {units: []}}); sel = null; syncHeader(); refresh(true); }
   else if (a === 'pdf') exportPDF(); else if (a === 'xlsx') exportXLSX(); else if (a === 'csv') exportCSV(); else if (a === 'json') exportJSON();
 });
 let rzT = null;

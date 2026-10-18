@@ -13,7 +13,7 @@ head = idx[:idx.index('<style>')]
 style = rd(os.path.join(SRC, 'style.css')) + '\n' + rd(os.path.join(HERE, 'src_app', 'saas.css'))
 a = idx.index('</style>\n') + len('</style>\n'); b = idx.index('<script src="vendor/xlsx')
 body = rd(os.path.join(SRC, 'body.html'))
-js = '\n'.join(rd(os.path.join(SRC, f)) for f in ['calc.js', 'seed.js', 'i18n.js', 'i18n-data.js', 'tools.js', 'ui.js']) + '\n' + rd(os.path.join(HERE, 'src_app', 'saas.js'))
+js = '\n'.join(rd(os.path.join(SRC, f)) for f in ['calc.js', 'seed.js', 'i18n.js', 'i18n-data.js', 'tools.js', 'dali.js', 'ui.js']) + '\n' + rd(os.path.join(HERE, 'src_app', 'saas.js'))
 sw_reg = idx[idx.index("if ('serviceWorker'"):idx.index('</script>', idx.index("if ('serviceWorker'"))]
 html = head + '<style>' + style + '</style>\n' + body + '<script src="vendor/xlsx.full.min.js"></script>\n<script src="vendor/jspdf.umd.min.js"></script>\n<script src="vendor/supabase.js"></script>\n<script>\n' + js + '\n' + sw_reg + '</script>\n' + idx[idx.index('</script>', idx.index("if ('serviceWorker'")) + 9:]
 os.makedirs(os.path.join(OUT, 'vendor'), exist_ok=True)

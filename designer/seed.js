@@ -7,6 +7,14 @@ function exampleProject(){
       {id:'M2', model:'LQSE-4S5-230-D', phase:'L2', len:10, inSel:0, cable:'pvc', size:'auto'},
       {id:'M3', model:'LQSE-2DAL-D', phase:'L3', len:6, inSel:0, cable:'pvc', size:'auto'}
     ],
+    dali:{units:[
+      {id:'D1', model:'DALI-2 IoT4 Gateway PS', label:'Panel gateway', link:''},
+      {id:'D2', model:'DALI-2 4Ch LED Dimmer CV 16A DIN', label:'Salon LED strips', link:'D1:1'},
+      {id:'D3', model:'DALI-2 MC4L DIN Rail', label:'Salon wall switches', link:'D1:1'},
+      {id:'D4', model:'DALI-2 RGBW LED Dimmer CV DT8 16A DIN', label:'Owner cabin mood light', link:'D1:2'},
+      {id:'D5', model:'DALI-2 1Ch LED Power Supply 700 mA', label:'Corridor downlight', link:'D1:3'},
+      {id:'D6', model:'DALI-2 2Ch LED Dimmer CC 500 mA', label:'Galley spots', link:'D1:3'}
+    ]},
     circuits:[
       {id:'c1', ref:'C1', name:'Salon sockets', type:'sockets', mod:'', zone:1, P:2300, pf:.95, phase:'L1', len:18, prot:'RCBO', curve:'B', dem:1, grp:1, cable:'pvc', size:'auto', inO:0},
       {id:'c2', ref:'C2', name:'Galley sockets', type:'galley', mod:'', zone:1, P:3000, pf:.95, phase:'L2', len:22, prot:'RCBO', curve:'C', dem:1, grp:1, cable:'pvc', size:'auto', inO:0},

@@ -230,3 +230,7 @@ vendor_src/supabase.js     supabase-js 2.117.3 (vendored for offline use)
 public/                    built output served by the Worker
 supabase/migrations/       SQL            pgtest/  test/   test-only code, not deployed
 ```
+
+## DALI lighting network
+
+The Equipment tab has a DALI library (Lunatone, OSRAM, LTECH; DIN-rail and remote devices). The DALI tab manages quantities, device names, the DALI line each device connects to, address and bus-current checks, a network schematic and a module layout. Both drawings are in the PDF export; the Excel export adds DALI sheets; the BOM includes the devices. Source file: `designer/dali.js`. Catalogue entries marked Assumed lack a manufacturer figure for DALI current, width or mounting.

@@ -2,7 +2,7 @@
    English is the source language. Every other language is a dictionary of exact strings plus
    patterns with {1} {2} placeholders (see i18n-data.js). A DOM walker translates text and a few
    attributes, and a MutationObserver keeps newly drawn screens translated. */
-const LANGS = [['en', 'English'], ['ro', 'Română'], ['it', 'Italiano'], ['fr', 'Français'], ['es', 'Español'], ['pt', 'Português'], ['ja', '日本語'], ['vi', 'Tiếng Việt'], ['th', 'ไทย'], ['ru', 'Русский'], ['pl', 'Polski'], ['de', 'Deutsch'], ['zh', '中文']];
+const LANGS = [['en', 'English'], ['ro', 'Română'], ['it', 'Italiano'], ['fr', 'Français'], ['es', 'Español'], ['pt', 'Português'], ['ja', '日本語'], ['vi', 'Tiếng Việt'], ['th', 'ไทย'], ['ru', 'Русский'], ['pl', 'Polski'], ['de', 'Deutsch'], ['zh', '中文'], ['km', 'ខ្មែរ']];
 let LANG = 'en';
 const I18N_ATTRS = ['title', 'placeholder', 'aria-label', 'alt', 'data-label'];
 const I18N_SKIP = {SCRIPT: 1, STYLE: 1, TEXTAREA: 1, NOSCRIPT: 1, OPTGROUP: 0};
@@ -22,13 +22,33 @@ function i18nCompile(){
         if (i % 2 === 0) re += parts[i].replace(/[.*+?^$()|[\]\\]/g, '\\$&');
         else {
           const before = parts[i - 1], after = parts[i + 1] || '';
-          const num = /^ ?(%|A\b|kA\b|W\b|V\b|mm\b|kW\b|kVA\b|C\b|°C|modules?\b|fail\b|fed\b|series\b|manufacturers\b|in satellite|zones?\b|DIN-rail|BTU)/.test(after) || /[Zz]one $/.test(before) && !/^[A-Za-z]/.test(after.trim() || '-');
+          const num = /^ ?(%|A\b|kA\b|W\b|V\b|mm\b|kW\b|kVA\b|C\b|°C|modules?\b|links?\b|fail\b|fed\b|series\b|manufacturers\b|in satellite|zones?\b|DIN-rail|BTU)/.test(after) || /[Zz]one $/.test(before) && !/^[A-Za-z]/.test(after.trim() || '-');
           re += num ? '([\\d.,]+(?:[/–-][\\d.,]+)*)' : '(.+?)';
         }
       }
       return {re: new RegExp(re + '$'), t: p[1]};
     });
   });
+}
+/* country names: translated with the browser's own region names, so no dictionary is needed */
+let I18N_RG = null;
+const I18N_RGD = {};
+function i18nRegion(core){
+  try {
+    if (!I18N_RG){
+      I18N_RG = {};
+      const en = new Intl.DisplayNames(['en'], {type: 'region'});
+      for (let a = 65; a < 91; a++) for (let b = 65; b < 91; b++){
+        const c = String.fromCharCode(a, b), n = en.of(c);
+        if (n && n !== c) I18N_RG[n] = c;
+      }
+    }
+    const code = I18N_RG[core];
+    if (!code) return null;
+    const dn = I18N_RGD[LANG] || (I18N_RGD[LANG] = new Intl.DisplayNames([LANG], {type: 'region'}));
+    const r = dn.of(code);
+    return r && r !== code ? r : null;
+  } catch (e) { return null; }
 }
 const I18N_CACHE = {};
 function tr(core, exactOnly, deep){
@@ -40,6 +60,8 @@ function tr(core, exactOnly, deep){
   let out = core;
   if (/[A-Za-z]{2}/.test(core)){
     let hit = false;
+    const rg = i18nRegion(core);
+    if (rg){ I18N_CACHE[ck] = rg; return rg; }
     for (const p of d.PC){
       const m = core.match(p.re);
       if (m){ out = p.t.replace(/\{(\d+)\}/g, (_, n) => { const a = m[+n]; return a == null ? '' : tr(a.trim(), false, 1); }); hit = true; break; }

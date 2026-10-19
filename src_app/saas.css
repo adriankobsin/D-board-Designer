@@ -196,3 +196,5 @@ html.sa-page body{padding:0}
 .sa-helpb{display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:0 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font:500 14px/1 inherit;cursor:pointer}
 .sa-helpb:hover{border-color:var(--accent);color:var(--accent)}
 @media (max-width:699px){.sa-helpb{min-height:42px;padding:0 11px}.sa-helpb span{display:none}}
+html:lang(km) [class^="sa-"],html:lang(km) [class*=" sa-"],html:lang(km) .sa-main,html:lang(km) .sa-main *{font-family:system-ui,"Khmer UI","Leelawadee UI","Noto Sans Khmer","Khmer Sangam MN","Khmer MN",sans-serif;letter-spacing:0}
+html:lang(km) .sa-main{line-height:1.7}

@@ -713,3 +713,434 @@
 713|Zapisz na koncie
 714|Nieprawidłowy e-mail lub hasło.
 715|Wybierz nowe hasło
+716|+ Moduł DALI
+717|Dodaj tutaj mastery DALI, zasilacze magistrali i sterowniki albo wybierz je z biblioteki DALI na karcie Aparaty. Każdy sterownik jest podłączony do jednego łącza kontrolera DALI. Kontrolery umieszczone w rozdzielnicy (na przykład Lutron QSN2-2DALUNV-D) pojawiają się tutaj automatycznie, tak jak mastery dodane poniżej. Adresy są nadawane po kolei na każdej linii, do 64.
+718|Dodaj do rozdzielnicy kontroler DALI lub poniżej mastera, aby narysować sieć.
+719|Dodaj sterownik, zasilacz, kontroler lub wejście, którego nie ma w bibliotece, i wpisz jego dane. Pojawi się wtedy na liście modeli powyżej i będzie można go podłączyć do łącza jak każde inne urządzenie.
+720|Dodaj do sieci DALI
+721|Adr.
+722|Adres
+723|Adres i mA dotyczą sterowników i wejść. Linie i zasilanie magistrali dotyczą kontrolerów i zasilaczy. Szerokość DIN obowiązuje przy montażu na szynie DIN.
+724|Adresy
+725|Wszystkie kontrole linii DALI zakończone pomyślnie.
+726|Obciążenie magistrali
+727|Kanały
+728|Połącz z
+729|Połącz z: pierwszym wolnym łączem
+730|Kontroler
+731|Utwórz i dodaj
+732|Własne urządzenie DALI
+733|Marka DALI
+734|Kontrolery DALI w tym projekcie
+735|Biblioteka urządzeń DALI
+736|Łącze DALI
+737|DALI mA
+738|Model DALI
+739|Układ modułów DALI
+740|Moduł DALI do dodania
+741|Moduły DALI
+742|Sieć DALI
+743|Schemat sieci DALI
+744|Rodzaj DALI
+745|Szerokość DIN (DU)
+746|DIN i zdalne
+747|Tylko szyna DIN
+748|Urządzenia
+749|Filtruj według rodzaju
+750|Nadaj nazwę własnemu urządzeniu.
+751|Sprzęgacz wejść / przycisków
+752|Linie
+753|Łącze
+754|Montaż
+755|Nazwa / lokalizacja
+756|Nie ma jeszcze kontrolera DALI. Dodaj moduł DALI z karty Aparaty (Lutron, Crestron lub MDT, widoczny na karcie Rozdzielnica) albo mastera lub bramę DALI poniżej, a następnie podłącz sterowniki do jego łączy.
+757|Brak pasujących urządzeń DALI.
+758|Brak jeszcze urządzeń DALI. Wybierz model powyżej lub przejrzyj bibliotekę DALI na karcie Aparaty.
+759|Do tej linii nie podłączono zasilacza magistrali. Podłącz do niej zasilacz DALI.
+760|Brak dopasowań
+761|Niepodłączone
+762|Nie ma jeszcze czego rozmieszczać.
+763|Na szynie DIN
+764|Wyjście
+765|Ilości
+766|Tylko zdalne
+767|Usuń cały DALI
+768|Szukaj urządzeń DALI
+769|Szukaj urządzeń DALI
+770|Szukaj sterownika, marki, artykułu
+771|Szukaj modelu, artykułu, rodzaju
+772|mA zasilania
+773|Master ma wbudowany zasilacz magistrali, ale podłączono osobny. Liczony jest tylko osobny.
+774|Brak mastera lub bramy DALI, więc nie istnieje żadna linia DALI. Dodaj jedno, aby podłączyć sterowniki.
+775|Gdzie
+776|Twoje własne urządzenia
+777|np. Oczka w kuchni
+778|np. Tridonic 75 W CC
+779|jest masterem
+780|godz. temu
+781|przed chwilą
+782|min temu
+783|. Otwórz go, aby aktywować konto, a potem zaloguj się. Link działa tylko raz i po pewnym czasie wygasa.
+784|Narzędzie wspomagające projektowanie. Zawsze weryfikuj według lokalnych przepisów instalacyjnych.
+785|Konto zawieszone
+786|Masz już konto?
+787|Zestawienie materiałów, eksport do PDF i Excel
+788|Dobór kabli, spadek napięcia i obciążenia
+789|Kontynuuj bez konta
+790|Utwórz konto
+791|Układ na szynach DIN i położenie wyłączników
+792|Projektuj rozdzielnice, które można zbudować.
+793|Pobierz moje dane
+794|Wpisz adres e-mail konta. Jeśli pasuje do konta, wyślemy link do ustawienia nowego hasła.
+795|Darmowy start. Przed zalogowaniem wyślemy e-mailem link potwierdzający adres.
+796|Potwierdziłem(am), zaloguj
+797|Przeczytałem(am) i akceptuję
+798|Układ, schemat jednokreskowy, zestawienia i dobór kabli w jednym miejscu, zapisane na koncie i dostępne na każdym urządzeniu.
+799|Pierwszy raz w DBoard Designer?
+800|Nic nie dotarło? Sprawdź spam i upewnij się, że adres jest wpisany poprawnie.
+801|Projekty bezpiecznie zapisane na Twoim koncie
+802|Wyślij ponownie e-mail weryfikacyjny
+803|Ustaw nowe hasło do konta.
+804|Pokaż hasło
+805|Zacznij od nowa
+806|To konto zostało zawieszone i obecnie nie może otwierać projektów. Twoje dane są zachowane. Skontaktuj się z operatorem usługi, aby to sprawdził.
+807|Wysłaliśmy link potwierdzający na adres
+808|Witaj ponownie. Wróć do rozdzielnic tam, gdzie skończyłeś.
+809|Zły adres?
+810|i
+811|1. Usługa
+812|2. Odpowiedzialność zawodowa
+813|3. Twoje konto
+814|4. Twoje treści
+815|5. Dopuszczalne użycie
+816|6. Dostępność i odpowiedzialność
+817|7. Zakończenie konta
+818|Nowsza wersja tego projektu została zapisana z innego urządzenia lub karty. Wybierz, którą wersję zachować.
+819|Menu konta
+820|DBoard Designer to narzędzie wspomagające projektowanie rozdzielnic elektrycznych. Wyniki (przekroje kabli, spadek napięcia, obciążenia, zestawienia materiałów) mają charakter orientacyjny.
+821|Dane są przechowywane, dopóki istnieje konto, i usuwane po jego skasowaniu.
+822|Usunąć ten projekt na stałe?
+823|Nie próbuj uzyskiwać dostępu do danych innych użytkowników, zakłócać działania usługi ani używać jej niezgodnie z prawem. Takie konta mogą zostać zawieszone.
+824|W ustawieniach konta możesz edytować swoje dane, pobrać wszystkie dane oraz trwale usunąć konto i projekty. W innych sprawach dotyczących prywatności skontaktuj się z operatorem.
+825|Zachowaj moją wersję
+826|Zachowaj hasło w tajemnicy. Odpowiadasz za działania na swoim koncie. Podawaj prawdziwe dane rejestracyjne.
+827|Wczytaj zapisaną wersję
+828|Imię i nazwisko, adres e-mail, kraj, zawód i opcjonalnie firma, które podajesz przy rejestracji. Twoje projekty. Podstawowe zdarzenia użycia (logowania, otwarcie lub utworzenie projektu, eksporty, otwarcie narzędzi) oraz wszelkie przesłane opinie.
+829|Hasła
+830|Ta aplikacja nigdy nie przechowuje haseł. Uwierzytelnianiem zajmuje się Supabase Auth, który przechowuje wyłącznie skrót z solą.
+831|Projekt usunięty.
+832|Projekt zduplikowany.
+833|Przechowywanie
+834|Zapisano na koncie.
+835|Supabase (baza danych i uwierzytelnianie) oraz Cloudflare (hosting). Administratorzy usługi widzą dane konta, liczbę projektów i opinie. Nie widzą Twojego hasła.
+836|Szablon dla operatora usługi. Uzupełnij dane operatora i zleć weryfikację przed publicznym uruchomieniem.
+837|Szablon dla operatora usługi. Zleć weryfikację wykwalifikowanemu prawnikowi i dostosuj go przed publicznym uruchomieniem.
+838|Usługa jest świadczona w stanie „takim, jaki jest” na czas bety. W zakresie dozwolonym prawem operator nie odpowiada za straty wynikające z jej używania. Przechowuj własne eksporty ważnych projektów.
+839|Ten projekt został zmieniony na innym urządzeniu
+840|Nie można odczytać tego projektu.
+841|Aby obsługiwać Twoje konto, przechowywać projekty, zabezpieczać usługę i rozumieć, z których funkcji korzystasz. Nie sprzedajemy danych osobowych i nie wyświetlamy reklam.
+842|Przesłano na Twoje konto. Kopia na tym urządzeniu pozostaje nietknięta.
+843|Co zbieramy
+844|Kto przetwarza dane
+845|Dlaczego
+846|Odpowiadasz za sprawdzenie każdego projektu pod kątem przepisów instalacyjnych obowiązujących w miejscu budowy oraz za jego weryfikację przez osobę kompetentną przed montażem.
+847|Konto możesz usunąć w dowolnej chwili w ustawieniach konta. Projekty i profil zostaną wtedy trwale usunięte.
+848|Projekty, które tworzysz, należą do Ciebie. Udzielasz operatorowi prawa do ich przechowywania i przetwarzania w celu świadczenia usługi.
+849|Twoje prawa
+850|Sesja wygasła. Zaloguj się ponownie.
+851|Projekt jest zapisany tylko na tym urządzeniu:
+852|Usuń moje konto
+853|Usuń na stałe
+854|Usunąć konto?
+855|Pobierz profil i wszystkie projekty jako jeden plik JSON.
+856|Edytowano
+857|Importuj rozdzielnicę
+858|Importuj ze zdjęcia lub PDF
+859|Wczytywanie projektów…
+860|Brak połączenia. Sprawdź internet i spróbuj ponownie.
+861|Nie teraz
+862|Powiadomienia
+863|Otwórz lokalną rozdzielnicę
+864|Otwiera rozdzielnicę zapisaną w tej przeglądarce, bez zapisywania w chmurze.
+865|Otwiera pustą rozdzielnicę zapisywaną automatycznie na Twoim koncie.
+866|Trwale usuwa konto, profil i wszystkie zapisane projekty. Tej operacji nie można cofnąć. Projekty przechowywane tylko na tym urządzeniu nie są dotknięte.
+867|Udostępnij
+868|Rozpocznij nową rozdzielnicę lub kontynuuj zapisaną.
+869|Dziękujemy. Twoja opinia została wysłana.
+870|Spowoduje to trwałe usunięcie konta i wszystkich zapisanych projektów. Aby potwierdzić, wpisz swój adres e-mail.
+871|Zamień zdjęcie zbudowanej rozdzielnicy lub schemat PDF w edytowalną rozdzielnicę.
+872|Prześlij kopię
+873|Prześlij kopię na konto, aby używać jej na innych urządzeniach. Kopia na tym urządzeniu zostaje zachowana.
+874|Co działa, czego brakuje, co poszło nie tak?
+875|Pracuj na tym urządzeniu
+876|Najpierw napisz wiadomość.
+877|Jesteś offline. Projekty w chmurze wczytają się po ponownym połączeniu.
+878|Twoje dane
+879|Twoja wiadomość
+880|obwodów
+881|urządzeń
+882|Aktywny
+883|Panel administratora
+884|Administracja
+885|Dowolny status
+886|Dowolna weryfikacja
+887|Społeczność
+888|Usunięty użytkownik
+889|E-mail
+890|Weryfikacja e-mail
+891|Ostatnio widziano
+892|Wczytywanie…
+893|Nowe projekty w ciągu 7 dni
+894|Następna
+895|Nie zarejestrowano jeszcze zdarzeń.
+896|Brak jeszcze opinii.
+897|Brak pasujących użytkowników.
+898|Niezweryfikowany
+899|Poprzednia
+900|Projekty
+901|Zarejestrowano
+902|Szukaj
+903|Szukaj imienia, e-maila, firmy
+904|Szukaj użytkowników
+905|Rejestracje dziennie
+906|Rejestracje, ostatnie 30 dni
+907|Zawieszony
+908|Najczęstsze kraje
+909|Użycie, ostatnie 30 dni
+910|Zweryfikowany
+911|administrator
+912|użytkowników
+913|Akceptuj
+914|Wróć do rozmów
+915|Rozmawiaj z innymi członkami, pracuj w grupach i udostępniaj zapisane rozdzielnice.
+916|Wybierz rozmowę lub rozpocznij nową.
+917|Kliknij ponownie, aby potwierdzić
+918|Kliknij ponownie, aby wyjść
+919|Rozmowy
+920|Nie udało się przyjąć zaproszenia.
+921|Utwórz grupę
+922|Osiągnięto dzienny limit zaproszeń. Spróbuj ponownie jutro.
+923|Odrzuć
+924|Adres e-mail zarejestrowanego członka
+925|E-mail wysłano do
+926|Były członek
+927|Nadaj grupie nazwę.
+928|Grupa
+929|Czat grupowy
+930|Nazwa grupy
+931|Zaproszenia
+932|Zaproś
+933|Zaproś członków e-mailem
+934|Zaproś do
+935|Opuść
+936|Oznacz wszystko jako przeczytane
+937|Członkowie
+938|Wiadomość
+939|Wiadomość (opcjonalnie)
+940|Nie udało się wczytać wiadomości.
+941|Nowa grupa
+942|Nowy czat prywatny
+943|Brak rozmów. Rozpocznij prywatny czat z członkiem lub utwórz grupę.
+944|Brak wiadomości
+945|Brak wiadomości. Przywitaj się.
+946|Nic jeszcze Ci nie udostępniono.
+947|Nic nowego. Zaproszenia, odpowiedzi i udostępnione projekty pojawią się tutaj.
+948|Otwórz kopię
+949|Otwórz grupę
+950|Czat prywatny
+951|Zarejestrowani członkowie mogą wyświetlić rozdzielnicę i zapisać własną kopię. Oryginał możesz zmieniać tylko Ty.
+952|Wyślij
+953|Wyślij zaproszenia
+954|Rozdziel adresy przecinkami lub nowymi wierszami. Zaproszeni członkowie dostaną e-mail i powiadomienie, a dołączą po zaakceptowaniu.
+955|Udostępnij projekt
+956|Udostępnij (adresy e-mail)
+957|Udostępnione przeze mnie
+958|Udostępnione mi
+959|Rozpocznij czat
+960|Zakończ udostępnianie
+961|Ten projekt nie jest już Ci udostępniany.
+962|Nie udało się wysłać e-maila. Zobaczą to i tak na swoim pulpicie.
+963|Nie udało się wysłać wiadomości. Spróbuj ponownie.
+964|Zobaczą to na swoim pulpicie.
+965|Rozdzielnica bez tytułu
+966|Napisz wiadomość. Enter wysyła, Shift+Enter dodaje wiersz.
+967|Wysyłasz wiadomości zbyt szybko. Chwilę poczekaj.
+968|Nie udostępniono żadnego projektu. Użyj Udostępnij przy dowolnym projekcie na pulpicie.
+969|od
+970|zaproszony
+971|członków
+972|pominięto (po 20 adresów naraz)
+973|Ty
+974|Najpierw dodaj co najmniej jedno urządzenie.
+975|Dodaj urządzenie
+976|Dodaj zdjęcia lub PDF
+977|Unikaj odblasków i cieni. Wyłącz lampę błyskową, jeśli etykiety odbijają światło.
+978|Rozdzielnica
+979|Rozdzielnica utworzona. Sprawdź:
+980|Nazwa rozdzielnicy
+981|Sprawdź te pozycje
+982|Wybierz pliki
+983|Utwórz rozdzielnicę
+984|Wykryj z rozdzielnicy
+985|Popraw wszystko, co wygląda na błędne. Puste obciążenia są szacowane na podstawie prądu znamionowego wyłącznika. Nic nie jest zapisywane, dopóki nie naciśniesz Utwórz rozdzielnicę.
+986|W przypadku PDF najlepiej odczytywane są rysunki wektorowe i tabele tekstowe. Skany muszą być ostre.
+987|Na przykład: etykiety są po włosku, rozdzielnica jest okrętowa 230 V
+988|W przypadku dużych rozdzielnic dodaj zbliżenia każdego rzędu, aby oznaczenia wyłączników i etykiety były ostre.
+989|Dla najlepszego odczytu
+990|Pewność odczytu
+991|Uwzględnij legendę obwodów lub pasek etykiet, jeśli jest.
+992|Etykieta
+993|Rodzaj obciążenia
+994|Brak na rozdzielnicy. Wartość założona, sprawdź.
+995|Uwagi dla czytnika (opcjonalnie)
+996|Nic nie rozpoznano. Dodaj urządzenia ręcznie albo wróć i spróbuj wyraźniejszego zdjęcia.
+997|Import rozdzielnicy nie jest jeszcze włączony na tej stronie. Właściciel witryny musi dodać klucz usługi odczytu (zob. README).
+998|Odczytaj rozdzielnicę
+999|Odczytywanie rozdzielnicy…
+1000|Zacznij od początku
+1001|Zrób zdjęcie
+1002|Zrób zdjęcie na wprost przy otwartych drzwiczkach, nie pod kątem.
+1003|Nie udało się utworzyć rozdzielnicy. Sprawdź wartości i spróbuj ponownie.
+1004|Rozdzielnica była duża i odczyt został przerwany. Dodaj brakujące urządzenia ręcznie albo powtórz z bliższymi zdjęciami prawej strony.
+1005|Zdjęcie lub PDF jest wysyłane do usługi odczytu w celu analizy i nie jest przechowywane. Wszystko sprawdzasz przed utworzeniem rozdzielnicy.
+1006|Zwykle trwa to 20–60 sekund. Nie zamykaj tej strony.
+1007|Zamień zdjęcie zbudowanej rozdzielnicy lub schemat PDF w edytowalną rozdzielnicę z obwodami, etykietami, schematem i zestawieniem materiałów.
+1008|Do czterech zdjęć jednej rozdzielnicy albo jeden PDF ze schematem lub tabelą obwodów.
+1009|Norma instalacyjna (opcjonalnie)
+1010|Twoje źródło
+1011|odczytanych urządzeń
+1012|niska pewność, wyróżnione
+1013|Adres, telefon, e-mail, strona WWW. Pokazywane na stronie tytułowej PDF.
+1014|Wybierz, co trafi do PDF. A4 poziomo, z Twoim logo na każdej stronie.
+1015|Podgląd logo firmy
+1016|Spis treści
+1017|Nie udało się zapisać:
+1018|Krytyczne (spadek 3 %)
+1019|Strona DALI
+1020|Założenia projektowe
+1021|Projekt rozdzielnicy
+1022|Oświetlenie (spadek 3 %)
+1023|Pozostałe (spadek 10 %)
+1024|Podsumowanie projektu
+1025|Sieci rezystorów
+1026|Zapisano
+1027|Gwiazda i trójkąt
+1028|Nie udało się narysować strony DALI dla tej rozdzielnicy.
+1029|Zaznacz co najmniej jedną sekcję do PDF.
+1030|po uwzględnieniu jednoczesności
+1031|Zaloguj się, rozpocznij lub zaimportuj rozdzielnicę
+1032|W wersji hostowanej zaczynasz od <b>Pulpitu</b> po zalogowaniu. Naciśnij <b>Nowa rozdzielnica</b>, aby zacząć od zera, otwórz zapisany projekt albo naciśnij <b>Importuj rozdzielnicę</b>, aby zbudować rozdzielnicę ze zdjęcia zbudowanej rozdzielnicy lub ze schematu PDF albo tabeli obwodów. Dodaj do czterech zdjęć jednej rozdzielnicy albo jeden PDF, a następnie naciśnij <b>Odczytaj rozdzielnicę</b>. Czytnik wypisuje każde widoczne urządzenie (rodzaj wyłącznika, prąd znamionowy, charakterystykę, liczbę biegunów, RCD, nazwę obwodu, obciążenie, fazę, kabel, markę i model) obok Twojego obrazu. <b>Sprawdź i popraw tabelę</b>, po czym naciśnij <b>Utwórz rozdzielnicę</b>. Nowa rozdzielnica otworzy się w zakładce <b>Obwody</b> i działa jak każda inna, więc możesz dodawać i edytować obwody oraz etykiety i eksportować schemat, zestawienie materiałów, PDF i Excel. Wszystko, czego czytnik nie zobaczył, zostaje puste i oznaczone do uzupełnienia.
+1033|Zaplanuj sieć oświetlenia DALI
+1034|Otwórz <b>Wyposażenie</b> i przewiń do <b>Biblioteki urządzeń DALI</b>: mastery i bramy Lunatone, OSRAM i LTECH, zasilacze magistrali, sprzęgacze przycisków, przekaźniki oraz ściemniacze lub sterowniki, zarówno na szynę DIN, jak i zdalne. Filtruj według marki, rodzaju lub <b>tylko szyna DIN</b>, ustaw ilość i naciśnij <b>Dodaj</b>. Następnie otwórz zakładkę <b>DALI</b>. Moduły sterowników DALI umieszczone w rozdzielnicy (Lutron, Crestron, MDT) są tam wymienione automatycznie w sekcji <b>Sterowniki DALI w tym projekcie</b>, każdy ze swoimi łączami, a do wybranego łącza możesz podłączać sterowniki. W <b>Ilościach</b> możesz przeszukiwać listę modeli według nazwy, marki lub artykułu i filtrować ją według rodzaju. Jeśli sterownika nie ma w bibliotece, użyj <b>Własne urządzenie DALI</b>, aby wpisać jego adresy, prąd DALI, montaż i inne dane; własne urządzenia można tam edytować lub usuwać. W Ilościach można też dodawać modele, zmieniać ilość lub usuwać model. W <b>Modułach DALI</b> nadaj każdemu urządzeniu nazwę lub lokalizację, wybierz <b>łącze DALI</b> (linię mastera), do którego jest podłączone, albo je usuń. Narzędzie nadaje adresy na każdej linii (do 64) i sprawdza prąd magistrali względem zasilacza magistrali. Urządzenia DALI na szynie DIN są też rysowane w zakładce <b>Rozdzielnica</b>: kliknij jedno, aby zmienić jego nazwę, model lub łącze DALI, przesunąć je wzdłuż szyny lub między szynami, przeciągnąć albo usunąć, a <b>+ Moduł DALI</b> w notatkach rozdzielnicy dodaje kolejne. <b>Schemat sieci DALI</b> i <b>układ modułów DALI</b> (pasek szyny DIN oraz osobny obszar dla zdalnych sterowników) są rysowane poniżej, oddzielnie od schematu rozdzielnicy, i oba trafiają do PDF, z arkuszem DALI w pliku Excel i pozycjami DALI w zestawieniu materiałów.
+1035|Otwórz <b>Eksport</b>. <b>Zapisz PDF</b> tworzy układ rozdzielnicy, schemat wielokreskowy, tabelę obwodów i sumy mocy; zaznacz <b>Dołącz zestawienie materiałów</b>, jeśli chcesz dodać tę listę. <b>Zapisz Excel</b> i <b>Zapisz CSV</b> dają tabelę dla innych narzędzi. <b>Zapisz projekt</b> zapisuje cały projekt w pliku, który możesz później otworzyć przez <b>Otwórz projekt</b>. Rozdzielnice utworzone przez <b>Importuj rozdzielnicę</b> eksportuje się dokładnie tak samo.
+1036|Gdy jesteś zalogowany, rozdzielnica otwarta z Pulpitu zapisuje się na koncie około sekundy po każdej zmianie, a znacznik u góry pokazuje Zapisano, Zapisywanie lub Offline. Możesz ją otworzyć na każdym urządzeniu, na którym się logujesz. Jeśli ta sama rozdzielnica została zmieniona na innym urządzeniu, wybierasz, którą wersję zachować. Rozdzielnica przechowywana tylko w tej przeglądarce nie jest ruszana przez rozdzielnice w chmurze. Użyj Zapisz projekt, aby zachować kopię w pliku.
+1037|Odczyt zdjęcia lub PDF rozdzielnicy
+1038|Zdjęcie jest odczytywane w miarę możliwości. Zrób je na wprost przy otwartych drzwiczkach i bez odblasków, wyłącz lampę błyskową, jeśli etykiety odbijają światło, a przy dużych rozdzielnicach dodaj zbliżenia każdego rzędu. Najlepiej odczytywane są PDF z prawdziwym tekstem. Zawsze sprawdź prądy znamionowe, fazy i etykiety na prawdziwej rozdzielnicy, zanim wydasz wynik jako dokumentację powykonawczą. Każda osoba może wykonać ograniczoną liczbę odczytów dziennie.
+1039|Twoje konto
+1040|Użyj menu profilu, aby przejść do Ustawień konta: edytuj dane, zmień hasło, pobierz wszystkie dane lub usuń konto. Użyj Opinii na Pulpicie, aby powiedzieć nam, co poprawić.
+1041|Wartości DALI
+1042|Wartości Lunatone odczytano z jego stron produktowych. Tam, gdzie strony LTECH lub OSRAM nie podawały prądu DALI ani montażu, biblioteka oznacza pozycję jako Założone (2 mA na urządzenie). W bibliotece żadna z tych marek nie ma sterownika DALI na szynę DIN; zasilacz magistrali i przekaźnik LTECH są na szynę DIN. Przed zamówieniem sprawdź każdą pozycję w karcie katalogowej.
+1043|Użyto {1} adresów DALI. Ta linia dopuszcza {2}.
+1044|Urządzenia pobierają {1} mA, ale {2} gwarantuje {3} mA.
+1045|Obciążenie magistrali to {1} % zasilacza {2} mA. Zostaw trochę zapasu.
+1046|Połączono {1} zasilaczy magistrali. Linia DALI zwykle ma jeden; liczony jest tylko największy.
+1047|{1} urządzenie DALI nie jest podłączone do linii: {2}.
+1048|{1} urządzeń DALI nie jest podłączonych do linii: {2}.
+1049|{1} model DALI używa wartości założonych (w bibliotece oznaczonych jako Założone). Potwierdź je w karcie katalogowej.
+1050|{1} modeli DALI używa wartości założonych (w bibliotece oznaczonych jako Założone). Potwierdź je w karcie katalogowej.
+1051|{1} · w rozdzielnicy głównej
+1052|Zasilacz magistrali {1} mA
+1053|Łącze {1}
+1054|Linia {1}
+1055|brak urządzeń
+1056|{1} adresów
+1057|{1} adr.
+1058|{1} (master)
+1059|Niepodłączone do linii DALI ({1})
+1060|Szyna DALI {1}
+1061|Zajęto {1} z {2} DU
+1062|{1} linia
+1063|{1} linii
+1064|DIN {1} DU
+1065|łącze {1}
+1066|{1} urządzenie
+1067|{1} urządzeń
+1068|Zdalne sterowniki i urządzenia ({1}), nie na szynie
+1069|{1} linia DALI
+1070|{1} linii DALI
+1071|wartości katalogowe, potwierdź w karcie katalogowej
+1072|{1} na szynie DIN ({2} DU), {3} zdalnych
+1073|{1} wynik
+1074|{1} wyników
+1075|Dodano {1} × {2}. Otwórz zakładkę DALI, aby je podłączyć.
+1076|Dodano {1}. Otwórz zakładkę DALI, aby go podłączyć.
+1077|Ilość: {1}
+1078|Nazwa dla {1}
+1079|Łącze DALI dla {1}
+1080|{1} linia {2}
+1081|Zdalne (nie DIN)
+1082|Założone zasilanie {1} mA / łącze
+1083|Wbudowane zasilanie {1} mA / linia
+1084|zdalne
+1085|Sterowniki DALI w rozdzielnicy głównej (rysowane w zakładce Rozdzielnica)
+1086|Pasek szyny DIN dla elementów DIN ({1} DU na szynę, 1 DU = 17,5 mm; są też w zakładce Rozdzielnica) oraz osobny obszar dla zdalnych sterowników.
+1087|Oddzielnie od schematu rozdzielnicy. Kolor = linia DALI; ramki przerywane to urządzenia zdalne.
+1088|Do tej linii nic jeszcze nie podłączono.
+1089|Szerokość DIN, DU (17,5 mm)
+1090|Użyte adresy DALI
+1091|Prąd DALI, mA
+1092|Wyłącznik zasilający {1} {2} A po redukcji wynosi {3} A przy {4} C wewnątrz obudowy, poniżej obciążenia {5} A.
+1093|Zasilanie {1} obsługuje oświetlenie ciągłe lub podobne obciążenie: {2} dobiera wyłącznik na {3} % obciążenia ({4} A).
+1094|Wyłącznik {1} A po redukcji wynosi {2} A przy {3} C wewnątrz obudowy, poniżej obciążenia {4} A. Wybierz kolejny większy rozmiar.
+1095|{1} dobiera wyłącznik na {2} % obciążenia ciągłego: potrzeba {3} A, wybrano {4} A.
+1096|{1} ma prąd rozruchowy. Charakterystyka B może zadziałać przy udarze; użyj C lub D.
+1097|{1} {2} jest wyłącznie typu AC. {3} ma prąd elektroniczny lub wyprostowany i wymaga RCD typu A.
+1098|Ładowarka EV: IEC 60364-7-722 i BS 7671 722.531.3.101 wymagają typu A oraz wykrywania DC 6 mA (często wbudowanego w ładowarkę) albo RCD typu B.
+1099|Impedancja pętli zwarcia {1} om (Ze {2} + kabel {3}) przekracza limit {4} om dla wyłącznika {5} A ({6} V ÷ {7} × {8} A). Skróć trasę, użyj większego kabla albo niższej charakterystyki lub prądu.
+1100|Wyłącznik główny {1} A po redukcji wynosi {2} A przy {3} C wewnątrz obudowy, poniżej maksymalnego prądu fazowego {4} A.
+1101|{1} dobiera wyłącznik główny na 100 % obciążenia nieciągłego plus 125 % ciągłego: potrzeba {2} A, wybrano {3} A.
+1102|{1} {2} to urządzenie UL 489. Instalacje {3} używają urządzeń IEC 60898 / 60947; sprawdź, czy jest akceptowane lokalnie.
+1103|{1} {2} to urządzenie typu IEC. Instalacje {3} wymagają urządzeń z listingiem UL (UL 489 lub UL 1077). Sprawdź, czy jest akceptowane, zanim go użyjesz.
+1104|{1} {2} to urządzenie IEC 60898 / 61009 o napięciu 230/400 V (maks. 440 V). To zasilanie to {3} V faza-neutralny i {4} V międzyfazowo. Użyj urządzenia o odpowiednim napięciu.
+1105|Wpisz impedancję pętli zasilania Ze w Ustawieniach, aby sprawdzić samoczynne wyłączenie obwodów z MCB ({1}).
+1106|Wyłączniki są redukowane powyżej {1} °C wewnątrz obudowy.
+1107|Impedancja pętli zasilania Ze (om)
+1108|Opcjonalne. Impedancja pętli zwarcia na początku rozdzielnicy, od dostawcy lub z pomiaru. Służy do sprawdzenia, czy każdy MCB wyłącza zwarcie na czas.
+1109|Zasady zabezpieczeń
+1110|Każdy wyłącznik jest dobierany z prądu obliczeniowego (125 % obciążeń ciągłych według NEC), redukowany o temperaturę obudowy, a następnie zaokrąglany w górę do kolejnej wartości znormalizowanej wybranej normy. Czułość RCD (30 mA lub GFCI 4–6 mA według NEC i ABYC), liczba biegunów (2 bieguny dla obciążeń 240 V) i norma urządzenia (IEC lub UL) wynikają z normy i napięcia zasilania. Dla IEC, BS 7671 i AS/NZS wpisz Ze w Ustawieniach, aby sprawdzić pętlę zwarcia każdego obwodu z MCB.
+1111|Otwórz Społeczność z Pulpitu, aby rozmawiać z innymi zarejestrowanymi członkami, tworzyć grupy, zapraszać osoby e-mailem i udostępniać zapisane rozdzielnice. Dzwonek w nagłówku pokazuje zaproszenia, odpowiedzi i udostępnione projekty.
+1112|Kontrole obejmują: prąd obliczeniowy względem prądu wyłącznika i kabla (z temperaturą obudowy i regułą NEC dla obciążeń ciągłych), spadek napięcia, wymóg RCD, zdolność wyłączania, prąd urządzenia względem normy i napięcia zasilania, impedancję pętli zwarcia po wpisaniu Ze, wejście Lutron oraz limity stref i temperatury. Selektywności nie obliczamy tutaj.
+1113|Dane firmy
+1114|Strona tytułowa z danymi firmy
+1115|Sieć DALI i układ modułów
+1116|Usuń moduł DALI
+1117|Prąd DALI
+1118|Zwarcie doziemne
+1119|Import
+1120|Administracja
+1121|Brak zapisanych projektów. Utwórz swoją pierwszą rozdzielnicę powyżej.
+1122|Co najmniej 8 znaków, z literą i cyfrą.
+1123|Czaty
+1124|Udostępnione projekty
+1125|Żądanie nie powiodło się
+1126|Zdalny
+1127|Rozdzielnica główna (zakładka Rozdzielnica)
+1128|Zakładka DALI
+1129|Własna obudowa / w oprawie
+1130|Linie (sterownik)
+1131|mA zasilania magistrali (zasilacz lub sterownik)
+1132|Moc, W
+1133|Wyjście / uwagi
+1134|zewnętrzny
+1135|Szyna DIN
+1136|Master / brama
+1137|Zasilacz magistrali
+1138|Przekaźnik / łącznik
+1139|Sterownik / ściemniacz
+1140|Założone
+1141|Zob. specyfikację
+1142|Uniwersalny
+1143|Puszka montażowa
+1144|{1} łącze
+1145|{1} łączy
+1146|{1} produktów DALI firm Lunatone, OSRAM i LTECH, zarówno na szynę DIN, jak i zdalnych sterowników. Naciśnięcie Dodaj umieszcza wybraną ilość w zakładce <b>DALI</b>, gdzie wybierasz linię DALI, do której każdy się podłącza, i widzisz schemat sieci oraz układ modułów. Wartości Lunatone odczytano z jego stron produktowych. Strony LTECH i OSRAM nie podawały prądu DALI ani montażu, więc są oznaczone jako Założone. Sterowniki DALI OSRAM i LTECH nie są na szynę DIN; na szynę są tylko zasilacz magistrali i przekaźnik LTECH. Lunatone ma więcej wariantów niż na liście. Przed zamówieniem potwierdź wszystko w karcie katalogowej.

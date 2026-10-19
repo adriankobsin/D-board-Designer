@@ -252,6 +252,7 @@ table tbody tr:hover td{background:var(--accent-soft)}
 html:lang(ja) body{font-family:system-ui,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",sans-serif}
 html:lang(zh) body{font-family:system-ui,"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif}
 html:lang(th) body{font-family:system-ui,"Thonburi","Leelawadee UI","Tahoma","Noto Sans Thai",sans-serif;line-height:1.6}
+html:lang(km) body,html:lang(km) h1,html:lang(km) h2,html:lang(km) h3,html:lang(km) .tabs button,html:lang(km) th{font-family:system-ui,"Khmer UI","Leelawadee UI","Noto Sans Khmer","Khmer Sangam MN","Khmer MN",sans-serif;line-height:1.7;letter-spacing:0;text-transform:none}
 html:lang(vi) body,html:lang(ru) body{font-family:system-ui,"Segoe UI",Roboto,Arial,sans-serif}
 @media(max-width:699px){.quick label.langsel{grid-column:1 / -1}}
 

@@ -71,6 +71,20 @@ function renderSetup(){
     ${fld('Supply voltage', `<select id="sys2">${sysList.map(x => `<option value="${x.id}" ${S.sysId === x.id ? 'selected' : ''}>${x.label}</option>`).join('')}</select>`)}
     ${dcm ? fld('Breaker poles', `<select data-k="s" data-f="dcPoles"><option value="2P" ${S.dcPoles !== '1P' ? 'selected' : ''}>Both poles (2P, ungrounded or isolated)</option><option value="1P" ${S.dcPoles === '1P' ? 'selected' : ''}>Positive only (1P, negative earthed or common)</option></select>`, 'Sets breaker width and the diagram') : ''}
   </div></div>
+  <div class="card"><h2>Design basis</h2>
+  <p class="muted" style="max-width:75ch">Defaults follow the chosen standard and can be overridden. Cable ratings are indicative reference-method C values for copper. Confirm every figure against the edition and national amendments you design to.</p>
+  <div class="form" style="margin-top:14px">
+    ${fld(dcm ? 'Battery short-circuit current (kA)' : 'Prospective fault level (kA)', ni('ik', S.ik, 'step="0.5" min="0.1"'), dcm ? 'From the battery or charger datasheet. Lead-acid banks can deliver several kA. Generic DC breakers assumed 5 kA.' : '')}
+    ${fld('Cable ambient (°C)', ni('ambient', S.ambient, 'step="1"'), 'Reference is 30 °C')}
+    ${fld('Inside-enclosure ambient (°C)', ni('cabinAmb', S.cabinAmb, 'step="1"'), 'Breakers are derated above ' + (std.tref || 30) + ' °C inside the enclosure.')}
+    ${fld('Diversity factor', ni('diversity', S.diversity, 'step="0.05" min="0.1" max="1"'))}
+    ${lvm || !std.zs ? '' : fld('Supply loop impedance Ze (ohm)', ni('ze', S.ze, 'step="0.01" min="0"'), 'Optional. Earth-fault loop impedance at the origin of the board, from the supplier or a test. Used to check that each MCB disconnects a fault in time.')}
+    ${fld('Incomer cable length (m)', ni('incLen', S.incLen, 'step="1" min="0"'))}
+    ${fld('Incomer rating override (A)', `<select data-k="s" data-f="incomer" data-t="n">${[0].concat(incRatings(S)).map(r2 => `<option value="${r2}" ${(+S.incomer || 0) === r2 ? 'selected' : ''}>${r2 ? r2 + ' A' : 'Auto'}</option>`).join('')}</select>`, 'Blank selects automatically')}
+    ${fld('Lighting voltage-drop limit (%)', ni('vdL', S.vdL, `step="0.5" min="0.5" placeholder="${vd.l}"`), (lvm ? 'Low-voltage default ' + vd.l : std.n + ' default ' + vd.l) + ' %')}
+    ${fld('Other circuits limit (%)', ni('vdO', S.vdO, `step="0.5" min="0.5" placeholder="${vd.o}"`), (lvm ? 'Low-voltage default ' + vd.o : std.n + ' default ' + vd.o) + ' %')}
+    ${fld('Enclosure dissipation rating (W)', ni('enclW', S.enclW || '', 'step="10" min="0"'), 'Optional, from the enclosure datasheet')}
+  </div></div>
   <div class="card"><h2>Panel layout</h2>
   <div class="form" style="margin-top:14px">
     ${fld('Modules per DIN rail', `<select data-k="s" data-f="cols" data-t="n">${[12, 18, 24, 36, 48].map(n => `<option ${S.cols === n ? 'selected' : ''}>${n}</option>`).join('')}</select>`, '1 module = 18 mm')}
@@ -254,7 +268,7 @@ function inspector(){
      ${fl('Heat W', inp('x', x.id, 'heatW', x.heatW || 0, 'number', 'step="0.5" min="0"'))}${fl('Colour band', sl('x', x.id, 'ph', three ? ['L1', 'L2', 'L3', '3P', 'N'] : ['L1', 'N'], x.ph || 'N'))}</div>`;
     delTxt = 'Delete device';
   } else if (d.kind === 'incomer'){
-    const ratings = [0].concat(INCOMER_RATINGS), pols = ['', '1P+N', '2P', '3P', '4P'], poleLab = {'': 'Auto (' + (isLV(S) ? (dpOf(S) ? '2P' : '1P') : (S.phases === 3 ? '4P' : '2P')) + ')', '1P+N':'1P+N', '2P':'2P', '3P':'3P', '4P':'4P'};
+    const ratings = [0].concat(incRatings(S)), pols = ['', '1P+N', '2P', '3P', '4P'], poleLab = {'': 'Auto (' + (isLV(S) ? (dpOf(S) ? '2P' : '1P') : (S.phases === 3 ? '4P' : '2P')) + ')', '1P+N':'1P+N', '2P':'2P', '3P':'3P', '4P':'4P'};
     form = `<div class="iform">${fl('Rating A', `<select data-k="s" data-f="incomer" data-t="n">${ratings.map(r2 => `<option value="${r2}" ${(+S.incomer || 0) === r2 ? 'selected' : ''}>${r2 ? r2 + ' A' : 'Auto (' + (R.inc.In || '–') + ' A)'}</option>`).join('')}</select>`)}
      ${fl('Poles', sl('s', '', 'incPoles', pols, S.incPoles || '', poleLab))}
      ${fl('Width (modules)', sl('s', '', 'incW', [0, 1, 2, 3, 4, 5, 6, 8], num(S.incW, 0), {0: 'Auto', 1: '1', 2: '2', 3: '3', 4: '4', 5: '5', 6: '6', 8: '8'}, 1))}
@@ -474,7 +488,7 @@ function renderChecks(){
    <div class="stats" style="margin-top:14px"><span>Connected load <b>${fmt(R.power.conn / 1000, 2)} kW</b></span><span>Demand <b>${fmt(R.power.dem / 1000, 2)} kW</b></span>${isDC(S) ? '' : `<span>Apparent <b>${fmt(R.power.kva / 1000, 2)} kVA</b></span><span>PF <b>${fmt(R.power.pf, 2)}</b></span>`}<span>Diversity <b>${S.diversity}</b></span><span>Max phase <b>${fmt(R.inc.Imax, 1)} A</b></span><span>Imbalance <b>${fmt(R.inc.imb, 0)} %</b></span><span>Incomer <b>${R.inc.In || '–'} A</b>, cable <b>${R.inc.cab.size} mm²</b></span><span>Worst end-to-end drop <b>${fmt(R.worstVd, 2)} %</b></span><span>Heat in enclosure ≈ <b>${fmt(R.heatW, 0)} W</b></span></div>
    ${S.phases === 3 ? '<div class="row" style="margin-top:12px"><button class="btn" data-a="bal">Auto-balance phases</button></div>' : ''}</div>
   <div class="card"><h2>Design checks</h2>${items.length ? `<ul class="checks" style="margin-top:12px">${items.map(c => `<li><span class="lvl ${c.lvl}">${lv[c.lvl]}</span><span class="mono">${esc(c.ref)}</span><span>${esc(c.msg)}</span></li>`).join('')}</ul>` : '<p class="muted" style="margin-top:8px">All checks pass for the current board.</p>'}
-   <p class="note" style="margin-top:12px">Checks cover design current against breaker and cable rating, voltage drop, RCD expectation, fault level, Lutron input, zone and temperature limits. Earth-fault loop impedance, discrimination and selectivity are not calculated here.</p></div>`;
+   <p class="note" style="margin-top:12px">Checks cover design current against breaker and cable rating (with enclosure temperature and the NEC continuous-load rule), voltage drop, RCD expectation, breaking capacity, device rating against the standard and supply voltage, earth-fault loop impedance when Ze is entered, Lutron input, zone and temperature limits. Discrimination and selectivity are not calculated here.</p></div>`;
 }
 
 /* ---------- single-line diagram ---------- */
@@ -526,7 +540,7 @@ function renderDiagram(){
    <text class="ink" x="${mid + 90}" y="${yT + 4}" font-size="12" font-weight="600">Supply ${esc(sys ? sys.label : '')}</text><text class="ink2" x="${mid + 90}" y="${yT + 20}" font-size="10">Incomer cable ${R.inc.cab.size} mm² ${S.incCable === 'pvc' ? 'PVC' : 'XLPE'} · ${S.incLen} m</text>
    <line x1="${mid}" y1="${yT + 23}" x2="${mid}" y2="${yT + 40}" stroke="var(--ink)" stroke-width="2.2"/>${brkSym(mid, yT + 56, 'var(--ink)')}<line x1="${mid + 6}" y1="${yT + 56}" x2="${mid + 6}" y2="${yT + 56}" stroke="var(--ink)"/>
    <rect x="${mid - 6}" y="${yT + 44}" width="0" height="0"/><line x1="${mid}" y1="${yT + 56}" x2="${mid}" y2="${y0 - 24}" stroke="var(--ink)" stroke-width="2.2"/>
-   <rect x="${mid + 22}" y="${yT + 42}" width="188" height="30" rx="4" fill="var(--surface-2)" stroke="var(--line)"/><text class="ink" x="${mid + 30}" y="${yT + 55}" font-size="11" font-weight="600">Q0 main ${R.inc.In || '–'} A ${isLV(S) ? (dpOf(S) ? '2P' : '1P') + (isDC(S) ? ' DC' : '') : (three ? '3P+N' : '1P+N')}</text><text class="ink2" x="${mid + 30}" y="${yT + 68}" font-size="9.5">${esc(R.sel.mainS ? R.sel.mainS.mfr + ' ' + R.sel.mainS.series : 'generic')} · imbalance ${fmt(R.inc.imb, 0)} %</text>`;
+   <rect x="${mid + 22}" y="${yT + 42}" width="188" height="30" rx="4" fill="var(--surface-2)" stroke="var(--line)"/><text class="ink" x="${mid + 30}" y="${yT + 55}" font-size="11" font-weight="600">Q0 main ${R.inc.In || '–'} A ${isLV(S) ? (dpOf(S) ? '2P' : '1P') + (isDC(S) ? ' DC' : '') : (three ? '3P+N' : (S.sysId === '1p240' && STD[S.std].fam === 'ul' ? '2P' : '1P+N'))}</text><text class="ink2" x="${mid + 30}" y="${yT + 68}" font-size="9.5">${esc(R.sel.mainS ? R.sel.mainS.mfr + ' ' + R.sel.mainS.series : 'generic')} · imbalance ${fmt(R.inc.imb, 0)} %</text>`;
   if (S.spd) g += `<line x1="${mid}" y1="${yT + 90}" x2="${mid + 40}" y2="${yT + 90}" stroke="var(--ink)"/><rect x="${mid + 40}" y="${yT + 82}" width="28" height="16" rx="2" fill="var(--surface)" stroke="var(--ink)"/><path d="M${mid + 50} ${yT + 84} l-4 7 h6 l-4 7" fill="none" stroke="var(--warn)" stroke-width="1.5"/><text class="ink2" x="${mid + 76}" y="${yT + 94}" font-size="10">SPD type 2</text>`;
   /* column heads */
   g += `<rect x="0" y="${y0 - 22}" width="${W}" height="20" fill="var(--surface-2)"/>`;
@@ -569,7 +583,7 @@ function renderDiagram(){
       const lives = r.thr ? [{p:'L1', y: y - 21}, {p:'L2', y: y - 11}, {p:'L3', y: y - 1}] : [{p: r.ph, y: y - 5}];
       const yN = r.thr ? y + 11 : y + 7;
       g += conductors(lives, yN, r.thr, {n: rcd || dp || r.thr && rcd}, rcd);
-      g += `${chip(XE + 6, c.ref, col)}<text class="ink" x="${colX.name + 0}" y="${y + 4}" font-size="11">${esc(clip(c.name, 32))}</text><text class="ink2" x="${colX.prot}" y="${y + 4}" font-size="11">${c.prot} ${r.curve === 'Std' ? '' : r.curve}${r.In} A${rcd ? ' 30 mA' : ''} · ${isDC(S) ? '+ / −' : (r.thr ? 'L1L2L3' : r.ph) + '+N'}</text><text class="ink2" x="${colX.cab}" y="${y + 4}" font-size="11">${cabTxt(r.cab, r.thr, c.cable)} · ${c.len} m</text>
+      g += `${chip(XE + 6, c.ref, col)}<text class="ink" x="${colX.name + 0}" y="${y + 4}" font-size="11">${esc(clip(c.name, 32))}</text><text class="ink2" x="${colX.prot}" y="${y + 4}" font-size="11">${c.prot} ${r.curve === 'Std' ? '' : r.curve}${r.In} A${rcd ? ' ' + (r.rcdMA || '30 mA') : ''} · ${isDC(S) ? '+ / −' : (r.thr ? 'L1L2L3' : r.ph) + '+N'}</text><text class="ink2" x="${colX.cab}" y="${y + 4}" font-size="11">${cabTxt(r.cab, r.thr, c.cable)} · ${c.len} m</text>
        ${loadSym(c.type, 884, y)}${loadBar(colX.load, y, r.Ib, r.In)}<text class="ink2" x="${colX.load + 62}" y="${y + 4}" font-size="11">${c.P} W · ${fmt(r.Ib, 1)} A</text><text fill="${r.vdTot > r.lim ? 'var(--bad)' : 'var(--ink-2)'}" font-weight="${r.vdTot > r.lim ? 700 : 400}" x="${colX.vd}" y="${y + 4}" font-size="11">${fmt(r.vdTot, 1)}%</text><circle cx="${colX.st}" cy="${y}" r="5" fill="${sc}"/>`;
     }
   });
@@ -591,7 +605,7 @@ function schedRows(){
   return S.circuits.map(c => {
     const r = R.c[c.id], m = c.mod;
     return [c.ref, c.name, T(TYPES[c.type].l), m ? T(`${m} zone ${c.zone}`) : T('Direct'), r.thr ? 'L1L2L3' : r.ph, +num(c.P, 0), +r.pf.toFixed(2), +num(c.dem, 1), +r.Ib.toFixed(2),
-      m ? T(`Via ${m} feed`) : `${c.prot} ${r.curve === 'Std' ? '' : r.curve}${r.In}${c.prot === 'RCBO' ? ' 30mA' : ''}`.replace('  ', ' '), r.In || '', `${r.thr ? 4 : 3}x${r.cab.size} mm2 ${c.cable === 'xlpe' ? 'XLPE' : 'PVC'}`, +num(c.len, 0), +r.cab.Iz.toFixed(1), +r.vdTot.toFixed(2), T(stLabel[statusOf(c.ref)])];
+      m ? T(`Via ${m} feed`) : `${c.prot} ${r.curve === 'Std' ? '' : r.curve}${r.In}${c.prot === 'RCBO' ? ' ' + (r.rcdMA || '30 mA').replace(' mA', 'mA') : ''}`.replace('  ', ' '), r.In || '', `${r.thr ? 4 : 3}x${r.cab.size} mm2 ${c.cable === 'xlpe' ? 'XLPE' : 'PVC'}`, +num(c.len, 0), +r.cab.Iz.toFixed(1), +r.vdTot.toFixed(2), T(stLabel[statusOf(c.ref)])];
   });
 }
 const SCHED_HEAD = ['Ref', 'Description', 'Type', 'Fed from', 'Phase', 'Load W', 'PF', 'Demand', 'Ib A', 'Protection', 'In A', 'Cable', 'Length m', 'Cable rating A', 'VD %', 'Status'];
@@ -603,7 +617,7 @@ function bomRows(){
   (S.custom || []).forEach(x => add('x' + x.id, `${x.name || 'Custom device'}${x.note ? ' (' + x.note + ')' : ''}${num(x.rating, 0) ? ' ' + x.rating + ' A' : ''}, ${Math.max(1, Math.round(num(x.w, 1)))} module`));
   if (S.spd) add('spd', `Surge protective device ${S.phases === 3 ? '3P+N' : '1P+N'} type 2`);
   S.modules.forEach(m => { const r = R.m[m.id]; if (!r.lv) add('f' + r.In, `${sn(mS)}MCB ${r.In} A (module feed)`); add('m' + m.model, `${r.lib.brand || 'Lutron'} ${m.model} (${r.lib.fam})`); });
-  S.circuits.forEach(c => { if (c.mod) return; const r = R.c[c.id], ser = c.prot === 'RCBO' ? rS : mS; add(c.prot + r.curve + r.In + r.thr + (ser ? ser.id : ''), `${sn(ser)}${c.prot} ${r.thr ? (c.prot === 'RCBO' ? '3P+N' : '3P') : (isLV(S) ? (dpOf(S) ? '2P' : '1P') + (isDC(S) ? ' DC' : '') : (STD[S.std].dp || c.prot === 'RCBO' ? '1P+N' : '1P'))} ${r.curve === 'Std' ? '' : r.curve}${r.In} A${c.prot === 'RCBO' ? ' 30 mA' : ''}`); });
+  S.circuits.forEach(c => { if (c.mod) return; const r = R.c[c.id], ser = c.prot === 'RCBO' ? rS : mS; add(c.prot + r.curve + r.In + r.thr + (ser ? ser.id : ''), `${sn(ser)}${c.prot} ${polesOf(S, c.prot, r.thr)} ${r.curve === 'Std' ? '' : r.curve}${r.In} A${c.prot === 'RCBO' ? ' ' + (r.rcdMA || '30 mA') : ''}`); });
   return Object.values(map).map(x => [x.d, x.q]).concat((() => { try { return dBom(); } catch (e) { return []; } })());
 }
 async function dl(name, data){
@@ -688,7 +702,7 @@ function pdfDiagram(doc, logo, PW, ML){
       doc.setFillColor(...ink); doc.circle(mx, y + 19.5, .5, 'F');
       txt(`Supply ${sys ? sys.label : ''}`, mx + 7, y + 3, 7.5, true);
       txt(`Incomer cable ${R.inc.cab.size} mm2 ${S.incCable === 'pvc' ? 'PVC' : 'XLPE'} - ${S.incLen} m`, mx + 7, y + 7, 6.5, false, [90, 98, 106]);
-      txt(`Q0 main ${R.inc.In || '-'} A ${isLV(S) ? (dpOf(S) ? '2P' : '1P') + (isDC(S) ? ' DC' : '') : (three ? '3P+N' : '1P+N')}`, mx + 7, y + 12.5, 7.5, true);
+      txt(`Q0 main ${R.inc.In || '-'} A ${isLV(S) ? (dpOf(S) ? '2P' : '1P') + (isDC(S) ? ' DC' : '') : (three ? '3P+N' : (S.sysId === '1p240' && STD[S.std].fam === 'ul' ? '2P' : '1P+N'))}`, mx + 7, y + 12.5, 7.5, true);
       if (S.spd){ line(mx, y + 17, mx + 12, y + 17, ink, .4); doc.setFillColor(255, 255, 255); doc.setDrawColor(...ink); doc.rect(mx + 12, y + 15, 6, 4, 'FD'); txt('SPD', mx + 13, y + 18, 5.5, true); txt('Surge protective device type 2', mx + 20, y + 18, 6.5, false, [90, 98, 106]); }
       y += 21;
     }
@@ -733,7 +747,7 @@ function pdfDiagram(doc, logo, PW, ML){
         const lives = r.thr ? [{p: 'L1', y: yc - 4.6}, {p: 'L2', y: yc - 2.4}, {p: 'L3', y: yc - .2}] : [{p: r.ph, y: yc - 2.2}];
         cond(lives, r.thr ? yc + 2.6 : yc + 2.2, rcd || dp, rcd);
         doc.setDrawColor(...cc); doc.setLineWidth(.3); doc.rect(X(166), yc - 2, 9, 4); txt(clip(c.ref, 5), X(166) + 1.1, yc + .8, 6, true);
-        colsTxt(clip(c.name, 32), `${c.prot} ${r.curve === 'Std' ? '' : r.curve}${r.In} A${rcd ? ' 30 mA' : ''} ${isDC(S) ? '+/-' : (r.thr ? 'L1L2L3' : r.ph) + '+N'}`, `${cabTxt(r.cab, r.thr, c.cable)} ${c.len} m`, `${c.P} W ${fmt(r.Ib, 1)} A`, fmt(r.vdTot, 1) + '%', r.Ib, r.In, c.ref, c.type);
+        colsTxt(clip(c.name, 32), `${c.prot} ${r.curve === 'Std' ? '' : r.curve}${r.In} A${rcd ? ' ' + (r.rcdMA || '30 mA') : ''} ${isDC(S) ? '+/-' : (r.thr ? 'L1L2L3' : r.ph) + '+N'}`, `${cabTxt(r.cab, r.thr, c.cable)} ${c.len} m`, `${c.P} W ${fmt(r.Ib, 1)} A`, fmt(r.vdTot, 1) + '%', r.Ib, r.In, c.ref, c.type);
       }
       yy += h;
     });
@@ -901,6 +915,8 @@ function renderHelp(){
   const tips = [
    ['Your work is saved automatically', 'When you are signed in, a board you open from your Dashboard saves to your account about a second after each change, and the chip at the top shows Saved, Saving or Offline. You can open it on any device you sign in on. If the same board was changed on another device, you choose which version to keep. A board kept only in this browser is not touched by cloud boards. Use Save project to keep a file copy.'],
    ['Reading a panel photo or PDF', 'A photo is read on a best-effort basis. Take it straight on with the door open and no glare, switch the flash off if labels reflect it, and add close-ups of each row for large boards. PDFs with real text read best. Always check ratings, phases and labels against the real panel before you issue the result as as-built documentation. Each person can run a limited number of readings per day.'],
+   ['Protection rules', 'Each breaker is sized from the design current (125 % of continuous loads under NEC), derated for the enclosure temperature, then rounded up to the next standard rating of the chosen standard. The RCD sensitivity (30 mA, or GFCI 4–6 mA under NEC and ABYC), the number of poles (2-pole for 240 V loads) and the device standard (IEC or UL) follow the standard and the supply voltage. With IEC, BS 7671 and AS/NZS, enter Ze in Setup to check the earth-fault loop of each MCB circuit.'],
+   ['Community', 'Open Community from the Dashboard to chat with other registered members, create groups, invite people by email and share saved boards. The bell in the header shows invitations, replies and shared projects.'],
    ['Your account', 'Use the profile menu for Account settings: edit your details, change your password, download all your data, or delete your account. Use Feedback on the Dashboard to tell us what to improve.'],
    ['Install it like an app', 'In the installable version, use your browser\'s Install or Add to Home Screen option. It then opens full screen and works offline.'],
    ['DALI figures','Lunatone figures were read from its product pages. Where LTECH or OSRAM pages did not state DALI current or mounting, the library marks the item Assumed (2 mA per device). Neither brand has a DIN-rail DALI driver in the library; the LTECH bus supply and relay are DIN-rail. Check each item on the datasheet before ordering.'],

@@ -713,3 +713,434 @@
 713|Im Konto speichern
 714|E-Mail oder Passwort falsch.
 715|Neues Passwort wählen
+716|+ DALI-Modul
+717|Fügen Sie hier DALI-Master, Bus-Netzteile und Treiber hinzu oder übernehmen Sie sie aus der DALI-Bibliothek auf der Registerkarte Geräte. Jeder Treiber wird an einen Link eines DALI-Controllers angeschlossen. Im Schaltschrank platzierte Controller (zum Beispiel ein Lutron QSN2-2DALUNV-D) erscheinen hier automatisch, ebenso die unten hinzugefügten Master. Adressen werden auf jeder Linie der Reihe nach vergeben, bis zu 64.
+718|Fügen Sie dem Schaltschrank einen DALI-Controller oder unten einen Master hinzu, um das Netzwerk zu zeichnen.
+719|Fügen Sie einen Treiber, ein Netzteil, einen Controller oder einen Eingang hinzu, der nicht in der Bibliothek steht, und tragen Sie seine Daten ein. Er erscheint dann in der Modellliste oben und lässt sich wie jedes andere Gerät mit einem Link verbinden.
+720|Zum DALI-Netzwerk hinzufügen
+721|Adr.
+722|Adresse
+723|Adresse und mA gelten für Treiber und Eingänge. Linien und Busversorgung gelten für Controller und Netzteile. Die DIN-Breite gilt bei Montage auf der DIN-Schiene.
+724|Adressen
+725|Alle Prüfungen der DALI-Linien sind bestanden.
+726|Busbelastung
+727|Kanäle
+728|Verbinden mit
+729|Verbinden mit: erstem freien Link
+730|Controller
+731|Erstellen und hinzufügen
+732|Eigenes DALI-Gerät
+733|DALI-Marke
+734|DALI-Controller in diesem Projekt
+735|DALI-Gerätebibliothek
+736|DALI-Link
+737|DALI mA
+738|DALI-Modell
+739|DALI-Modullayout
+740|DALI-Modul zum Hinzufügen
+741|DALI-Module
+742|DALI-Netzwerk
+743|DALI-Netzwerkschema
+744|DALI-Typ
+745|DIN-Breite (DU)
+746|DIN und extern
+747|Nur DIN-Schiene
+748|Geräte
+749|Nach Typ filtern
+750|Geben Sie dem eigenen Gerät einen Namen.
+751|Eingangs-/Tastenkoppler
+752|Linien
+753|Link
+754|Montage
+755|Name / Ort
+756|Noch kein DALI-Controller vorhanden. Fügen Sie ein DALI-Modul von der Registerkarte Geräte (Lutron, Crestron oder MDT, auf der Registerkarte Schalttafel angezeigt) oder unten einen DALI-Master oder ein Gateway hinzu und verbinden Sie dann die Treiber mit dessen Links.
+757|Keine passenden DALI-Geräte.
+758|Noch keine DALI-Geräte. Wählen Sie oben ein Modell oder durchsuchen Sie die DALI-Bibliothek auf der Registerkarte Geräte.
+759|An dieser Linie ist kein Bus-Netzteil angeschlossen. Verbinden Sie ein DALI-Netzteil damit.
+760|Keine Treffer
+761|Nicht verbunden
+762|Noch nichts anzuordnen.
+763|Auf DIN-Schiene
+764|Ausgang
+765|Mengen
+766|Nur extern
+767|Gesamtes DALI entfernen
+768|DALI-Geräte suchen
+769|DALI-Geräte suchen
+770|Treiber, Marke, Artikel suchen
+771|Modell, Artikel, Typ suchen
+772|Versorgung mA
+773|Der Master hat ein eingebautes Bus-Netzteil, es ist aber ein separates angeschlossen. Nur das separate wird gezählt.
+774|Es gibt keinen DALI-Master und kein Gateway, daher existiert keine DALI-Linie. Fügen Sie eines hinzu, um die Treiber anzuschließen.
+775|Wo
+776|Ihre eigenen Geräte
+777|z. B. Küchen-Downlights
+778|z. B. Tridonic 75 W CC
+779|ist ein Master
+780|Std.
+781|gerade eben
+782|Min.
+783|. Öffnen Sie ihn, um Ihr Konto zu aktivieren, und melden Sie sich dann an. Der Link funktioniert nur einmal und läuft nach einer Weile ab.
+784|Eine Entwurfshilfe. Prüfen Sie immer anhand der örtlichen Errichtungsvorschriften.
+785|Konto gesperrt
+786|Sie haben bereits ein Konto?
+787|Stückliste, PDF- und Excel-Export
+788|Kabelbemessung, Spannungsfall und Lasten
+789|Ohne Konto fortfahren
+790|Konto erstellen
+791|DIN-Schienen-Layout und Schalterpositionen
+792|Entwerfen Sie Verteilungen, nach denen sich bauen lässt.
+793|Meine Daten herunterladen
+794|Geben Sie die E-Mail-Adresse Ihres Kontos ein. Passt sie zu einem Konto, senden wir Ihnen einen Link zum Festlegen eines neuen Passworts.
+795|Der Start ist kostenlos. Wir senden Ihnen einen Link zur Bestätigung Ihrer Adresse, bevor Sie sich anmelden können.
+796|Ich habe bestätigt, anmelden
+797|Ich habe gelesen und akzeptiere
+798|Layout, einpoliges Schaltbild, Listen und Kabelbemessung in einem Arbeitsbereich, gespeichert in Ihrem Konto und auf jedem Gerät verfügbar.
+799|Neu bei DBoard Designer?
+800|Nichts angekommen? Prüfen Sie den Spam-Ordner und die korrekte Schreibweise der Adresse.
+801|Projekte sicher in Ihrem Konto gespeichert
+802|Bestätigungs-E-Mail erneut senden
+803|Legen Sie ein neues Passwort für Ihr Konto fest.
+804|Passwort anzeigen
+805|Neu beginnen
+806|Dieses Konto wurde gesperrt und kann derzeit keine Projekte öffnen. Ihre Daten bleiben erhalten. Wenden Sie sich an den Betreiber des Dienstes, um dies prüfen zu lassen.
+807|Wir haben einen Bestätigungslink gesendet an
+808|Willkommen zurück. Machen Sie mit Ihren Verteilungen dort weiter, wo Sie aufgehört haben.
+809|Falsche Adresse?
+810|und die
+811|1. Der Dienst
+812|2. Berufliche Verantwortung
+813|3. Ihr Konto
+814|4. Ihre Inhalte
+815|5. Zulässige Nutzung
+816|6. Verfügbarkeit und Haftung
+817|7. Beendigung des Kontos
+818|Eine neuere Version dieses Projekts wurde von einem anderen Gerät oder Tab gespeichert. Wählen Sie, welche Version behalten werden soll.
+819|Kontomenü
+820|DBoard Designer ist eine Entwurfshilfe für elektrische Verteilungen. Die Ergebnisse (Kabelquerschnitte, Spannungsfall, Lasten, Stücklisten) sind Richtwerte.
+821|Die Daten werden aufbewahrt, solange Ihr Konto besteht, und beim Löschen entfernt.
+822|Dieses Projekt endgültig löschen?
+823|Versuchen Sie nicht, auf Daten anderer Nutzer zuzugreifen, den Dienst zu stören oder ihn rechtswidrig zu nutzen. Entsprechende Konten können gesperrt werden.
+824|In den Kontoeinstellungen können Sie Ihre Angaben bearbeiten, alle Ihre Daten herunterladen und Ihr Konto samt Projekten endgültig löschen. Für weitere Datenschutzanfragen wenden Sie sich an den Betreiber.
+825|Meine Version behalten
+826|Halten Sie Ihr Passwort geheim. Sie sind für Aktivitäten unter Ihrem Konto verantwortlich. Machen Sie bei der Registrierung korrekte Angaben.
+827|Gespeicherte Version laden
+828|Name, E-Mail-Adresse, Land, Beruf und optional Firma, die Sie bei der Registrierung angeben. Ihre Projekte. Grundlegende Nutzungsereignisse (Anmeldungen, geöffnete oder erstellte Projekte, Exporte, geöffnete Werkzeuge) und von Ihnen gesendetes Feedback.
+829|Passwörter
+830|Passwörter werden von dieser Anwendung nie gespeichert. Die Authentifizierung übernimmt Supabase Auth, das nur einen gesalzenen Hash speichert.
+831|Projekt gelöscht.
+832|Projekt dupliziert.
+833|Aufbewahrung
+834|In Ihrem Konto gespeichert.
+835|Supabase (Datenbank und Authentifizierung) und Cloudflare (Hosting). Administratoren dieses Dienstes können Kontodaten, Projektanzahl und Feedback einsehen. Ihr Passwort können sie nicht sehen.
+836|Vorlage für den Betreiber des Dienstes. Ergänzen Sie die Betreiberangaben und lassen Sie sie vor dem öffentlichen Start prüfen.
+837|Vorlage für den Betreiber des Dienstes. Lassen Sie sie von einem qualifizierten Rechtsanwalt prüfen und passen Sie sie vor dem öffentlichen Start an.
+838|Der Dienst wird in der Beta-Phase „wie besehen“ bereitgestellt. Soweit gesetzlich zulässig, haftet der Betreiber nicht für Verluste aus der Nutzung. Bewahren Sie eigene Exporte wichtiger Projekte auf.
+839|Dieses Projekt wurde auf einem anderen Gerät geändert
+840|Dieses Projekt konnte nicht gelesen werden.
+841|Um Ihr Konto zu betreiben, Ihre Projekte zu speichern, den Dienst abzusichern und zu verstehen, welche Funktionen genutzt werden. Wir verkaufen keine personenbezogenen Daten und zeigen keine Werbung.
+842|In Ihr Konto hochgeladen. Die Kopie auf diesem Gerät bleibt unverändert.
+843|Was wir erheben
+844|Wer die Daten verarbeitet
+845|Wozu
+846|Sie sind dafür verantwortlich, jeden Entwurf anhand der am Errichtungsort geltenden Vorschriften zu prüfen und vor der Installation von einer Fachkraft verifizieren zu lassen.
+847|Sie können Ihr Konto jederzeit in den Kontoeinstellungen löschen. Ihre Projekte und Ihr Profil werden dann endgültig entfernt.
+848|Die von Ihnen erstellten Projekte gehören Ihnen. Sie räumen dem Betreiber das Recht ein, sie zur Erbringung des Dienstes zu speichern und zu verarbeiten.
+849|Ihre Rechte
+850|Ihre Sitzung ist abgelaufen. Melden Sie sich erneut an.
+851|Ein Projekt ist nur auf diesem Gerät gespeichert:
+852|Mein Konto löschen
+853|Endgültig löschen
+854|Konto löschen?
+855|Laden Sie Ihr Profil und alle Projekte als eine JSON-Datei herunter.
+856|Bearbeitet
+857|Verteilung importieren
+858|Aus Foto oder PDF importieren
+859|Ihre Projekte werden geladen…
+860|Keine Verbindung. Prüfen Sie Ihr Internet und versuchen Sie es erneut.
+861|Jetzt nicht
+862|Benachrichtigungen
+863|Lokale Verteilung öffnen
+864|Öffnet die in diesem Browser gespeicherte Verteilung, ohne sie in der Cloud zu speichern.
+865|Öffnet eine leere Verteilung, die automatisch in Ihrem Konto gespeichert wird.
+866|Löscht Ihr Konto, Ihr Profil und alle gespeicherten Projekte endgültig. Dies kann nicht rückgängig gemacht werden. Nur auf diesem Gerät gespeicherte Projekte sind nicht betroffen.
+867|Teilen
+868|Beginnen Sie eine neue Verteilung oder setzen Sie eine gespeicherte fort.
+869|Vielen Dank. Ihr Feedback wurde gesendet.
+870|Dadurch werden Ihr Konto und alle gespeicherten Projekte endgültig gelöscht. Geben Sie zur Bestätigung Ihre E-Mail-Adresse ein.
+871|Verwandeln Sie ein Foto einer gebauten Verteilung oder einen PDF-Schaltplan in eine bearbeitbare Verteilung.
+872|Kopie hochladen
+873|Laden Sie eine Kopie in Ihr Konto hoch, um sie auf anderen Geräten zu nutzen. Die Kopie auf diesem Gerät bleibt erhalten.
+874|Was funktioniert, was fehlt, was ist schiefgegangen?
+875|Auf diesem Gerät arbeiten
+876|Schreiben Sie zuerst eine Nachricht.
+877|Sie sind offline. Cloud-Projekte werden geladen, sobald Sie wieder verbunden sind.
+878|Ihre Daten
+879|Ihre Nachricht
+880|Stromkreise
+881|Geräte
+882|Aktiv
+883|Admin-Dashboard
+884|Verwaltung
+885|Jeder Status
+886|Jede Verifizierung
+887|Community
+888|Gelöschter Nutzer
+889|E-Mail
+890|E-Mail-Bestätigung
+891|Zuletzt gesehen
+892|Wird geladen…
+893|Neue Projekte in 7 Tagen
+894|Weiter
+895|Noch keine Ereignisse aufgezeichnet.
+896|Noch kein Feedback.
+897|Keine passenden Nutzer.
+898|Nicht verifiziert
+899|Zurück
+900|Projekte
+901|Registriert
+902|Suchen
+903|Name, E-Mail, Firma suchen
+904|Nutzer suchen
+905|Registrierungen pro Tag
+906|Registrierungen, letzte 30 Tage
+907|Gesperrt
+908|Top-Länder
+909|Nutzung, letzte 30 Tage
+910|Verifiziert
+911|Admin
+912|Nutzer
+913|Annehmen
+914|Zurück zu den Unterhaltungen
+915|Chatten Sie mit anderen Mitgliedern, arbeiten Sie in Gruppen und teilen Sie gespeicherte Verteilungen.
+916|Wählen Sie eine Unterhaltung oder beginnen Sie eine neue.
+917|Zum Bestätigen erneut klicken
+918|Zum Verlassen erneut klicken
+919|Unterhaltungen
+920|Die Einladung konnte nicht angenommen werden.
+921|Gruppe erstellen
+922|Das Tageslimit für Einladungen ist erreicht. Versuchen Sie es morgen erneut.
+923|Ablehnen
+924|E-Mail-Adresse eines registrierten Mitglieds
+925|E-Mail gesendet an
+926|Ehemaliges Mitglied
+927|Geben Sie der Gruppe einen Namen.
+928|Gruppe
+929|Gruppenchat
+930|Gruppenname
+931|Einladungen
+932|Einladen
+933|Mitglieder per E-Mail einladen
+934|Einladen zu
+935|Verlassen
+936|Alle als gelesen markieren
+937|Mitglieder
+938|Nachricht
+939|Nachricht (optional)
+940|Nachrichten konnten nicht geladen werden.
+941|Neue Gruppe
+942|Neuer privater Chat
+943|Noch keine Unterhaltungen. Starten Sie einen privaten Chat mit einem Mitglied oder erstellen Sie eine Gruppe.
+944|Noch keine Nachrichten
+945|Noch keine Nachrichten. Sagen Sie Hallo.
+946|Mit Ihnen wurde noch nichts geteilt.
+947|Nichts Neues. Einladungen, Antworten und geteilte Projekte erscheinen hier.
+948|Kopie öffnen
+949|Gruppe öffnen
+950|Privater Chat
+951|Registrierte Mitglieder können die Verteilung ansehen und eine eigene Kopie speichern. Nur Sie können das Original ändern.
+952|Senden
+953|Einladungen senden
+954|Trennen Sie Adressen mit Kommas oder Zeilenumbrüchen. Eingeladene Mitglieder erhalten eine E-Mail und eine Benachrichtigung und treten bei, sobald sie annehmen.
+955|Projekt teilen
+956|Teilen mit (E-Mail-Adressen)
+957|Von mir geteilt
+958|Mit mir geteilt
+959|Chat starten
+960|Freigabe beenden
+961|Dieses Projekt wird nicht mehr mit Ihnen geteilt.
+962|Die E-Mail konnte nicht gesendet werden. Sie sehen es trotzdem in ihrem Dashboard.
+963|Die Nachricht konnte nicht gesendet werden. Versuchen Sie es erneut.
+964|Sie sehen es in ihrem Dashboard.
+965|Unbenannte Verteilung
+966|Nachricht schreiben. Enter sendet, Umschalt+Enter fügt eine Zeile ein.
+967|Sie senden Nachrichten zu schnell. Warten Sie einen Moment.
+968|Sie haben kein Projekt geteilt. Nutzen Sie „Teilen“ bei einem beliebigen Projekt im Dashboard.
+969|von
+970|eingeladen
+971|Mitglieder
+972|wurde ausgelassen (20 Adressen auf einmal)
+973|Sie
+974|Fügen Sie zuerst mindestens ein Gerät hinzu.
+975|Gerät hinzufügen
+976|Fotos oder ein PDF hinzufügen
+977|Vermeiden Sie Blendung und Schatten. Schalten Sie den Blitz aus, wenn die Beschriftungen spiegeln.
+978|Verteilung
+979|Verteilung erstellt. Bitte prüfen:
+980|Name der Verteilung
+981|Bitte prüfen
+982|Dateien auswählen
+983|Verteilung erstellen
+984|Aus der Verteilung erkennen
+985|Korrigieren Sie alles, was falsch aussieht. Leer gelassene Lasten werden aus dem Nennstrom des Schalters geschätzt. Erst mit „Verteilung erstellen“ wird etwas gespeichert.
+986|Bei PDFs werden Vektorzeichnungen und Textlisten am besten gelesen. Scans müssen scharf sein.
+987|Zum Beispiel: Beschriftungen sind italienisch, die Verteilung ist eine Schiffsverteilung mit 230 V
+988|Fügen Sie bei großen Verteilungen Nahaufnahmen jeder Reihe hinzu, damit Schalterkennzeichnungen und Beschriftungen scharf sind.
+989|Für das beste Ergebnis
+990|Wie sicher die Erkennung ist
+991|Nehmen Sie die Stromkreislegende oder den Beschriftungsstreifen mit auf, falls vorhanden.
+992|Beschriftung
+993|Lasttyp
+994|Nicht auf der Verteilung vermerkt. Angenommen, bitte prüfen.
+995|Hinweise für die Erkennung (optional)
+996|Es wurde nichts erkannt. Fügen Sie Geräte von Hand hinzu oder gehen Sie zurück und versuchen Sie ein schärferes Foto.
+997|Der Verteilungsimport ist für diese Website noch nicht aktiviert. Der Website-Betreiber muss den Schlüssel des Lesedienstes hinzufügen (siehe README).
+998|Verteilung lesen
+999|Verteilung wird gelesen…
+1000|Von vorn beginnen
+1001|Foto aufnehmen
+1002|Fotografieren Sie frontal bei geöffneter Tür, nicht schräg.
+1003|Die Verteilung konnte nicht erstellt werden. Prüfen Sie die Werte und versuchen Sie es erneut.
+1004|Die Verteilung war groß und die Erkennung wurde abgebrochen. Fügen Sie fehlende Geräte von Hand hinzu oder wiederholen Sie mit Nahaufnahmen der rechten Seite.
+1005|Das Foto oder PDF wird zur Analyse an den Lesedienst gesendet und nicht gespeichert. Sie prüfen alles, bevor eine Verteilung erstellt wird.
+1006|Dauert meist 20 bis 60 Sekunden. Lassen Sie diese Seite geöffnet.
+1007|Verwandeln Sie ein Foto einer gebauten Verteilung oder einen PDF-Schaltplan in eine bearbeitbare Verteilung mit Stromkreisen, Beschriftungen, Schaltplan und Stückliste.
+1008|Bis zu vier Fotos einer Verteilung oder ein PDF-Schaltplan bzw. eine Stromkreisliste.
+1009|Installationsnorm (optional)
+1010|Ihre Quelle
+1011|Geräte erkannt
+1012|geringe Sicherheit, hervorgehoben
+1013|Adresse, Telefon, E-Mail, Website. Wird auf dem PDF-Deckblatt angezeigt.
+1014|Wählen Sie, was ins PDF kommt. A4 quer, mit Ihrem Logo auf jeder Seite.
+1015|Vorschau des Firmenlogos
+1016|Inhalt
+1017|Speichern nicht möglich:
+1018|Kritisch (3 % Abfall)
+1019|DALI-Seite
+1020|Entwurfsgrundlagen
+1021|Verteilungsentwurf
+1022|Beleuchtung (3 % Abfall)
+1023|Sonstige (10 % Abfall)
+1024|Projektzusammenfassung
+1025|Widerstandsnetzwerke
+1026|Gespeichert
+1027|Stern und Dreieck
+1028|Die DALI-Seite konnte für diese Verteilung nicht gezeichnet werden.
+1029|Wählen Sie mindestens einen Abschnitt für das PDF aus.
+1030|nach Gleichzeitigkeit
+1031|Anmelden, eine Verteilung beginnen oder importieren
+1032|In der gehosteten Version starten Sie nach der Anmeldung im <b>Dashboard</b>. Mit <b>Neue Verteilung</b> beginnen Sie bei null, öffnen ein gespeichertes Projekt oder nutzen <b>Verteilung importieren</b>, um aus einem Foto einer gebauten Verteilung oder aus einem PDF-Schaltplan bzw. einer Stromkreisliste eine Verteilung zu erzeugen. Fügen Sie bis zu vier Fotos einer Verteilung oder ein PDF hinzu und drücken Sie <b>Verteilung lesen</b>. Der Leser listet neben Ihrem Bild jedes erkannte Gerät auf (Schalterart, Nennstrom, Charakteristik, Polzahl, RCD, Stromkreisname, Last, Phase, Kabel, Marke und Modell). <b>Prüfen und korrigieren Sie die Tabelle</b> und drücken Sie dann <b>Verteilung erstellen</b>. Die neue Verteilung öffnet sich unter <b>Stromkreise</b> und funktioniert wie jede andere: Sie können Stromkreise und Beschriftungen hinzufügen oder bearbeiten und Schaltplan, Stückliste, PDF und Excel exportieren. Was der Leser nicht erkennen konnte, bleibt leer und wird zur Ergänzung markiert.
+1033|DALI-Lichtnetz planen
+1034|Öffnen Sie <b>Ausstattung</b> und scrollen Sie zur <b>DALI-Gerätebibliothek</b>: Master und Gateways von Lunatone, OSRAM und LTECH, Bus-Netzteile, Tasterkoppler, Relais und Dimmer bzw. Treiber, sowohl für Hutschiene als auch extern. Filtern Sie nach Marke, Typ oder <b>nur Hutschiene</b>, legen Sie eine Menge fest und drücken Sie <b>Hinzufügen</b>. Öffnen Sie dann den Tab <b>DALI</b>. DALI-Controller-Module, die Sie in der Verteilung platzieren (Lutron, Crestron, MDT), werden dort automatisch unter <b>DALI-Controller in diesem Projekt</b> samt ihren Links aufgeführt, und Sie können Treiber an den gewählten Link anschließen. Unter <b>Mengen</b> können Sie die Modellliste nach Name, Marke oder Artikel durchsuchen und nach Typ filtern. Fehlt ein Treiber in der Bibliothek, nutzen Sie <b>Eigenes DALI-Gerät</b>, um Adressen, DALI-Strom, Montage und weitere Werte einzugeben; eigene Geräte lassen sich dort bearbeiten oder löschen. Ebenfalls unter Mengen können Sie Modelle hinzufügen, eine Menge ändern oder ein Modell entfernen. Unter <b>DALI-Module</b> geben Sie jedem Gerät einen Namen oder Ort, wählen den <b>DALI-Link</b> (eine Linie eines Masters), an den es angeschlossen ist, oder löschen es. Das Werkzeug vergibt Adressen auf jeder Linie (bis zu 64) und prüft den Busstrom gegen das Bus-Netzteil. DALI-Geräte auf der Hutschiene werden auch im Tab <b>Verteilung</b> gezeichnet: Klicken Sie eines an, um es umzubenennen, sein Modell oder seinen DALI-Link zu ändern, es entlang oder zwischen Schienen zu verschieben, zu ziehen oder zu löschen, und nutzen Sie <b>+ DALI-Modul</b> in den Verteilungsnotizen, um weitere hinzuzufügen. Der <b>DALI-Netzplan</b> und das <b>DALI-Modul-Layout</b> (ein Hutschienenstreifen plus ein eigener Bereich für externe Treiber) werden darunter getrennt vom Verteilungsschaltplan gezeichnet, beide sind im PDF enthalten, mit einem DALI-Blatt in der Excel-Datei und DALI-Positionen in der Stückliste.
+1035|Öffnen Sie <b>Export</b>. <b>PDF speichern</b> erzeugt das Verteilungslayout, den mehrpoligen Schaltplan, die Stromkreisliste und die Leistungssummen; setzen Sie ein Häkchen bei <b>Stückliste einbeziehen</b>, wenn diese Liste hinzukommen soll. <b>Excel speichern</b> und <b>CSV speichern</b> liefern die Liste für andere Werkzeuge. <b>Projekt speichern</b> sichert den gesamten Entwurf als Datei, die Sie später mit <b>Projekt öffnen</b> wieder öffnen können. Mit <b>Verteilung importieren</b> erstellte Verteilungen werden genau gleich exportiert.
+1036|Wenn Sie angemeldet sind, wird eine aus dem Dashboard geöffnete Verteilung etwa eine Sekunde nach jeder Änderung in Ihrem Konto gespeichert, und der Chip oben zeigt Gespeichert, Speichern oder Offline. Sie können sie auf jedem Gerät öffnen, auf dem Sie sich anmelden. Wurde dieselbe Verteilung auf einem anderen Gerät geändert, wählen Sie, welche Version behalten wird. Eine nur in diesem Browser gespeicherte Verteilung bleibt von Cloud-Verteilungen unberührt. Mit Projekt speichern behalten Sie eine Dateikopie.
+1037|Foto oder PDF einer Verteilung lesen
+1038|Ein Foto wird nach bestem Bemühen gelesen. Fotografieren Sie frontal bei geöffneter Tür und ohne Blendung, schalten Sie den Blitz aus, wenn Beschriftungen spiegeln, und fügen Sie bei großen Verteilungen Nahaufnahmen jeder Reihe hinzu. PDFs mit echtem Text werden am besten gelesen. Prüfen Sie Nennwerte, Phasen und Beschriftungen immer an der realen Verteilung, bevor Sie das Ergebnis als Bestandsdokumentation herausgeben. Pro Person ist die Zahl der Erkennungen pro Tag begrenzt.
+1039|Ihr Konto
+1040|Nutzen Sie das Profilmenü für die Kontoeinstellungen: Angaben bearbeiten, Passwort ändern, alle Daten herunterladen oder das Konto löschen. Über Feedback im Dashboard sagen Sie uns, was wir verbessern sollen.
+1041|DALI-Werte
+1042|Die Lunatone-Werte wurden von dessen Produktseiten gelesen. Wo LTECH- oder OSRAM-Seiten keinen DALI-Strom oder keine Montageart nannten, markiert die Bibliothek den Artikel als Angenommen (2 mA pro Gerät). Keine der beiden Marken hat einen DALI-Hutschienentreiber in der Bibliothek; das Bus-Netzteil und das Relais von LTECH sind Hutschienengeräte. Prüfen Sie jeden Artikel vor der Bestellung im Datenblatt.
+1043|{1} DALI-Adressen werden verwendet. Diese Linie erlaubt {2}.
+1044|Die Geräte ziehen {1} mA, aber {2} garantiert {3} mA.
+1045|Die Busbelastung beträgt {1} % des {2}-mA-Netzteils. Lassen Sie etwas Reserve.
+1046|{1} Bus-Netzteile sind verknüpft. Eine DALI-Linie hat normalerweise eines; nur das größte wird gezählt.
+1047|{1} DALI-Gerät ist nicht mit einer Linie verbunden: {2}.
+1048|{1} DALI-Geräte sind nicht mit einer Linie verbunden: {2}.
+1049|{1} DALI-Modell verwendet angenommene Werte (in der Bibliothek als Angenommen gekennzeichnet). Bestätigen Sie sie im Datenblatt.
+1050|{1} DALI-Modelle verwenden angenommene Werte (in der Bibliothek als Angenommen gekennzeichnet). Bestätigen Sie sie im Datenblatt.
+1051|{1} · in der Hauptverteilung
+1052|Bus-Netzteil {1} mA
+1053|Link {1}
+1054|Linie {1}
+1055|keine Geräte
+1056|{1} Adressen
+1057|{1} Adr.
+1058|{1} (Master)
+1059|Nicht mit einer DALI-Linie verbunden ({1})
+1060|DALI-Schiene {1}
+1061|{1} von {2} TE belegt
+1062|{1} Linie
+1063|{1} Linien
+1064|DIN {1} TE
+1065|Link {1}
+1066|{1} Gerät
+1067|{1} Geräte
+1068|Externe Treiber und Geräte ({1}), nicht auf der Schiene
+1069|{1} DALI-Linie
+1070|{1} DALI-Linien
+1071|Werte sind Katalogwerte, im Datenblatt bestätigen
+1072|{1} auf der Hutschiene ({2} TE), {3} extern
+1073|{1} Treffer
+1074|{1} Treffer
+1075|{1} × {2} hinzugefügt. Öffnen Sie den Tab DALI, um sie zu verbinden.
+1076|{1} hinzugefügt. Öffnen Sie den Tab DALI, um es zu verbinden.
+1077|Menge von {1}
+1078|Name für {1}
+1079|DALI-Link für {1}
+1080|{1} Linie {2}
+1081|Extern (nicht DIN)
+1082|Angenommene Versorgung {1} mA / Link
+1083|Eingebaute Versorgung {1} mA / Linie
+1084|extern
+1085|DALI-Controller in der Hauptverteilung (im Tab Verteilung gezeichnet)
+1086|Hutschienenstreifen für DIN-Elemente ({1} TE pro Schiene, 1 TE = 17,5 mm; sie stehen auch im Tab Verteilung) und ein eigener Bereich für externe Treiber.
+1087|Getrennt vom Verteilungsschaltplan. Farbe = DALI-Linie; gestrichelte Kästen sind externe Geräte.
+1088|An dieser Linie ist noch nichts angeschlossen.
+1089|DIN-Breite, TE (17,5 mm)
+1090|Verwendete DALI-Adressen
+1091|DALI-Strom, mA
+1092|Der Einspeise-Schalter {1} mit {2} A wird bei {4} C im Gehäuse auf {3} A herabgesetzt, unter seine Last von {5} A.
+1093|Die Einspeisung {1} führt Dauerbeleuchtung oder ähnliche Last: {2} bemisst den Schalter mit {3} % der Last ({4} A).
+1094|Der {1}-A-Schalter wird bei {3} C im Gehäuse auf {2} A herabgesetzt, unter die Last von {4} A. Wählen Sie die nächstgrößere Stufe.
+1095|{1} bemisst den Schalter mit {2} % einer Dauerlast: {3} A erforderlich, {4} A gewählt.
+1096|{1} hat einen Anlaufstrom. Eine B-Charakteristik kann beim Einschaltstrom auslösen; verwenden Sie C oder D.
+1097|{1} {2} ist nur Typ AC. {3} hat elektronischen oder gleichgerichteten Strom und braucht einen RCD Typ A.
+1098|Ladestation für E-Fahrzeuge: IEC 60364-7-722 und BS 7671 722.531.3.101 verlangen Typ A plus 6-mA-DC-Erkennung (oft im Ladegerät integriert) oder einen RCD Typ B.
+1099|Die Fehlerschleifenimpedanz {1} Ohm (Ze {2} + Kabel {3}) liegt über dem Grenzwert von {4} Ohm für einen {5}-A-LS-Schalter ({6} V ÷ {7} × {8} A). Kürzen Sie die Strecke, nehmen Sie ein größeres Kabel oder eine niedrigere Charakteristik bzw. Stufe.
+1100|Der {1}-A-Hauptschalter wird bei {3} C im Gehäuse auf {2} A herabgesetzt, unter den maximalen Phasenstrom von {4} A.
+1101|{1} bemisst den Hauptschalter mit 100 % der nicht dauernden plus 125 % der Dauerlast: {2} A erforderlich, {3} A gewählt.
+1102|{1} {2} ist ein UL-489-Gerät. {3}-Anlagen verwenden Geräte nach IEC 60898 / 60947; prüfen Sie, ob es vor Ort akzeptiert wird.
+1103|{1} {2} ist ein Gerät nach IEC-Bauart. {3}-Anlagen brauchen UL-gelistete Geräte (UL 489 oder UL 1077). Prüfen Sie vor der Verwendung, ob es akzeptiert wird.
+1104|{1} {2} ist ein Gerät nach IEC 60898 / 61009 für 230/400 V (maximal 440 V). Diese Versorgung hat {3} V Außenleiter-Neutralleiter und {4} V Außenleiter-Außenleiter. Verwenden Sie ein dafür bemessenes Gerät.
+1105|Geben Sie die Netzschleifenimpedanz Ze in den Einstellungen ein, um die automatische Abschaltung der LS-Schalter-Stromkreise ({1}) zu prüfen.
+1106|Schalter werden oberhalb von {1} °C im Gehäuse herabgesetzt.
+1107|Netzschleifenimpedanz Ze (Ohm)
+1108|Optional. Fehlerschleifenimpedanz am Anfang der Verteilung, vom Versorger oder aus einer Messung. Dient zur Prüfung, ob jeder LS-Schalter einen Fehler rechtzeitig abschaltet.
+1109|Schutzregeln
+1110|Jeder Schalter wird aus dem Bemessungsstrom bemessen (125 % der Dauerlasten nach NEC), nach der Gehäusetemperatur herabgesetzt und dann auf den nächsten Normwert der gewählten Norm aufgerundet. RCD-Empfindlichkeit (30 mA bzw. GFCI 4–6 mA nach NEC und ABYC), Polzahl (2-polig für 240-V-Lasten) und Gerätenorm (IEC oder UL) richten sich nach Norm und Versorgungsspannung. Bei IEC, BS 7671 und AS/NZS geben Sie Ze in den Einstellungen ein, um die Fehlerschleife jedes LS-Schalter-Stromkreises zu prüfen.
+1111|Öffnen Sie Community im Dashboard, um mit anderen registrierten Mitgliedern zu chatten, Gruppen zu erstellen, Personen per E-Mail einzuladen und gespeicherte Verteilungen zu teilen. Die Glocke in der Kopfzeile zeigt Einladungen, Antworten und geteilte Projekte.
+1112|Die Prüfungen umfassen: Bemessungsstrom gegenüber Schalter- und Kabelnennstrom (mit Gehäusetemperatur und NEC-Regel für Dauerlasten), Spannungsfall, RCD-Anforderung, Schaltvermögen, Gerätebemessung gegenüber Norm und Versorgungsspannung, Fehlerschleifenimpedanz bei eingegebenem Ze, Lutron-Eingang sowie Zonen- und Temperaturgrenzen. Selektivität wird hier nicht berechnet.
+1113|Firmenangaben
+1114|Deckblatt mit Firmenangaben
+1115|DALI-Netz und Modul-Layout
+1116|DALI-Modul löschen
+1117|DALI-Strom
+1118|Erdschluss
+1119|Import
+1120|Admin
+1121|Noch keine gespeicherten Projekte. Erstellen Sie oben Ihre erste Verteilung.
+1122|Mindestens 8 Zeichen, mit einem Buchstaben und einer Ziffer.
+1123|Chats
+1124|Geteilte Projekte
+1125|Anfrage fehlgeschlagen
+1126|Extern
+1127|Hauptverteilung (Tab Verteilung)
+1128|Tab DALI
+1129|Eigenes Gehäuse / in der Leuchte
+1130|Linien (Controller)
+1131|Bus-Versorgung mA (Netzteil oder Controller)
+1132|Leistung, W
+1133|Ausgang / Hinweise
+1134|extern
+1135|Hutschiene
+1136|Master / Gateway
+1137|Bus-Netzteil
+1138|Relais / Schalter
+1139|Treiber / Dimmer
+1140|Angenommen
+1141|Siehe Spezifikation
+1142|Universal
+1143|Unterputzdose
+1144|{1} Link
+1145|{1} Links
+1146|{1} DALI-Produkte von Lunatone, OSRAM und LTECH, sowohl für Hutschiene als auch externe Treiber. Mit Hinzufügen landet die gewählte Menge im Tab <b>DALI</b>, wo Sie die DALI-Linie wählen, an die jedes Gerät angeschlossen wird, und den Netzplan sowie das Modul-Layout sehen. Die Lunatone-Werte wurden von dessen Produktseiten gelesen. Die Seiten von LTECH und OSRAM nannten weder DALI-Strom noch Montageart, daher sind diese als Angenommen gekennzeichnet. Die DALI-Treiber von OSRAM und LTECH sind keine Hutschienengeräte; nur das Bus-Netzteil und das Relais von LTECH sind es. Lunatone hat mehr Varianten als aufgeführt. Bestätigen Sie alles im Datenblatt, bevor Sie bestellen.

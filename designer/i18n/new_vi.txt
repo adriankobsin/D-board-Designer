@@ -1,0 +1,431 @@
+716|+ Mô-đun DALI
+717|Thêm tại đây các master DALI, nguồn cấp cho bus và driver, hoặc thêm từ thư viện DALI trong thẻ Thiết bị. Mỗi driver được nối với một liên kết của bộ điều khiển DALI. Bộ điều khiển đặt trong tủ (ví dụ Lutron QSN2-2DALUNV-D) tự động xuất hiện ở đây, cũng như các master thêm bên dưới. Địa chỉ được cấp theo thứ tự trên mỗi tuyến, tối đa 64.
+718|Thêm bộ điều khiển DALI vào tủ, hoặc một master bên dưới, để vẽ mạng.
+719|Thêm driver, nguồn, bộ điều khiển hoặc đầu vào chưa có trong thư viện và nhập thông số của nó. Sau đó nó xuất hiện trong danh sách model ở trên và có thể nối vào một liên kết như mọi thiết bị khác.
+720|Thêm vào mạng DALI
+721|Đ/c
+722|Địa chỉ
+723|Địa chỉ và mA áp dụng cho driver và đầu vào. Số tuyến và nguồn bus áp dụng cho bộ điều khiển và nguồn. Độ rộng DIN áp dụng khi lắp trên thanh ray DIN.
+724|Địa chỉ
+725|Tất cả kiểm tra tuyến DALI đều đạt.
+726|Tải bus
+727|Kênh
+728|Nối với
+729|Nối với: liên kết trống đầu tiên
+730|Bộ điều khiển
+731|Tạo và thêm
+732|Thiết bị DALI tùy chỉnh
+733|Thương hiệu DALI
+734|Bộ điều khiển DALI trong dự án này
+735|Thư viện thiết bị DALI
+736|Liên kết DALI
+737|DALI mA
+738|Kiểu DALI
+739|Bố trí mô-đun DALI
+740|Mô-đun DALI cần thêm
+741|Mô-đun DALI
+742|Mạng DALI
+743|Sơ đồ mạng DALI
+744|Loại DALI
+745|Rộng DIN (DU)
+746|DIN và từ xa
+747|Chỉ ray DIN
+748|Thiết bị
+749|Lọc theo loại
+750|Hãy đặt tên cho thiết bị tùy chỉnh.
+751|Bộ ghép đầu vào / nút nhấn
+752|Tuyến
+753|Liên kết
+754|Cách lắp
+755|Tên / vị trí
+756|Chưa có bộ điều khiển DALI. Hãy thêm mô-đun DALI từ thẻ Thiết bị (Lutron, Crestron hoặc MDT, hiển thị trong thẻ Tủ điện) hoặc một master hay gateway DALI bên dưới, rồi nối các driver vào liên kết của nó.
+757|Không có thiết bị DALI nào phù hợp.
+758|Chưa có thiết bị DALI. Hãy chọn một model ở trên hoặc duyệt thư viện DALI trong thẻ Thiết bị.
+759|Chưa có nguồn bus nào nối với tuyến này. Hãy nối một nguồn DALI vào.
+760|Không khớp
+761|Chưa nối
+762|Chưa có gì để bố trí.
+763|Trên ray DIN
+764|Đầu ra
+765|Số lượng
+766|Chỉ từ xa
+767|Gỡ toàn bộ DALI
+768|Tìm thiết bị DALI
+769|Tìm thiết bị DALI
+770|Tìm driver, thương hiệu, mã hàng
+771|Tìm kiểu, mã hàng, loại
+772|mA nguồn cấp
+773|Master có sẵn nguồn bus nhưng đã nối thêm một nguồn riêng. Chỉ nguồn riêng được tính.
+774|Không có master hay gateway DALI nên chưa có tuyến DALI nào. Hãy thêm một cái để nối các driver.
+775|Vị trí
+776|Thiết bị tùy chỉnh của bạn
+777|ví dụ: Đèn âm trần bếp
+778|ví dụ: Tridonic 75 W CC
+779|là master
+780|giờ trước
+781|vừa xong
+782|phút trước
+783|. Hãy mở liên kết đó để kích hoạt tài khoản rồi đăng nhập. Liên kết chỉ dùng được một lần và sẽ hết hạn sau một thời gian.
+784|Công cụ hỗ trợ thiết kế. Luôn đối chiếu với quy định đi dây tại địa phương.
+785|Tài khoản bị tạm khóa
+786|Đã có tài khoản?
+787|Bảng vật tư, xuất PDF và Excel
+788|Chọn tiết diện cáp, sụt áp và phụ tải
+789|Tiếp tục không cần tài khoản
+790|Tạo tài khoản của bạn
+791|Bố trí trên ray DIN và vị trí aptomat
+792|Thiết kế tủ điện phân phối có thể thi công được.
+793|Tải dữ liệu của tôi
+794|Nhập email của tài khoản. Nếu khớp với một tài khoản, chúng tôi sẽ gửi liên kết để chọn mật khẩu mới.
+795|Miễn phí khi bắt đầu. Chúng tôi gửi email liên kết xác nhận địa chỉ trước khi bạn có thể đăng nhập.
+796|Tôi đã xác nhận, đăng nhập
+797|Tôi đã đọc và chấp nhận
+798|Bố trí, sơ đồ đơn tuyến, bảng biểu và chọn cáp trong một không gian làm việc, lưu vào tài khoản và dùng được trên mọi thiết bị.
+799|Lần đầu dùng DBoard Designer?
+800|Chưa nhận được? Hãy kiểm tra thư rác và chắc chắn địa chỉ gõ đúng.
+801|Dự án được lưu an toàn vào tài khoản của bạn
+802|Gửi lại email xác minh
+803|Đặt mật khẩu mới cho tài khoản của bạn.
+804|Hiện mật khẩu
+805|Bắt đầu lại
+806|Tài khoản này đã bị tạm khóa và hiện không thể mở dự án. Dữ liệu của bạn vẫn được giữ. Hãy liên hệ đơn vị vận hành dịch vụ để được xem xét.
+807|Chúng tôi đã gửi liên kết xác nhận tới
+808|Chào mừng trở lại. Tiếp tục các tủ điện từ nơi bạn đã dừng.
+809|Sai địa chỉ?
+810|và
+811|1. Dịch vụ
+812|2. Trách nhiệm nghề nghiệp
+813|3. Tài khoản của bạn
+814|4. Nội dung của bạn
+815|5. Sử dụng chấp nhận được
+816|6. Tính khả dụng và trách nhiệm
+817|7. Chấm dứt tài khoản
+818|Một phiên bản mới hơn của dự án này đã được lưu từ thiết bị hoặc tab khác. Hãy chọn phiên bản cần giữ.
+819|Menu tài khoản
+820|DBoard Designer là công cụ hỗ trợ thiết kế tủ điện phân phối. Các kết quả (tiết diện cáp, sụt áp, phụ tải, bảng vật tư) chỉ mang tính tham khảo.
+821|Dữ liệu được giữ trong khi tài khoản còn tồn tại và bị xóa khi bạn xóa tài khoản.
+822|Xóa vĩnh viễn dự án này?
+823|Không cố truy cập dữ liệu của người dùng khác, làm gián đoạn dịch vụ hay sử dụng trái pháp luật. Tài khoản vi phạm có thể bị tạm khóa.
+824|Trong phần Cài đặt tài khoản, bạn có thể sửa thông tin, tải toàn bộ dữ liệu và xóa vĩnh viễn tài khoản cùng các dự án. Với mọi yêu cầu quyền riêng tư khác, hãy liên hệ đơn vị vận hành.
+825|Giữ phiên bản của tôi
+826|Hãy giữ bí mật mật khẩu. Bạn chịu trách nhiệm về mọi hoạt động trong tài khoản của mình. Cung cấp thông tin đăng ký chính xác.
+827|Tải phiên bản đã lưu
+828|Họ tên, email, quốc gia, nghề nghiệp và (tùy chọn) công ty mà bạn cung cấp khi đăng ký. Các dự án của bạn. Sự kiện sử dụng cơ bản (đăng nhập, mở hoặc tạo dự án, xuất file, mở công cụ) và mọi phản hồi bạn gửi.
+829|Mật khẩu
+830|Ứng dụng này không bao giờ lưu mật khẩu. Việc xác thực do Supabase Auth xử lý, chỉ lưu giá trị băm có salt.
+831|Đã xóa dự án.
+832|Đã nhân bản dự án.
+833|Thời gian lưu giữ
+834|Đã lưu vào tài khoản của bạn.
+835|Supabase (cơ sở dữ liệu và xác thực) và Cloudflare (lưu trữ). Quản trị viên dịch vụ có thể xem thông tin tài khoản, số lượng dự án và phản hồi. Họ không thể xem mật khẩu của bạn.
+836|Mẫu dành cho đơn vị vận hành dịch vụ. Hãy điền thông tin đơn vị vận hành và cho rà soát trước khi ra mắt công khai.
+837|Mẫu dành cho đơn vị vận hành dịch vụ. Hãy nhờ luật sư có chuyên môn rà soát và điều chỉnh trước khi ra mắt công khai.
+838|Dịch vụ được cung cấp "nguyên trạng" trong giai đoạn beta. Trong phạm vi pháp luật cho phép, đơn vị vận hành không chịu trách nhiệm về tổn thất phát sinh từ việc sử dụng. Hãy tự giữ bản xuất của các dự án quan trọng.
+839|Dự án này đã được thay đổi trên thiết bị khác
+840|Không thể đọc dự án này.
+841|Để vận hành tài khoản, lưu dự án, bảo mật dịch vụ và hiểu tính năng nào được sử dụng. Chúng tôi không bán dữ liệu cá nhân và không hiển thị quảng cáo.
+842|Đã tải lên tài khoản của bạn. Bản sao trên thiết bị này không bị thay đổi.
+843|Chúng tôi thu thập gì
+844|Ai xử lý dữ liệu
+845|Lý do
+846|Bạn chịu trách nhiệm kiểm tra mọi thiết kế theo quy định đi dây áp dụng tại nơi thi công và nhờ người có năng lực xác minh trước khi lắp đặt.
+847|Bạn có thể xóa tài khoản bất cứ lúc nào trong Cài đặt tài khoản. Khi đó các dự án và hồ sơ của bạn bị xóa vĩnh viễn.
+848|Bạn sở hữu các dự án mình tạo. Bạn cấp cho đơn vị vận hành quyền lưu trữ và xử lý chúng để vận hành dịch vụ cho bạn.
+849|Quyền của bạn
+850|Phiên đăng nhập đã hết hạn. Hãy đăng nhập lại.
+851|Một dự án chỉ được lưu trên thiết bị này:
+852|Xóa tài khoản của tôi
+853|Xóa vĩnh viễn
+854|Xóa tài khoản của bạn?
+855|Tải hồ sơ và toàn bộ dự án của bạn thành một tệp JSON.
+856|Đã sửa
+857|Nhập một tủ điện
+858|Nhập từ ảnh hoặc PDF
+859|Đang tải các dự án của bạn…
+860|Không có kết nối. Hãy kiểm tra internet và thử lại.
+861|Để sau
+862|Thông báo
+863|Mở tủ điện cục bộ
+864|Mở tủ điện đang lưu trong trình duyệt này mà không lưu lên đám mây.
+865|Mở một tủ điện trống, tự động lưu vào tài khoản của bạn.
+866|Xóa vĩnh viễn tài khoản, hồ sơ và mọi dự án đã lưu. Không thể hoàn tác. Các dự án chỉ lưu trên thiết bị này không bị ảnh hưởng.
+867|Chia sẻ
+868|Bắt đầu tủ điện phân phối mới hoặc tiếp tục tủ đã lưu.
+869|Cảm ơn bạn. Phản hồi đã được gửi.
+870|Thao tác này xóa vĩnh viễn tài khoản và mọi dự án đã lưu. Để xác nhận, hãy nhập địa chỉ email của bạn.
+871|Biến ảnh chụp tủ điện đã lắp, hoặc sơ đồ PDF, thành tủ điện có thể chỉnh sửa.
+872|Tải lên một bản sao
+873|Tải một bản sao lên tài khoản để dùng trên thiết bị khác. Bản sao trên thiết bị này vẫn được giữ.
+874|Cái gì hoạt động tốt, thiếu gì, lỗi ở đâu?
+875|Làm việc trên thiết bị này
+876|Hãy viết tin nhắn trước.
+877|Bạn đang ngoại tuyến. Các dự án trên đám mây sẽ tải khi kết nối lại.
+878|Dữ liệu của bạn
+879|Tin nhắn của bạn
+880|mạch
+881|thiết bị
+882|Đang hoạt động
+883|Bảng điều khiển quản trị
+884|Quản trị
+885|Mọi trạng thái
+886|Mọi xác minh
+887|Cộng đồng
+888|Người dùng đã xóa
+889|Email
+890|Xác minh email
+891|Lần cuối hoạt động
+892|Đang tải…
+893|Dự án mới trong 7 ngày
+894|Tiếp
+895|Chưa ghi nhận sự kiện nào.
+896|Chưa có phản hồi.
+897|Không có người dùng phù hợp.
+898|Chưa xác minh
+899|Trước
+900|Dự án
+901|Đã đăng ký
+902|Tìm kiếm
+903|Tìm tên, email, công ty
+904|Tìm người dùng
+905|Đăng ký mỗi ngày
+906|Đăng ký, 30 ngày qua
+907|Bị tạm khóa
+908|Quốc gia hàng đầu
+909|Mức sử dụng, 30 ngày qua
+910|Đã xác minh
+911|quản trị viên
+912|người dùng
+913|Chấp nhận
+914|Quay lại cuộc trò chuyện
+915|Trò chuyện với thành viên khác, làm việc theo nhóm và chia sẻ các tủ điện đã lưu.
+916|Chọn một cuộc trò chuyện hoặc bắt đầu cuộc mới.
+917|Nhấp lần nữa để xác nhận
+918|Nhấp lần nữa để rời đi
+919|Cuộc trò chuyện
+920|Không thể chấp nhận lời mời.
+921|Tạo nhóm
+922|Đã đạt giới hạn lời mời trong ngày. Hãy thử lại vào ngày mai.
+923|Từ chối
+924|Email của một thành viên đã đăng ký
+925|Đã gửi email tới
+926|Cựu thành viên
+927|Hãy đặt tên cho nhóm.
+928|Nhóm
+929|Trò chuyện nhóm
+930|Tên nhóm
+931|Lời mời
+932|Mời
+933|Mời thành viên qua email
+934|Mời vào
+935|Rời đi
+936|Đánh dấu tất cả đã đọc
+937|Thành viên
+938|Tin nhắn
+939|Tin nhắn (tùy chọn)
+940|Không thể tải tin nhắn.
+941|Nhóm mới
+942|Trò chuyện riêng mới
+943|Chưa có cuộc trò chuyện. Hãy bắt đầu trò chuyện riêng với một thành viên hoặc tạo nhóm.
+944|Chưa có tin nhắn
+945|Chưa có tin nhắn. Hãy chào hỏi.
+946|Chưa có gì được chia sẻ với bạn.
+947|Không có gì mới. Lời mời, phản hồi và dự án được chia sẻ sẽ hiện ở đây.
+948|Mở một bản sao
+949|Mở nhóm
+950|Trò chuyện riêng
+951|Thành viên đã đăng ký có thể xem tủ điện và lưu bản sao riêng. Chỉ bạn mới sửa được bản gốc.
+952|Gửi
+953|Gửi lời mời
+954|Phân tách các địa chỉ bằng dấu phẩy hoặc xuống dòng. Thành viên được mời nhận email và thông báo, và tham gia khi chấp nhận.
+955|Chia sẻ dự án
+956|Chia sẻ với (địa chỉ email)
+957|Tôi đã chia sẻ
+958|Được chia sẻ với tôi
+959|Bắt đầu trò chuyện
+960|Ngừng chia sẻ
+961|Dự án đó không còn được chia sẻ với bạn.
+962|Không thể gửi email. Họ vẫn sẽ thấy trên bảng điều khiển của mình.
+963|Không thể gửi tin nhắn. Hãy thử lại.
+964|Họ sẽ thấy trên bảng điều khiển của mình.
+965|Tủ điện chưa đặt tên
+966|Viết tin nhắn. Enter để gửi, Shift+Enter để xuống dòng.
+967|Bạn gửi tin nhắn quá nhanh. Hãy chờ một lát.
+968|Bạn chưa chia sẻ dự án nào. Dùng Chia sẻ trên bất kỳ dự án nào trong bảng điều khiển.
+969|từ
+970|đã mời
+971|thành viên
+972|đã bị bỏ qua (tối đa 20 địa chỉ mỗi lần)
+973|bạn
+974|Hãy thêm ít nhất một thiết bị trước.
+975|Thêm thiết bị
+976|Thêm ảnh hoặc PDF
+977|Tránh chói và bóng đổ. Tắt đèn flash nếu nhãn bị phản chiếu.
+978|Tủ điện
+979|Đã tạo tủ điện. Hãy kiểm tra:
+980|Tên tủ điện
+981|Hãy kiểm tra các mục này
+982|Chọn tệp
+983|Tạo tủ điện
+984|Nhận diện từ tủ điện
+985|Hãy sửa mọi chỗ trông sai. Phụ tải để trống sẽ được ước tính từ dòng định mức của aptomat. Chưa có gì được lưu cho đến khi bạn nhấn Tạo tủ điện.
+986|Với PDF, bản vẽ vector và bảng văn bản được đọc tốt nhất. Bản quét cần sắc nét.
+987|Ví dụ: nhãn bằng tiếng Ý, tủ điện hàng hải 230 V
+988|Với tủ điện lớn, hãy thêm ảnh cận cảnh từng hàng để ký hiệu aptomat và nhãn rõ nét.
+989|Để đọc tốt nhất
+990|Độ chắc chắn của kết quả đọc
+991|Hãy chụp cả chú giải mạch hoặc dải nhãn nếu có.
+992|Nhãn
+993|Loại phụ tải
+994|Không có trên tủ điện. Được giả định, hãy kiểm tra.
+995|Ghi chú cho trình đọc (tùy chọn)
+996|Không nhận diện được gì. Hãy thêm thiết bị thủ công, hoặc quay lại và thử ảnh rõ hơn.
+997|Trang này chưa bật tính năng nhập tủ điện. Chủ trang cần thêm khóa dịch vụ đọc (xem README).
+998|Đọc tủ điện
+999|Đang đọc tủ điện…
+1000|Làm lại từ đầu
+1001|Chụp ảnh
+1002|Chụp thẳng chính diện khi mở cửa tủ, không chụp xiên.
+1003|Không thể tạo tủ điện. Hãy kiểm tra các giá trị và thử lại.
+1004|Tủ điện lớn nên việc đọc bị cắt giữa chừng. Hãy thêm thủ công các thiết bị còn thiếu, hoặc chạy lại với ảnh cận cảnh hơn của phía bên phải.
+1005|Ảnh hoặc PDF được gửi tới dịch vụ đọc để phân tích và không được lưu. Bạn xem lại mọi thứ trước khi tủ điện được tạo.
+1006|Thường mất 20–60 giây. Hãy giữ trang này mở.
+1007|Biến ảnh chụp tủ điện đã lắp, hoặc sơ đồ PDF, thành tủ điện có thể chỉnh sửa với mạch, nhãn, sơ đồ và bảng vật tư.
+1008|Tối đa bốn ảnh của một tủ điện, hoặc một PDF sơ đồ hay bảng mạch.
+1009|Tiêu chuẩn đi dây (tùy chọn)
+1010|Nguồn của bạn
+1011|thiết bị đã đọc
+1012|độ tin cậy thấp, được tô sáng
+1013|Địa chỉ, điện thoại, email, website. Hiển thị trên trang bìa PDF.
+1014|Chọn nội dung đưa vào PDF. A4 ngang, có logo của bạn trên mỗi trang.
+1015|Xem trước logo công ty
+1016|Nội dung
+1017|Không thể lưu:
+1018|Quan trọng (sụt 3 %)
+1019|Trang DALI
+1020|Cơ sở thiết kế
+1021|Thiết kế tủ điện phân phối
+1022|Chiếu sáng (sụt 3 %)
+1023|Khác (sụt 10 %)
+1024|Tóm tắt dự án
+1025|Mạng điện trở
+1026|Đã lưu
+1027|Sao và tam giác
+1028|Không thể vẽ trang DALI cho tủ điện này.
+1029|Hãy chọn ít nhất một mục cho PDF.
+1030|sau hệ số đồng thời
+1031|Đăng nhập, bắt đầu hoặc nhập một tủ điện
+1032|Trên bản lưu trữ trực tuyến, bạn bắt đầu từ <b>Bảng điều khiển</b> sau khi đăng nhập. Nhấn <b>Tủ điện mới</b> để bắt đầu từ đầu, mở một dự án đã lưu, hoặc nhấn <b>Nhập một tủ điện</b> để tạo tủ điện từ ảnh chụp tủ đã lắp hoặc từ sơ đồ PDF/bảng mạch. Thêm tối đa bốn ảnh của một tủ hoặc một PDF, rồi nhấn <b>Đọc tủ điện</b>. Trình đọc liệt kê mọi thiết bị nó thấy (loại aptomat, dòng định mức, đường cong, số cực, RCD, tên mạch, phụ tải, pha, cáp, hãng và model) bên cạnh ảnh của bạn. <b>Kiểm tra và sửa bảng</b>, rồi nhấn <b>Tạo tủ điện</b>. Tủ điện mới mở ở <b>Mạch</b> và hoạt động như mọi tủ khác, nên bạn có thể thêm hoặc sửa mạch và nhãn, và xuất sơ đồ, bảng vật tư, PDF và Excel. Những gì trình đọc không thấy sẽ để trống và được đánh dấu để bạn điền.
+1033|Lập kế hoạch mạng chiếu sáng DALI
+1034|Mở <b>Thiết bị</b> và cuộn tới <b>Thư viện thiết bị DALI</b>: master và gateway của Lunatone, OSRAM và LTECH, nguồn bus, bộ ghép nút nhấn, rơ-le và dimmer hoặc driver, cả loại gắn ray DIN lẫn loại từ xa. Lọc theo hãng, loại hoặc <b>chỉ ray DIN</b>, đặt số lượng rồi nhấn <b>Thêm</b>. Sau đó mở tab <b>DALI</b>. Các mô-đun bộ điều khiển DALI bạn đặt trong tủ (Lutron, Crestron, MDT) được liệt kê tự động ở đó dưới <b>Bộ điều khiển DALI trong dự án này</b>, mỗi bộ kèm các liên kết của nó, và bạn có thể nối driver vào liên kết đã chọn. Trong <b>Số lượng</b>, bạn có thể tìm trong danh sách model theo tên, hãng hoặc mã hàng và lọc theo loại. Nếu driver không có trong thư viện, dùng <b>Thiết bị DALI tùy chỉnh</b> để nhập địa chỉ, dòng DALI, cách lắp và các thông số khác; thiết bị tùy chỉnh có thể sửa hoặc xóa tại đó. Cũng trong Số lượng, bạn có thể thêm model, đổi số lượng hoặc bỏ một model. Trong <b>Mô-đun DALI</b>, đặt cho mỗi thiết bị một tên hoặc vị trí, chọn <b>liên kết DALI</b> (một tuyến của master) mà nó nối vào, hoặc xóa nó. Công cụ cấp địa chỉ trên từng tuyến (tối đa 64) và kiểm tra dòng bus so với nguồn bus. Thiết bị DALI gắn ray DIN cũng được vẽ ở tab <b>Tủ điện</b>: nhấp vào một thiết bị để đổi tên, đổi model hoặc liên kết DALI, di chuyển dọc hoặc giữa các ray, kéo hoặc xóa, và dùng <b>+ Mô-đun DALI</b> trong ghi chú tủ điện để thêm. <b>Sơ đồ mạng DALI</b> và <b>bố trí mô-đun DALI</b> (một dải ray DIN cùng một vùng riêng cho driver từ xa) được vẽ bên dưới, tách khỏi sơ đồ tủ điện, và cả hai đều có trong PDF, kèm một trang tính DALI trong file Excel và các mục DALI trong bảng vật tư.
+1035|Mở <b>Xuất</b>. <b>Lưu PDF</b> tạo bố trí tủ điện, sơ đồ đa tuyến, bảng mạch và tổng công suất; chọn <b>Kèm bảng vật tư</b> nếu muốn thêm danh sách đó. <b>Lưu Excel</b> và <b>Lưu CSV</b> cung cấp bảng cho các công cụ khác. <b>Lưu dự án</b> lưu toàn bộ thiết kế thành một tệp để mở lại sau bằng <b>Mở dự án</b>. Tủ điện tạo bằng <b>Nhập một tủ điện</b> được xuất hoàn toàn giống vậy.
+1036|Khi đã đăng nhập, tủ điện mở từ Bảng điều khiển được lưu vào tài khoản khoảng một giây sau mỗi thay đổi, và nhãn phía trên hiển thị Đã lưu, Đang lưu hoặc Ngoại tuyến. Bạn có thể mở nó trên mọi thiết bị mà bạn đăng nhập. Nếu cùng một tủ điện bị thay đổi trên thiết bị khác, bạn chọn phiên bản cần giữ. Tủ điện chỉ lưu trong trình duyệt này không bị ảnh hưởng bởi các tủ điện trên đám mây. Dùng Lưu dự án để giữ một bản sao dạng tệp.
+1037|Đọc ảnh hoặc PDF của tủ điện
+1038|Ảnh được đọc theo nguyên tắc cố gắng hết mức. Chụp thẳng chính diện khi mở cửa tủ và không chói, tắt flash nếu nhãn phản chiếu, và thêm ảnh cận cảnh từng hàng với tủ lớn. PDF có văn bản thật được đọc tốt nhất. Luôn đối chiếu định mức, pha và nhãn với tủ thật trước khi phát hành kết quả làm hồ sơ hoàn công. Mỗi người chỉ được chạy số lần đọc giới hạn mỗi ngày.
+1039|Tài khoản của bạn
+1040|Dùng menu hồ sơ để vào Cài đặt tài khoản: sửa thông tin, đổi mật khẩu, tải toàn bộ dữ liệu hoặc xóa tài khoản. Dùng Phản hồi trên Bảng điều khiển để cho chúng tôi biết cần cải thiện gì.
+1041|Thông số DALI
+1042|Thông số Lunatone được đọc từ trang sản phẩm của hãng. Với trang LTECH hoặc OSRAM không nêu dòng DALI hay cách lắp, thư viện đánh dấu mục là Giả định (2 mA mỗi thiết bị). Cả hai hãng đều không có driver DALI gắn ray DIN trong thư viện; nguồn bus và rơ-le của LTECH là loại ray DIN. Hãy kiểm tra từng mục trên datasheet trước khi đặt hàng.
+1043|Đã dùng {1} địa chỉ DALI. Tuyến này cho phép {2}.
+1044|Các thiết bị tiêu thụ {1} mA nhưng {2} chỉ đảm bảo {3} mA.
+1045|Tải bus là {1} % của nguồn {2} mA. Hãy chừa một ít dự phòng.
+1046|Có {1} nguồn bus được liên kết. Một tuyến DALI thường chỉ có một; chỉ nguồn lớn nhất được tính.
+1047|{1} thiết bị DALI chưa nối vào tuyến: {2}.
+1048|{1} thiết bị DALI chưa nối vào tuyến: {2}.
+1049|{1} model DALI dùng thông số giả định (hiển thị là Giả định trong thư viện). Hãy xác nhận trên datasheet.
+1050|{1} model DALI dùng thông số giả định (hiển thị là Giả định trong thư viện). Hãy xác nhận trên datasheet.
+1051|{1} · trong tủ điện chính
+1052|Nguồn bus {1} mA
+1053|Liên kết {1}
+1054|Tuyến {1}
+1055|không có thiết bị
+1056|{1} địa chỉ
+1057|{1} đ/c
+1058|{1} (master)
+1059|Chưa nối vào tuyến DALI ({1})
+1060|Ray DALI {1}
+1061|Đã dùng {1}/{2} DU
+1062|{1} tuyến
+1063|{1} tuyến
+1064|DIN {1} DU
+1065|liên kết {1}
+1066|{1} thiết bị
+1067|{1} thiết bị
+1068|Driver và thiết bị từ xa ({1}), không gắn ray
+1069|{1} tuyến DALI
+1070|{1} tuyến DALI
+1071|các số liệu là giá trị catalogue, hãy xác nhận trên datasheet
+1072|{1} trên ray DIN ({2} DU), {3} từ xa
+1073|{1} kết quả
+1074|{1} kết quả
+1075|Đã thêm {1} × {2}. Mở tab DALI để nối chúng.
+1076|Đã thêm {1}. Mở tab DALI để nối.
+1077|Số lượng {1}
+1078|Tên cho {1}
+1079|Liên kết DALI cho {1}
+1080|{1} tuyến {2}
+1081|Từ xa (không ray DIN)
+1082|Nguồn giả định {1} mA / liên kết
+1083|Nguồn tích hợp {1} mA / tuyến
+1084|từ xa
+1085|Bộ điều khiển DALI trong tủ điện chính (vẽ ở tab Tủ điện)
+1086|Dải ray DIN cho các mục DIN ({1} DU mỗi ray, 1 DU = 17,5 mm; cũng có ở tab Tủ điện) và một vùng riêng cho driver từ xa.
+1087|Tách khỏi sơ đồ tủ điện. Màu = tuyến DALI; khung nét đứt là thiết bị từ xa.
+1088|Chưa có gì nối vào tuyến này.
+1089|Bề rộng DIN, DU (17,5 mm)
+1090|Địa chỉ DALI đã dùng
+1091|Dòng DALI, mA
+1092|Aptomat cấp nguồn {1} {2} A bị giảm định mức còn {3} A ở {4} C trong vỏ tủ, thấp hơn phụ tải {5} A.
+1093|Nguồn cấp {1} mang chiếu sáng liên tục hoặc phụ tải tương tự: {2} chọn aptomat theo {3} % phụ tải ({4} A).
+1094|Aptomat {1} A bị giảm định mức còn {2} A ở {3} C trong vỏ tủ, thấp hơn phụ tải {4} A. Hãy chọn cỡ lớn hơn kế tiếp.
+1095|{1} chọn aptomat theo {2} % phụ tải liên tục: cần {3} A, đã chọn {4} A.
+1096|{1} có dòng khởi động. Đường cong B có thể nhảy do dòng xung; hãy dùng C hoặc D.
+1097|{1} {2} chỉ là loại AC. {3} có dòng điện tử hoặc đã chỉnh lưu và cần RCD loại A.
+1098|Bộ sạc xe điện: IEC 60364-7-722 và BS 7671 722.531.3.101 yêu cầu loại A kèm phát hiện DC 6 mA (thường tích hợp trong bộ sạc) hoặc RCD loại B.
+1099|Trở kháng vòng sự cố chạm đất {1} ohm (Ze {2} + cáp {3}) vượt giới hạn {4} ohm cho MCB {5} A ({6} V ÷ {7} × {8} A). Hãy rút ngắn tuyến, dùng cáp lớn hơn hoặc đường cong/định mức thấp hơn.
+1100|Aptomat tổng {1} A bị giảm định mức còn {2} A ở {3} C trong vỏ tủ, thấp hơn dòng pha tối đa {4} A.
+1101|{1} chọn aptomat tổng theo 100 % phụ tải không liên tục cộng 125 % phụ tải liên tục: cần {2} A, đã chọn {3} A.
+1102|{1} {2} là thiết bị UL 489. Hệ thống {3} dùng thiết bị IEC 60898 / 60947; hãy kiểm tra xem địa phương có chấp nhận không.
+1103|{1} {2} là thiết bị kiểu IEC. Hệ thống {3} cần thiết bị có chứng nhận UL (UL 489 hoặc UL 1077). Hãy kiểm tra xem có được chấp nhận trước khi dùng.
+1104|{1} {2} là thiết bị IEC 60898 / 61009 định mức 230/400 V (tối đa 440 V). Nguồn này là {3} V pha-trung tính và {4} V pha-pha. Hãy dùng thiết bị có định mức phù hợp.
+1105|Hãy nhập trở kháng vòng nguồn Ze trong Thiết lập để kiểm tra khả năng tự ngắt của các mạch MCB ({1}).
+1106|Aptomat bị giảm định mức khi vượt {1} °C trong vỏ tủ.
+1107|Trở kháng vòng nguồn Ze (ohm)
+1108|Tùy chọn. Trở kháng vòng sự cố chạm đất tại đầu tủ điện, từ nhà cung cấp hoặc đo được. Dùng để kiểm tra mỗi MCB có ngắt sự cố kịp thời không.
+1109|Quy tắc bảo vệ
+1110|Mỗi aptomat được chọn từ dòng thiết kế (125 % với phụ tải liên tục theo NEC), giảm định mức theo nhiệt độ vỏ tủ, rồi làm tròn lên định mức chuẩn kế tiếp của tiêu chuẩn đã chọn. Độ nhạy RCD (30 mA, hoặc GFCI 4–6 mA theo NEC và ABYC), số cực (2 cực cho tải 240 V) và tiêu chuẩn thiết bị (IEC hoặc UL) đi theo tiêu chuẩn và điện áp nguồn. Với IEC, BS 7671 và AS/NZS, hãy nhập Ze trong Thiết lập để kiểm tra vòng sự cố chạm đất của từng mạch MCB.
+1111|Mở Cộng đồng từ Bảng điều khiển để trò chuyện với các thành viên đã đăng ký khác, tạo nhóm, mời người qua email và chia sẻ các tủ điện đã lưu. Chuông ở đầu trang hiển thị lời mời, phản hồi và dự án được chia sẻ.
+1112|Các kiểm tra gồm: dòng thiết kế so với định mức aptomat và cáp (có tính nhiệt độ vỏ tủ và quy tắc phụ tải liên tục NEC), sụt áp, yêu cầu RCD, khả năng cắt, định mức thiết bị so với tiêu chuẩn và điện áp nguồn, trở kháng vòng sự cố chạm đất khi nhập Ze, đầu vào Lutron, giới hạn vùng và nhiệt độ. Tính chọn lọc không được tính ở đây.
+1113|Thông tin công ty
+1114|Trang bìa kèm thông tin công ty
+1115|Mạng DALI và bố trí mô-đun
+1116|Xóa mô-đun DALI
+1117|Dòng DALI
+1118|Chạm đất
+1119|Nhập
+1120|Quản trị
+1121|Chưa có dự án nào được lưu. Hãy tạo tủ điện đầu tiên ở trên.
+1122|Ít nhất 8 ký tự, gồm một chữ cái và một chữ số.
+1123|Trò chuyện
+1124|Dự án được chia sẻ
+1125|Yêu cầu thất bại
+1126|Từ xa
+1127|Tủ điện chính (tab Tủ điện)
+1128|Tab DALI
+1129|Vỏ riêng / trong đèn
+1130|Số tuyến (bộ điều khiển)
+1131|mA nguồn bus (nguồn hoặc bộ điều khiển)
+1132|Công suất, W
+1133|Đầu ra / ghi chú
+1134|bên ngoài
+1135|Ray DIN
+1136|Master / gateway
+1137|Nguồn bus
+1138|Rơ-le / công tắc
+1139|Driver / dimmer
+1140|Giả định
+1141|Xem thông số
+1142|Đa năng
+1143|Hộp âm tường
+1144|{1} liên kết
+1145|{1} liên kết
+1146|{1} sản phẩm DALI của Lunatone, OSRAM và LTECH, gồm cả loại gắn ray DIN và driver từ xa. Nhấn Thêm sẽ đưa số lượng bạn chọn vào tab <b>DALI</b>, nơi bạn chọn tuyến DALI mà từng thiết bị nối vào và xem sơ đồ mạng cùng bố trí mô-đun. Thông số Lunatone được đọc từ trang sản phẩm của hãng. Trang LTECH và OSRAM không nêu dòng DALI hay cách lắp nên được đánh dấu Giả định. Driver DALI của OSRAM và LTECH không phải loại gắn ray DIN; chỉ nguồn bus và rơ-le của LTECH là loại ray DIN. Lunatone còn nhiều biến thể hơn danh sách. Hãy xác nhận mọi thứ trên datasheet trước khi đặt hàng.

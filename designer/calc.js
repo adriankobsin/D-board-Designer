@@ -1,17 +1,20 @@
 /* ========== DBoard Designer calculation core (no DOM) ========== */
 const SQ3 = Math.sqrt(3);
+/* standard main-breaker sizes: IEC 60898 / 60947 series, and NEC 240.6(A) standard sizes */
+const INCOMER_IEC = [16,20,25,32,40,50,63,80,100,125,160,200,250,315,400,630];
+const INCOMER_NEC = [15,20,25,30,35,40,45,50,60,70,80,90,100,110,125,150,175,200,225,250,300,350,400,450,500,600];
 const STD = {
-  iec:{n:'IEC 60364', ratings:[6,10,13,16,20,25,32,40,50,63,80,100,125], curves:['B','C','D'], vdL:4, vdO:4, cont:1, dp:false, icu:6,
+  iec:{n:'IEC 60364', ratings:[6,10,13,16,20,25,32,40,50,63,80,100,125], curves:['B','C','D'], vdL:4, vdO:4, cont:1, dp:false, icu:6, fam:'iec', zs:true, rcdMA:'30 mA', inc:INCOMER_IEC, tref:30,
     rcd:'IEC 60364-4-41 expects 30 mA RCD protection on socket-outlets and on circuits for portable equipment.'},
-  bs:{n:'BS 7671', ratings:[6,10,16,20,25,32,40,50,63,80,100,125], curves:['B','C','D'], vdL:3, vdO:5, cont:1, dp:false, icu:6,
+  bs:{n:'BS 7671', ratings:[6,10,16,20,25,32,40,50,63,80,100,125], curves:['B','C','D'], vdL:3, vdO:5, cont:1, dp:false, icu:6, fam:'iec', zs:true, rcdMA:'30 mA', inc:INCOMER_IEC, tref:30,
     rcd:'BS 7671 411.3.3 requires 30 mA RCD protection for socket-outlets rated up to 20 A and most final circuits in domestic premises.'},
-  nec:{n:'NEC (NFPA 70)', ratings:[15,20,25,30,35,40,45,50,60,70,80,90,100,110,125], curves:['Std'], vdL:3, vdO:3, cont:1.25, dp:false, icu:10,
+  nec:{n:'NEC (NFPA 70)', ratings:[15,20,25,30,35,40,45,50,60,70,80,90,100,110,125], curves:['Std'], vdL:3, vdO:3, cont:1.25, dp:false, icu:10, fam:'ul', zs:false, rcdMA:'GFCI 4–6 mA', inc:INCOMER_NEC, tref:40,
     rcd:'NEC 210.8 and 210.12 call for GFCI and AFCI protection on many receptacle and branch circuits. Confirm the edition adopted locally.'},
-  as:{n:'AS/NZS 3000', ratings:[6,10,13,16,20,25,32,40,50,63,80,100,125], curves:['B','C','D'], vdL:5, vdO:5, cont:1, dp:false, icu:6,
+  as:{n:'AS/NZS 3000', ratings:[6,10,13,16,20,25,32,40,50,63,80,100,125], curves:['B','C','D'], vdL:5, vdO:5, cont:1, dp:false, icu:6, fam:'iec', zs:true, rcdMA:'30 mA', inc:INCOMER_IEC, tref:30,
     rcd:'AS/NZS 3000 requires RCD protection on final subcircuits for socket-outlets and lighting.'},
-  iso:{n:'ISO 13297 (marine AC)', ratings:[6,10,13,16,20,25,32,40,50,63,80,100,125], curves:['B','C','D'], vdL:3, vdO:5, cont:1, dp:true, icu:6,
+  iso:{n:'ISO 13297 (marine AC)', ratings:[6,10,13,16,20,25,32,40,50,63,80,100,125], curves:['B','C','D'], vdL:3, vdO:5, cont:1, dp:true, icu:6, fam:'iec', zs:false, rcdMA:'30 mA', inc:INCOMER_IEC, tref:30,
     rcd:'Marine AC installations normally use double-pole switching and 30 mA RCD protection on final circuits. Confirm against class and flag rules.'},
-  abyc:{n:'ABYC E-11 (marine AC)', ratings:[15,20,25,30,35,40,45,50,60,70,80,90,100,110,125], curves:['Std'], vdL:3, vdO:3, cont:1, dp:true, icu:10,
+  abyc:{n:'ABYC E-11 (marine AC)', ratings:[15,20,25,30,35,40,45,50,60,70,80,90,100,110,125], curves:['Std'], vdL:3, vdO:3, cont:1, dp:true, icu:10, fam:'ul', zs:false, rcdMA:'GFCI 4–6 mA', inc:INCOMER_NEC, tref:40,
     rcd:'ABYC E-11 expects GFCI protection on receptacles and double-pole branch protection. Confirm against the current edition.'}
 };
 const SYSTEMS = [
@@ -30,7 +33,10 @@ const SYSTEMS = [
 const LV_RATINGS = [1,2,3,4,5,6,8,10,13,16,20,25,32,40,50,63,80,100,125,160,200,250];
 const sysOf = S => SYSTEMS.find(x => x.id === S.sysId) || SYSTEMS[1];
 const isLV = S => !!sysOf(S).lv, isDC = S => !!sysOf(S).dc;
-const dpOf = S => isLV(S) ? (isDC(S) ? S.dcPoles !== '1P' : true) : STD[S.std].dp;
+/* 240 V loads on a 60 Hz North American supply sit between two hot legs, so the breaker is 2-pole */
+const dpOf = S => isLV(S) ? (isDC(S) ? S.dcPoles !== '1P' : true) : (STD[S.std].dp || (S.sysId === '1p240' && STD[S.std].fam === 'ul'));
+/* pole text for a circuit device */
+const polesOf = (S, prot, thr) => isLV(S) ? (dpOf(S) ? '2P' : '1P') + (isDC(S) ? ' DC' : '') : thr ? (prot === 'RCBO' ? '3P+N' : '3P') : (S.sysId === '1p240' && STD[S.std].fam === 'ul') ? '2P' : prot === 'RCBO' ? '1P+N' : dpOf(S) ? '2P' : '1P';
 const ratingsOf = S => isLV(S) ? LV_RATINGS : STD[S.std].ratings;
 const vdDef = S => isLV(S) ? {l:3, o:10} : {l:STD[S.std].vdL, o:STD[S.std].vdO};
 const TYPES = {
@@ -66,13 +72,28 @@ const TYPES = {
   critical:{l:'Critical (nav, bilge, comms)', pf:1, min:1.5, rcd:false, curve:'C'},
   other:{l:'Other', pf:.95, min:1.5, rcd:false, curve:'B'}
 };
+/* Load classes used by the protection rules.
+   CONT_T: loads that run 3 h or more, so the NEC 125 % continuous-load rule applies (NEC 210.20, 215.2, 422.13).
+   MOT_T: motor-type loads with starting current, where a B curve can trip on inrush.
+   RCDA_T: loads with electronic or rectified current, which need a type A (pulsating DC sensitive) RCD (IEC 60364-5-53, BS 7671 531.3.3). */
+const CONT_T = ['lighting','emergency','heater','waterheater','trace','ev','charger','inverter','network','nav','comms','security','critical','av'];
+const MOT_T = ['hvac','ac','fan','motor','pump','winch','fridge','laundry','pool','bilge','workshop'];
+const RCDA_T = ['av','network','charger','inverter','ev','laundry','ac','cooker','galley','pool'];
+Object.keys(TYPES).forEach(k => { TYPES[k].ct = CONT_T.includes(k); TYPES[k].mot = MOT_T.includes(k); TYPES[k].ta = RCDA_T.includes(k); });
+/* MCB magnetic trip upper limit as a multiple of In (IEC 60898-1: B 5, C 10, D 20) */
+const TRIPK = {B:5, C:10, D:20};
+/* breaker thermal derating inside the enclosure: 0.6 % per K above the calibration temperature (generic figure, series data sheets differ) */
+const kTemp = S => { const t = num(S.cabinAmb, 30), ref = STD[S.std].tref || 30; return t > ref ? Math.max(0.6, 1 - 0.006 * (t - ref)) : 1; };
+const stdFam = ser => !ser ? null : /UL ?(489|1077)/.test(ser.std || '') ? 'ul' : 'iec';
+const rcdAcOnly = ser => { const m = ser && ser.rcd ? ser.rcd.match(/type (.*)$/i) : null; return !!m && !/\bA\b/.test(m[1]); };
 const SZ = [1.5,2.5,4,6,10,16,25,35,50,70,95,120,150,185,240];
 /* Cu, reference method C, 30 C ambient. Indicative values: verify against the edition you design to. */
 const AMP = {
   pvc:{2:[19.5,27,36,46,63,85,112,138,168,213,258,299,344,392,461], 3:[17.5,24,32,41,57,76,101,125,151,192,232,269,309,353,415]},
   xlpe:{2:[24,33,45,58,80,107,138,171,209,269,328,382,441,506,599], 3:[22,30,40,52,71,96,119,147,179,229,278,322,371,424,500]}
 };
-const INCOMER_RATINGS = [16,20,25,32,40,50,63,80,100,125,160,200,250,315,400,630];
+const INCOMER_RATINGS = INCOMER_IEC;
+const incRatings = S => isLV(S) ? LV_RATINGS.concat([315, 400, 630]) : (STD[S.std].inc || INCOMER_IEC);
 const pick = (arr, x) => { const v = arr.find(r => r >= x - 1e-9); return v == null ? null : v; };
 const num = (x, d) => (x === '' || x == null || isNaN(+x)) ? d : +x;
 const BTU_W = 0.29307;
@@ -303,7 +324,8 @@ function sizeCable(S, o){
 /* ---------- main compute ---------- */
 function compute(S){
   const std = STD[S.std], V = S.vLN, three = S.phases === 3;
-  const R = {std, c:{}, m:{}, ph:{L1:0, L2:0, L3:0}, checks:[], heatW:0, lossW:0, connectedW:0};
+  const R = {std, c:{}, m:{}, ph:{L1:0, L2:0, L3:0}, phC:{L1:0, L2:0, L3:0}, checks:[], heatW:0, lossW:0, connectedW:0};
+  const kT = kTemp(S), V2 = three ? V * SQ3 : (S.sysId === '1p240' ? 240 : V);
   const chk = (lvl, ref, msg) => R.checks.push({lvl, ref, msg});
   const lv = isLV(S), dc = isDC(S), dflt = vdDef(S), RT = ratingsOf(S), dpm = dpOf(S);
   const limOf = t => (t === 'lighting' || t === 'critical') ? num(S.vdL, dflt.l) : num(S.vdO, dflt.o);
@@ -324,7 +346,8 @@ function compute(S){
     const thr = ph === '3P';
     const pf = dc ? 1 : Math.min(1, Math.max(.1, num(c.pf, .95)));
     const Ib = num(c.P, 0) * num(c.dem, 1) / (V * pf * (thr ? 3 : 1));
-    R.c[c.id] = {ph, thr, pf, Ib, mod: m};
+    const tp0 = TYPES[c.type] || TYPES.other;
+    R.c[c.id] = {ph, thr, pf, Ib, mod: m, ct: std.cont > 1 && !!tp0.ct};
     R.connectedW += num(c.P, 0);
   });
   /* module feeds */
@@ -334,15 +357,18 @@ function compute(S){
     const idle = lib.inA != null && lib.inA <= 1 ? lib.inA : 0.1;
     const Ib = loads.length ? loads.reduce((a, c) => a + R.c[c.id].Ib, 0) : idle;
     const lv = lib.vmax != null && lib.vmax <= 48;
-    const In = lv ? 0 : num(m.inSel, 0) > 0 ? +m.inSel : pick(RT, Math.max(Ib * std.cont, RT[0]));
+    const ctM = loads.some(c => R.c[c.id].ct);
+    const In = lv ? 0 : num(m.inSel, 0) > 0 ? +m.inSel : pick(RT, Math.max(Ib * (ctM ? std.cont : 1) / kT, RT[0]));
     const pf = loads.length ? (loads.reduce((a, c) => a + R.c[c.id].pf * R.c[c.id].Ib, 0) / Math.max(Ib, 1e-9)) : 1;
     const cab = sizeCable(S, {cable: m.cable || 'pvc', In: In || 0, Ib, len: num(m.len, 5), pf, three: false, grp: 1, min: 1.5, lim: limOf('other'), size: m.size || 'auto'});
     const ph = three ? m.phase : 'L1';
-    R.m[m.id] = {lib, Ib, In, pf, cab, ph, loads, w: lib.din == null ? 4 : Math.ceil(lib.din), nodin: lib.din === 0, lv, poles: 1};
+    R.m[m.id] = {lib, Ib, In, pf, cab, ph, loads, ct: ctM, w: lib.din == null ? 4 : Math.ceil(lib.din), nodin: lib.din === 0, lv, poles: 1};
     if (!lv && lib.inA && Ib > lib.inA + 1e-9) chk('err', m.id, `${m.model} feed carries ${Ib.toFixed(1)} A, above its ${lib.inA} A input rating.`);
     if (!lv && lib.vmin != null && (V < lib.vmin || V > lib.vmax)) chk('err', m.id, `${m.model} is rated ${lib.volt}; the system line-neutral voltage is ${V} V.`);
     if (lib.amb && S.cabinAmb > lib.amb) chk('warn', m.id, `${m.model} allows ${lib.amb} C inside the enclosure; the design value is ${S.cabinAmb} C.`);
     if (In && Ib > In) chk('err', m.id, `${m.model} feed breaker ${In} A is below its load of ${Ib.toFixed(1)} A.`);
+    else if (In && Ib > In * kT + 1e-9) chk('err', m.id, `${m.model} feed breaker ${In} A is derated to ${(In * kT).toFixed(1)} A at ${S.cabinAmb} C inside the enclosure, below its load of ${Ib.toFixed(1)} A.`);
+    if (In && ctM && In < Ib * std.cont - 1e-9) chk('warn', m.id, `${m.model} feed carries continuous lighting or similar load: ${std.n} sizes the breaker at ${Math.round(std.cont * 100)} % of the load (${(Ib * std.cont).toFixed(1)} A).`);
     if (In && cab.Iz < In) chk('err', m.id, `${m.model} feed cable carries ${cab.Iz.toFixed(0)} A, below the ${In} A breaker.`);
     if (cab.vd > limOf('other')) chk('warn', m.id, `${m.model} feed voltage drop is ${cab.vd.toFixed(2)} %.`);
     if (!lv && !In) chk('err', m.id, `${m.model} feed current is above the largest breaker in this series.`);
@@ -353,13 +379,16 @@ function compute(S){
     const f = Math.min(1, Ib / Math.max(In || 1, 1));
     R.lossW += 2.5 * f * f;
     if (three) R.ph[R.m[m.id].ph] += Ib; else R.ph.L1 += Ib;
+    if (ctM) R.phC[three ? R.m[m.id].ph : 'L1'] += Ib;
   });
   /* circuits */
   S.circuits.forEach(c => {
     const r = R.c[c.id], tp = TYPES[c.type] || TYPES.other, m = r.mod;
     const lim = limOf(c.type);
     const mm = m ? R.m[m.id] : null;
-    r.In = mm ? mm.In : (num(c.inO, 0) > 0 ? +c.inO : pick(RT, Math.max(r.Ib * std.cont, RT[0])));
+    const cf = r.ct ? std.cont : 1;
+    r.In = mm ? mm.In : (num(c.inO, 0) > 0 ? +c.inO : pick(RT, Math.max(r.Ib * cf / kT, RT[0])));
+    r.kT = kT; r.rcdMA = (!lv && c.prot === 'RCBO' && !mm) ? std.rcdMA : ''; r.rcdType = (!lv && c.prot === 'RCBO' && !mm) ? (c.type === 'ev' ? 'type A + 6 mA DC detection, or type B' : tp.ta ? 'type A' : 'type AC or A') : '';
     r.curve = std.curves.includes(c.curve) ? c.curve : std.curves[0];
     r.prot = mm ? 'Via module' : c.prot;
     const cab = sizeCable(S, {cable: c.cable || 'pvc', In: r.In || 0, Ib: r.Ib, len: num(c.len, 1), pf: r.pf, three: r.thr, grp: num(c.grp, 1), min: tp.min, lim, size: c.size});
@@ -371,6 +400,21 @@ function compute(S){
     const ref = c.ref;
     if (!r.In) chk('err', ref, 'Design current exceeds the largest breaker in this series.');
     if (r.In && r.Ib > r.In + 1e-9) chk('err', ref, `Design current ${r.Ib.toFixed(1)} A is above the ${r.In} A breaker.`);
+    else if (r.In && !mm && r.Ib > r.In * kT + 1e-9) chk('err', ref, `The ${r.In} A breaker is derated to ${(r.In * kT).toFixed(1)} A at ${S.cabinAmb} C inside the enclosure, below the ${r.Ib.toFixed(1)} A load. Choose the next size up.`);
+    if (r.In && !mm && cf > 1 && r.In < r.Ib * cf - 1e-9) chk('warn', ref, `${std.n} sizes the breaker at ${Math.round(cf * 100)} % of a continuous load: ${(r.Ib * cf).toFixed(1)} A needed, ${r.In} A chosen.`);
+    if (!mm && !lv && tp.mot && r.curve === 'B') chk('warn', ref, `${tp.l} has a starting current. A B curve can trip on inrush; use C or D.`);
+    if (!mm && !lv && c.prot === 'RCBO'){
+      if (tp.ta && rcboS && rcdAcOnly(rcboS)) chk('warn', ref, `${rcboS.mfr} ${rcboS.series} is type AC only. ${tp.l} has electronic or rectified current and needs a type A RCD.`);
+      if (c.type === 'ev') chk('info', ref, 'EV charger: IEC 60364-7-722 and BS 7671 722.531.3.101 need type A plus 6 mA DC detection (often built into the charger), or a type B RCD.');
+    }
+    if (!mm && std.zs && !lv && !dc && r.In && TRIPK[r.curve] && c.prot !== 'RCBO'){
+      const ze = num(S.ze, 0);
+      if (ze > 0){
+        const rho = c.cable === 'xlpe' ? 0.02235 : 0.02094, zc = 2 * rho * num(c.len, 1) / cab.size, zs = ze + zc, zmax = V / (TRIPK[r.curve] * r.In);
+        r.zs = zs; r.zsMax = zmax;
+        if (zs > zmax) chk('err', ref, `Earth-fault loop impedance ${zs.toFixed(2)} ohm (Ze ${ze} + cable ${zc.toFixed(2)}) is above the ${zmax.toFixed(2)} ohm limit for a ${r.curve}${r.In} A MCB (${V} V ÷ ${TRIPK[r.curve]} × ${r.In} A). Shorten the run, use a larger cable or a lower curve or rating.`);
+      }
+    }
     if (r.In && cab.Iz < r.In) chk('err', ref, `Cable ${cab.size} mm² carries ${cab.Iz.toFixed(0)} A, below the ${r.In} A breaker. Size up or lower the breaker.`);
     if (r.vdTot > lim) chk('warn', ref, `Voltage drop ${r.vdTot.toFixed(2)} % is above the ${lim} % target.`);
     if (!lv && !mm && tp.rcd && c.prot !== 'RCBO') chk('warn', ref, `${tp.l} circuit has no RCBO. ${std.rcd}`);
@@ -389,7 +433,7 @@ function compute(S){
     if (!mm){
       const f = r.In ? Math.min(1, r.Ib / r.In) : 1;
       R.lossW += (r.thr ? 3 : 1) * 2.5 * f * f;
-      if (r.thr){ R.ph.L1 += r.Ib; R.ph.L2 += r.Ib; R.ph.L3 += r.Ib; } else R.ph[r.ph] += r.Ib;
+      if (r.thr){ R.ph.L1 += r.Ib; R.ph.L2 += r.Ib; R.ph.L3 += r.Ib; if (r.ct){ R.phC.L1 += r.Ib; R.phC.L2 += r.Ib; R.phC.L3 += r.Ib; } } else { R.ph[r.ph] += r.Ib; if (r.ct) R.phC[r.ph] += r.Ib; }
     }
   });
   /* module zones used twice */
@@ -399,7 +443,7 @@ function compute(S){
   });
   /* totals and incomer */
   const dv = num(S.diversity, 1);
-  ['L1', 'L2', 'L3'].forEach(p => R.ph[p] *= dv);
+  ['L1', 'L2', 'L3'].forEach(p => { R.ph[p] *= dv; R.phC[p] *= dv; });
   const phW = {L1:0, L2:0, L3:0}; let kvaSum = 0;
   S.circuits.forEach(c => {
     const r = R.c[c.id], w = num(c.P, 0) * num(c.dem, 1) * dv;
@@ -412,12 +456,21 @@ function compute(S){
   const imax = Math.max(...act.map(p => R.ph[p]));
   const iavg = act.reduce((a, p) => a + R.ph[p], 0) / act.length;
   const imin = Math.min(...act.map(p => R.ph[p]));
-  const incIn = num(S.incomer, 0) > 0 ? +S.incomer : pick(lv ? LV_RATINGS.concat([315, 400, 630]) : INCOMER_RATINGS, Math.max(imax * std.cont, lv ? 1 : 16));
+  const incNeed = Math.max(0, ...act.map(p => R.ph[p] + (std.cont - 1) * R.phC[p]));
+  const incList = incRatings(S);
+  const incIn = num(S.incomer, 0) > 0 ? +S.incomer : pick(incList, Math.max(incNeed / kT, lv ? 1 : incList[0]));
   const pfAvg = 0.93;
   const incCab = sizeCable(S, {cable: S.incCable || 'xlpe', In: incIn || 0, Ib: imax, len: num(S.incLen, 10), pf: pfAvg, three, grp: 1, min: 4, lim: limOf('other'), size: 'auto'});
   R.inc = {Imax: imax, Iavg: iavg, Imin: imin, In: incIn, cab: incCab, imb: iavg > 0 ? (imax - iavg) / iavg * 100 : 0};
   R.inc.kVA = three ? SQ3 * V * SQ3 * imax / 1000 : V * imax / 1000;
   serChk(mainS, incIn, null, 'Incomer');
+  [['Breakers', 'MCB', mcbS], ['RCBOs', 'RCBO', rcboS], ['Incomer', 'Main', mainS]].forEach(([ref, nm, ser]) => {
+    if (!ser || lv) return;
+    const fam = stdFam(ser);
+    if (std.fam && fam !== std.fam) chk('warn', ref, fam === 'ul' ? `${ser.mfr} ${ser.series} is a UL 489 device. ${std.n} installations use IEC 60898 / 60947 devices; check that it is accepted locally.` : `${ser.mfr} ${ser.series} is an IEC-type device. ${std.n} installations need UL listed (UL 489 or UL 1077) devices. Check that it is accepted before using it.`);
+    if (fam === 'iec' && ['mcb', 'rcbo', 'rccb'].includes(ser.kind) && (V > 253 || V2 > 440)) chk('err', ref, `${ser.mfr} ${ser.series} is an IEC 60898 / 61009 device rated 230/400 V (440 V maximum). This supply is ${V} V line-to-neutral and ${Math.round(V2)} V line-to-line. Use a device rated for it.`);
+  });
+  if (std.zs && !lv && S.circuits.some(c => !c.mod && c.prot !== 'RCBO' && TRIPK[R.c[c.id].curve]) && num(S.ze, 0) <= 0) chk('info', 'Earth fault', `Enter the supply loop impedance Ze in Setup to check automatic disconnection of the MCB circuits (${std.n}).`);
   if (lv){
     const need = S.vLN * 1.25;
     [['MCB', mcbS], ['Main', mainS]].forEach(([nm, ser]) => { if (ser && dc && (ser.vdc == null || ser.vdc < need)) chk('warn', nm === 'MCB' ? 'Breakers' : 'Incomer', `${ser.mfr} ${ser.series} is not listed as DC rated for ${S.vLN} V here. Pick a DC series, or use Generic and specify a DC-rated device.`); });
@@ -426,6 +479,8 @@ function compute(S){
   }
   if (!incIn) chk('err', 'Incomer', 'Maximum phase current is above the largest incomer rating in the library.');
   else if (imax > incIn) chk('err', 'Incomer', `Maximum phase current ${imax.toFixed(1)} A is above the ${incIn} A incomer.`);
+  else if (imax > incIn * kT + 1e-9) chk('err', 'Incomer', `The ${incIn} A incomer is derated to ${(incIn * kT).toFixed(1)} A at ${S.cabinAmb} C inside the enclosure, below the ${imax.toFixed(1)} A maximum phase current.`);
+  else if (incIn && incNeed > incIn + 1e-9 && std.cont > 1) chk('warn', 'Incomer', `${std.n} sizes the main at 100 % of the non-continuous plus 125 % of the continuous load: ${incNeed.toFixed(1)} A needed, ${incIn} A chosen.`);
   if (incIn && incCab.Iz < incIn) chk('err', 'Incomer', `Incomer cable ${incCab.size} mm² carries ${incCab.Iz.toFixed(0)} A, below the ${incIn} A incomer.`);
   if (incCab.vd > limOf('other')) chk('warn', 'Incomer', `Incomer voltage drop ${incCab.vd.toFixed(2)} % uses part of the total allowance.`);
   const worstVd = Math.max(0, ...S.circuits.map(c => R.c[c.id].vdTot + incCab.vd));

@@ -1,0 +1,431 @@
+716|+ Module DALI
+717|Ajoutez ici des maîtres DALI, des alimentations de bus et des drivers, ou depuis la bibliothèque DALI de l’onglet Équipements. Chaque driver est relié à une liaison d’un contrôleur DALI. Les contrôleurs placés dans le tableau (par exemple un Lutron QSN2-2DALUNV-D) apparaissent ici automatiquement, comme les maîtres ajoutés ci-dessous. Les adresses sont attribuées dans l’ordre sur chaque ligne, jusqu’à 64.
+718|Ajoutez un contrôleur DALI au tableau, ou un maître ci-dessous, pour dessiner le réseau.
+719|Ajoutez un driver, une alimentation, un contrôleur ou une entrée absents de la bibliothèque et saisissez ses caractéristiques. Il apparaît ensuite dans la liste des modèles ci-dessus et peut être relié à une liaison comme n’importe quel autre appareil.
+720|Ajouter au réseau DALI
+721|Adr.
+722|Adresse
+723|L’adresse et les mA s’appliquent aux drivers et aux entrées. Les lignes et l’alimentation du bus s’appliquent aux contrôleurs et aux alimentations. La largeur DIN s’applique lorsque le montage est sur rail DIN.
+724|Adresses
+725|Tous les contrôles des lignes DALI sont satisfaits.
+726|Charge du bus
+727|Canaux
+728|Relier à
+729|Relier à : première liaison libre
+730|Contrôleur
+731|Créer et ajouter
+732|Appareil DALI personnalisé
+733|Marque DALI
+734|Contrôleurs DALI de ce projet
+735|Bibliothèque d’équipements DALI
+736|Liaison DALI
+737|DALI mA
+738|Modèle DALI
+739|Implantation des modules DALI
+740|Module DALI à ajouter
+741|Modules DALI
+742|Réseau DALI
+743|Schéma du réseau DALI
+744|Type DALI
+745|Largeur DIN (DU)
+746|DIN et déportés
+747|Rail DIN uniquement
+748|Appareils
+749|Filtrer par type
+750|Donnez un nom à l’appareil personnalisé.
+751|Coupleur d’entrées / boutons-poussoirs
+752|Lignes
+753|Liaison
+754|Montage
+755|Nom / emplacement
+756|Aucun contrôleur DALI pour l’instant. Ajoutez un module DALI depuis l’onglet Équipements (Lutron, Crestron ou MDT, affiché dans l’onglet Tableau) ou un maître ou une passerelle DALI ci-dessous, puis reliez les drivers à ses liaisons.
+757|Aucun équipement DALI ne correspond.
+758|Aucun équipement DALI pour l’instant. Choisissez un modèle ci-dessus ou parcourez la bibliothèque DALI dans l’onglet Équipements.
+759|Aucune alimentation de bus n’est reliée à cette ligne. Reliez-y une alimentation DALI.
+760|Aucun résultat
+761|Non relié
+762|Rien à agencer pour l’instant.
+763|Sur rail DIN
+764|Sortie
+765|Quantités
+766|Déportés uniquement
+767|Retirer tout le DALI
+768|Rechercher des appareils DALI
+769|Rechercher des équipements DALI
+770|Rechercher driver, marque, article
+771|Rechercher modèle, article, type
+772|mA d’alimentation
+773|Le maître a une alimentation de bus intégrée, mais une alimentation séparée est reliée. Seule l’alimentation séparée est comptée.
+774|Il n’y a ni maître ni passerelle DALI, donc aucune ligne DALI n’existe. Ajoutez-en un pour relier les drivers.
+775|Où
+776|Vos appareils personnalisés
+777|p. ex. Spots de cuisine
+778|p. ex. Tridonic 75 W CC
+779|est un maître
+780|h
+781|à l’instant
+782|min
+783|. Ouvrez-le pour activer votre compte, puis connectez-vous. Le lien ne fonctionne qu’une fois et expire au bout d’un moment.
+784|Une aide à la conception. Vérifiez toujours selon la réglementation locale en matière d’installation.
+785|Compte suspendu
+786|Vous avez déjà un compte ?
+787|Nomenclature, export PDF et Excel
+788|Dimensionnement des câbles, chute de tension et charges
+789|Continuer sans compte
+790|Créez votre compte
+791|Implantation sur rail DIN et positions des disjoncteurs
+792|Concevez des tableaux de distribution que vous pouvez réaliser.
+793|Télécharger mes données
+794|Saisissez l’e-mail de votre compte. S’il correspond à un compte, nous vous envoyons un lien pour choisir un nouveau mot de passe.
+795|Gratuit pour commencer. Nous vous envoyons par e-mail un lien pour confirmer votre adresse avant que vous puissiez vous connecter.
+796|J’ai confirmé, me connecter
+797|J’ai lu et j’accepte
+798|Implantation, schéma unifilaire, tableaux et dimensionnement des câbles dans un seul espace de travail, enregistré dans votre compte et disponible sur tous vos appareils.
+799|Nouveau sur DBoard Designer ?
+800|Rien reçu ? Vérifiez les courriers indésirables et assurez-vous que l’adresse est correcte.
+801|Projets enregistrés en toute sécurité dans votre compte
+802|Renvoyer l’e-mail de vérification
+803|Définissez un nouveau mot de passe pour votre compte.
+804|Afficher le mot de passe
+805|Recommencer
+806|Ce compte a été suspendu et ne peut pas ouvrir de projets pour le moment. Vos données sont conservées. Contactez l’exploitant du service pour le faire réexaminer.
+807|Nous avons envoyé un lien de confirmation à
+808|Bon retour. Reprenez vos tableaux là où vous les avez laissés.
+809|Mauvaise adresse ?
+810|et la
+811|1. Le service
+812|2. Responsabilité professionnelle
+813|3. Votre compte
+814|4. Votre contenu
+815|5. Utilisation acceptable
+816|6. Disponibilité et responsabilité
+817|7. Fermeture du compte
+818|Une version plus récente de ce projet a été enregistrée depuis un autre appareil ou onglet. Choisissez la version à conserver.
+819|Menu du compte
+820|DBoard Designer est une aide à la conception de tableaux électriques de distribution. Les résultats (sections de câbles, chute de tension, charges, nomenclatures) sont indicatifs.
+821|Les données sont conservées tant que le compte existe et supprimées lorsque vous le supprimez.
+822|Supprimer définitivement ce projet ?
+823|N’essayez pas d’accéder aux données d’autres utilisateurs, de perturber le service ou de l’utiliser de façon illégale. Les comptes qui le font peuvent être suspendus.
+824|Dans les paramètres du compte, vous pouvez modifier vos informations, télécharger toutes vos données et supprimer définitivement votre compte et vos projets. Pour toute autre demande relative à la vie privée, contactez l’exploitant.
+825|Garder ma version
+826|Gardez votre mot de passe confidentiel. Vous êtes responsable de l’activité réalisée avec votre compte. Fournissez des informations d’inscription exactes.
+827|Charger la version enregistrée
+828|Nom, adresse e-mail, pays, profession et, en option, société, que vous fournissez à l’inscription. Vos projets. Événements d’utilisation de base (connexions, projet ouvert ou créé, exports, outils ouverts) et tout retour que vous envoyez.
+829|Mots de passe
+830|Les mots de passe ne sont jamais stockés par cette application. L’authentification est gérée par Supabase Auth, qui ne conserve qu’un hachage salé.
+831|Projet supprimé.
+832|Projet dupliqué.
+833|Conservation
+834|Enregistré dans votre compte.
+835|Supabase (base de données et authentification) et Cloudflare (hébergement). Les administrateurs du service peuvent voir les informations du compte, le nombre de projets et les retours. Ils ne peuvent pas voir votre mot de passe.
+836|Modèle destiné à l’exploitant du service. Complétez les informations de l’exploitant et faites-le relire avant le lancement public.
+837|Modèle destiné à l’exploitant du service. Faites-le relire par un avocat qualifié et adaptez-le avant le lancement public.
+838|Le service est fourni « en l’état » pendant la bêta. Dans la mesure permise par la loi, l’exploitant n’est pas responsable des pertes liées à son utilisation. Conservez vos propres exports des projets importants.
+839|Ce projet a été modifié sur un autre appareil
+840|Ce projet n’a pas pu être lu.
+841|Pour gérer votre compte, stocker vos projets, sécuriser le service et comprendre quelles fonctions sont utilisées. Nous ne vendons pas de données personnelles et n’affichons pas de publicité.
+842|Envoyé vers votre compte. La copie sur cet appareil reste inchangée.
+843|Ce que nous collectons
+844|Qui traite les données
+845|Pourquoi
+846|Vous êtes responsable de vérifier chaque conception au regard de la réglementation d’installation applicable là où elle est réalisée, et de la faire vérifier par une personne compétente avant l’installation.
+847|Vous pouvez supprimer votre compte à tout moment dans les paramètres du compte. Vos projets et votre profil sont alors définitivement supprimés.
+848|Vous êtes propriétaire des projets que vous créez. Vous accordez à l’exploitant le droit de les stocker et de les traiter pour fournir le service.
+849|Vos droits
+850|Votre session a expiré. Reconnectez-vous.
+851|Un projet est enregistré uniquement sur cet appareil :
+852|Supprimer mon compte
+853|Supprimer définitivement
+854|Supprimer votre compte ?
+855|Téléchargez votre profil et tous vos projets dans un seul fichier JSON.
+856|Modifié
+857|Importer un tableau
+858|Importer depuis une photo ou un PDF
+859|Chargement de vos projets…
+860|Pas de connexion. Vérifiez votre accès Internet et réessayez.
+861|Pas maintenant
+862|Notifications
+863|Ouvrir le tableau local
+864|Ouvre le tableau stocké dans ce navigateur, sans l’enregistrer dans le cloud.
+865|Ouvre un tableau vierge enregistré automatiquement dans votre compte.
+866|Supprime définitivement votre compte, votre profil et tous les projets enregistrés. Cette action est irréversible. Les projets stockés uniquement sur cet appareil ne sont pas concernés.
+867|Partager
+868|Commencez un nouveau tableau de distribution ou reprenez-en un enregistré.
+869|Merci. Votre retour a été envoyé.
+870|Cela supprime définitivement votre compte et tous les projets enregistrés. Pour confirmer, saisissez votre adresse e-mail.
+871|Transformez la photo d’un tableau réalisé, ou un schéma PDF, en tableau modifiable.
+872|Envoyer une copie
+873|Envoyez une copie dans votre compte pour l’utiliser sur d’autres appareils. La copie sur cet appareil est conservée.
+874|Qu’est-ce qui fonctionne, qu’est-ce qui manque, qu’est-ce qui a mal tourné ?
+875|Travailler sur cet appareil
+876|Écrivez d’abord un message.
+877|Vous êtes hors ligne. Les projets du cloud se chargent à la reconnexion.
+878|Vos données
+879|Votre message
+880|circuits
+881|appareils
+882|Actif
+883|Tableau de bord d’administration
+884|Administration
+885|Tout statut
+886|Toute vérification
+887|Communauté
+888|Utilisateur supprimé
+889|E-mail
+890|Vérification de l’e-mail
+891|Dernière connexion
+892|Chargement…
+893|Nouveaux projets sur 7 jours
+894|Suivant
+895|Aucun événement enregistré pour l’instant.
+896|Pas encore de retours.
+897|Aucun utilisateur ne correspond.
+898|Non vérifié
+899|Précédent
+900|Projets
+901|Inscrit
+902|Rechercher
+903|Rechercher nom, e-mail, société
+904|Rechercher des utilisateurs
+905|Inscriptions par jour
+906|Inscriptions, 30 derniers jours
+907|Suspendu
+908|Pays principaux
+909|Utilisation, 30 derniers jours
+910|Vérifié
+911|administrateur
+912|utilisateurs
+913|Accepter
+914|Retour aux conversations
+915|Discutez avec d’autres membres, travaillez en groupe et partagez des tableaux enregistrés.
+916|Choisissez une conversation ou commencez-en une nouvelle.
+917|Cliquez à nouveau pour confirmer
+918|Cliquez à nouveau pour quitter
+919|Conversations
+920|Impossible d’accepter l’invitation.
+921|Créer le groupe
+922|Limite quotidienne d’invitations atteinte. Réessayez demain.
+923|Refuser
+924|Adresse e-mail d’un membre inscrit
+925|E-mail envoyé à
+926|Ancien membre
+927|Donnez un nom au groupe.
+928|Groupe
+929|Discussion de groupe
+930|Nom du groupe
+931|Invitations
+932|Inviter
+933|Inviter des membres par e-mail
+934|Inviter dans
+935|Quitter
+936|Tout marquer comme lu
+937|Membres
+938|Message
+939|Message (facultatif)
+940|Impossible de charger les messages.
+941|Nouveau groupe
+942|Nouvelle discussion privée
+943|Pas encore de conversation. Démarrez une discussion privée avec un membre ou créez un groupe.
+944|Pas encore de message
+945|Pas encore de message. Dites bonjour.
+946|Rien n’a encore été partagé avec vous.
+947|Rien de nouveau. Les invitations, réponses et projets partagés apparaissent ici.
+948|Ouvrir une copie
+949|Ouvrir le groupe
+950|Discussion privée
+951|Les membres inscrits peuvent voir le tableau et enregistrer leur propre copie. Vous seul pouvez modifier l’original.
+952|Envoyer
+953|Envoyer les invitations
+954|Séparez les adresses par des virgules ou des retours à la ligne. Les membres invités reçoivent un e-mail et une notification, et rejoignent quand ils acceptent.
+955|Partager le projet
+956|Partager avec (adresses e-mail)
+957|Partagés par moi
+958|Partagés avec moi
+959|Démarrer la discussion
+960|Arrêter le partage
+961|Ce projet n’est plus partagé avec vous.
+962|L’e-mail n’a pas pu être envoyé. Ils le verront tout de même sur leur tableau de bord.
+963|Le message n’a pas pu être envoyé. Réessayez.
+964|Ils le verront sur leur tableau de bord.
+965|Tableau sans titre
+966|Écrivez un message. Entrée envoie, Maj+Entrée ajoute une ligne.
+967|Vous envoyez des messages trop vite. Patientez un instant.
+968|Vous n’avez partagé aucun projet. Utilisez Partager sur n’importe quel projet de votre tableau de bord.
+969|de
+970|invité
+971|membres
+972|a été ignoré (20 adresses à la fois)
+973|vous
+974|Ajoutez d’abord au moins un appareil.
+975|Ajouter un appareil
+976|Ajoutez des photos ou un PDF
+977|Évitez les reflets et les ombres. Désactivez le flash si les étiquettes réfléchissent la lumière.
+978|Tableau
+979|Tableau créé. Vérifiez :
+980|Nom du tableau
+981|Vérifiez ces éléments
+982|Choisir des fichiers
+983|Créer le tableau
+984|Détecter depuis le tableau
+985|Corrigez tout ce qui semble faux. Les charges laissées vides sont estimées à partir du calibre du disjoncteur. Rien n’est enregistré tant que vous n’appuyez pas sur Créer le tableau.
+986|Pour les PDF, les dessins vectoriels et les tableaux de texte sont lus au mieux. Les numérisations doivent être nettes.
+987|Par exemple : les étiquettes sont en italien, le tableau est un tableau marin 230 V
+988|Pour les grands tableaux, ajoutez des gros plans de chaque rangée afin que les marquages des disjoncteurs et les étiquettes soient nets.
+989|Pour une meilleure lecture
+990|Fiabilité de la lecture
+991|Incluez la légende des circuits ou la bande d’étiquettes, s’il y en a une.
+992|Étiquette
+993|Type de charge
+994|Absent du tableau. Supposé, à vérifier.
+995|Notes pour le lecteur (facultatif)
+996|Rien n’a été reconnu. Ajoutez les appareils à la main, ou revenez en arrière et essayez une photo plus nette.
+997|L’import de tableau n’est pas encore activé sur ce site. Le propriétaire du site doit ajouter la clé du service de lecture (voir le README).
+998|Lire le tableau
+999|Lecture du tableau…
+1000|Recommencer
+1001|Prendre une photo
+1002|Prenez la photo de face, porte ouverte, et non en biais.
+1003|Le tableau n’a pas pu être créé. Vérifiez les valeurs et réessayez.
+1004|Le tableau était grand et la lecture a été interrompue. Ajoutez à la main les appareils manquants, ou relancez avec des photos plus rapprochées du côté droit.
+1005|La photo ou le PDF est envoyé au service de lecture pour analyse et n’est pas conservé. Vous vérifiez tout avant la création du tableau.
+1006|Cela prend généralement 20 à 60 secondes. Gardez cette page ouverte.
+1007|Transformez la photo d’un tableau réalisé, ou un schéma PDF, en tableau modifiable avec circuits, étiquettes, schéma et nomenclature.
+1008|Jusqu’à quatre photos d’un tableau, ou un PDF de schéma ou de tableau de circuits.
+1009|Norme de câblage (facultatif)
+1010|Votre source
+1011|appareils lus
+1012|faible confiance, mis en évidence
+1013|Adresse, téléphone, e-mail, site web. Affichés sur la page de couverture du PDF.
+1014|Choisissez le contenu du PDF. A4 paysage, avec votre logo sur chaque page.
+1015|Aperçu du logo de l’entreprise
+1016|Sommaire
+1017|Impossible d’enregistrer :
+1018|Critique (chute 3 %)
+1019|Page DALI
+1020|Base de conception
+1021|Conception du tableau de distribution
+1022|Éclairage (chute 3 %)
+1023|Autres (chute 10 %)
+1024|Résumé du projet
+1025|Réseaux de résistances
+1026|Enregistré
+1027|Étoile et triangle
+1028|La page DALI n’a pas pu être dessinée pour ce tableau.
+1029|Cochez au moins une section pour le PDF.
+1030|après foisonnement
+1031|Connectez-vous, démarrez ou importez un tableau
+1032|Sur la version hébergée, vous partez de votre <b>Tableau de bord</b> après connexion. Appuyez sur <b>Nouveau tableau</b> pour partir de zéro, ouvrez un projet enregistré, ou appuyez sur <b>Importer un tableau</b> pour créer un tableau à partir d’une photo d’un tableau réalisé ou d’un schéma PDF ou tableau de circuits. Ajoutez jusqu’à quatre photos d’un tableau, ou un PDF, puis appuyez sur <b>Lire le tableau</b>. Le lecteur liste chaque appareil qu’il voit (type de disjoncteur, calibre, courbe, pôles, différentiel, nom du circuit, charge, phase, câble, marque et modèle) à côté de votre image. <b>Vérifiez et corrigez le tableau</b>, puis appuyez sur <b>Créer le tableau</b>. Le nouveau tableau s’ouvre sur <b>Circuits</b> et fonctionne comme les autres : vous pouvez ajouter ou modifier circuits et étiquettes et exporter le schéma, la nomenclature, le PDF et Excel. Tout ce que le lecteur n’a pas pu voir reste vide et signalé pour que vous le complétiez.
+1033|Planifier le réseau d’éclairage DALI
+1034|Ouvrez <b>Équipements</b> et faites défiler jusqu’à la <b>Bibliothèque d’équipements DALI</b> : maîtres et passerelles Lunatone, OSRAM et LTECH, alimentations de bus, coupleurs de boutons-poussoirs, relais et variateurs ou drivers, en rail DIN comme déportés. Filtrez par marque, type ou <b>rail DIN uniquement</b>, réglez une quantité et appuyez sur <b>Ajouter</b>. Ouvrez ensuite l’onglet <b>DALI</b>. Les modules contrôleurs DALI que vous placez dans le tableau (Lutron, Crestron, MDT) y sont listés automatiquement sous <b>Contrôleurs DALI de ce projet</b>, chacun avec ses liaisons, et vous pouvez relier des drivers à la liaison choisie. Sous <b>Quantités</b>, vous pouvez chercher dans la liste des modèles par nom, marque ou article et la filtrer par type. Si un driver n’est pas dans la bibliothèque, utilisez <b>Appareil DALI personnalisé</b> pour saisir ses adresses, son courant DALI, son montage et d’autres valeurs ; les appareils personnalisés peuvent y être modifiés ou supprimés. Toujours sous Quantités, vous pouvez ajouter des modèles, changer une quantité ou retirer un modèle. Dans <b>Modules DALI</b>, donnez à chaque appareil un nom ou un emplacement, choisissez la <b>liaison DALI</b> (une ligne d’un maître) à laquelle il se connecte, ou supprimez-le. L’outil attribue les adresses sur chaque ligne (jusqu’à 64) et vérifie le courant de bus par rapport à l’alimentation de bus. Les appareils DALI sur rail DIN sont aussi dessinés dans l’onglet <b>Tableau</b> : cliquez sur l’un d’eux pour le renommer, changer son modèle ou sa liaison DALI, le déplacer le long d’un rail ou d’un rail à l’autre, le faire glisser ou le supprimer, et utilisez <b>+ Module DALI</b> dans les notes du tableau pour en ajouter. Le <b>schéma du réseau DALI</b> et l’<b>implantation des modules DALI</b> (une bande de rail DIN plus une zone séparée pour les drivers déportés) sont dessinés plus bas, séparément du schéma du tableau, et les deux figurent dans le PDF, avec une feuille DALI dans le fichier Excel et des articles DALI dans la nomenclature.
+1035|Ouvrez <b>Exporter</b>. <b>Enregistrer le PDF</b> produit l’implantation du tableau, le schéma multifilaire, le tableau des circuits et les totaux de puissance ; cochez <b>Inclure la nomenclature</b> pour ajouter cette liste. <b>Enregistrer Excel</b> et <b>Enregistrer CSV</b> fournissent le tableau pour d’autres outils. <b>Enregistrer le projet</b> stocke toute la conception dans un fichier que vous pouvez rouvrir avec <b>Ouvrir un projet</b>. Les tableaux créés par <b>Importer un tableau</b> s’exportent exactement de la même façon.
+1036|Lorsque vous êtes connecté, un tableau ouvert depuis votre Tableau de bord s’enregistre dans votre compte environ une seconde après chaque modification, et l’indicateur en haut affiche Enregistré, Enregistrement ou Hors ligne. Vous pouvez l’ouvrir sur tout appareil où vous vous connectez. Si le même tableau a été modifié sur un autre appareil, vous choisissez la version à conserver. Un tableau conservé uniquement dans ce navigateur n’est pas touché par les tableaux du cloud. Utilisez Enregistrer le projet pour garder une copie sous forme de fichier.
+1037|Lecture d’une photo ou d’un PDF de tableau
+1038|Une photo est lue au mieux. Prenez-la de face, porte ouverte et sans reflets, désactivez le flash si les étiquettes réfléchissent la lumière, et ajoutez des gros plans de chaque rangée pour les grands tableaux. Les PDF avec du vrai texte sont lus au mieux. Vérifiez toujours les calibres, phases et étiquettes sur le tableau réel avant de remettre le résultat comme documentation de récolement. Chaque personne peut lancer un nombre limité de lectures par jour.
+1039|Votre compte
+1040|Utilisez le menu du profil pour les Paramètres du compte : modifiez vos informations, changez votre mot de passe, téléchargez toutes vos données ou supprimez votre compte. Utilisez Retour d’expérience dans le Tableau de bord pour nous dire quoi améliorer.
+1041|Valeurs DALI
+1042|Les valeurs Lunatone ont été lues sur ses pages produit. Lorsque les pages LTECH ou OSRAM n’indiquaient pas le courant DALI ou le montage, la bibliothèque marque l’article comme Supposé (2 mA par appareil). Aucune des deux marques n’a de driver DALI sur rail DIN dans la bibliothèque ; l’alimentation de bus et le relais LTECH sont sur rail DIN. Vérifiez chaque article sur la fiche technique avant de commander.
+1043|{1} adresses DALI sont utilisées. Cette ligne en permet {2}.
+1044|Les appareils consomment {1} mA mais {2} garantit {3} mA.
+1045|La charge du bus est de {1} % de l’alimentation de {2} mA. Gardez une marge.
+1046|{1} alimentations de bus sont reliées. Une ligne DALI n’en a normalement qu’une ; seule la plus grande est comptée.
+1047|{1} appareil DALI n’est pas relié à une ligne : {2}.
+1048|{1} appareils DALI ne sont pas reliés à une ligne : {2}.
+1049|{1} modèle DALI utilise des valeurs supposées (affichées comme Supposé dans la bibliothèque). Confirmez-les sur la fiche technique.
+1050|{1} modèles DALI utilisent des valeurs supposées (affichées comme Supposé dans la bibliothèque). Confirmez-les sur la fiche technique.
+1051|{1} · dans le tableau principal
+1052|Alimentation de bus {1} mA
+1053|Liaison {1}
+1054|Ligne {1}
+1055|aucun appareil
+1056|{1} adresses
+1057|{1} adr.
+1058|{1} (maître)
+1059|Non relié à une ligne DALI ({1})
+1060|Rail DALI {1}
+1061|{1} sur {2} DU utilisés
+1062|{1} ligne
+1063|{1} lignes
+1064|DIN {1} DU
+1065|liaison {1}
+1066|{1} appareil
+1067|{1} appareils
+1068|Drivers et appareils déportés ({1}), pas sur le rail
+1069|{1} ligne DALI
+1070|{1} lignes DALI
+1071|les valeurs sont celles du catalogue, confirmez sur la fiche technique
+1072|{1} sur le rail DIN ({2} DU), {3} déportés
+1073|{1} résultat
+1074|{1} résultats
+1075|{1} × {2} ajouté. Ouvrez l’onglet DALI pour les relier.
+1076|{1} ajouté. Ouvrez l’onglet DALI pour le relier.
+1077|Quantité de {1}
+1078|Nom pour {1}
+1079|Liaison DALI pour {1}
+1080|{1} ligne {2}
+1081|Déporté (hors DIN)
+1082|Alimentation supposée {1} mA / liaison
+1083|Alimentation intégrée {1} mA / ligne
+1084|déporté
+1085|Contrôleurs DALI dans le tableau principal (dessinés dans l’onglet Tableau)
+1086|Bande de rail DIN pour les éléments DIN ({1} DU par rail, 1 DU = 17,5 mm ; ils figurent aussi dans l’onglet Tableau) et une zone séparée pour les drivers déportés.
+1087|Séparé du schéma du tableau. Couleur = ligne DALI ; les cadres en pointillés sont des appareils déportés.
+1088|Rien n’est encore relié à cette ligne.
+1089|Largeur DIN, DU (17,5 mm)
+1090|Adresses DALI utilisées
+1091|Courant DALI, mA
+1092|Le disjoncteur d’alimentation {1} de {2} A est déclassé à {3} A à {4} C dans l’enveloppe, en dessous de sa charge de {5} A.
+1093|L’alimentation {1} porte un éclairage continu ou une charge similaire : {2} dimensionne le disjoncteur à {3} % de la charge ({4} A).
+1094|Le disjoncteur de {1} A est déclassé à {2} A à {3} C dans l’enveloppe, en dessous de la charge de {4} A. Choisissez le calibre supérieur.
+1095|{1} dimensionne le disjoncteur à {2} % d’une charge continue : {3} A nécessaires, {4} A choisis.
+1096|{1} a un courant de démarrage. Une courbe B peut déclencher à l’appel de courant ; utilisez C ou D.
+1097|{1} {2} est de type AC uniquement. {3} a un courant électronique ou redressé et nécessite un différentiel de type A.
+1098|Borne de recharge VE : IEC 60364-7-722 et BS 7671 722.531.3.101 exigent un type A plus une détection DC de 6 mA (souvent intégrée à la borne), ou un différentiel de type B.
+1099|L’impédance de boucle de défaut {1} ohm (Ze {2} + câble {3}) dépasse la limite de {4} ohm pour un disjoncteur de {5} A ({6} V ÷ {7} × {8} A). Raccourcissez le parcours, utilisez un câble plus gros ou une courbe ou un calibre inférieur.
+1100|Le disjoncteur général de {1} A est déclassé à {2} A à {3} C dans l’enveloppe, en dessous du courant de phase maximal de {4} A.
+1101|{1} dimensionne le disjoncteur principal à 100 % de la charge non continue plus 125 % de la charge continue : {2} A nécessaires, {3} A choisis.
+1102|{1} {2} est un appareil UL 489. Les installations {3} utilisent des appareils IEC 60898 / 60947 ; vérifiez qu’il est accepté localement.
+1103|{1} {2} est un appareil de type IEC. Les installations {3} exigent des appareils listés UL (UL 489 ou UL 1077). Vérifiez qu’il est accepté avant de l’utiliser.
+1104|{1} {2} est un appareil IEC 60898 / 61009 de 230/400 V (440 V maximum). Cette alimentation est de {3} V phase-neutre et {4} V entre phases. Utilisez un appareil prévu pour elle.
+1105|Saisissez l’impédance de boucle d’alimentation Ze dans Réglages pour vérifier la coupure automatique des circuits à disjoncteur ({1}).
+1106|Les disjoncteurs sont déclassés au-dessus de {1} °C dans l’enveloppe.
+1107|Impédance de boucle d’alimentation Ze (ohm)
+1108|Facultatif. Impédance de boucle de défaut à l’origine du tableau, fournie par le distributeur ou mesurée. Sert à vérifier que chaque disjoncteur coupe un défaut à temps.
+1109|Règles de protection
+1110|Chaque disjoncteur est dimensionné à partir du courant d’emploi (125 % des charges continues selon NEC), déclassé selon la température de l’enveloppe, puis arrondi au calibre normalisé supérieur de la norme choisie. La sensibilité du différentiel (30 mA, ou GFCI 4–6 mA selon NEC et ABYC), le nombre de pôles (2 pôles pour les charges 240 V) et la norme de l’appareil (IEC ou UL) suivent la norme et la tension d’alimentation. Avec IEC, BS 7671 et AS/NZS, saisissez Ze dans Réglages pour vérifier la boucle de défaut de chaque circuit à disjoncteur.
+1111|Ouvrez Communauté depuis le Tableau de bord pour discuter avec d’autres membres inscrits, créer des groupes, inviter des personnes par e-mail et partager des tableaux enregistrés. La cloche dans l’en-tête affiche les invitations, réponses et projets partagés.
+1112|Les contrôles couvrent le courant d’emploi par rapport au calibre du disjoncteur et du câble (avec la température de l’enveloppe et la règle NEC des charges continues), la chute de tension, l’exigence de différentiel, le pouvoir de coupure, le calibre de l’appareil par rapport à la norme et à la tension d’alimentation, l’impédance de boucle de défaut lorsque Ze est saisi, l’entrée Lutron, les limites de zones et de température. La discrimination et la sélectivité ne sont pas calculées ici.
+1113|Coordonnées de l’entreprise
+1114|Page de couverture avec les coordonnées de l’entreprise
+1115|Réseau DALI et implantation des modules
+1116|Supprimer le module DALI
+1117|Courant DALI
+1118|Défaut à la terre
+1119|Importer
+1120|Administration
+1121|Aucun projet enregistré pour l’instant. Créez votre premier tableau ci-dessus.
+1122|Au moins 8 caractères, avec une lettre et un chiffre.
+1123|Discussions
+1124|Projets partagés
+1125|La requête a échoué
+1126|Déporté
+1127|Tableau principal (onglet Tableau)
+1128|Onglet DALI
+1129|Boîtier propre / dans le luminaire
+1130|Lignes (contrôleur)
+1131|mA d’alimentation du bus (alimentation ou contrôleur)
+1132|Puissance, W
+1133|Sortie / notes
+1134|externe
+1135|Rail DIN
+1136|Maître / passerelle
+1137|Alimentation de bus
+1138|Relais / commutateur
+1139|Driver / variateur
+1140|Supposé
+1141|Voir la spécification
+1142|Universel
+1143|Boîte d’encastrement
+1144|{1} liaison
+1145|{1} liaisons
+1146|{1} produits DALI de Lunatone, OSRAM et LTECH, sur rail DIN comme drivers déportés. Appuyer sur Ajouter place la quantité choisie dans l’onglet <b>DALI</b>, où vous choisissez la ligne DALI à laquelle chacun se connecte et voyez le schéma du réseau et l’implantation des modules. Les valeurs Lunatone ont été lues sur ses pages produit. Les pages LTECH et OSRAM n’indiquaient ni courant DALI ni montage, ils sont donc marqués Supposé. Les drivers DALI OSRAM et LTECH ne sont pas sur rail DIN ; seuls l’alimentation de bus et le relais LTECH le sont. Lunatone propose plus de variantes que celles listées. Confirmez tout sur la fiche technique avant de commander.

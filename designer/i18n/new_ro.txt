@@ -1,0 +1,431 @@
+716|+ Modul DALI
+717|Adăugați aici master-e DALI, surse de alimentare pentru magistrală și drivere, sau din biblioteca DALI din fila Echipamente. Fiecare driver este conectat la o legătură a unui controler DALI. Controlerele montate în tablou (de exemplu un Lutron QSN2-2DALUNV-D) apar aici automat, la fel ca master-ele adăugate mai jos. Adresele se atribuie în ordine pe fiecare linie, până la 64.
+718|Adăugați în tablou un controler DALI sau mai jos un master pentru a desena rețeaua.
+719|Adăugați un driver, o sursă, un controler sau o intrare care nu se află în bibliotecă și introduceți-i datele. Apoi apare în lista de modele de mai sus și poate fi conectat la o legătură ca orice alt dispozitiv.
+720|Adaugă în rețeaua DALI
+721|Adr.
+722|Adresă
+723|Adresa și mA se aplică driverelor și intrărilor. Liniile și sursa magistralei se aplică controlerelor și surselor. Lățimea DIN se aplică atunci când montarea este pe șină DIN.
+724|Adrese
+725|Toate verificările liniilor DALI sunt trecute.
+726|Sarcină magistrală
+727|Canale
+728|Conectare la
+729|Conectare la: prima legătură liberă
+730|Controler
+731|Creează și adaugă
+732|Dispozitiv DALI personalizat
+733|Marcă DALI
+734|Controlere DALI din acest proiect
+735|Biblioteca de echipamente DALI
+736|Legătură DALI
+737|DALI mA
+738|Model DALI
+739|Dispunere module DALI
+740|Modul DALI de adăugat
+741|Module DALI
+742|Rețea DALI
+743|Schema rețelei DALI
+744|Tip DALI
+745|Lățime DIN (DU)
+746|DIN și la distanță
+747|Doar șină DIN
+748|Dispozitive
+749|Filtrare după tip
+750|Dați un nume dispozitivului personalizat.
+751|Cuplor intrări / butoane
+752|Linii
+753|Legătură
+754|Montare
+755|Nume / locație
+756|Încă nu există niciun controler DALI. Adăugați un modul DALI din fila Echipamente (Lutron, Crestron sau MDT, afișat în fila Tablou) sau un master ori gateway DALI mai jos, apoi conectați driverele la legăturile lui.
+757|Niciun echipament DALI nu corespunde.
+758|Încă nu există echipamente DALI. Alegeți un model de mai sus sau răsfoiți biblioteca DALI din fila Echipamente.
+759|La această linie nu este conectată nicio sursă de alimentare pentru magistrală. Legați o sursă DALI la ea.
+760|Nicio potrivire
+761|Neconectat
+762|Încă nu e nimic de aranjat.
+763|Pe șină DIN
+764|Ieșire
+765|Cantități
+766|Doar la distanță
+767|Elimină tot DALI
+768|Căutare dispozitive DALI
+769|Căutare echipamente DALI
+770|Căutare driver, marcă, articol
+771|Căutare model, articol, tip
+772|Alimentare mA
+773|Master-ul are o sursă de magistrală încorporată, dar este legată una separată. Se ia în calcul doar cea separată.
+774|Nu există master sau gateway DALI, deci nu există nicio linie DALI. Adăugați unul pentru a conecta driverele.
+775|Unde
+776|Dispozitivele dvs. personalizate
+777|de ex. Spoturi bucătărie
+778|de ex. Tridonic 75 W CC
+779|este master
+780|h în urmă
+781|chiar acum
+782|min în urmă
+783|. Deschideți-l pentru a vă activa contul, apoi autentificați-vă. Linkul funcționează o singură dată și expiră după un timp.
+784|Un ajutor de proiectare. Verificați întotdeauna conform reglementărilor locale de cablare.
+785|Cont suspendat
+786|Aveți deja un cont?
+787|Listă de materiale, export PDF și Excel
+788|Dimensionarea cablurilor, căderea de tensiune și sarcinile
+789|Continuă fără cont
+790|Creați-vă contul
+791|Dispunerea pe șina DIN și pozițiile disjunctoarelor
+792|Proiectați tablouri electrice pe baza cărora se poate construi.
+793|Descarcă datele mele
+794|Introduceți adresa de e-mail a contului. Dacă se potrivește cu un cont, vă trimitem un link pentru alegerea unei parole noi.
+795|Gratuit la început. Vă trimitem pe e-mail un link de confirmare a adresei înainte de a vă putea autentifica.
+796|Am confirmat, autentificare
+797|Am citit și accept
+798|Dispunere, schemă monofilară, tabele și dimensionarea cablurilor într-un singur spațiu de lucru, salvat în contul dvs. și disponibil pe orice dispozitiv.
+799|Nou în DBoard Designer?
+800|Nu a venit nimic? Verificați spamul și asigurați-vă că adresa este scrisă corect.
+801|Proiecte salvate în siguranță în contul dvs.
+802|Retrimite e-mailul de verificare
+803|Setați o parolă nouă pentru cont.
+804|Arată parola
+805|Începe din nou
+806|Acest cont a fost suspendat și nu poate deschide proiecte acum. Datele dvs. sunt păstrate. Contactați operatorul serviciului pentru a-l reexamina.
+807|Am trimis un link de confirmare la
+808|Bine ați revenit. Reluați tablourile de unde le-ați lăsat.
+809|Adresă greșită?
+810|și
+811|1. Serviciul
+812|2. Responsabilitate profesională
+813|3. Contul dvs.
+814|4. Conținutul dvs.
+815|5. Utilizare acceptabilă
+816|6. Disponibilitate și răspundere
+817|7. Închiderea contului
+818|O versiune mai nouă a acestui proiect a fost salvată de pe alt dispozitiv sau altă filă. Alegeți ce versiune păstrați.
+819|Meniul contului
+820|DBoard Designer este un ajutor de proiectare pentru tablouri electrice de distribuție. Rezultatele (secțiuni de cablu, cădere de tensiune, sarcini, liste de materiale) sunt orientative.
+821|Datele sunt păstrate cât timp există contul și sunt șterse când îl ștergeți.
+822|Ștergeți definitiv acest proiect?
+823|Nu încercați să accesați datele altor utilizatori, să perturbați serviciul sau să îl folosiți ilegal. Conturile care fac acest lucru pot fi suspendate.
+824|În setările contului puteți modifica datele, descărca toate datele și șterge definitiv contul și proiectele. Pentru orice altă solicitare privind confidențialitatea, contactați operatorul.
+825|Păstrează versiunea mea
+826|Păstrați parola confidențială. Sunteți responsabil pentru activitatea din contul dvs. Furnizați date de înregistrare corecte.
+827|Încarcă versiunea salvată
+828|Nume, adresă de e-mail, țară, ocupație și, opțional, firmă, pe care le furnizați la înregistrare. Proiectele dvs. Evenimente de utilizare de bază (autentificări, proiect deschis sau creat, exporturi, instrumente deschise) și orice feedback trimis.
+829|Parole
+830|Parolele nu sunt niciodată stocate de această aplicație. Autentificarea este gestionată de Supabase Auth, care stochează doar un hash cu salt.
+831|Proiect șters.
+832|Proiect duplicat.
+833|Păstrare
+834|Salvat în contul dvs.
+835|Supabase (bază de date și autentificare) și Cloudflare (găzduire). Administratorii acestui serviciu pot vedea detaliile contului, numărul de proiecte și feedbackul. Nu vă pot vedea parola.
+836|Șablon pentru operatorul serviciului. Completați datele operatorului și solicitați o verificare înainte de lansarea publică.
+837|Șablon pentru operatorul serviciului. Solicitați verificarea de către un avocat calificat și adaptați-l înainte de lansarea publică.
+838|Serviciul este oferit „ca atare” în perioada beta. În măsura permisă de lege, operatorul nu răspunde pentru pierderile rezultate din utilizare. Păstrați propriile exporturi ale proiectelor importante.
+839|Acest proiect a fost modificat pe alt dispozitiv
+840|Acest proiect nu a putut fi citit.
+841|Pentru a vă gestiona contul, a stoca proiectele, a securiza serviciul și a înțelege ce funcții sunt folosite. Nu vindem date personale și nu afișăm reclame.
+842|Încărcat în contul dvs. Copia de pe acest dispozitiv rămâne neschimbată.
+843|Ce colectăm
+844|Cine prelucrează datele
+845|De ce
+846|Sunteți responsabil să verificați fiecare proiect în raport cu reglementările de cablare aplicabile unde este construit și să îl faceți verificat de o persoană competentă înainte de instalare.
+847|Vă puteți șterge contul oricând din setările contului. Proiectele și profilul vor fi apoi eliminate definitiv.
+848|Sunteți proprietarul proiectelor create. Acordați operatorului dreptul de a le stoca și prelucra pentru a presta serviciul pentru dvs.
+849|Drepturile dvs.
+850|Sesiunea a expirat. Autentificați-vă din nou.
+851|Un proiect este salvat doar pe acest dispozitiv:
+852|Șterge contul meu
+853|Șterge definitiv
+854|Ștergeți contul?
+855|Descărcați profilul și toate proiectele ca un singur fișier JSON.
+856|Modificat
+857|Importă un tablou
+858|Importă din fotografie sau PDF
+859|Se încarcă proiectele dvs.…
+860|Fără conexiune. Verificați internetul și încercați din nou.
+861|Nu acum
+862|Notificări
+863|Deschide tabloul local
+864|Deschide tabloul stocat în acest browser, fără a-l salva în cloud.
+865|Deschide un tablou gol, salvat automat în contul dvs.
+866|Elimină definitiv contul, profilul și toate proiectele salvate. Acțiunea nu poate fi anulată. Proiectele stocate doar pe acest dispozitiv nu sunt afectate.
+867|Distribuie
+868|Începeți un tablou de distribuție nou sau continuați unul salvat.
+869|Mulțumim. Feedbackul dvs. a fost trimis.
+870|Aceasta șterge definitiv contul și toate proiectele salvate. Pentru confirmare, introduceți adresa de e-mail.
+871|Transformați o fotografie a unui tablou construit sau o schemă PDF într-un tablou editabil.
+872|Încarcă o copie
+873|Încărcați o copie în cont pentru a o folosi pe alte dispozitive. Copia de pe acest dispozitiv este păstrată.
+874|Ce funcționează, ce lipsește, ce nu a mers?
+875|Lucrați pe acest dispozitiv
+876|Scrieți mai întâi un mesaj.
+877|Sunteți offline. Proiectele din cloud se încarcă la reconectare.
+878|Datele dvs.
+879|Mesajul dvs.
+880|circuite
+881|dispozitive
+882|Activ
+883|Panou de administrare
+884|Administrare
+885|Orice stare
+886|Orice verificare
+887|Comunitate
+888|Utilizator șters
+889|E-mail
+890|Verificare e-mail
+891|Văzut ultima dată
+892|Se încarcă…
+893|Proiecte noi în ultimele 7 zile
+894|Următorul
+895|Încă nu există evenimente înregistrate.
+896|Încă nu există feedback.
+897|Niciun utilizator nu corespunde.
+898|Neverificat
+899|Anterior
+900|Proiecte
+901|Înregistrat
+902|Căutare
+903|Căutare după nume, e-mail, firmă
+904|Căutare utilizatori
+905|Înscrieri pe zi
+906|Înscrieri, ultimele 30 de zile
+907|Suspendat
+908|Țări de top
+909|Utilizare, ultimele 30 de zile
+910|Verificat
+911|administrator
+912|utilizatori
+913|Acceptă
+914|Înapoi la conversații
+915|Discutați cu alți membri, lucrați în grupuri și partajați tablouri salvate.
+916|Alegeți o conversație sau începeți una nouă.
+917|Apăsați din nou pentru confirmare
+918|Apăsați din nou pentru a ieși
+919|Conversații
+920|Invitația nu a putut fi acceptată.
+921|Creează grup
+922|Limita zilnică de invitații a fost atinsă. Încercați din nou mâine.
+923|Refuză
+924|Adresa de e-mail a unui membru înregistrat
+925|E-mail trimis către
+926|Fost membru
+927|Dați un nume grupului.
+928|Grup
+929|Chat de grup
+930|Numele grupului
+931|Invitații
+932|Invită
+933|Invitați membri prin e-mail
+934|Invită în
+935|Părăsește
+936|Marchează tot ca citit
+937|Membri
+938|Mesaj
+939|Mesaj (opțional)
+940|Mesajele nu au putut fi încărcate.
+941|Grup nou
+942|Chat privat nou
+943|Încă nu există conversații. Începeți un chat privat cu un membru sau creați un grup.
+944|Încă niciun mesaj
+945|Încă niciun mesaj. Spuneți „salut”.
+946|Încă nu s-a partajat nimic cu dvs.
+947|Nimic nou. Invitațiile, răspunsurile și proiectele partajate apar aici.
+948|Deschide o copie
+949|Deschide grupul
+950|Chat privat
+951|Membrii înregistrați pot vizualiza tabloul și își pot salva propria copie. Doar dvs. puteți modifica originalul.
+952|Trimite
+953|Trimite invitații
+954|Separați adresele prin virgule sau rânduri noi. Membrii invitați primesc un e-mail și o notificare și se alătură când acceptă.
+955|Partajează proiectul
+956|Partajează cu (adrese de e-mail)
+957|Partajate de mine
+958|Partajate cu mine
+959|Începe chatul
+960|Oprește partajarea
+961|Acest proiect nu mai este partajat cu dvs.
+962|E-mailul nu a putut fi trimis. Invitația va apărea totuși în panoul lor.
+963|Mesajul nu a putut fi trimis. Încercați din nou.
+964|Îl vor vedea în panoul lor.
+965|Tablou fără titlu
+966|Scrieți un mesaj. Enter trimite, Shift+Enter adaugă un rând.
+967|Trimiteți mesaje prea repede. Așteptați puțin.
+968|Nu ați partajat niciun proiect. Folosiți Partajează pe orice proiect din panou.
+969|de la
+970|invitat
+971|membri
+972|a fost omis (20 de adrese odată)
+973|dvs.
+974|Adăugați mai întâi cel puțin un dispozitiv.
+975|Adaugă dispozitiv
+976|Adăugați fotografii sau un PDF
+977|Evitați reflexiile și umbrele. Opriți blițul dacă etichetele reflectă lumina.
+978|Tablou
+979|Tablou creat. Verificați:
+980|Numele tabloului
+981|Verificați acestea
+982|Alegeți fișiere
+983|Creează tabloul
+984|Detectare din tablou
+985|Corectați tot ce pare greșit. Sarcinile lăsate necompletate sunt estimate din valoarea nominală a disjunctorului. Nu se salvează nimic până nu apăsați Creează tabloul.
+986|Pentru PDF-uri, desenele vectoriale și tabelele text se citesc cel mai bine. Scanările trebuie să fie clare.
+987|De exemplu: etichetele sunt în italiană, tabloul este un tablou naval de 230 V
+988|Pentru tablouri mari, adăugați fotografii de aproape ale fiecărui rând, ca marcajele disjunctoarelor și etichetele să fie clare.
+989|Pentru cea mai bună citire
+990|Cât de sigură este citirea
+991|Includeți legenda circuitelor sau banda de etichete, dacă există.
+992|Etichetă
+993|Tip de sarcină
+994|Nu apare pe tablou. Presupus, verificați.
+995|Note pentru cititor (opțional)
+996|Nu s-a recunoscut nimic. Adăugați dispozitivele manual sau reveniți și încercați o fotografie mai clară.
+997|Importul de tablouri nu este încă activat pentru acest site. Proprietarul site-ului trebuie să adauge cheia serviciului de citire (vezi README).
+998|Citește tabloul
+999|Se citește tabloul…
+1000|Reluați de la început
+1001|Fă o fotografie
+1002|Fotografiați frontal, cu ușa deschisă, nu din unghi.
+1003|Tabloul nu a putut fi construit. Verificați valorile și încercați din nou.
+1004|Tabloul a fost mare și citirea s-a întrerupt. Adăugați manual dispozitivele lipsă sau rulați din nou cu fotografii mai apropiate ale părții drepte.
+1005|Fotografia sau PDF-ul este trimis serviciului de citire pentru analiză și nu este stocat. Verificați totul înainte de crearea tabloului.
+1006|Durează de obicei 20–60 de secunde. Păstrați pagina deschisă.
+1007|Transformați fotografia unui tablou construit sau o schemă PDF într-un tablou editabil, cu circuite, etichete, schemă și listă de materiale.
+1008|Până la patru fotografii ale unui tablou sau un PDF cu schemă ori tabel de circuite.
+1009|Standard de cablare (opțional)
+1010|Sursa dvs.
+1011|dispozitive citite
+1012|încredere scăzută, evidențiat
+1013|Adresă, telefon, e-mail, site web. Se afișează pe pagina de copertă a PDF-ului.
+1014|Alegeți ce intră în PDF. A4 orizontal, cu sigla dvs. pe fiecare pagină.
+1015|Previzualizare siglă firmă
+1016|Cuprins
+1017|Nu s-a putut salva:
+1018|Critic (cădere 3 %)
+1019|Pagina DALI
+1020|Baza de proiectare
+1021|Proiectarea tabloului de distribuție
+1022|Iluminat (cădere 3 %)
+1023|Altele (cădere 10 %)
+1024|Rezumatul proiectului
+1025|Rețele de rezistoare
+1026|Salvat
+1027|Stea și triunghi
+1028|Pagina DALI nu a putut fi desenată pentru acest tablou.
+1029|Bifați cel puțin o secțiune pentru PDF.
+1030|după diversitate
+1031|Autentificați-vă, începeți sau importați un tablou
+1032|În versiunea găzduită începeți din <b>Panoul de control</b> după autentificare. Apăsați <b>Tablou nou</b> pentru a porni de la zero, deschideți un proiect salvat sau apăsați <b>Importă un tablou</b> pentru a construi un tablou dintr-o fotografie a unui tablou real sau dintr-o schemă PDF ori un tabel de circuite. Adăugați până la patru fotografii ale unui tablou sau un PDF, apoi apăsați <b>Citește tabloul</b>. Cititorul listează fiecare dispozitiv pe care îl vede (tip de disjunctor, valoare nominală, curbă, poli, RCD, nume circuit, sarcină, fază, cablu, marcă și model) lângă imaginea dvs. <b>Verificați și corectați tabelul</b>, apoi apăsați <b>Creează tabloul</b>. Noul tablou se deschide la <b>Circuite</b> și funcționează ca oricare altul, deci puteți adăuga sau edita circuite și etichete și exporta schema, lista de materiale, PDF-ul și Excel. Tot ce nu a putut vedea cititorul rămâne necompletat și marcat pentru a-l completa dvs.
+1033|Planificați rețeaua de iluminat DALI
+1034|Deschideți <b>Echipamente</b> și derulați la <b>Biblioteca de echipamente DALI</b>: mastere și gateway-uri Lunatone, OSRAM și LTECH, surse de magistrală, cuploare pentru butoane, relee și dimmere sau drivere, atât pentru șină DIN, cât și la distanță. Filtrați după marcă, tip sau <b>doar șină DIN</b>, setați o cantitate și apăsați <b>Adaugă</b>. Apoi deschideți fila <b>DALI</b>. Modulele de control DALI plasate în tablou (Lutron, Crestron, MDT) sunt listate automat acolo la <b>Controlere DALI în acest proiect</b>, fiecare cu legăturile sale, și puteți conecta drivere la legătura aleasă. La <b>Cantități</b> puteți căuta în lista de modele după nume, marcă sau articol și o puteți filtra după tip. Dacă un driver nu este în bibliotecă, folosiți <b>Dispozitiv DALI personalizat</b> pentru a introduce adresele, curentul DALI, montajul și alte valori; dispozitivele personalizate pot fi editate sau șterse acolo. Tot la Cantități puteți adăuga modele, schimba o cantitate sau elimina un model. În <b>Module DALI</b> dați fiecărui dispozitiv un nume sau o locație, alegeți <b>legătura DALI</b> (o linie a unui master) la care se conectează sau ștergeți-l. Instrumentul alocă adrese pe fiecare linie (până la 64) și verifică curentul magistralei față de sursa de magistrală. Dispozitivele DALI pe șină DIN sunt desenate și în fila <b>Tablou</b>: apăsați pe unul pentru a-l redenumi, a-i schimba modelul sau legătura DALI, a-l muta de-a lungul sau între șine, a-l trage sau șterge, și folosiți <b>+ Modul DALI</b> în notele tabloului pentru a adăuga altele. <b>Schema rețelei DALI</b> și <b>dispunerea modulelor DALI</b> (o bandă de șină DIN plus o zonă separată pentru driverele la distanță) sunt desenate dedesubt, separat de schema tabloului, și ambele sunt incluse în PDF, cu o foaie DALI în fișierul Excel și articole DALI în lista de materiale.
+1035|Deschideți <b>Export</b>. <b>Salvează PDF</b> produce dispunerea tabloului, schema multifilară, tabelul de circuite și totalurile de putere; bifați <b>Include lista de materiale</b> dacă doriți să fie adăugată. <b>Salvează Excel</b> și <b>Salvează CSV</b> oferă tabelul pentru alte instrumente. <b>Salvează proiectul</b> stochează întregul proiect ca fișier pe care îl puteți redeschide cu <b>Deschide proiect</b>. Tablourile create prin <b>Importă un tablou</b> se exportă exact la fel.
+1036|Când sunteți autentificat, un tablou deschis din Panoul de control se salvează în cont la aproximativ o secundă după fiecare modificare, iar indicatorul de sus arată Salvat, Se salvează sau Offline. Îl puteți deschide pe orice dispozitiv pe care vă autentificați. Dacă același tablou a fost modificat pe alt dispozitiv, alegeți ce versiune păstrați. Un tablou păstrat doar în acest browser nu este afectat de tablourile din cloud. Folosiți Salvează proiectul pentru a păstra o copie în fișier.
+1037|Citirea unei fotografii sau a unui PDF de tablou
+1038|O fotografie este citită pe baza celui mai bun efort. Fotografiați frontal, cu ușa deschisă și fără reflexii, opriți blițul dacă etichetele reflectă lumina și adăugați fotografii de aproape ale fiecărui rând pentru tablourile mari. PDF-urile cu text real se citesc cel mai bine. Verificați întotdeauna valorile nominale, fazele și etichetele față de tabloul real înainte de a emite rezultatul ca documentație as-built. Fiecare persoană poate rula un număr limitat de citiri pe zi.
+1039|Contul dvs.
+1040|Folosiți meniul de profil pentru Setările contului: editați datele, schimbați parola, descărcați toate datele sau ștergeți contul. Folosiți Feedback în Panoul de control pentru a ne spune ce să îmbunătățim.
+1041|Valori DALI
+1042|Valorile Lunatone au fost citite de pe paginile produselor. Acolo unde paginile LTECH sau OSRAM nu indicau curentul DALI sau montajul, biblioteca marchează articolul ca Presupus (2 mA per dispozitiv). Niciuna dintre mărci nu are un driver DALI pe șină DIN în bibliotecă; sursa de magistrală și releul LTECH sunt pe șină DIN. Verificați fiecare articol în fișa tehnică înainte de comandă.
+1043|{1} adrese DALI sunt folosite. Această linie permite {2}.
+1044|Dispozitivele consumă {1} mA, dar {2} garantează {3} mA.
+1045|Încărcarea magistralei este {1} % din sursa de {2} mA. Păstrați o marjă.
+1046|{1} surse de magistrală sunt legate. O linie DALI are de obicei una; se ia în calcul doar cea mai mare.
+1047|{1} dispozitiv DALI nu este conectat la o linie: {2}.
+1048|{1} dispozitive DALI nu sunt conectate la o linie: {2}.
+1049|{1} model DALI folosește valori presupuse (afișate ca Presupus în bibliotecă). Confirmați-le în fișa tehnică.
+1050|{1} modele DALI folosesc valori presupuse (afișate ca Presupus în bibliotecă). Confirmați-le în fișa tehnică.
+1051|{1} · în tabloul principal
+1052|Sursă magistrală {1} mA
+1053|Legătura {1}
+1054|Linia {1}
+1055|niciun dispozitiv
+1056|{1} adrese
+1057|{1} adr.
+1058|{1} (master)
+1059|Neconectat la o linie DALI ({1})
+1060|Șină DALI {1}
+1061|{1} din {2} DU utilizate
+1062|{1} linie
+1063|{1} linii
+1064|DIN {1} DU
+1065|legătura {1}
+1066|{1} dispozitiv
+1067|{1} dispozitive
+1068|Drivere și dispozitive la distanță ({1}), nu pe șină
+1069|{1} linie DALI
+1070|{1} linii DALI
+1071|valorile sunt din catalog, confirmați în fișa tehnică
+1072|{1} pe șina DIN ({2} DU), {3} la distanță
+1073|{1} rezultat
+1074|{1} rezultate
+1075|{1} × {2} adăugat. Deschideți fila DALI pentru a le conecta.
+1076|{1} adăugat. Deschideți fila DALI pentru a-l conecta.
+1077|Cantitate pentru {1}
+1078|Nume pentru {1}
+1079|Legătură DALI pentru {1}
+1080|{1} linia {2}
+1081|La distanță (nu DIN)
+1082|Sursă presupusă {1} mA / legătură
+1083|Sursă încorporată {1} mA / linie
+1084|la distanță
+1085|Controlere DALI în tabloul principal (desenate în fila Tablou)
+1086|Bandă de șină DIN pentru elementele DIN ({1} DU pe șină, 1 DU = 17,5 mm; apar și în fila Tablou) și o zonă separată pentru driverele la distanță.
+1087|Separat de schema tabloului. Culoare = linie DALI; casetele punctate sunt dispozitive la distanță.
+1088|Încă nu este nimic conectat la această linie.
+1089|Lățime DIN, DU (17,5 mm)
+1090|Adrese DALI utilizate
+1091|Curent DALI, mA
+1092|Disjunctorul de alimentare {1} de {2} A este redus la {3} A la {4} C în carcasă, sub sarcina de {5} A.
+1093|Alimentarea {1} duce iluminat continuu sau o sarcină similară: {2} dimensionează disjunctorul la {3} % din sarcină ({4} A).
+1094|Disjunctorul de {1} A este redus la {2} A la {3} C în carcasă, sub sarcina de {4} A. Alegeți dimensiunea următoare mai mare.
+1095|{1} dimensionează disjunctorul la {2} % dintr-o sarcină continuă: sunt necesari {3} A, au fost alese {4} A.
+1096|{1} are un curent de pornire. O curbă B se poate declanșa la curentul de pornire; folosiți C sau D.
+1097|{1} {2} este doar de tip AC. {3} are curent electronic sau redresat și necesită un RCD de tip A.
+1098|Încărcător VE: IEC 60364-7-722 și BS 7671 722.531.3.101 cer tip A plus detecție DC de 6 mA (adesea integrată în încărcător) sau un RCD de tip B.
+1099|Impedanța buclei de defect la pământ {1} ohm (Ze {2} + cablu {3}) depășește limita de {4} ohm pentru un MCB de {5} A ({6} V ÷ {7} × {8} A). Scurtați traseul, folosiți un cablu mai gros sau o curbă ori valoare mai mică.
+1100|Disjunctorul general de {1} A este redus la {2} A la {3} C în carcasă, sub curentul maxim de fază de {4} A.
+1101|{1} dimensionează întreruptorul principal la 100 % din sarcina necontinuă plus 125 % din cea continuă: sunt necesari {2} A, au fost alese {3} A.
+1102|{1} {2} este un dispozitiv UL 489. Instalațiile {3} folosesc dispozitive IEC 60898 / 60947; verificați dacă este acceptat local.
+1103|{1} {2} este un dispozitiv de tip IEC. Instalațiile {3} necesită dispozitive listate UL (UL 489 sau UL 1077). Verificați dacă este acceptat înainte de utilizare.
+1104|{1} {2} este un dispozitiv IEC 60898 / 61009 nominal 230/400 V (maximum 440 V). Această alimentare este de {3} V fază-nul și {4} V fază-fază. Folosiți un dispozitiv nominal pentru ea.
+1105|Introduceți impedanța buclei de alimentare Ze în Setări pentru a verifica deconectarea automată a circuitelor MCB ({1}).
+1106|Disjunctoarele sunt reduse peste {1} °C în carcasă.
+1107|Impedanța buclei de alimentare Ze (ohm)
+1108|Opțional. Impedanța buclei de defect la pământ la originea tabloului, de la furnizor sau dintr-o măsurătoare. Folosită pentru a verifica dacă fiecare MCB deconectează un defect la timp.
+1109|Reguli de protecție
+1110|Fiecare disjunctor este dimensionat din curentul de proiectare (125 % pentru sarcini continue conform NEC), redus în funcție de temperatura carcasei, apoi rotunjit în sus la următoarea valoare standard a standardului ales. Sensibilitatea RCD (30 mA sau GFCI 4–6 mA conform NEC și ABYC), numărul de poli (2 poli pentru sarcini de 240 V) și standardul dispozitivului (IEC sau UL) urmează standardul și tensiunea de alimentare. Cu IEC, BS 7671 și AS/NZS, introduceți Ze în Setări pentru a verifica bucla de defect la pământ a fiecărui circuit MCB.
+1111|Deschideți Comunitatea din Panoul de control pentru a discuta cu alți membri înregistrați, a crea grupuri, a invita persoane prin e-mail și a partaja tablouri salvate. Clopoțelul din antet arată invitațiile, răspunsurile și proiectele partajate.
+1112|Verificările acoperă curentul de proiectare față de valoarea disjunctorului și a cablului (cu temperatura carcasei și regula NEC pentru sarcini continue), căderea de tensiune, cerința RCD, capacitatea de rupere, valoarea dispozitivului față de standard și tensiunea de alimentare, impedanța buclei de defect la pământ când se introduce Ze, intrarea Lutron, limitele de zone și temperatură. Discriminarea și selectivitatea nu sunt calculate aici.
+1113|Date firmă
+1114|Pagină de copertă cu datele firmei
+1115|Rețeaua DALI și dispunerea modulelor
+1116|Șterge modulul DALI
+1117|Curent DALI
+1118|Defect la pământ
+1119|Import
+1120|Administrare
+1121|Încă niciun proiect salvat. Creați primul tablou mai sus.
+1122|Cel puțin 8 caractere, cu o literă și o cifră.
+1123|Conversații
+1124|Proiecte partajate
+1125|Solicitarea a eșuat
+1126|La distanță
+1127|Tabloul principal (fila Tablou)
+1128|Fila DALI
+1129|Carcasă proprie / în corpul de iluminat
+1130|Linii (controler)
+1131|Sursă magistrală mA (sursă sau controler)
+1132|Putere, W
+1133|Ieșire / note
+1134|extern
+1135|Șină DIN
+1136|Master / gateway
+1137|Sursă de alimentare magistrală
+1138|Releu / comutator
+1139|Driver / dimmer
+1140|Presupus
+1141|Vezi specificația
+1142|Universal
+1143|Doză de montaj
+1144|{1} legătură
+1145|{1} legături
+1146|{1} produse DALI de la Lunatone, OSRAM și LTECH, atât pe șină DIN, cât și drivere la distanță. Apăsarea pe Adaugă pune cantitatea aleasă în fila <b>DALI</b>, unde alegeți linia DALI la care se conectează fiecare și vedeți schema rețelei și dispunerea modulelor. Valorile Lunatone au fost citite de pe paginile produselor. Paginile LTECH și OSRAM nu indicau curentul DALI sau montajul, deci acestea sunt marcate Presupus. Driverele DALI OSRAM și LTECH nu sunt de tip șină DIN; doar sursa de magistrală și releul LTECH sunt. Lunatone are mai multe variante decât cele listate. Confirmați totul în fișa tehnică înainte de comandă.

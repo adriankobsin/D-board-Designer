@@ -1,0 +1,431 @@
+716|+ Módulo DALI
+717|Añada aquí maestros DALI, fuentes de alimentación de bus y drivers, o desde la biblioteca DALI de la pestaña Equipos. Cada driver se conecta a un enlace de un controlador DALI. Los controladores colocados en el cuadro (por ejemplo un Lutron QSN2-2DALUNV-D) aparecen aquí automáticamente, igual que los maestros añadidos abajo. Las direcciones se asignan en orden en cada línea, hasta 64.
+718|Añada un controlador DALI al cuadro, o un maestro abajo, para dibujar la red.
+719|Añada un driver, una fuente, un controlador o una entrada que no esté en la biblioteca e introduzca sus datos. Después aparece en la lista de modelos de arriba y se puede conectar a un enlace como cualquier otro dispositivo.
+720|Añadir a la red DALI
+721|Dir.
+722|Dirección
+723|La dirección y los mA se aplican a drivers y entradas. Las líneas y la alimentación del bus se aplican a controladores y fuentes. El ancho DIN se aplica cuando el montaje es en carril DIN.
+724|Direcciones
+725|Se superan todas las comprobaciones de las líneas DALI.
+726|Carga del bus
+727|Canales
+728|Conectar a
+729|Conectar a: primer enlace libre
+730|Controlador
+731|Crear y añadir
+732|Dispositivo DALI personalizado
+733|Marca DALI
+734|Controladores DALI de este proyecto
+735|Biblioteca de equipos DALI
+736|Enlace DALI
+737|DALI mA
+738|Modelo DALI
+739|Disposición de módulos DALI
+740|Módulo DALI que añadir
+741|Módulos DALI
+742|Red DALI
+743|Esquema de la red DALI
+744|Tipo DALI
+745|Ancho DIN (DU)
+746|DIN y remotos
+747|Solo carril DIN
+748|Dispositivos
+749|Filtrar por tipo
+750|Ponga un nombre al dispositivo personalizado.
+751|Acoplador de entradas / pulsadores
+752|Líneas
+753|Enlace
+754|Montaje
+755|Nombre / ubicación
+756|Todavía no hay ningún controlador DALI. Añada un módulo DALI desde la pestaña Equipos (Lutron, Crestron o MDT, se muestra en la pestaña Cuadro) o un maestro o pasarela DALI abajo, y conecte los drivers a sus enlaces.
+757|Ningún equipo DALI coincide.
+758|Todavía no hay equipos DALI. Elija un modelo arriba o explore la biblioteca DALI en la pestaña Equipos.
+759|No hay ninguna fuente de alimentación de bus conectada a esta línea. Conecte una fuente DALI.
+760|Sin coincidencias
+761|No conectado
+762|Todavía no hay nada que disponer.
+763|En carril DIN
+764|Salida
+765|Cantidades
+766|Solo remotos
+767|Quitar todo el DALI
+768|Buscar dispositivos DALI
+769|Buscar equipos DALI
+770|Buscar driver, marca, artículo
+771|Buscar modelo, artículo, tipo
+772|mA de alimentación
+773|El maestro tiene una fuente de bus integrada, pero hay otra independiente conectada. Solo se cuenta la independiente.
+774|No hay maestro ni pasarela DALI, así que no existe ninguna línea DALI. Añada uno para conectar los drivers.
+775|Dónde
+776|Sus dispositivos personalizados
+777|p. ej. Focos de cocina
+778|p. ej. Tridonic 75 W CC
+779|es un maestro
+780|h
+781|ahora mismo
+782|min
+783|. Ábralo para activar su cuenta y luego inicie sesión. El enlace funciona una sola vez y caduca pasado un tiempo.
+784|Una ayuda al diseño. Verifique siempre según la normativa local de instalaciones.
+785|Cuenta suspendida
+786|¿Ya tiene una cuenta?
+787|Lista de materiales, exportación a PDF y Excel
+788|Dimensionado de cables, caída de tensión y cargas
+789|Continuar sin cuenta
+790|Cree su cuenta
+791|Disposición en carril DIN y posiciones de los interruptores
+792|Diseñe cuadros de distribución que pueda construir.
+793|Descargar mis datos
+794|Introduzca el correo de su cuenta. Si corresponde a una cuenta, le enviamos un enlace para elegir una nueva contraseña.
+795|Gratis para empezar. Le enviamos por correo un enlace para confirmar su dirección antes de poder iniciar sesión.
+796|Ya confirmé, iniciar sesión
+797|He leído y acepto
+798|Disposición, esquema unifilar, tablas y dimensionado de cables en un único espacio de trabajo, guardado en su cuenta y disponible en cada dispositivo.
+799|¿Nuevo en DBoard Designer?
+800|¿No ha llegado nada? Revise el spam y compruebe que la dirección esté bien escrita.
+801|Proyectos guardados de forma segura en su cuenta
+802|Reenviar el correo de verificación
+803|Establezca una nueva contraseña para su cuenta.
+804|Mostrar contraseña
+805|Empezar de nuevo
+806|Esta cuenta ha sido suspendida y ahora no puede abrir proyectos. Sus datos se conservan. Póngase en contacto con el operador del servicio para que se revise.
+807|Hemos enviado un enlace de confirmación a
+808|Bienvenido de nuevo. Retome sus cuadros donde los dejó.
+809|¿Dirección equivocada?
+810|y la
+811|1. El servicio
+812|2. Responsabilidad profesional
+813|3. Su cuenta
+814|4. Su contenido
+815|5. Uso aceptable
+816|6. Disponibilidad y responsabilidad
+817|7. Cierre de la cuenta
+818|Se guardó una versión más reciente de este proyecto desde otro dispositivo o pestaña. Elija qué versión conservar.
+819|Menú de la cuenta
+820|DBoard Designer es una ayuda al diseño de cuadros eléctricos de distribución. Los resultados (secciones de cable, caída de tensión, cargas, listas de materiales) son orientativos.
+821|Los datos se conservan mientras exista la cuenta y se eliminan cuando la borra.
+822|¿Eliminar este proyecto de forma permanente?
+823|No intente acceder a los datos de otros usuarios, interrumpir el servicio ni usarlo de forma ilícita. Las cuentas que lo hagan pueden ser suspendidas.
+824|En los ajustes de la cuenta puede editar sus datos, descargar todos sus datos y eliminar de forma permanente su cuenta y proyectos. Para cualquier otra solicitud de privacidad, póngase en contacto con el operador.
+825|Conservar mi versión
+826|Mantenga su contraseña confidencial. Usted es responsable de la actividad realizada con su cuenta. Proporcione datos de registro exactos.
+827|Cargar la versión guardada
+828|Nombre, correo electrónico, país, ocupación y, opcionalmente, empresa, que indica al registrarse. Sus proyectos. Eventos básicos de uso (inicios de sesión, proyecto abierto o creado, exportaciones, herramientas abiertas) y cualquier comentario que envíe.
+829|Contraseñas
+830|Esta aplicación nunca almacena las contraseñas. La autenticación la gestiona Supabase Auth, que solo guarda un hash con sal.
+831|Proyecto eliminado.
+832|Proyecto duplicado.
+833|Conservación
+834|Guardado en su cuenta.
+835|Supabase (base de datos y autenticación) y Cloudflare (alojamiento). Los administradores del servicio pueden ver los datos de la cuenta, el número de proyectos y los comentarios. No pueden ver su contraseña.
+836|Plantilla para el operador del servicio. Complete los datos del operador y haga que la revisen antes del lanzamiento público.
+837|Plantilla para el operador del servicio. Haga que la revise un abogado cualificado y adáptela antes del lanzamiento público.
+838|El servicio se ofrece «tal cual» durante la fase beta. En la medida que permita la ley, el operador no responde de las pérdidas derivadas de su uso. Conserve sus propias exportaciones de los proyectos importantes.
+839|Este proyecto se modificó en otro dispositivo
+840|No se pudo leer este proyecto.
+841|Para gestionar su cuenta, almacenar sus proyectos, proteger el servicio y entender qué funciones se usan. No vendemos datos personales ni mostramos publicidad.
+842|Subido a su cuenta. La copia de este dispositivo no se ha modificado.
+843|Qué recopilamos
+844|Quién trata los datos
+845|Por qué
+846|Usted es responsable de comprobar cada diseño conforme a la normativa de instalaciones aplicable donde se construya, y de que lo verifique una persona competente antes de la instalación.
+847|Puede eliminar su cuenta en cualquier momento en los ajustes de la cuenta. Sus proyectos y su perfil se eliminarán entonces de forma permanente.
+848|Usted es propietario de los proyectos que crea. Concede al operador el derecho a almacenarlos y tratarlos para prestarle el servicio.
+849|Sus derechos
+850|Su sesión ha caducado. Inicie sesión de nuevo.
+851|Un proyecto se guarda solo en este dispositivo:
+852|Eliminar mi cuenta
+853|Eliminar de forma permanente
+854|¿Eliminar su cuenta?
+855|Descargue su perfil y todos sus proyectos en un único archivo JSON.
+856|Editado
+857|Importar un cuadro
+858|Importar desde foto o PDF
+859|Cargando sus proyectos…
+860|Sin conexión. Compruebe su internet e inténtelo de nuevo.
+861|Ahora no
+862|Notificaciones
+863|Abrir el cuadro local
+864|Abre el cuadro guardado en este navegador, sin guardarlo en la nube.
+865|Abre un cuadro en blanco que se guarda automáticamente en su cuenta.
+866|Elimina de forma permanente su cuenta, perfil y todos los proyectos guardados. No se puede deshacer. Los proyectos guardados solo en este dispositivo no se ven afectados.
+867|Compartir
+868|Empiece un nuevo cuadro de distribución o continúe uno guardado.
+869|Gracias. Se ha enviado su comentario.
+870|Esto elimina de forma permanente su cuenta y todos los proyectos guardados. Para confirmar, escriba su correo electrónico.
+871|Convierta la foto de un cuadro construido, o un esquema en PDF, en un cuadro editable.
+872|Subir una copia
+873|Suba una copia a su cuenta para usarla en otros dispositivos. La copia de este dispositivo se conserva.
+874|¿Qué funciona, qué falta, qué salió mal?
+875|Trabajar en este dispositivo
+876|Escriba primero un mensaje.
+877|Está sin conexión. Los proyectos en la nube se cargan al volver a conectarse.
+878|Sus datos
+879|Su mensaje
+880|circuitos
+881|dispositivos
+882|Activo
+883|Panel de administración
+884|Administración
+885|Cualquier estado
+886|Cualquier verificación
+887|Comunidad
+888|Usuario eliminado
+889|Correo electrónico
+890|Verificación del correo
+891|Visto por última vez
+892|Cargando…
+893|Proyectos nuevos en 7 días
+894|Siguiente
+895|Aún no hay eventos registrados.
+896|Aún no hay comentarios.
+897|Ningún usuario coincide.
+898|No verificado
+899|Anterior
+900|Proyectos
+901|Registrado
+902|Buscar
+903|Buscar nombre, correo, empresa
+904|Buscar usuarios
+905|Registros por día
+906|Registros, últimos 30 días
+907|Suspendido
+908|Países principales
+909|Uso, últimos 30 días
+910|Verificado
+911|administrador
+912|usuarios
+913|Aceptar
+914|Volver a las conversaciones
+915|Chatee con otros miembros, trabaje en grupo y comparta cuadros guardados.
+916|Elija una conversación o inicie una nueva.
+917|Pulse de nuevo para confirmar
+918|Pulse de nuevo para salir
+919|Conversaciones
+920|No se pudo aceptar la invitación.
+921|Crear grupo
+922|Se alcanzó el límite diario de invitaciones. Inténtelo de nuevo mañana.
+923|Rechazar
+924|Correo electrónico de un miembro registrado
+925|Correo enviado a
+926|Antiguo miembro
+927|Ponga un nombre al grupo.
+928|Grupo
+929|Chat de grupo
+930|Nombre del grupo
+931|Invitaciones
+932|Invitar
+933|Invitar miembros por correo
+934|Invitar a
+935|Salir
+936|Marcar todo como leído
+937|Miembros
+938|Mensaje
+939|Mensaje (opcional)
+940|No se pudieron cargar los mensajes.
+941|Nuevo grupo
+942|Nuevo chat privado
+943|Aún no hay conversaciones. Inicie un chat privado con un miembro o cree un grupo.
+944|Aún no hay mensajes
+945|Aún no hay mensajes. Diga hola.
+946|Aún no se ha compartido nada con usted.
+947|Nada nuevo. Las invitaciones, respuestas y proyectos compartidos aparecen aquí.
+948|Abrir una copia
+949|Abrir grupo
+950|Chat privado
+951|Los miembros registrados pueden ver el cuadro y guardar su propia copia. Solo usted puede modificar el original.
+952|Enviar
+953|Enviar invitaciones
+954|Separe las direcciones con comas o saltos de línea. Los miembros invitados reciben un correo y una notificación, y se unen cuando aceptan.
+955|Compartir proyecto
+956|Compartir con (direcciones de correo)
+957|Compartidos por mí
+958|Compartidos conmigo
+959|Iniciar chat
+960|Dejar de compartir
+961|Ese proyecto ya no se comparte con usted.
+962|No se pudo enviar el correo. Lo verán igualmente en su panel.
+963|No se pudo enviar el mensaje. Inténtelo de nuevo.
+964|Lo verán en su panel.
+965|Cuadro sin título
+966|Escriba un mensaje. Intro lo envía, Mayús+Intro añade una línea.
+967|Está enviando mensajes demasiado rápido. Espere un momento.
+968|No ha compartido ningún proyecto. Use Compartir en cualquier proyecto de su panel.
+969|de
+970|invitado
+971|miembros
+972|se omitió (20 direcciones a la vez)
+973|usted
+974|Añada primero al menos un dispositivo.
+975|Añadir dispositivo
+976|Añada fotos o un PDF
+977|Evite reflejos y sombras. Desactive el flash si las etiquetas reflejan la luz.
+978|Cuadro
+979|Cuadro creado. Compruebe:
+980|Nombre del cuadro
+981|Compruebe estos
+982|Elegir archivos
+983|Crear cuadro
+984|Detectar desde el cuadro
+985|Corrija todo lo que parezca incorrecto. Las cargas que deje en blanco se estiman a partir de la corriente nominal del interruptor. No se guarda nada hasta que pulse Crear cuadro.
+986|En los PDF, los dibujos vectoriales y las tablas de texto se leen mejor. Los escaneos deben ser nítidos.
+987|Por ejemplo: las etiquetas están en italiano, el cuadro es un cuadro marino de 230 V
+988|En cuadros grandes, añada primeros planos de cada fila para que las marcas de los interruptores y las etiquetas se vean nítidas.
+989|Para la mejor lectura
+990|Qué tan segura es la lectura
+991|Incluya la leyenda de circuitos o la tira de etiquetas, si existe.
+992|Etiqueta
+993|Tipo de carga
+994|No figura en el cuadro. Supuesto, compruébelo.
+995|Notas para el lector (opcional)
+996|No se reconoció nada. Añada los dispositivos a mano o vuelva atrás e inténtelo con una foto más nítida.
+997|La importación de cuadros aún no está activada en este sitio. El propietario del sitio debe añadir la clave del servicio de lectura (consulte el README).
+998|Leer el cuadro
+999|Leyendo el cuadro…
+1000|Empezar de nuevo
+1001|Hacer foto
+1002|Haga la foto de frente con la puerta abierta, no en ángulo.
+1003|No se pudo crear el cuadro. Compruebe los valores e inténtelo de nuevo.
+1004|El cuadro era grande y la lectura se cortó. Añada a mano los dispositivos que faltan o repita con fotos más cercanas del lado derecho.
+1005|La foto o el PDF se envía al servicio de lectura para analizarlo y no se almacena. Usted revisa todo antes de crear el cuadro.
+1006|Suele tardar de 20 a 60 segundos. Mantenga esta página abierta.
+1007|Convierta la foto de un cuadro construido, o un esquema en PDF, en un cuadro editable con circuitos, etiquetas, esquema y lista de materiales.
+1008|Hasta cuatro fotos de un cuadro, o un PDF con esquema o tabla de circuitos.
+1009|Norma de cableado (opcional)
+1010|Su fuente
+1011|dispositivos leídos
+1012|baja confianza, resaltado
+1013|Dirección, teléfono, correo, sitio web. Se muestran en la portada del PDF.
+1014|Elija qué se incluye en el PDF. A4 apaisado, con su logotipo en cada página.
+1015|Vista previa del logotipo de la empresa
+1016|Contenido
+1017|No se pudo guardar:
+1018|Crítico (caída 3 %)
+1019|Página DALI
+1020|Base de diseño
+1021|Diseño del cuadro de distribución
+1022|Alumbrado (caída 3 %)
+1023|Otros (caída 10 %)
+1024|Resumen del proyecto
+1025|Redes de resistencias
+1026|Guardado
+1027|Estrella y triángulo
+1028|No se pudo dibujar la página DALI de este cuadro.
+1029|Marque al menos una sección para el PDF.
+1030|tras diversidad
+1031|Inicie sesión, empiece o importe un cuadro
+1032|En la versión alojada se empieza desde el <b>Panel</b> tras iniciar sesión. Pulse <b>Nuevo cuadro</b> para empezar desde cero, abra un proyecto guardado o pulse <b>Importar un cuadro</b> para crear un cuadro a partir de una foto de un cuadro construido o de un esquema PDF o tabla de circuitos. Añada hasta cuatro fotos de un cuadro, o un PDF, y pulse <b>Leer el cuadro</b>. El lector enumera cada dispositivo que ve (tipo de interruptor, corriente nominal, curva, polos, diferencial, nombre del circuito, carga, fase, cable, marca y modelo) junto a su imagen. <b>Revise y corrija la tabla</b> y pulse <b>Crear cuadro</b>. El nuevo cuadro se abre en <b>Circuitos</b> y funciona como cualquier otro: puede añadir o editar circuitos y etiquetas y exportar el esquema, la lista de materiales, el PDF y Excel. Lo que el lector no pudo ver queda en blanco y marcado para que lo complete.
+1033|Planifique la red de iluminación DALI
+1034|Abra <b>Equipos</b> y baje hasta la <b>Biblioteca de equipos DALI</b>: maestros y pasarelas Lunatone, OSRAM y LTECH, fuentes de bus, acopladores de pulsadores, relés y reguladores o drivers, tanto de carril DIN como remotos. Filtre por marca, tipo o <b>solo carril DIN</b>, fije una cantidad y pulse <b>Añadir</b>. Después abra la pestaña <b>DALI</b>. Los módulos controladores DALI que coloque en el cuadro (Lutron, Crestron, MDT) aparecen allí automáticamente en <b>Controladores DALI de este proyecto</b>, cada uno con sus enlaces, y puede conectar drivers al enlace que elija. En <b>Cantidades</b> puede buscar en la lista de modelos por nombre, marca o artículo y filtrarla por tipo. Si un driver no está en la biblioteca, use <b>Dispositivo DALI personalizado</b> para escribir sus direcciones, corriente DALI, montaje y otros datos; los dispositivos personalizados pueden editarse o eliminarse allí. También en Cantidades puede añadir modelos, cambiar una cantidad o quitar un modelo. En <b>Módulos DALI</b> dé a cada dispositivo un nombre o ubicación, elija el <b>enlace DALI</b> (una línea de un maestro) al que se conecta, o elimínelo. La herramienta asigna direcciones en cada línea (hasta 64) y comprueba la corriente del bus frente a la fuente del bus. Los dispositivos DALI de carril DIN también se dibujan en la pestaña <b>Cuadro</b>: pulse uno para renombrarlo, cambiar su modelo o enlace DALI, moverlo a lo largo o entre carriles, arrastrarlo o eliminarlo, y use <b>+ Módulo DALI</b> en las notas del cuadro para añadir más. El <b>esquema de la red DALI</b> y la <b>disposición de módulos DALI</b> (una tira de carril DIN más una zona aparte para los drivers remotos) se dibujan debajo, separados del esquema del cuadro, y ambos se incluyen en el PDF, con una hoja DALI en el archivo Excel y artículos DALI en la lista de materiales.
+1035|Abra <b>Exportar</b>. <b>Guardar PDF</b> genera la disposición del cuadro, el esquema multifilar, la tabla de circuitos y los totales de potencia; marque <b>Incluir lista de materiales</b> si quiere añadir esa lista. <b>Guardar Excel</b> y <b>Guardar CSV</b> dan la tabla para otras herramientas. <b>Guardar proyecto</b> almacena todo el diseño como un archivo que puede reabrir más tarde con <b>Abrir proyecto</b>. Los cuadros creados con <b>Importar un cuadro</b> se exportan exactamente igual.
+1036|Con la sesión iniciada, un cuadro que abre desde su Panel se guarda en su cuenta aproximadamente un segundo después de cada cambio, y el indicador superior muestra Guardado, Guardando o Sin conexión. Puede abrirlo en cualquier dispositivo en el que inicie sesión. Si el mismo cuadro se cambió en otro dispositivo, usted elige qué versión conservar. Un cuadro guardado solo en este navegador no se ve afectado por los cuadros de la nube. Use Guardar proyecto para conservar una copia en archivo.
+1037|Lectura de una foto o PDF del cuadro
+1038|Una foto se lee con el mejor esfuerzo posible. Hágala de frente con la puerta abierta y sin reflejos, desactive el flash si las etiquetas reflejan la luz y añada primeros planos de cada fila en cuadros grandes. Los PDF con texto real se leen mejor. Compruebe siempre corrientes nominales, fases y etiquetas con el cuadro real antes de emitir el resultado como documentación as-built. Cada persona puede hacer un número limitado de lecturas al día.
+1039|Su cuenta
+1040|Use el menú del perfil para los Ajustes de la cuenta: edite sus datos, cambie su contraseña, descargue todos sus datos o elimine su cuenta. Use Comentarios en el Panel para decirnos qué mejorar.
+1041|Valores DALI
+1042|Las cifras de Lunatone se leyeron en sus páginas de producto. Donde las páginas de LTECH u OSRAM no indicaban la corriente DALI o el montaje, la biblioteca marca el artículo como Supuesto (2 mA por dispositivo). Ninguna de las dos marcas tiene un driver DALI de carril DIN en la biblioteca; la fuente de bus y el relé de LTECH son de carril DIN. Compruebe cada artículo en la hoja de datos antes de pedirlo.
+1043|Se usan {1} direcciones DALI. Esta línea permite {2}.
+1044|Los dispositivos consumen {1} mA pero {2} garantiza {3} mA.
+1045|La carga del bus es del {1} % de la fuente de {2} mA. Deje algo de margen.
+1046|Hay {1} fuentes de bus enlazadas. Una línea DALI normalmente tiene una; solo se cuenta la mayor.
+1047|{1} dispositivo DALI no está conectado a una línea: {2}.
+1048|{1} dispositivos DALI no están conectados a una línea: {2}.
+1049|{1} modelo DALI usa cifras supuestas (se muestran como Supuesto en la biblioteca). Confírmelas en la hoja de datos.
+1050|{1} modelos DALI usan cifras supuestas (se muestran como Supuesto en la biblioteca). Confírmelas en la hoja de datos.
+1051|{1} · en el cuadro principal
+1052|Fuente de bus {1} mA
+1053|Enlace {1}
+1054|Línea {1}
+1055|sin dispositivos
+1056|{1} direcciones
+1057|{1} dir.
+1058|{1} (maestro)
+1059|No conectado a una línea DALI ({1})
+1060|Carril DALI {1}
+1061|{1} de {2} DU usados
+1062|{1} línea
+1063|{1} líneas
+1064|DIN {1} DU
+1065|enlace {1}
+1066|{1} dispositivo
+1067|{1} dispositivos
+1068|Drivers y dispositivos remotos ({1}), no en el carril
+1069|{1} línea DALI
+1070|{1} líneas DALI
+1071|las cifras son de catálogo, confírmelas en la hoja de datos
+1072|{1} en el carril DIN ({2} DU), {3} remotos
+1073|{1} resultado
+1074|{1} resultados
+1075|{1} × {2} añadido. Abra la pestaña DALI para conectarlos.
+1076|{1} añadido. Abra la pestaña DALI para conectarlo.
+1077|Cantidad de {1}
+1078|Nombre para {1}
+1079|Enlace DALI para {1}
+1080|{1} línea {2}
+1081|Remoto (no DIN)
+1082|Fuente supuesta {1} mA / enlace
+1083|Fuente integrada {1} mA / línea
+1084|remoto
+1085|Controladores DALI en el cuadro principal (dibujados en la pestaña Cuadro)
+1086|Tira de carril DIN para los elementos DIN ({1} DU por carril, 1 DU = 17,5 mm; también están en la pestaña Cuadro) y una zona aparte para los drivers remotos.
+1087|Separado del esquema del cuadro. Color = línea DALI; los recuadros discontinuos son dispositivos remotos.
+1088|Aún no hay nada conectado a esta línea.
+1089|Ancho DIN, DU (17,5 mm)
+1090|Direcciones DALI usadas
+1091|Corriente DALI, mA
+1092|El interruptor de alimentación {1} de {2} A se reduce a {3} A a {4} C dentro de la envolvente, por debajo de su carga de {5} A.
+1093|La alimentación {1} lleva alumbrado continuo o una carga similar: {2} dimensiona el interruptor al {3} % de la carga ({4} A).
+1094|El interruptor de {1} A se reduce a {2} A a {3} C dentro de la envolvente, por debajo de la carga de {4} A. Elija el tamaño siguiente.
+1095|{1} dimensiona el interruptor al {2} % de una carga continua: se necesitan {3} A, se eligieron {4} A.
+1096|{1} tiene corriente de arranque. Una curva B puede dispararse con la corriente de arranque; use C o D.
+1097|{1} {2} es solo de tipo AC. {3} tiene corriente electrónica o rectificada y necesita un diferencial de tipo A.
+1098|Cargador de VE: IEC 60364-7-722 y BS 7671 722.531.3.101 exigen tipo A más detección de CC de 6 mA (a menudo integrada en el cargador), o un diferencial de tipo B.
+1099|La impedancia del bucle de defecto a tierra {1} ohm (Ze {2} + cable {3}) supera el límite de {4} ohm para un magnetotérmico de {5} A ({6} V ÷ {7} × {8} A). Acorte el recorrido, use un cable mayor o una curva o corriente menor.
+1100|El interruptor general de {1} A se reduce a {2} A a {3} C dentro de la envolvente, por debajo de la corriente de fase máxima de {4} A.
+1101|{1} dimensiona el general al 100 % de la carga no continua más el 125 % de la continua: se necesitan {2} A, se eligieron {3} A.
+1102|{1} {2} es un dispositivo UL 489. Las instalaciones {3} usan dispositivos IEC 60898 / 60947; compruebe que se acepte localmente.
+1103|{1} {2} es un dispositivo de tipo IEC. Las instalaciones {3} requieren dispositivos listados UL (UL 489 o UL 1077). Compruebe que se acepte antes de usarlo.
+1104|{1} {2} es un dispositivo IEC 60898 / 61009 de 230/400 V (440 V máximo). Esta alimentación es de {3} V fase-neutro y {4} V entre fases. Use un dispositivo previsto para ella.
+1105|Introduzca la impedancia del bucle de alimentación Ze en Configuración para comprobar la desconexión automática de los circuitos con magnetotérmico ({1}).
+1106|Los interruptores se reducen por encima de {1} °C dentro de la envolvente.
+1107|Impedancia del bucle de alimentación Ze (ohm)
+1108|Opcional. Impedancia del bucle de defecto a tierra en el origen del cuadro, del suministrador o de una medición. Se usa para comprobar que cada magnetotérmico desconecta un defecto a tiempo.
+1109|Reglas de protección
+1110|Cada interruptor se dimensiona a partir de la corriente de diseño (125 % de las cargas continuas según NEC), se reduce según la temperatura de la envolvente y se redondea al siguiente valor normalizado de la norma elegida. La sensibilidad del diferencial (30 mA, o GFCI 4–6 mA según NEC y ABYC), el número de polos (2 polos para cargas de 240 V) y la norma del dispositivo (IEC o UL) siguen la norma y la tensión de alimentación. Con IEC, BS 7671 y AS/NZS, introduzca Ze en Configuración para comprobar el bucle de defecto a tierra de cada circuito con magnetotérmico.
+1111|Abra Comunidad desde el Panel para chatear con otros miembros registrados, crear grupos, invitar a personas por correo y compartir cuadros guardados. La campana de la cabecera muestra invitaciones, respuestas y proyectos compartidos.
+1112|Las comprobaciones cubren la corriente de diseño frente a la corriente del interruptor y del cable (con la temperatura de la envolvente y la regla NEC de cargas continuas), la caída de tensión, la exigencia de diferencial, el poder de corte, la corriente del dispositivo frente a la norma y la tensión de alimentación, la impedancia del bucle de defecto cuando se introduce Ze, la entrada Lutron y los límites de zonas y temperatura. La discriminación y la selectividad no se calculan aquí.
+1113|Datos de la empresa
+1114|Portada con los datos de la empresa
+1115|Red DALI y disposición de módulos
+1116|Eliminar módulo DALI
+1117|Corriente DALI
+1118|Defecto a tierra
+1119|Importar
+1120|Administración
+1121|Aún no hay proyectos guardados. Cree su primer cuadro arriba.
+1122|Al menos 8 caracteres, con una letra y un número.
+1123|Chats
+1124|Proyectos compartidos
+1125|La solicitud falló
+1126|Remoto
+1127|Cuadro principal (pestaña Cuadro)
+1128|Pestaña DALI
+1129|Carcasa propia / en la luminaria
+1130|Líneas (controlador)
+1131|mA de la fuente del bus (fuente o controlador)
+1132|Potencia, W
+1133|Salida / notas
+1134|externo
+1135|Carril DIN
+1136|Maestro / pasarela
+1137|Fuente de bus
+1138|Relé / interruptor
+1139|Driver / regulador
+1140|Supuesto
+1141|Ver especificación
+1142|Universal
+1143|Caja de empotrar
+1144|{1} enlace
+1145|{1} enlaces
+1146|{1} productos DALI de Lunatone, OSRAM y LTECH, tanto de carril DIN como drivers remotos. Al pulsar Añadir, la cantidad elegida pasa a la pestaña <b>DALI</b>, donde elige la línea DALI a la que se conecta cada uno y ve el esquema de la red y la disposición de módulos. Las cifras de Lunatone se leyeron en sus páginas de producto. Las páginas de LTECH y OSRAM no indicaban corriente DALI ni montaje, por lo que se marcan como Supuesto. Los drivers DALI de OSRAM y LTECH no son de carril DIN; solo lo son la fuente de bus y el relé de LTECH. Lunatone tiene más variantes de las listadas. Confirme todo en la hoja de datos antes de pedir.

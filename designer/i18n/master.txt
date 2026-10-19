@@ -713,3 +713,434 @@
 713|Save to account
 714|Email or password is incorrect.
 715|Choose a new password
+716|+ DALI module
+717|Add DALI masters, bus supplies and drivers here or from the DALI library on the Equipment tab. Each driver is connected to one link of a DALI controller. Controllers placed in the panel (for example a Lutron QSN2-2DALUNV-D) appear here automatically, as do masters added below. Addresses are handed out in order on each line, up to 64.
+718|Add a DALI controller to the panel, or a master below, to draw the network.
+719|Add a driver, supply, controller or input that is not in the library and type in its figures. It then appears in the model list above and can be connected to a link like any other device.
+720|Add to DALI network
+721|Addr.
+722|Address
+723|Address and mA apply to drivers and inputs. Lines and bus supply apply to controllers and supplies. DIN width applies when the mounting is DIN rail.
+724|Addresses
+725|All DALI line checks pass.
+726|Bus load
+727|Channels
+728|Connect to
+729|Connect to: first free link
+730|Controller
+731|Create and add
+732|Custom DALI device
+733|DALI brand
+734|DALI controllers in this project
+735|DALI equipment library
+736|DALI link
+737|DALI mA
+738|DALI model
+739|DALI module layout
+740|DALI module to add
+741|DALI modules
+742|DALI network
+743|DALI network schematic
+744|DALI type
+745|DIN DU
+746|DIN and remote
+747|DIN rail only
+748|Devices
+749|Filter by type
+750|Give the custom device a name.
+751|Input / push-button coupler
+752|Lines
+753|Link
+754|Mounting
+755|Name / location
+756|No DALI controller yet. Add a DALI module from the Equipment tab (Lutron, Crestron or MDT, shown on the Panel tab) or a DALI master or gateway below, then connect drivers to its links.
+757|No DALI equipment matches.
+758|No DALI equipment yet. Pick a model above, or browse the DALI library on the Equipment tab.
+759|No bus power supply is connected to this line. Link a DALI power supply to it.
+760|No match
+761|Not connected
+762|Nothing to lay out yet.
+763|On DIN rail
+764|Output
+765|Quantities
+766|Remote only
+767|Remove all DALI
+768|Search DALI devices
+769|Search DALI equipment
+770|Search driver, brand, article
+771|Search model, article, type
+772|Supply mA
+773|The master has a built-in bus supply, but a separate one is linked. Only the separate one is counted.
+774|There is no DALI master or gateway, so no DALI line exists. Add one to connect the drivers.
+775|Where
+776|Your custom devices
+777|e.g. Kitchen downlights
+778|e.g. Tridonic 75 W CC
+779|is a master
+780|h ago
+781|just now
+782|min ago
+783|. Open it to activate your account, then sign in. The link works once and expires after a while.
+784|A design aid. Always verify against your local wiring regulations.
+785|Account suspended
+786|Already have an account?
+787|Bill of materials, PDF and Excel export
+788|Cable sizing, voltage drop and loads
+789|Continue without an account
+790|Create your account
+791|DIN-rail layouts and breaker positions
+792|Design distribution boards you can build from.
+793|Download my data
+794|Enter your account email. If it matches an account, we send a link to choose a new password.
+795|Free to start. We email you a link to confirm your address before you can sign in.
+796|I have confirmed, sign in
+797|I have read and accept the
+798|Layout, single-line diagram, schedules and cable sizing in one workspace, saved to your account and available on every device.
+799|New to DBoard Designer?
+800|Nothing arrived? Check spam, and make sure the address is spelled correctly.
+801|Projects saved securely to your account
+802|Resend verification email
+803|Set a new password for your account.
+804|Show password
+805|Start again
+806|This account has been suspended and cannot open projects right now. Your data is kept. Contact the service operator to have it reviewed.
+807|We sent a confirmation link to
+808|Welcome back. Pick up your boards where you left them.
+809|Wrong address?
+810|and the
+811|1. The service
+812|2. Professional responsibility
+813|3. Your account
+814|4. Your content
+815|5. Acceptable use
+816|6. Availability and liability
+817|7. Ending your account
+818|A newer version of this project was saved from another device or tab. Choose which version to keep.
+819|Account menu
+820|DBoard Designer is a design aid for electrical distribution boards. Results (cable sizes, voltage drop, loads, bills of materials) are indicative.
+821|Data is kept while your account exists and removed when you delete it.
+822|Delete this project permanently?
+823|Do not attempt to access other users' data, disrupt the service or use it unlawfully. Accounts that do so may be suspended.
+824|In Account settings you can edit your details, download all your data, and delete your account and projects permanently. Contact the operator for any other privacy request.
+825|Keep my version
+826|Keep your password confidential. You are responsible for activity under your account. Provide accurate registration details.
+827|Load the saved version
+828|Name, email address, country, occupation and optional company, which you give when registering. Your projects. Basic usage events (sign-ins, project opened or created, exports, tools opened) and any feedback you send.
+829|Passwords
+830|Passwords are never stored by this application. Authentication is handled by Supabase Auth, which stores only a salted hash.
+831|Project deleted.
+832|Project duplicated.
+833|Retention
+834|Saved to your account.
+835|Supabase (database and authentication) and Cloudflare (hosting). Administrators of this service can see account details, project counts and feedback. They cannot see your password.
+836|Template for the service operator. Complete the operator details and have it reviewed before public launch.
+837|Template for the service operator. Have it reviewed by a qualified lawyer and adapt it before public launch.
+838|The service is provided as is during beta. To the extent the law allows, the operator is not liable for losses arising from its use. Keep your own exports of important projects.
+839|This project changed on another device
+840|This project could not be read.
+841|To run your account, store your projects, secure the service and understand which features are used. We do not sell personal data and do not show advertising.
+842|Uploaded to your account. The copy on this device is untouched.
+843|What we collect
+844|Who processes data
+845|Why
+846|You are responsible for checking every design against the wiring regulations that apply where it is built, and for having it verified by a competent person before installation.
+847|You can delete your account at any time in Account settings. Your projects and profile are then permanently removed.
+848|You own the projects you create. You grant the operator the right to store and process them to run the service for you.
+849|Your rights
+850|Your session has expired. Sign in again.
+851|A project is saved on this device only:
+852|Delete my account
+853|Delete permanently
+854|Delete your account?
+855|Download your profile and all your projects as one JSON file.
+856|Edited
+857|Import a panel
+858|Import from photo or PDF
+859|Loading your projects…
+860|No connection. Check your internet and try again.
+861|Not now
+862|Notifications
+863|Open local board
+864|Open the board stored in this browser, without saving it to the cloud.
+865|Opens a blank board saved to your account automatically.
+866|Permanently removes your account, profile and every saved project. This cannot be undone. Projects stored only on this device are not affected.
+867|Share
+868|Start a new distribution board or continue a saved one.
+869|Thank you. Your feedback was sent.
+870|This permanently deletes your account and all saved projects. To confirm, type your email address.
+871|Turn a photo of a built panel, or a PDF schematic, into an editable board.
+872|Upload a copy
+873|Upload a copy to your account to use it on other devices. The copy on this device is kept.
+874|What works, what is missing, what went wrong?
+875|Work on this device
+876|Write a message first.
+877|You are offline. Cloud projects load when you reconnect.
+878|Your data
+879|Your message
+880|circuits
+881|devices
+882|Active
+883|Admin dashboard
+884|Administration
+885|Any status
+886|Any verification
+887|Community
+888|Deleted user
+889|Email
+890|Email verification
+891|Last seen
+892|Loading…
+893|New projects in 7 days
+894|Next
+895|No events recorded yet.
+896|No feedback yet.
+897|No users match.
+898|Not verified
+899|Previous
+900|Projects
+901|Registered
+902|Search
+903|Search name, email, company
+904|Search users
+905|Sign-ups per day
+906|Sign-ups, last 30 days
+907|Suspended
+908|Top countries
+909|Usage, last 30 days
+910|Verified
+911|admin
+912|users
+913|Accept
+914|Back to conversations
+915|Chat with other members, work in groups and share saved boards.
+916|Choose a conversation, or start a new one.
+917|Click again to confirm
+918|Click again to leave
+919|Conversations
+920|Could not accept the invitation.
+921|Create group
+922|Daily invitation limit reached. Try again tomorrow.
+923|Decline
+924|Email address of a registered member
+925|Email sent to
+926|Former member
+927|Give the group a name.
+928|Group
+929|Group chat
+930|Group name
+931|Invitations
+932|Invite
+933|Invite members by email
+934|Invite to
+935|Leave
+936|Mark all as read
+937|Members
+938|Message
+939|Message (optional)
+940|Messages could not be loaded.
+941|New group
+942|New private chat
+943|No conversations yet. Start a private chat with a member, or create a group.
+944|No messages yet
+945|No messages yet. Say hello.
+946|Nothing has been shared with you yet.
+947|Nothing new. Invitations, replies and shared projects show up here.
+948|Open a copy
+949|Open group
+950|Private chat
+951|Registered members can view the board and save their own copy. Only you can change the original.
+952|Send
+953|Send invitations
+954|Separate addresses with commas or new lines. Invited members get an email and a notification, and join when they accept.
+955|Share project
+956|Share with (email addresses)
+957|Shared by me
+958|Shared with me
+959|Start chat
+960|Stop sharing
+961|That project is no longer shared with you.
+962|The email could not be sent. They will still see it on their dashboard.
+963|The message could not be sent. Try again.
+964|They will see it on their dashboard.
+965|Untitled board
+966|Write a message. Enter sends, Shift+Enter adds a line.
+967|You are sending messages too quickly. Wait a moment.
+968|You have not shared a project. Use Share on any project in your dashboard.
+969|from
+970|invited
+971|members
+972|was left out (20 addresses at a time)
+973|you
+974|Add at least one device first.
+975|Add device
+976|Add photos or a PDF
+977|Avoid glare and shadows. Switch the flash off if labels reflect it.
+978|Board
+979|Board created. Please check:
+980|Board name
+981|Check these
+982|Choose files
+983|Create board
+984|Detect from the panel
+985|Fix anything that looks wrong. Loads you leave blank are estimated from the breaker rating. Nothing is saved until you press Create board.
+986|For PDFs, vector drawings and text schedules read best. Scans need to be sharp.
+987|For example: labels are in Italian, panel is a marine 230 V board
+988|For large boards add close-ups of each row so the breaker markings and labels are sharp.
+989|For the best reading
+990|How sure the reading is
+991|Include the circuit legend or label strip if there is one.
+992|Label
+993|Load type
+994|Not on the panel. Assumed, please check.
+995|Notes for the reader (optional)
+996|Nothing was recognised. Add devices by hand, or go back and try a clearer photo.
+997|Panel import is not switched on for this site yet. The site owner needs to add the reading service key (see the README).
+998|Read panel
+999|Reading the panel…
+1000|Start over
+1001|Take photo
+1002|Take the photo straight on with the door open, not from an angle.
+1003|The board could not be built. Check the values and try again.
+1004|The panel was large and the reading was cut short. Add the missing devices by hand, or run it again with closer photos of the right-hand side.
+1005|The photo or PDF is sent to the reading service to be analysed and is not stored. You review everything before a board is created.
+1006|This usually takes 20 to 60 seconds. Keep this page open.
+1007|Turn a photo of a built panel, or a PDF schematic, into an editable board with circuits, labels, schematic and bill of materials.
+1008|Up to four photos of one panel, or one PDF schematic or circuit schedule.
+1009|Wiring standard (optional)
+1010|Your source
+1011|devices read
+1012|low confidence, highlighted
+1013|Address, phone, email, website. Shown on the PDF cover page.
+1014|Choose what goes in the PDF. A4 landscape, with your logo on each page.
+1015|Company logo preview
+1016|Contents
+1017|Could not save:
+1018|Critical (3 % drop)
+1019|DALI page
+1020|Design basis
+1021|Distribution board design
+1022|Lighting (3 % drop)
+1023|Other (10 % drop)
+1024|Project summary
+1025|Resistor networks
+1026|Saved
+1027|Star and delta
+1028|The DALI page could not be drawn for this board.
+1029|Tick at least one section for the PDF.
+1030|after diversity
+1031|Sign in, start or import a board
+1032|On the hosted version you start from your <b>Dashboard</b> after you sign in. Press <b>New board</b> to start from scratch, open a saved project, or press <b>Import a panel</b> to build a board from a photo of a built panel or from a PDF schematic or circuit schedule. Add up to four photos of one panel, or one PDF, then press <b>Read panel</b>. The reader lists every device it can see (breaker kind, rating, curve, poles, RCD, circuit name, load, phase, cable, make and model) next to your picture. <b>Check and correct the table</b>, then press <b>Create board</b>. The new board opens on <b>Circuits</b> and works like any other, so you can add or edit circuits and labels and export the schematic, bill of materials, PDF and Excel. Anything the reader could not see is left blank and flagged for you to fill in.
+1033|Plan the DALI lighting network
+1034|Open <b>Equipment</b> and scroll to the <b>DALI equipment library</b>: Lunatone, OSRAM and LTECH masters and gateways, bus power supplies, push-button couplers, relays and dimmers or drivers, both DIN-rail and remote types. Filter by brand, type or <b>DIN rail only</b>, set a quantity and press <b>Add</b>. Then open the <b>DALI</b> tab. DALI controller modules you place in the panel (Lutron, Crestron, MDT) are listed there automatically under <b>DALI controllers in this project</b>, each with its links, and you can connect drivers to the link you choose. Under <b>Quantities</b> you can search the model list by name, brand or article, and filter it by type. If a driver is not in the library, use <b>Custom DALI device</b> to type in its addresses, DALI current, mounting and other figures; custom devices can be edited or deleted there. Also under Quantities you can add models, change a quantity or remove a model. In <b>DALI modules</b> give each device a name or location, choose the <b>DALI link</b> (a line of a master) it connects to, or delete it. The tool hands out addresses on each line (up to 64) and checks bus current against the bus supply. DIN-rail DALI devices are also drawn on the <b>Panel</b> tab: click one to rename it, change its model or DALI link, move it along or between rails, drag it, or delete it, and use <b>+ DALI module</b> in Panel notes to add more. The <b>DALI network schematic</b> and the <b>DALI module layout</b> (a DIN-rail strip plus a separate area for remote drivers) are drawn below, separate from the panel schematic, and both are included in the PDF, with a DALI sheet in the Excel file and DALI items in the bill of materials.
+1035|Open <b>Export</b>. <b>Save PDF</b> produces the panel layout, the multi-line diagram, the circuit schedule and power totals; tick <b>Include bill of materials</b> if you want that list added. <b>Save Excel</b> and <b>Save CSV</b> give the schedule for other tools. <b>Save project</b> stores the whole design as a file you can reopen later with <b>Open project</b>. Boards created by <b>Import a panel</b> export exactly the same way.
+1036|When you are signed in, a board you open from your Dashboard saves to your account about a second after each change, and the chip at the top shows Saved, Saving or Offline. You can open it on any device you sign in on. If the same board was changed on another device, you choose which version to keep. A board kept only in this browser is not touched by cloud boards. Use Save project to keep a file copy.
+1037|Reading a panel photo or PDF
+1038|A photo is read on a best-effort basis. Take it straight on with the door open and no glare, switch the flash off if labels reflect it, and add close-ups of each row for large boards. PDFs with real text read best. Always check ratings, phases and labels against the real panel before you issue the result as as-built documentation. Each person can run a limited number of readings per day.
+1039|Your account
+1040|Use the profile menu for Account settings: edit your details, change your password, download all your data, or delete your account. Use Feedback on the Dashboard to tell us what to improve.
+1041|DALI figures
+1042|Lunatone figures were read from its product pages. Where LTECH or OSRAM pages did not state DALI current or mounting, the library marks the item Assumed (2 mA per device). Neither brand has a DIN-rail DALI driver in the library; the LTECH bus supply and relay are DIN-rail. Check each item on the datasheet before ordering.
+1043|{1} DALI addresses are used. This line allows {2}.
+1044|Devices draw {1} mA but the {2} guarantees {3} mA.
+1045|Bus load is {1} % of the {2} mA supply. Keep some margin.
+1046|{1} bus power supplies are linked. A DALI line normally has one; only the largest is counted.
+1047|{1} DALI device is not connected to a line: {2}.
+1048|{1} DALI devices are not connected to a line: {2}.
+1049|{1} DALI model uses assumed figures (shown as Assumed in the library). Confirm them on the datasheet.
+1050|{1} DALI models use assumed figures (shown as Assumed in the library). Confirm them on the datasheet.
+1051|{1} · in the main panel
+1052|Bus supply {1} mA
+1053|Link {1}
+1054|Line {1}
+1055|no devices
+1056|{1} addresses
+1057|{1} addr
+1058|{1} (master)
+1059|Not connected to a DALI line ({1})
+1060|DALI rail {1}
+1061|{1} of {2} DU used
+1062|{1} line
+1063|{1} lines
+1064|DIN {1} DU
+1065|link {1}
+1066|{1} device
+1067|{1} devices
+1068|Remote drivers and devices ({1}), not on the rail
+1069|{1} DALI line
+1070|{1} DALI lines
+1071|figures are catalogue values, confirm on the datasheet
+1072|{1} on the DIN rail ({2} DU), {3} remote
+1073|{1} match
+1074|{1} matches
+1075|{1} × {2} added. Open the DALI tab to connect them.
+1076|{1} added. Open the DALI tab to connect it.
+1077|Quantity of {1}
+1078|Name for {1}
+1079|DALI link for {1}
+1080|{1} line {2}
+1081|Remote (not DIN)
+1082|Assumed supply {1} mA / link
+1083|Built-in supply {1} mA / line
+1084|remote
+1085|DALI controllers in the main panel (drawn on the Panel tab)
+1086|DIN-rail strip for DIN items ({1} DU per rail, 1 DU = 17.5 mm; they are also on the Panel tab) and a separate area for remote drivers.
+1087|Separate from the panel schematic. Colour = DALI line; dashed boxes are remote devices.
+1088|Nothing connected to this line yet.
+1089|DIN width, DU (17.5 mm)
+1090|DALI addresses used
+1091|DALI current, mA
+1092|{1} feed breaker {2} A is derated to {3} A at {4} C inside the enclosure, below its load of {5} A.
+1093|{1} feed carries continuous lighting or similar load: {2} sizes the breaker at {3} % of the load ({4} A).
+1094|The {1} A breaker is derated to {2} A at {3} C inside the enclosure, below the {4} A load. Choose the next size up.
+1095|{1} sizes the breaker at {2} % of a continuous load: {3} A needed, {4} A chosen.
+1096|{1} has a starting current. A B curve can trip on inrush; use C or D.
+1097|{1} {2} is type AC only. {3} has electronic or rectified current and needs a type A RCD.
+1098|EV charger: IEC 60364-7-722 and BS 7671 722.531.3.101 need type A plus 6 mA DC detection (often built into the charger), or a type B RCD.
+1099|Earth-fault loop impedance {1} ohm (Ze {2} + cable {3}) is above the {4} ohm limit for a {5} A MCB ({6} V ÷ {7} × {8} A). Shorten the run, use a larger cable or a lower curve or rating.
+1100|The {1} A incomer is derated to {2} A at {3} C inside the enclosure, below the {4} A maximum phase current.
+1101|{1} sizes the main at 100 % of the non-continuous plus 125 % of the continuous load: {2} A needed, {3} A chosen.
+1102|{1} {2} is a UL 489 device. {3} installations use IEC 60898 / 60947 devices; check that it is accepted locally.
+1103|{1} {2} is an IEC-type device. {3} installations need UL listed (UL 489 or UL 1077) devices. Check that it is accepted before using it.
+1104|{1} {2} is an IEC 60898 / 61009 device rated 230/400 V (440 V maximum). This supply is {3} V line-to-neutral and {4} V line-to-line. Use a device rated for it.
+1105|Enter the supply loop impedance Ze in Setup to check automatic disconnection of the MCB circuits ({1}).
+1106|Breakers are derated above {1} °C inside the enclosure.
+1107|Supply loop impedance Ze (ohm)
+1108|Optional. Earth-fault loop impedance at the origin of the board, from the supplier or a test. Used to check that each MCB disconnects a fault in time.
+1109|Protection rules
+1110|Each breaker is sized from the design current (125 % of continuous loads under NEC), derated for the enclosure temperature, then rounded up to the next standard rating of the chosen standard. The RCD sensitivity (30 mA, or GFCI 4–6 mA under NEC and ABYC), the number of poles (2-pole for 240 V loads) and the device standard (IEC or UL) follow the standard and the supply voltage. With IEC, BS 7671 and AS/NZS, enter Ze in Setup to check the earth-fault loop of each MCB circuit.
+1111|Open Community from the Dashboard to chat with other registered members, create groups, invite people by email and share saved boards. The bell in the header shows invitations, replies and shared projects.
+1112|Checks cover design current against breaker and cable rating (with enclosure temperature and the NEC continuous-load rule), voltage drop, RCD expectation, breaking capacity, device rating against the standard and supply voltage, earth-fault loop impedance when Ze is entered, Lutron input, zone and temperature limits. Discrimination and selectivity are not calculated here.
+1113|Company details
+1114|Cover page with company details
+1115|DALI network and module layout
+1116|Delete DALI module
+1117|DALI current
+1118|Earth fault
+1119|Import
+1120|Admin
+1121|No saved projects yet. Create your first board above.
+1122|At least 8 characters, with a letter and a number.
+1123|Chats
+1124|Shared projects
+1125|Request failed
+1126|Remote
+1127|Main panel (Panel tab)
+1128|DALI tab
+1129|Own housing / in luminaire
+1130|Lines (controller)
+1131|Bus supply mA (supply or controller)
+1132|Power, W
+1133|Output / notes
+1134|external
+1135|DIN rail
+1136|Master / gateway
+1137|Bus power supply
+1138|Relay / switch
+1139|Driver / dimmer
+1140|Assumed
+1141|See spec
+1142|Universal
+1143|Back box
+1144|{1} link
+1145|{1} links
+1146|{1} DALI products from Lunatone, OSRAM and LTECH, both DIN-rail and remote drivers. Pressing Add puts the quantity you choose on the <b>DALI</b> tab, where you pick the DALI line each one connects to and see the network schematic and the module layout. Lunatone figures were read from its product pages. LTECH and OSRAM pages did not give DALI current or mounting, so those are marked Assumed. OSRAM and LTECH DALI drivers are not DIN-rail types; only the LTECH bus supply and relay are. Lunatone has more variants than listed. Confirm everything on the datasheet before ordering.

@@ -1,5 +1,5 @@
 import json,os,re,sys
-LANGS=['ro','it','fr','es','pt','ja','vi','th','ru','pl','de','zh']
+LANGS=['ro','it','fr','es','pt','ja','vi','th','ru','pl','de','zh','km']
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 master={}
 order=[]

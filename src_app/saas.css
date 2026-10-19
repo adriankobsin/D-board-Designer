@@ -192,3 +192,7 @@ html.sa-page body{padding:0}
   .sa-m{max-width:90%}
 }
 .sa-nb[hidden]{display:none}
+
+.sa-helpb{display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:0 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font:500 14px/1 inherit;cursor:pointer}
+.sa-helpb:hover{border-color:var(--accent);color:var(--accent)}
+@media (max-width:699px){.sa-helpb{min-height:42px;padding:0 11px}.sa-helpb span{display:none}}

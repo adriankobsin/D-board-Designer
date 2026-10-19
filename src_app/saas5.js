@@ -57,6 +57,7 @@ document.addEventListener('click', async ev => {
   else if (a === 'account') saGo('account');
   else if (a === 'admin'){ SA.adminTab = 'overview'; saGo('admin'); }
   else if (a === 'app') saOpenLast();
+  else if (a === 'help'){ saOpenLast(); tab = 'help'; draw(); renderTabs(); window.scrollTo(0, 0); }
   else if (a === 'signout') saSignOut();
   else if (a === 'gotoauth'){ SA.authMode = 'login'; saGo('auth'); }
   else if (a === 'guest') saGo('app');

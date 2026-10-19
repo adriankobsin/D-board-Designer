@@ -2493,13 +2493,27 @@ function diagRows(){
   rows.forEach(r => { if (r.t === 'f'){ out.push(r); S.circuits.filter(c => c.mod === r.m.id).sort((a, b) => a.zone - b.zone).forEach(c => out.push({t:'z', c, m:r.m})); } else if (r.t === 'c') out.push(r); });
   return out.filter(o => (o.c || o.m));
 }
+function pdfLoadSym(doc, t, x, y){
+  const g = [70, 80, 90]; doc.setDrawColor(...g); doc.setFillColor(255, 255, 255); doc.setLineWidth(.3);
+  const box = () => doc.roundedRect(x - 2.1, y - 1.7, 4.2, 3.4, .5, .5, 'FD');
+  if (t === 'lighting'){ doc.circle(x, y, 1.9, 'FD'); doc.line(x - 1.3, y - 1.3, x + 1.3, y + 1.3); doc.line(x + 1.3, y - 1.3, x - 1.3, y + 1.3); }
+  else if (t === 'sockets'){ doc.circle(x, y, 1.9, 'FD'); doc.line(x - .7, y - 1, x - .7, y + 1); doc.line(x + .7, y - 1, x + .7, y + 1); }
+  else if (t === 'av'){ box(); doc.lines([[.5, -1.1, .8, 0, 1.2, 0]], x - 1.5, y, [1, 1], 'S'); doc.lines([[.5, 1.1, .8, 0, 1.2, 0]], x, y, [1, 1], 'S'); }
+  else if (t === 'hvac'){ doc.circle(x, y, 1.9, 'FD'); doc.setFont('helvetica', 'bold'); doc.setFontSize(5.5); doc.setTextColor(...g); doc.text('M', x, y + .8, {align: 'center'}); }
+  else if (t === 'heater'){ box(); doc.line(x - 1.4, y, x - .9, y - 1); doc.line(x - .9, y - 1, x - .2, y + 1); doc.line(x - .2, y + 1, x + .5, y - 1); doc.line(x + .5, y - 1, x + 1.4, y); }
+  else if (t === 'galley'){ doc.roundedRect(x - 1.9, y - 1.9, 3.8, 3.8, .7, .7, 'FD'); doc.circle(x, y, .8, 'S'); }
+  else if (t === 'critical'){ doc.triangle(x, y - 2.1, x + 2.1, y + 1.7, x - 2.1, y + 1.7, 'FD'); doc.line(x, y - .7, x, y + .6); doc.setFillColor(...g); doc.circle(x, y + 1.1, .2, 'F'); }
+  else box();
+  doc.setTextColor(0);
+}
 function pdfDiagram(doc, logo, PW, ML){
   const out = diagRows(), three = S.phases === 3, buses = three ? ['L1', 'L2', 'L3', 'N'] : ['L1', 'N'];
   const k = (PW - 2 * ML) / 1160, X = u => ML + u * k, bx = {}; buses.forEach((p, i) => { bx[p] = 40 + i * 14; });
   const hts = out.map(o => (o.t === 'c' && R.c[o.c.id].thr) ? 62 : 42), dp = dpOf(S);
   const col = p => PHRGB[p] || PHRGB.N, line = (x1, y1, x2, y2, c, w) => { doc.setDrawColor(...c); doc.setLineWidth(w || .35); doc.line(x1, y1, x2, y2); };
   const txt = (t, x, y, sz = 6.5, bold = false, c = [40, 48, 56]) => { doc.setFont('helvetica', bold ? 'bold' : 'normal'); doc.setFontSize(sz); doc.setTextColor(...c); doc.text(String(t).replace(/²/g, '2').replace(/×/g, 'x').replace(/Δ/g, 'RCD').replace(/[·–]/g, '-'), x, y); };
-  const pages = []; let cur = [], hacc = 0; const first = 146, rest = 160;
+  const stcL = { ok: [44, 122, 75], warn: [154, 106, 18], bad: [179, 38, 30] };
+  const pages = []; let cur = [], hacc = 0; const first = 126, rest = 146;
   out.forEach((o, i) => { const h = hts[i] * k, lim = pages.length ? rest : first; if (hacc + h > lim && cur.length){ pages.push(cur); cur = []; hacc = 0; } cur.push(i); hacc += h; });
   pages.push(cur);
   const sys = SYSTEMS.find(x => x.id === S.sysId);
@@ -2509,7 +2523,17 @@ function pdfDiagram(doc, logo, PW, ML){
     txt(`${STD[S.std].n} · ${sys ? sys.label : ''} · Ik ${S.ik} kA · ${buses.filter(p => p !== 'N').join(' ')} and N conductors shown`, ML, 23.5, 7.5, false, [90, 98, 106]);
     let y = 28;
     if (pg === 0){
-      txt(`Q0 main ${R.inc.In || '-'} A ${isLV(S) ? (dpOf(S) ? '2P' : '1P') + (isDC(S) ? ' DC' : '') : (three ? '3P+N' : '1P+N')} · incomer cable ${R.inc.cab.size} mm2 ${S.incCable === 'pvc' ? 'PVC' : 'XLPE'} · ${S.incLen} m${S.spd ? ' · SPD type 2' : ''}`, ML, y + 2, 7.5, true); y += 7;
+      const mx = X((bx[buses[0]] + bx.N) / 2), ink = [30, 36, 42], gy = [110, 120, 130];
+      doc.setDrawColor(...ink); doc.setFillColor(255, 255, 255); doc.setLineWidth(.4); doc.circle(mx, y + 4, 3.2, 'FD');
+      doc.setLineWidth(.35); doc.lines([[.9, -1.8, 1.8, -1.8, 2.7, 0], [.9, 1.8, 1.8, 1.8, 2.7, 0]], mx - 2.7, y + 4, [1, 1], 'S');
+      line(mx, y + 7.2, mx, y + 10, ink, .6);
+      doc.setFillColor(255, 255, 255); doc.circle(mx - 1.8, y + 12.5, .55, 'FD'); line(mx - 1.8, y + 12.5, mx + 1.4, y + 10.4, ink, .5); line(mx, y + 14.6, mx, y + 27, ink, .6);
+      doc.setFillColor(...ink); doc.circle(mx, y + 19.5, .5, 'F');
+      txt(`Supply ${sys ? sys.label : ''}`, mx + 7, y + 3, 7.5, true);
+      txt(`Incomer cable ${R.inc.cab.size} mm2 ${S.incCable === 'pvc' ? 'PVC' : 'XLPE'} - ${S.incLen} m`, mx + 7, y + 7, 6.5, false, [90, 98, 106]);
+      txt(`Q0 main ${R.inc.In || '-'} A ${isLV(S) ? (dpOf(S) ? '2P' : '1P') + (isDC(S) ? ' DC' : '') : (three ? '3P+N' : '1P+N')}`, mx + 7, y + 12.5, 7.5, true);
+      if (S.spd){ line(mx, y + 17, mx + 12, y + 17, ink, .4); doc.setFillColor(255, 255, 255); doc.setDrawColor(...ink); doc.rect(mx + 12, y + 15, 6, 4, 'FD'); txt('SPD', mx + 13, y + 18, 5.5, true); txt('Surge protective device type 2', mx + 20, y + 18, 6.5, false, [90, 98, 106]); }
+      y += 21;
     }
     const heads = [[PT('CIRCUIT'), 222], [PT('PROTECTION'), 520], [PT('CABLE'), 700], [PT('LOAD'), 905], ['VD', 1075]];
     doc.setFillColor(232, 236, 240); doc.rect(ML, y + 1, PW - 2 * ML, 4.6, 'F'); heads.forEach(h => txt(h[0], X(h[1]), y + 4.3, 6, true, [90, 98, 106])); y += 6;
@@ -2529,7 +2553,7 @@ function pdfDiagram(doc, logo, PW, ML){
         if (neutralSw){ const t = lives[0].y - 3.4, b = yN + 1.6; doc.setDrawColor(...(rcd ? PHRGB.N : [110, 120, 130])); doc.setLineWidth(.25); doc.setLineDashPattern(rcd ? [] : [.8, .6], 0); doc.rect(X(112) - 4.2, t, 8.4, b - t); doc.setLineDashPattern([], 0); sym(X(112) - 1.6, yN, PHRGB.N); }
         if (rcd) txt('Δ', X(112) + 4.6, (lives[0].y + yN) / 2 + 1, 6, true, PHRGB.N);
       };
-      const colsTxt = (name, prot, cab, load, vd, ib, inn, ref) => { txt(name, X(222), yc + 1, 6.5); txt(prot, X(520), yc + 1, 6.5, false, [80, 88, 96]); txt(cab, X(700), yc + 1, 6.5, false, [80, 88, 96]);
+      const colsTxt = (name, prot, cab, load, vd, ib, inn, ref, lt) => { if (lt) pdfLoadSym(doc, lt, X(884), yc); txt(name, X(222), yc + 1, 6.5); txt(prot, X(520), yc + 1, 6.5, false, [80, 88, 96]); txt(cab, X(700), yc + 1, 6.5, false, [80, 88, 96]);
         doc.setFillColor(226, 231, 236); doc.rect(X(905), yc - .8, 54 * k, 1.6, 'F'); const f = inn ? Math.min(1, ib / inn) : 0; doc.setFillColor(...(f > .9 ? [154, 106, 18] : [11, 107, 142])); doc.rect(X(905), yc - .8, 54 * k * f, 1.6, 'F');
         txt(load, X(905) + 54 * k + 1.5, yc + 1, 6.5, false, [80, 88, 96]); txt(vd, X(1075), yc + 1, 6.5, false, [80, 88, 96]); dot(ref); };
       if (o.t === 'z'){
@@ -2538,7 +2562,7 @@ function pdfDiagram(doc, logo, PW, ML){
         if (next) { doc.setLineDashPattern([.6, .6], 0); line(X(150), yy, X(150), yy + h, c, .4); line(X(158), yy, X(158), yy + h, PHRGB.N, .4); doc.setLineDashPattern([], 0); }
         else { doc.setLineDashPattern([.6, .6], 0); line(X(150), yy, X(150), yc - 2.3, c, .4); line(X(158), yy, X(158), yc + 2.3, PHRGB.N, .4); doc.setLineDashPattern([], 0); }
         doc.setDrawColor(90); doc.setLineWidth(.25); doc.rect(X(176), yc - 3.8, 28 * k, 3.4); txt('Z' + o.c.zone, X(180), yc - 1.2, 5.5);
-        colsTxt(`${o.c.ref} ${clip(o.c.name, 30)}`, `via ${o.m.id} (${R.m[o.m.id].In || '-'} A) L+N`, `${cabTxt(r.cab, false, o.c.cable)} ${o.c.len} m`, `${o.c.P} W ${fmt(r.Ib, 1)} A`, fmt(r.vdTot, 1) + '%', r.Ib, R.m[o.m.id].In, o.c.ref);
+        colsTxt(`${o.c.ref} ${clip(o.c.name, 30)}`, `via ${o.m.id} (${R.m[o.m.id].In || '-'} A) L+N`, `${cabTxt(r.cab, false, o.c.cable)} ${o.c.len} m`, `${o.c.P} W ${fmt(r.Ib, 1)} A`, fmt(r.vdTot, 1) + '%', r.Ib, R.m[o.m.id].In, o.c.ref, o.c.type);
       } else if (o.t === 'f'){
         const r = R.m[o.m.id];
         cond([{p: r.ph, y: yc - 2.2}], yc + 2.2, dp, false);
@@ -2552,11 +2576,15 @@ function pdfDiagram(doc, logo, PW, ML){
         const lives = r.thr ? [{p: 'L1', y: yc - 4.6}, {p: 'L2', y: yc - 2.4}, {p: 'L3', y: yc - .2}] : [{p: r.ph, y: yc - 2.2}];
         cond(lives, r.thr ? yc + 2.6 : yc + 2.2, rcd || dp, rcd);
         doc.setDrawColor(...cc); doc.setLineWidth(.3); doc.rect(X(166), yc - 2, 9, 4); txt(clip(c.ref, 5), X(166) + 1.1, yc + .8, 6, true);
-        colsTxt(clip(c.name, 32), `${c.prot} ${r.curve === 'Std' ? '' : r.curve}${r.In} A${rcd ? ' 30 mA' : ''} ${isDC(S) ? '+/-' : (r.thr ? 'L1L2L3' : r.ph) + '+N'}`, `${cabTxt(r.cab, r.thr, c.cable)} ${c.len} m`, `${c.P} W ${fmt(r.Ib, 1)} A`, fmt(r.vdTot, 1) + '%', r.Ib, r.In, c.ref);
+        colsTxt(clip(c.name, 32), `${c.prot} ${r.curve === 'Std' ? '' : r.curve}${r.In} A${rcd ? ' 30 mA' : ''} ${isDC(S) ? '+/-' : (r.thr ? 'L1L2L3' : r.ph) + '+N'}`, `${cabTxt(r.cab, r.thr, c.cable)} ${c.len} m`, `${c.P} W ${fmt(r.Ib, 1)} A`, fmt(r.vdTot, 1) + '%', r.Ib, r.In, c.ref, c.type);
       }
       yy += h;
     });
-    if (pg === pages.length - 1){ const ft = three ? ['L1', 'L2', 'L3'].map(p => `${p} ${fmt(R.ph[p], 1)} A / ${fmt(R.power.phW[p] / 1000, 2)} kW`).join('   ') : `L1 ${fmt(R.ph.L1, 1)} A / ${fmt(R.power.phW.L1 / 1000, 2)} kW`; txt(`${PT('Phase loading after diversity')} ${S.diversity}:  ${ft}`, ML, Math.min(yEnd + 9, 202), 7, true); }
+    if (pg === pages.length - 1){ const ft = three ? ['L1', 'L2', 'L3'].map(p => `${p} ${fmt(R.ph[p], 1)} A / ${fmt(R.power.phW[p] / 1000, 2)} kW`).join('   ') : `L1 ${fmt(R.ph.L1, 1)} A / ${fmt(R.power.phW.L1 / 1000, 2)} kW`; txt(`${PT(isLV(S) ? 'Bus loading' : 'Phase loading')} (${PT('after diversity')} ${S.diversity}):  ${ft}`, ML, Math.min(yEnd + 8, 190), 7, true);
+      [['ok', 'OK'], ['warn', 'Check'], ['bad', 'Fail']].forEach((l, i) => { doc.setFillColor(...stcL[l[0]]); doc.circle(ML + 3 + i * 20, Math.min(yEnd + 12.5, 194.5), 1, 'F'); txt(PT(l[1]), ML + 5.5 + i * 20, Math.min(yEnd + 13.3, 195.3), 6.5, false, [80, 88, 96]); }); }
+    { const bx0 = PW - ML - 92, by0 = 187, cw = 46, rh = 6, cells = [['Project', S.name, 0, 0], ['Company', S.company || '-', 1, 0], ['Standard', STD[S.std].n, 0, 1], ['Date', new Date().toLocaleDateString(), 1, 1]];
+      doc.setDrawColor(70, 80, 90); doc.setLineWidth(.3); doc.setFillColor(255, 255, 255); doc.rect(bx0, by0, cw * 2, rh * 2, 'FD'); doc.line(bx0, by0 + rh, bx0 + cw * 2, by0 + rh); doc.line(bx0 + cw, by0, bx0 + cw, by0 + rh * 2);
+      cells.forEach(c => { txt(PT(c[0]), bx0 + c[2] * cw + 1, by0 + c[3] * rh + 2, 4.5, false, [110, 118, 126]); txt(clip(String(c[1]), 24), bx0 + c[2] * cw + 1, by0 + c[3] * rh + 4.8, 6, true); }); }
   });
 }
 const PDF_SECS = [['cover', 'Cover page with company details', 1], ['panel', 'Panel layout', 1], ['diagram', 'Multi-line diagram', 1], ['dali', 'DALI network and module layout', 1], ['sched', 'Circuit schedule', 1], ['bom', 'Bill of materials', 0]];

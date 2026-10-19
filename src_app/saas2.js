@@ -10,7 +10,7 @@ function saGo(view){
 }
 function saRender(){
   const el = sa$('#saas'); if (!el) return;
-  const v = SA.view, fn = {auth: saViewAuth, verify: saViewVerify, suspended: saViewSuspended, recovery: saViewRecovery, dashboard: saViewDash, import: saViewImport, account: saViewAccount, admin: saViewAdmin}[v];
+  const v = SA.view, fn = {auth: saViewAuth, verify: saViewVerify, suspended: saViewSuspended, recovery: saViewRecovery, dashboard: saViewDash, import: saViewImport, account: saViewAccount, admin: saViewAdmin, community: saViewCommunity}[v];
   el.innerHTML = '';
   if (fn) fn(el);
   if (typeof walk === 'function') { try { walk(el); } catch (e) {} } else if (typeof translateTree === 'function') { try { translateTree(el); } catch (e) {} }

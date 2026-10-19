@@ -8,12 +8,15 @@
  *                              and status = 'active' are checked with the service role key.
  * 4. POST /api/me/delete       lets a signed-in user delete their own account and all of their data.
  *
- * Secrets (never in browser code):  SUPABASE_SERVICE_ROLE_KEY, ANTHROPIC_API_KEY (panel import)
+ * 5. /api/community/*          private and group chats, email invitations and project sharing (see community.js).
+ *
+ * Secrets (never in browser code):  SUPABASE_SERVICE_ROLE_KEY, ANTHROPIC_API_KEY (panel import), RESEND_API_KEY (invitation emails)
  * Variables:                        SUPABASE_URL, SUPABASE_ANON_KEY, REQUIRE_LOGIN ("true" | "false"),
- *                                   optional: ANTHROPIC_MODEL, IMPORT_DAILY_LIMIT
+ *                                   optional: ANTHROPIC_MODEL, IMPORT_DAILY_LIMIT, MAIL_FROM, APP_URL
  */
 
 import { buildContent, callModel, LIMITS } from './importer.js';
+import { community } from './community.js';
 
 const JSON_HEADERS = { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' };
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -85,7 +88,7 @@ async function api(request, env, url) {
   const path = url.pathname;
   const method = request.method;
 
-  if (path === '/api/health') return json({ ok: true, configured: configured(env), admin: Boolean(env.SUPABASE_SERVICE_ROLE_KEY), anthropic: Boolean(env.ANTHROPIC_API_KEY) });
+  if (path === '/api/health') return json({ ok: true, configured: configured(env), admin: Boolean(env.SUPABASE_SERVICE_ROLE_KEY), anthropic: Boolean(env.ANTHROPIC_API_KEY), mail: Boolean(env.RESEND_API_KEY) });
 
   if (path === '/api/config' && method === 'GET') {
     if (!configured(env)) return json({ configured: false, requireLogin: false });
@@ -95,6 +98,8 @@ async function api(request, env, url) {
       anonKey: env.SUPABASE_ANON_KEY,
       requireLogin: String(env.REQUIRE_LOGIN || 'true').toLowerCase() !== 'false',
       importEnabled: Boolean(env.ANTHROPIC_API_KEY && env.SUPABASE_SERVICE_ROLE_KEY),
+      communityEnabled: Boolean(env.SUPABASE_SERVICE_ROLE_KEY),
+      mailEnabled: Boolean(env.RESEND_API_KEY),
     });
   }
 
@@ -141,6 +146,9 @@ async function api(request, env, url) {
     await sr(env, '/rest/v1/usage_events', { method: 'POST', body: JSON.stringify({ user_id: user.id, event: 'import_analyzed', meta: { kind: built.kind, devices: out.panel.devices.length } }) });
     return json({ ok: true, kind: built.kind, panel: out.panel, truncated: !!out.truncated });
   }
+
+  /* ----- community: private and group chats, invitations, project sharing ----- */
+  if (path.startsWith('/api/community/')) return community(request, env, url, { sr, authUser, profileOf, json, fail, UUID });
 
   /* ----- administrator API ----- */
   if (path.startsWith('/api/admin/')) {

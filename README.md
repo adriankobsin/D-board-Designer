@@ -40,7 +40,7 @@ to switch the account system on.
 
 ## 1. Create the database
 
-Supabase, SQL Editor: paste and run `supabase/migrations/0001_init.sql` (idempotent). If you already ran an earlier copy of it, also run `0003_import_events.sql`. It creates `profiles`, `projects`,
+Supabase, SQL Editor: paste and run `supabase/migrations/0001_init.sql` (idempotent). If you already ran an earlier copy of it, also run `0003_import_events.sql`. For sharing and chat, also run `0004_community.sql` (see the Community section). It creates `profiles`, `projects`,
 `feedback`, `usage_events`, `admin_actions`, the sign-up trigger, RLS policies and two admin functions that only the
 service role can call.
 
@@ -94,6 +94,9 @@ Before a public launch also review Auth rate limits and enable CAPTCHA (Auth, Bo
 | `ANTHROPIC_API_KEY` | **secret** | for panel import | Key from console.anthropic.com. Server-side only. Import is off without it |
 | `ANTHROPIC_MODEL` | var | no (default `claude-sonnet-5-5`) | Vision model used to read panels |
 | `IMPORT_DAILY_LIMIT` | var | no (default `20`) | Analyses per user per 24 h, to cap your API cost |
+| `RESEND_API_KEY` | **secret** | for invitation and share emails | Key from resend.com. Without it, people are notified on the dashboard only |
+| `MAIL_FROM` | var | with `RESEND_API_KEY` | Sender, e.g. `DBoard Designer <noreply@your-domain.com>` (domain verified in Resend) |
+| `APP_URL` | var | no | Address used in email links |
 
 ## 4. Create the first administrator
 
@@ -230,6 +233,32 @@ vendor_src/supabase.js     supabase-js 2.117.3 (vendored for offline use)
 public/                    built output served by the Worker
 supabase/migrations/       SQL            pgtest/  test/   test-only code, not deployed
 ```
+
+## Community: sharing, private chats, group chats, notifications
+
+Members can share a saved project with other registered members, chat privately, create group chats and invite others by email. People see a bell on the dashboard for invitations, replies and shared projects.
+
+**Setup (three steps)**
+
+1. **Database.** In the Supabase SQL editor, run `supabase/migrations/0004_community.sql` once. It is safe to run again. Until it is run, the Community page shows "not set up yet".
+2. **Invitation emails (optional but recommended).** The Worker sends email through [Resend](https://resend.com). Create an API key and verify a sending domain there, then set:
+   - secret `RESEND_API_KEY`: `npx wrangler secret put RESEND_API_KEY` (or Cloudflare dashboard, Worker, Settings, Variables and Secrets)
+   - variable `MAIL_FROM`, for example `DBoard Designer <noreply@your-domain.com>`
+   - optional variable `APP_URL` (the address used in the email links; defaults to the address the request came to)
+
+   Without `RESEND_API_KEY` everything still works; people are told on their dashboard only, and the dialog says no email was sent. `SUPABASE_SERVICE_ROLE_KEY` must already be set (creating chats, inviting and sharing look members up by email, which only the Worker can do).
+3. **Deploy.** Push to GitHub as usual.
+
+**How it behaves**
+
+- **Share a project:** Dashboard, Share on a project card, enter one or more email addresses and an optional message. Only registered members can receive it. They can view it and save their own copy ("Open a copy"); only the owner can change the original. The owner can stop sharing at any time.
+- **Private chat:** Community, New private chat, enter a member's email. Opening it again reuses the same conversation.
+- **Group chat:** Community, New group. Any member can create one and invite others by email; the creator is the owner and can invite more people, cancel invitations and remove members. Invited members get an email and a dashboard notification, and only see messages after they accept. If the owner leaves, the longest-standing member becomes owner; the group is deleted when the last member leaves.
+- **Notifications:** the bell and the Community tab show unread counts. Several replies in one chat are grouped into one notification. The page checks for new notifications every 30 seconds and the open chat every 4 seconds (no live socket).
+- **Safety:** messages are plain text, limited to 2000 characters and 30 a minute per person. Each person can send 60 invitations and shares a day. Email addresses are only looked up by exact match; there is no member directory.
+- **Not included:** message editing, attachments, blocking and moderation tools, and email notifications for ordinary replies (only invitations and shares are emailed).
+
+**Tests:** `pgtest/community_test.py` (50 checks of the Row Level Security rules on real Postgres) and `test/e2e_community.py` (50 browser checks with three users, the real Worker, real PostgREST/Postgres and a fake email service). Real email delivery through Resend has not been tested.
 
 ## DALI lighting network
 

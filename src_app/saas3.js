@@ -147,7 +147,7 @@ function saMenu(){
     saChip(); return;
   }
   const adm = SA.profile && SA.profile.role === 'admin';
-  w.innerHTML = `<button class="sa-ub" data-sa="menu" aria-haspopup="menu" aria-expanded="false" aria-label="${saEsc(T('Account menu'))}"><span class="sa-av" data-nt>${saEsc(saInitials())}</span><span class="nm" data-nt>${saEsc((SA.profile && SA.profile.first_name) || SA.user.email)}</span></button>`;
+  w.innerHTML = (SA.cfg && SA.cfg.communityEnabled !== false ? saBellBtn() : '') + `<button class="sa-ub" data-sa="menu" aria-haspopup="menu" aria-expanded="false" aria-label="${saEsc(T('Account menu'))}"><span class="sa-av" data-nt>${saEsc(saInitials())}</span><span class="nm" data-nt>${saEsc((SA.profile && SA.profile.first_name) || SA.user.email)}</span></button>`;
   saChip();
 }
 window.addEventListener('online', () => { saChip(); if (SA.dirty) saFlush(); });

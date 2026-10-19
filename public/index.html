@@ -422,6 +422,69 @@ html.sa-page body{padding:0}
 @keyframes sa-r{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){.sa-spin{animation-duration:3s}}
 @media (max-width:900px){#impGrid{grid-template-columns:1fr !important}#impGrid>.sa-card{position:static !important}}
+
+/* ---------- community ---------- */
+.sa-bw{position:relative;display:inline-flex}
+.sa-bellb{position:relative;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border:1px solid var(--line);border-radius:50%;background:var(--surface);color:var(--ink-2);cursor:pointer}
+.sa-bellb:hover{border-color:var(--accent);color:var(--ink)}
+.sa-nb{position:absolute;top:-5px;right:-5px;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--bad);color:#fff;font:700 11px/18px var(--font-b,inherit);text-align:center}
+.sa-nb.inl{position:static;display:inline-block;margin-left:4px;vertical-align:2px}
+.sa-pill{display:inline-block;min-width:20px;padding:0 6px;border-radius:10px;background:var(--accent);color:var(--accent-ink);font:700 11.5px/20px var(--font-b,inherit);text-align:center}
+.sa-bell{position:absolute;right:0;top:calc(100% + 6px);width:min(380px,92vw);max-height:70vh;overflow:auto;padding:6px;z-index:40;background:var(--surface);border:1px solid var(--line);border-radius:6px;box-shadow:0 14px 30px -12px rgba(15,32,42,.45)}
+.sa-bell .hd{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-bottom:1px solid var(--line);margin-bottom:4px}
+.sa-bell .ni{display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;background:none;border:0;border-radius:5px;padding:9px 10px;cursor:pointer}
+.sa-bell .ni:hover{background:var(--surface-2)}
+.sa-bell .ni.un{background:var(--accent-bg,var(--surface-2))}
+.sa-bell .ic{flex:none;width:26px;height:26px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:inline-flex;align-items:center;justify-content:center;font-weight:700}
+.sa-bell .tx{display:flex;flex-direction:column;gap:1px;min-width:0;font-size:13px;color:var(--ink-2)}
+.sa-bell .tx b{color:var(--ink);font-size:13.5px;overflow-wrap:anywhere}
+.sa-bell .tx span{overflow-wrap:anywhere}
+.sa-bell .tx em{font-style:normal;font-size:11.5px;opacity:.8}
+.sa-link{background:none;border:0;color:var(--accent);cursor:pointer;font-size:12.5px;padding:0}
+.sa-com{display:grid;grid-template-columns:minmax(260px,330px) minmax(0,1fr);gap:16px;align-items:start}
+.sa-clist,.sa-cthread{background:var(--surface);border:1px solid var(--line);border-radius:6px;min-width:0}
+.sa-clist{padding:12px}
+.sa-cthread{display:flex;flex-direction:column;height:min(72vh,680px);min-height:420px}
+.sa-ch{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-2);margin:14px 0 6px}
+.sa-ci{display:flex;gap:10px;align-items:center;width:100%;text-align:left;background:none;border:1px solid transparent;border-radius:6px;padding:8px;cursor:pointer;margin-bottom:2px}
+.sa-ci:hover{background:var(--surface-2)}
+.sa-ci.on{background:var(--surface-2);border-color:var(--accent)}
+.sa-ci .tx{display:flex;flex-direction:column;min-width:0;flex:1;font-size:12.5px;color:var(--ink-2)}
+.sa-ci .tx b{color:var(--ink);font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sa-ci .tx span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sa-cav{flex:none;width:34px;height:34px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:inline-flex;align-items:center;justify-content:center;font:700 14px var(--font-d)}
+.sa-inv{display:flex;flex-direction:column;gap:6px;border:1px solid var(--accent);border-radius:6px;padding:10px;margin-bottom:8px;background:var(--surface-2)}
+.sa-inv .mt{font-size:12px;color:var(--ink-2)}
+.sa-chd{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.sa-chd .tt{display:flex;flex-direction:column;min-width:0;flex:1}
+.sa-chd .tt b{font-size:16px;overflow-wrap:anywhere}
+.sa-chd .tt span{font-size:12px;color:var(--ink-2)}
+.sa-back{display:none}
+.sa-msgs{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:4px;min-height:0}
+.sa-m{display:flex;flex-direction:column;align-items:flex-start;max-width:78%}
+.sa-m.me{align-self:flex-end;align-items:flex-end}
+.sa-m .who{font-size:11.5px;color:var(--ink-2);margin:6px 8px 2px}
+.sa-m .bb{background:var(--surface-2);border:1px solid var(--line);border-radius:12px 12px 12px 3px;padding:7px 11px;white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px;line-height:1.4}
+.sa-m.me .bb{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);border-radius:12px 12px 3px 12px}
+.sa-m time{display:block;font-size:10.5px;opacity:.7;margin-top:2px;text-align:right}
+.sa-day{align-self:center;font-size:11.5px;color:var(--ink-2);margin:8px 0 4px}
+.sa-comp{display:flex;gap:8px;padding:10px;border-top:1px solid var(--line);align-items:flex-end}
+.sa-comp textarea{flex:1;resize:none;min-height:44px;max-height:140px;padding:8px 10px;border:1px solid var(--line);border-radius:5px;background:var(--surface);color:var(--ink);font:inherit}
+.sa-cnone{margin:auto;max-width:360px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.sa-mem{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+.sa-mem li{display:flex;gap:10px;align-items:center;justify-content:space-between;border:1px solid var(--line);border-radius:5px;padding:8px 10px}
+.sa-proj.new{border-color:var(--accent)}
+.sa-note{font-size:13px;color:var(--ink-2);margin:0 0 8px;overflow-wrap:anywhere}
+@media (max-width:760px){
+  .sa-com{grid-template-columns:minmax(0,1fr)}
+  .sa-com.open .sa-clist{display:none}
+  .sa-com:not(.open) .sa-cthread{display:none}
+  .sa-back{display:inline-flex}
+  .sa-cthread{height:calc(100vh - 220px)}
+  .sa-m{max-width:90%}
+}
+.sa-nb[hidden]{display:none}
 </style>
 <div class="wrap">
   <div class="bar">
@@ -3023,6 +3086,7 @@ async function saSession(s, why){
   await saLoadProfile();
   if (SA.profile && SA.profile.status === 'suspended'){ saGo('suspended'); saMenu(); return; }
   try { localStorage.setItem('dbd_user', JSON.stringify({user: {id: SA.user.id, email: SA.user.email}, profile: SA.profile})); } catch (e) {}
+  try { saNotifLoad(); } catch (e) {}
   if (why === 'signin' || why === 'restore'){
     try { if (!sessionStorage.getItem('dbd_login_logged')){ sessionStorage.setItem('dbd_login_logged', '1'); saTrack('login'); } } catch (e) {}
     SA.sb.rpc('touch_last_seen').then(() => {}, () => {});
@@ -3048,7 +3112,7 @@ function saGo(view){
 }
 function saRender(){
   const el = sa$('#saas'); if (!el) return;
-  const v = SA.view, fn = {auth: saViewAuth, verify: saViewVerify, suspended: saViewSuspended, recovery: saViewRecovery, dashboard: saViewDash, import: saViewImport, account: saViewAccount, admin: saViewAdmin}[v];
+  const v = SA.view, fn = {auth: saViewAuth, verify: saViewVerify, suspended: saViewSuspended, recovery: saViewRecovery, dashboard: saViewDash, import: saViewImport, account: saViewAccount, admin: saViewAdmin, community: saViewCommunity}[v];
   el.innerHTML = '';
   if (fn) fn(el);
   if (typeof walk === 'function') { try { walk(el); } catch (e) {} } else if (typeof translateTree === 'function') { try { translateTree(el); } catch (e) {} }
@@ -3319,7 +3383,7 @@ function saMenu(){
     saChip(); return;
   }
   const adm = SA.profile && SA.profile.role === 'admin';
-  w.innerHTML = `<button class="sa-ub" data-sa="menu" aria-haspopup="menu" aria-expanded="false" aria-label="${saEsc(T('Account menu'))}"><span class="sa-av" data-nt>${saEsc(saInitials())}</span><span class="nm" data-nt>${saEsc((SA.profile && SA.profile.first_name) || SA.user.email)}</span></button>`;
+  w.innerHTML = (SA.cfg && SA.cfg.communityEnabled !== false ? saBellBtn() : '') + `<button class="sa-ub" data-sa="menu" aria-haspopup="menu" aria-expanded="false" aria-label="${saEsc(T('Account menu'))}"><span class="sa-av" data-nt>${saEsc(saInitials())}</span><span class="nm" data-nt>${saEsc((SA.profile && SA.profile.first_name) || SA.user.email)}</span></button>`;
   saChip();
 }
 window.addEventListener('online', () => { saChip(); if (SA.dirty) saFlush(); });
@@ -3328,15 +3392,16 @@ window.addEventListener('beforeunload', () => { if (SA.dirty && SA.cloudId) { tr
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden' && SA.dirty) { clearTimeout(SA.saveT); saFlush(); } });
 
 /* ---------- shared page frame ---------- */
+const saBellBtn = () => `<span class="sa-bw" data-nt><button class="sa-bellb" data-bell aria-label="${saEsc(T('Notifications'))}" aria-haspopup="dialog" aria-expanded="false"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 3a6 6 0 0 0-6 6v3.6L4.3 16a1 1 0 0 0 .9 1.5h13.6a1 1 0 0 0 .9-1.5L18 12.6V9a6 6 0 0 0-6-6zm-2 15a2 2 0 0 0 4 0z" fill="currentColor"/></svg><span class="sa-nb" data-nbadge ${saUnread() ? '' : 'hidden'}>${saUnread() > 99 ? '99+' : saUnread()}</span></button></span>`;
 function saFrame(active, body){
   const adm = SA.profile && SA.profile.role === 'admin';
-  const nav = [['dashboard', 'Dashboard'], ['import', 'Import'], ['account', 'Account']].concat(adm ? [['admin', 'Admin']] : []);
-  return `<div class="sa-bar"><div class="in">${saBrand('button').replace('class="sa-brand"', 'class="sa-brand" data-sa="dash" aria-label="Dashboard"')}<nav class="sa-nav" aria-label="Main">${nav.map(n => `<button data-sa="${n[0] === 'dashboard' ? 'dash' : n[0]}" ${active === n[0] ? 'aria-current="page"' : ''}>${saEsc(T(n[1]))}</button>`).join('')}</nav><span class="sa-sp"></span>${saLangSelect()}<button class="sa-btn" data-sa="app">${saEsc(T('Open designer'))}</button><div class="sa-um" data-nt><button class="sa-ub" data-sa="menu" aria-haspopup="menu" aria-expanded="false"><span class="sa-av">${saEsc(saInitials())}</span><span class="nm">${saEsc((SA.profile && SA.profile.first_name) || '')}</span></button></div></div></div><main class="sa-main">${body}</main>`;
+  const nav = [['dashboard', 'Dashboard'], ['community', 'Community'], ['import', 'Import'], ['account', 'Account']].concat(adm ? [['admin', 'Admin']] : []);
+  return `<div class="sa-bar"><div class="in">${saBrand('button').replace('class="sa-brand"', 'class="sa-brand" data-sa="dash" aria-label="Dashboard"')}<nav class="sa-nav" aria-label="Main">${nav.map(n => `<button data-sa="${n[0] === 'dashboard' ? 'dash' : n[0]}" ${active === n[0] ? 'aria-current="page"' : ''}>${saEsc(T(n[1]))}${n[0] === 'community' ? ' <span class="sa-nb inl" data-nbadge hidden>0</span>' : ''}</button>`).join('')}</nav><span class="sa-sp"></span>${saLangSelect()}${saBellBtn()}<button class="sa-btn" data-sa="app">${saEsc(T('Open designer'))}</button><div class="sa-um" data-nt><button class="sa-ub" data-sa="menu" aria-haspopup="menu" aria-expanded="false"><span class="sa-av">${saEsc(saInitials())}</span><span class="nm">${saEsc((SA.profile && SA.profile.first_name) || '')}</span></button></div></div></div><main class="sa-main">${body}</main>`;
 }
 function saProjCard(p, recent){
   const mt = p.meta || {};
   return `<article class="sa-card sa-proj"><h3>${saEsc(p.name)}</h3><div class="meta"><span>${saEsc(T('Edited'))} ${saEsc(saRel(p.updated_at))}</span>${mt.circuits != null ? `<span>${mt.circuits} ${saEsc(T('circuits'))}</span>` : ''}${mt.modules != null ? `<span>${mt.modules} ${saEsc(T('devices'))}</span>` : ''}</div>
-  <div class="acts"><button class="sa-btn pri sm" data-sa="open" data-id="${p.id}">${saEsc(T('Open'))}</button>${recent ? '' : `<button class="sa-btn sm" data-sa="rename" data-id="${p.id}">${saEsc(T('Rename'))}</button><button class="sa-btn sm" data-sa="dup" data-id="${p.id}">${saEsc(T('Duplicate'))}</button><button class="sa-btn sm bad" data-sa="del" data-id="${p.id}">${saEsc(T('Delete'))}</button>`}</div></article>`;
+  <div class="acts"><button class="sa-btn pri sm" data-sa="open" data-id="${p.id}">${saEsc(T('Open'))}</button>${recent ? '' : `<button class="sa-btn sm" data-sa="share" data-id="${p.id}">${saEsc(T('Share'))}</button><button class="sa-btn sm" data-sa="rename" data-id="${p.id}">${saEsc(T('Rename'))}</button><button class="sa-btn sm" data-sa="dup" data-id="${p.id}">${saEsc(T('Duplicate'))}</button><button class="sa-btn sm bad" data-sa="del" data-id="${p.id}">${saEsc(T('Delete'))}</button>`}</div></article>`;
 }
 async function saViewDash(el){
   el.innerHTML = saFrame('dashboard', `<div class="sa-splash">${saEsc(T('Loading your projects…'))}</div>`);
@@ -3421,6 +3486,280 @@ async function saSignOut(){
   try { localStorage.removeItem('dbd_user'); sessionStorage.removeItem('dbd_login_logged'); } catch (e) {}
   SA.session = null; SA.user = null; SA.profile = null; SA.authMode = 'login'; saNoSession();
 }
+/* ---------- community: private and group chats, project sharing, notifications ---------- */
+SA.com = {chats: [], shares: [], tab: 'chats', active: null, msgs: [], names: {}, err: null, loaded: false, poll: null, tpoll: null, lastId: 0, sending: false};
+SA.notif = {list: [], err: null, open: false};
+
+const saComOn = () => !!(SA.cfg && SA.cfg.communityEnabled !== false);
+const saUnread = () => SA.notif.list.filter(n => !n.read_at).length;
+function saBadge(){
+  const n = saUnread();
+  document.querySelectorAll('[data-nbadge]').forEach(e => { e.textContent = n > 99 ? '99+' : String(n); e.hidden = !n; });
+}
+async function saNotifLoad(){
+  if (!SA.sb || !SA.user || !SA.user.email_confirmed_at) return;
+  const {data, error} = await SA.sb.from('notifications').select('id,kind,ref_id,title,body,count,created_at,read_at').order('created_at', {ascending: false}).limit(40);
+  if (error){ SA.notif.err = error.message; return; }
+  SA.notif.err = null; SA.notif.list = data || []; saBadge();
+  if (SA.notif.open) saBellPaint();
+}
+function saChatName(c){
+  if (c.kind === 'group') return c.title || T('Group chat');
+  const o = (c.members || []).find(m => m.id !== SA.user.id);
+  return (o && o.name) || T('Private chat');
+}
+async function saComLoad(){
+  const [a, b] = await Promise.all([SA.sb.rpc('my_chats'), SA.sb.rpc('my_shares')]);
+  if (a.error || b.error){ SA.com.err = (a.error || b.error).message; SA.com.loaded = true; return false; }
+  SA.com.err = null; SA.com.chats = a.data || []; SA.com.shares = b.data || []; SA.com.loaded = true; return true;
+}
+
+/* ----- bell ----- */
+function saBellPaint(){
+  const box = sa$('#saBell'); if (!box) return;
+  const items = SA.notif.list;
+  const icon = k => k === 'project_share' ? '⇪' : k === 'chat_invite' ? '+' : '✉';
+  box.innerHTML = `<div class="hd"><b>${saEsc(T('Notifications'))}</b>${saUnread() ? `<button class="sa-link" data-sa="nreadall">${saEsc(T('Mark all as read'))}</button>` : ''}</div>`
+    + (items.length ? items.map(n => `<button class="ni ${n.read_at ? '' : 'un'}" data-sa="nitem" data-id="${n.id}"><span class="ic" aria-hidden="true">${icon(n.kind)}</span><span class="tx"><b data-nt>${saEsc(n.title)}${n.count > 1 && n.kind === 'chat_message' ? ` · ${n.count}` : ''}</b><span data-nt>${saEsc(n.body)}</span><em>${saEsc(saRel(n.created_at))}</em></span></button>`).join('') : `<div class="sa-empty" style="margin:10px;padding:18px">${saEsc(T('Nothing new. Invitations, replies and shared projects show up here.'))}</div>`);
+}
+function saBellToggle(btn){
+  const old = sa$('#saBell'); if (old){ old.remove(); SA.notif.open = false; btn.setAttribute('aria-expanded', 'false'); return; }
+  const d = document.createElement('div'); d.id = 'saBell'; d.className = 'sa-bell'; d.setAttribute('role', 'dialog'); d.setAttribute('aria-label', T('Notifications'));
+  btn.closest('.sa-bw').appendChild(d); SA.notif.open = true; btn.setAttribute('aria-expanded', 'true'); saBellPaint(); saNotifLoad();
+}
+async function saNotifRead(ids){
+  if (!ids.length) return;
+  const now = new Date().toISOString();
+  SA.notif.list.forEach(n => { if (ids.includes(n.id)) n.read_at = now; });
+  saBadge();
+  await SA.sb.from('notifications').update({read_at: now}).in('id', ids).then(() => {}, () => {});
+}
+async function saNotifGo(id){
+  const n = SA.notif.list.find(x => x.id === id); if (!n) return;
+  await saNotifRead([id]);
+  const br = sa$('#saBell'); if (br){ br.remove(); SA.notif.open = false; }
+  if (n.kind === 'project_share'){ SA.com.tab = 'shared'; SA.com.active = null; }
+  else { SA.com.tab = 'chats'; SA.com.active = n.ref_id; }
+  saGo('community');
+}
+
+/* ----- community page ----- */
+async function saViewCommunity(el){
+  clearInterval(SA.com.poll); clearInterval(SA.com.tpoll);
+  el.innerHTML = saFrame('community', `<div class="sa-splash">${saEsc(T('Loading…'))}</div>`);
+  const ok = await saComLoad(); if (SA.view !== 'community') return;
+  if (!ok){
+    const missing = /my_chats|schema cache|does not exist|function/i.test(SA.com.err || '');
+    el.innerHTML = saFrame('community', `<h1 class="sa-h1">${saEsc(T('Community'))}</h1><div class="sa-msg warn">${saEsc(T(missing ? 'Community is not set up yet. The site owner needs to run the 0004_community.sql migration in Supabase.' : 'Community could not be loaded. Check your connection and try again.'))}</div>`);
+    return;
+  }
+  const shared = SA.com.shares.filter(s => s.direction === 'received' && !s.seen_at).length;
+  const invites = SA.com.chats.filter(c => c.my_status === 'invited').length;
+  const unreadChats = SA.com.chats.reduce((a, c) => a + (+c.unread || 0), 0);
+  const tab = (t, l, n) => `<button role="tab" data-sa="ctab" data-t="${t}" ${SA.com.tab === t ? 'aria-current="page"' : ''}>${saEsc(T(l))}${n ? ` <span class="sa-pill">${n}</span>` : ''}</button>`;
+  el.innerHTML = saFrame('community', `<h1 class="sa-h1">${saEsc(T('Community'))}</h1><p class="sa-sub">${saEsc(T('Chat with other members, work in groups and share saved boards.'))}</p>${saMsgHtml()}
+    <div class="sa-nav" role="tablist" style="margin-bottom:14px">${tab('chats', 'Chats', invites + unreadChats)}${tab('shared', 'Shared projects', shared)}</div><div id="saComBody"></div>`);
+  if (SA.com.tab === 'shared') saShared(); else saChats();
+  SA.com.poll = setInterval(async () => { if (SA.view !== 'community' || document.visibilityState !== 'visible') return; if (await saComLoad()) { if (SA.com.tab === 'chats') saChatListPaint(); } }, 12000);
+}
+function saChats(){
+  const b = sa$('#saComBody'); if (!b) return;
+  b.innerHTML = `<div class="sa-com ${SA.com.active ? 'open' : ''}"><aside class="sa-clist"><div class="sa-row" style="margin-bottom:10px"><button class="sa-btn pri sm" data-sa="cdirect">${saEsc(T('New private chat'))}</button><button class="sa-btn sm" data-sa="cgroup">${saEsc(T('New group'))}</button></div><div id="saCList"></div></aside><section class="sa-cthread" id="saCThread"></section></div>`;
+  saChatListPaint(); saThreadOpen(SA.com.active, true);
+}
+function saChatListPaint(){
+  const l = sa$('#saCList'); if (!l) return;
+  const inv = SA.com.chats.filter(c => c.my_status === 'invited'), joined = SA.com.chats.filter(c => c.my_status === 'joined');
+  let h = '';
+  if (inv.length) h += `<h3 class="sa-ch">${saEsc(T('Invitations'))}</h3>` + inv.map(c => { const by = (c.members || []).find(m => m.role === 'owner'); return `<div class="sa-inv"><b data-nt>${saEsc(c.title || T('Group chat'))}</b><span class="mt">${saEsc(T('Group'))} · ${(c.members || []).length} ${saEsc(T('members'))}${by ? ` · ${saEsc(T('from'))} <span data-nt>${saEsc(by.name)}</span>` : ''}</span><span class="sa-row"><button class="sa-btn pri sm" data-sa="cacc" data-id="${c.id}">${saEsc(T('Accept'))}</button><button class="sa-btn sm" data-sa="cdec" data-id="${c.id}">${saEsc(T('Decline'))}</button></span></div>`; }).join('');
+  h += `<h3 class="sa-ch">${saEsc(T('Conversations'))}</h3>`;
+  h += joined.length ? joined.map(c => `<button class="sa-ci ${SA.com.active === c.id ? 'on' : ''}" data-sa="chat" data-id="${c.id}"><span class="sa-cav" aria-hidden="true">${c.kind === 'group' ? '#' : saEsc((saChatName(c)[0] || '?').toUpperCase())}</span><span class="tx"><b data-nt>${saEsc(saChatName(c))}</b><span data-nt>${c.last_body ? saEsc((c.last_sender ? c.last_sender + ': ' : '') + c.last_body) : saEsc(T('No messages yet'))}</span></span>${+c.unread ? `<span class="sa-pill">${c.unread}</span>` : ''}</button>`).join('') : `<div class="sa-empty" style="padding:18px">${saEsc(T('No conversations yet. Start a private chat with a member, or create a group.'))}</div>`;
+  l.innerHTML = h;
+}
+const saChatById = id => SA.com.chats.find(c => c.id === id);
+async function saThreadOpen(id, keep){
+  clearInterval(SA.com.tpoll);
+  const t = sa$('#saCThread'); if (!t) return;
+  const c = id && saChatById(id);
+  if (!c || c.my_status !== 'joined'){ SA.com.active = null; t.innerHTML = `<div class="sa-empty sa-cnone">${saEsc(T('Choose a conversation, or start a new one.'))}</div>`; const w = sa$('.sa-com'); if (w) w.classList.remove('open'); return; }
+  SA.com.active = id; SA.com.msgs = []; SA.com.lastId = 0;
+  const w = sa$('.sa-com'); if (w) w.classList.add('open');
+  const mem = c.members || [], names = {}; mem.forEach(m => { names[m.id] = m.name; });
+  SA.com.names = names;
+  const own = c.kind === 'group' && mem.some(m => m.id === SA.user.id && m.role === 'owner');
+  t.innerHTML = `<header class="sa-chd"><button class="sa-btn sm sa-back" data-sa="cback" aria-label="${saEsc(T('Back to conversations'))}">←</button><div class="tt"><b data-nt>${saEsc(saChatName(c))}</b><span data-nt>${c.kind === 'group' ? mem.filter(m => m.status === 'joined').length + ' ' + saEsc(T('members')) + (mem.some(m => m.status === 'invited') ? ' · ' + mem.filter(m => m.status === 'invited').length + ' ' + saEsc(T('invited')) : '') : saEsc(T('Private chat'))}</span></div><span class="sa-row">${c.kind === 'group' ? `<button class="sa-btn sm" data-sa="cmembers">${saEsc(T('Members'))}</button>` : ''}${own ? `<button class="sa-btn sm" data-sa="cinvite">${saEsc(T('Invite'))}</button>` : ''}<button class="sa-btn sm bad" data-sa="cleave">${saEsc(T(c.kind === 'group' ? 'Leave' : 'Leave chat'))}</button></span></header>
+  <div class="sa-msgs" id="saMsgs" tabindex="0" aria-live="polite"></div>
+  <form class="sa-comp" id="saSend"><label class="sr" for="saMsgIn">${saEsc(T('Message'))}</label><textarea id="saMsgIn" rows="2" maxlength="2000" placeholder="${saEsc(T('Write a message. Enter sends, Shift+Enter adds a line.'))}"></textarea><button class="sa-btn pri" type="submit">${saEsc(T('Send'))}</button></form>`;
+  await saMsgFetch(true);
+  SA.com.tpoll = setInterval(() => { if (SA.view === 'community' && SA.com.active === id && document.visibilityState === 'visible') saMsgFetch(false); }, 4000);
+  if (!keep){ const i = sa$('#saMsgIn'); if (i) i.focus(); }
+}
+async function saMsgFetch(first){
+  const id = SA.com.active; if (!id) return;
+  let q = SA.sb.from('chat_messages').select('id,sender_id,body,created_at').eq('chat_id', id);
+  q = first ? q.order('id', {ascending: false}).limit(150) : q.gt('id', SA.com.lastId).order('id', {ascending: true}).limit(150);
+  const {data, error} = await q;
+  if (SA.com.active !== id) return;
+  if (error){ if (first){ const m = sa$('#saMsgs'); if (m) m.innerHTML = `<div class="sa-msg bad">${saEsc(T('Messages could not be loaded.'))}</div>`; } return; }
+  let rows = data || []; if (first) rows = rows.slice().reverse();
+  if (!rows.length && !first) return;
+  const unknown = rows.some(r => !(r.sender_id in SA.com.names) && r.sender_id !== SA.user.id);
+  if (unknown){ const s = await SA.sb.rpc('chat_senders', {cid: id}); (s.data || []).forEach(x => { if (!(x.user_id in SA.com.names)) SA.com.names[x.user_id] = x.name; }); }
+  if (first) SA.com.msgs = rows; else SA.com.msgs = SA.com.msgs.concat(rows.filter(r => !SA.com.msgs.some(m => m.id === r.id)));
+  if (SA.com.msgs.length) SA.com.lastId = SA.com.msgs[SA.com.msgs.length - 1].id;
+  saMsgPaint(first || rows.length > 0);
+  if (first || rows.some(r => r.sender_id !== SA.user.id)) saChatRead(id);
+}
+function saMsgPaint(stick){
+  const box = sa$('#saMsgs'); if (!box) return;
+  const c = saChatById(SA.com.active), grp = c && c.kind === 'group';
+  const near = box.scrollHeight - box.scrollTop - box.clientHeight < 80;
+  let prev = null, day = '';
+  box.innerHTML = SA.com.msgs.length ? SA.com.msgs.map(m => {
+    const mine = m.sender_id === SA.user.id, d = new Date(m.created_at).toDateString();
+    const sep = d !== day ? `<div class="sa-day">${saEsc(saDate(m.created_at))}</div>` : ''; day = d;
+    const first = prev !== m.sender_id || sep; prev = m.sender_id;
+    return `${sep}<div class="sa-m ${mine ? 'me' : ''}">${grp && !mine && first ? `<span class="who" data-nt>${saEsc(SA.com.names[m.sender_id] || T('Former member'))}</span>` : ''}<div class="bb" data-nt>${saEsc(m.body)}<time>${saEsc(new Date(m.created_at).toLocaleTimeString(saLang(), {hour: '2-digit', minute: '2-digit'}))}</time></div></div>`;
+  }).join('') : `<div class="sa-empty sa-cnone">${saEsc(T('No messages yet. Say hello.'))}</div>`;
+  if (stick || near) box.scrollTop = box.scrollHeight;
+}
+async function saChatRead(id){
+  await SA.sb.rpc('mark_chat_read', {cid: id});
+  const c = saChatById(id); if (c){ c.unread = 0; saChatListPaint(); }
+  const ids = SA.notif.list.filter(n => n.kind === 'chat_message' && n.ref_id === id && !n.read_at).map(n => n.id);
+  if (ids.length) saNotifRead(ids);
+}
+async function saSendMsg(){
+  const i = sa$('#saMsgIn'); if (!i || SA.com.sending || !SA.com.active) return;
+  const body = i.value.trim(); if (!body) return;
+  SA.com.sending = true; i.disabled = true;
+  const {data, error} = await SA.sb.from('chat_messages').insert({chat_id: SA.com.active, body}).select('id,sender_id,body,created_at').single();
+  SA.com.sending = false; i.disabled = false;
+  if (error){ toast(/too quickly/i.test(error.message || '') ? T('You are sending messages too quickly. Wait a moment.') : T('The message could not be sent. Try again.')); i.focus(); return; }
+  i.value = '';
+  if (!SA.com.msgs.some(m => m.id === data.id)){ SA.com.msgs.push(data); SA.com.lastId = Math.max(SA.com.lastId, data.id); }
+  saMsgPaint(true); i.focus();
+  const c = saChatById(SA.com.active); if (c){ c.last_body = body; c.last_sender = saName(); saChatListPaint(); }
+}
+
+/* ----- dialogs ----- */
+function saResultHtml(r, verb){
+  const why = {not_registered: 'is not a registered member', already: 'is already included', invalid: 'is not a valid email address', self: 'is your own address', limit: 'was left out (20 addresses at a time)', daily_limit: 'Daily invitation limit reached. Try again tomorrow.', failed: 'could not be added'};
+  const done = r.invited || r.shared || [];
+  let h = '';
+  if (done.length) h += `<div class="sa-msg ok" style="margin-bottom:8px">${saEsc(T(verb))}: ${done.map(x => `<b data-nt>${saEsc(x.name)}</b>`).join(', ')}.${r.mail ? (r.emailed ? ` ${saEsc(T('Email sent to'))} ${r.emailed}.` : ` ${saEsc(T('The email could not be sent. They will still see it on their dashboard.'))}`) : ` ${saEsc(T('They will see it on their dashboard.'))}`}</div>`;
+  const sk = (r.skipped || []);
+  if (sk.length) h += `<div class="sa-msg warn">${sk.map(x => x.email ? `<span data-nt>${saEsc(x.email)}</span> ${saEsc(T(why[x.reason] || why.failed))}` : saEsc(T(why[x.reason] || why.failed))).join('<br>')}</div>`;
+  return h;
+}
+function saComDialog(kind, extra){
+  const c = kind === 'cinvite' ? saChatById(SA.com.active) : null;
+  const f = {
+    cdirect: [T('New private chat'), `<label class="sa-field"><span>${saEsc(T('Email address of a registered member'))}</span><input id="saCEmail" type="email" autocomplete="off" maxlength="254" required></label>`, T('Start chat')],
+    cgroup: [T('New group'), `<label class="sa-field"><span>${saEsc(T('Group name'))}</span><input id="saCTitle" type="text" maxlength="100" required></label><label class="sa-field"><span>${saEsc(T('Invite members by email'))}</span><textarea id="saCEmails" rows="3" placeholder="name@example.com, other@example.com"></textarea><small>${saEsc(T('Separate addresses with commas or new lines. Invited members get an email and a notification, and join when they accept.'))}</small></label>`, T('Create group')],
+    cinvite: [T('Invite to') + ' ' + (c ? saChatName(c) : ''), `<label class="sa-field"><span>${saEsc(T('Invite members by email'))}</span><textarea id="saCEmails" rows="3" placeholder="name@example.com"></textarea></label>`, T('Send invitations')],
+    cshare: [T('Share project'), `<p class="sa-sub" style="margin:0 0 8px">${saEsc(T('Registered members can view the board and save their own copy. Only you can change the original.'))}</p><label class="sa-field"><span>${saEsc(T('Share with (email addresses)'))}</span><textarea id="saCEmails" rows="2" placeholder="name@example.com"></textarea></label><label class="sa-field"><span>${saEsc(T('Message (optional)'))}</span><input id="saCNote" type="text" maxlength="500"></label>`, T('Share')],
+  }[kind];
+  saModal(`<h2 data-nt>${saEsc(f[0])}</h2><form id="saCForm" data-k="${kind}" data-x="${saEsc(extra || '')}">${f[1]}<div id="saCRes" style="margin-top:10px"></div><div class="sa-row" style="margin-top:14px;justify-content:flex-end"><button type="button" class="sa-btn" data-sa="close">${saEsc(T('Close'))}</button><button class="sa-btn pri" type="submit" id="saCGo">${saEsc(f[2])}</button></div></form>`);
+}
+async function saComSubmit(form){
+  const kind = form.dataset.k, go = sa$('#saCGo'), res = sa$('#saCRes'), v = id => ((sa$('#' + id) || {}).value || '').trim();
+  go.disabled = true; res.innerHTML = '';
+  try {
+    if (kind === 'cdirect'){
+      const r = await saApi('/api/community/direct', {method: 'POST', body: JSON.stringify({email: v('saCEmail')})});
+      saModalClose(); SA.com.tab = 'chats'; SA.com.active = r.chat_id; await saComLoad(); saViewCommunity(sa$('#saas')); return;
+    }
+    if (kind === 'cgroup'){
+      if (!v('saCTitle')){ res.innerHTML = `<div class="sa-msg bad">${saEsc(T('Give the group a name.'))}</div>`; go.disabled = false; return; }
+      const r = await saApi('/api/community/group', {method: 'POST', body: JSON.stringify({title: v('saCTitle'), emails: v('saCEmails')})});
+      SA.com.active = r.chat_id; SA.com.tab = 'chats';
+      if ((r.invited || []).length || (r.skipped || []).length){ res.innerHTML = saResultHtml(r, 'Invited'); go.hidden = true; const cl = form.querySelector('[data-sa=close]'); cl.textContent = T('Open group'); cl.className = 'sa-btn pri'; cl.dataset.sa = 'cgo'; }
+      else { saModalClose(); await saComLoad(); saViewCommunity(sa$('#saas')); }
+      return;
+    }
+    if (kind === 'cinvite'){
+      const r = await saApi('/api/community/invite', {method: 'POST', body: JSON.stringify({chat_id: SA.com.active, emails: v('saCEmails')})});
+      res.innerHTML = saResultHtml(r, 'Invited'); go.disabled = false; if ((r.invited || []).length){ sa$('#saCEmails').value = ''; saComLoad().then(() => { if (SA.com.active) saThreadOpen(SA.com.active, true); }); } return;
+    }
+    if (kind === 'cshare'){
+      const r = await saApi('/api/community/share', {method: 'POST', body: JSON.stringify({project_id: form.dataset.x, emails: v('saCEmails'), note: v('saCNote')})});
+      res.innerHTML = saResultHtml(r, 'Shared with'); go.disabled = false; if ((r.shared || []).length){ sa$('#saCEmails').value = ''; saComLoad(); } return;
+    }
+  } catch (e) { res.innerHTML = `<div class="sa-msg bad">${saEsc(T(e.message || 'Request failed'))}</div>`; go.disabled = false; }
+}
+function saMembersDialog(){
+  const c = saChatById(SA.com.active); if (!c) return;
+  const mem = c.members || [], own = mem.some(m => m.id === SA.user.id && m.role === 'owner');
+  saModal(`<h2 data-nt>${saEsc(saChatName(c))}</h2><ul class="sa-mem">${mem.map(m => `<li><span data-nt><b>${saEsc(m.name)}</b>${m.id === SA.user.id ? ` (${saEsc(T('you'))})` : ''}</span><span class="sa-sub" style="margin:0">${saEsc(T(m.role === 'owner' ? 'Owner' : m.status === 'invited' ? 'Invited' : 'Member'))}</span>${own && m.id !== SA.user.id ? `<button class="sa-btn sm bad" data-sa="crm" data-id="${m.id}">${saEsc(T(m.status === 'invited' ? 'Cancel invite' : 'Remove'))}</button>` : ''}</li>`).join('')}</ul><div class="sa-row" style="justify-content:flex-end;margin-top:14px"><button class="sa-btn" data-sa="close">${saEsc(T('Close'))}</button></div>`);
+}
+
+/* ----- shared projects ----- */
+function saShared(){
+  const b = sa$('#saComBody'); if (!b) return;
+  const rec = SA.com.shares.filter(s => s.direction === 'received'), sent = SA.com.shares.filter(s => s.direction === 'sent');
+  const card = (s, r) => `<article class="sa-card sa-proj ${r && !s.seen_at ? 'new' : ''}"><h3 data-nt>${saEsc(s.project_name || T('Untitled board'))}</h3><div class="meta"><span>${saEsc(T(r ? 'From' : 'To'))} <b data-nt>${saEsc(s.other_name)}</b></span><span>${saEsc(saRel(s.created_at))}</span></div>${s.note ? `<p class="sa-note" data-nt>“${saEsc(s.note)}”</p>` : ''}<div class="acts">${r ? `<button class="sa-btn pri sm" data-sa="shopen" data-id="${s.id}">${saEsc(T('Open a copy'))}</button><button class="sa-btn sm bad" data-sa="shrm" data-id="${s.id}">${saEsc(T('Remove'))}</button>` : `<button class="sa-btn sm bad" data-sa="shrm" data-id="${s.id}">${saEsc(T('Stop sharing'))}</button>`}</div></article>`;
+  b.innerHTML = `<h2 style="margin:0 0 10px">${saEsc(T('Shared with me'))}</h2>${rec.length ? `<div class="sa-grid c3" style="margin-bottom:22px">${rec.map(s => card(s, true)).join('')}</div>` : `<div class="sa-empty" style="margin-bottom:22px">${saEsc(T('Nothing has been shared with you yet.'))}</div>`}<h2 style="margin:0 0 10px">${saEsc(T('Shared by me'))}</h2>${sent.length ? `<div class="sa-grid c3">${sent.map(s => card(s, false)).join('')}</div>` : `<div class="sa-empty">${saEsc(T('You have not shared a project. Use Share on any project in your dashboard.'))}</div>`}`;
+  const unseen = rec.filter(s => !s.seen_at).map(s => s.id);
+  if (unseen.length){
+    SA.sb.from('project_shares').update({seen_at: new Date().toISOString()}).in('id', unseen).then(() => {}, () => {});
+    const ids = SA.notif.list.filter(n => n.kind === 'project_share' && !n.read_at && unseen.includes(n.ref_id)).map(n => n.id); if (ids.length) saNotifRead(ids);
+    rec.forEach(s => { s.seen_at = s.seen_at || new Date().toISOString(); });
+  }
+}
+async function saShareOpen(id){
+  const s = SA.com.shares.find(x => x.id === id); if (!s) return;
+  const {data, error} = await SA.sb.from('projects').select('name,data').eq('id', s.project_id).maybeSingle();
+  if (error || !data){ toast(T('That project is no longer shared with you.')); return; }
+  const p = data.data;
+  if (!p || !p.circuits || !p.modules || !STD[p.std]){ toast(T('This project could not be read.')); return; }
+  try {
+    const row = await saCreateProject(p, (data.name + ' (from ' + s.other_name + ')').slice(0, 200));
+    await saOpenProject(row.id);
+  } catch (e) { toast(saErr(e)); }
+}
+
+/* ----- events ----- */
+document.addEventListener('click', async ev => {
+  const bell = ev.target.closest('[data-bell]');
+  if (bell){ saBellToggle(bell); return; }
+  const op = sa$('#saBell'); if (op && !ev.target.closest('.sa-bw')){ op.remove(); SA.notif.open = false; }
+  const b = ev.target.closest('[data-sa]'); if (!b) return;
+  const a = b.dataset.sa, id = b.dataset.id;
+  if (a === 'community'){ SA.com.tab = 'chats'; saGo('community'); }
+  else if (a === 'ctab'){ SA.com.tab = b.dataset.t; saViewCommunity(sa$('#saas')); }
+  else if (a === 'chat'){ SA.com.active = id; saChatListPaint(); saThreadOpen(id); }
+  else if (a === 'cback'){ SA.com.active = null; clearInterval(SA.com.tpoll); saChatListPaint(); saThreadOpen(null); }
+  else if (a === 'cdirect' || a === 'cgroup' || a === 'cinvite') saComDialog(a);
+  else if (a === 'cgo'){ saModalClose(); await saComLoad(); saViewCommunity(sa$('#saas')); }
+  else if (a === 'share'){ saComDialog('cshare', id); }
+  else if (a === 'cmembers') saMembersDialog();
+  else if (a === 'cacc'){ b.disabled = true; const {error} = await SA.sb.from('chat_members').update({status: 'joined'}).eq('chat_id', id).eq('user_id', SA.user.id); if (error){ toast(T('Could not accept the invitation.')); b.disabled = false; return; } SA.com.active = id; const ids = SA.notif.list.filter(n => n.kind === 'chat_invite' && n.ref_id === id && !n.read_at).map(n => n.id); saNotifRead(ids); saViewCommunity(sa$('#saas')); }
+  else if (a === 'cdec'){ b.disabled = true; await SA.sb.from('chat_members').delete().eq('chat_id', id).eq('user_id', SA.user.id); const ids = SA.notif.list.filter(n => n.kind === 'chat_invite' && n.ref_id === id && !n.read_at).map(n => n.id); saNotifRead(ids); await saComLoad(); saChatListPaint(); }
+  else if (a === 'cleave'){
+    if (b.dataset.sure !== '1'){ b.dataset.sure = '1'; b.textContent = T('Click again to leave'); setTimeout(() => { if (b.isConnected){ b.dataset.sure = ''; b.textContent = T('Leave'); } }, 4000); return; }
+    await SA.sb.from('chat_members').delete().eq('chat_id', SA.com.active).eq('user_id', SA.user.id); SA.com.active = null; await saComLoad(); saChats();
+  }
+  else if (a === 'crm'){ const cid = SA.com.active; await SA.sb.from('chat_members').delete().eq('chat_id', cid).eq('user_id', id); await saComLoad(); saMembersDialog(); saChatListPaint(); if (SA.com.active === cid) saThreadOpen(cid, true); }
+  else if (a === 'shopen'){ b.disabled = true; await saShareOpen(id); b.disabled = false; }
+  else if (a === 'shrm'){
+    if (b.dataset.sure !== '1'){ b.dataset.sure = '1'; const o = b.textContent; b.textContent = T('Click again to confirm'); setTimeout(() => { if (b.isConnected){ b.dataset.sure = ''; b.textContent = o; } }, 4000); return; }
+    await SA.sb.from('project_shares').delete().eq('id', id); await saComLoad(); saShared();
+  }
+  else if (a === 'nitem') saNotifGo(id);
+  else if (a === 'nreadall') saNotifRead(SA.notif.list.filter(n => !n.read_at).map(n => n.id)).then(saBellPaint);
+});
+document.addEventListener('submit', ev => {
+  if (ev.target.id === 'saCForm'){ ev.preventDefault(); saComSubmit(ev.target); }
+  else if (ev.target.id === 'saSend'){ ev.preventDefault(); saSendMsg(); }
+});
+document.addEventListener('keydown', ev => {
+  if (ev.target.id === 'saMsgIn' && ev.key === 'Enter' && !ev.shiftKey && !ev.isComposing){ ev.preventDefault(); saSendMsg(); }
+  if (ev.key === 'Escape'){ const op = sa$('#saBell'); if (op){ op.remove(); SA.notif.open = false; } }
+});
+/* notifications refresh while the page is open and visible */
+setInterval(() => { if (SA.user && SA.user.email_confirmed_at && SA.cfg && SA.cfg.communityEnabled !== false && document.visibilityState === 'visible') saNotifLoad(); }, 30000);
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && SA.user) saNotifLoad(); });
 
 /* ====================================================================
    Panel import: photo(s) or PDF -> reviewed device list -> board
@@ -3658,7 +3997,7 @@ document.addEventListener('click', async ev => {
   if (b.tagName === 'A') ev.preventDefault();
   if (a === 'menu'){ const w = b.closest('.sa-um'), old = w.querySelector('.sa-menu'); if (old){ old.remove(); b.setAttribute('aria-expanded', 'false'); return; }
     const adm = SA.profile && SA.profile.role === 'admin', m = document.createElement('div'); m.className = 'sa-menu'; m.setAttribute('role', 'menu');
-    m.innerHTML = `<div class="who" data-nt><b>${saEsc(saName())}</b>${saEsc(SA.user.email)}</div><button role="menuitem" data-sa="dash">${saEsc(T('Dashboard'))}</button><button role="menuitem" data-sa="import">${saEsc(T('Import a panel'))}</button><button role="menuitem" data-sa="account">${saEsc(T('Account settings'))}</button>${adm ? `<button role="menuitem" data-sa="admin">${saEsc(T('Admin dashboard'))}</button>` : ''}<button role="menuitem" data-sa="signout">${saEsc(T('Sign out'))}</button>`; w.appendChild(m); b.setAttribute('aria-expanded', 'true'); return; }
+    m.innerHTML = `<div class="who" data-nt><b>${saEsc(saName())}</b>${saEsc(SA.user.email)}</div><button role="menuitem" data-sa="dash">${saEsc(T('Dashboard'))}</button><button role="menuitem" data-sa="community">${saEsc(T('Community'))}</button><button role="menuitem" data-sa="import">${saEsc(T('Import a panel'))}</button><button role="menuitem" data-sa="account">${saEsc(T('Account settings'))}</button>${adm ? `<button role="menuitem" data-sa="admin">${saEsc(T('Admin dashboard'))}</button>` : ''}<button role="menuitem" data-sa="signout">${saEsc(T('Sign out'))}</button>`; w.appendChild(m); b.setAttribute('aria-expanded', 'true'); return; }
   if (a === 'dash'){ SA.q = ''; saGo('dashboard'); }
   else if (a === 'account') saGo('account');
   else if (a === 'admin'){ SA.adminTab = 'overview'; saGo('admin'); }

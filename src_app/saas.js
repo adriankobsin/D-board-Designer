@@ -67,20 +67,35 @@ async function saInit(){
   if (!SA.cfg.configured || typeof supabase === 'undefined'){ document.documentElement.classList.remove('sa-hold'); return; }   // local-only mode
   const hash = location.hash || '';
   if (/[#&]type=recovery/.test(hash)) SA.recovery = true;
+  if (location.pathname.replace(/\/+$/, '') === '/confirmed' && !SA.recovery) SA.confirmed = true;   // landing page of the sign-up confirmation email
   const he = /[#&]error_description=([^&]*)/.exec(hash);
-  if (he){ let d = ''; try { d = decodeURIComponent(he[1].replace(/\+/g, ' ')); } catch (e) {} SA.msg = {t: 'bad', m: /expired|invalid/i.test(d) ? 'That link is invalid or has expired. Request a new one.' : 'The link could not be used. Request a new one.'}; try { history.replaceState(null, '', location.pathname); } catch (e) {} }
+  if (he){ let d = ''; try { d = decodeURIComponent(he[1].replace(/\+/g, ' ')); } catch (e) {} SA.msg = {t: 'bad', m: SA.confirmed ? 'That confirmation link is invalid or has expired. Sign in and we will offer to send a new one.' : /expired|invalid/i.test(d) ? 'That link is invalid or has expired. Request a new one.' : 'The link could not be used. Request a new one.'}; try { history.replaceState(null, '', location.pathname); } catch (e) {} }
   SA.sb = supabase.createClient(SA.cfg.supabaseUrl, SA.cfg.anonKey, {auth: {persistSession: true, autoRefreshToken: true, detectSessionInUrl: true, storage: saStore, flowType: 'implicit'}});
   saMountChrome();
   SA.sb.auth.onAuthStateChange((ev, s) => { setTimeout(() => saOnAuth(ev, s), 0); });
   const {data, error} = await SA.sb.auth.getSession();
-  if (SA.recovery){ if (data && data.session){ SA.session = data.session; SA.user = data.session.user; saGo('recovery'); } else { SA.recovery = false; SA.msg = {t: 'bad', m: 'That link is invalid or has expired. Request a new one.'}; SA.authMode = 'forgot'; saGo('auth'); } }
+  if (SA.confirmed){ if (data && data.session) await saConfirmedDone(data.session); else if (!SA.confirmedOk) saNoSession(); }
+  else if (SA.recovery){ if (data && data.session){ SA.session = data.session; SA.user = data.session.user; saGo('recovery'); } else { SA.recovery = false; SA.msg = {t: 'bad', m: 'That link is invalid or has expired. Request a new one.'}; SA.authMode = 'forgot'; saGo('auth'); } }
   else if (data && data.session) await saSession(data.session, 'restore');
   else if (error && !navigator.onLine && saCachedUser()){ SA.offline = true; SA.user = saCachedUser().user; SA.profile = saCachedUser().profile; saGo('app'); }
   else if (!SA.recovery) saNoSession();
   document.documentElement.classList.remove('sa-hold');
 }
+/* The link in the confirmation email opens /confirmed. The link also starts a session, so end it here and let the person sign in themselves. */
+async function saConfirmedDone(s){
+  if (SA.confirmedOk) return;
+  if (!s.user || !s.user.email_confirmed_at) return;
+  SA.confirmedOk = true; SA.confirmedToken = s.access_token; SA.confirmedEmail = s.user.email || '';
+  try { localStorage.setItem('dbd_last_email', SA.confirmedEmail); } catch (e) {}
+  SA.session = null; SA.user = null; SA.profile = null; SA.userSignedOut = true;
+  saGo('auth');
+  document.documentElement.classList.remove('sa-hold');
+  try { await SA.sb.auth.signOut({scope: 'local'}); } catch (e) {}
+  SA.authMode = 'login'; saGo('auth'); saMenu();
+}
 function saCachedUser(){ try { return JSON.parse(localStorage.getItem('dbd_user') || 'null'); } catch (e) { return null; } }
 async function saOnAuth(ev, s){
+  if (SA.confirmed && s && (ev === 'SIGNED_IN' || ev === 'INITIAL_SESSION')){ if (!SA.confirmedOk){ await saConfirmedDone(s); return; } if (s.access_token === SA.confirmedToken) return; }
   if (ev === 'PASSWORD_RECOVERY'){ SA.recovery = true; SA.session = s; SA.user = s && s.user; saGo('recovery'); document.documentElement.classList.remove('sa-hold'); return; }
   if (ev === 'SIGNED_IN' && s){ if (SA.reauth || SA.recovery){ SA.session = s; SA.user = s.user; return; } if (SA.session && SA.session.access_token === s.access_token) return; await saSession(s, 'signin'); }
   else if (ev === 'TOKEN_REFRESHED' && s){ SA.session = s; }
@@ -93,10 +108,12 @@ async function saOnAuth(ev, s){
 }
 function saNoSession(){
   if (SA.recovery) return;
+  if (SA.confirmed){ SA.authMode = 'login'; saGo('auth'); saMenu(); return; }
   if (SA.cfg.requireLogin){ saGo('auth'); } else { saGo('app'); }
   saMenu();
 }
 async function saSession(s, why){
+  if (SA.confirmed){ SA.confirmed = false; SA.confirmedOk = false; try { history.replaceState(null, '', '/'); } catch (e) {} }
   SA.session = s; SA.user = s.user;
   if (!SA.user.email_confirmed_at){ SA.profile = null; saGo('verify'); saMenu(); return; }
   await saLoadProfile();
@@ -153,7 +170,9 @@ function saViewAuth(el){
   let form = '';
   if (m === 'login'){
     let remembered = ''; try { remembered = localStorage.getItem('dbd_last_email') || ''; } catch (e) {}
-    form = `<h2>Sign in</h2><p class="lead">Welcome back. Pick up your boards where you left them.</p>${saMsgHtml()}
+    const okc = SA.confirmedOk;
+    if (okc) remembered = SA.confirmedEmail || remembered;
+    form = `<h2>${okc ? 'Email confirmed' : 'Sign in'}</h2><p class="lead">${okc ? 'Your email address is confirmed and your account is active. Sign in to start designing.' : 'Welcome back. Pick up your boards where you left them.'}</p>${saMsgHtml()}
     <form id="saForm" novalidate class="sa-form" style="grid-template-columns:1fr">
       ${saField('email', 'Email address', 'email', `autocomplete="username" required inputmode="email" value="${saEsc(remembered)}" maxlength="254"`)}
       ${saPwField('password', 'Password', 'current-password')}
@@ -216,7 +235,7 @@ async function saSubmitAuth(){
   ok = saFieldErr('terms', sa$('#terms').checked ? '' : 'You must accept the Terms and the Privacy Policy to continue.') && ok;
   if (!ok){ const f = sa$('[aria-invalid="true"]'); if (f) f.focus(); return; }
   saBusy(true, 'Creating account…');
-  const {data, error} = await SA.sb.auth.signUp({email, password: pw, options: {emailRedirectTo: location.origin + '/', data: {first_name: fn, last_name: ln, company, country, occupation: occ, accepted_terms: 'true'}}});
+  const {data, error} = await SA.sb.auth.signUp({email, password: pw, options: {emailRedirectTo: location.origin + '/confirmed', data: {first_name: fn, last_name: ln, company, country, occupation: occ, accepted_terms: 'true'}}});
   saBusy(false);
   if (error){ SA.msg = {t: 'bad', m: saErr(error)}; saRender(); return; }
   SA.pendingEmail = email;
@@ -1026,7 +1045,7 @@ document.addEventListener('click', async ev => {
   else if (a === 'peek'){ const i = sa$('#' + b.dataset.for); const show = i.type === 'password'; i.type = show ? 'text' : 'password'; b.textContent = T(show ? 'Hide' : 'Show'); }
   else if (a === 'legal') saLegal(b.dataset.w);
   else if (a === 'close') saModalClose();
-  else if (a === 'resend'){ const e = b.dataset.e; if (!e) return; const {error} = await SA.sb.auth.resend({type: 'signup', email: e, options: {emailRedirectTo: location.origin + '/'}}); SA.msg = error ? {t: 'bad', m: saErr(error)} : {t: 'ok', m: 'Verification email sent. Check your inbox and spam folder.'}; saRender(); }
+  else if (a === 'resend'){ const e = b.dataset.e; if (!e) return; const {error} = await SA.sb.auth.resend({type: 'signup', email: e, options: {emailRedirectTo: location.origin + '/confirmed'}}); SA.msg = error ? {t: 'bad', m: saErr(error)} : {t: 'ok', m: 'Verification email sent. Check your inbox and spam folder.'}; saRender(); }
   else if (a === 'signedin'){ await SA.sb.auth.signOut().catch(() => {}); SA.user = null; SA.session = null; SA.authMode = 'login'; SA.userSignedOut = true; SA.msg = {t: 'ok', m: 'Once your email is confirmed, sign in below.'}; saGo('auth'); }
   else if (a === 'new') saNewProject();
   else if (a === 'open'){ b.disabled = true; if (!await saOpenProject(id)) b.disabled = false; }

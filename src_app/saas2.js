@@ -35,7 +35,9 @@ function saViewAuth(el){
   let form = '';
   if (m === 'login'){
     let remembered = ''; try { remembered = localStorage.getItem('dbd_last_email') || ''; } catch (e) {}
-    form = `<h2>Sign in</h2><p class="lead">Welcome back. Pick up your boards where you left them.</p>${saMsgHtml()}
+    const okc = SA.confirmedOk;
+    if (okc) remembered = SA.confirmedEmail || remembered;
+    form = `<h2>${okc ? 'Email confirmed' : 'Sign in'}</h2><p class="lead">${okc ? 'Your email address is confirmed and your account is active. Sign in to start designing.' : 'Welcome back. Pick up your boards where you left them.'}</p>${saMsgHtml()}
     <form id="saForm" novalidate class="sa-form" style="grid-template-columns:1fr">
       ${saField('email', 'Email address', 'email', `autocomplete="username" required inputmode="email" value="${saEsc(remembered)}" maxlength="254"`)}
       ${saPwField('password', 'Password', 'current-password')}
@@ -98,7 +100,7 @@ async function saSubmitAuth(){
   ok = saFieldErr('terms', sa$('#terms').checked ? '' : 'You must accept the Terms and the Privacy Policy to continue.') && ok;
   if (!ok){ const f = sa$('[aria-invalid="true"]'); if (f) f.focus(); return; }
   saBusy(true, 'Creating account…');
-  const {data, error} = await SA.sb.auth.signUp({email, password: pw, options: {emailRedirectTo: location.origin + '/', data: {first_name: fn, last_name: ln, company, country, occupation: occ, accepted_terms: 'true'}}});
+  const {data, error} = await SA.sb.auth.signUp({email, password: pw, options: {emailRedirectTo: location.origin + '/confirmed', data: {first_name: fn, last_name: ln, company, country, occupation: occ, accepted_terms: 'true'}}});
   saBusy(false);
   if (error){ SA.msg = {t: 'bad', m: saErr(error)}; saRender(); return; }
   SA.pendingEmail = email;

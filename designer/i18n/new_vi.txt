@@ -429,3 +429,6 @@
 1144|{1} liên kết
 1145|{1} liên kết
 1146|{1} sản phẩm DALI của Lunatone, OSRAM và LTECH, gồm cả loại gắn ray DIN và driver từ xa. Nhấn Thêm sẽ đưa số lượng bạn chọn vào tab <b>DALI</b>, nơi bạn chọn tuyến DALI mà từng thiết bị nối vào và xem sơ đồ mạng cùng bố trí mô-đun. Thông số Lunatone được đọc từ trang sản phẩm của hãng. Trang LTECH và OSRAM không nêu dòng DALI hay cách lắp nên được đánh dấu Giả định. Driver DALI của OSRAM và LTECH không phải loại gắn ray DIN; chỉ nguồn bus và rơ-le của LTECH là loại ray DIN. Lunatone còn nhiều biến thể hơn danh sách. Hãy xác nhận mọi thứ trên datasheet trước khi đặt hàng.
+1147|Email đã được xác nhận
+1148|Địa chỉ email của bạn đã được xác nhận và tài khoản đã được kích hoạt. Hãy đăng nhập để bắt đầu thiết kế.
+1149|Liên kết xác nhận không hợp lệ hoặc đã hết hạn. Hãy đăng nhập và chúng tôi sẽ đề nghị gửi liên kết mới.

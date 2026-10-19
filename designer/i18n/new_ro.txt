@@ -429,3 +429,6 @@
 1144|{1} legătură
 1145|{1} legături
 1146|{1} produse DALI de la Lunatone, OSRAM și LTECH, atât pe șină DIN, cât și drivere la distanță. Apăsarea pe Adaugă pune cantitatea aleasă în fila <b>DALI</b>, unde alegeți linia DALI la care se conectează fiecare și vedeți schema rețelei și dispunerea modulelor. Valorile Lunatone au fost citite de pe paginile produselor. Paginile LTECH și OSRAM nu indicau curentul DALI sau montajul, deci acestea sunt marcate Presupus. Driverele DALI OSRAM și LTECH nu sunt de tip șină DIN; doar sursa de magistrală și releul LTECH sunt. Lunatone are mai multe variante decât cele listate. Confirmați totul în fișa tehnică înainte de comandă.
+1147|E-mail confirmat
+1148|Adresa ta de e-mail este confirmată, iar contul este activ. Autentifică-te ca să începi proiectarea.
+1149|Linkul de confirmare nu este valid sau a expirat. Autentifică-te și îți vom oferi posibilitatea de a trimite unul nou.

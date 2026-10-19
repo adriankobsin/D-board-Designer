@@ -429,3 +429,6 @@
 1144|{1} łącze
 1145|{1} łączy
 1146|{1} produktów DALI firm Lunatone, OSRAM i LTECH, zarówno na szynę DIN, jak i zdalnych sterowników. Naciśnięcie Dodaj umieszcza wybraną ilość w zakładce <b>DALI</b>, gdzie wybierasz linię DALI, do której każdy się podłącza, i widzisz schemat sieci oraz układ modułów. Wartości Lunatone odczytano z jego stron produktowych. Strony LTECH i OSRAM nie podawały prądu DALI ani montażu, więc są oznaczone jako Założone. Sterowniki DALI OSRAM i LTECH nie są na szynę DIN; na szynę są tylko zasilacz magistrali i przekaźnik LTECH. Lunatone ma więcej wariantów niż na liście. Przed zamówieniem potwierdź wszystko w karcie katalogowej.
+1147|E-mail potwierdzony
+1148|Twój adres e-mail został potwierdzony, a konto jest aktywne. Zaloguj się, aby zacząć projektować.
+1149|Link potwierdzający jest nieprawidłowy lub wygasł. Zaloguj się, a zaproponujemy wysłanie nowego.

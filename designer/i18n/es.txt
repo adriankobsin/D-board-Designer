@@ -1144,3 +1144,6 @@
 1144|{1} enlace
 1145|{1} enlaces
 1146|{1} productos DALI de Lunatone, OSRAM y LTECH, tanto de carril DIN como drivers remotos. Al pulsar Añadir, la cantidad elegida pasa a la pestaña <b>DALI</b>, donde elige la línea DALI a la que se conecta cada uno y ve el esquema de la red y la disposición de módulos. Las cifras de Lunatone se leyeron en sus páginas de producto. Las páginas de LTECH y OSRAM no indicaban corriente DALI ni montaje, por lo que se marcan como Supuesto. Los drivers DALI de OSRAM y LTECH no son de carril DIN; solo lo son la fuente de bus y el relé de LTECH. Lunatone tiene más variantes de las listadas. Confirme todo en la hoja de datos antes de pedir.
+1147|Correo confirmado
+1148|Tu correo electrónico está confirmado y tu cuenta está activa. Inicia sesión para empezar a diseñar.
+1149|El enlace de confirmación no es válido o ha caducado. Inicia sesión y te ofreceremos enviar uno nuevo.

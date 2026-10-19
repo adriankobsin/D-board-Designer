@@ -1144,3 +1144,6 @@
 1144|{1} liaison
 1145|{1} liaisons
 1146|{1} produits DALI de Lunatone, OSRAM et LTECH, sur rail DIN comme drivers déportés. Appuyer sur Ajouter place la quantité choisie dans l’onglet <b>DALI</b>, où vous choisissez la ligne DALI à laquelle chacun se connecte et voyez le schéma du réseau et l’implantation des modules. Les valeurs Lunatone ont été lues sur ses pages produit. Les pages LTECH et OSRAM n’indiquaient ni courant DALI ni montage, ils sont donc marqués Supposé. Les drivers DALI OSRAM et LTECH ne sont pas sur rail DIN ; seuls l’alimentation de bus et le relais LTECH le sont. Lunatone propose plus de variantes que celles listées. Confirmez tout sur la fiche technique avant de commander.
+1147|E-mail confirmé
+1148|Votre adresse e-mail est confirmée et votre compte est actif. Connectez-vous pour commencer à concevoir.
+1149|Le lien de confirmation n'est pas valide ou a expiré. Connectez-vous et nous vous proposerons d'en envoyer un nouveau.

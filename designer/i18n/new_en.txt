@@ -429,3 +429,6 @@
 1144|{1} link
 1145|{1} links
 1146|{1} DALI products from Lunatone, OSRAM and LTECH, both DIN-rail and remote drivers. Pressing Add puts the quantity you choose on the <b>DALI</b> tab, where you pick the DALI line each one connects to and see the network schematic and the module layout. Lunatone figures were read from its product pages. LTECH and OSRAM pages did not give DALI current or mounting, so those are marked Assumed. OSRAM and LTECH DALI drivers are not DIN-rail types; only the LTECH bus supply and relay are. Lunatone has more variants than listed. Confirm everything on the datasheet before ordering.
+1147|Email confirmed
+1148|Your email address is confirmed and your account is active. Sign in to start designing.
+1149|That confirmation link is invalid or has expired. Sign in and we will offer to send a new one.

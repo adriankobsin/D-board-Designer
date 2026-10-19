@@ -51,6 +51,7 @@ Authentication, Providers, Email: **enabled**, **Confirm email: ON** (this gates
 Authentication, URL Configuration:
 - **Site URL**: your Worker URL, e.g. `https://d-board-designer.adriankobsin.workers.dev` (or your custom domain).
 - **Redirect URLs**: the same URL and `https://d-board-designer.adriankobsin.workers.dev/**`. Add `http://localhost:8787/**` for local runs.
+- The confirmation email opens `/confirmed`, a page that says the email is confirmed and lets the person sign in. The `/**` entry above covers it; if it is missing, Supabase sends people to the Site URL instead.
 
 Authentication, Emails, SMTP Settings: enable custom SMTP (host, port, user, password, verified sender address).
 **Do this before inviting anyone.** Supabase's built-in sender allows only a few emails per hour for the whole project, so

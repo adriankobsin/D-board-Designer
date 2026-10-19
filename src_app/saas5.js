@@ -65,7 +65,7 @@ document.addEventListener('click', async ev => {
   else if (a === 'peek'){ const i = sa$('#' + b.dataset.for); const show = i.type === 'password'; i.type = show ? 'text' : 'password'; b.textContent = T(show ? 'Hide' : 'Show'); }
   else if (a === 'legal') saLegal(b.dataset.w);
   else if (a === 'close') saModalClose();
-  else if (a === 'resend'){ const e = b.dataset.e; if (!e) return; const {error} = await SA.sb.auth.resend({type: 'signup', email: e, options: {emailRedirectTo: location.origin + '/'}}); SA.msg = error ? {t: 'bad', m: saErr(error)} : {t: 'ok', m: 'Verification email sent. Check your inbox and spam folder.'}; saRender(); }
+  else if (a === 'resend'){ const e = b.dataset.e; if (!e) return; const {error} = await SA.sb.auth.resend({type: 'signup', email: e, options: {emailRedirectTo: location.origin + '/confirmed'}}); SA.msg = error ? {t: 'bad', m: saErr(error)} : {t: 'ok', m: 'Verification email sent. Check your inbox and spam folder.'}; saRender(); }
   else if (a === 'signedin'){ await SA.sb.auth.signOut().catch(() => {}); SA.user = null; SA.session = null; SA.authMode = 'login'; SA.userSignedOut = true; SA.msg = {t: 'ok', m: 'Once your email is confirmed, sign in below.'}; saGo('auth'); }
   else if (a === 'new') saNewProject();
   else if (a === 'open'){ b.disabled = true; if (!await saOpenProject(id)) b.disabled = false; }

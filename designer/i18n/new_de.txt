@@ -429,3 +429,6 @@
 1144|{1} Link
 1145|{1} Links
 1146|{1} DALI-Produkte von Lunatone, OSRAM und LTECH, sowohl für Hutschiene als auch externe Treiber. Mit Hinzufügen landet die gewählte Menge im Tab <b>DALI</b>, wo Sie die DALI-Linie wählen, an die jedes Gerät angeschlossen wird, und den Netzplan sowie das Modul-Layout sehen. Die Lunatone-Werte wurden von dessen Produktseiten gelesen. Die Seiten von LTECH und OSRAM nannten weder DALI-Strom noch Montageart, daher sind diese als Angenommen gekennzeichnet. Die DALI-Treiber von OSRAM und LTECH sind keine Hutschienengeräte; nur das Bus-Netzteil und das Relais von LTECH sind es. Lunatone hat mehr Varianten als aufgeführt. Bestätigen Sie alles im Datenblatt, bevor Sie bestellen.
+1147|E-Mail bestätigt
+1148|Deine E-Mail-Adresse ist bestätigt und dein Konto ist aktiv. Melde dich an, um mit dem Entwerfen zu beginnen.
+1149|Der Bestätigungslink ist ungültig oder abgelaufen. Melde dich an, dann bieten wir dir einen neuen an.

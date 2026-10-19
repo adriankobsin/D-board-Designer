@@ -120,7 +120,7 @@ suspend other admins or themselves. Every status change is logged in `admin_acti
   changed on another device the user chooses to keep their version or load the saved one.
 - **Local projects are never touched.** While a cloud project is open, edits do not overwrite the browser's local board.
   The dashboard offers "Upload a copy" of the local board; the local copy is kept. "Open local board" works without the cloud.
-- **Exports** (PDF, Excel, CSV, JSON) work for cloud and local boards.
+- **Exports** (PDF, Excel, CSV, JSON) work for cloud and local boards. On the PDF you tick which sections to include (cover page, panel layout, multi-line diagram, DALI network and module layout, circuit schedule, bill of materials). The cover page carries your logo, company name and the company details from Setup.
 - **Account**: edit profile, change password, download all data (JSON), delete account (type your email; removes the auth
   user, profile and projects; the last remaining admin cannot be deleted).
 - **Offline**: the designer shell is cached; cloud projects need a connection to load; edits retry on reconnect while the tab stays open.

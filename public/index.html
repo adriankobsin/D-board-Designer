@@ -288,6 +288,8 @@ input.qty{width:54px;min-height:26px;padding:2px 6px;font-size:12px;text-align:c
 .tltab tr.on td{background:var(--accent-soft)}
 .refdl dd{max-width:80ch;line-height:1.5}
 #refcard{margin-top:16px}
+.pdfsecs{display:flex;flex-direction:column;gap:10px;margin:4px 0 18px}
+.fld textarea{width:100%;font:inherit;resize:vertical;min-height:64px}
 
 /* ---------- accounts, dashboard, admin ---------- */
 html.sa-hold .wrap{visibility:hidden}
@@ -1906,6 +1908,7 @@ function renderSetup(){
   return `<div class="card"><h2>Company and supply</h2>
   <div class="form" style="margin-top:14px">
     ${fld('Company name', `<input type="text" data-k="s" data-f="company" value="${esc(S.company || '')}" placeholder="Shown beside the logo and on exports">`)}
+    ${fld('Company details', `<textarea data-k="s" data-f="companyInfo" rows="3" maxlength="300" placeholder="Address, phone, email, website. Shown on the PDF cover page.">${esc(S.companyInfo || '')}</textarea>`)}
     <div class="fld"><span>Company logo</span><div class="row">${S.logo ? `<img class="logoprev" src="${S.logo}" alt="Company logo preview">` : ''}<label class="btn" for="logofile" style="cursor:pointer">${S.logo ? 'Replace logo…' : 'Upload logo…'}</label><input type="file" id="logofile" accept="image/png,image/jpeg,image/svg+xml,image/webp" hidden>${S.logo ? '<button class="btn" data-a="nologo">Remove</button>' : ''}</div><small>Shown at the top of the page, in the diagram and in the PDF. The Excel export carries the company name only.</small></div>
     <div class="fld"><span>Supply type</span><div class="segs" role="group" aria-label="Supply type">${seg(1, 'Single phase')}${seg(3, 'Three phase')}${seg('lv', 'Low voltage AC / DC')}</div><small>${lvm ? '12, 24 or 48 V DC and 24 V AC, as used on yachts and boats.' : 'Switching adjusts the circuits to suit.'}</small></div>
     ${fld('Supply voltage', `<select id="sys2">${sysList.map(x => `<option value="${x.id}" ${S.sysId === x.id ? 'selected' : ''}>${x.label}</option>`).join('')}</select>`)}
@@ -2556,20 +2559,44 @@ function pdfDiagram(doc, logo, PW, ML){
     if (pg === pages.length - 1){ const ft = three ? ['L1', 'L2', 'L3'].map(p => `${p} ${fmt(R.ph[p], 1)} A / ${fmt(R.power.phW[p] / 1000, 2)} kW`).join('   ') : `L1 ${fmt(R.ph.L1, 1)} A / ${fmt(R.power.phW.L1 / 1000, 2)} kW`; txt(`${PT('Phase loading after diversity')} ${S.diversity}:  ${ft}`, ML, Math.min(yEnd + 9, 202), 7, true); }
   });
 }
-let pdfBom = false;
-try { pdfBom = localStorage.getItem('dbd_pdfbom') === '1'; } catch (e) {}
-document.addEventListener('change', e => { if (e.target && e.target.id === 'pdfBom'){ pdfBom = e.target.checked; try { localStorage.setItem('dbd_pdfbom', pdfBom ? '1' : '0'); } catch (x) {} } });
+const PDF_SECS = [['cover', 'Cover page with company details', 1], ['panel', 'Panel layout', 1], ['diagram', 'Multi-line diagram', 1], ['dali', 'DALI network and module layout', 1], ['sched', 'Circuit schedule', 1], ['bom', 'Bill of materials', 0]];
+let pdfOpt = {};
+PDF_SECS.forEach(x => { pdfOpt[x[0]] = !!x[2]; });
+try { const sv = JSON.parse(localStorage.getItem('dbd_pdfsecs') || 'null'); if (sv) PDF_SECS.forEach(x => { if (typeof sv[x[0]] === 'boolean') pdfOpt[x[0]] = sv[x[0]]; }); } catch (e) {}
+document.addEventListener('change', e => { const t = e.target; if (t && t.dataset && t.dataset.pdfsec){ pdfOpt[t.dataset.pdfsec] = t.checked; try { localStorage.setItem('dbd_pdfsecs', JSON.stringify(pdfOpt)); } catch (x) {} } });
 function exportPDF(){
   if (!window.jspdf){ toast('PDF library did not load.'); return; }
   const doc = new window.jspdf.jsPDF({orientation: 'landscape', unit: 'mm', format: 'a4'});
   const PW = 297, ML = 12;
   const logo = () => { if (S.logo && S.logoW){ const h = 11, w = Math.min(50, h * S.logoW / S.logoH); try { doc.addImage(S.logo, 'PNG', PW - ML - w, 6, w, w * S.logoH / S.logoW); } catch (e) {} } };
-  logo();
-  doc.setFont('helvetica', 'bold'); doc.setFontSize(16); doc.text(S.name, ML, 14);
-  if (S.company){ doc.setFontSize(9); doc.setFont('helvetica', 'normal'); doc.text(S.company, ML, 18.5); }
-  doc.setFont('helvetica', 'normal'); doc.setFontSize(8.5); doc.setTextColor(70);
-  doc.text(`${STD[S.std].n} · ${(SYSTEMS.find(s => s.id === S.sysId) || {}).label || ''} · Ik ${S.ik} kA · incomer ${R.inc.In || '-'} A · max phase ${fmt(R.inc.Imax, 1)} A · enclosure approx ${B.widthMm} x ${B.heightMm} mm`, ML, S.company ? 23 : 20);
-  doc.text(PT(`Connected ${fmt(R.power.conn / 1000, 2)} kW · demand ${fmt(R.power.dem / 1000, 2)} kW · ${fmt(R.power.kva / 1000, 2)} kVA · PF ${fmt(R.power.pf, 2)}`), ML, S.company ? 27.5 : 24.5);
+  const sysLabel = (SYSTEMS.find(s => s.id === S.sysId) || {}).label || '';
+  const summary1 = `${STD[S.std].n} · ${sysLabel} · Ik ${S.ik} kA · incomer ${R.inc.In || '-'} A · max phase ${fmt(R.inc.Imax, 1)} A · enclosure approx ${B.widthMm} x ${B.heightMm} mm`;
+  const summary2 = PT(`Connected ${fmt(R.power.conn / 1000, 2)} kW · demand ${fmt(R.power.dem / 1000, 2)} kW · ${fmt(R.power.kva / 1000, 2)} kVA · PF ${fmt(R.power.pf, 2)}`);
+  const a8 = t => String(t == null ? '' : t).replace(/[^\x20-\x7e\u00a0-\u00ff\n]/g, '');
+  const want = k => !!pdfOpt[k];
+  let firstPage = true, dropFirst = false;
+  if (!PDF_SECS.some(x => want(x[0]))){ toast('Tick at least one section for the PDF.'); return; }
+  const newPage = () => { if (firstPage) firstPage = false; else doc.addPage(); };
+  const pageHead = (title) => { logo(); doc.setFont('helvetica', 'bold'); doc.setFontSize(13); doc.setTextColor(40); doc.text(a8(S.name), ML, 14); doc.setFont('helvetica', 'normal'); doc.setFontSize(9); doc.setTextColor(90); doc.text(a8(S.company ? S.company + ' · ' + title : title), ML, 19); doc.setTextColor(0); };
+  if (want('cover')){
+    newPage();
+    const LH = 24;
+    if (S.logo && S.logoW){ const w = Math.min(70, LH * S.logoW / S.logoH), h = w * S.logoH / S.logoW; try { doc.addImage(S.logo, 'PNG', ML, 16, w, h); } catch (e) {} }
+    let y = 56;
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(26); doc.setTextColor(20); doc.text(doc.splitTextToSize(a8(S.name), PW - 2 * ML).slice(0, 2), ML, y); y += 12 * Math.min(2, doc.splitTextToSize(a8(S.name), PW - 2 * ML).length);
+    doc.setFontSize(11); doc.setFont('helvetica', 'normal'); doc.setTextColor(90); doc.text(PT('Distribution board design'), ML, y); y += 12;
+    doc.setDrawColor(11, 107, 142); doc.setLineWidth(0.8); doc.line(ML, y, ML + 40, y); y += 9;
+    if (S.company){ doc.setFont('helvetica', 'bold'); doc.setFontSize(13); doc.setTextColor(30); doc.text(a8(S.company), ML, y); y += 6.5; }
+    if (S.companyInfo){ doc.setFont('helvetica', 'normal'); doc.setFontSize(10); doc.setTextColor(70); a8(S.companyInfo).split('\n').forEach(l => doc.splitTextToSize(l, 120).forEach(w => { doc.text(w, ML, y); y += 5; })); }
+    y = Math.max(y + 8, 112);
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(10); doc.setTextColor(40); doc.text(PT('Project summary'), ML, y); y += 6;
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(9); doc.setTextColor(70); doc.text(doc.splitTextToSize(a8(summary1), PW - 2 * ML), ML, y); y += 5.5 * doc.splitTextToSize(a8(summary1), PW - 2 * ML).length; doc.text(a8(summary2), ML, y); y += 10;
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(10); doc.setTextColor(40); doc.text(PT('Contents'), ML, y); y += 6;
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(9); doc.setTextColor(70);
+    PDF_SECS.filter(x => x[0] !== 'cover' && want(x[0])).forEach(x => { doc.text(PT(x[1]), ML, y); y += 5; });
+    doc.setFontSize(8); doc.setTextColor(110); doc.text(PT('Design aid. Verify ratings against the standard edition, manufacturer datasheets and a qualified engineer before building.'), ML, 200);
+    doc.setTextColor(0);
+  }
   const RPP = 3;
   const u = Math.min(8.5, (PW - 2 * ML - 24) / B.cols), dh = Math.min(u * 3.2, 21), rp = Math.min(dh + 42, 52), x0 = ML + 14, y0 = 35;
   const panelPage = (r0, r1) => {
@@ -2627,12 +2654,15 @@ function exportPDF(){
   });
   doc.setTextColor(0);
   };
-  for (let r0 = 0; r0 < B.rows; r0 += RPP){ if (r0){ doc.addPage(); logo(); } panelPage(r0, Math.min(B.rows, r0 + RPP)); }
-  pdfDiagram(doc, logo, PW, ML); doc.setTextColor(0);
-  try { dPdf(doc, logo, PW, ML); } catch (e) { console.warn('DALI pages skipped', e); }
-  doc.addPage(); logo(); doc.setFont('helvetica', 'bold'); doc.setFontSize(13); doc.text(PT('Circuit schedule'), ML, 14);
+  if (want('panel')) for (let r0 = 0; r0 < B.rows; r0 += RPP){ newPage(); pageHead(PT('Panel layout')); panelPage(r0, Math.min(B.rows, r0 + RPP)); }
+  if (want('diagram')){ if (firstPage){ dropFirst = true; firstPage = false; } pdfDiagram(doc, logo, PW, ML); doc.setTextColor(0); firstPage = false; }
+  if (want('dali')){ if (firstPage && dS().units.length){ dropFirst = true; firstPage = false; } try { dPdf(doc, logo, PW, ML); firstPage = false; } catch (e) { console.warn('DALI pages skipped', e); } }
+  if (want('sched') || want('bom')){ newPage(); logo(); }
+  if (want('sched')){ doc.setFont('helvetica', 'bold'); doc.setFontSize(13); doc.text(PT('Circuit schedule'), ML, 14); }
+  let y = 22;
+  if (want('sched')){
   const cols = [['Ref', 12], ['Description', 48], ['Fed from', 22], ['Ph', 12], ['Load W', 16], ['Ib A', 13], ['Protection', 26], ['Cable', 38], ['Len m', 12], ['Iz A', 12], ['VD %', 13], ['Status', 14]];
-  const rows = schedRows(); let y = 22;
+  const rows = schedRows(); 
   const head = () => { doc.setFontSize(7.5); doc.setFont('helvetica', 'bold'); doc.setFillColor(230, 234, 238); doc.rect(ML, y - 4, PW - 2 * ML, 6, 'F'); let x = ML + 1; cols.forEach(c => { doc.text(String(PT(c[0])).slice(0, Math.max(3, Math.floor(c[1] / 1.45))), x, y); x += c[1]; }); y += 6; doc.setFont('helvetica', 'normal'); };
   head();
   rows.forEach(r => {
@@ -2640,15 +2670,17 @@ function exportPDF(){
     const v = [r[0], r[1], r[3], r[4], r[5], r[8], r[9], r[11], r[12], r[13], r[14], r[15]]; let x = ML + 1;
     v.forEach((t, i) => { doc.text(String(t).slice(0, Math.floor(cols[i][1] / 1.7)), x, y); x += cols[i][1]; }); y += 5.2;
   });
-  if (pdfBom){ y += 8; if (y > 180){ doc.addPage(); y = 16; }
+  }
+  if (want('bom')){ if (want('sched')){ y += 8; if (y > 180){ doc.addPage(); logo(); y = 16; } } else y = 14;
   doc.setFont('helvetica', 'bold'); doc.setFontSize(13); doc.text(PT('Bill of materials'), ML, y); y += 7; doc.setFontSize(8); doc.setFont('helvetica', 'normal');
   bomRows().forEach(b => { if (y > 196){ doc.addPage(); y = 16; } doc.text(String(b[1]) + ' x', ML, y); doc.text(b[0], ML + 14, y); y += 5; }); }
-  y += 4; doc.setFontSize(7); doc.setTextColor(110); doc.text(PT('Design aid. Verify ratings against the standard edition, manufacturer datasheets and a qualified engineer before building.'), ML, Math.min(y, 200));
+  if (want('sched') || want('bom')){ y += 4; doc.setFontSize(7); doc.setTextColor(110); doc.text(PT('Design aid. Verify ratings against the standard edition, manufacturer datasheets and a qualified engineer before building.'), ML, Math.min(y, 200)); }
+  if (dropFirst && doc.getNumberOfPages() > 1) doc.deletePage(1);
   dl(slug() + '.pdf', doc.output('arraybuffer'));
 }
 function renderExport(){
   return `<div class="exp">
-   <div class="card"><h3>PDF drawing and schedule</h3><p class="muted">Panel layout drawing with circuit names, multi-line diagram, circuit schedule and power totals on A4 landscape, with your logo on each page.</p><label class="chk"><input type="checkbox" id="pdfBom" ${pdfBom ? 'checked' : ''}> Include bill of materials</label><button class="btn pri" data-a="pdf">Save PDF</button></div>
+   <div class="card"><h3>PDF drawing and schedule</h3><p class="muted">Choose what goes in the PDF. A4 landscape, with your logo on each page.</p><div class="pdfsecs">${PDF_SECS.map(x => `<label class="chk"><input type="checkbox" data-pdfsec="${x[0]}" ${pdfOpt[x[0]] ? 'checked' : ''}> ${x[1]}</label>`).join('')}</div><button class="btn pri" data-a="pdf">Save PDF</button></div>
    <div class="card"><h3>Excel workbook</h3><p class="muted">Schedule, Lutron modules, bill of materials, phase balance, power and project sheets. Holds the company name; Excel files from this tool cannot embed the logo image.</p><button class="btn pri" data-a="xlsx">Save Excel</button></div>
    <div class="card"><h3>CSV schedule</h3><p class="muted">Plain circuit schedule for import into other tools.</p><button class="btn" data-a="csv">Save CSV</button></div>
    <div class="card"><h3>Project file</h3><p class="muted">Save the whole design as JSON, or open one you saved earlier.</p><div class="row"><button class="btn" data-a="json">Save project</button><label class="btn" for="openfile" style="cursor:pointer">Open project…</label><input type="file" id="openfile" accept=".json,application/json" hidden></div></div></div>

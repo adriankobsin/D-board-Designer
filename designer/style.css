@@ -271,3 +271,5 @@ input.qty{width:54px;min-height:26px;padding:2px 6px;font-size:12px;text-align:c
 .tltab tr.on td{background:var(--accent-soft)}
 .refdl dd{max-width:80ch;line-height:1.5}
 #refcard{margin-top:16px}
+.pdfsecs{display:flex;flex-direction:column;gap:10px;margin:4px 0 18px}
+.fld textarea{width:100%;font:inherit;resize:vertical;min-height:64px}

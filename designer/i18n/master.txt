@@ -1108,7 +1108,7 @@
 1108|Optional. Earth-fault loop impedance at the origin of the board, from the supplier or a test. Used to check that each MCB disconnects a fault in time.
 1109|Protection rules
 1110|Each breaker is sized from the design current (125 % of continuous loads under NEC), derated for the enclosure temperature, then rounded up to the next standard rating of the chosen standard. The RCD sensitivity (30 mA, or GFCI 4–6 mA under NEC and ABYC), the number of poles (2-pole for 240 V loads) and the device standard (IEC or UL) follow the standard and the supply voltage. With IEC, BS 7671 and AS/NZS, enter Ze in Setup to check the earth-fault loop of each MCB circuit.
-1111|Open Community from the Dashboard. Members lists everyone registered: search, then message a member, share a project or send a file, or tick several to start a group. In a chat, attach files up to 25 MB or share a saved board. The bell in the header shows invitations, replies and shared projects.
+1111|Open Community from the Dashboard. Members lists everyone registered: search, then message a member, share a project or send a file, or tick several to start a group. In a chat, attach files up to 25 MB, share a saved board, or start an audio or video call with the buttons at the top; everyone in the chat is rung and can join, and screens can be shared from a computer. The bell in the header shows invitations, replies and shared projects.
 1112|Checks cover design current against breaker and cable rating (with enclosure temperature and the NEC continuous-load rule), voltage drop, RCD expectation, breaking capacity, device rating against the standard and supply voltage, earth-fault loop impedance when Ze is entered, Lutron input, zone and temperature limits. Discrimination and selectivity are not calculated here.
 1113|Company details
 1114|Cover page with company details
@@ -1229,3 +1229,15 @@
 1229|That message no longer exists.
 1230|You cannot report your own message.
 1231|The report could not be sent. Try again.
+1232|You are already in a call.
+1233|Call
+1234|Close the call window
+1235|You
+1236|Started by
+1237|Join
+1238|Incoming call
+1239|Audio call
+1240|Video call
+1241|Calls are not set up yet. The site owner needs to add the RealtimeKit settings to the Worker.
+1242|You can no longer call in this chat.
+1243|Chat not found.

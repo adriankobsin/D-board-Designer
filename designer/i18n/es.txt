@@ -1108,7 +1108,7 @@
 1108|Opcional. Impedancia del bucle de defecto a tierra en el origen del cuadro, del suministrador o de una medición. Se usa para comprobar que cada magnetotérmico desconecta un defecto a tiempo.
 1109|Reglas de protección
 1110|Cada interruptor se dimensiona a partir de la corriente de diseño (125 % de las cargas continuas según NEC), se reduce según la temperatura de la envolvente y se redondea al siguiente valor normalizado de la norma elegida. La sensibilidad del diferencial (30 mA, o GFCI 4–6 mA según NEC y ABYC), el número de polos (2 polos para cargas de 240 V) y la norma del dispositivo (IEC o UL) siguen la norma y la tensión de alimentación. Con IEC, BS 7671 y AS/NZS, introduzca Ze en Configuración para comprobar el bucle de defecto a tierra de cada circuito con magnetotérmico.
-1111|Abra la Comunidad desde el panel. Miembros muestra a todos los registrados: busque y luego escriba a un miembro, comparta un proyecto o envíe un archivo, o marque varios para iniciar un grupo. En un chat, adjunte archivos de hasta 25 MB o comparta un cuadro guardado. La campana del encabezado muestra invitaciones, respuestas y proyectos compartidos.
+1111|Abra la Comunidad desde el panel. Miembros muestra a todos los registrados: busque y luego escriba a un miembro, comparta un proyecto o envíe un archivo, o marque varios para iniciar un grupo. En un chat, adjunte archivos de hasta 25 MB, comparta un cuadro guardado o inicie una llamada de voz o video con los botones de arriba; todos en el chat reciben la llamada y pueden unirse, y desde un ordenador se puede compartir la pantalla. La campana del encabezado muestra invitaciones, respuestas y proyectos compartidos.
 1112|Las comprobaciones cubren la corriente de diseño frente a la corriente del interruptor y del cable (con la temperatura de la envolvente y la regla NEC de cargas continuas), la caída de tensión, la exigencia de diferencial, el poder de corte, la corriente del dispositivo frente a la norma y la tensión de alimentación, la impedancia del bucle de defecto cuando se introduce Ze, la entrada Lutron y los límites de zonas y temperatura. La discriminación y la selectividad no se calculan aquí.
 1113|Datos de la empresa
 1114|Portada con los datos de la empresa
@@ -1229,3 +1229,15 @@
 1229|Ese mensaje ya no existe.
 1230|No puede denunciar su propio mensaje.
 1231|No se pudo enviar la denuncia. Inténtelo de nuevo.
+1232|Ya está en una llamada.
+1233|Llamada
+1234|Cerrar la ventana de llamada
+1235|Usted
+1236|Iniciada por
+1237|Unirse
+1238|Llamada entrante
+1239|Llamada de voz
+1240|Videollamada
+1241|Las llamadas aún no están configuradas. El propietario del sitio debe añadir la configuración de RealtimeKit al Worker.
+1242|Ya no puede llamar en este chat.
+1243|Chat no encontrado.

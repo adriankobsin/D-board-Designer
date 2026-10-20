@@ -39,6 +39,28 @@ export async function sendMail(env, to, subject, lines, link, cta) {
   } catch { return false; }
 }
 
+/* Calls run on Cloudflare RealtimeKit. Needs Worker secrets CF_ACCOUNT_ID, RTK_APP_ID and CF_REALTIME_TOKEN
+   (an API token with Realtime Admin). Optional: RTK_PRESET, the preset to join with (default: the app's group-call host preset). */
+let rtkPreset = null;
+async function rtkApi(env, path, init = {}) {
+  const base = (env.RTK_API_URL || 'https://api.cloudflare.com/client/v4').replace(/\/$/, '');
+  const r = await fetch(`${base}/accounts/${env.CF_ACCOUNT_ID}/realtime/kit/${env.RTK_APP_ID}${path}`, {
+    ...init, headers: { Authorization: `Bearer ${env.CF_REALTIME_TOKEN}`, 'Content-Type': 'application/json', ...(init.headers || {}) },
+  });
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok || j.success === false) { const e = new Error('rtk'); e.status = r.status; e.detail = JSON.stringify(j.errors || j).slice(0, 300); throw e; }
+  return j;
+}
+async function rtkPresetName(env) {
+  if (env.RTK_PRESET) return env.RTK_PRESET;
+  if (rtkPreset) return rtkPreset;
+  const j = await rtkApi(env, '/presets');
+  const names = (j.data || []).map(p => p.name).filter(Boolean);
+  rtkPreset = names.find(n => /group.?call.?host/i.test(n)) || names.find(n => /group.?call/i.test(n)) || names.find(n => /host/i.test(n)) || names[0] || null;
+  if (!rtkPreset) throw Object.assign(new Error('rtk'), { status: 500, detail: 'no presets in the RealtimeKit app' });
+  return rtkPreset;
+}
+
 export async function community(request, env, url, h) {
   const { sr, authUser, profileOf, json, fail, UUID } = h;
   const path = url.pathname, method = request.method;
@@ -263,6 +285,55 @@ export async function community(request, env, url, h) {
       if (ok) res.emailed++;
     }
     return json({ ok: true, ...res });
+  }
+
+  /* ----- calls: join (or start and ring) the call room of a chat ----- */
+  if (path === '/api/community/call') {
+    if (!env.CF_ACCOUNT_ID || !env.RTK_APP_ID || !env.CF_REALTIME_TOKEN) return fail(503, 'Calls are not set up yet. The site owner needs to add the RealtimeKit settings to the Worker.');
+    const cid = String(body.chat_id || '').toLowerCase();
+    if (!UUID.test(cid)) return fail(400, 'Invalid chat.');
+    const mr = await sr(env, `/rest/v1/chat_members?chat_id=eq.${cid}&user_id=eq.${user.id}&status=eq.joined&select=user_id`);
+    if (!mr.ok || !(await mr.json()).length) return fail(403, 'You are not in this chat.');
+    const cr = await sr(env, `/rest/v1/chats?id=eq.${cid}&select=id,kind,title,rtk_meeting_id`);
+    const chat = cr.ok ? (await cr.json())[0] : null;
+    if (!chat) return fail(404, 'Chat not found.');
+    if (chat.kind === 'direct') {
+      const bl = await sr(env, '/rest/v1/rpc/chat_blocked', { method: 'POST', body: JSON.stringify({ cid }) });
+      if (bl.ok && (await bl.json()) === true) return fail(403, 'You can no longer call in this chat.');
+    }
+    try {
+      let meetingId = chat.rtk_meeting_id;
+      if (!meetingId) {
+        const m = await rtkApi(env, '/meetings', { method: 'POST', body: JSON.stringify({ title: (chat.kind === 'group' && chat.title) || 'DBoard Designer call', persist_chat: false }) });
+        meetingId = m.data && m.data.id;
+        if (!meetingId) throw Object.assign(new Error('rtk'), { status: 502, detail: 'no meeting id' });
+        // Keep the first room if two people start a call at the same moment.
+        await sr(env, `/rest/v1/chats?id=eq.${cid}&rtk_meeting_id=is.null`, { method: 'PATCH', body: JSON.stringify({ rtk_meeting_id: meetingId }) });
+        const again = await sr(env, `/rest/v1/chats?id=eq.${cid}&select=rtk_meeting_id`);
+        meetingId = (again.ok && (await again.json())[0] || {}).rtk_meeting_id || meetingId;
+      }
+      // Join tokens last 100 days; reuse one for 90 days, then issue a new one.
+      const tr = await sr(env, `/rest/v1/chat_call_tokens?chat_id=eq.${cid}&user_id=eq.${user.id}&select=token,created_at`);
+      const old = tr.ok ? (await tr.json())[0] : null;
+      let token = old && Date.now() - new Date(old.created_at).getTime() < 90 * 86400000 ? old.token : null;
+      if (!token) {
+        const p = await rtkApi(env, `/meetings/${meetingId}/participants`, { method: 'POST', body: JSON.stringify({ custom_participant_id: user.id, preset_name: await rtkPresetName(env), name: myName }) });
+        token = p.data && p.data.token;
+        if (!token) throw Object.assign(new Error('rtk'), { status: 502, detail: 'no token' });
+        await sr(env, '/rest/v1/chat_call_tokens?on_conflict=chat_id,user_id', { method: 'POST', headers: { Prefer: 'resolution=merge-duplicates' },
+          body: JSON.stringify({ chat_id: cid, user_id: user.id, participant_id: String(p.data.id || ''), token, created_at: new Date().toISOString() }) });
+      }
+      let message = null;
+      if (body.ring) {
+        const msg = await sr(env, '/rest/v1/chat_messages', { method: 'POST', headers: { Prefer: 'return=representation' },
+          body: JSON.stringify({ chat_id: cid, sender_id: user.id, body: '', call: { video: !!body.video } }) });
+        if (msg.ok) message = (await msg.json())[0];
+      }
+      return json({ ok: true, token, video: !!body.video, message });
+    } catch (e) {
+      if (e && e.message === 'rtk') return fail(502, `The call service did not accept the request (${e.status || 'error'}). Check the RealtimeKit settings on the Worker.`);
+      throw e;
+    }
   }
 
   /* ----- report a message or a member to the administrators ----- */

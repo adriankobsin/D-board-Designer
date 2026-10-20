@@ -43,6 +43,7 @@ IMPORT
 
 WORK TOGETHER
 • Find other members, chat privately or in groups
+• Audio and video calls with everyone in a chat, with screen sharing from a computer
 • Share boards so colleagues can open their own copy
 • Send photos and files up to 25 MB in a chat
 • Report or block anyone who misuses the community
@@ -92,6 +93,8 @@ Is all data encrypted in transit? **Yes.** Can users request deletion? **Yes** (
 | Files and docs | Yes | Optional | App functionality |
 | App activity: App interactions | Yes | Required | Analytics (own use only), App functionality |
 | App activity: Other user-generated content (projects, reports) | Yes | Required | App functionality, Fraud prevention, security and compliance |
+
+Calls: audio, video and screen sharing are transmitted live and not stored, so Google treats them as processed ephemerally (not collected); the name and member ID passed to the call service are already covered above.
 
 Not collected: location, financial info, health, contacts, calendar, audio, web browsing, device IDs, advertising IDs.
 

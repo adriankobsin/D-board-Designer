@@ -93,6 +93,6 @@ with sync_playwright() as p:
     n=sum(1 for e in jget(MOCK+'/__test/state')['usage'] if e['event']=='import_analyzed')
     for _ in range(max(0,4-n)): http('POST',BASE+'/api/import/analyze',{'files':[{'mime':'image/jpeg','data':'QUJD'}]},H)
     code,j=http('POST',BASE+'/api/import/analyze',{'files':[{'mime':'image/jpeg','data':'QUJD'}]},H); ok('daily limit enforced (429)',code==429,(code,j))
-    ok('no JS errors', not [e for e in errs if 'Failed to load resource' not in e], errs[:4])
+    ok('no JS errors', not [e for e in errs if 'Failed to load resource' not in e and 'realtime/v1/websocket' not in e], errs[:4])
     b.close()
 bad=sum(1 for r in res if not r); print(len(res)-bad,'passed',bad,'failed'); sys.exit(1 if bad else 0)

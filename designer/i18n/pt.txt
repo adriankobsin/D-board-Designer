@@ -1108,7 +1108,7 @@
 1108|Opcional. Impedância do ciclo de defeito à terra na origem do quadro, do fornecedor ou de uma medição. Usada para verificar que cada disjuntor corta uma falha a tempo.
 1109|Regras de proteção
 1110|Cada disjuntor é dimensionado a partir da corrente de projeto (125 % das cargas contínuas segundo a NEC), reduzido pela temperatura do invólucro e depois arredondado para o valor normalizado seguinte da norma escolhida. A sensibilidade do diferencial (30 mA, ou GFCI 4–6 mA segundo a NEC e a ABYC), o número de polos (2 polos para cargas de 240 V) e a norma do dispositivo (IEC ou UL) seguem a norma e a tensão de alimentação. Com IEC, BS 7671 e AS/NZS, introduza Ze em Configuração para verificar o ciclo de defeito à terra de cada circuito com disjuntor.
-1111|Abra a Comunidade a partir do painel. Membros mostra todos os registados: pesquise e depois envie uma mensagem a um membro, partilhe um projeto ou envie um ficheiro, ou assinale vários para iniciar um grupo. Num chat, anexe ficheiros até 25 MB ou partilhe um quadro guardado. O sino no cabeçalho mostra convites, respostas e projetos partilhados.
+1111|Abra a Comunidade a partir do painel. Membros mostra todos os registados: pesquise e depois envie uma mensagem a um membro, partilhe um projeto ou envie um ficheiro, ou assinale vários para iniciar um grupo. Num chat, anexe ficheiros até 25 MB, partilhe um quadro guardado ou inicie uma chamada de voz ou vídeo com os botões no topo; todos no chat recebem a chamada e podem entrar, e num computador é possível partilhar o ecrã. O sino no cabeçalho mostra convites, respostas e projetos partilhados.
 1112|As verificações cobrem a corrente de projeto face à corrente do disjuntor e do cabo (com a temperatura do invólucro e a regra NEC das cargas contínuas), a queda de tensão, a exigência de diferencial, o poder de corte, a corrente do dispositivo face à norma e à tensão de alimentação, a impedância do ciclo de defeito quando se introduz Ze, a entrada Lutron e os limites de zonas e temperatura. A discriminação e a seletividade não são calculadas aqui.
 1113|Dados da empresa
 1114|Capa com os dados da empresa
@@ -1229,3 +1229,15 @@
 1229|Essa mensagem já não existe.
 1230|Não pode denunciar a sua própria mensagem.
 1231|Não foi possível enviar a denúncia. Tente novamente.
+1232|Já está numa chamada.
+1233|Chamada
+1234|Fechar a janela da chamada
+1235|Você
+1236|Iniciada por
+1237|Entrar
+1238|Chamada recebida
+1239|Chamada de voz
+1240|Videochamada
+1241|As chamadas ainda não estão configuradas. O proprietário do site tem de adicionar as definições do RealtimeKit ao Worker.
+1242|Já não pode fazer chamadas neste chat.
+1243|Chat não encontrado.

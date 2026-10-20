@@ -1108,7 +1108,7 @@
 1108|Facultatif. Impédance de boucle de défaut à l’origine du tableau, fournie par le distributeur ou mesurée. Sert à vérifier que chaque disjoncteur coupe un défaut à temps.
 1109|Règles de protection
 1110|Chaque disjoncteur est dimensionné à partir du courant d’emploi (125 % des charges continues selon NEC), déclassé selon la température de l’enveloppe, puis arrondi au calibre normalisé supérieur de la norme choisie. La sensibilité du différentiel (30 mA, ou GFCI 4–6 mA selon NEC et ABYC), le nombre de pôles (2 pôles pour les charges 240 V) et la norme de l’appareil (IEC ou UL) suivent la norme et la tension d’alimentation. Avec IEC, BS 7671 et AS/NZS, saisissez Ze dans Réglages pour vérifier la boucle de défaut de chaque circuit à disjoncteur.
-1111|Ouvrez la Communauté depuis le tableau de bord. L’onglet Membres liste toutes les personnes inscrites : recherchez, puis écrivez à un membre, partagez un projet ou envoyez un fichier, ou cochez-en plusieurs pour créer un groupe. Dans une discussion, joignez des fichiers jusqu’à 25 Mo ou partagez un tableau enregistré. La cloche de l’en-tête affiche les invitations, les réponses et les projets partagés.
+1111|Ouvrez la Communauté depuis le tableau de bord. L’onglet Membres liste toutes les personnes inscrites : recherchez, puis écrivez à un membre, partagez un projet ou envoyez un fichier, ou cochez-en plusieurs pour créer un groupe. Dans une discussion, joignez des fichiers jusqu’à 25 Mo, partagez un tableau enregistré ou lancez un appel audio ou vidéo avec les boutons en haut ; tous les participants sont appelés et peuvent rejoindre, et l’écran peut être partagé depuis un ordinateur. La cloche de l’en-tête affiche les invitations, les réponses et les projets partagés.
 1112|Les contrôles couvrent le courant d’emploi par rapport au calibre du disjoncteur et du câble (avec la température de l’enveloppe et la règle NEC des charges continues), la chute de tension, l’exigence de différentiel, le pouvoir de coupure, le calibre de l’appareil par rapport à la norme et à la tension d’alimentation, l’impédance de boucle de défaut lorsque Ze est saisi, l’entrée Lutron, les limites de zones et de température. La discrimination et la sélectivité ne sont pas calculées ici.
 1113|Coordonnées de l’entreprise
 1114|Page de couverture avec les coordonnées de l’entreprise
@@ -1229,3 +1229,15 @@
 1229|Ce message n’existe plus.
 1230|Vous ne pouvez pas signaler votre propre message.
 1231|Le signalement n’a pas pu être envoyé. Réessayez.
+1232|Vous êtes déjà en appel.
+1233|Appel
+1234|Fermer la fenêtre d’appel
+1235|Vous
+1236|Lancé par
+1237|Rejoindre
+1238|Appel entrant
+1239|Appel audio
+1240|Appel vidéo
+1241|Les appels ne sont pas encore configurés. Le propriétaire du site doit ajouter les paramètres RealtimeKit au Worker.
+1242|Vous ne pouvez plus appeler dans cette discussion.
+1243|Discussion introuvable.

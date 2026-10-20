@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="referrer" content="no-referrer">
+<title>Call · DBoard Designer</title>
+<style>
+html,body{margin:0;height:100%;background:#0f1a22;color:#e8edf1;font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+rtk-meeting{display:block;height:100%;width:100%}
+#msg{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:24px;text-align:center}
+#msg button{font:inherit;padding:10px 18px;border-radius:6px;border:1px solid #3a4a56;background:#18242d;color:inherit;cursor:pointer}
+.spin{width:34px;height:34px;border:3px solid #2a3a46;border-top-color:#5db3d3;border-radius:50%;animation:r 1s linear infinite}@keyframes r{to{transform:rotate(360deg)}}
+</style>
+</head><body>
+<div id="msg"><div class="spin" aria-hidden="true"></div><div id="msgt">Connecting…</div></div>
+<rtk-meeting id="meeting" show-setup-screen="true" hidden></rtk-meeting>
+<script src="vendor/rtk/realtimekit.js"></script>
+<script src="vendor/rtk/realtimekit-ui.js"></script>
+<script>
+/* Call screen for DBoard Designer (Cloudflare RealtimeKit). Opened by the app inside a full-screen frame as
+   call.html#t=<join token>&v=<1 for camera on>. The token is in the # part so it is never sent to any server log. */
+(function(){
+  const done = reason => { try { (window.parent !== window ? window.parent : window.opener || window).postMessage({type: 'dbd-call-ended', reason}, location.origin); } catch (e) {} };
+  const show = (text, retry) => {
+    const m = document.getElementById('msg'); m.hidden = false; document.getElementById('meeting').hidden = true;
+    m.innerHTML = ''; const t = document.createElement('div'); t.textContent = text; m.appendChild(t);
+    const b = document.createElement('button'); b.textContent = retry ? 'Close' : 'Back'; b.onclick = () => done('closed'); m.appendChild(b);
+  };
+  const p = new URLSearchParams(location.hash.slice(1)), token = p.get('t'), video = p.get('v') === '1';
+  history.replaceState(null, '', location.pathname);   // do not keep the token in the address bar or history
+  if (!token){ show('This call link is incomplete.'); return; }
+  if (typeof RealtimeKitClient === 'undefined' || typeof RtkUiKit === 'undefined'){ show('The call component did not load. Check your connection and try again.', true); return; }
+  try { RtkUiKit.defineCustomElements(); } catch (e) {}
+  RealtimeKitClient.init({authToken: token, defaults: {audio: true, video}}).then(meeting => {
+    const el = document.getElementById('meeting');
+    document.getElementById('msg').hidden = true; el.hidden = false; el.meeting = meeting;
+    try { meeting.self.on('roomLeft', () => done('left')); } catch (e) {}
+    window.addEventListener('message', ev => { if (ev.origin === location.origin && ev.data && ev.data.type === 'dbd-call-leave'){ try { meeting.leaveRoom(); } catch (e) { done('left'); } } });
+  }).catch(err => { console.error(err); show('The call could not start. ' + ((err && err.message) || '')); });
+})();
+</script>
+</body></html>

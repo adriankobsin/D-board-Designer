@@ -573,6 +573,7 @@ async function saSignOut(){
 SA.com = {chats: [], shares: [], tab: 'chats', active: null, msgs: [], names: {}, err: null, loaded: false, poll: null, tpoll: null, lastId: 0, sending: false,
   dir: {q: '', rows: [], total: 0, loading: false, err: null, seq: 0}, sel: new Map(), who: {}, urls: {}, uploads: []};
 const SA_FILE_MAX = 25 * 1024 * 1024;
+const SA_MSG_COLS = ['id,sender_id,body,created_at,attachment,project_id,project_name,call', 'id,sender_id,body,created_at,attachment,project_id,project_name', 'id,sender_id,body,created_at'];
 SA.notif = {list: [], err: null, open: false};
 
 const saComOn = () => !!(SA.cfg && SA.cfg.communityEnabled !== false);
@@ -606,7 +607,7 @@ async function saComLoad(){
 function saBellPaint(){
   const box = sa$('#saBell'); if (!box) return;
   const items = SA.notif.list;
-  const icon = k => k === 'project_share' ? '⇪' : k === 'chat_invite' ? '+' : k === 'report' ? '!' : '✉';
+  const icon = k => k === 'project_share' ? '⇪' : k === 'chat_invite' ? '+' : k === 'report' ? '!' : k === 'call' ? '☏' : '✉';
   box.innerHTML = `<div class="hd"><b>${saEsc(T('Notifications'))}</b>${saUnread() ? `<button class="sa-link" data-sa="nreadall">${saEsc(T('Mark all as read'))}</button>` : ''}</div>`
     + (items.length ? items.map(n => `<button class="ni ${n.read_at ? '' : 'un'}" data-sa="nitem" data-id="${n.id}"><span class="ic" aria-hidden="true">${icon(n.kind)}</span><span class="tx"><b data-nt>${saEsc(n.title)}${n.count > 1 && n.kind === 'chat_message' ? ` · ${n.count}` : ''}</b><span data-nt>${saEsc(n.body)}</span><em>${saEsc(saRel(n.created_at))}</em></span></button>`).join('') : `<div class="sa-empty" style="margin:10px;padding:18px">${saEsc(T('Nothing new. Invitations, replies and shared projects show up here.'))}</div>`);
 }
@@ -676,7 +677,7 @@ async function saThreadOpen(id, keep){
   const mem = c.members || [], names = {}; mem.forEach(m => { names[m.id] = m.name; });
   SA.com.names = names;
   const own = c.kind === 'group' && mem.some(m => m.id === SA.user.id && m.role === 'owner');
-  t.innerHTML = `<header class="sa-chd"><button class="sa-btn sm sa-back" data-sa="cback" aria-label="${saEsc(T('Back to conversations'))}">←</button><div class="tt"><b data-nt>${saEsc(saChatName(c))}</b><span data-nt>${c.kind === 'group' ? mem.filter(m => m.status === 'joined').length + ' ' + saEsc(T('members')) + (mem.some(m => m.status === 'invited') ? ' · ' + mem.filter(m => m.status === 'invited').length + ' ' + saEsc(T('invited')) : '') : saEsc(T('Private chat'))}</span></div><span class="sa-row">${c.kind === 'group' ? `<button class="sa-btn sm" data-sa="cmembers">${saEsc(T('Members'))}</button>` : ''}${own ? `<button class="sa-btn sm" data-sa="cinvite">${saEsc(T('Invite'))}</button>` : ''}${c.kind === 'direct' ? (() => { const o = mem.find(m => m.id !== SA.user.id); return o ? `<button class="sa-btn sm" data-sa="mopts" data-id="${o.id}" aria-label="${saEsc(T('Report or block'))}" title="${saEsc(T('Report or block'))}">⋯</button>` : ''; })() : ''}<button class="sa-btn sm bad" data-sa="cleave">${saEsc(T(c.kind === 'group' ? 'Leave' : 'Leave chat'))}</button></span></header>
+  t.innerHTML = `<header class="sa-chd"><button class="sa-btn sm sa-back" data-sa="cback" aria-label="${saEsc(T('Back to conversations'))}">←</button><div class="tt"><b data-nt>${saEsc(saChatName(c))}</b><span data-nt>${c.kind === 'group' ? mem.filter(m => m.status === 'joined').length + ' ' + saEsc(T('members')) + (mem.some(m => m.status === 'invited') ? ' · ' + mem.filter(m => m.status === 'invited').length + ' ' + saEsc(T('invited')) : '') : saEsc(T('Private chat'))}</span></div><span class="sa-row">${c.kind === 'group' ? `<button class="sa-btn sm" data-sa="cmembers">${saEsc(T('Members'))}</button>` : ''}${own ? `<button class="sa-btn sm" data-sa="cinvite">${saEsc(T('Invite'))}</button>` : ''}<button class="sa-btn sm sa-callb" data-sa="callstart" data-v="0" aria-label="${saEsc(T('Audio call'))}" title="${saEsc(T('Audio call'))}"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></button><button class="sa-btn sm sa-callb" data-sa="callstart" data-v="1" aria-label="${saEsc(T('Video call'))}" title="${saEsc(T('Video call'))}"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></button>${c.kind === 'direct' ? (() => { const o = mem.find(m => m.id !== SA.user.id); return o ? `<button class="sa-btn sm" data-sa="mopts" data-id="${o.id}" aria-label="${saEsc(T('Report or block'))}" title="${saEsc(T('Report or block'))}">⋯</button>` : ''; })() : ''}<button class="sa-btn sm bad" data-sa="cleave">${saEsc(T(c.kind === 'group' ? 'Leave' : 'Leave chat'))}</button></span></header>
   <div class="sa-msgs" id="saMsgs" tabindex="0" aria-live="polite"></div>
   <div class="sa-ups" id="saUps" aria-live="polite"></div>
   <form class="sa-comp" id="saSend"><span class="sa-ctools"><button type="button" class="sa-ib" data-sa="cattach" title="${saEsc(T('Attach files'))}" aria-label="${saEsc(T('Attach files'))}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5 12.6 19.9a5.5 5.5 0 0 1-7.8-7.8l8.5-8.5a3.7 3.7 0 0 1 5.2 5.2l-8.5 8.5a1.8 1.8 0 0 1-2.6-2.6l7.8-7.8"/></svg></button><button type="button" class="sa-ib" data-sa="cproj" title="${saEsc(T('Share a project in this chat'))}" aria-label="${saEsc(T('Share a project in this chat'))}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4" width="17" height="16" rx="1.5"/><path d="M3.5 9h17M8 9v11M12 12.5h5M12 16h5"/></svg></button><input type="file" id="saFileIn" multiple hidden></span><label class="sr" for="saMsgIn">${saEsc(T('Message'))}</label><textarea id="saMsgIn" rows="2" maxlength="2000" placeholder="${saEsc(T('Write a message. Enter sends, Shift+Enter adds a line.'))}"></textarea><button class="sa-btn pri" type="submit">${saEsc(T('Send'))}</button></form>`;
@@ -687,10 +688,12 @@ async function saThreadOpen(id, keep){
 }
 async function saMsgFetch(first){
   const id = SA.com.active; if (!id) return;
-  let q = SA.sb.from('chat_messages').select(SA.com.cols || 'id,sender_id,body,created_at,attachment,project_id,project_name').eq('chat_id', id);
+  let q = SA.sb.from('chat_messages').select(SA.com.cols || SA_MSG_COLS[0]).eq('chat_id', id);
   q = first ? q.order('id', {ascending: false}).limit(150) : q.gt('id', SA.com.lastId).order('id', {ascending: true}).limit(150);
   let {data, error} = await q;
-  if (error && !SA.com.cols && /attachment|project_/.test(error.message || '')){ SA.com.cols = 'id,sender_id,body,created_at'; return saMsgFetch(first); }   // 0005 not run yet
+  if (error && /column|does not exist/i.test(error.message || '')){   // older database (0005/0007 not run yet): ask for fewer columns
+    const k = SA_MSG_COLS.indexOf(SA.com.cols || SA_MSG_COLS[0]); if (k >= 0 && k < SA_MSG_COLS.length - 1){ SA.com.cols = SA_MSG_COLS[k + 1]; return saMsgFetch(first); }
+  }
   if (SA.com.active !== id) return;
   if (error){ if (first){ const m = sa$('#saMsgs'); if (m) m.innerHTML = `<div class="sa-msg bad">${saEsc(T('Messages could not be loaded.'))}</div>`; } return; }
   let rows = data || []; if (first) rows = rows.slice().reverse();
@@ -713,7 +716,7 @@ function saMsgPaint(stick){
     const sep = d !== day ? `<div class="sa-day">${saEsc(saDate(m.created_at))}</div>` : ''; day = d;
     const first = prev !== m.sender_id || sep; prev = m.sender_id;
     if (!mine && SA.com.blocked && SA.com.blocked.has(m.sender_id)) return `${sep}<div class="sa-m sa-mhid"><div class="bb">${saEsc(T('Message from a member you blocked'))}</div></div>`;
-    const extra = (m.attachment ? saFileHtml(m) : '') + (m.project_name ? saProjMsgHtml(m, mine) : '');
+    const extra = (m.attachment ? saFileHtml(m) : '') + (m.project_name ? saProjMsgHtml(m, mine) : '') + (m.call ? saCallMsgHtml(m, mine) : '');
     const rep = mine ? '' : `<button class="sa-mrep" data-sa="mrep" data-id="${m.id}" data-u="${m.sender_id}" aria-label="${saEsc(T('Report message'))}" title="${saEsc(T('Report message'))}">⚑</button>`;
     return `${sep}<div class="sa-m ${mine ? 'me' : ''}">${grp && !mine && first ? `<span class="who" data-nt>${saEsc(SA.com.names[m.sender_id] || T('Former member'))}</span>` : ''}<div class="bb ${extra ? 'has-x' : ''}" data-nt>${extra}${m.body ? `<span class="tx">${saEsc(m.body)}</span>` : ''}<time>${rep}${saEsc(new Date(m.created_at).toLocaleTimeString(saLang(), {hour: '2-digit', minute: '2-digit'}))}</time></div></div>`;
   }).join('') : `<div class="sa-empty sa-cnone">${saEsc(T('No messages yet. Say hello.'))}</div>`;
@@ -1074,6 +1077,96 @@ document.addEventListener('keydown', ev => {
 /* notifications refresh while the page is open and visible */
 setInterval(() => { if (SA.user && SA.user.email_confirmed_at && SA.cfg && SA.cfg.communityEnabled !== false && document.visibilityState === 'visible') saNotifLoad(); }, 30000);
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && SA.user) saNotifLoad(); });
+/* ---------- calls (Cloudflare RealtimeKit) and instant notifications ---------- */
+SA.call = {open: false, ringing: null, ringTimer: null, audio: null, chan: null, seen: new Set()};
+
+/* Join (and optionally start and ring) the call of a chat, then show the call screen. */
+async function saCall(chatId, video, ring){
+  if (SA.call.open){ toast(T('You are already in a call.')); return; }
+  saRingStop();
+  let r;
+  try { r = await saApi('/api/community/call', {method: 'POST', body: JSON.stringify({chat_id: chatId, video: !!video, ring: !!ring})}); }
+  catch (e) { toast(T(e.message || 'Request failed')); return; }
+  if (r.message && SA.com.active === chatId && !SA.com.msgs.some(m => m.id === r.message.id)){ SA.com.msgs.push(r.message); SA.com.lastId = Math.max(SA.com.lastId, r.message.id); saMsgPaint(true); }
+  saCallOpen(r.token, video);
+}
+function saCallOpen(token, video){
+  const page = SA_NATIVE ? 'call.html' : '/call';
+  const w = document.createElement('div'); w.className = 'sa-callwrap'; w.id = 'saCallWrap'; w.setAttribute('role', 'dialog'); w.setAttribute('aria-label', T('Call'));
+  w.innerHTML = `<iframe title="${saEsc(T('Call'))}" allow="camera; microphone; display-capture; autoplay; fullscreen; clipboard-write" src="${page}#t=${encodeURIComponent(token)}&v=${video ? 1 : 0}"></iframe><button class="sa-callx" data-sa="callx" aria-label="${saEsc(T('Close the call window'))}">✕</button>`;
+  document.body.appendChild(w); document.documentElement.classList.add('sa-incall'); SA.call.open = true;
+}
+function saCallClose(){
+  const w = sa$('#saCallWrap'); if (w) w.remove();
+  document.documentElement.classList.remove('sa-incall'); SA.call.open = false;
+  if (SA.view === 'community' && SA.com.active) saMsgFetch(false);
+}
+window.addEventListener('message', ev => { if (ev.origin === location.origin && ev.data && ev.data.type === 'dbd-call-ended') saCallClose(); });
+
+/* Call card shown in the chat. */
+function saCallMsgHtml(m, mine){
+  const v = m.call && m.call.video, who = mine ? T('You') : (SA.com.names[m.sender_id] || T('A member'));
+  const recent = Date.now() - new Date(m.created_at).getTime() < 3 * 3600000;
+  return `<span class="sa-pcard sa-callcard"><span class="ic" aria-hidden="true">${v ? '📹' : '📞'}</span><span class="nm"><b>${saEsc(T(v ? 'Video call' : 'Audio call'))}</b><em data-nt>${saEsc(T('Started by'))} ${saEsc(who)}</em></span>${recent ? `<button class="sa-btn sm pri" data-sa="calljoin" data-id="${m.chat_id || SA.com.active}" data-v="${v ? 1 : 0}">${saEsc(T('Join'))}</button>` : ''}</span>`;
+}
+
+/* ----- ringing ----- */
+function saRingSound(on){
+  try {
+    if (!on){ if (SA.call.audio){ SA.call.audio.close(); SA.call.audio = null; } return; }
+    const C = window.AudioContext || window.webkitAudioContext; if (!C || SA.call.audio) return;
+    const ctx = new C(); SA.call.audio = ctx;
+    const beep = t => { const o = ctx.createOscillator(), g = ctx.createGain(); o.frequency.value = 660; o.connect(g); g.connect(ctx.destination); g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.18, t + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.4); o.start(t); o.stop(t + 0.42); };
+    for (let i = 0; i < 15; i++){ beep(ctx.currentTime + i * 2); beep(ctx.currentTime + i * 2 + 0.5); }
+  } catch (e) {}
+}
+function saRingStop(){
+  clearTimeout(SA.call.ringTimer); saRingSound(false);
+  const b = sa$('#saRing'); if (b) b.remove(); SA.call.ringing = null;
+}
+function saRing(n){
+  if (SA.call.open || SA.call.seen.has(n.id)) return;
+  if (Date.now() - new Date(n.created_at).getTime() > 60000) return;   // only ring for calls started in the last minute
+  SA.call.seen.add(n.id); saRingStop(); SA.call.ringing = n;
+  const video = /video/i.test(n.body || '');
+  const d = document.createElement('div'); d.id = 'saRing'; d.className = 'sa-ring'; d.setAttribute('role', 'alertdialog'); d.setAttribute('aria-label', T('Incoming call'));
+  d.innerHTML = `<span class="ic" aria-hidden="true">${video ? '📹' : '📞'}</span><span class="tx"><b data-nt>${saEsc(n.title)}</b><span data-nt>${saEsc(n.body)}</span></span><span class="sa-row"><button class="sa-btn bad sm" data-sa="ringno">${saEsc(T('Decline'))}</button><button class="sa-btn pri sm" data-sa="ringyes" data-id="${n.ref_id}" data-v="${video ? 1 : 0}">${saEsc(T('Join'))}</button></span>`;
+  document.body.appendChild(d); saRingSound(true);
+  SA.call.ringTimer = setTimeout(saRingStop, 45000);
+}
+
+/* Instant notifications (Supabase Realtime). The 30-second refresh stays as a fallback. */
+function saLive(){
+  if (!SA.sb || !SA.user || !SA.user.email_confirmed_at || SA.call.chan || typeof SA.sb.channel !== 'function') return;
+  try {
+    SA.call.chan = SA.sb.channel('notif-' + SA.user.id)
+      .on('postgres_changes', {event: 'INSERT', schema: 'public', table: 'notifications', filter: 'user_id=eq.' + SA.user.id}, p => {
+        const n = p && p.new; if (!n) return;
+        if (!SA.notif.list.some(x => x.id === n.id)){ SA.notif.list.unshift(n); saBadge(); if (SA.notif.open) saBellPaint(); }
+        if (n.kind === 'call') saRing(n);
+        else if (n.kind === 'chat_message' && SA.view === 'community'){ if (SA.com.active === n.ref_id) saMsgFetch(false); saComLoad().then(() => { if (SA.com.tab === 'chats') saChatListPaint(); }); }
+      })
+      .subscribe();
+  } catch (e) { SA.call.chan = null; }
+}
+function saLiveStop(){ try { if (SA.call.chan) SA.sb.removeChannel(SA.call.chan); } catch (e) {} SA.call.chan = null; }
+
+document.addEventListener('click', async ev => {
+  const b = ev.target.closest('[data-sa]'); if (!b) return;
+  const a = b.dataset.sa;
+  if (a === 'callstart'){ b.disabled = true; await saCall(SA.com.active, b.dataset.v === '1', true); b.disabled = false; }
+  else if (a === 'calljoin'){ b.disabled = true; await saCall(b.dataset.id, b.dataset.v === '1', false); b.disabled = false; }
+  else if (a === 'ringyes'){ const n = SA.call.ringing; saRingStop(); if (n) saNotifRead([n.id]); await saCall(b.dataset.id, b.dataset.v === '1', false); }
+  else if (a === 'ringno'){ const n = SA.call.ringing; saRingStop(); if (n) saNotifRead([n.id]); }
+  else if (a === 'callx'){ const f = sa$('#saCallWrap iframe'); try { f.contentWindow.postMessage({type: 'dbd-call-leave'}, location.origin); } catch (e) {} setTimeout(saCallClose, 600); }
+});
+/* Start listening once signed in; ring for calls found by the regular refresh too. */
+setInterval(() => {
+  if (SA.user && SA.user.email_confirmed_at && SA.cfg && SA.cfg.communityEnabled !== false){
+    saLive();
+    SA.notif.list.filter(n => n.kind === 'call' && !n.read_at).forEach(saRing);
+  } else saLiveStop();
+}, 3000);
 
 /* ====================================================================
    Panel import: photo(s) or PDF -> reviewed device list -> board

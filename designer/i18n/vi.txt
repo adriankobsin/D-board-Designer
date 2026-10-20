@@ -1108,7 +1108,7 @@
 1108|Tùy chọn. Trở kháng vòng sự cố chạm đất tại đầu tủ điện, từ nhà cung cấp hoặc đo được. Dùng để kiểm tra mỗi MCB có ngắt sự cố kịp thời không.
 1109|Quy tắc bảo vệ
 1110|Mỗi aptomat được chọn từ dòng thiết kế (125 % với phụ tải liên tục theo NEC), giảm định mức theo nhiệt độ vỏ tủ, rồi làm tròn lên định mức chuẩn kế tiếp của tiêu chuẩn đã chọn. Độ nhạy RCD (30 mA, hoặc GFCI 4–6 mA theo NEC và ABYC), số cực (2 cực cho tải 240 V) và tiêu chuẩn thiết bị (IEC hoặc UL) đi theo tiêu chuẩn và điện áp nguồn. Với IEC, BS 7671 và AS/NZS, hãy nhập Ze trong Thiết lập để kiểm tra vòng sự cố chạm đất của từng mạch MCB.
-1111|Mở Cộng đồng từ Bảng điều khiển. Mục Thành viên liệt kê mọi người đã đăng ký: tìm kiếm, rồi nhắn tin cho một thành viên, chia sẻ dự án hoặc gửi tệp, hoặc đánh dấu nhiều người để bắt đầu nhóm. Trong cuộc trò chuyện, đính kèm tệp đến 25 MB hoặc chia sẻ tủ điện đã lưu. Biểu tượng chuông ở đầu trang hiển thị lời mời, câu trả lời và dự án được chia sẻ.
+1111|Mở Cộng đồng từ Bảng điều khiển. Mục Thành viên liệt kê mọi người đã đăng ký: tìm kiếm, rồi nhắn tin cho một thành viên, chia sẻ dự án hoặc gửi tệp, hoặc đánh dấu nhiều người để bắt đầu nhóm. Trong cuộc trò chuyện, đính kèm tệp đến 25 MB, chia sẻ tủ điện đã lưu, hoặc bắt đầu cuộc gọi thoại hay video bằng các nút ở trên; mọi người trong cuộc trò chuyện đều nhận cuộc gọi và có thể tham gia, và có thể chia sẻ màn hình từ máy tính. Biểu tượng chuông ở đầu trang hiển thị lời mời, câu trả lời và dự án được chia sẻ.
 1112|Các kiểm tra gồm: dòng thiết kế so với định mức aptomat và cáp (có tính nhiệt độ vỏ tủ và quy tắc phụ tải liên tục NEC), sụt áp, yêu cầu RCD, khả năng cắt, định mức thiết bị so với tiêu chuẩn và điện áp nguồn, trở kháng vòng sự cố chạm đất khi nhập Ze, đầu vào Lutron, giới hạn vùng và nhiệt độ. Tính chọn lọc không được tính ở đây.
 1113|Thông tin công ty
 1114|Trang bìa kèm thông tin công ty
@@ -1229,3 +1229,15 @@
 1229|Tin nhắn đó không còn tồn tại.
 1230|Bạn không thể báo cáo tin nhắn của chính mình.
 1231|Không thể gửi báo cáo. Hãy thử lại.
+1232|Bạn đang trong một cuộc gọi.
+1233|Cuộc gọi
+1234|Đóng cửa sổ cuộc gọi
+1235|Bạn
+1236|Bắt đầu bởi
+1237|Tham gia
+1238|Cuộc gọi đến
+1239|Cuộc gọi thoại
+1240|Cuộc gọi video
+1241|Cuộc gọi chưa được thiết lập. Chủ trang cần thêm cài đặt RealtimeKit vào Worker.
+1242|Bạn không thể gọi trong cuộc trò chuyện này nữa.
+1243|Không tìm thấy cuộc trò chuyện.

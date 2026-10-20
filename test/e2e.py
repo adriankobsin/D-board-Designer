@@ -103,6 +103,6 @@ with sync_playwright() as p:
     pg.click('[data-sa=ustatus]') if False else None
     ok('suspend recorded in audit log', len(state()['admin_actions'])>=1)
     p2.fill('#email','x') if False else None
-    ok('no JS errors', not [e for e in errs if 'Failed to load resource' not in e], errs[:5])
+    ok('no JS errors', not [e for e in errs if 'Failed to load resource' not in e and 'realtime/v1/websocket' not in e], errs[:5])
     b.close()
 bad=[n for n,c in res if not c]; print(f'\n{len(res)-len(bad)} passed, {len(bad)} failed'); sys.exit(1 if bad else 0)

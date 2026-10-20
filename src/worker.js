@@ -283,23 +283,28 @@ async function api(request, env, url) {
 }
 
 /* ---------- security headers ---------- */
-function secure(response, env) {
+function secure(response, env, pathname = '') {
   const h = new Headers(response.headers);
   const supa = supaOrigin(env);
-  const connect = ["'self'", supa, supa.replace(/^https/, 'wss')].filter(Boolean).join(' ');
+  const connect = ["'self'", supa, supa.replace(/^http/, 'ws')].filter(Boolean).join(' ');   // https -> wss (live notifications)
   h.set('X-Content-Type-Options', 'nosniff');
   h.set('Referrer-Policy', 'strict-origin-when-cross-origin');
-  h.set('X-Frame-Options', 'DENY');
-  h.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+  const call = pathname === '/call.html' || pathname === '/call';
+  h.set('X-Frame-Options', call ? 'SAMEORIGIN' : 'DENY');
+  // Camera, microphone and screen sharing are allowed for this site only (the call screen runs in a frame of the app).
+  h.set('Permissions-Policy', 'camera=(self), microphone=(self), display-capture=(self), geolocation=()');
   h.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
-  if ((h.get('Content-Type') || '').includes('text/html')) {
+  if (call && (h.get('Content-Type') || '').includes('text/html')) {
+    // The call component connects to Cloudflare's media servers, whose addresses vary, so this page alone allows any https/wss connection.
+    h.set('Content-Security-Policy', ["default-src 'self'", "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' blob:", "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com", "font-src 'self' data: https:", "img-src 'self' data: blob: https:", "media-src 'self' blob: data: https:", "connect-src 'self' https: wss:", "worker-src 'self' blob:", "frame-ancestors 'self'", "base-uri 'self'", "form-action 'none'", "object-src 'none'"].join('; '));
+  } else if ((h.get('Content-Type') || '').includes('text/html')) {
     h.set('Content-Security-Policy', [
       "default-src 'self'",
       "script-src 'self' 'unsafe-inline'",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com",
       `img-src 'self' data: blob: ${supa}`.trim(),
-      "frame-src blob:",
+      "frame-src 'self' blob:",
       "object-src blob:",
       `connect-src ${connect}`,
       "worker-src 'self'",
@@ -329,7 +334,7 @@ export default {
     }
     const res = await env.ASSETS.fetch(request);
     // Never cache the service worker or the HTML shell at the edge so updates arrive immediately.
-    const out = secure(res, env);
+    const out = secure(res, env, url.pathname);
     if (url.pathname === '/sw.js' || url.pathname === '/' || url.pathname.endsWith('.html')) out.headers.set('Cache-Control', 'no-cache');
     return out;
   },

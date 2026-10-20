@@ -1108,7 +1108,7 @@
 1108|Opțional. Impedanța buclei de defect la pământ la originea tabloului, de la furnizor sau dintr-o măsurătoare. Folosită pentru a verifica dacă fiecare MCB deconectează un defect la timp.
 1109|Reguli de protecție
 1110|Fiecare disjunctor este dimensionat din curentul de proiectare (125 % pentru sarcini continue conform NEC), redus în funcție de temperatura carcasei, apoi rotunjit în sus la următoarea valoare standard a standardului ales. Sensibilitatea RCD (30 mA sau GFCI 4–6 mA conform NEC și ABYC), numărul de poli (2 poli pentru sarcini de 240 V) și standardul dispozitivului (IEC sau UL) urmează standardul și tensiunea de alimentare. Cu IEC, BS 7671 și AS/NZS, introduceți Ze în Setări pentru a verifica bucla de defect la pământ a fiecărui circuit MCB.
-1111|Deschideți Comunitatea din panou. Fila Membri listează toți cei înregistrați: căutați, apoi trimiteți un mesaj unui membru, partajați un proiect sau trimiteți un fișier, ori bifați mai mulți pentru a începe un grup. Într-un chat puteți atașa fișiere de până la 25 MB sau partaja un panou salvat. Clopoțelul din antet afișează invitațiile, răspunsurile și proiectele partajate.
+1111|Deschideți Comunitatea din panou. Fila Membri listează toți cei înregistrați: căutați, apoi trimiteți un mesaj unui membru, partajați un proiect sau trimiteți un fișier, ori bifați mai mulți pentru a începe un grup. Într-un chat puteți atașa fișiere de până la 25 MB, partaja un panou salvat sau începe un apel audio sau video cu butoanele de sus; toți cei din chat sunt apelați și se pot alătura, iar de pe calculator se poate partaja ecranul. Clopoțelul din antet afișează invitațiile, răspunsurile și proiectele partajate.
 1112|Verificările acoperă curentul de proiectare față de valoarea disjunctorului și a cablului (cu temperatura carcasei și regula NEC pentru sarcini continue), căderea de tensiune, cerința RCD, capacitatea de rupere, valoarea dispozitivului față de standard și tensiunea de alimentare, impedanța buclei de defect la pământ când se introduce Ze, intrarea Lutron, limitele de zone și temperatură. Discriminarea și selectivitatea nu sunt calculate aici.
 1113|Date firmă
 1114|Pagină de copertă cu datele firmei
@@ -1229,3 +1229,15 @@
 1229|Acest mesaj nu mai există.
 1230|Nu vă puteți raporta propriul mesaj.
 1231|Raportul nu a putut fi trimis. Încercați din nou.
+1232|Sunteți deja într-un apel.
+1233|Apel
+1234|Închideți fereastra apelului
+1235|Dumneavoastră
+1236|Început de
+1237|Alăturați-vă
+1238|Apel primit
+1239|Apel audio
+1240|Apel video
+1241|Apelurile nu sunt încă configurate. Proprietarul site-ului trebuie să adauge setările RealtimeKit în Worker.
+1242|Nu mai puteți apela în acest chat.
+1243|Chatul nu a fost găsit.

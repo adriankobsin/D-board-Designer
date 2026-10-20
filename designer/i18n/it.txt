@@ -1108,7 +1108,7 @@
 1108|Facoltativo. Impedenza dell’anello di guasto a terra all’origine del quadro, dal fornitore o da una misura. Usata per verificare che ogni MCB interrompa un guasto in tempo.
 1109|Regole di protezione
 1110|Ogni interruttore è dimensionato dalla corrente di progetto (125 % dei carichi continui secondo NEC), declassato in base alla temperatura del contenitore, poi arrotondato per eccesso al valore normalizzato successivo della norma scelta. La sensibilità RCD (30 mA, oppure GFCI 4–6 mA secondo NEC e ABYC), il numero di poli (2 poli per carichi a 240 V) e la norma del dispositivo (IEC o UL) seguono la norma e la tensione di alimentazione. Con IEC, BS 7671 e AS/NZS, inserisci Ze in Impostazioni per verificare l’anello di guasto a terra di ogni circuito MCB.
-1111|Apri la Community dalla dashboard. Membri elenca tutti gli iscritti: cerca, poi scrivi a un membro, condividi un progetto o invia un file, oppure selezionane diversi per avviare un gruppo. In una chat puoi allegare file fino a 25 MB o condividere un quadro salvato. La campanella nell’intestazione mostra inviti, risposte e progetti condivisi.
+1111|Apri la Community dalla dashboard. Membri elenca tutti gli iscritti: cerca, poi scrivi a un membro, condividi un progetto o invia un file, oppure selezionane diversi per avviare un gruppo. In una chat puoi allegare file fino a 25 MB, condividere un quadro salvato o avviare una chiamata audio o video con i pulsanti in alto; tutti nella chat ricevono la chiamata e possono partecipare, e da computer si può condividere lo schermo. La campanella nell’intestazione mostra inviti, risposte e progetti condivisi.
 1112|I controlli coprono corrente di progetto rispetto alla portata di interruttore e cavo (con temperatura del contenitore e regola NEC per carichi continui), caduta di tensione, esigenza RCD, potere di interruzione, valore del dispositivo rispetto alla norma e alla tensione di alimentazione, impedenza dell’anello di guasto a terra quando è inserito Ze, ingresso Lutron, limiti di zone e temperatura. Discriminazione e selettività non sono calcolate qui.
 1113|Dati dell’azienda
 1114|Copertina con i dati dell’azienda
@@ -1229,3 +1229,15 @@
 1229|Questo messaggio non esiste più.
 1230|Non puoi segnalare un tuo messaggio.
 1231|Impossibile inviare la segnalazione. Riprova.
+1232|Sei già in una chiamata.
+1233|Chiamata
+1234|Chiudi la finestra della chiamata
+1235|Tu
+1236|Avviata da
+1237|Partecipa
+1238|Chiamata in arrivo
+1239|Chiamata audio
+1240|Videochiamata
+1241|Le chiamate non sono ancora configurate. Il proprietario del sito deve aggiungere le impostazioni RealtimeKit al Worker.
+1242|Non puoi più chiamare in questa chat.
+1243|Chat non trovata.

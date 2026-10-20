@@ -1108,7 +1108,7 @@
 1108|Opcjonalne. Impedancja pętli zwarcia na początku rozdzielnicy, od dostawcy lub z pomiaru. Służy do sprawdzenia, czy każdy MCB wyłącza zwarcie na czas.
 1109|Zasady zabezpieczeń
 1110|Każdy wyłącznik jest dobierany z prądu obliczeniowego (125 % obciążeń ciągłych według NEC), redukowany o temperaturę obudowy, a następnie zaokrąglany w górę do kolejnej wartości znormalizowanej wybranej normy. Czułość RCD (30 mA lub GFCI 4–6 mA według NEC i ABYC), liczba biegunów (2 bieguny dla obciążeń 240 V) i norma urządzenia (IEC lub UL) wynikają z normy i napięcia zasilania. Dla IEC, BS 7671 i AS/NZS wpisz Ze w Ustawieniach, aby sprawdzić pętlę zwarcia każdego obwodu z MCB.
-1111|Otwórz Społeczność z pulpitu. Zakładka Członkowie pokazuje wszystkich zarejestrowanych: wyszukaj, a następnie napisz do członka, udostępnij projekt lub wyślij plik albo zaznacz kilka osób, aby utworzyć grupę. Na czacie możesz dołączać pliki do 25 MB lub udostępnić zapisaną rozdzielnicę. Dzwonek w nagłówku pokazuje zaproszenia, odpowiedzi i udostępnione projekty.
+1111|Otwórz Społeczność z pulpitu. Zakładka Członkowie pokazuje wszystkich zarejestrowanych: wyszukaj, a następnie napisz do członka, udostępnij projekt lub wyślij plik albo zaznacz kilka osób, aby utworzyć grupę. Na czacie możesz dołączać pliki do 25 MB, udostępnić zapisaną rozdzielnicę lub rozpocząć rozmowę głosową albo wideo przyciskami u góry; wszyscy na czacie otrzymują połączenie i mogą dołączyć, a z komputera można udostępnić ekran. Dzwonek w nagłówku pokazuje zaproszenia, odpowiedzi i udostępnione projekty.
 1112|Kontrole obejmują: prąd obliczeniowy względem prądu wyłącznika i kabla (z temperaturą obudowy i regułą NEC dla obciążeń ciągłych), spadek napięcia, wymóg RCD, zdolność wyłączania, prąd urządzenia względem normy i napięcia zasilania, impedancję pętli zwarcia po wpisaniu Ze, wejście Lutron oraz limity stref i temperatury. Selektywności nie obliczamy tutaj.
 1113|Dane firmy
 1114|Strona tytułowa z danymi firmy
@@ -1229,3 +1229,15 @@
 1229|Ta wiadomość już nie istnieje.
 1230|Nie możesz zgłosić własnej wiadomości.
 1231|Nie udało się wysłać zgłoszenia. Spróbuj ponownie.
+1232|Już uczestniczysz w rozmowie.
+1233|Rozmowa
+1234|Zamknij okno rozmowy
+1235|Ty
+1236|Rozpoczęta przez
+1237|Dołącz
+1238|Połączenie przychodzące
+1239|Rozmowa głosowa
+1240|Rozmowa wideo
+1241|Rozmowy nie są jeszcze skonfigurowane. Właściciel witryny musi dodać ustawienia RealtimeKit do Workera.
+1242|Nie możesz już dzwonić na tym czacie.
+1243|Nie znaleziono czatu.

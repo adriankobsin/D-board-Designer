@@ -16,3 +16,4 @@ create table storage.objects(id uuid primary key default gen_random_uuid(), buck
 alter table storage.objects enable row level security;
 grant select, insert, update, delete on storage.objects to authenticated, service_role;
 grant select on storage.buckets to authenticated, service_role;
+create publication supabase_realtime;   -- stand-in for Supabase's realtime publication

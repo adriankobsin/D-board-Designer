@@ -67,7 +67,9 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>DBoard Designer uses the camera when you take a photo of a panel to import it, or to send a photo in a chat.</string>
+	<string>DBoard Designer uses the camera for video calls, when you take a photo of a panel to import it, or to send a photo in a chat.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>DBoard Designer uses the microphone for audio and video calls with other members.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>DBoard Designer opens your photos when you choose a panel photo to import, or a picture to send in a chat.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>

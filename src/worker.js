@@ -89,7 +89,7 @@ async function api(request, env, url) {
   const path = url.pathname;
   const method = request.method;
 
-  if (path === '/api/health') return json({ ok: true, configured: configured(env), admin: Boolean(env.SUPABASE_SERVICE_ROLE_KEY), anthropic: Boolean(env.ANTHROPIC_API_KEY), mail: Boolean(env.RESEND_API_KEY) });
+  if (path === '/api/health') return json({ ok: true, configured: configured(env), admin: Boolean(env.SUPABASE_SERVICE_ROLE_KEY), anthropic: Boolean(env.ANTHROPIC_API_KEY), mail: Boolean(env.RESEND_API_KEY), calls: Boolean(env.CF_ACCOUNT_ID && env.RTK_APP_ID && env.CF_REALTIME_TOKEN) });
 
   if (path === '/api/config' && method === 'GET') {
     if (!configured(env)) return json({ configured: false, requireLogin: false });
@@ -100,6 +100,7 @@ async function api(request, env, url) {
       requireLogin: String(env.REQUIRE_LOGIN || 'true').toLowerCase() !== 'false',
       importEnabled: Boolean(env.ANTHROPIC_API_KEY && env.SUPABASE_SERVICE_ROLE_KEY),
       communityEnabled: Boolean(env.SUPABASE_SERVICE_ROLE_KEY),
+      callsEnabled: Boolean(env.CF_ACCOUNT_ID && env.RTK_APP_ID && env.CF_REALTIME_TOKEN && env.SUPABASE_SERVICE_ROLE_KEY),
       mailEnabled: Boolean(env.RESEND_API_KEY),
     });
   }

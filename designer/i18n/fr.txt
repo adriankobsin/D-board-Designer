@@ -1241,3 +1241,5 @@
 1241|Les appels ne sont pas encore configurés. Le propriétaire du site doit ajouter les paramètres RealtimeKit au Worker.
 1242|Vous ne pouvez plus appeler dans cette discussion.
 1243|Discussion introuvable.
+1244|Électricien de bord
+1245|ETO (officier électrotechnicien)

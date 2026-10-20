@@ -1241,3 +1241,5 @@
 1241|Anrufe sind noch nicht eingerichtet. Der Betreiber muss die RealtimeKit-Einstellungen im Worker hinzufügen.
 1242|Sie können in diesem Chat nicht mehr anrufen.
 1243|Chat nicht gefunden.
+1244|Schiffselektriker
+1245|ETO (Elektrotechnischer Offizier)

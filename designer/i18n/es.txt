@@ -1241,3 +1241,5 @@
 1241|Las llamadas aún no están configuradas. El propietario del sitio debe añadir la configuración de RealtimeKit al Worker.
 1242|Ya no puede llamar en este chat.
 1243|Chat no encontrado.
+1244|Electricista naval
+1245|ETO (oficial electrotécnico)

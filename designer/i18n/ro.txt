@@ -1241,3 +1241,5 @@
 1241|Apelurile nu sunt încă configurate. Proprietarul site-ului trebuie să adauge setările RealtimeKit în Worker.
 1242|Nu mai puteți apela în acest chat.
 1243|Chatul nu a fost găsit.
+1244|Electrician naval
+1245|ETO (ofițer electrotehnic)

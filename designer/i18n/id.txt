@@ -1,0 +1,1245 @@
+1|Pengaturan
+2|Panel
+3|Sirkuit
+4|Peralatan
+5|Pemeriksaan
+6|Diagram
+7|Ekspor
+8|Bantuan
+9|Bahasa
+10|Standar
+11|Suplai
+12|Nama proyek
+13|Logo perusahaan
+14|Nama perusahaan
+15|Perusahaan dan suplai
+16|Perusahaan
+17|Bantuan: cara kerja platform
+18|Bagian
+19|Unggah logo…
+20|Ditampilkan di samping logo dan pada hasil ekspor
+21|Ditampilkan di bagian atas halaman, pada diagram, dan di PDF. Ekspor Excel hanya memuat nama perusahaan.
+22|Suplai dan dasar desain
+23|Pengaturan suplai
+24|Jenis suplai
+25|Tegangan suplai
+26|Satu fasa
+27|Tiga fasa
+28|Tegangan rendah
+29|Tegangan rendah AC / DC
+30|Panel tegangan rendah
+31|Pergantian ini menyesuaikan sirkuit secara otomatis.
+32|Nilai bawaan mengikuti standar yang dipilih dan dapat diubah. Kemampuan hantar arus kabel bersifat indikatif, nilai metode referensi C untuk tembaga. Pastikan setiap angka sesuai edisi dan amandemen nasional yang Anda gunakan.
+33|Tingkat arus hubung singkat prospektif (kA)
+34|Arus hubung singkat baterai (kA)
+35|Dari lembar data baterai atau pengisi daya. Bank aki timbal-asam dapat menghasilkan beberapa kA. Pemutus DC generik diasumsikan 5 kA.
+36|Kedua kutub (2P, tidak ditanahkan atau terisolasi)
+37|Hanya positif (1P, negatif ditanahkan atau bersama)
+38|Kutub pemutus
+39|Suhu sekitar kabel (°C)
+40|Suhu sekitar di dalam kotak panel (°C)
+41|Referensinya {1} °C
+42|Faktor keserempakan
+43|Keserempakan
+44|Kabel incomer
+45|Panjang kabel incomer (m)
+46|Penggantian rating incomer (A)
+47|Kosongkan untuk dipilih otomatis
+48|Cu XLPE 90 °C
+49|Cu PVC 70 °C
+50|XLPE 90
+51|Batas jatuh tegangan penerangan (%)
+52|Batas sirkuit lainnya (%)
+53|Kritis (navigasi, bilga, komunikasi)
+54|Kritis (jatuh tegangan {1} %)
+55|Penerangan (jatuh tegangan {1} %)
+56|Lainnya (jatuh tegangan {1} %)
+57|{1} bawaan {2} %
+58|Bawaan tegangan rendah {1} %
+59|Rating disipasi kotak panel (W)
+60|Opsional, dari lembar data kotak panel
+61|Keseimbangan fasa dan incomer
+62|Modul per rel DIN
+63|Lebar perangkat bawaan
+64|Lebar RCBO
+65|1 modul (ringkas)
+66|2 modul (1P+N)
+67|1 modul
+68|{1} modul
+69|{1} modul (ringkas)
+70|{1} modul (1P+N)
+71|{1} modul = 18 mm
+72|{1} modul · {2} mm
+73|{1} modul × 18 mm = {2} mm
+74|{1} · {2} modul
+75|{1} · {2} modul
+76|Tempatkan modul kontrol pada rel tersendiri
+77|Tata letak berpindah ke rel baru jika perangkat tidak muat. Baris menggunakan jarak 150 mm karena modul Lutron adaptif-fasa dipasang.
+78|Seri MCB
+79|Seri RCBO
+80|Saklar utama atau incomer
+81|Generik (bawaan standar)
+82|Rentang proteksi pilihan
+83|Pilih seri produsen, maka tata letak memakai lebar modulnya, pemeriksaan memakai kapasitas pemutusan, rentang rating, dan kurvanya, dan daftar material menyebutkannya. Biarkan pada Generik untuk memakai bawaan standar.
+84|Tanpa seri yang dipilih, saklar utama dan SPD memakai 2 atau 4 modul, MCB 1 modul per kutub (2 dengan pensaklaran kutub ganda untuk kelautan), RCBO 1 modul (ringkas) untuk 1P+N dan 4 modul untuk 3P+N. Pilih seri produsen di Pengaturan atau dengan Gunakan di atas untuk mengganti nilai ini dengan lebar sebenarnya.
+85|Sertakan perangkat proteksi lonjakan (SPD)
+86|Mulai papan kosong
+87|Muat ulang papan contoh
+88|Mulai dari awal atau muat ulang contoh
+89|Kalkulator pemutus cepat
+90|Masukkan daya beban, atau arusnya jika Anda tahu. Menampilkan arus desain, pemutus yang dipakai, dan kabelnya.
+91|atau arus A
+92|Semu
+93|Daya semu
+94|Daya W
+95|Beban W
+96|Faktor daya
+97|PF
+98|, PF
+99|Panjang kabel m
+100|Panjang m
+101|Tambah sirkuit
+102|+ Sirkuit
+103|+ Modul DIN
+104|+ Perangkat khusus
+105|Seimbangkan fasa otomatis
+106|Beri nomor ulang
+107|Hapus sirkuit
+108|Hapus sirkuit {1}
+109|Hapus modul
+110|Hapus {1}
+111|Jadwal sirkuit
+112|Sirkuit yang disuplai dari zona modul Lutron memakai pemutus umpan modul bersama, sehingga kabelnya diperiksa terhadap rating pemutus tersebut. Faktor pengelompokan dikalikan dengan kemampuan hantar kabel (pakai 1 jika tidak ada).
+113|Ref
+114|Referensi
+115|Nama
+116|Jenis sirkuit
+117|Jenis
+118|Fasa
+119|Disuplai dari
+120|Pemutus langsung
+121|{1} zona {2}
+122|Zona {1}: {2}
+123|Zona {1}
+124|Zona
+125|kosong
+126|tidak ada
+127|Rating
+128|Rating A
+129|In A
+130|Ib A
+131|Icn kA
+132|Icu kA
+133|Kurva
+134|Kurva
+135|Kutub
+136|Ukuran
+137|Ukuran mm²
+138|Kabel
+139|Grp
+140|Permintaan
+141|VD
+142|VD %
+143|Jatuh tegangan
+144|Status
+145|OK
+146|Gagal
+147|Tinjau
+148|Catatan
+149|Catatan
+150|Catatan panel
+151|Tata letak panel
+152|Tata letak
+153|Rel
+154|Pindahkan
+155|↑ Rel ke atas
+156|↓ Rel ke bawah
+157|← Lebih awal
+158|Lebih akhir →
+159|Sesuaikan layar
+160|Disesuaikan dengan layar
+161|Ukuran penuh
+162|Satu baris penuh di jadwal
+163|Pilih perangkat untuk mengeditnya di sini. Seret perangkat untuk memindahkannya sepanjang rel.
+164|Hapus
+165|Konfirmasi hapus
+166|Batal
+167|Hapus
+168|Hapus SPD
+169|Hapus pemutus utama
+170|Pulihkan SPD
+171|Pulihkan pemutus utama
+172|Proteksi lonjakan
+173|Lonjakan
+174|SPD
+175|SPD · Proteksi lonjakan
+176|SPD Proteksi lonjakan
+177|Utama
+178|Incomer
+179|Isolator
+180|Pemutus umpan
+181|Kabel umpan
+182|Panjang umpan m
+183|Beban umpan
+184|Umpan m
+185|Fasa umpan
+186|Umpan {1}
+187|umpan {1} A
+188|Input A
+189|Perangkat
+190|Jenis perangkat
+191|Modul
+192|Modul yang ditambahkan
+193|Modul
+194|Modul pada papan ini
+195|Lebar
+196|Lebar (modul)
+197|Lebar, modul
+198|Model
+199|Keluarga
+200|Produsen
+201|Merek
+202|Seri
+203|Seri yang cocok
+204|Deskripsi
+205|Cari di pustaka
+206|Cari model, keluarga, tegangan
+207|Cari perangkat proteksi
+208|Cari seri atau standar
+209|Semua merek
+210|Semua keluarga
+211|Semua produsen
+212|Semua jenis
+213|Tambah
+214|Tambah modul DIN
+215|Gunakan
+216|Digunakan
+217|DIN
+218|Pustaka peralatan DIN
+219|Pustaka proteksi sirkuit
+220|Daftar peralatan
+221|Sumber diperiksa
+222|Umum
+223|Papan terminal kabel
+224|Prosesor kontrol
+225|Antarmuka / IO
+226|Jaringan / distribusi
+227|Catu daya
+228|Kontrol motor
+229|Pensaklaran
+230|Peredupan
+231|DALI
+232|Gateway DALI
+233|EcoSystem
+234|Digital (HomeWorks)
+235|Peredupan adaptif-fasa
+236|Dimmer adaptif-fasa
+237|Kontrol fasa / 20 A
+238|0–10 V / pensaklaran
+239|Dimmer 0–10 V
+240|Gateway QSX
+241|Prosesor QSX
+242|Gateway KNX DALI
+243|Antarmuka KNX IP
+244|Router KNX IP
+245|I/O analog KNX
+246|Input biner KNX
+247|Aktuator peredupan KNX
+248|Meter energi KNX
+249|Aktuator pemanas KNX
+250|Logika / kontrol KNX
+251|Catu daya KNX
+252|Aktuator kerai KNX
+253|Aktuator sakelar KNX
+254|Aktuator universal KNX
+255|MCB
+256|RCBO
+257|RCCB (RCD grup)
+258|MCCB (incomer)
+259|RCD
+260|Termal
+261|Panas
+262|Disipasi ≈
+263|Panas di dalam kotak panel ≈
+264|Kotak panel ≈
+265|BTU/jam
+266|Fasa maks
+267|Maks °C
+268|Ketidakseimbangan
+269|Keseimbangan
+270|Terhubung
+271|Beban terhubung
+272|Terhubung {1} kW · permintaan {2} kW · {3} kVA · fasa maks {4} A
+273|Pembebanan fasa (setelah keserempakan {1})
+274|Pembebanan bus (setelah keserempakan {1})
+275|pada keserempakan {1}
+276|Jatuh tegangan ujung ke ujung terburuk
+277|Arus desain
+278|Pemeriksaan desain
+279|Pemeriksaan
+280|Periksa tata letak panel
+281|Diperiksa terhadap batas setiap modul
+282|{1} disuplai
+283|{1} gagal · {2} tinjau
+284|Penerangan
+285|Stop kontak
+286|AV / elektronik
+287|HVAC / pompa
+288|Pemanas / boiler
+289|Dapur / peralatan
+290|Lainnya
+291|Netral
+292|Positif +
+293|Negatif −
+294|Diagram multi-garis
+295|Diagram multi-garis · {1}
+296|Suplai {1}
+297|SIRKUIT
+298|PROTEKSI
+299|KABEL
+300|BEBAN
+301|REL
+302|Gambar dan jadwal PDF
+303|Gambar tata letak panel dengan nama sirkuit, diagram multi-garis, jadwal sirkuit, dan total daya pada A4 lanskap, dengan logo Anda di setiap halaman.
+304|Sertakan daftar material
+305|Simpan PDF
+306|Buku kerja Excel
+307|Lembar jadwal, modul Lutron, daftar material, keseimbangan fasa, daya, dan proyek. Memuat nama perusahaan; file Excel dari alat ini tidak dapat menyematkan gambar logo.
+308|Simpan Excel
+309|Jadwal CSV
+310|Jadwal sirkuit polos untuk diimpor ke alat lain.
+311|Simpan CSV
+312|File proyek
+313|Simpan seluruh desain sebagai JSON, atau buka yang pernah Anda simpan.
+314|Simpan proyek
+315|Buka proyek…
+316|Buka proyek
+317|Papan juga tersimpan di peramban ini selama Anda bekerja. Ekspor membuka dialog simpan setiap kali.
+318|Tutup
+319|Tanggal
+320|Otomatis
+321|Otomatis ({1})
+322|Kapasitas pemutus yang diasumsikan {1} kA
+323|generik · ketidakseimbangan {1} %
+324|{1} · ketidakseimbangan {2} %
+325|melalui {1} ({2} A) · {3}
+326|tembaga {1}, rating {2} A, jatuh tegangan {3} % dari {4} V (batas {5} %)
+327|{1} V DC (tegangan rendah)
+328|{1} V AC (tegangan rendah)
+329|12, 24, atau 48 V DC dan 24 V AC, seperti yang dipakai di kapal pesiar dan perahu.
+330|Tata letak rel DIN dari {1}
+331|Pilih gambar di bawah 4 MB.
+332|Tidak dapat menyimpan file di sini.
+333|Tidak dapat menyimpan: {1}
+334|Pustaka Excel tidak termuat.
+335|Logo ditambahkan
+336|Pemutus utama dihapus dari panel
+337|Pustaka PDF tidak termuat.
+338|Fasa diseimbangkan ulang
+339|Proyek dimuat
+340|SPD dihapus
+341|Tersimpan {1}
+342|File itu bukan proyek DBoard Designer.
+343|Gambar itu tidak dapat dibaca.
+344|{1} diterapkan pada MCB.
+345|{1} diterapkan pada RCBO.
+346|{1} diterapkan pada saklar utama.
+347|{1} ditambahkan sebagai {2}. Lihat di tab Panel.
+348|{1} dihapus
+349|Sudah berada di rel pertama.
+350|Tidak ada perangkat di rel berikutnya sebagai patokan penempatan. Seret saja perangkatnya.
+351|Suplai tegangan rendah: 24 V DC. Beban dalam watt, arus adalah P ÷ V.
+352|Suplai tiga fasa. Sirkuit tersebar pada L1, L2, dan L3.
+353|Suplai satu fasa.
+354|Semua pemeriksaan lolos untuk papan saat ini.
+355|Masukkan daya atau arus.
+356|Belum ada modul DIN yang dipasang. Tambahkan dari pustaka di bawah.
+357|Belum ada sirkuit. Tambahkan satu untuk memulai jadwal.
+358|Tidak ada perangkat yang cocok.
+359|Tidak ada peralatan yang cocok.
+360|IEC 60364-4-41 mengharapkan proteksi RCD 30 mA pada stop kontak dan pada sirkuit untuk peralatan portabel.
+361|BS 7671 411.3.3 mensyaratkan proteksi RCD 30 mA untuk stop kontak hingga 20 A dan sebagian besar sirkuit akhir di hunian.
+362|NEC 210.8 dan 210.12 mensyaratkan proteksi GFCI dan AFCI pada banyak receptacle dan sirkuit cabang. Pastikan edisi yang berlaku di daerah Anda.
+363|AS/NZS 3000 mensyaratkan proteksi RCD pada subsirkuit akhir untuk stop kontak dan penerangan.
+364|Instalasi AC kelautan biasanya memakai pensaklaran kutub ganda dan proteksi RCD 30 mA pada sirkuit akhir. Pastikan sesuai aturan kelas dan bendera kapal.
+365|ABYC E-11 mengharapkan proteksi GFCI pada receptacle dan proteksi cabang kutub ganda. Pastikan sesuai edisi terbaru.
+366|AC tegangan ekstra rendah: RCD tidak diperlukan untuk sirkuit SELV. Jatuh tegangan biasanya menjadi batas panjang kabel.
+367|DC tegangan ekstra rendah: RCD tidak diperlukan untuk sirkuit SELV. Tentukan setiap pemutus dari arus (I = P ÷ V), lindungi kabelnya, dan gunakan perangkat berating DC. Praktik kelautan (ISO 10133, ABYC E-11) membolehkan jatuh tegangan 3 % untuk sirkuit kritis seperti lampu navigasi dan pompa bilga, dan 10 % untuk sisanya.
+368|Pemeriksaan mencakup arus desain terhadap rating pemutus dan kabel, jatuh tegangan, ekspektasi RCD, tingkat arus gangguan, input Lutron, serta batas zona dan suhu. Impedansi loop gangguan ke tanah, diskriminasi, dan selektivitas tidak dihitung di sini.
+369|DBoard Designer adalah alat bantu desain. Rating kabel, batas jatuh tegangan, dan data Lutron bersifat indikatif; periksa terhadap edisi terbaru standar Anda, dokumen submittal produsen, dan insinyur yang berkualifikasi sebelum membangun.
+370|DBoard Designer
+371|Perancang
+372|Contoh papan kabin dan AV
+373|{1} mencakup {2}–{3} A; {4} A di luar rentang itu.
+374|{1} tidak mencantumkan kurva {2} ({3}).
+375|Umpan {1} membawa {2} A, di atas rating input {3} A.
+376|{1} berating {2}; tegangan fasa-netral sistem adalah {3} V.
+377|{1} mengizinkan {2} C di dalam kotak panel; nilai desainnya {3} C.
+378|Pemutus umpan {1} {2} A di bawah bebannya yaitu {3} A.
+379|Kabel umpan {1} membawa {2} A, di bawah pemutus {3} A.
+380|Jatuh tegangan umpan {1} adalah {2} %.
+381|Arus umpan {1} di atas pemutus terbesar dalam seri ini.
+382|Tingkat arus gangguan {1} kA di atas kapasitas pemutusan {2} kA dari pemutus umpan.
+383|Arus desain melebihi pemutus terbesar dalam seri ini.
+384|Arus desain {1} A di atas pemutus {2} A.
+385|Kabel {1} mm² membawa {2} A, di bawah pemutus {3} A. Perbesar kabel atau turunkan pemutusnya.
+386|Jatuh tegangan {1} % di atas target {2} %.
+387|Sirkuit {1} tidak memiliki RCBO. {2}
+388|Tingkat arus gangguan {1} kA di atas kapasitas pemutusan {2} kA dari {3}.
+389|Tingkat arus gangguan {1} kA di atas kapasitas pemutusan {2} kA yang diasumsikan untuk standar ini.
+390|{1} tidak memiliki versi 3 fasa. Pilih seri RCBO 4P atau gunakan MCB dengan RCD grup.
+391|{1} adalah perangkat 4P dan tidak dapat melindungi sirkuit satu fasa.
+392|{1} memiliki {2} zona; zona {3} tidak ada.
+393|Arus zona {1} A di atas rating zona {2} A.
+394|Beban zona {1} W di atas batas {2} W untuk zona {3}.
+395|{1} tidak mensaklar beban.
+396|Zona {1} dari {2} dipakai bersama dengan {3}.
+397|{1} tidak tercantum sebagai berating DC untuk {2} V di sini. Pilih seri DC, atau gunakan Generik dan tentukan perangkat berating DC.
+398|Tidak ada seri DC yang dipilih, sehingga diasumsikan pemutus termal-magnetik generik berating DC pada 5 kA.
+399|Arus fasa maksimum di atas rating incomer terbesar di pustaka.
+400|Arus fasa maksimum {1} A di atas incomer {2} A.
+401|Kabel incomer {1} mm² membawa {2} A, di bawah incomer {3} A.
+402|Jatuh tegangan incomer {1} % memakai sebagian dari total batas yang diizinkan.
+403|Ketidakseimbangan fasa adalah {1} % di atas rata-rata. Gunakan Seimbangkan fasa otomatis atau pindahkan sirkuit.
+404|Modul adaptif-fasa memerlukan penurunan rating zona pada suhu ruang 30–40 C. Lihat Lutron App Note #466.
+405|Modul adaptif-fasa memerlukan jarak 150 mm antar rel DIN dan ruang bebas 200 mm di atas rel teratas.
+406|Perkiraan disipasi {1} W melebihi rating kotak panel {2} W.
+407|{1} modul rel DIN dari Lutron, Crestron, Control4, dan MDT KNX. Data Lutron berasal dari Application Note #466 (rev T, Mei 2026) dan dokumen submittal spesifikasi, Crestron dari halaman produknya, Control4 dari lembar datanya, dan MDT dari daftar produk dan harganya (1 modul = 18 mm). Jika sumber tidak menyebutkan suatu nilai, nilai itu ditampilkan sebagai ? atau –. Aktuator KNX diberi daya oleh bus, sehingga hanya sisi bebannya yang dihitung terhadap umpan. Verifikasi dengan lembar data produsen terbaru sebelum memesan.
+408|{1} V AC tegangan ekstra rendah: I = P ÷ (V × PF). Pemutus adalah tipe AC standar; tegangan rendah membuat arus tinggi, sehingga ukuran kabel dan jatuh tegangan biasanya menentukan kabelnya.
+409|{1} di panel satelit dengan modul daya DIN dan pengontrol EcoSystem.
+410|{1} seri dari {2} produsen. Rating, kapasitas, dan lebar adalah nilai katalog tingkat seri: “Sumber diperiksa” berarti halaman produsen atau distributor mengonfirmasinya, “Umum” berarti angka katalog yang lazim dan perlu dikonfirmasi pada lembar data. Tekan Gunakan untuk menerapkan seri pada papan ini.
+411|Di bagian bawah Pengaturan, <b>Mulai papan kosong</b> menghapus semuanya dan <b>Muat ulang papan contoh</b> mengembalikan panel kabin dan AV contoh.
+412|Pilih Tegangan rendah AC / DC sebagai jenis suplai. Rating pemutus dan ukuran kabel kemudian memakai seri berating DC, dan panel menggambar rel positif dan negatif sebagai ganti fasa.
+413|Panel daya kontrol dengan 8 pemutus sirkuit cabang dan antarmuka modul.
+414|Panel peredupan / pensaklaran, hingga 4 modul daya DIN (atau 3 ditambah satu catu daya QSPS). 120–240 V.
+415|Arus searah: I = P ÷ V tanpa faktor daya. Busur api DC tidak padam dengan sendirinya, sehingga setiap pemutus harus berating DC minimal untuk tegangan pengisian (sekitar 1,25 × nominal {1} V), dan polaritas yang tertera pada perangkat harus diikuti. Kapasitas pemutusan ditentukan oleh arus hubung singkat baterai atau sumber ({2} kA dimasukkan).
+416|Setiap penghantar digambar: setiap fasa dari rel fasanya dan netral dari rel N. Kotak putus-putus di sekitar kutub menandai pemutus yang juga mensaklar netral; tanda Δ menandai RCD. MCB satu kutub meneruskan netral langsung. Garis putus-putus menunjukkan sirkuit yang disaklar oleh zona modul Lutron.
+417|Setiap penghantar digambar: positif (merah) dan negatif (gelap) dari dua rel busbar. Kotak putus-putus di sekitar kutub menandai pemutus kutub ganda. Pemutus satu kutub hanya dipasang pada positif.
+418|Ikuti langkah-langkah ini dari layar pertama hingga PDF jadi. Anda dapat melompat ke langkah mana pun kapan saja; setiap tab memperbarui papan yang sama.
+419|Pada versi yang dapat dipasang, gunakan opsi Pasang atau Tambahkan ke Layar Utama di peramban Anda. Aplikasi kemudian terbuka layar penuh dan bekerja secara offline.
+420|Buka <b>Pemeriksaan</b>. Alat ini menguji bahwa setiap pemutus mencakup beban dan melindungi kabelnya, bahwa jatuh tegangan tetap di bawah batas Anda, bahwa proteksi RCD ada di tempat yang diminta standar, bahwa kapasitas pemutusan pemutus mencakup tingkat arus gangguan, dan bahwa batas modul dan zona Lutron (beban, arus, tegangan, suhu) dipatuhi. Alat ini juga memeriksa rating dan kabel incomer, ketidakseimbangan fasa, dan panas kotak panel. <b>Gagal</b> berarti perbaiki sebelum membangun, <b>Tinjau</b> berarti periksa dan putuskan, dan catatan hanya untuk informasi.
+421|Buka <b>Sirkuit</b> dan tekan <b>Tambah sirkuit</b>. Untuk setiap sirkuit masukkan nama, jenis, daya dalam watt, faktor daya, fasa, panjang kabel, proteksi (MCB atau RCBO), dan kurva. Alat ini menentukan ukuran kabel, memilih rating pemutus, serta menghitung arus dan jatuh tegangan. <b>Seimbangkan fasa otomatis</b> menyebarkan beban ke L1, L2, dan L3, dan <b>Beri nomor ulang</b> merapikan referensi. Pada papan tegangan rendah, kalkulator cepat di bagian atas langsung memberikan pemutus untuk suatu beban.
+422|Buka <b>Diagram</b> untuk diagram pengawatan multi-garis. Setiap penghantar fasa digambar dari rel fasanya dan netral dari rel N. Kotak putus-putus menandai pemutus yang mensaklar netral, segitiga menandai RCD, dan garis putus-putus menunjukkan sirkuit yang disaklar oleh zona Lutron. Setiap sirkuit menampilkan kabel, proteksi, bilah beban, dan status.
+423|Buka <b>Peralatan</b> untuk menelusuri peralatan kontrol rel DIN dari Lutron, Crestron, Control4, dan MDT KNX (prosesor, antarmuka, catu daya, modul peredupan, pensaklaran, dan kerai, gateway) dengan filter merek, serta pustaka pemutus (Schneider, ABB, Siemens, Legrand, Hager, Eaton, Chint). Tekan <b>Tambah</b> pada sebuah modul untuk menempatkannya di papan. Kembali di <b>Sirkuit</b>, pilih modul dan zona (kanal) yang menyuplai sirkuit. Setiap modul juga mendapat pemutus umpan sendiri. Tekan <b>Gunakan</b> pada seri pemutus untuk menjadikannya bawaan bagi MCB, RCBO, atau utama.
+424|Buka <b>Ekspor</b>. <b>Simpan PDF</b> menghasilkan tata letak panel, diagram multi-garis, jadwal sirkuit, dan total daya; centang <b>Sertakan daftar material</b> jika Anda ingin daftar itu ditambahkan. <b>Simpan Excel</b> dan <b>Simpan CSV</b> memberikan jadwal untuk alat lain. <b>Simpan proyek</b> menyimpan seluruh desain sebagai file yang dapat dibuka lagi nanti dengan <b>Buka proyek</b>.
+425|Buka <b>Panel</b> untuk melihat rel DIN digambar dengan setiap perangkat dan nama sirkuitnya. Klik perangkat untuk membuka inspektur: edit, pindahkan sepanjang rel atau ke rel lain, atau hapus. Gunakan <b>+ Sirkuit</b>, <b>+ Modul DIN</b>, atau <b>+ Perangkat khusus</b> untuk menambahkan sesuatu di sini juga. Anda dapat mengganti pemutus utama, dan mengembalikan pemutus utama atau proteksi lonjakan yang dihapus dengan tombol pulihkan. <b>Sesuaikan layar</b> dan <b>Ukuran penuh</b> mengganti tingkat zoom.
+426|Buka <b>Pengaturan</b>. Beri nama papan, tambahkan nama perusahaan dan logo Anda (muncul di bagian atas halaman dan di PDF), lalu pilih <b>standar</b> dan <b>jenis suplai</b>: satu fasa, tiga fasa, atau tegangan rendah AC / DC (12, 24, 48 V DC atau 24 V AC untuk papan kelautan dan sejenisnya). Kemudian atur suhu sekitar, faktor keserempakan, kabel incomer, batas jatuh tegangan, seri pemutus yang ingin dipakai, jumlah modul yang muat pada rel DIN, dan apakah RCBO memakai 1 atau 2 modul.
+427|Rating, batas jatuh tegangan, dan data produsen bersifat indikatif. Periksa terhadap edisi terbaru standar Anda, dokumen submittal produsen, dan insinyur yang berkualifikasi sebelum membangun.
+428|Papan disimpan di peramban ini selama Anda bekerja. Gunakan Simpan proyek untuk menyimpan salinan atau memindahkannya ke perangkat lain.
+429|(rating standar berikutnya yang sama dengan atau di atas arus desain) {1}
+430|2 kutub
+431|2 kutub, berating DC
+432|Panel dan kotak panel DIN Lutron (referensi)
+433|Cara kerja DBoard Designer
+434|Perlu diketahui
+435|Mulai dengan Pengaturan
+436|Siapkan proyek
+437|Tambahkan sirkuit Anda
+438|Baca pemeriksaan
+439|Tinjau diagram
+440|Pekerjaan Anda tersimpan otomatis
+441|Pasang seperti aplikasi
+442|Selalu verifikasi
+443|Garis
+444|Proyek
+445|Pemutus
+446|Pemutus
+447|opsional
+448|sumber
+449|, kabel
+450|Diterapkan pada total fasa
+451|Menentukan lebar pemutus dan diagram
+452|Kotak panel tegangan rendah HomeWorks QS.
+453|Kotak panel feed-through dengan antarmuka modul.
+454|Panel rel DIN 120 V dengan blok terminal.
+455|Panel pemutus DIN {2} {1} V dengan pemutus AFCI {3} A.
+456|Perangkat proteksi lonjakan, tipe 2.
+457|SPD tipe 2
+458|TIPE 2
+459|3 fasa
+460|{1} (AC kelautan)
+461|UTAMA {1}
+462|Bus {1} V DC
+463|Bus {1} V AC
+464|REL {1}
+465|dipakai,
+466|Daftar material
+467|Tata letak panel (rel {1} sampai {2})
+468|(halaman {1} dari {2})
+469|Alat bantu desain. Verifikasi rating terhadap edisi standar, lembar data produsen, dan insinyur yang berkualifikasi sebelum membangun.
+470|Fs
+471|Proteksi
+472|Rating kabel A
+473|Jadwal
+474|Modul DIN
+475|Fasa
+476|Umpan A
+477|Pemutus umpan A
+478|Kabel umpan mm2
+479|Modul (18 mm)
+480|Panas BTU/jam
+481|Arus A (setelah keserempakan)
+482|Incomer A
+483|Ketidakseimbangan %
+484|Terhubung kW
+485|Permintaan kW (setelah keserempakan)
+486|Semu kVA
+487|Disipasi W
+488|Sistem
+489|Tingkat gangguan kA
+490|Suhu sekitar kabel C
+491|Saklar utama
+492|Generik
+493|Langsung
+494|Item
+495|Jml
+496|Pembebanan fasa setelah keserempakan
+497|Terhubung {1} kW · permintaan {2} kW · {3} kVA · PF {4}
+498|Kabel incomer {1} mm² {2}
+499|Ukuran penuh, gulir ke samping
+500|{1} × {2} ditambahkan. Lihat di tab Panel.
+501|Kuantitas
+502|DC
+503|Tegangan (V)
+504|Arus (A)
+505|Resistansi (Ω)
+506|Daya (W)
+507|Hukum Ohm dan daya
+508|Pilih yang dicari, lalu masukkan dua nilai yang Anda ketahui.
+509|Cari
+510|Rumus
+511|Masukkan nilai di atas nol.
+512|Daya AC dan faktor daya
+513|Menghitung arus, daya nyata, daya semu, dan daya reaktif untuk beban satu fasa dan tiga fasa.
+514|Tegangan antar-fasa (V)
+515|Nilai yang diketahui
+516|Arus dan faktor daya
+517|Daya nyata dan faktor daya
+518|Daya semu dan faktor daya
+519|Daya nyata dan reaktif
+520|Daya nyata (kW)
+521|Daya semu (kVA)
+522|Daya reaktif (kvar)
+523|Faktor daya harus antara 0 dan 1.
+524|Arus
+525|Daya nyata
+526|Daya reaktif
+527|Sudut fasa
+528|Perbaikan faktor daya
+529|Tentukan ukuran bank kapasitor untuk menaikkan faktor daya.
+530|Faktor daya saat ini
+531|Faktor daya target
+532|Target harus lebih tinggi dari faktor daya saat ini.
+533|Ukuran kapasitor (kvar)
+534|Daya semu sebelum
+535|Daya semu sesudah
+536|Pengurangan arus
+537|Ukuran kabel
+538|Mencari kabel tembaga terkecil yang membawa beban dan menjaga jatuh tegangan dalam batas.
+539|Beban diberikan sebagai
+540|Daya (kW)
+541|Panjang kabel (m)
+542|Batas jatuh tegangan (%)
+543|Jenis kabel
+544|Suhu sekitar (°C)
+545|Faktor pengelompokan
+546|Rating kabel
+547|Pemutus yang disarankan
+548|Penghantar tembaga, metode referensi C. Pastikan sesuai standar dan metode pemasangan Anda.
+549|Tidak ada kabel dalam tabel yang memenuhi batas. Perpendek jalur, longgarkan batas, atau gunakan kabel paralel.
+550|Jatuh tegangan untuk kabel yang Anda pilih, dan jalur terpanjang yang dapat dilayaninya.
+551|Ukuran kabel (mm²)
+552|Jatuh tegangan (V)
+553|Jatuh tegangan (%)
+554|Tegangan pada beban
+555|Jalur terpanjang dalam batas
+556|Dalam batas.
+557|Melebihi batas. Gunakan kabel lebih besar atau jalur lebih pendek.
+558|Jaringan resistor dan hukum Kirchhoff
+559|Resistor seri dan paralel beserta tegangan dan arus pada masing-masing.
+560|Jaringan
+561|Paralel
+562|Tegangan suplai (V)
+563|Nilai resistor (Ω), dipisahkan koma atau spasi
+564|Masukkan 1 sampai 12 nilai resistor di atas nol.
+565|Resistor
+566|Resistansi total
+567|Arus total
+568|Daya total
+569|Hukum tegangan Kirchhoff (KVL): tegangan di sekeliling loop tertutup berjumlah nol, sehingga jatuh tegangan pada resistor berjumlah sama dengan suplai.
+570|Hukum arus Kirchhoff (KCL): arus yang masuk ke sebuah simpul sama dengan arus yang keluar, sehingga arus cabang berjumlah sama dengan arus total.
+571|Hubungan bintang dan delta
+572|Tegangan dan arus antar-fasa dan fasa pada beban tiga fasa.
+573|Sambungan
+574|Bintang (wye)
+575|Delta
+576|Nilai antar-fasa
+577|Nilai fasa
+578|Tegangan fasa (V)
+579|Arus saluran (A)
+580|Arus fasa (A)
+581|Alat bantu elektrisi
+582|Kalkulator cepat untuk pekerjaan sehari-hari. Setiap hasil menampilkan rumus dan angka di baliknya. Anggap sebagai panduan dan periksa terhadap standar Anda.
+583|Alat
+584|Gunakan Alat
+585|Buka <b>Alat</b> untuk kalkulator elektrisi cepat yang berdiri sendiri, terpisah dari papan. Gunakan <b>Hukum Ohm dan daya</b> untuk mencari tegangan, arus, resistansi, atau daya dari dua nilai apa pun. <b>Daya AC dan faktor daya</b> mencakup beban satu fasa dan tiga fasa, dan <b>Perbaikan faktor daya</b> menentukan ukuran bank kapasitor. <b>Ukuran kabel</b> memilih kabel tembaga terkecil untuk beban, panjang, dan batas jatuh tegangan dengan tabel yang sama seperti sirkuit, dan <b>Jatuh tegangan</b> memeriksa kabel yang Anda pilih. <b>Jaringan resistor</b> menyelesaikan rangkaian seri dan paralel dengan hukum Kirchhoff, dan <b>Bintang dan delta</b> mengonversi nilai antar-fasa dan fasa. Setiap hasil menampilkan rumus dan angka yang dipakai.
+586|Resistansi kabel
+587|Resistansi penghantar tembaga atau aluminium. Hitung resistansi, panjang, atau ukuran, misalnya untuk memperkirakan jarak gangguan.
+588|Bahan
+589|Tembaga
+590|Aluminium
+591|Diukur sebagai
+592|Satu penghantar
+593|Loop (pergi dan pulang)
+594|Suhu penghantar (°C)
+595|Ukuran standar berikutnya
+596|Resistivitas pada suhu ini
+597|Resistansi per meter
+598|Pembacaan loop mencakup penghantar pergi dan pulang, sehingga panjang yang ditampilkan adalah jarak satu arah.
+599|Resistivitas pada 20 °C: tembaga 0,017241, aluminium 0,028264 Ω·mm²/m. Koefisien suhu: tembaga 0,00393, aluminium 0,00403 per °C.
+600|Fasa 1 cokelat, fasa 2 hitam, fasa 3 abu-abu, netral biru, pentanahan proteksi hijau-kuning (IEC 60446).
+601|Pentanahan proteksi dengan pemutusan suplai otomatis (sistem TN, TT, atau IT), ikatan ekuipotensial utama untuk layanan logam masuk dan bagian konduktif terbuka.
+602|Fasa 1 cokelat, fasa 2 hitam, fasa 3 abu-abu, netral biru, pentanahan proteksi hijau-kuning. Instalasi lama memakai merah, kuning, biru, dan hitam.
+603|Pentanahan proteksi dengan pemutusan otomatis. Impedansi loop gangguan ke tanah harus tetap dalam batas tabel, dengan ikatan proteksi utama untuk layanan.
+604|Hanya netral (putih atau abu-abu) dan ground peralatan (hijau atau telanjang) yang ditetapkan. Warna fasa mengikuti praktik setempat, umumnya hitam, merah, dan biru pada 208 V.
+605|Pasal 250: sistem elektroda pentanahan, penghantar ground peralatan, dan satu ikatan netral-ke-ground hanya pada pemutus layanan.
+606|Tanah hijau-kuning, netral hitam atau biru muda, penghantar aktif dengan warna lain seperti merah, putih, dan biru, atau cokelat, hitam, dan abu-abu.
+607|Sistem netral ditanahkan berganda (MEN) dengan netral dihubungkan ke tanah pada panel utama, dan penghantar pentanahan utama ke elektroda tanah.
+608|Fasa cokelat, netral biru, pentanahan proteksi hijau-kuning (praktik IEC 60446).
+609|Penghantar proteksi disambung ke sistem ikatan kapal. Netral dan tanah disambung hanya pada sumber (generator atau transformator isolasi), tidak pernah pada sambungan darat.
+610|Hot hitam, hot kedua merah, hot ketiga biru, netral putih, penghantar ground hijau atau hijau-kuning.
+611|Penghantar ground AC disambung ke negatif DC kapal pada satu titik. Netral dan ground disambung hanya pada sumber (generator atau transformator isolasi).
+612|Ya
+613|Tidak
+614|Jatuh tegangan, penerangan
+615|Jatuh tegangan, sirkuit lainnya
+616|Faktor beban kontinu
+617|Rating pemutus
+618|Kurva trip
+619|Pensaklaran kutub ganda
+620|Ya, kutub ganda
+621|Tidak, kutub tunggal lazim
+622|Proteksi RCD atau GFCI
+623|Warna kabel
+624|Pentanahan dan ikatan
+625|Bandingkan standar
+626|Jatuh tegangan penerangan
+627|Jatuh tegangan lainnya
+628|Beban kontinu
+629|Kutub ganda
+630|Referensi standar
+631|Hanya sebagai referensi. Pastikan setiap nilai terhadap edisi standar terbaru dan amandemen setempat sebelum Anda mengandalkannya.
+632|Pendingin ruangan
+633|Kipas / ventilasi
+634|Motor
+635|Pompa air
+636|Winch / thruster
+637|Kompor / oven
+638|Pendingin
+639|Mesin cuci / pengering
+640|Pemanas air
+641|Pemanas kabel / lantai
+642|Stop kontak luar ruang / dek
+643|Peralatan kolam / spa
+644|Pengisi daya kendaraan listrik
+645|Pengisi daya baterai
+646|Inverter / UPS
+647|Jaringan / TI
+648|Keamanan / alarm
+649|Penerangan darurat
+650|Umpan sub-panel
+651|Pemecahan masalah dan standar
+652|Di Alat, <b>Resistansi kabel</b> mencari resistansi, panjang, atau ukuran kabel tembaga atau aluminium, misalnya untuk memperkirakan seberapa jauh gangguan. <b>Referensi standar</b> di bagian bawah mencantumkan batas jatuh tegangan, rating pemutus, aturan RCD, warna kabel, dan pentanahan untuk setiap standar. Ini hanya untuk referensi, jadi pastikan terhadap edisi terbaru.
+653|Pompa bilga / sump
+654|Bengkel / perkakas listrik
+655|Peralatan navigasi
+656|Komunikasi
+657|Masuk
+658|Buat akun
+659|Buat akun
+660|Alamat email
+661|Kata sandi
+662|Konfirmasi kata sandi
+663|Nama depan
+664|Nama belakang
+665|Negara
+666|Lupa kata sandi?
+667|Ingat saya di perangkat ini
+668|Keluar
+669|Dasbor
+670|Pengaturan akun
+671|Papan baru
+672|Proyek Tersimpan Saya
+673|Buka
+674|Ganti nama
+675|Duplikat
+676|Buat Papan Distribusi Baru
+677|Proyek yang Baru Dibuka
+678|Simpan profil
+679|Ubah kata sandi
+680|Hapus akun
+681|Perusahaan (opsional)
+682|Pekerjaan profesional
+683|Atur ulang kata sandi Anda
+684|Kirim tautan atur ulang
+685|Periksa email Anda
+686|Buka perancang
+687|Proyek tersimpan
+688|Kirim masukan
+689|Akun
+690|Selamat datang
+691|Tampilkan
+692|Sembunyikan
+693|Kembali ke halaman masuk
+694|Pilih negara Anda
+695|Pilih pekerjaan Anda
+696|Kirim ulang email
+697|Syarat dan Ketentuan
+698|Kebijakan Privasi
+699|Elektrisi
+700|Insinyur Listrik
+701|Perakit Panel
+702|Integrator Sistem
+703|Pelajar/Mahasiswa
+704|Profil
+705|Perbarui kata sandi
+706|Kata sandi saat ini
+707|Kata sandi baru
+708|Konfirmasi kata sandi baru
+709|Cari proyek
+710|Tersimpan di akun Anda
+711|Menyimpan…
+712|Hanya di perangkat ini
+713|Simpan ke akun
+714|Email atau kata sandi salah.
+715|Pilih kata sandi baru
+716|+ Modul DALI
+717|Tambahkan master DALI, catu daya bus, dan driver di sini atau dari pustaka DALI di tab Peralatan. Setiap driver dihubungkan ke satu link pengontrol DALI. Pengontrol yang dipasang di panel (misalnya Lutron QSN2-2DALUNV-D) muncul di sini secara otomatis, begitu pula master yang ditambahkan di bawah. Alamat dibagikan berurutan pada setiap jalur, hingga 64.
+718|Tambahkan pengontrol DALI ke panel, atau master di bawah, untuk menggambar jaringan.
+719|Tambahkan driver, catu daya, pengontrol, atau input yang tidak ada di pustaka dan ketik angkanya. Perangkat itu lalu muncul di daftar model di atas dan dapat dihubungkan ke link seperti perangkat lain.
+720|Tambah ke jaringan DALI
+721|Alamat
+722|Alamat
+723|Alamat dan mA berlaku untuk driver dan input. Jalur dan catu daya bus berlaku untuk pengontrol dan catu daya. Lebar DIN berlaku jika pemasangannya pada rel DIN.
+724|Alamat
+725|Semua pemeriksaan jalur DALI lolos.
+726|Beban bus
+727|Kanal
+728|Hubungkan ke
+729|Hubungkan ke: link kosong pertama
+730|Pengontrol
+731|Buat dan tambahkan
+732|Perangkat DALI khusus
+733|Merek DALI
+734|Pengontrol DALI dalam proyek ini
+735|Pustaka peralatan DALI
+736|Link DALI
+737|mA DALI
+738|Model DALI
+739|Tata letak modul DALI
+740|Modul DALI yang ditambahkan
+741|Modul DALI
+742|Jaringan DALI
+743|Skema jaringan DALI
+744|Jenis DALI
+745|DIN DU
+746|DIN dan jarak jauh
+747|Hanya rel DIN
+748|Perangkat
+749|Filter menurut jenis
+750|Beri nama perangkat khusus.
+751|Input / kopler tombol tekan
+752|Jalur
+753|Link
+754|Pemasangan
+755|Nama / lokasi
+756|Belum ada pengontrol DALI. Tambahkan modul DALI dari tab Peralatan (Lutron, Crestron, atau MDT, ditampilkan di tab Panel) atau master atau gateway DALI di bawah, lalu hubungkan driver ke link-nya.
+757|Tidak ada peralatan DALI yang cocok.
+758|Belum ada peralatan DALI. Pilih model di atas, atau jelajahi pustaka DALI di tab Peralatan.
+759|Tidak ada catu daya bus yang terhubung ke jalur ini. Hubungkan catu daya DALI ke jalur ini.
+760|Tidak cocok
+761|Tidak terhubung
+762|Belum ada yang bisa ditata.
+763|Pada rel DIN
+764|Output
+765|Kuantitas
+766|Hanya jarak jauh
+767|Hapus semua DALI
+768|Cari perangkat DALI
+769|Cari peralatan DALI
+770|Cari driver, merek, artikel
+771|Cari model, artikel, jenis
+772|mA suplai
+773|Master memiliki catu daya bus bawaan, tetapi catu daya terpisah juga dihubungkan. Hanya yang terpisah yang dihitung.
+774|Tidak ada master atau gateway DALI, sehingga tidak ada jalur DALI. Tambahkan satu untuk menghubungkan driver.
+775|Lokasi
+776|Perangkat khusus Anda
+777|mis. Downlight dapur
+778|mis. Tridonic 75 W CC
+779|adalah master
+780|jam lalu
+781|baru saja
+782|menit lalu
+783|. Buka tautan itu untuk mengaktifkan akun Anda, lalu masuk. Tautan hanya berlaku sekali dan kedaluwarsa setelah beberapa waktu.
+784|Alat bantu desain. Selalu verifikasi terhadap peraturan instalasi listrik setempat.
+785|Akun ditangguhkan
+786|Sudah punya akun?
+787|Daftar material, ekspor PDF dan Excel
+788|Ukuran kabel, jatuh tegangan, dan beban
+789|Lanjutkan tanpa akun
+790|Buat akun Anda
+791|Tata letak rel DIN dan posisi pemutus
+792|Rancang papan distribusi yang bisa Anda bangun.
+793|Unduh data saya
+794|Masukkan email akun Anda. Jika cocok dengan sebuah akun, kami mengirim tautan untuk memilih kata sandi baru.
+795|Gratis untuk memulai. Kami mengirim tautan ke email Anda untuk mengonfirmasi alamat sebelum Anda dapat masuk.
+796|Saya sudah konfirmasi, masuk
+797|Saya telah membaca dan menyetujui
+798|Tata letak, diagram garis tunggal, jadwal, dan ukuran kabel dalam satu ruang kerja, tersimpan di akun Anda dan tersedia di setiap perangkat.
+799|Baru di DBoard Designer?
+800|Tidak ada yang masuk? Periksa folder spam, dan pastikan alamat dieja dengan benar.
+801|Proyek tersimpan dengan aman di akun Anda
+802|Kirim ulang email verifikasi
+803|Atur kata sandi baru untuk akun Anda.
+804|Tampilkan kata sandi
+805|Mulai lagi
+806|Akun ini telah ditangguhkan dan saat ini tidak dapat membuka proyek. Data Anda tetap tersimpan. Hubungi operator layanan untuk meninjaunya.
+807|Kami mengirim tautan konfirmasi ke
+808|Selamat datang kembali. Lanjutkan papan Anda dari tempat terakhir.
+809|Alamat salah?
+810|dan
+811|1. Layanan
+812|2. Tanggung jawab profesional
+813|3. Akun Anda
+814|4. Konten Anda
+815|5. Penggunaan yang dapat diterima
+816|6. Ketersediaan dan tanggung jawab
+817|7. Mengakhiri akun Anda
+818|Versi yang lebih baru dari proyek ini disimpan dari perangkat atau tab lain. Pilih versi yang akan dipertahankan.
+819|Menu akun
+820|DBoard Designer adalah alat bantu desain untuk papan distribusi listrik. Hasilnya (ukuran kabel, jatuh tegangan, beban, daftar material) bersifat indikatif.
+821|Data disimpan selama akun Anda ada dan dihapus saat Anda menghapusnya.
+822|Hapus proyek ini secara permanen?
+823|Jangan mencoba mengakses data pengguna lain, mengganggu layanan, atau menggunakannya secara melanggar hukum. Akun yang melakukannya dapat ditangguhkan.
+824|Di Pengaturan akun Anda dapat mengedit data, mengunduh semua data, dan menghapus akun serta proyek secara permanen. Hubungi operator untuk permintaan privasi lainnya.
+825|Pertahankan versi saya
+826|Jaga kerahasiaan kata sandi Anda. Anda bertanggung jawab atas aktivitas di akun Anda. Berikan data pendaftaran yang akurat.
+827|Muat versi tersimpan
+828|Nama, alamat email, negara, pekerjaan, dan perusahaan (opsional), yang Anda berikan saat mendaftar. Proyek Anda. Peristiwa penggunaan dasar (masuk, proyek dibuka atau dibuat, ekspor, alat dibuka) dan masukan apa pun yang Anda kirim.
+829|Kata sandi
+830|Kata sandi tidak pernah disimpan oleh aplikasi ini. Autentikasi ditangani oleh Supabase Auth, yang hanya menyimpan hash ber-salt.
+831|Proyek dihapus.
+832|Proyek diduplikasi.
+833|Retensi
+834|Tersimpan di akun Anda.
+835|Supabase (basis data dan autentikasi) dan Cloudflare (hosting). Administrator layanan ini dapat melihat detail akun, jumlah proyek, dan masukan. Mereka tidak dapat melihat kata sandi Anda.
+836|Templat untuk operator layanan. Lengkapi detail operator dan minta ditinjau sebelum peluncuran publik.
+837|Templat untuk operator layanan. Minta ditinjau oleh pengacara yang berkualifikasi dan sesuaikan sebelum peluncuran publik.
+838|Layanan disediakan apa adanya selama masa beta. Sejauh diizinkan hukum, operator tidak bertanggung jawab atas kerugian yang timbul dari penggunaannya. Simpan ekspor Anda sendiri untuk proyek penting.
+839|Proyek ini berubah di perangkat lain
+840|Proyek ini tidak dapat dibaca.
+841|Untuk menjalankan akun Anda, menyimpan proyek, mengamankan layanan, dan memahami fitur mana yang dipakai. Kami tidak menjual data pribadi dan tidak menampilkan iklan.
+842|Diunggah ke akun Anda. Salinan di perangkat ini tidak berubah.
+843|Yang kami kumpulkan
+844|Siapa yang memproses data
+845|Mengapa
+846|Anda bertanggung jawab memeriksa setiap desain terhadap peraturan instalasi listrik yang berlaku di lokasi pembangunannya, dan memastikannya diverifikasi oleh orang yang kompeten sebelum dipasang.
+847|Anda dapat menghapus akun kapan saja di Pengaturan akun. Proyek dan profil Anda kemudian dihapus secara permanen.
+848|Anda memiliki proyek yang Anda buat. Anda memberi operator hak untuk menyimpan dan memprosesnya guna menjalankan layanan bagi Anda.
+849|Hak Anda
+850|Sesi Anda telah berakhir. Masuk lagi.
+851|Proyek tersimpan hanya di perangkat ini:
+852|Hapus akun saya
+853|Hapus permanen
+854|Hapus akun Anda?
+855|Unduh profil dan semua proyek Anda sebagai satu file JSON.
+856|Diedit
+857|Impor panel
+858|Impor dari foto atau PDF
+859|Memuat proyek Anda…
+860|Tidak ada koneksi. Periksa internet Anda dan coba lagi.
+861|Nanti saja
+862|Notifikasi
+863|Buka papan lokal
+864|Buka papan yang tersimpan di peramban ini, tanpa menyimpannya ke cloud.
+865|Membuka papan kosong yang otomatis tersimpan di akun Anda.
+866|Menghapus akun, profil, dan semua proyek tersimpan secara permanen. Ini tidak dapat dibatalkan. Proyek yang hanya tersimpan di perangkat ini tidak terpengaruh.
+867|Bagikan
+868|Mulai papan distribusi baru atau lanjutkan yang tersimpan.
+869|Terima kasih. Masukan Anda telah terkirim.
+870|Ini menghapus akun Anda dan semua proyek tersimpan secara permanen. Untuk mengonfirmasi, ketik alamat email Anda.
+871|Ubah foto panel yang sudah dibangun, atau skema PDF, menjadi papan yang dapat diedit.
+872|Unggah salinan
+873|Unggah salinan ke akun Anda untuk dipakai di perangkat lain. Salinan di perangkat ini tetap disimpan.
+874|Apa yang berfungsi, apa yang kurang, apa yang salah?
+875|Bekerja di perangkat ini
+876|Tulis pesan terlebih dahulu.
+877|Anda sedang offline. Proyek cloud dimuat saat Anda tersambung kembali.
+878|Data Anda
+879|Pesan Anda
+880|sirkuit
+881|perangkat
+882|Aktif
+883|Dasbor admin
+884|Administrasi
+885|Status apa pun
+886|Verifikasi apa pun
+887|Komunitas
+888|Pengguna terhapus
+889|Email
+890|Verifikasi email
+891|Terakhir terlihat
+892|Memuat…
+893|Proyek baru dalam 7 hari
+894|Berikutnya
+895|Belum ada peristiwa yang tercatat.
+896|Belum ada masukan.
+897|Tidak ada pengguna yang cocok.
+898|Belum diverifikasi
+899|Sebelumnya
+900|Proyek
+901|Terdaftar
+902|Cari
+903|Cari nama, email, perusahaan
+904|Cari pengguna
+905|Pendaftaran per hari
+906|Pendaftaran, 30 hari terakhir
+907|Ditangguhkan
+908|Negara teratas
+909|Penggunaan, 30 hari terakhir
+910|Terverifikasi
+911|admin
+912|pengguna
+913|Terima
+914|Kembali ke percakapan
+915|Mengobrol dengan anggota lain, bekerja dalam grup, dan bagikan papan tersimpan.
+916|Pilih percakapan, atau mulai yang baru.
+917|Klik lagi untuk mengonfirmasi
+918|Klik lagi untuk keluar
+919|Percakapan
+920|Tidak dapat menerima undangan.
+921|Buat grup
+922|Batas undangan harian tercapai. Coba lagi besok.
+923|Tolak
+924|Alamat email anggota terdaftar
+925|Email dikirim ke
+926|Mantan anggota
+927|Beri nama grup.
+928|Grup
+929|Obrolan grup
+930|Nama grup
+931|Undangan
+932|Undang
+933|Undang anggota lewat email
+934|Undang ke
+935|Keluar
+936|Tandai semua sudah dibaca
+937|Anggota
+938|Pesan
+939|Pesan (opsional)
+940|Pesan tidak dapat dimuat.
+941|Grup baru
+942|Obrolan pribadi baru
+943|Belum ada percakapan. Mulai obrolan pribadi dengan anggota, atau buat grup.
+944|Belum ada pesan
+945|Belum ada pesan. Ucapkan halo.
+946|Belum ada yang dibagikan kepada Anda.
+947|Tidak ada yang baru. Undangan, balasan, dan proyek yang dibagikan muncul di sini.
+948|Buka salinan
+949|Buka grup
+950|Obrolan pribadi
+951|Anggota terdaftar dapat melihat papan dan menyimpan salinan sendiri. Hanya Anda yang dapat mengubah aslinya.
+952|Kirim
+953|Kirim undangan
+954|Pisahkan alamat dengan koma atau baris baru. Anggota yang diundang menerima email dan notifikasi, dan bergabung saat mereka menerima.
+955|Bagikan proyek
+956|Bagikan dengan (alamat email)
+957|Dibagikan oleh saya
+958|Dibagikan kepada saya
+959|Mulai obrolan
+960|Berhenti berbagi
+961|Proyek itu tidak lagi dibagikan kepada Anda.
+962|Email tidak dapat dikirim. Mereka tetap akan melihatnya di dasbor mereka.
+963|Pesan tidak dapat dikirim. Coba lagi.
+964|Mereka akan melihatnya di dasbor mereka.
+965|Papan tanpa judul
+966|Tulis pesan. Enter mengirim, Shift+Enter menambah baris.
+967|Anda mengirim pesan terlalu cepat. Tunggu sebentar.
+968|Anda belum membagikan proyek. Gunakan Bagikan pada proyek mana pun di dasbor Anda.
+969|dari
+970|diundang
+971|anggota
+972|dilewati (20 alamat sekali kirim)
+973|Anda
+974|Tambahkan setidaknya satu perangkat dahulu.
+975|Tambah perangkat
+976|Tambahkan foto atau PDF
+977|Hindari silau dan bayangan. Matikan lampu kilat jika label memantulkannya.
+978|Papan
+979|Papan dibuat. Mohon periksa:
+980|Nama papan
+981|Periksa ini
+982|Pilih file
+983|Buat papan
+984|Deteksi dari panel
+985|Perbaiki apa pun yang tampak salah. Beban yang Anda kosongkan diperkirakan dari rating pemutus. Tidak ada yang disimpan sampai Anda menekan Buat papan.
+986|Untuk PDF, gambar vektor dan jadwal berbasis teks terbaca paling baik. Hasil pindai harus tajam.
+987|Contoh: label berbahasa Italia, panel adalah papan kelautan 230 V
+988|Untuk papan besar, tambahkan foto jarak dekat setiap baris agar penanda pemutus dan label terlihat tajam.
+989|Untuk hasil bacaan terbaik
+990|Seberapa yakin hasil bacaan
+991|Sertakan legenda sirkuit atau strip label jika ada.
+992|Label
+993|Jenis beban
+994|Tidak ada di panel. Diasumsikan, mohon periksa.
+995|Catatan untuk pembaca (opsional)
+996|Tidak ada yang dikenali. Tambahkan perangkat secara manual, atau kembali dan coba foto yang lebih jelas.
+997|Impor panel belum diaktifkan untuk situs ini. Pemilik situs perlu menambahkan kunci layanan pembaca (lihat README).
+998|Baca panel
+999|Membaca panel…
+1000|Mulai ulang
+1001|Ambil foto
+1002|Ambil foto dari depan dengan pintu terbuka, bukan dari samping.
+1003|Papan tidak dapat dibuat. Periksa nilainya dan coba lagi.
+1004|Panelnya besar dan pembacaan terpotong. Tambahkan perangkat yang hilang secara manual, atau ulangi dengan foto jarak dekat sisi kanan.
+1005|Foto atau PDF dikirim ke layanan pembaca untuk dianalisis dan tidak disimpan. Anda meninjau semuanya sebelum papan dibuat.
+1006|Biasanya memerlukan 20 sampai 60 detik. Biarkan halaman ini tetap terbuka.
+1007|Ubah foto panel yang sudah dibangun, atau skema PDF, menjadi papan yang dapat diedit dengan sirkuit, label, skema, dan daftar material.
+1008|Hingga empat foto satu panel, atau satu skema PDF atau jadwal sirkuit.
+1009|Standar pengawatan (opsional)
+1010|Sumber Anda
+1011|perangkat terbaca
+1012|keyakinan rendah, disorot
+1013|Alamat, telepon, email, situs web. Ditampilkan di halaman sampul PDF.
+1014|Pilih yang masuk ke PDF. A4 lanskap, dengan logo Anda di setiap halaman.
+1015|Pratinjau logo perusahaan
+1016|Daftar isi
+1017|Tidak dapat menyimpan:
+1018|Kritis (jatuh tegangan 3 %)
+1019|Halaman DALI
+1020|Dasar desain
+1021|Desain papan distribusi
+1022|Penerangan (jatuh tegangan 3 %)
+1023|Lainnya (jatuh tegangan 10 %)
+1024|Ringkasan proyek
+1025|Jaringan resistor
+1026|Tersimpan
+1027|Bintang dan delta
+1028|Halaman DALI tidak dapat digambar untuk papan ini.
+1029|Centang setidaknya satu bagian untuk PDF.
+1030|setelah keserempakan
+1031|Masuk, mulai, atau impor papan
+1032|Pada versi hosting, Anda mulai dari <b>Dasbor</b> setelah masuk. Tekan <b>Papan baru</b> untuk mulai dari nol, buka proyek tersimpan, atau tekan <b>Impor panel</b> untuk membuat papan dari foto panel yang sudah dibangun atau dari skema PDF atau jadwal sirkuit. Tambahkan hingga empat foto satu panel, atau satu PDF, lalu tekan <b>Baca panel</b>. Pembaca mencantumkan setiap perangkat yang terlihat (jenis pemutus, rating, kurva, kutub, RCD, nama sirkuit, beban, fasa, kabel, merek, dan model) di samping gambar Anda. <b>Periksa dan koreksi tabel</b>, lalu tekan <b>Buat papan</b>. Papan baru terbuka di <b>Sirkuit</b> dan bekerja seperti papan lain, sehingga Anda dapat menambah atau mengedit sirkuit dan label serta mengekspor skema, daftar material, PDF, dan Excel. Apa pun yang tidak terlihat oleh pembaca dibiarkan kosong dan ditandai agar Anda isi.
+1033|Rencanakan jaringan penerangan DALI
+1034|Buka <b>Peralatan</b> dan gulir ke <b>Pustaka peralatan DALI</b>: master dan gateway Lunatone, OSRAM, dan LTECH, catu daya bus, kopler tombol tekan, relai, serta dimmer atau driver, baik tipe rel DIN maupun jarak jauh. Filter menurut merek, jenis, atau <b>Hanya rel DIN</b>, atur kuantitas, lalu tekan <b>Tambah</b>. Kemudian buka tab <b>DALI</b>. Modul pengontrol DALI yang Anda pasang di panel (Lutron, Crestron, MDT) tercantum di sana secara otomatis di bawah <b>Pengontrol DALI dalam proyek ini</b>, masing-masing dengan link-nya, dan Anda dapat menghubungkan driver ke link yang dipilih. Di bawah <b>Kuantitas</b> Anda dapat mencari daftar model menurut nama, merek, atau artikel, dan memfilternya menurut jenis. Jika driver tidak ada di pustaka, gunakan <b>Perangkat DALI khusus</b> untuk mengetik alamat, arus DALI, pemasangan, dan angka lainnya; perangkat khusus dapat diedit atau dihapus di sana. Di bawah Kuantitas Anda juga dapat menambah model, mengubah kuantitas, atau menghapus model. Di <b>Modul DALI</b> beri setiap perangkat nama atau lokasi, pilih <b>Link DALI</b> (jalur dari sebuah master) tempat ia terhubung, atau hapus. Alat ini membagikan alamat pada setiap jalur (hingga 64) dan memeriksa arus bus terhadap catu daya bus. Perangkat DALI rel DIN juga digambar di tab <b>Panel</b>: klik satu untuk mengganti namanya, mengubah model atau link DALI-nya, memindahkannya sepanjang atau antar rel, menyeretnya, atau menghapusnya, dan gunakan <b>+ Modul DALI</b> di Catatan panel untuk menambah lebih banyak. <b>Skema jaringan DALI</b> dan <b>Tata letak modul DALI</b> (strip rel DIN ditambah area terpisah untuk driver jarak jauh) digambar di bawah, terpisah dari skema panel, dan keduanya disertakan dalam PDF, dengan lembar DALI di file Excel dan item DALI dalam daftar material.
+1035|Buka <b>Ekspor</b>. <b>Simpan PDF</b> menghasilkan tata letak panel, diagram multi-garis, jadwal sirkuit, dan total daya; centang <b>Sertakan daftar material</b> jika Anda ingin daftar itu ditambahkan. <b>Simpan Excel</b> dan <b>Simpan CSV</b> memberikan jadwal untuk alat lain. <b>Simpan proyek</b> menyimpan seluruh desain sebagai file yang dapat dibuka lagi nanti dengan <b>Buka proyek</b>. Papan yang dibuat dengan <b>Impor panel</b> diekspor dengan cara yang persis sama.
+1036|Saat Anda masuk, papan yang Anda buka dari Dasbor tersimpan ke akun Anda sekitar satu detik setelah setiap perubahan, dan chip di bagian atas menampilkan Tersimpan, Menyimpan, atau Offline. Anda dapat membukanya di perangkat mana pun tempat Anda masuk. Jika papan yang sama diubah di perangkat lain, Anda memilih versi yang akan dipertahankan. Papan yang hanya tersimpan di peramban ini tidak disentuh oleh papan cloud. Gunakan Simpan proyek untuk menyimpan salinan file.
+1037|Membaca foto panel atau PDF
+1038|Foto dibaca dengan upaya terbaik. Ambil dari depan dengan pintu terbuka dan tanpa silau, matikan lampu kilat jika label memantulkannya, dan tambahkan foto jarak dekat setiap baris untuk papan besar. PDF dengan teks asli terbaca paling baik. Selalu periksa rating, fasa, dan label terhadap panel sebenarnya sebelum Anda menerbitkan hasilnya sebagai dokumentasi as-built. Setiap orang dapat menjalankan sejumlah pembacaan terbatas per hari.
+1039|Akun Anda
+1040|Gunakan menu profil untuk Pengaturan akun: edit data Anda, ubah kata sandi, unduh semua data, atau hapus akun Anda. Gunakan Masukan di Dasbor untuk memberi tahu kami apa yang perlu ditingkatkan.
+1041|Angka DALI
+1042|Angka Lunatone dibaca dari halaman produknya. Jika halaman LTECH atau OSRAM tidak menyebutkan arus DALI atau pemasangan, pustaka menandai item itu Diasumsikan (2 mA per perangkat). Tidak satu pun merek memiliki driver DALI rel DIN di pustaka; catu daya bus dan relai LTECH adalah rel DIN. Periksa setiap item pada lembar data sebelum memesan.
+1043|{1} alamat DALI terpakai. Jalur ini mengizinkan {2}.
+1044|Perangkat menarik {1} mA tetapi {2} menjamin {3} mA.
+1045|Beban bus adalah {1} % dari suplai {2} mA. Sisakan margin.
+1046|{1} catu daya bus terhubung. Jalur DALI biasanya memiliki satu; hanya yang terbesar dihitung.
+1047|{1} perangkat DALI tidak terhubung ke jalur: {2}.
+1048|{1} perangkat DALI tidak terhubung ke jalur: {2}.
+1049|{1} model DALI memakai angka yang diasumsikan (ditampilkan sebagai Diasumsikan di pustaka). Konfirmasi pada lembar data.
+1050|{1} model DALI memakai angka yang diasumsikan (ditampilkan sebagai Diasumsikan di pustaka). Konfirmasi pada lembar data.
+1051|{1} · di panel utama
+1052|Catu daya bus {1} mA
+1053|Link {1}
+1054|Jalur {1}
+1055|tidak ada perangkat
+1056|{1} alamat
+1057|{1} alamat
+1058|{1} (master)
+1059|Tidak terhubung ke jalur DALI ({1})
+1060|Rel DALI {1}
+1061|{1} dari {2} DU terpakai
+1062|{1} jalur
+1063|{1} jalur
+1064|DIN {1} DU
+1065|link {1}
+1066|{1} perangkat
+1067|{1} perangkat
+1068|Driver dan perangkat jarak jauh ({1}), tidak di rel
+1069|{1} jalur DALI
+1070|{1} jalur DALI
+1071|angka adalah nilai katalog, konfirmasi pada lembar data
+1072|{1} di rel DIN ({2} DU), {3} jarak jauh
+1073|{1} cocok
+1074|{1} cocok
+1075|{1} × {2} ditambahkan. Buka tab DALI untuk menghubungkannya.
+1076|{1} ditambahkan. Buka tab DALI untuk menghubungkannya.
+1077|Kuantitas {1}
+1078|Nama untuk {1}
+1079|Link DALI untuk {1}
+1080|{1} jalur {2}
+1081|Jarak jauh (bukan DIN)
+1082|Suplai yang diasumsikan {1} mA / link
+1083|Suplai bawaan {1} mA / jalur
+1084|jarak jauh
+1085|Pengontrol DALI di panel utama (digambar di tab Panel)
+1086|Strip rel DIN untuk item DIN ({1} DU per rel, 1 DU = 17,5 mm; juga ada di tab Panel) dan area terpisah untuk driver jarak jauh.
+1087|Terpisah dari skema panel. Warna = jalur DALI; kotak putus-putus adalah perangkat jarak jauh.
+1088|Belum ada yang terhubung ke jalur ini.
+1089|Lebar DIN, DU (17,5 mm)
+1090|Alamat DALI terpakai
+1091|Arus DALI, mA
+1092|Pemutus umpan {1} {2} A diturunkan ratingnya menjadi {3} A pada {4} C di dalam kotak panel, di bawah bebannya yaitu {5} A.
+1093|Umpan {1} membawa penerangan kontinu atau beban serupa: {2} menentukan pemutus pada {3} % beban ({4} A).
+1094|Pemutus {1} A diturunkan ratingnya menjadi {2} A pada {3} C di dalam kotak panel, di bawah beban {4} A. Pilih ukuran berikutnya yang lebih besar.
+1095|{1} menentukan pemutus pada {2} % beban kontinu: {3} A diperlukan, {4} A dipilih.
+1096|{1} memiliki arus start. Kurva B dapat trip karena arus kejut; gunakan C atau D.
+1097|{1} {2} hanya tipe AC. {3} memiliki arus elektronik atau tersearah dan memerlukan RCD tipe A.
+1098|Pengisi daya EV: IEC 60364-7-722 dan BS 7671 722.531.3.101 memerlukan tipe A ditambah deteksi DC 6 mA (sering sudah terpasang di pengisi daya), atau RCD tipe B.
+1099|Impedansi loop gangguan ke tanah {1} ohm (Ze {2} + kabel {3}) di atas batas {4} ohm untuk MCB {5} A ({6} V ÷ {7} × {8} A). Perpendek jalur, gunakan kabel lebih besar atau kurva atau rating lebih rendah.
+1100|Incomer {1} A diturunkan ratingnya menjadi {2} A pada {3} C di dalam kotak panel, di bawah arus fasa maksimum {4} A.
+1101|{1} menentukan pemutus utama pada 100 % beban non-kontinu ditambah 125 % beban kontinu: {2} A diperlukan, {3} A dipilih.
+1102|{1} {2} adalah perangkat UL 489. Instalasi {3} memakai perangkat IEC 60898 / 60947; pastikan perangkat ini diterima secara lokal.
+1103|{1} {2} adalah perangkat tipe IEC. Instalasi {3} memerlukan perangkat terdaftar UL (UL 489 atau UL 1077). Pastikan perangkat ini diterima sebelum dipakai.
+1104|{1} {2} adalah perangkat IEC 60898 / 61009 berating 230/400 V (maksimum 440 V). Suplai ini {3} V fasa-netral dan {4} V antar-fasa. Gunakan perangkat yang berating sesuai.
+1105|Masukkan impedansi loop suplai Ze di Pengaturan untuk memeriksa pemutusan otomatis sirkuit MCB ({1}).
+1106|Pemutus diturunkan ratingnya di atas {1} °C di dalam kotak panel.
+1107|Impedansi loop suplai Ze (ohm)
+1108|Opsional. Impedansi loop gangguan ke tanah pada asal papan, dari pemasok atau hasil pengujian. Dipakai untuk memeriksa bahwa setiap MCB memutus gangguan tepat waktu.
+1109|Aturan proteksi
+1110|Setiap pemutus ditentukan dari arus desain (125 % dari beban kontinu menurut NEC), diturunkan ratingnya sesuai suhu kotak panel, lalu dibulatkan ke atas ke rating standar berikutnya dari standar yang dipilih. Sensitivitas RCD (30 mA, atau GFCI 4–6 mA menurut NEC dan ABYC), jumlah kutub (2 kutub untuk beban 240 V), dan standar perangkat (IEC atau UL) mengikuti standar dan tegangan suplai. Dengan IEC, BS 7671, dan AS/NZS, masukkan Ze di Pengaturan untuk memeriksa loop gangguan ke tanah setiap sirkuit MCB.
+1112|Pemeriksaan mencakup arus desain terhadap rating pemutus dan kabel (dengan suhu kotak panel dan aturan beban kontinu NEC), jatuh tegangan, ekspektasi RCD, kapasitas pemutusan, rating perangkat terhadap standar dan tegangan suplai, impedansi loop gangguan ke tanah saat Ze dimasukkan, input Lutron, serta batas zona dan suhu. Diskriminasi dan selektivitas tidak dihitung di sini.
+1113|Detail perusahaan
+1114|Halaman sampul dengan detail perusahaan
+1115|Jaringan DALI dan tata letak modul
+1116|Hapus modul DALI
+1117|Arus DALI
+1118|Gangguan ke tanah
+1119|Impor
+1120|Admin
+1121|Belum ada proyek tersimpan. Buat papan pertama Anda di atas.
+1122|Minimal 8 karakter, dengan huruf dan angka.
+1123|Obrolan
+1124|Proyek yang dibagikan
+1125|Permintaan gagal
+1126|Jarak jauh
+1127|Panel utama (tab Panel)
+1128|Tab DALI
+1129|Rumah sendiri / di dalam luminer
+1130|Jalur (pengontrol)
+1131|mA catu daya bus (catu daya atau pengontrol)
+1132|Daya, W
+1133|Output / catatan
+1134|eksternal
+1135|Rel DIN
+1136|Master / gateway
+1137|Catu daya bus
+1138|Relai / sakelar
+1139|Driver / dimmer
+1140|Diasumsikan
+1141|Lihat spesifikasi
+1142|Universal
+1143|Kotak belakang
+1144|{1} link
+1145|{1} link
+1146|{1} produk DALI dari Lunatone, OSRAM, dan LTECH, baik driver rel DIN maupun jarak jauh. Menekan Tambah menempatkan kuantitas yang Anda pilih di tab <b>DALI</b>, tempat Anda memilih jalur DALI yang dihubungkan masing-masing dan melihat skema jaringan serta tata letak modul. Angka Lunatone dibaca dari halaman produknya. Halaman LTECH dan OSRAM tidak mencantumkan arus DALI atau pemasangan, sehingga ditandai Diasumsikan. Driver DALI OSRAM dan LTECH bukan tipe rel DIN; hanya catu daya bus dan relai LTECH yang rel DIN. Lunatone memiliki lebih banyak varian daripada yang tercantum. Konfirmasi semuanya pada lembar data sebelum memesan.
+1147|Email dikonfirmasi
+1148|Alamat email Anda telah dikonfirmasi dan akun Anda aktif. Masuk untuk mulai merancang.
+1149|Tautan konfirmasi itu tidak valid atau telah kedaluwarsa. Masuk dan kami akan menawarkan untuk mengirim yang baru.
+1111|Buka Komunitas dari Dasbor. Anggota mencantumkan semua yang terdaftar: cari, lalu kirim pesan ke anggota, bagikan proyek atau kirim file, atau centang beberapa untuk memulai grup. Dalam obrolan, lampirkan file hingga 25 MB, bagikan papan tersimpan, atau mulai panggilan audio atau video dengan tombol di bagian atas; semua orang di obrolan akan dipanggil dan dapat bergabung, dan layar dapat dibagikan dari komputer. Lonceng di header menampilkan undangan, balasan, dan proyek yang dibagikan.
+1150|Temukan anggota lain, mengobrol, bekerja dalam grup, dan bagikan papan tersimpan serta file.
+1151|Lampirkan file
+1152|Bagikan proyek dalam obrolan ini
+1153|Seorang anggota
+1154|Anda belum memiliki proyek tersimpan. Simpan papan ke akun Anda terlebih dahulu.
+1155|Bagikan proyek dengan
+1156|Mereka dapat melihat papan dan menyimpan salinan sendiri. Hanya Anda yang dapat mengubah aslinya.
+1157|Semua orang dalam obrolan ini dapat melihat papan dan menyimpan salinan sendiri. Hanya Anda yang dapat mengubah aslinya.
+1158|Mulai obrolan grup
+1159|Anggota yang dipilih menerima undangan dan bergabung saat mereka menerima.
+1160|Tambahkan ke grup saya
+1161|Cari anggota
+1162|Cari menurut nama, perusahaan, negara, atau pekerjaan
+1163|Centang anggota untuk memulai grup, membagikan proyek, atau menambahkan mereka ke salah satu grup Anda. Alamat email tidak pernah ditampilkan.
+1164|Anggota terpilih
+1165|Anggota sejak
+1166|Pilih
+1167|Kirim file
+1168|dipilih
+1169|Hapus
+1170|File
+1171|Unduh
+1172|Tidak tersedia lagi
+1173|Proyek yang dibagikan
+1174|Mengunggah…
+1175|Tutup
+1176|Tampilkan saya di daftar anggota Komunitas
+1177|Anggota lain melihat nama, pekerjaan, perusahaan, dan negara Anda, tidak pernah alamat email Anda. Jika ini dimatikan, hanya orang yang tahu alamat email Anda yang dapat memulai obrolan dengan Anda.
+1178|Tidak ada anggota yang cocok dengan pencarian Anda.
+1179|Belum ada anggota lain.
+1180|anggota
+1181|Tampilkan lebih banyak anggota
+1182|Anda tidak dapat memulai obrolan dengan diri sendiri.
+1183|Anggota itu tidak tersedia.
+1184|Anda tidak berada dalam obrolan ini.
+1185|Pilih setidaknya satu anggota, atau masukkan alamat email.
+1186|Pencarian anggota gagal. Jika situs baru saja diperbarui, pemilik perlu menjalankan migrasi basis data terbaru.
+1187|tidak tersedia
+1188|Lebih besar dari 25 MB, tidak dikirim.
+1189|File kosong.
+1190|Berbagi file belum disiapkan.
+1191|Unggahan gagal. Coba lagi.
+1192|Batas file harian tercapai. Coba lagi besok.
+1193|File tidak dapat dikirim.
+1194|Daftar anggota belum disiapkan. Pemilik situs perlu menjalankan migrasi 0005_members_files.sql di Supabase.
+1195|Anggota tidak dapat dimuat. Periksa koneksi Anda dan coba lagi.
+1196|Proyek tidak dapat diposting di obrolan.
+1197|Laporkan atau blokir
+1198|Pesan dari anggota yang Anda blokir
+1199|Laporkan pesan
+1200|Anda tidak dapat lagi mengirim pesan di obrolan ini.
+1201|Laporkan anggota ini
+1202|Buka blokir
+1203|Blokir anggota ini
+1204|Anggota yang diblokir tidak dapat mengirim pesan, mengundang, atau berbagi dengan Anda, dan Anda tidak akan melihat pesan mereka. Mereka tidak diberi tahu.
+1205|Alasan
+1206|Rincian (opsional)
+1207|Blokir anggota ini juga
+1208|Administrator meninjau setiap laporan, biasanya dalam 24 jam.
+1209|Salinan pesan disertakan.
+1210|Kirim laporan
+1211|Pilih alasan.
+1212|Terima kasih. Laporan Anda telah dikirim ke administrator.
+1213|Anda telah memblokir anggota ini.
+1214|Belum tersedia.
+1215|Anda belum memblokir siapa pun.
+1216|Klik lagi untuk memblokir
+1217|Anggota yang diblokir
+1218|Tidak dapat memblokir anggota ini.
+1219|Tidak dapat membuka blokir anggota ini.
+1220|Anggota diblokir.
+1221|Blokir anggota dibuka.
+1222|Spam atau iklan
+1223|Pelecehan atau ancaman
+1224|Konten menyinggung atau tidak pantas
+1225|Berpura-pura menjadi orang lain
+1226|Lainnya
+1227|Anda telah memblokir anggota ini. Buka blokirnya di Pengaturan akun terlebih dahulu.
+1228|Anda telah mengirim banyak laporan hari ini. Coba lagi besok.
+1229|Pesan itu sudah tidak ada.
+1230|Anda tidak dapat melaporkan pesan Anda sendiri.
+1231|Laporan tidak dapat dikirim. Coba lagi.
+1232|Anda sudah dalam panggilan.
+1233|Panggil
+1234|Tutup jendela panggilan
+1235|Anda
+1236|Dimulai oleh
+1237|Gabung
+1238|Panggilan masuk
+1239|Panggilan audio
+1240|Panggilan video
+1241|Panggilan belum disiapkan. Pemilik situs perlu menambahkan pengaturan RealtimeKit ke Worker.
+1242|Anda tidak dapat lagi melakukan panggilan di obrolan ini.
+1243|Obrolan tidak ditemukan.
+1244|Teknisi listrik kapal
+1245|ETO (Perwira Elektro-Teknik)

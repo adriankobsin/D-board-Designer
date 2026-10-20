@@ -1241,3 +1241,5 @@
 1241|Rozmowy nie są jeszcze skonfigurowane. Właściciel witryny musi dodać ustawienia RealtimeKit do Workera.
 1242|Nie możesz już dzwonić na tym czacie.
 1243|Nie znaleziono czatu.
+1244|Elektryk okrętowy
+1245|ETO (oficer elektryk)

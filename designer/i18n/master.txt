@@ -1241,3 +1241,5 @@
 1241|Calls are not set up yet. The site owner needs to add the RealtimeKit settings to the Worker.
 1242|You can no longer call in this chat.
 1243|Chat not found.
+1244|Marine Electrician
+1245|ETO (Electro-Technical Officer)

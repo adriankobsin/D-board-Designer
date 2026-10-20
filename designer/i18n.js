@@ -2,7 +2,7 @@
    English is the source language. Every other language is a dictionary of exact strings plus
    patterns with {1} {2} placeholders (see i18n-data.js). A DOM walker translates text and a few
    attributes, and a MutationObserver keeps newly drawn screens translated. */
-const LANGS = [['en', 'English'], ['ro', 'Română'], ['it', 'Italiano'], ['fr', 'Français'], ['es', 'Español'], ['pt', 'Português'], ['ja', '日本語'], ['vi', 'Tiếng Việt'], ['th', 'ไทย'], ['ru', 'Русский'], ['pl', 'Polski'], ['de', 'Deutsch'], ['zh', '中文'], ['km', 'ខ្មែរ']];
+const LANGS = [['en', 'English'], ['ro', 'Română'], ['it', 'Italiano'], ['fr', 'Français'], ['es', 'Español'], ['pt', 'Português'], ['ja', '日本語'], ['vi', 'Tiếng Việt'], ['th', 'ไทย'], ['ru', 'Русский'], ['pl', 'Polski'], ['de', 'Deutsch'], ['zh', '中文'], ['km', 'ខ្មែរ'], ['id', 'Bahasa Indonesia']];
 let LANG = 'en';
 const I18N_ATTRS = ['title', 'placeholder', 'aria-label', 'alt', 'data-label'];
 const I18N_SKIP = {SCRIPT: 1, STYLE: 1, TEXTAREA: 1, NOSCRIPT: 1, OPTGROUP: 0};
@@ -96,7 +96,7 @@ function T(s){
 /* text for the PDF, which only has Latin-1 fonts: translate where the font can show it */
 function PT(s){
   if (LANG === 'en') return s;
-  if (['de', 'fr', 'es', 'it', 'pt'].includes(LANG)) return T(s);
+  if (['de', 'fr', 'es', 'it', 'pt', 'id'].includes(LANG)) return T(s);
   if (['pl', 'ro', 'vi'].includes(LANG)) return T(s).normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/ł/g, 'l').replace(/Ł/g, 'L').replace(/đ/g, 'd').replace(/Đ/g, 'D');
   return s;
 }

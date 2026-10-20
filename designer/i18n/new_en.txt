@@ -432,3 +432,5 @@
 1147|Email confirmed
 1148|Your email address is confirmed and your account is active. Sign in to start designing.
 1149|That confirmation link is invalid or has expired. Sign in and we will offer to send a new one.
+1244|Marine Electrician
+1245|ETO (Electro-Technical Officer)

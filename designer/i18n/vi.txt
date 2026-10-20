@@ -1241,3 +1241,5 @@
 1241|Cuộc gọi chưa được thiết lập. Chủ trang cần thêm cài đặt RealtimeKit vào Worker.
 1242|Bạn không thể gọi trong cuộc trò chuyện này nữa.
 1243|Không tìm thấy cuộc trò chuyện.
+1244|Thợ điện tàu thủy
+1245|ETO (sĩ quan điện – kỹ thuật)

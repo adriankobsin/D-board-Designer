@@ -1,3 +1,10 @@
 node_modules/
 .dev.vars
 .wrangler/
+
+# Android and iPhone app: generated files
+mobile/www/
+mobile/android/app/release/
+*.keystore
+*.jks
+*.p8

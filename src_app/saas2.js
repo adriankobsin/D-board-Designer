@@ -78,7 +78,7 @@ async function saSubmitAuth(){
   ok = saFieldErr('email', saEmailOk(email) ? '' : 'Enter a valid email address.') && ok;
   if (m === 'forgot'){
     if (!ok) return; saBusy(true);
-    try { await SA.sb.auth.resetPasswordForEmail(email, {redirectTo: location.origin + '/'}); } catch (e) {}
+    try { await SA.sb.auth.resetPasswordForEmail(email, {redirectTo: saSite() + '/'}); } catch (e) {}
     saBusy(false); SA.msg = {t: 'ok', m: 'If an account exists for that address, a reset link is on its way. Check your inbox and spam folder.'}; saRender(); return;
   }
   const pw = (sa$('#password') || {}).value || '';
@@ -100,7 +100,7 @@ async function saSubmitAuth(){
   ok = saFieldErr('terms', sa$('#terms').checked ? '' : 'You must accept the Terms and the Privacy Policy to continue.') && ok;
   if (!ok){ const f = sa$('[aria-invalid="true"]'); if (f) f.focus(); return; }
   saBusy(true, 'Creating account…');
-  const {data, error} = await SA.sb.auth.signUp({email, password: pw, options: {emailRedirectTo: location.origin + '/confirmed', data: {first_name: fn, last_name: ln, company, country, occupation: occ, accepted_terms: 'true'}}});
+  const {data, error} = await SA.sb.auth.signUp({email, password: pw, options: {emailRedirectTo: saSite() + '/confirmed', data: {first_name: fn, last_name: ln, company, country, occupation: occ, accepted_terms: 'true'}}});
   saBusy(false);
   if (error){ SA.msg = {t: 'bad', m: saErr(error)}; saRender(); return; }
   SA.pendingEmail = email;

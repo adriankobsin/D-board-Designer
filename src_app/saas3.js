@@ -107,6 +107,7 @@ const SA_LEGAL = {
   terms: ['Terms and Conditions', `<p><i>Template for the service operator. Have it reviewed by a qualified lawyer and adapt it before public launch.</i></p>
   <h3>1. The service</h3><p>DBoard Designer is a design aid for electrical distribution boards. Results (cable sizes, voltage drop, loads, bills of materials) are indicative.</p>
   <h3>2. Professional responsibility</h3><p>You are responsible for checking every design against the wiring regulations that apply where it is built, and for having it verified by a competent person before installation.</p>
+  <h3>Community rules</h3><p>Messages, files and projects you share must be lawful and respectful. There is no tolerance for harassment, threats, hate, sexual content, spam or impersonation. Members can report content and block other members. Administrators review reports, usually within 24 hours, and may remove content and suspend accounts that break these rules.</p>
   <h3>3. Your account</h3><p>Keep your password confidential. You are responsible for activity under your account. Provide accurate registration details.</p>
   <h3>4. Your content</h3><p>You own the projects you create. You grant the operator the right to store and process them to run the service for you.</p>
   <h3>5. Acceptable use</h3><p>Do not attempt to access other users' data, disrupt the service or use it unlawfully. Accounts that do so may be suspended.</p>

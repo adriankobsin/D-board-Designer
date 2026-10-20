@@ -19,6 +19,7 @@ import { buildContent, callModel, LIMITS } from './importer.js';
 import { community } from './community.js';
 
 const JSON_HEADERS = { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' };
+const APP_ORIGINS = ['capacitor://localhost', 'https://localhost', 'http://localhost'];
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 const json = (obj, status = 200, extra = {}) => new Response(JSON.stringify(obj), { status, headers: { ...JSON_HEADERS, ...extra } });
@@ -215,6 +216,49 @@ async function api(request, env, url) {
       return json({ feedback: rows.map(x => ({ ...x, from: emails[x.user_id] || null })), total, page, size });
     }
 
+    /* ----- reports from members (blocking and reporting, required by the app stores) ----- */
+    if (path === '/api/admin/reports' && method === 'GET') {
+      const st = ['new', 'reviewed'].includes(url.searchParams.get('status')) ? `&status=eq.${url.searchParams.get('status')}` : '';
+      const r = await sr(env, `/rest/v1/content_reports?select=*&order=created_at.desc&limit=100${st}`);
+      if (!r.ok) return fail(502, 'Could not load reports. If the site was just updated, run the latest database migration.');
+      const rows = await r.json();
+      const ids = [...new Set(rows.flatMap(x => [x.reporter_id, x.target_user_id]).filter(x => x && UUID.test(x)))];
+      const people = {};
+      if (ids.length) {
+        const pr = await sr(env, `/rest/v1/profiles?id=in.(${ids.join(',')})&select=id,email,first_name,last_name,status,role`);
+        if (pr.ok) (await pr.json()).forEach(p => { people[p.id] = { id: p.id, email: p.email, name: `${p.first_name || ''} ${p.last_name || ''}`.trim(), status: p.status, role: p.role }; });
+      }
+      const mids = rows.map(x => x.message_id).filter(Boolean);
+      const live = new Set();
+      if (mids.length) { const mr = await sr(env, `/rest/v1/chat_messages?id=in.(${mids.join(',')})&select=id`); if (mr.ok) (await mr.json()).forEach(x => live.add(x.id)); }
+      return json({ reports: rows.map(x => ({ ...x, reporter: people[x.reporter_id] || null, target: people[x.target_user_id] || null, message_exists: live.has(x.message_id) })) });
+    }
+
+    m = /^\/api\/admin\/reports\/([^/]+)\/status$/.exec(path);
+    if (m && method === 'POST') {
+      if (!UUID.test(m[1])) return fail(400, 'Invalid id.');
+      const body = await request.json().catch(() => ({}));
+      if (!['new', 'reviewed'].includes(body.status)) return fail(400, 'Invalid status.');
+      const up = await sr(env, `/rest/v1/content_reports?id=eq.${m[1]}`, { method: 'PATCH', body: JSON.stringify({ status: body.status }) });
+      if (!up.ok) return fail(502, 'Could not update the report.');
+      await audit(env, admin.id, null, 'report_' + body.status, { id: m[1] });
+      return json({ ok: true });
+    }
+
+    m = /^\/api\/admin\/messages\/(\d+)\/delete$/.exec(path);
+    if (m && method === 'POST') {
+      const mr = await sr(env, `/rest/v1/chat_messages?id=eq.${m[1]}&select=id,sender_id,attachment`);
+      const msg = mr.ok ? (await mr.json())[0] : null;
+      if (!msg) return fail(404, 'That message no longer exists.');
+      const del = await sr(env, `/rest/v1/chat_messages?id=eq.${msg.id}`, { method: 'DELETE' });
+      if (!del.ok) return fail(502, 'Could not delete the message.');
+      if (msg.attachment && msg.attachment.path) {
+        await sr(env, '/storage/v1/object/chat-files', { method: 'DELETE', body: JSON.stringify({ prefixes: [msg.attachment.path] }) }).catch(() => null);
+      }
+      await audit(env, admin.id, msg.sender_id, 'delete_message', { message_id: msg.id });
+      return json({ ok: true });
+    }
+
     m = /^\/api\/admin\/feedback\/([^/]+)\/status$/.exec(path);
     if (m && method === 'POST') {
       if (!UUID.test(m[1])) return fail(400, 'Invalid id.');
@@ -266,8 +310,16 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     if (url.pathname.startsWith('/api/')) {
-      try { return secure(await api(request, env, url), env); }
-      catch (e) { return secure(fail(500, 'Unexpected server error.'), env); }
+      // The Android and iPhone apps load the page from the phone (capacitor://localhost, https://localhost) and call this API
+      // across origins. Requests carry a bearer token, never cookies, so allowing exactly these origins is safe.
+      const origin = request.headers.get('Origin') || '';
+      const app = APP_ORIGINS.includes(origin);
+      const cors = res => { if (app) { res.headers.set('Access-Control-Allow-Origin', origin); res.headers.set('Vary', 'Origin'); } return res; };
+      if (request.method === 'OPTIONS') {
+        return app ? cors(new Response(null, { status: 204, headers: { 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS', 'Access-Control-Allow-Headers': 'Authorization, Content-Type', 'Access-Control-Max-Age': '86400' } })) : new Response(null, { status: 403 });
+      }
+      try { return cors(secure(await api(request, env, url), env)); }
+      catch (e) { return cors(secure(fail(500, 'Unexpected server error.'), env)); }
     }
     const res = await env.ASSETS.fetch(request);
     // Never cache the service worker or the HTML shell at the edge so updates arrive immediately.

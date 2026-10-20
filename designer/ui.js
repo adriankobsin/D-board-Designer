@@ -621,6 +621,7 @@ function bomRows(){
   return Object.values(map).map(x => [x.d, x.q]).concat((() => { try { return dBom(); } catch (e) { return []; } })());
 }
 async function dl(name, data){
+  if (typeof SA_NATIVE !== 'undefined' && SA_NATIVE){ try { await saNativeSave(name, data); } catch (e) { toast('Could not save the file here.'); } return; }
   let d = null; try { d = await claude.use('downloads'); } catch (e) {}
   if (!d){
     try {

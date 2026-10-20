@@ -2219,7 +2219,7 @@ S = load(); syncHeader(); calc(); draw(); renderTabs();
 initLang();
 
 
-if ('serviceWorker' in navigator && location.protocol !== 'file:'){
+if ('serviceWorker' in navigator && location.protocol !== 'file:' && !(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform())){
   window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); });
 }
 </script>

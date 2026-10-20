@@ -1,3 +1,39 @@
+/* ---------- running inside the Android / iPhone app (Capacitor) ----------
+   On the website everything below is inert: SA_NATIVE is false and saUrl()/saSite() return the site's own addresses.
+   In the store app the page is served from the phone itself (capacitor://localhost or https://localhost), so calls to
+   the Worker and links in emails must use the public site address, set at build time in window.DBD_SITE. */
+const SA_NATIVE = !!(window.Capacitor && typeof window.Capacitor.isNativePlatform === 'function' && window.Capacitor.isNativePlatform());
+const SA_SITE = SA_NATIVE ? String(window.DBD_SITE || 'https://d-board-designer.adriankobsin.workers.dev').replace(/\/+$/, '') : '';
+const saUrl = p => SA_SITE + p;                         // Worker API address
+const saSite = () => SA_SITE || location.origin;        // public address used in email links
+const saPlugin = name => { try { const C = window.Capacitor; return (C.Plugins && C.Plugins[name]) || (C.registerPlugin && C.registerPlugin(name)) || null; } catch (e) { return null; } };
+if (SA_NATIVE) document.documentElement.classList.add('sa-native');
+
+/* Save a generated file (PDF, Excel, CSV, JSON) on the phone: write it to the app's cache, then open the share sheet,
+   where the person can save it to Files, send it by email or open it in another app. */
+async function saNativeSave(name, data, mime){
+  const FS = saPlugin('Filesystem'), Share = saPlugin('Share');
+  if (!FS || !Share) throw new Error('unavailable');
+  const bytes = typeof data === 'string' ? new TextEncoder().encode(data) : data instanceof Blob ? new Uint8Array(await data.arrayBuffer()) : new Uint8Array(data.buffer ? data.buffer : data);
+  let bin = ''; for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+  const safe = String(name || 'file').replace(/[\\/:*?"<>|]+/g, '_').slice(-120);
+  const w = await FS.writeFile({path: safe, data: btoa(bin), directory: 'CACHE', recursive: true});
+  try { await Share.share({title: safe, url: w.uri, dialogTitle: safe}); }
+  catch (e) { if (!/cancel/i.test(String((e && e.message) || e))) throw e; }
+}
+
+/* Links to files (chat attachments) and other websites open in the in-app browser, which can show and save them. */
+async function saNativeOpen(url){
+  const B = saPlugin('Browser');
+  if (B) { try { await B.open({url}); return; } catch (e) {} }
+  window.open(url, '_blank');
+}
+if (SA_NATIVE) document.addEventListener('click', ev => {
+  const a = ev.target.closest && ev.target.closest('a[href]'); if (!a) return;
+  const href = a.getAttribute('href') || '';
+  if (!/^https?:/i.test(href) || a.target !== '_blank' && !a.hasAttribute('download')) return;
+  ev.preventDefault(); saNativeOpen(a.href);
+}, true);
 /* ====================================================================
    DBoard Designer: accounts, cloud projects, dashboard and admin console.
    Loaded after the designer. If the Worker has no Supabase settings, this file does nothing
@@ -55,7 +91,7 @@ function saErr(e){
 /* ---------- boot ---------- */
 async function saFetchConfig(){
   try {
-    const r = await fetch('/api/config', {cache: 'no-store'});
+    const r = await fetch(saUrl('/api/config'), {cache: 'no-store'});
     if (r.ok && (r.headers.get('content-type') || '').includes('json')){ const c = await r.json(); try { localStorage.setItem('dbd_cfg', JSON.stringify(c)); } catch (e) {} return c; }
   } catch (e) {}
   try { const c = JSON.parse(localStorage.getItem('dbd_cfg') || 'null'); if (c) { c.cached = true; return c; } } catch (e) {}
@@ -213,7 +249,7 @@ async function saSubmitAuth(){
   ok = saFieldErr('email', saEmailOk(email) ? '' : 'Enter a valid email address.') && ok;
   if (m === 'forgot'){
     if (!ok) return; saBusy(true);
-    try { await SA.sb.auth.resetPasswordForEmail(email, {redirectTo: location.origin + '/'}); } catch (e) {}
+    try { await SA.sb.auth.resetPasswordForEmail(email, {redirectTo: saSite() + '/'}); } catch (e) {}
     saBusy(false); SA.msg = {t: 'ok', m: 'If an account exists for that address, a reset link is on its way. Check your inbox and spam folder.'}; saRender(); return;
   }
   const pw = (sa$('#password') || {}).value || '';
@@ -235,7 +271,7 @@ async function saSubmitAuth(){
   ok = saFieldErr('terms', sa$('#terms').checked ? '' : 'You must accept the Terms and the Privacy Policy to continue.') && ok;
   if (!ok){ const f = sa$('[aria-invalid="true"]'); if (f) f.focus(); return; }
   saBusy(true, 'Creating account…');
-  const {data, error} = await SA.sb.auth.signUp({email, password: pw, options: {emailRedirectTo: location.origin + '/confirmed', data: {first_name: fn, last_name: ln, company, country, occupation: occ, accepted_terms: 'true'}}});
+  const {data, error} = await SA.sb.auth.signUp({email, password: pw, options: {emailRedirectTo: saSite() + '/confirmed', data: {first_name: fn, last_name: ln, company, country, occupation: occ, accepted_terms: 'true'}}});
   saBusy(false);
   if (error){ SA.msg = {t: 'bad', m: saErr(error)}; saRender(); return; }
   SA.pendingEmail = email;
@@ -378,6 +414,7 @@ const SA_LEGAL = {
   terms: ['Terms and Conditions', `<p><i>Template for the service operator. Have it reviewed by a qualified lawyer and adapt it before public launch.</i></p>
   <h3>1. The service</h3><p>DBoard Designer is a design aid for electrical distribution boards. Results (cable sizes, voltage drop, loads, bills of materials) are indicative.</p>
   <h3>2. Professional responsibility</h3><p>You are responsible for checking every design against the wiring regulations that apply where it is built, and for having it verified by a competent person before installation.</p>
+  <h3>Community rules</h3><p>Messages, files and projects you share must be lawful and respectful. There is no tolerance for harassment, threats, hate, sexual content, spam or impersonation. Members can report content and block other members. Administrators review reports, usually within 24 hours, and may remove content and suspend accounts that break these rules.</p>
   <h3>3. Your account</h3><p>Keep your password confidential. You are responsible for activity under your account. Provide accurate registration details.</p>
   <h3>4. Your content</h3><p>You own the projects you create. You grant the operator the right to store and process them to run the service for you.</p>
   <h3>5. Acceptable use</h3><p>Do not attempt to access other users' data, disrupt the service or use it unlawfully. Accounts that do so may be suspended.</p>
@@ -481,7 +518,9 @@ function saViewAccount(el){
   <div class="full"><button class="sa-btn pri" type="submit">${saEsc(T('Save profile'))}</button></div></form></section>
   <section class="sa-card"><h2>${saEsc(T('Change password'))}</h2><form id="saPw" class="sa-form" style="grid-template-columns:1fr" novalidate>${saPwField('cur', 'Current password', 'current-password')}${saPwField('password', 'New password', 'new-password', 'At least 8 characters, with a letter and a number.')}${saPwField('password2', 'Confirm new password', 'new-password')}<div><button class="sa-btn pri" type="submit">${saEsc(T('Update password'))}</button></div></form></section></div>
   <div class="sa-grid c2" style="margin-top:16px"><section class="sa-card"><h2>${saEsc(T('Your data'))}</h2><p class="sa-sub">${saEsc(T('Download your profile and all your projects as one JSON file.'))}</p><button class="sa-btn" data-sa="export">${saEsc(T('Download my data'))}</button> <button class="sa-btn" data-sa="legal" data-w="privacy">${saEsc(T('Privacy Policy'))}</button> <button class="sa-btn" data-sa="legal" data-w="terms">${saEsc(T('Terms and Conditions'))}</button></section>
+  <section class="sa-card"><h2>${saEsc(T('Blocked members'))}</h2><div id="saBlocked"><p class="sa-sub">${saEsc(T('Loading…'))}</p></div></section>
   <section class="sa-card"><h2>${saEsc(T('Delete account'))}</h2><p class="sa-sub">${saEsc(T('Permanently removes your account, profile and every saved project. This cannot be undone. Projects stored only on this device are not affected.'))}</p><button class="sa-btn bad" data-sa="delacct">${saEsc(T('Delete my account'))}</button></section></div>`);
+  if (typeof saBlockedList === 'function') saBlockedList();
 }
 async function saSaveProfile(){
   const v = id => sa$('#' + id).value.trim(); let ok = true;
@@ -505,6 +544,7 @@ async function saChangePw(){
 async function saExportData(){
   const {data} = await SA.sb.from('projects').select('id,name,data,meta,created_at,updated_at');
   const out = {exported_at: new Date().toISOString(), account: {email: SA.user.email, profile: SA.profile}, projects: data || []};
+  if (SA_NATIVE){ try { await saNativeSave('dboard-designer-my-data.json', JSON.stringify(out, null, 2)); } catch (e) { toast('Could not save the file here.'); } return; }
   const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(out, null, 2)], {type: 'application/json'})); a.download = 'dboard-designer-my-data.json'; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500);
 }
 function saDeleteDialog(){
@@ -512,7 +552,7 @@ function saDeleteDialog(){
 }
 async function saDoDelete(){
   const email = sa$('#delEmail').value.trim(), err = sa$('#delErr'); err.hidden = true;
-  let r; try { r = await fetch('/api/me/delete', {method: 'POST', headers: {'Content-Type': 'application/json', Authorization: 'Bearer ' + SA.session.access_token}, body: JSON.stringify({email})}); } catch (e) { err.textContent = T('No connection. Check your internet and try again.'); err.hidden = false; return; }
+  let r; try { r = await fetch(saUrl('/api/me/delete'), {method: 'POST', headers: {'Content-Type': 'application/json', Authorization: 'Bearer ' + SA.session.access_token}, body: JSON.stringify({email})}); } catch (e) { err.textContent = T('No connection. Check your internet and try again.'); err.hidden = false; return; }
   const j = await r.json().catch(() => ({}));
   if (!r.ok){ err.textContent = T(j.error || 'The account could not be deleted. Try again later.'); err.hidden = false; return; }
   saModalClose(); try { localStorage.removeItem('dbd_user'); Object.keys(localStorage).filter(k => k.startsWith('dbd_cloudcache_')).forEach(k => localStorage.removeItem(k)); } catch (e) {}
@@ -551,14 +591,17 @@ function saChatName(c){
 async function saComLoad(){
   const [a, b] = await Promise.all([SA.sb.rpc('my_chats'), SA.sb.rpc('my_shares')]);
   if (a.error || b.error){ SA.com.err = (a.error || b.error).message; SA.com.loaded = true; return false; }
-  SA.com.err = null; SA.com.chats = a.data || []; SA.com.shares = b.data || []; SA.com.loaded = true; return true;
+  SA.com.err = null; SA.com.chats = a.data || []; SA.com.shares = b.data || []; SA.com.loaded = true;
+  const bl = await SA.sb.from('user_blocks').select('blocked_id');   // missing before 0006: then nobody is blocked
+  SA.com.blocked = new Set(bl.error ? [] : (bl.data || []).map(x => x.blocked_id));
+  return true;
 }
 
 /* ----- bell ----- */
 function saBellPaint(){
   const box = sa$('#saBell'); if (!box) return;
   const items = SA.notif.list;
-  const icon = k => k === 'project_share' ? '⇪' : k === 'chat_invite' ? '+' : '✉';
+  const icon = k => k === 'project_share' ? '⇪' : k === 'chat_invite' ? '+' : k === 'report' ? '!' : '✉';
   box.innerHTML = `<div class="hd"><b>${saEsc(T('Notifications'))}</b>${saUnread() ? `<button class="sa-link" data-sa="nreadall">${saEsc(T('Mark all as read'))}</button>` : ''}</div>`
     + (items.length ? items.map(n => `<button class="ni ${n.read_at ? '' : 'un'}" data-sa="nitem" data-id="${n.id}"><span class="ic" aria-hidden="true">${icon(n.kind)}</span><span class="tx"><b data-nt>${saEsc(n.title)}${n.count > 1 && n.kind === 'chat_message' ? ` · ${n.count}` : ''}</b><span data-nt>${saEsc(n.body)}</span><em>${saEsc(saRel(n.created_at))}</em></span></button>`).join('') : `<div class="sa-empty" style="margin:10px;padding:18px">${saEsc(T('Nothing new. Invitations, replies and shared projects show up here.'))}</div>`);
 }
@@ -578,6 +621,7 @@ async function saNotifGo(id){
   const n = SA.notif.list.find(x => x.id === id); if (!n) return;
   await saNotifRead([id]);
   const br = sa$('#saBell'); if (br){ br.remove(); SA.notif.open = false; }
+  if (n.kind === 'report'){ SA.adminTab = 'reports'; saGo('admin'); return; }
   if (n.kind === 'project_share'){ SA.com.tab = 'shared'; SA.com.active = null; }
   else { SA.com.tab = 'chats'; SA.com.active = n.ref_id; }
   saGo('community');
@@ -627,7 +671,7 @@ async function saThreadOpen(id, keep){
   const mem = c.members || [], names = {}; mem.forEach(m => { names[m.id] = m.name; });
   SA.com.names = names;
   const own = c.kind === 'group' && mem.some(m => m.id === SA.user.id && m.role === 'owner');
-  t.innerHTML = `<header class="sa-chd"><button class="sa-btn sm sa-back" data-sa="cback" aria-label="${saEsc(T('Back to conversations'))}">←</button><div class="tt"><b data-nt>${saEsc(saChatName(c))}</b><span data-nt>${c.kind === 'group' ? mem.filter(m => m.status === 'joined').length + ' ' + saEsc(T('members')) + (mem.some(m => m.status === 'invited') ? ' · ' + mem.filter(m => m.status === 'invited').length + ' ' + saEsc(T('invited')) : '') : saEsc(T('Private chat'))}</span></div><span class="sa-row">${c.kind === 'group' ? `<button class="sa-btn sm" data-sa="cmembers">${saEsc(T('Members'))}</button>` : ''}${own ? `<button class="sa-btn sm" data-sa="cinvite">${saEsc(T('Invite'))}</button>` : ''}<button class="sa-btn sm bad" data-sa="cleave">${saEsc(T(c.kind === 'group' ? 'Leave' : 'Leave chat'))}</button></span></header>
+  t.innerHTML = `<header class="sa-chd"><button class="sa-btn sm sa-back" data-sa="cback" aria-label="${saEsc(T('Back to conversations'))}">←</button><div class="tt"><b data-nt>${saEsc(saChatName(c))}</b><span data-nt>${c.kind === 'group' ? mem.filter(m => m.status === 'joined').length + ' ' + saEsc(T('members')) + (mem.some(m => m.status === 'invited') ? ' · ' + mem.filter(m => m.status === 'invited').length + ' ' + saEsc(T('invited')) : '') : saEsc(T('Private chat'))}</span></div><span class="sa-row">${c.kind === 'group' ? `<button class="sa-btn sm" data-sa="cmembers">${saEsc(T('Members'))}</button>` : ''}${own ? `<button class="sa-btn sm" data-sa="cinvite">${saEsc(T('Invite'))}</button>` : ''}${c.kind === 'direct' ? (() => { const o = mem.find(m => m.id !== SA.user.id); return o ? `<button class="sa-btn sm" data-sa="mopts" data-id="${o.id}" aria-label="${saEsc(T('Report or block'))}" title="${saEsc(T('Report or block'))}">⋯</button>` : ''; })() : ''}<button class="sa-btn sm bad" data-sa="cleave">${saEsc(T(c.kind === 'group' ? 'Leave' : 'Leave chat'))}</button></span></header>
   <div class="sa-msgs" id="saMsgs" tabindex="0" aria-live="polite"></div>
   <div class="sa-ups" id="saUps" aria-live="polite"></div>
   <form class="sa-comp" id="saSend"><span class="sa-ctools"><button type="button" class="sa-ib" data-sa="cattach" title="${saEsc(T('Attach files'))}" aria-label="${saEsc(T('Attach files'))}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5 12.6 19.9a5.5 5.5 0 0 1-7.8-7.8l8.5-8.5a3.7 3.7 0 0 1 5.2 5.2l-8.5 8.5a1.8 1.8 0 0 1-2.6-2.6l7.8-7.8"/></svg></button><button type="button" class="sa-ib" data-sa="cproj" title="${saEsc(T('Share a project in this chat'))}" aria-label="${saEsc(T('Share a project in this chat'))}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4" width="17" height="16" rx="1.5"/><path d="M3.5 9h17M8 9v11M12 12.5h5M12 16h5"/></svg></button><input type="file" id="saFileIn" multiple hidden></span><label class="sr" for="saMsgIn">${saEsc(T('Message'))}</label><textarea id="saMsgIn" rows="2" maxlength="2000" placeholder="${saEsc(T('Write a message. Enter sends, Shift+Enter adds a line.'))}"></textarea><button class="sa-btn pri" type="submit">${saEsc(T('Send'))}</button></form>`;
@@ -663,8 +707,10 @@ function saMsgPaint(stick){
     const mine = m.sender_id === SA.user.id, d = new Date(m.created_at).toDateString();
     const sep = d !== day ? `<div class="sa-day">${saEsc(saDate(m.created_at))}</div>` : ''; day = d;
     const first = prev !== m.sender_id || sep; prev = m.sender_id;
+    if (!mine && SA.com.blocked && SA.com.blocked.has(m.sender_id)) return `${sep}<div class="sa-m sa-mhid"><div class="bb">${saEsc(T('Message from a member you blocked'))}</div></div>`;
     const extra = (m.attachment ? saFileHtml(m) : '') + (m.project_name ? saProjMsgHtml(m, mine) : '');
-    return `${sep}<div class="sa-m ${mine ? 'me' : ''}">${grp && !mine && first ? `<span class="who" data-nt>${saEsc(SA.com.names[m.sender_id] || T('Former member'))}</span>` : ''}<div class="bb ${extra ? 'has-x' : ''}" data-nt>${extra}${m.body ? `<span class="tx">${saEsc(m.body)}</span>` : ''}<time>${saEsc(new Date(m.created_at).toLocaleTimeString(saLang(), {hour: '2-digit', minute: '2-digit'}))}</time></div></div>`;
+    const rep = mine ? '' : `<button class="sa-mrep" data-sa="mrep" data-id="${m.id}" data-u="${m.sender_id}" aria-label="${saEsc(T('Report message'))}" title="${saEsc(T('Report message'))}">⚑</button>`;
+    return `${sep}<div class="sa-m ${mine ? 'me' : ''}">${grp && !mine && first ? `<span class="who" data-nt>${saEsc(SA.com.names[m.sender_id] || T('Former member'))}</span>` : ''}<div class="bb ${extra ? 'has-x' : ''}" data-nt>${extra}${m.body ? `<span class="tx">${saEsc(m.body)}</span>` : ''}<time>${rep}${saEsc(new Date(m.created_at).toLocaleTimeString(saLang(), {hour: '2-digit', minute: '2-digit'}))}</time></div></div>`;
   }).join('') : `<div class="sa-empty sa-cnone">${saEsc(T('No messages yet. Say hello.'))}</div>`;
   if (stick || near) box.scrollTop = box.scrollHeight;
 }
@@ -680,11 +726,54 @@ async function saSendMsg(){
   SA.com.sending = true; i.disabled = true;
   const {data, error} = await SA.sb.from('chat_messages').insert({chat_id: SA.com.active, body}).select('id,sender_id,body,created_at').single();
   SA.com.sending = false; i.disabled = false;
-  if (error){ toast(/too quickly/i.test(error.message || '') ? T('You are sending messages too quickly. Wait a moment.') : T('The message could not be sent. Try again.')); i.focus(); return; }
+  if (error){ toast(/too quickly/i.test(error.message || '') ? T('You are sending messages too quickly. Wait a moment.') : /row-level security|policy/i.test(error.message || '') ? T('You can no longer send messages in this chat.') : T('The message could not be sent. Try again.')); i.focus(); return; }
   i.value = '';
   if (!SA.com.msgs.some(m => m.id === data.id)){ SA.com.msgs.push(data); SA.com.lastId = Math.max(SA.com.lastId, data.id); }
   saMsgPaint(true); i.focus();
   const c = saChatById(SA.com.active); if (c){ c.last_body = body; c.last_sender = saName(); saChatListPaint(); }
+}
+
+/* ----- report and block (required by the app stores for apps with chat) ----- */
+const SA_REASONS = [['spam', 'Spam or advertising'], ['harassment', 'Harassment or threats'], ['inappropriate', 'Offensive or inappropriate content'], ['impersonation', 'Pretending to be someone else'], ['other', 'Something else']];
+function saOptsDialog(uid){
+  const name = SA.com.who[uid] || SA.com.names[uid] || T('A member'), blocked = SA.com.blocked && SA.com.blocked.has(uid);
+  saModal(`<h2 data-nt>${saEsc(name)}</h2><div class="sa-col" style="display:flex;flex-direction:column;gap:8px"><button class="sa-btn" data-sa="mreport" data-u="${uid}">${saEsc(T('Report this member'))}</button>${blocked ? `<button class="sa-btn" data-sa="munblock" data-id="${uid}">${saEsc(T('Unblock'))}</button>` : `<button class="sa-btn bad" data-sa="mblock" data-id="${uid}">${saEsc(T('Block this member'))}</button><p class="sa-fine" style="margin:0;color:var(--ink-2)">${saEsc(T('Blocked members cannot message you, invite you or share with you, and you will not see their messages. They are not told.'))}</p>`}</div><div class="sa-row" style="justify-content:flex-end;margin-top:14px"><button class="sa-btn" data-sa="close">${saEsc(T('Close'))}</button></div>`);
+}
+function saReportDialog(uid, mid){
+  const name = SA.com.who[uid] || SA.com.names[uid] || T('A member');
+  saModal(`<h2>${saEsc(T(mid ? 'Report message' : 'Report this member'))}</h2><p class="sa-sub" style="margin:0 0 10px" data-nt>${saEsc(name)}</p><form id="saRepF" data-u="${uid}" data-m="${mid || ''}"><fieldset class="sa-rr"><legend class="sr">${saEsc(T('Reason'))}</legend>${SA_REASONS.map((r, i) => `<label><input type="radio" name="saRR" value="${r[0]}"> ${saEsc(T(r[1]))}</label>`).join('')}</fieldset><label class="sa-field"><span>${saEsc(T('Details (optional)'))}</span><textarea id="saRepD" rows="3" maxlength="1000"></textarea></label><label class="sa-chk"><input type="checkbox" id="saRepB" ${SA.com.blocked && SA.com.blocked.has(uid) ? 'checked disabled' : ''}><span>${saEsc(T('Also block this member'))}</span></label><p class="sa-fine" style="color:var(--ink-2)">${saEsc(T('An administrator reviews every report, usually within 24 hours.' ))}${mid ? ' ' + saEsc(T('A copy of the message is included.')) : ''}</p><div id="saRepRes"></div><div class="sa-row" style="justify-content:flex-end;margin-top:10px"><button type="button" class="sa-btn" data-sa="close">${saEsc(T('Cancel'))}</button><button class="sa-btn pri" type="submit" id="saRepGo">${saEsc(T('Send report'))}</button></div></form>`);
+}
+async function saReportSubmit(f){
+  const go = sa$('#saRepGo'), res = sa$('#saRepRes'), r = f.querySelector('input[name=saRR]:checked');
+  if (!r){ res.innerHTML = `<div class="sa-msg bad">${saEsc(T('Choose a reason.'))}</div>`; return; }
+  go.disabled = true;
+  try {
+    const body = {reason: r.value, details: sa$('#saRepD').value.trim(), block: sa$('#saRepB').checked && !sa$('#saRepB').disabled};
+    if (f.dataset.m) body.message_id = +f.dataset.m; else body.user_id = f.dataset.u;
+    const out = await saApi('/api/community/report', {method: 'POST', body: JSON.stringify(body)});
+    if (out.blocked) await saAfterBlock(f.dataset.u, true);
+    f.innerHTML = `<div class="sa-msg ok">${saEsc(T('Thank you. Your report was sent to the administrators.'))}${out.blocked ? ' ' + saEsc(T('You have blocked this member.')) : ''}</div><div class="sa-row" style="justify-content:flex-end;margin-top:12px"><button type="button" class="sa-btn pri" data-sa="close">${saEsc(T('Close'))}</button></div>`;
+  } catch (e) { res.innerHTML = `<div class="sa-msg bad">${saEsc(T(e.message || 'Request failed'))}</div>`; go.disabled = false; }
+}
+async function saAfterBlock(uid, on){
+  SA.com.blocked = SA.com.blocked || new Set(); if (on) SA.com.blocked.add(uid); else SA.com.blocked.delete(uid);
+  SA.com.sel.delete(uid);
+  if (SA.view === 'community'){
+    if (SA.com.tab === 'members'){ SA.com.dir.rows = SA.com.dir.rows.filter(r => !on || r.id !== uid); if (on) SA.com.dir.total = Math.max(0, SA.com.dir.total - 1); saDirPaint(); saSelPaint(); }
+    if (SA.com.active) saMsgPaint(false);
+  }
+}
+async function saBlock(uid, on){
+  const q = on ? SA.sb.from('user_blocks').insert({blocker_id: SA.user.id, blocked_id: uid}) : SA.sb.from('user_blocks').delete().eq('blocker_id', SA.user.id).eq('blocked_id', uid);
+  const {error} = await q;
+  if (error && !/duplicate/i.test(error.message || '')){ toast(T(on ? 'Could not block this member.' : 'Could not unblock this member.')); return false; }
+  await saAfterBlock(uid, on); toast(T(on ? 'Member blocked.' : 'Member unblocked.')); return true;
+}
+async function saBlockedList(){
+  const box = sa$('#saBlocked'); if (!box) return;
+  const {data, error} = await SA.sb.rpc('my_blocks');
+  if (error){ box.innerHTML = `<p class="sa-sub">${saEsc(T('Not available yet.'))}</p>`; return; }
+  box.innerHTML = (data || []).length ? `<ul class="sa-mem">${data.map(b => `<li><span data-nt><b>${saEsc(b.name)}</b></span><span class="sa-fine" style="color:var(--ink-2)">${saEsc(saDate(b.created_at))}</span><button class="sa-btn sm" data-sa="munblock" data-id="${b.id}">${saEsc(T('Unblock'))}</button></li>`).join('')}</ul>` : `<p class="sa-sub" style="margin:0">${saEsc(T('You have not blocked anyone.'))}</p>`;
 }
 
 /* ----- dialogs ----- */
@@ -800,7 +889,7 @@ function saMemberCard(m){
   const on = SA.com.sel.has(m.id), ini = m.name.split(/\s+/).map(w => w[0] || '').join('').slice(0, 2).toUpperCase() || '?';
   const line1 = [m.occupation ? T(m.occupation) : '', m.company].filter(Boolean).join(' · ');
   const line2 = [m.country, T('Member since') + ' ' + saDate(m.member_since)].filter(Boolean).join(' · ');
-  return `<article class="sa-mcard ${on ? 'on' : ''}"><label class="sa-mchk"><input type="checkbox" data-sa="msel" data-id="${m.id}" ${on ? 'checked' : ''} aria-label="${saEsc(T('Select') + ' ' + m.name)}"></label><span class="sa-cav" aria-hidden="true" data-nt>${saEsc(ini)}</span><div class="tx"><b data-nt>${saEsc(m.name)}</b>${line1 ? `<span data-nt>${saEsc(line1)}</span>` : ''}<span data-nt>${saEsc(line2)}</span></div><div class="acts"><button class="sa-btn pri sm" data-sa="mchat" data-id="${m.id}">${saEsc(T('Message'))}</button><button class="sa-btn sm" data-sa="mshare" data-id="${m.id}">${saEsc(T('Share project'))}</button><button class="sa-btn sm" data-sa="mfile" data-id="${m.id}">${saEsc(T('Send file'))}</button></div></article>`;
+  return `<article class="sa-mcard ${on ? 'on' : ''}"><label class="sa-mchk"><input type="checkbox" data-sa="msel" data-id="${m.id}" ${on ? 'checked' : ''} aria-label="${saEsc(T('Select') + ' ' + m.name)}"></label><span class="sa-cav" aria-hidden="true" data-nt>${saEsc(ini)}</span><div class="tx"><b data-nt>${saEsc(m.name)}</b>${line1 ? `<span data-nt>${saEsc(line1)}</span>` : ''}<span data-nt>${saEsc(line2)}</span></div><div class="acts"><button class="sa-btn pri sm" data-sa="mchat" data-id="${m.id}">${saEsc(T('Message'))}</button><button class="sa-btn sm" data-sa="mshare" data-id="${m.id}">${saEsc(T('Share project'))}</button><button class="sa-btn sm" data-sa="mfile" data-id="${m.id}">${saEsc(T('Send file'))}</button><button class="sa-btn sm sa-mopt" data-sa="mopts" data-id="${m.id}" aria-label="${saEsc(T('Report or block') + ': ' + m.name)}" title="${saEsc(T('Report or block'))}">⋯</button></div></article>`;
 }
 function saDirPaint(){
   const l = sa$('#saDirList'), n = sa$('#saDirN'), more = sa$('#saDirMore'), d = SA.com.dir; if (!l) return;
@@ -939,6 +1028,14 @@ document.addEventListener('click', async ev => {
   else if (a === 'cproj'){ b.disabled = true; const o = await saProjOptions().catch(() => ''); b.disabled = false; saComDialog('cproj', '', o); }
   else if (a === 'popen'){ b.disabled = true; try { await saOpenProject(id); } catch (e) { toast(saErr(e)); } b.disabled = false; }
   else if (a === 'pcopy'){ b.disabled = true; await saCopyShared(id, b.dataset.from); b.disabled = false; }
+  else if (a === 'mopts'){ saOptsDialog(id); }
+  else if (a === 'mreport'){ saReportDialog(b.dataset.u); }
+  else if (a === 'mrep'){ saReportDialog(b.dataset.u, id); }
+  else if (a === 'mblock'){
+    if (b.dataset.sure !== '1'){ b.dataset.sure = '1'; b.textContent = T('Click again to block'); return; }
+    b.disabled = true; if (await saBlock(id, true)) saModalClose(); else b.disabled = false;
+  }
+  else if (a === 'munblock'){ b.disabled = true; if (await saBlock(id, false)){ if (sa$('#saModal')) saModalClose(); saBlockedList(); } else b.disabled = false; }
   else if (a === 'updismiss'){ SA.com.uploads = SA.com.uploads.filter(u => u.id !== id); saUpPaint(); }
   else if (a === 'shopen'){ b.disabled = true; await saShareOpen(id); b.disabled = false; }
   else if (a === 'shrm'){
@@ -950,6 +1047,7 @@ document.addEventListener('click', async ev => {
 });
 document.addEventListener('submit', ev => {
   if (ev.target.id === 'saCForm'){ ev.preventDefault(); saComSubmit(ev.target); }
+  else if (ev.target.id === 'saRepF'){ ev.preventDefault(); saReportSubmit(ev.target); }
   else if (ev.target.id === 'saSend'){ ev.preventDefault(); saSendMsg(); }
 });
 document.addEventListener('change', ev => {
@@ -1019,7 +1117,7 @@ async function saImpRun(){
   I.stage = 'busy'; I.err = null; saRender();
   let r, j;
   try {
-    r = await fetch('/api/import/analyze', {method: 'POST', headers: {'Content-Type': 'application/json', Authorization: 'Bearer ' + SA.session.access_token}, body: JSON.stringify({files: I.files.map(f => ({mime: f.mime, data: f.data})), hints: {standard: I.std || undefined, notes: I.notes || undefined}})});
+    r = await fetch(saUrl('/api/import/analyze'), {method: 'POST', headers: {'Content-Type': 'application/json', Authorization: 'Bearer ' + SA.session.access_token}, body: JSON.stringify({files: I.files.map(f => ({mime: f.mime, data: f.data})), hints: {standard: I.std || undefined, notes: I.notes || undefined}})});
     j = await r.json().catch(() => ({}));
   } catch (e) { I.stage = 'upload'; I.err = 'No connection. Check your internet and try again.'; saRender(); return; }
   if (!r.ok){ I.stage = 'upload'; I.err = j.error || 'The panel could not be read.'; saRender(); return; }
@@ -1158,7 +1256,7 @@ document.addEventListener('click', ev => {
 /* ---------- admin console (every call is re-checked on the server) ---------- */
 async function saApi(path, opt){
   const o = Object.assign({method: 'GET'}, opt || {}); o.headers = Object.assign({Authorization: 'Bearer ' + (SA.session && SA.session.access_token)}, o.body ? {'Content-Type': 'application/json'} : {});
-  let r; try { r = await fetch(path, o); } catch (e) { throw new Error('Failed to fetch'); }
+  let r; try { r = await fetch(saUrl(path), o); } catch (e) { throw new Error('Failed to fetch'); }
   const j = await r.json().catch(() => ({}));
   if (!r.ok){ const e = new Error(j.error || 'Request failed'); e.status = r.status; throw e; }
   return j;
@@ -1167,13 +1265,14 @@ SA.au = {search: '', status: '', verified: '', page: 1, size: 25};
 async function saViewAdmin(el){
   el.innerHTML = saFrame('admin', `<div class="sa-splash">${saEsc(T('Loading…'))}</div>`);
   try { await saApi('/api/admin/me'); } catch (e) { el.innerHTML = saFrame('admin', `<div class="sa-msg bad">${saEsc(T(e.status === 403 ? 'You do not have administrator access.' : e.message))}</div>`); return; }
-  const tabs = [['overview', 'Overview'], ['users', 'Users'], ['feedback', 'Feedback']];
+  const tabs = [['overview', 'Overview'], ['users', 'Users'], ['reports', 'Reports'], ['feedback', 'Feedback']];
   const tb = `<div class="sa-nav" role="tablist" style="margin-bottom:14px">${tabs.map(t => `<button role="tab" data-sa="atab" data-t="${t[0]}" ${SA.adminTab === t[0] ? 'aria-current="page"' : ''}>${saEsc(T(t[1]))}</button>`).join('')}</div>`;
   el.innerHTML = saFrame('admin', `<h1 class="sa-h1">${saEsc(T('Administration'))}</h1>${tb}<div id="saAdm"><div class="sa-splash">${saEsc(T('Loading…'))}</div></div>`);
   const box = sa$('#saAdm');
   try {
     if (SA.adminTab === 'overview') await saAdmOverview(box);
     else if (SA.adminTab === 'users') await saAdmUsers(box);
+    else if (SA.adminTab === 'reports') await saAdmReports(box);
     else await saAdmFeedback(box);
   } catch (e) { box.innerHTML = `<div class="sa-msg bad">${saEsc(T(e.message || 'Request failed'))}</div>`; }
 }
@@ -1192,6 +1291,15 @@ async function saAdmUsers(box){
   box.innerHTML = `<form id="saUF" class="sa-row" style="margin-bottom:12px"><input class="sa-in" id="auS" type="search" placeholder="${saEsc(T('Search name, email, company'))}" value="${saEsc(f.search)}" style="max-width:300px" aria-label="${saEsc(T('Search users'))}"><select class="sa-in" id="auSt" style="max-width:170px" aria-label="${saEsc(T('Status'))}"><option value="">${saEsc(T('Any status'))}</option><option value="active" ${f.status === 'active' ? 'selected' : ''}>${saEsc(T('Active'))}</option><option value="suspended" ${f.status === 'suspended' ? 'selected' : ''}>${saEsc(T('Suspended'))}</option></select><select class="sa-in" id="auV" style="max-width:190px" aria-label="${saEsc(T('Email verification'))}"><option value="">${saEsc(T('Any verification'))}</option><option value="yes" ${f.verified === 'yes' ? 'selected' : ''}>${saEsc(T('Verified'))}</option><option value="no" ${f.verified === 'no' ? 'selected' : ''}>${saEsc(T('Not verified'))}</option></select><button class="sa-btn" type="submit">${saEsc(T('Search'))}</button><span class="sa-fine" style="color:var(--ink-2)">${r.total} ${saEsc(T('users'))}</span></form>
   <div class="sa-card sa-tw" style="padding:0"><table class="sa-tab"><thead><tr><th>${saEsc(T('Name'))}</th><th>${saEsc(T('Email'))}</th><th>${saEsc(T('Registered'))}</th><th>${saEsc(T('Verified'))}</th><th>${saEsc(T('Projects'))}</th><th>${saEsc(T('Last seen'))}</th><th>${saEsc(T('Status'))}</th><th></th></tr></thead><tbody>${r.users.length ? r.users.map(u => `<tr><td>${saEsc((u.first_name || '') + ' ' + (u.last_name || ''))}<br><span class="sa-fine" style="color:var(--ink-2)">${saEsc([u.company, u.country, u.occupation].filter(Boolean).join(' · '))}</span></td><td style="overflow-wrap:anywhere">${saEsc(u.email)}${u.role === 'admin' ? ' <span class="sa-pill">admin</span>' : ''}</td><td>${saEsc(saDate(u.created_at))}</td><td><span class="sa-pill ${u.email_confirmed_at ? 'ok' : 'warn'}">${saEsc(T(u.email_confirmed_at ? 'Yes' : 'No'))}</span></td><td>${u.project_count}</td><td>${u.last_seen_at ? saEsc(saRel(u.last_seen_at)) : '–'}</td><td><span class="sa-pill ${u.status === 'active' ? 'ok' : 'bad'}">${saEsc(T(u.status === 'active' ? 'Active' : 'Suspended'))}</span></td><td>${u.role === 'admin' || u.id === SA.user.id ? '' : `<button class="sa-btn sm ${u.status === 'active' ? 'bad' : ''}" data-sa="ustatus" data-id="${u.id}" data-s="${u.status === 'active' ? 'suspended' : 'active'}" data-e="${saEsc(u.email)}">${saEsc(T(u.status === 'active' ? 'Suspend' : 'Reactivate'))}</button>`}</td></tr>`).join('') : `<tr><td colspan="8"><div class="sa-empty">${saEsc(T('No users match.'))}</div></td></tr>`}</tbody></table></div>
   <div class="sa-row" style="margin-top:12px;justify-content:center"><button class="sa-btn sm" data-sa="apage" data-d="-1" ${f.page <= 1 ? 'disabled' : ''}>${saEsc(T('Previous'))}</button><span>${f.page} / ${pages}</span><button class="sa-btn sm" data-sa="apage" data-d="1" ${f.page >= pages ? 'disabled' : ''}>${saEsc(T('Next'))}</button></div>`;
+}
+const SA_REASON_LABEL = {spam: 'Spam or advertising', harassment: 'Harassment or threats', inappropriate: 'Offensive or inappropriate content', impersonation: 'Pretending to be someone else', other: 'Something else'};
+async function saAdmReports(box){
+  const r = await saApi('/api/admin/reports');
+  const who = p => p ? `<b data-nt>${saEsc(p.name || p.email)}</b> <span class="sa-fine" style="color:var(--ink-2);overflow-wrap:anywhere" data-nt>${saEsc(p.email || '')}</span>` : `<i>${saEsc(T('Deleted user'))}</i>`;
+  box.innerHTML = `<p class="sa-sub">${saEsc(T('Members report messages and other members here. Both app stores expect reports to be reviewed promptly, ideally within 24 hours.'))}</p>` + (r.reports.length ? `<div class="sa-grid">${r.reports.map(x => `<article class="sa-card ${x.status === 'new' ? 'sa-proj new' : ''}"><div class="sa-row" style="justify-content:space-between"><span><b>${saEsc(T(SA_REASON_LABEL[x.reason] || x.reason))}</b> <span class="sa-fine" style="color:var(--ink-2)">${saEsc(saTime(x.created_at))}</span></span><span class="sa-pill ${x.status === 'new' ? 'warn' : 'ok'}">${saEsc(T(x.status === 'new' ? 'New' : 'Reviewed'))}</span></div>
+    <p style="margin:8px 0 4px">${saEsc(T('Reported'))}: ${who(x.target)}${x.target && x.target.status === 'suspended' ? ` <span class="sa-pill bad">${saEsc(T('Suspended'))}</span>` : ''}</p><p style="margin:0 0 6px">${saEsc(T('By'))}: ${who(x.reporter)}</p>
+    ${x.details ? `<p style="white-space:pre-wrap;overflow-wrap:anywhere;margin:6px 0" data-nt>${saEsc(x.details)}</p>` : ''}${x.message_body ? `<blockquote class="sa-quote" data-nt>${saEsc(x.message_body)}</blockquote>` : ''}
+    <div class="acts sa-row" style="margin-top:8px">${x.message_id && x.message_exists ? `<button class="sa-btn sm bad" data-sa="rdel" data-id="${x.message_id}">${saEsc(T('Delete message'))}</button>` : x.message_body ? `<span class="sa-fine" style="color:var(--ink-2)">${saEsc(T('Message deleted'))}</span>` : ''}${x.target && x.target.role !== 'admin' ? `<button class="sa-btn sm ${x.target.status === 'active' ? 'bad' : ''}" data-sa="ustatus" data-id="${x.target.id}" data-s="${x.target.status === 'active' ? 'suspended' : 'active'}" data-e="${saEsc(x.target.email || '')}">${saEsc(T(x.target.status === 'active' ? 'Suspend' : 'Reactivate'))}</button>` : ''}<button class="sa-btn sm" data-sa="rstat" data-id="${x.id}" data-s="${x.status === 'new' ? 'reviewed' : 'new'}">${saEsc(T(x.status === 'new' ? 'Mark reviewed' : 'Mark new'))}</button></div></article>`).join('')}</div>` : `<div class="sa-empty">${saEsc(T('No reports.'))}</div>`);
 }
 async function saAdmFeedback(box){
   const r = await saApi('/api/admin/feedback?size=50');
@@ -1221,7 +1329,7 @@ document.addEventListener('click', async ev => {
   else if (a === 'peek'){ const i = sa$('#' + b.dataset.for); const show = i.type === 'password'; i.type = show ? 'text' : 'password'; b.textContent = T(show ? 'Hide' : 'Show'); }
   else if (a === 'legal') saLegal(b.dataset.w);
   else if (a === 'close') saModalClose();
-  else if (a === 'resend'){ const e = b.dataset.e; if (!e) return; const {error} = await SA.sb.auth.resend({type: 'signup', email: e, options: {emailRedirectTo: location.origin + '/confirmed'}}); SA.msg = error ? {t: 'bad', m: saErr(error)} : {t: 'ok', m: 'Verification email sent. Check your inbox and spam folder.'}; saRender(); }
+  else if (a === 'resend'){ const e = b.dataset.e; if (!e) return; const {error} = await SA.sb.auth.resend({type: 'signup', email: e, options: {emailRedirectTo: saSite() + '/confirmed'}}); SA.msg = error ? {t: 'bad', m: saErr(error)} : {t: 'ok', m: 'Verification email sent. Check your inbox and spam folder.'}; saRender(); }
   else if (a === 'signedin'){ await SA.sb.auth.signOut().catch(() => {}); SA.user = null; SA.session = null; SA.authMode = 'login'; SA.userSignedOut = true; SA.msg = {t: 'ok', m: 'Once your email is confirmed, sign in below.'}; saGo('auth'); }
   else if (a === 'new') saNewProject();
   else if (a === 'open'){ b.disabled = true; if (!await saOpenProject(id)) b.disabled = false; }
@@ -1238,6 +1346,11 @@ document.addEventListener('click', async ev => {
   else if (a === 'loadcloud') saLoadCloud();
   else if (a === 'atab'){ SA.adminTab = b.dataset.t; saRender(); }
   else if (a === 'apage'){ SA.au.page = Math.max(1, SA.au.page + parseInt(b.dataset.d, 10)); saRender(); }
+  else if (a === 'rstat'){ try { await saApi(`/api/admin/reports/${id}/status`, {method: 'POST', body: JSON.stringify({status: b.dataset.s})}); saRender(); } catch (e) { toast(e.message); } }
+  else if (a === 'rdel'){
+    if (!confirm(T('Delete this message for everyone in the chat? This cannot be undone.'))) return;
+    try { await saApi(`/api/admin/messages/${id}/delete`, {method: 'POST', body: '{}'}); toast('Message deleted.'); saRender(); } catch (e) { toast(e.message); }
+  }
   else if (a === 'ustatus'){
     const to = b.dataset.s; if (!confirm(T(to === 'suspended' ? 'Suspend this account? The user will be signed out of cloud features.' : 'Reactivate this account?') + '\n\n' + b.dataset.e)) return;
     try { await saApi(`/api/admin/users/${id}/status`, {method: 'POST', body: JSON.stringify({status: to})}); saRender(); } catch (e) { toast(e.message); }

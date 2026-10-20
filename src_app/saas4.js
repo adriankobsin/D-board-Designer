@@ -53,7 +53,9 @@ function saViewAccount(el){
   <div class="full"><button class="sa-btn pri" type="submit">${saEsc(T('Save profile'))}</button></div></form></section>
   <section class="sa-card"><h2>${saEsc(T('Change password'))}</h2><form id="saPw" class="sa-form" style="grid-template-columns:1fr" novalidate>${saPwField('cur', 'Current password', 'current-password')}${saPwField('password', 'New password', 'new-password', 'At least 8 characters, with a letter and a number.')}${saPwField('password2', 'Confirm new password', 'new-password')}<div><button class="sa-btn pri" type="submit">${saEsc(T('Update password'))}</button></div></form></section></div>
   <div class="sa-grid c2" style="margin-top:16px"><section class="sa-card"><h2>${saEsc(T('Your data'))}</h2><p class="sa-sub">${saEsc(T('Download your profile and all your projects as one JSON file.'))}</p><button class="sa-btn" data-sa="export">${saEsc(T('Download my data'))}</button> <button class="sa-btn" data-sa="legal" data-w="privacy">${saEsc(T('Privacy Policy'))}</button> <button class="sa-btn" data-sa="legal" data-w="terms">${saEsc(T('Terms and Conditions'))}</button></section>
+  <section class="sa-card"><h2>${saEsc(T('Blocked members'))}</h2><div id="saBlocked"><p class="sa-sub">${saEsc(T('Loading…'))}</p></div></section>
   <section class="sa-card"><h2>${saEsc(T('Delete account'))}</h2><p class="sa-sub">${saEsc(T('Permanently removes your account, profile and every saved project. This cannot be undone. Projects stored only on this device are not affected.'))}</p><button class="sa-btn bad" data-sa="delacct">${saEsc(T('Delete my account'))}</button></section></div>`);
+  if (typeof saBlockedList === 'function') saBlockedList();
 }
 async function saSaveProfile(){
   const v = id => sa$('#' + id).value.trim(); let ok = true;
@@ -77,6 +79,7 @@ async function saChangePw(){
 async function saExportData(){
   const {data} = await SA.sb.from('projects').select('id,name,data,meta,created_at,updated_at');
   const out = {exported_at: new Date().toISOString(), account: {email: SA.user.email, profile: SA.profile}, projects: data || []};
+  if (SA_NATIVE){ try { await saNativeSave('dboard-designer-my-data.json', JSON.stringify(out, null, 2)); } catch (e) { toast('Could not save the file here.'); } return; }
   const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(out, null, 2)], {type: 'application/json'})); a.download = 'dboard-designer-my-data.json'; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500);
 }
 function saDeleteDialog(){
@@ -84,7 +87,7 @@ function saDeleteDialog(){
 }
 async function saDoDelete(){
   const email = sa$('#delEmail').value.trim(), err = sa$('#delErr'); err.hidden = true;
-  let r; try { r = await fetch('/api/me/delete', {method: 'POST', headers: {'Content-Type': 'application/json', Authorization: 'Bearer ' + SA.session.access_token}, body: JSON.stringify({email})}); } catch (e) { err.textContent = T('No connection. Check your internet and try again.'); err.hidden = false; return; }
+  let r; try { r = await fetch(saUrl('/api/me/delete'), {method: 'POST', headers: {'Content-Type': 'application/json', Authorization: 'Bearer ' + SA.session.access_token}, body: JSON.stringify({email})}); } catch (e) { err.textContent = T('No connection. Check your internet and try again.'); err.hidden = false; return; }
   const j = await r.json().catch(() => ({}));
   if (!r.ok){ err.textContent = T(j.error || 'The account could not be deleted. Try again later.'); err.hidden = false; return; }
   saModalClose(); try { localStorage.removeItem('dbd_user'); Object.keys(localStorage).filter(k => k.startsWith('dbd_cloudcache_')).forEach(k => localStorage.removeItem(k)); } catch (e) {}

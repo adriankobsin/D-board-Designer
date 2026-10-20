@@ -55,7 +55,7 @@ function saErr(e){
 /* ---------- boot ---------- */
 async function saFetchConfig(){
   try {
-    const r = await fetch('/api/config', {cache: 'no-store'});
+    const r = await fetch(saUrl('/api/config'), {cache: 'no-store'});
     if (r.ok && (r.headers.get('content-type') || '').includes('json')){ const c = await r.json(); try { localStorage.setItem('dbd_cfg', JSON.stringify(c)); } catch (e) {} return c; }
   } catch (e) {}
   try { const c = JSON.parse(localStorage.getItem('dbd_cfg') || 'null'); if (c) { c.cached = true; return c; } } catch (e) {}

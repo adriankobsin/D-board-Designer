@@ -46,7 +46,7 @@ async function saImpRun(){
   I.stage = 'busy'; I.err = null; saRender();
   let r, j;
   try {
-    r = await fetch('/api/import/analyze', {method: 'POST', headers: {'Content-Type': 'application/json', Authorization: 'Bearer ' + SA.session.access_token}, body: JSON.stringify({files: I.files.map(f => ({mime: f.mime, data: f.data})), hints: {standard: I.std || undefined, notes: I.notes || undefined}})});
+    r = await fetch(saUrl('/api/import/analyze'), {method: 'POST', headers: {'Content-Type': 'application/json', Authorization: 'Bearer ' + SA.session.access_token}, body: JSON.stringify({files: I.files.map(f => ({mime: f.mime, data: f.data})), hints: {standard: I.std || undefined, notes: I.notes || undefined}})});
     j = await r.json().catch(() => ({}));
   } catch (e) { I.stage = 'upload'; I.err = 'No connection. Check your internet and try again.'; saRender(); return; }
   if (!r.ok){ I.stage = 'upload'; I.err = j.error || 'The panel could not be read.'; saRender(); return; }

@@ -98,6 +98,16 @@ export async function community(request, env, url, h) {
     byId.list.forEach(id => add(id, byId.map[id], true));
     return { list: out, skipped };
   };
+  /* Everyone with a block (either way) between them and me. Blocked people cannot be messaged, invited or shared with. */
+  let blockCache = null;
+  const blocks = async () => {
+    if (blockCache) return blockCache;
+    const r = await sr(env, `/rest/v1/user_blocks?or=(blocker_id.eq.${user.id},blocked_id.eq.${user.id})&select=blocker_id,blocked_id`);
+    const rows = r.ok ? await r.json() : [];
+    blockCache = { mine: new Set(rows.filter(x => x.blocker_id === user.id).map(x => x.blocked_id)), theirs: new Set(rows.filter(x => x.blocked_id === user.id).map(x => x.blocker_id)) };
+    blockCache.any = id => blockCache.mine.has(id) || blockCache.theirs.has(id);
+    return blockCache;
+  };
   const nameOf = p => (`${p.first_name || ''} ${p.last_name || ''}`.trim()) || String(p.email || '').split('@')[0];
   const overCap = async () => {
     const since = encodeURIComponent(new Date(Date.now() - 86400000).toISOString());
@@ -123,6 +133,9 @@ export async function community(request, env, url, h) {
       found = (await findMembers(emails))[emails[0]];
       if (!found) return fail(404, 'No registered member uses that email address.');
     }
+    const bl = await blocks();
+    if (bl.mine.has(found.id)) return fail(403, 'You have blocked this member. Unblock them in Account settings first.');
+    if (bl.theirs.has(found.id)) return fail(404, 'That member is not available.');
     const key = [user.id, found.id].sort().join(':');
     const find = async () => { const r = await sr(env, `/rest/v1/chats?direct_key=eq.${key}&select=id`); const rows = r.ok ? await r.json() : []; return rows[0] ? rows[0].id : null; };
     let id = await find();
@@ -153,6 +166,7 @@ export async function community(request, env, url, h) {
     for (const { key, p } of t.list) {
       const e = UUID.test(key) ? '' : key;
       if (p.id === user.id || existing.has(p.id)) { res.skipped.push({ email: e, id: p.id, reason: 'already' }); continue; }
+      if ((await blocks()).any(p.id)) { res.skipped.push({ email: e, id: p.id, reason: 'not_found' }); continue; }
       rows.push({ chat_id: chat.id, user_id: p.id, role: 'member', status: 'invited', invited_by: user.id });
       mails.push(p);
     }
@@ -216,7 +230,9 @@ export async function community(request, env, url, h) {
       const others = mem.filter(id => id !== user.id);
       const pr2 = others.length ? await sr(env, `/rest/v1/profiles?status=eq.active&id=in.(${others.join(',')})&select=id,email,first_name,last_name`) : null;
       if (pr2 && !pr2.ok) throw new Error('lookup');
+      const bl = await blocks();
       for (const p of (pr2 ? await pr2.json() : [])) {
+        if (bl.any(p.id)) continue;
         const st = await insShare(p, body.chat_id);
         if (st === 'failed') res.skipped.push({ email: '', id: p.id, reason: 'failed' }); else res.shared.push({ id: p.id, name: nameOf(p) });
       }
@@ -237,6 +253,7 @@ export async function community(request, env, url, h) {
     for (const { key, p } of t.list) {
       const e = UUID.test(key) ? '' : key;
       if (p.id === user.id) { res.skipped.push({ email: e, reason: 'self' }); continue; }
+      if ((await blocks()).any(p.id)) { res.skipped.push({ email: e, id: p.id, reason: 'not_found' }); continue; }
       const st = await insShare(p, null);
       if (st !== 'new') { res.skipped.push({ email: e, id: p.id, reason: st }); continue; }
       res.shared.push({ id: p.id, name: nameOf(p) });
@@ -246,6 +263,56 @@ export async function community(request, env, url, h) {
       if (ok) res.emailed++;
     }
     return json({ ok: true, ...res });
+  }
+
+  /* ----- report a message or a member to the administrators ----- */
+  if (path === '/api/community/report') {
+    const REASONS = ['spam', 'harassment', 'inappropriate', 'impersonation', 'other'];
+    const reason = REASONS.includes(body.reason) ? body.reason : null;
+    if (!reason) return fail(400, 'Choose a reason.');
+    const details = cl(body.details, 1000) || null;
+    const since = encodeURIComponent(new Date(Date.now() - 86400000).toISOString());
+    const recent = await sr(env, `/rest/v1/content_reports?reporter_id=eq.${user.id}&created_at=gte.${since}&select=id&limit=20`);
+    if (recent.ok && (await recent.json()).length >= 20) return fail(429, 'You have sent many reports today. Try again tomorrow.');
+    const row = { reporter_id: user.id, reason, details };
+    if (body.message_id != null) {
+      const mid = parseInt(body.message_id, 10);
+      if (!Number.isSafeInteger(mid) || mid < 1) return fail(400, 'Invalid message.');
+      const mr = await sr(env, `/rest/v1/chat_messages?id=eq.${mid}&select=id,chat_id,sender_id,body,attachment,project_name`);
+      const msg = mr.ok ? (await mr.json())[0] : null;
+      if (!msg) return fail(404, 'That message no longer exists.');
+      const mem = await sr(env, `/rest/v1/chat_members?chat_id=eq.${msg.chat_id}&user_id=eq.${user.id}&status=eq.joined&select=user_id`);
+      if (!mem.ok || !(await mem.json()).length) return fail(403, 'You are not in this chat.');
+      if (msg.sender_id === user.id) return fail(400, 'You cannot report your own message.');
+      Object.assign(row, { message_id: msg.id, chat_id: msg.chat_id, target_user_id: msg.sender_id,
+        message_body: [msg.body, msg.attachment && msg.attachment.name ? `[file: ${msg.attachment.name}]` : '', msg.project_name ? `[project: ${msg.project_name}]` : ''].filter(Boolean).join('\n').slice(0, 2200) });
+    } else {
+      const uid = String(body.user_id || '').toLowerCase();
+      if (!UUID.test(uid) || uid === user.id) return fail(400, 'Invalid member.');
+      const pr = await sr(env, `/rest/v1/profiles?id=eq.${uid}&select=id`);
+      if (!pr.ok || !(await pr.json()).length) return fail(404, 'That member is not available.');
+      row.target_user_id = uid;
+    }
+    const ins = await sr(env, '/rest/v1/content_reports', { method: 'POST', headers: { Prefer: 'return=representation' }, body: JSON.stringify(row) });
+    if (!ins.ok) return fail(502, 'The report could not be sent. Try again.');
+    const rep = (await ins.json())[0];
+    let blocked = false;
+    if (body.block && row.target_user_id) {
+      const b = await sr(env, '/rest/v1/user_blocks?on_conflict=blocker_id,blocked_id', { method: 'POST', headers: { Prefer: 'resolution=ignore-duplicates' }, body: JSON.stringify({ blocker_id: user.id, blocked_id: row.target_user_id }) });
+      blocked = b.ok;
+    }
+    // Tell every administrator: a notification on their dashboard and, if email is set up, an email.
+    const tp = row.target_user_id ? await profileOf(env, row.target_user_id) : null;
+    const who = tp ? nameOf(tp) : 'a member';
+    const ad = await sr(env, '/rest/v1/profiles?role=eq.admin&status=eq.active&select=id,email');
+    const admins = ad.ok ? await ad.json() : [];
+    if (admins.length) {
+      await sr(env, '/rest/v1/notifications', { method: 'POST', body: JSON.stringify(admins.map(a => ({ user_id: a.id, kind: 'report', ref_id: rep.id, title: 'New report: ' + reason, body: `${myName} reported ${who}.`.slice(0, 400) }))) });
+      for (const a of admins) await sendMail(env, a.email, `New report on DBoard Designer: ${reason}`,
+        [`${myName} reported ${who} (${reason}).`].concat(details ? [`Details: ${details}`] : [], row.message_body ? [`Reported message: ${row.message_body}`] : [], 'Open Admin, then Reports, to review it, delete the message or suspend the account.'),
+        appUrl, 'Open DBoard Designer');
+    }
+    return json({ ok: true, id: rep.id, blocked });
   }
 
   return fail(404, 'Unknown community endpoint.');

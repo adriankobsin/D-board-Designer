@@ -2,7 +2,7 @@
 /* ---------- admin console (every call is re-checked on the server) ---------- */
 async function saApi(path, opt){
   const o = Object.assign({method: 'GET'}, opt || {}); o.headers = Object.assign({Authorization: 'Bearer ' + (SA.session && SA.session.access_token)}, o.body ? {'Content-Type': 'application/json'} : {});
-  let r; try { r = await fetch(path, o); } catch (e) { throw new Error('Failed to fetch'); }
+  let r; try { r = await fetch(saUrl(path), o); } catch (e) { throw new Error('Failed to fetch'); }
   const j = await r.json().catch(() => ({}));
   if (!r.ok){ const e = new Error(j.error || 'Request failed'); e.status = r.status; throw e; }
   return j;
@@ -11,13 +11,14 @@ SA.au = {search: '', status: '', verified: '', page: 1, size: 25};
 async function saViewAdmin(el){
   el.innerHTML = saFrame('admin', `<div class="sa-splash">${saEsc(T('Loading…'))}</div>`);
   try { await saApi('/api/admin/me'); } catch (e) { el.innerHTML = saFrame('admin', `<div class="sa-msg bad">${saEsc(T(e.status === 403 ? 'You do not have administrator access.' : e.message))}</div>`); return; }
-  const tabs = [['overview', 'Overview'], ['users', 'Users'], ['feedback', 'Feedback']];
+  const tabs = [['overview', 'Overview'], ['users', 'Users'], ['reports', 'Reports'], ['feedback', 'Feedback']];
   const tb = `<div class="sa-nav" role="tablist" style="margin-bottom:14px">${tabs.map(t => `<button role="tab" data-sa="atab" data-t="${t[0]}" ${SA.adminTab === t[0] ? 'aria-current="page"' : ''}>${saEsc(T(t[1]))}</button>`).join('')}</div>`;
   el.innerHTML = saFrame('admin', `<h1 class="sa-h1">${saEsc(T('Administration'))}</h1>${tb}<div id="saAdm"><div class="sa-splash">${saEsc(T('Loading…'))}</div></div>`);
   const box = sa$('#saAdm');
   try {
     if (SA.adminTab === 'overview') await saAdmOverview(box);
     else if (SA.adminTab === 'users') await saAdmUsers(box);
+    else if (SA.adminTab === 'reports') await saAdmReports(box);
     else await saAdmFeedback(box);
   } catch (e) { box.innerHTML = `<div class="sa-msg bad">${saEsc(T(e.message || 'Request failed'))}</div>`; }
 }
@@ -36,6 +37,15 @@ async function saAdmUsers(box){
   box.innerHTML = `<form id="saUF" class="sa-row" style="margin-bottom:12px"><input class="sa-in" id="auS" type="search" placeholder="${saEsc(T('Search name, email, company'))}" value="${saEsc(f.search)}" style="max-width:300px" aria-label="${saEsc(T('Search users'))}"><select class="sa-in" id="auSt" style="max-width:170px" aria-label="${saEsc(T('Status'))}"><option value="">${saEsc(T('Any status'))}</option><option value="active" ${f.status === 'active' ? 'selected' : ''}>${saEsc(T('Active'))}</option><option value="suspended" ${f.status === 'suspended' ? 'selected' : ''}>${saEsc(T('Suspended'))}</option></select><select class="sa-in" id="auV" style="max-width:190px" aria-label="${saEsc(T('Email verification'))}"><option value="">${saEsc(T('Any verification'))}</option><option value="yes" ${f.verified === 'yes' ? 'selected' : ''}>${saEsc(T('Verified'))}</option><option value="no" ${f.verified === 'no' ? 'selected' : ''}>${saEsc(T('Not verified'))}</option></select><button class="sa-btn" type="submit">${saEsc(T('Search'))}</button><span class="sa-fine" style="color:var(--ink-2)">${r.total} ${saEsc(T('users'))}</span></form>
   <div class="sa-card sa-tw" style="padding:0"><table class="sa-tab"><thead><tr><th>${saEsc(T('Name'))}</th><th>${saEsc(T('Email'))}</th><th>${saEsc(T('Registered'))}</th><th>${saEsc(T('Verified'))}</th><th>${saEsc(T('Projects'))}</th><th>${saEsc(T('Last seen'))}</th><th>${saEsc(T('Status'))}</th><th></th></tr></thead><tbody>${r.users.length ? r.users.map(u => `<tr><td>${saEsc((u.first_name || '') + ' ' + (u.last_name || ''))}<br><span class="sa-fine" style="color:var(--ink-2)">${saEsc([u.company, u.country, u.occupation].filter(Boolean).join(' · '))}</span></td><td style="overflow-wrap:anywhere">${saEsc(u.email)}${u.role === 'admin' ? ' <span class="sa-pill">admin</span>' : ''}</td><td>${saEsc(saDate(u.created_at))}</td><td><span class="sa-pill ${u.email_confirmed_at ? 'ok' : 'warn'}">${saEsc(T(u.email_confirmed_at ? 'Yes' : 'No'))}</span></td><td>${u.project_count}</td><td>${u.last_seen_at ? saEsc(saRel(u.last_seen_at)) : '–'}</td><td><span class="sa-pill ${u.status === 'active' ? 'ok' : 'bad'}">${saEsc(T(u.status === 'active' ? 'Active' : 'Suspended'))}</span></td><td>${u.role === 'admin' || u.id === SA.user.id ? '' : `<button class="sa-btn sm ${u.status === 'active' ? 'bad' : ''}" data-sa="ustatus" data-id="${u.id}" data-s="${u.status === 'active' ? 'suspended' : 'active'}" data-e="${saEsc(u.email)}">${saEsc(T(u.status === 'active' ? 'Suspend' : 'Reactivate'))}</button>`}</td></tr>`).join('') : `<tr><td colspan="8"><div class="sa-empty">${saEsc(T('No users match.'))}</div></td></tr>`}</tbody></table></div>
   <div class="sa-row" style="margin-top:12px;justify-content:center"><button class="sa-btn sm" data-sa="apage" data-d="-1" ${f.page <= 1 ? 'disabled' : ''}>${saEsc(T('Previous'))}</button><span>${f.page} / ${pages}</span><button class="sa-btn sm" data-sa="apage" data-d="1" ${f.page >= pages ? 'disabled' : ''}>${saEsc(T('Next'))}</button></div>`;
+}
+const SA_REASON_LABEL = {spam: 'Spam or advertising', harassment: 'Harassment or threats', inappropriate: 'Offensive or inappropriate content', impersonation: 'Pretending to be someone else', other: 'Something else'};
+async function saAdmReports(box){
+  const r = await saApi('/api/admin/reports');
+  const who = p => p ? `<b data-nt>${saEsc(p.name || p.email)}</b> <span class="sa-fine" style="color:var(--ink-2);overflow-wrap:anywhere" data-nt>${saEsc(p.email || '')}</span>` : `<i>${saEsc(T('Deleted user'))}</i>`;
+  box.innerHTML = `<p class="sa-sub">${saEsc(T('Members report messages and other members here. Both app stores expect reports to be reviewed promptly, ideally within 24 hours.'))}</p>` + (r.reports.length ? `<div class="sa-grid">${r.reports.map(x => `<article class="sa-card ${x.status === 'new' ? 'sa-proj new' : ''}"><div class="sa-row" style="justify-content:space-between"><span><b>${saEsc(T(SA_REASON_LABEL[x.reason] || x.reason))}</b> <span class="sa-fine" style="color:var(--ink-2)">${saEsc(saTime(x.created_at))}</span></span><span class="sa-pill ${x.status === 'new' ? 'warn' : 'ok'}">${saEsc(T(x.status === 'new' ? 'New' : 'Reviewed'))}</span></div>
+    <p style="margin:8px 0 4px">${saEsc(T('Reported'))}: ${who(x.target)}${x.target && x.target.status === 'suspended' ? ` <span class="sa-pill bad">${saEsc(T('Suspended'))}</span>` : ''}</p><p style="margin:0 0 6px">${saEsc(T('By'))}: ${who(x.reporter)}</p>
+    ${x.details ? `<p style="white-space:pre-wrap;overflow-wrap:anywhere;margin:6px 0" data-nt>${saEsc(x.details)}</p>` : ''}${x.message_body ? `<blockquote class="sa-quote" data-nt>${saEsc(x.message_body)}</blockquote>` : ''}
+    <div class="acts sa-row" style="margin-top:8px">${x.message_id && x.message_exists ? `<button class="sa-btn sm bad" data-sa="rdel" data-id="${x.message_id}">${saEsc(T('Delete message'))}</button>` : x.message_body ? `<span class="sa-fine" style="color:var(--ink-2)">${saEsc(T('Message deleted'))}</span>` : ''}${x.target && x.target.role !== 'admin' ? `<button class="sa-btn sm ${x.target.status === 'active' ? 'bad' : ''}" data-sa="ustatus" data-id="${x.target.id}" data-s="${x.target.status === 'active' ? 'suspended' : 'active'}" data-e="${saEsc(x.target.email || '')}">${saEsc(T(x.target.status === 'active' ? 'Suspend' : 'Reactivate'))}</button>` : ''}<button class="sa-btn sm" data-sa="rstat" data-id="${x.id}" data-s="${x.status === 'new' ? 'reviewed' : 'new'}">${saEsc(T(x.status === 'new' ? 'Mark reviewed' : 'Mark new'))}</button></div></article>`).join('')}</div>` : `<div class="sa-empty">${saEsc(T('No reports.'))}</div>`);
 }
 async function saAdmFeedback(box){
   const r = await saApi('/api/admin/feedback?size=50');
@@ -65,7 +75,7 @@ document.addEventListener('click', async ev => {
   else if (a === 'peek'){ const i = sa$('#' + b.dataset.for); const show = i.type === 'password'; i.type = show ? 'text' : 'password'; b.textContent = T(show ? 'Hide' : 'Show'); }
   else if (a === 'legal') saLegal(b.dataset.w);
   else if (a === 'close') saModalClose();
-  else if (a === 'resend'){ const e = b.dataset.e; if (!e) return; const {error} = await SA.sb.auth.resend({type: 'signup', email: e, options: {emailRedirectTo: location.origin + '/confirmed'}}); SA.msg = error ? {t: 'bad', m: saErr(error)} : {t: 'ok', m: 'Verification email sent. Check your inbox and spam folder.'}; saRender(); }
+  else if (a === 'resend'){ const e = b.dataset.e; if (!e) return; const {error} = await SA.sb.auth.resend({type: 'signup', email: e, options: {emailRedirectTo: saSite() + '/confirmed'}}); SA.msg = error ? {t: 'bad', m: saErr(error)} : {t: 'ok', m: 'Verification email sent. Check your inbox and spam folder.'}; saRender(); }
   else if (a === 'signedin'){ await SA.sb.auth.signOut().catch(() => {}); SA.user = null; SA.session = null; SA.authMode = 'login'; SA.userSignedOut = true; SA.msg = {t: 'ok', m: 'Once your email is confirmed, sign in below.'}; saGo('auth'); }
   else if (a === 'new') saNewProject();
   else if (a === 'open'){ b.disabled = true; if (!await saOpenProject(id)) b.disabled = false; }
@@ -82,6 +92,11 @@ document.addEventListener('click', async ev => {
   else if (a === 'loadcloud') saLoadCloud();
   else if (a === 'atab'){ SA.adminTab = b.dataset.t; saRender(); }
   else if (a === 'apage'){ SA.au.page = Math.max(1, SA.au.page + parseInt(b.dataset.d, 10)); saRender(); }
+  else if (a === 'rstat'){ try { await saApi(`/api/admin/reports/${id}/status`, {method: 'POST', body: JSON.stringify({status: b.dataset.s})}); saRender(); } catch (e) { toast(e.message); } }
+  else if (a === 'rdel'){
+    if (!confirm(T('Delete this message for everyone in the chat? This cannot be undone.'))) return;
+    try { await saApi(`/api/admin/messages/${id}/delete`, {method: 'POST', body: '{}'}); toast('Message deleted.'); saRender(); } catch (e) { toast(e.message); }
+  }
   else if (a === 'ustatus'){
     const to = b.dataset.s; if (!confirm(T(to === 'suspended' ? 'Suspend this account? The user will be signed out of cloud features.' : 'Reactivate this account?') + '\n\n' + b.dataset.e)) return;
     try { await saApi(`/api/admin/users/${id}/status`, {method: 'POST', body: JSON.stringify({status: to})}); saRender(); } catch (e) { toast(e.message); }

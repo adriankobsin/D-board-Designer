@@ -25,14 +25,17 @@ function saChatName(c){
 async function saComLoad(){
   const [a, b] = await Promise.all([SA.sb.rpc('my_chats'), SA.sb.rpc('my_shares')]);
   if (a.error || b.error){ SA.com.err = (a.error || b.error).message; SA.com.loaded = true; return false; }
-  SA.com.err = null; SA.com.chats = a.data || []; SA.com.shares = b.data || []; SA.com.loaded = true; return true;
+  SA.com.err = null; SA.com.chats = a.data || []; SA.com.shares = b.data || []; SA.com.loaded = true;
+  const bl = await SA.sb.from('user_blocks').select('blocked_id');   // missing before 0006: then nobody is blocked
+  SA.com.blocked = new Set(bl.error ? [] : (bl.data || []).map(x => x.blocked_id));
+  return true;
 }
 
 /* ----- bell ----- */
 function saBellPaint(){
   const box = sa$('#saBell'); if (!box) return;
   const items = SA.notif.list;
-  const icon = k => k === 'project_share' ? '⇪' : k === 'chat_invite' ? '+' : '✉';
+  const icon = k => k === 'project_share' ? '⇪' : k === 'chat_invite' ? '+' : k === 'report' ? '!' : '✉';
   box.innerHTML = `<div class="hd"><b>${saEsc(T('Notifications'))}</b>${saUnread() ? `<button class="sa-link" data-sa="nreadall">${saEsc(T('Mark all as read'))}</button>` : ''}</div>`
     + (items.length ? items.map(n => `<button class="ni ${n.read_at ? '' : 'un'}" data-sa="nitem" data-id="${n.id}"><span class="ic" aria-hidden="true">${icon(n.kind)}</span><span class="tx"><b data-nt>${saEsc(n.title)}${n.count > 1 && n.kind === 'chat_message' ? ` · ${n.count}` : ''}</b><span data-nt>${saEsc(n.body)}</span><em>${saEsc(saRel(n.created_at))}</em></span></button>`).join('') : `<div class="sa-empty" style="margin:10px;padding:18px">${saEsc(T('Nothing new. Invitations, replies and shared projects show up here.'))}</div>`);
 }
@@ -52,6 +55,7 @@ async function saNotifGo(id){
   const n = SA.notif.list.find(x => x.id === id); if (!n) return;
   await saNotifRead([id]);
   const br = sa$('#saBell'); if (br){ br.remove(); SA.notif.open = false; }
+  if (n.kind === 'report'){ SA.adminTab = 'reports'; saGo('admin'); return; }
   if (n.kind === 'project_share'){ SA.com.tab = 'shared'; SA.com.active = null; }
   else { SA.com.tab = 'chats'; SA.com.active = n.ref_id; }
   saGo('community');
@@ -101,7 +105,7 @@ async function saThreadOpen(id, keep){
   const mem = c.members || [], names = {}; mem.forEach(m => { names[m.id] = m.name; });
   SA.com.names = names;
   const own = c.kind === 'group' && mem.some(m => m.id === SA.user.id && m.role === 'owner');
-  t.innerHTML = `<header class="sa-chd"><button class="sa-btn sm sa-back" data-sa="cback" aria-label="${saEsc(T('Back to conversations'))}">←</button><div class="tt"><b data-nt>${saEsc(saChatName(c))}</b><span data-nt>${c.kind === 'group' ? mem.filter(m => m.status === 'joined').length + ' ' + saEsc(T('members')) + (mem.some(m => m.status === 'invited') ? ' · ' + mem.filter(m => m.status === 'invited').length + ' ' + saEsc(T('invited')) : '') : saEsc(T('Private chat'))}</span></div><span class="sa-row">${c.kind === 'group' ? `<button class="sa-btn sm" data-sa="cmembers">${saEsc(T('Members'))}</button>` : ''}${own ? `<button class="sa-btn sm" data-sa="cinvite">${saEsc(T('Invite'))}</button>` : ''}<button class="sa-btn sm bad" data-sa="cleave">${saEsc(T(c.kind === 'group' ? 'Leave' : 'Leave chat'))}</button></span></header>
+  t.innerHTML = `<header class="sa-chd"><button class="sa-btn sm sa-back" data-sa="cback" aria-label="${saEsc(T('Back to conversations'))}">←</button><div class="tt"><b data-nt>${saEsc(saChatName(c))}</b><span data-nt>${c.kind === 'group' ? mem.filter(m => m.status === 'joined').length + ' ' + saEsc(T('members')) + (mem.some(m => m.status === 'invited') ? ' · ' + mem.filter(m => m.status === 'invited').length + ' ' + saEsc(T('invited')) : '') : saEsc(T('Private chat'))}</span></div><span class="sa-row">${c.kind === 'group' ? `<button class="sa-btn sm" data-sa="cmembers">${saEsc(T('Members'))}</button>` : ''}${own ? `<button class="sa-btn sm" data-sa="cinvite">${saEsc(T('Invite'))}</button>` : ''}${c.kind === 'direct' ? (() => { const o = mem.find(m => m.id !== SA.user.id); return o ? `<button class="sa-btn sm" data-sa="mopts" data-id="${o.id}" aria-label="${saEsc(T('Report or block'))}" title="${saEsc(T('Report or block'))}">⋯</button>` : ''; })() : ''}<button class="sa-btn sm bad" data-sa="cleave">${saEsc(T(c.kind === 'group' ? 'Leave' : 'Leave chat'))}</button></span></header>
   <div class="sa-msgs" id="saMsgs" tabindex="0" aria-live="polite"></div>
   <div class="sa-ups" id="saUps" aria-live="polite"></div>
   <form class="sa-comp" id="saSend"><span class="sa-ctools"><button type="button" class="sa-ib" data-sa="cattach" title="${saEsc(T('Attach files'))}" aria-label="${saEsc(T('Attach files'))}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5 12.6 19.9a5.5 5.5 0 0 1-7.8-7.8l8.5-8.5a3.7 3.7 0 0 1 5.2 5.2l-8.5 8.5a1.8 1.8 0 0 1-2.6-2.6l7.8-7.8"/></svg></button><button type="button" class="sa-ib" data-sa="cproj" title="${saEsc(T('Share a project in this chat'))}" aria-label="${saEsc(T('Share a project in this chat'))}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4" width="17" height="16" rx="1.5"/><path d="M3.5 9h17M8 9v11M12 12.5h5M12 16h5"/></svg></button><input type="file" id="saFileIn" multiple hidden></span><label class="sr" for="saMsgIn">${saEsc(T('Message'))}</label><textarea id="saMsgIn" rows="2" maxlength="2000" placeholder="${saEsc(T('Write a message. Enter sends, Shift+Enter adds a line.'))}"></textarea><button class="sa-btn pri" type="submit">${saEsc(T('Send'))}</button></form>`;
@@ -137,8 +141,10 @@ function saMsgPaint(stick){
     const mine = m.sender_id === SA.user.id, d = new Date(m.created_at).toDateString();
     const sep = d !== day ? `<div class="sa-day">${saEsc(saDate(m.created_at))}</div>` : ''; day = d;
     const first = prev !== m.sender_id || sep; prev = m.sender_id;
+    if (!mine && SA.com.blocked && SA.com.blocked.has(m.sender_id)) return `${sep}<div class="sa-m sa-mhid"><div class="bb">${saEsc(T('Message from a member you blocked'))}</div></div>`;
     const extra = (m.attachment ? saFileHtml(m) : '') + (m.project_name ? saProjMsgHtml(m, mine) : '');
-    return `${sep}<div class="sa-m ${mine ? 'me' : ''}">${grp && !mine && first ? `<span class="who" data-nt>${saEsc(SA.com.names[m.sender_id] || T('Former member'))}</span>` : ''}<div class="bb ${extra ? 'has-x' : ''}" data-nt>${extra}${m.body ? `<span class="tx">${saEsc(m.body)}</span>` : ''}<time>${saEsc(new Date(m.created_at).toLocaleTimeString(saLang(), {hour: '2-digit', minute: '2-digit'}))}</time></div></div>`;
+    const rep = mine ? '' : `<button class="sa-mrep" data-sa="mrep" data-id="${m.id}" data-u="${m.sender_id}" aria-label="${saEsc(T('Report message'))}" title="${saEsc(T('Report message'))}">⚑</button>`;
+    return `${sep}<div class="sa-m ${mine ? 'me' : ''}">${grp && !mine && first ? `<span class="who" data-nt>${saEsc(SA.com.names[m.sender_id] || T('Former member'))}</span>` : ''}<div class="bb ${extra ? 'has-x' : ''}" data-nt>${extra}${m.body ? `<span class="tx">${saEsc(m.body)}</span>` : ''}<time>${rep}${saEsc(new Date(m.created_at).toLocaleTimeString(saLang(), {hour: '2-digit', minute: '2-digit'}))}</time></div></div>`;
   }).join('') : `<div class="sa-empty sa-cnone">${saEsc(T('No messages yet. Say hello.'))}</div>`;
   if (stick || near) box.scrollTop = box.scrollHeight;
 }
@@ -154,11 +160,54 @@ async function saSendMsg(){
   SA.com.sending = true; i.disabled = true;
   const {data, error} = await SA.sb.from('chat_messages').insert({chat_id: SA.com.active, body}).select('id,sender_id,body,created_at').single();
   SA.com.sending = false; i.disabled = false;
-  if (error){ toast(/too quickly/i.test(error.message || '') ? T('You are sending messages too quickly. Wait a moment.') : T('The message could not be sent. Try again.')); i.focus(); return; }
+  if (error){ toast(/too quickly/i.test(error.message || '') ? T('You are sending messages too quickly. Wait a moment.') : /row-level security|policy/i.test(error.message || '') ? T('You can no longer send messages in this chat.') : T('The message could not be sent. Try again.')); i.focus(); return; }
   i.value = '';
   if (!SA.com.msgs.some(m => m.id === data.id)){ SA.com.msgs.push(data); SA.com.lastId = Math.max(SA.com.lastId, data.id); }
   saMsgPaint(true); i.focus();
   const c = saChatById(SA.com.active); if (c){ c.last_body = body; c.last_sender = saName(); saChatListPaint(); }
+}
+
+/* ----- report and block (required by the app stores for apps with chat) ----- */
+const SA_REASONS = [['spam', 'Spam or advertising'], ['harassment', 'Harassment or threats'], ['inappropriate', 'Offensive or inappropriate content'], ['impersonation', 'Pretending to be someone else'], ['other', 'Something else']];
+function saOptsDialog(uid){
+  const name = SA.com.who[uid] || SA.com.names[uid] || T('A member'), blocked = SA.com.blocked && SA.com.blocked.has(uid);
+  saModal(`<h2 data-nt>${saEsc(name)}</h2><div class="sa-col" style="display:flex;flex-direction:column;gap:8px"><button class="sa-btn" data-sa="mreport" data-u="${uid}">${saEsc(T('Report this member'))}</button>${blocked ? `<button class="sa-btn" data-sa="munblock" data-id="${uid}">${saEsc(T('Unblock'))}</button>` : `<button class="sa-btn bad" data-sa="mblock" data-id="${uid}">${saEsc(T('Block this member'))}</button><p class="sa-fine" style="margin:0;color:var(--ink-2)">${saEsc(T('Blocked members cannot message you, invite you or share with you, and you will not see their messages. They are not told.'))}</p>`}</div><div class="sa-row" style="justify-content:flex-end;margin-top:14px"><button class="sa-btn" data-sa="close">${saEsc(T('Close'))}</button></div>`);
+}
+function saReportDialog(uid, mid){
+  const name = SA.com.who[uid] || SA.com.names[uid] || T('A member');
+  saModal(`<h2>${saEsc(T(mid ? 'Report message' : 'Report this member'))}</h2><p class="sa-sub" style="margin:0 0 10px" data-nt>${saEsc(name)}</p><form id="saRepF" data-u="${uid}" data-m="${mid || ''}"><fieldset class="sa-rr"><legend class="sr">${saEsc(T('Reason'))}</legend>${SA_REASONS.map((r, i) => `<label><input type="radio" name="saRR" value="${r[0]}"> ${saEsc(T(r[1]))}</label>`).join('')}</fieldset><label class="sa-field"><span>${saEsc(T('Details (optional)'))}</span><textarea id="saRepD" rows="3" maxlength="1000"></textarea></label><label class="sa-chk"><input type="checkbox" id="saRepB" ${SA.com.blocked && SA.com.blocked.has(uid) ? 'checked disabled' : ''}><span>${saEsc(T('Also block this member'))}</span></label><p class="sa-fine" style="color:var(--ink-2)">${saEsc(T('An administrator reviews every report, usually within 24 hours.' ))}${mid ? ' ' + saEsc(T('A copy of the message is included.')) : ''}</p><div id="saRepRes"></div><div class="sa-row" style="justify-content:flex-end;margin-top:10px"><button type="button" class="sa-btn" data-sa="close">${saEsc(T('Cancel'))}</button><button class="sa-btn pri" type="submit" id="saRepGo">${saEsc(T('Send report'))}</button></div></form>`);
+}
+async function saReportSubmit(f){
+  const go = sa$('#saRepGo'), res = sa$('#saRepRes'), r = f.querySelector('input[name=saRR]:checked');
+  if (!r){ res.innerHTML = `<div class="sa-msg bad">${saEsc(T('Choose a reason.'))}</div>`; return; }
+  go.disabled = true;
+  try {
+    const body = {reason: r.value, details: sa$('#saRepD').value.trim(), block: sa$('#saRepB').checked && !sa$('#saRepB').disabled};
+    if (f.dataset.m) body.message_id = +f.dataset.m; else body.user_id = f.dataset.u;
+    const out = await saApi('/api/community/report', {method: 'POST', body: JSON.stringify(body)});
+    if (out.blocked) await saAfterBlock(f.dataset.u, true);
+    f.innerHTML = `<div class="sa-msg ok">${saEsc(T('Thank you. Your report was sent to the administrators.'))}${out.blocked ? ' ' + saEsc(T('You have blocked this member.')) : ''}</div><div class="sa-row" style="justify-content:flex-end;margin-top:12px"><button type="button" class="sa-btn pri" data-sa="close">${saEsc(T('Close'))}</button></div>`;
+  } catch (e) { res.innerHTML = `<div class="sa-msg bad">${saEsc(T(e.message || 'Request failed'))}</div>`; go.disabled = false; }
+}
+async function saAfterBlock(uid, on){
+  SA.com.blocked = SA.com.blocked || new Set(); if (on) SA.com.blocked.add(uid); else SA.com.blocked.delete(uid);
+  SA.com.sel.delete(uid);
+  if (SA.view === 'community'){
+    if (SA.com.tab === 'members'){ SA.com.dir.rows = SA.com.dir.rows.filter(r => !on || r.id !== uid); if (on) SA.com.dir.total = Math.max(0, SA.com.dir.total - 1); saDirPaint(); saSelPaint(); }
+    if (SA.com.active) saMsgPaint(false);
+  }
+}
+async function saBlock(uid, on){
+  const q = on ? SA.sb.from('user_blocks').insert({blocker_id: SA.user.id, blocked_id: uid}) : SA.sb.from('user_blocks').delete().eq('blocker_id', SA.user.id).eq('blocked_id', uid);
+  const {error} = await q;
+  if (error && !/duplicate/i.test(error.message || '')){ toast(T(on ? 'Could not block this member.' : 'Could not unblock this member.')); return false; }
+  await saAfterBlock(uid, on); toast(T(on ? 'Member blocked.' : 'Member unblocked.')); return true;
+}
+async function saBlockedList(){
+  const box = sa$('#saBlocked'); if (!box) return;
+  const {data, error} = await SA.sb.rpc('my_blocks');
+  if (error){ box.innerHTML = `<p class="sa-sub">${saEsc(T('Not available yet.'))}</p>`; return; }
+  box.innerHTML = (data || []).length ? `<ul class="sa-mem">${data.map(b => `<li><span data-nt><b>${saEsc(b.name)}</b></span><span class="sa-fine" style="color:var(--ink-2)">${saEsc(saDate(b.created_at))}</span><button class="sa-btn sm" data-sa="munblock" data-id="${b.id}">${saEsc(T('Unblock'))}</button></li>`).join('')}</ul>` : `<p class="sa-sub" style="margin:0">${saEsc(T('You have not blocked anyone.'))}</p>`;
 }
 
 /* ----- dialogs ----- */
@@ -274,7 +323,7 @@ function saMemberCard(m){
   const on = SA.com.sel.has(m.id), ini = m.name.split(/\s+/).map(w => w[0] || '').join('').slice(0, 2).toUpperCase() || '?';
   const line1 = [m.occupation ? T(m.occupation) : '', m.company].filter(Boolean).join(' · ');
   const line2 = [m.country, T('Member since') + ' ' + saDate(m.member_since)].filter(Boolean).join(' · ');
-  return `<article class="sa-mcard ${on ? 'on' : ''}"><label class="sa-mchk"><input type="checkbox" data-sa="msel" data-id="${m.id}" ${on ? 'checked' : ''} aria-label="${saEsc(T('Select') + ' ' + m.name)}"></label><span class="sa-cav" aria-hidden="true" data-nt>${saEsc(ini)}</span><div class="tx"><b data-nt>${saEsc(m.name)}</b>${line1 ? `<span data-nt>${saEsc(line1)}</span>` : ''}<span data-nt>${saEsc(line2)}</span></div><div class="acts"><button class="sa-btn pri sm" data-sa="mchat" data-id="${m.id}">${saEsc(T('Message'))}</button><button class="sa-btn sm" data-sa="mshare" data-id="${m.id}">${saEsc(T('Share project'))}</button><button class="sa-btn sm" data-sa="mfile" data-id="${m.id}">${saEsc(T('Send file'))}</button></div></article>`;
+  return `<article class="sa-mcard ${on ? 'on' : ''}"><label class="sa-mchk"><input type="checkbox" data-sa="msel" data-id="${m.id}" ${on ? 'checked' : ''} aria-label="${saEsc(T('Select') + ' ' + m.name)}"></label><span class="sa-cav" aria-hidden="true" data-nt>${saEsc(ini)}</span><div class="tx"><b data-nt>${saEsc(m.name)}</b>${line1 ? `<span data-nt>${saEsc(line1)}</span>` : ''}<span data-nt>${saEsc(line2)}</span></div><div class="acts"><button class="sa-btn pri sm" data-sa="mchat" data-id="${m.id}">${saEsc(T('Message'))}</button><button class="sa-btn sm" data-sa="mshare" data-id="${m.id}">${saEsc(T('Share project'))}</button><button class="sa-btn sm" data-sa="mfile" data-id="${m.id}">${saEsc(T('Send file'))}</button><button class="sa-btn sm sa-mopt" data-sa="mopts" data-id="${m.id}" aria-label="${saEsc(T('Report or block') + ': ' + m.name)}" title="${saEsc(T('Report or block'))}">⋯</button></div></article>`;
 }
 function saDirPaint(){
   const l = sa$('#saDirList'), n = sa$('#saDirN'), more = sa$('#saDirMore'), d = SA.com.dir; if (!l) return;
@@ -413,6 +462,14 @@ document.addEventListener('click', async ev => {
   else if (a === 'cproj'){ b.disabled = true; const o = await saProjOptions().catch(() => ''); b.disabled = false; saComDialog('cproj', '', o); }
   else if (a === 'popen'){ b.disabled = true; try { await saOpenProject(id); } catch (e) { toast(saErr(e)); } b.disabled = false; }
   else if (a === 'pcopy'){ b.disabled = true; await saCopyShared(id, b.dataset.from); b.disabled = false; }
+  else if (a === 'mopts'){ saOptsDialog(id); }
+  else if (a === 'mreport'){ saReportDialog(b.dataset.u); }
+  else if (a === 'mrep'){ saReportDialog(b.dataset.u, id); }
+  else if (a === 'mblock'){
+    if (b.dataset.sure !== '1'){ b.dataset.sure = '1'; b.textContent = T('Click again to block'); return; }
+    b.disabled = true; if (await saBlock(id, true)) saModalClose(); else b.disabled = false;
+  }
+  else if (a === 'munblock'){ b.disabled = true; if (await saBlock(id, false)){ if (sa$('#saModal')) saModalClose(); saBlockedList(); } else b.disabled = false; }
   else if (a === 'updismiss'){ SA.com.uploads = SA.com.uploads.filter(u => u.id !== id); saUpPaint(); }
   else if (a === 'shopen'){ b.disabled = true; await saShareOpen(id); b.disabled = false; }
   else if (a === 'shrm'){
@@ -424,6 +481,7 @@ document.addEventListener('click', async ev => {
 });
 document.addEventListener('submit', ev => {
   if (ev.target.id === 'saCForm'){ ev.preventDefault(); saComSubmit(ev.target); }
+  else if (ev.target.id === 'saRepF'){ ev.preventDefault(); saReportSubmit(ev.target); }
   else if (ev.target.id === 'saSend'){ ev.preventDefault(); saSendMsg(); }
 });
 document.addEventListener('change', ev => {

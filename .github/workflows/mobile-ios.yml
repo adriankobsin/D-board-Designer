@@ -1,0 +1,66 @@
+# Builds the iPhone/iPad app on GitHub's Mac machines. On every push it checks the app still builds.
+# Run it by hand (Actions, "iPhone app", Run workflow) to sign it and upload it to App Store Connect (TestFlight).
+# Secrets used, see mobile/STORE-SETUP.md:
+#   APPLE_TEAM_ID, ASC_KEY_ID, ASC_ISSUER_ID, ASC_KEY_P8_BASE64 (App Store Connect API key with Admin access)
+name: iPhone app
+on:
+  push:
+    branches: [Main]
+    paths: ['mobile/**', 'src_app/**', 'designer/**', 'pwa_base/**', 'vendor_src/**', 'build.sh', 'build_saas.py', '.github/workflows/mobile-ios.yml']
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version shown to users'
+        default: '1.0.0'
+concurrency: { group: ios-${{ github.ref }}, cancel-in-progress: true }
+jobs:
+  ios:
+    runs-on: macos-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - uses: maxim-lobanov/setup-xcode@v1
+        with: { xcode-version: latest-stable }
+      - name: Build the website files
+        run: bash build.sh
+      - name: Copy them into the app
+        working-directory: mobile
+        run: npm ci && node prepare-www.mjs && npx cap sync ios
+      - name: Check build (no signing)
+        if: github.event_name != 'workflow_dispatch'
+        working-directory: mobile/ios/App
+        run: xcodebuild -project App.xcodeproj -scheme App -configuration Debug -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build | tail -40; test ${PIPESTATUS[0]} -eq 0
+      - name: App Store Connect key
+        if: github.event_name == 'workflow_dispatch'
+        env: { P8: '${{ secrets.ASC_KEY_P8_BASE64 }}' }
+        run: |
+          test -n "$P8" || { echo "Add the App Store Connect secrets first (see mobile/STORE-SETUP.md)"; exit 1; }
+          echo "$P8" | base64 -d > "$RUNNER_TEMP/AuthKey.p8"
+      - name: Archive and upload to App Store Connect
+        if: github.event_name == 'workflow_dispatch'
+        working-directory: mobile/ios/App
+        env:
+          TEAM: ${{ secrets.APPLE_TEAM_ID }}
+          KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ISSUER: ${{ secrets.ASC_ISSUER_ID }}
+        run: |
+          AUTH="-allowProvisioningUpdates -authenticationKeyPath $RUNNER_TEMP/AuthKey.p8 -authenticationKeyID $KEY_ID -authenticationKeyIssuerID $ISSUER"
+          xcodebuild -project App.xcodeproj -scheme App -configuration Release -destination 'generic/platform=iOS' \
+            -archivePath "$RUNNER_TEMP/App.xcarchive" $AUTH \
+            DEVELOPMENT_TEAM="$TEAM" CODE_SIGN_STYLE=Automatic \
+            MARKETING_VERSION="${{ inputs.version }}" CURRENT_PROJECT_VERSION="${{ github.run_number }}" archive | tail -60
+          test -d "$RUNNER_TEMP/App.xcarchive"
+          cat > "$RUNNER_TEMP/export.plist" <<PLIST
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0"><dict>
+            <key>method</key><string>app-store-connect</string>
+            <key>destination</key><string>upload</string>
+            <key>teamID</key><string>$TEAM</string>
+            <key>signingStyle</key><string>automatic</string>
+            <key>manageAppVersionAndBuildNumber</key><false/>
+          </dict></plist>
+          PLIST
+          xcodebuild -exportArchive -archivePath "$RUNNER_TEMP/App.xcarchive" -exportOptionsPlist "$RUNNER_TEMP/export.plist" -exportPath "$RUNNER_TEMP/out" $AUTH

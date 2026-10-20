@@ -3,7 +3,7 @@ html.sa-hold .wrap{visibility:hidden}
 html.sa-page .wrap{display:none}
 #saas{display:none}
 html.sa-page #saas{display:block}
-.sa-bar{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 0}
+.sa-bar{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);padding:max(10px,env(safe-area-inset-top,0px)) 0 10px}
 .sa-bar .in{max-width:1360px;margin:0 auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .sa-brand{display:flex;align-items:center;gap:10px;font-family:var(--font-d);font-size:24px;font-weight:700;letter-spacing:.02em;color:var(--ink);text-decoration:none;background:none;border:0;cursor:pointer;padding:0}
 .sa-brand svg{width:30px;height:30px}
@@ -249,3 +249,13 @@ a.sa-file[href]:hover{border-color:var(--accent)}
   .sa-ib{width:38px}
 }
 @media (max-width:560px){.sa-dirhd .sa-in{flex-basis:100%;max-width:none}}
+/* ----- report and block ----- */
+.sa-mrep{background:none;border:0;padding:0 6px 0 0;margin:0;color:inherit;opacity:0;cursor:pointer;font-size:11px}
+.sa-m:hover .sa-mrep,.sa-mrep:focus-visible{opacity:.75}
+@media (hover:none){.sa-mrep{opacity:.55}}
+.sa-mhid .bb{font-style:italic;color:var(--ink-2);background:transparent;border-style:dashed}
+.sa-mopt{min-width:34px}
+.sa-rr{border:0;margin:0 0 10px;padding:0;display:flex;flex-direction:column;gap:6px}
+.sa-rr label{display:flex;gap:8px;align-items:center;font-size:14px;cursor:pointer}
+.sa-rr input{accent-color:var(--accent);width:16px;height:16px}
+.sa-quote{margin:6px 0;padding:8px 10px;border-left:3px solid var(--line);background:var(--surface-2);white-space:pre-wrap;overflow-wrap:anywhere;font-size:13.5px}

@@ -12,7 +12,9 @@ on:
       version:
         description: 'Version shown to users'
         default: '1.0.0'
-concurrency: { group: ios-${{ github.ref }}, cancel-in-progress: true }
+concurrency:
+  group: ios-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   ios:
     runs-on: macos-latest

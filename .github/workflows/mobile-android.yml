@@ -22,7 +22,9 @@ on:
       version:
         description: 'Version shown to users'
         default: '1.0.0'
-concurrency: { group: android-${{ github.ref }}, cancel-in-progress: true }
+concurrency:
+  group: android-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   android:
     runs-on: ubuntu-latest

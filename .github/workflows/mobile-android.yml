@@ -60,7 +60,8 @@ jobs:
           ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
         run: |
           chmod +x gradlew
-          if [ -n "$ANDROID_KEYSTORE_FILE" ]; then ./gradlew --no-daemon bundleRelease assembleRelease; else ./gradlew --no-daemon assembleDebug; fi
+          if [ -n "$ANDROID_KEYSTORE_FILE" ]; then T="bundleRelease assembleRelease"; else T=assembleDebug; fi
+          ./gradlew --no-daemon $T > "$RUNNER_TEMP/gradle.log" 2>&1 || { tail -80 "$RUNNER_TEMP/gradle.log"; grep -A6 "What went wrong" "$RUNNER_TEMP/gradle.log" | head -12 | tr '\n' ' ' | sed 's/^/::error::/'; echo; exit 1; }
       - name: Check what went into the app
         run: |
           f=$(ls mobile/android/app/build/outputs/apk/*/*.apk | head -1)

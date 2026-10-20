@@ -115,6 +115,7 @@ const SA_LEGAL = {
   privacy: ['Privacy Policy', `<p><i>Template for the service operator. Complete the operator details and have it reviewed before public launch.</i></p>
   <h3>What we collect</h3><p>Name, email address, country, occupation and optional company, which you give when registering. Your projects. Basic usage events (sign-ins, project opened or created, exports, tools opened) and any feedback you send.</p>
   <h3>Why</h3><p>To run your account, store your projects, secure the service and understand which features are used. We do not sell personal data and do not show advertising.</p>
+  <h3>Community</h3><p>Other signed-in members can see your name, occupation, company and country in the Community member list. You can hide yourself in Account settings. Your email address is never shown there. Messages, files and projects you share are visible to the people in that chat or share.</p>
   <h3>Passwords</h3><p>Passwords are never stored by this application. Authentication is handled by Supabase Auth, which stores only a salted hash.</p>
   <h3>Who processes data</h3><p>Supabase (database and authentication) and Cloudflare (hosting). Administrators of this service can see account details, project counts and feedback. They cannot see your password.</p>
   <h3>Your rights</h3><p>In Account settings you can edit your details, download all your data, and delete your account and projects permanently. Contact the operator for any other privacy request.</p>

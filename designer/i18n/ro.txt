@@ -1108,7 +1108,7 @@
 1108|Opțional. Impedanța buclei de defect la pământ la originea tabloului, de la furnizor sau dintr-o măsurătoare. Folosită pentru a verifica dacă fiecare MCB deconectează un defect la timp.
 1109|Reguli de protecție
 1110|Fiecare disjunctor este dimensionat din curentul de proiectare (125 % pentru sarcini continue conform NEC), redus în funcție de temperatura carcasei, apoi rotunjit în sus la următoarea valoare standard a standardului ales. Sensibilitatea RCD (30 mA sau GFCI 4–6 mA conform NEC și ABYC), numărul de poli (2 poli pentru sarcini de 240 V) și standardul dispozitivului (IEC sau UL) urmează standardul și tensiunea de alimentare. Cu IEC, BS 7671 și AS/NZS, introduceți Ze în Setări pentru a verifica bucla de defect la pământ a fiecărui circuit MCB.
-1111|Deschideți Comunitatea din Panoul de control pentru a discuta cu alți membri înregistrați, a crea grupuri, a invita persoane prin e-mail și a partaja tablouri salvate. Clopoțelul din antet arată invitațiile, răspunsurile și proiectele partajate.
+1111|Deschideți Comunitatea din panou. Fila Membri listează toți cei înregistrați: căutați, apoi trimiteți un mesaj unui membru, partajați un proiect sau trimiteți un fișier, ori bifați mai mulți pentru a începe un grup. Într-un chat puteți atașa fișiere de până la 25 MB sau partaja un panou salvat. Clopoțelul din antet afișează invitațiile, răspunsurile și proiectele partajate.
 1112|Verificările acoperă curentul de proiectare față de valoarea disjunctorului și a cablului (cu temperatura carcasei și regula NEC pentru sarcini continue), căderea de tensiune, cerința RCD, capacitatea de rupere, valoarea dispozitivului față de standard și tensiunea de alimentare, impedanța buclei de defect la pământ când se introduce Ze, intrarea Lutron, limitele de zone și temperatură. Discriminarea și selectivitatea nu sunt calculate aici.
 1113|Date firmă
 1114|Pagină de copertă cu datele firmei
@@ -1147,3 +1147,50 @@
 1147|E-mail confirmat
 1148|Adresa ta de e-mail este confirmată, iar contul este activ. Autentifică-te ca să începi proiectarea.
 1149|Linkul de confirmare nu este valid sau a expirat. Autentifică-te și îți vom oferi posibilitatea de a trimite unul nou.
+1150|Găsiți alți membri, conversați, lucrați în grupuri și partajați panouri salvate și fișiere.
+1151|Atașați fișiere
+1152|Partajați un proiect în acest chat
+1153|Un membru
+1154|Nu aveți încă proiecte salvate. Salvați mai întâi un panou în contul dumneavoastră.
+1155|Partajați un proiect cu
+1156|Pot vedea panoul și pot salva propria copie. Doar dumneavoastră puteți modifica originalul.
+1157|Toți cei din acest chat pot vedea panoul și pot salva propria copie. Doar dumneavoastră puteți modifica originalul.
+1158|Începeți un chat de grup
+1159|Membrii selectați primesc o invitație și se alătură când o acceptă.
+1160|Adăugați în grupul meu
+1161|Căutați membri
+1162|Căutați după nume, companie, țară sau ocupație
+1163|Bifați membrii pentru a începe un grup, a partaja un proiect sau a-i adăuga într-unul dintre grupurile dumneavoastră. Adresele de e-mail nu sunt afișate niciodată.
+1164|Membri selectați
+1165|Membru din
+1166|Selectați
+1167|Trimiteți fișier
+1168|selectați
+1169|Anulați selecția
+1170|Fișier
+1171|Descărcați
+1172|Nu mai este disponibil
+1173|Proiect partajat
+1174|Se încarcă…
+1175|Închideți
+1176|Afișați-mă în lista de membri a Comunității
+1177|Ceilalți membri văd numele, ocupația, compania și țara dumneavoastră, niciodată adresa de e-mail. Când opțiunea este dezactivată, doar cei care vă cunosc adresa de e-mail pot începe un chat cu dumneavoastră.
+1178|Niciun membru nu corespunde căutării.
+1179|Încă nu există alți membri.
+1180|membru
+1181|Afișați mai mulți membri
+1182|Nu puteți începe un chat cu dumneavoastră.
+1183|Acest membru nu este disponibil.
+1184|Nu faceți parte din acest chat.
+1185|Alegeți cel puțin un membru sau introduceți o adresă de e-mail.
+1186|Căutarea membrilor a eșuat. Dacă site-ul tocmai a fost actualizat, proprietarul trebuie să ruleze cea mai recentă migrare a bazei de date.
+1187|nu este disponibil
+1188|Mai mare de 25 MB, nu a fost trimis.
+1189|Fișierul este gol.
+1190|Partajarea fișierelor nu este încă configurată.
+1191|Încărcarea a eșuat. Încercați din nou.
+1192|Limita zilnică de fișiere a fost atinsă. Încercați din nou mâine.
+1193|Fișierul nu a putut fi trimis.
+1194|Lista de membri nu este încă configurată. Proprietarul site-ului trebuie să ruleze migrarea 0005_members_files.sql în Supabase.
+1195|Membrii nu au putut fi încărcați. Verificați conexiunea și încercați din nou.
+1196|Proiectul nu a putut fi publicat în chat.

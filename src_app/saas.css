@@ -198,3 +198,54 @@ html.sa-page body{padding:0}
 @media (max-width:699px){.sa-helpb{min-height:42px;padding:0 11px}.sa-helpb span{display:none}}
 html:lang(km) [class^="sa-"],html:lang(km) [class*=" sa-"],html:lang(km) .sa-main,html:lang(km) .sa-main *{font-family:system-ui,"Khmer UI","Leelawadee UI","Noto Sans Khmer","Khmer Sangam MN","Khmer MN",sans-serif;letter-spacing:0}
 html:lang(km) .sa-main{line-height:1.7}
+
+/* ----- member directory ----- */
+.sa-dirhd{justify-content:space-between;margin-bottom:6px;flex-wrap:wrap}
+.sa-dirhd .sa-in{flex:1;min-width:220px;max-width:460px}
+.sa-dirnote{color:var(--ink-2);margin:0 0 12px}
+.sa-dir{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px;padding-bottom:70px}
+.sa-mcard{display:grid;grid-template-columns:auto auto minmax(0,1fr);grid-template-areas:"chk av tx" "acts acts acts";gap:8px 10px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px}
+.sa-mcard.on{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+.sa-mchk{grid-area:chk;display:flex;align-items:center;justify-content:center;width:28px;height:28px;cursor:pointer}
+.sa-mchk input{width:18px;height:18px;accent-color:var(--accent);cursor:pointer}
+.sa-mcard .sa-cav{grid-area:av}
+.sa-mcard .tx{grid-area:tx;display:flex;flex-direction:column;min-width:0;font-size:12.5px;color:var(--ink-2);gap:1px}
+.sa-mcard .tx b{font-size:15px;color:var(--ink);overflow-wrap:anywhere}
+.sa-mcard .tx span{overflow-wrap:anywhere}
+.sa-mcard .acts{grid-area:acts;display:flex;gap:6px;flex-wrap:wrap}
+.sa-selbar{position:sticky;bottom:12px;z-index:20;display:flex;gap:10px 14px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-top:12px;padding:10px 14px;background:var(--surface);border:1px solid var(--accent);border-radius:8px;box-shadow:0 12px 28px -14px rgba(15,32,42,.5)}
+.sa-selbar[hidden]{display:none}
+.sa-chk{display:flex;gap:10px;align-items:flex-start;cursor:pointer;font-size:14px}
+.sa-chk input{margin-top:3px;width:17px;height:17px;accent-color:var(--accent);flex:none}
+.sa-chk small{display:block;color:var(--ink-2);font-size:12.5px;margin-top:2px}
+/* ----- files and projects in chats ----- */
+.sa-ctools{display:flex;gap:4px;align-self:flex-end}
+.sa-ib{display:inline-flex;align-items:center;justify-content:center;width:40px;height:44px;border:1px solid var(--line);border-radius:5px;background:var(--surface);color:var(--ink-2);cursor:pointer}
+.sa-ib:hover{color:var(--accent);border-color:var(--accent)}
+.sa-ib:disabled{opacity:.5;cursor:default}
+.sa-cthread.drop{outline:2px dashed var(--accent);outline-offset:-6px}
+.sa-ups{display:flex;flex-direction:column;gap:4px;padding:0 10px}
+.sa-ups:empty{display:none}
+.sa-up{display:flex;gap:10px;align-items:center;font-size:12.5px;border:1px solid var(--line);border-radius:5px;padding:6px 10px;background:var(--surface-2)}
+.sa-up span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sa-up em{font-style:normal;color:var(--ink-2)}
+.sa-up.bad{border-color:var(--bad,#b3261e)}
+.sa-up.bad em{color:var(--bad,#b3261e)}
+.sa-m .bb.has-x{display:flex;flex-direction:column;gap:6px}
+.sa-m .bb .tx{white-space:pre-wrap}
+.sa-file,.sa-pcard{display:flex;gap:10px;align-items:center;min-width:min(240px,62vw);max-width:100%;padding:8px 10px;border-radius:8px;background:var(--surface);border:1px solid var(--line);color:var(--ink);text-decoration:none;white-space:normal}
+a.sa-file[href]:hover{border-color:var(--accent)}
+.sa-file .ic,.sa-pcard .ic{flex:none;width:38px;height:38px;border-radius:6px;background:var(--surface-2);border:1px solid var(--line);display:inline-flex;align-items:center;justify-content:center;font:700 11px var(--font-d);color:var(--accent)}
+.sa-pcard .ic{font-size:18px}
+.sa-file .nm,.sa-pcard .nm{display:flex;flex-direction:column;min-width:0;flex:1}
+.sa-file .nm b,.sa-pcard .nm b{font-size:13.5px;overflow-wrap:anywhere}
+.sa-file .nm em,.sa-pcard .nm em,.sa-pcard>em{font-style:normal;font-size:11.5px;color:var(--ink-2)}
+.sa-fimg{display:block;max-width:min(280px,62vw);border-radius:8px;overflow:hidden;background:var(--surface);border:1px solid var(--line)}
+.sa-fimg img{display:block;width:100%;height:auto;max-height:320px;object-fit:cover}
+.sa-fimg span{display:block;padding:30px 20px;font-size:12px;color:var(--ink-2);text-align:center}
+@media (max-width:760px){
+  .sa-dir{grid-template-columns:minmax(0,1fr)}
+  .sa-selbar{bottom:8px}
+  .sa-ib{width:38px}
+}
+@media (max-width:560px){.sa-dirhd .sa-in{flex-basis:100%;max-width:none}}

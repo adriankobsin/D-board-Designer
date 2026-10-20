@@ -148,7 +148,10 @@ async function api(request, env, url) {
   }
 
   /* ----- community: private and group chats, invitations, project sharing ----- */
-  if (path.startsWith('/api/community/')) return community(request, env, url, { sr, authUser, profileOf, json, fail, UUID });
+  if (path.startsWith('/api/community/')) {
+    try { return await community(request, env, url, { sr, authUser, profileOf, json, fail, UUID }); }
+    catch (e) { return fail(502, 'Member lookup failed. If the site was just updated, the owner needs to run the latest database migration.'); }
+  }
 
   /* ----- administrator API ----- */
   if (path.startsWith('/api/admin/')) {
@@ -245,7 +248,7 @@ function secure(response, env) {
       "script-src 'self' 'unsafe-inline'",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com",
-      "img-src 'self' data: blob:",
+      `img-src 'self' data: blob: ${supa}`.trim(),
       "frame-src blob:",
       "object-src blob:",
       `connect-src ${connect}`,

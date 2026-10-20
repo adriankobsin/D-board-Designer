@@ -1108,7 +1108,7 @@
 1108|Facultatif. Impédance de boucle de défaut à l’origine du tableau, fournie par le distributeur ou mesurée. Sert à vérifier que chaque disjoncteur coupe un défaut à temps.
 1109|Règles de protection
 1110|Chaque disjoncteur est dimensionné à partir du courant d’emploi (125 % des charges continues selon NEC), déclassé selon la température de l’enveloppe, puis arrondi au calibre normalisé supérieur de la norme choisie. La sensibilité du différentiel (30 mA, ou GFCI 4–6 mA selon NEC et ABYC), le nombre de pôles (2 pôles pour les charges 240 V) et la norme de l’appareil (IEC ou UL) suivent la norme et la tension d’alimentation. Avec IEC, BS 7671 et AS/NZS, saisissez Ze dans Réglages pour vérifier la boucle de défaut de chaque circuit à disjoncteur.
-1111|Ouvrez Communauté depuis le Tableau de bord pour discuter avec d’autres membres inscrits, créer des groupes, inviter des personnes par e-mail et partager des tableaux enregistrés. La cloche dans l’en-tête affiche les invitations, réponses et projets partagés.
+1111|Ouvrez la Communauté depuis le tableau de bord. L’onglet Membres liste toutes les personnes inscrites : recherchez, puis écrivez à un membre, partagez un projet ou envoyez un fichier, ou cochez-en plusieurs pour créer un groupe. Dans une discussion, joignez des fichiers jusqu’à 25 Mo ou partagez un tableau enregistré. La cloche de l’en-tête affiche les invitations, les réponses et les projets partagés.
 1112|Les contrôles couvrent le courant d’emploi par rapport au calibre du disjoncteur et du câble (avec la température de l’enveloppe et la règle NEC des charges continues), la chute de tension, l’exigence de différentiel, le pouvoir de coupure, le calibre de l’appareil par rapport à la norme et à la tension d’alimentation, l’impédance de boucle de défaut lorsque Ze est saisi, l’entrée Lutron, les limites de zones et de température. La discrimination et la sélectivité ne sont pas calculées ici.
 1113|Coordonnées de l’entreprise
 1114|Page de couverture avec les coordonnées de l’entreprise
@@ -1147,3 +1147,50 @@
 1147|E-mail confirmé
 1148|Votre adresse e-mail est confirmée et votre compte est actif. Connectez-vous pour commencer à concevoir.
 1149|Le lien de confirmation n'est pas valide ou a expiré. Connectez-vous et nous vous proposerons d'en envoyer un nouveau.
+1150|Trouvez d’autres membres, discutez, travaillez en groupe et partagez des tableaux enregistrés et des fichiers.
+1151|Joindre des fichiers
+1152|Partager un projet dans cette discussion
+1153|Un membre
+1154|Vous n’avez encore aucun projet enregistré. Enregistrez d’abord un tableau dans votre compte.
+1155|Partager un projet avec
+1156|Ils peuvent consulter le tableau et en enregistrer leur propre copie. Vous seul pouvez modifier l’original.
+1157|Tous les participants de cette discussion peuvent consulter le tableau et en enregistrer leur propre copie. Vous seul pouvez modifier l’original.
+1158|Créer une discussion de groupe
+1159|Les membres sélectionnés reçoivent une invitation et rejoignent le groupe lorsqu’ils l’acceptent.
+1160|Ajouter à mon groupe
+1161|Rechercher des membres
+1162|Rechercher par nom, entreprise, pays ou profession
+1163|Cochez des membres pour créer un groupe, partager un projet ou les ajouter à l’un de vos groupes. Les adresses e-mail ne sont jamais affichées.
+1164|Membres sélectionnés
+1165|Membre depuis
+1166|Sélectionner
+1167|Envoyer un fichier
+1168|sélectionnés
+1169|Tout désélectionner
+1170|Fichier
+1171|Télécharger
+1172|N’est plus disponible
+1173|Projet partagé
+1174|Envoi en cours…
+1175|Ignorer
+1176|M’afficher dans la liste des membres de la Communauté
+1177|Les autres membres voient votre nom, votre profession, votre entreprise et votre pays, jamais votre adresse e-mail. Si cette option est désactivée, seules les personnes qui connaissent votre adresse e-mail peuvent démarrer une discussion avec vous.
+1178|Aucun membre ne correspond à votre recherche.
+1179|Aucun autre membre pour l’instant.
+1180|membre
+1181|Afficher plus de membres
+1182|Vous ne pouvez pas démarrer une discussion avec vous-même.
+1183|Ce membre n’est pas disponible.
+1184|Vous ne faites pas partie de cette discussion.
+1185|Choisissez au moins un membre ou saisissez une adresse e-mail.
+1186|La recherche de membres a échoué. Si le site vient d’être mis à jour, le propriétaire doit exécuter la dernière migration de la base de données.
+1187|n’est pas disponible
+1188|Plus de 25 Mo, non envoyé.
+1189|Le fichier est vide.
+1190|Le partage de fichiers n’est pas encore configuré.
+1191|Échec de l’envoi. Réessayez.
+1192|Limite quotidienne de fichiers atteinte. Réessayez demain.
+1193|Le fichier n’a pas pu être envoyé.
+1194|La liste des membres n’est pas encore configurée. Le propriétaire du site doit exécuter la migration 0005_members_files.sql dans Supabase.
+1195|Impossible de charger les membres. Vérifiez votre connexion et réessayez.
+1196|Le projet n’a pas pu être publié dans la discussion.

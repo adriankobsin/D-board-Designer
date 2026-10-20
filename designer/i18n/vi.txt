@@ -1108,7 +1108,7 @@
 1108|Tùy chọn. Trở kháng vòng sự cố chạm đất tại đầu tủ điện, từ nhà cung cấp hoặc đo được. Dùng để kiểm tra mỗi MCB có ngắt sự cố kịp thời không.
 1109|Quy tắc bảo vệ
 1110|Mỗi aptomat được chọn từ dòng thiết kế (125 % với phụ tải liên tục theo NEC), giảm định mức theo nhiệt độ vỏ tủ, rồi làm tròn lên định mức chuẩn kế tiếp của tiêu chuẩn đã chọn. Độ nhạy RCD (30 mA, hoặc GFCI 4–6 mA theo NEC và ABYC), số cực (2 cực cho tải 240 V) và tiêu chuẩn thiết bị (IEC hoặc UL) đi theo tiêu chuẩn và điện áp nguồn. Với IEC, BS 7671 và AS/NZS, hãy nhập Ze trong Thiết lập để kiểm tra vòng sự cố chạm đất của từng mạch MCB.
-1111|Mở Cộng đồng từ Bảng điều khiển để trò chuyện với các thành viên đã đăng ký khác, tạo nhóm, mời người qua email và chia sẻ các tủ điện đã lưu. Chuông ở đầu trang hiển thị lời mời, phản hồi và dự án được chia sẻ.
+1111|Mở Cộng đồng từ Bảng điều khiển. Mục Thành viên liệt kê mọi người đã đăng ký: tìm kiếm, rồi nhắn tin cho một thành viên, chia sẻ dự án hoặc gửi tệp, hoặc đánh dấu nhiều người để bắt đầu nhóm. Trong cuộc trò chuyện, đính kèm tệp đến 25 MB hoặc chia sẻ tủ điện đã lưu. Biểu tượng chuông ở đầu trang hiển thị lời mời, câu trả lời và dự án được chia sẻ.
 1112|Các kiểm tra gồm: dòng thiết kế so với định mức aptomat và cáp (có tính nhiệt độ vỏ tủ và quy tắc phụ tải liên tục NEC), sụt áp, yêu cầu RCD, khả năng cắt, định mức thiết bị so với tiêu chuẩn và điện áp nguồn, trở kháng vòng sự cố chạm đất khi nhập Ze, đầu vào Lutron, giới hạn vùng và nhiệt độ. Tính chọn lọc không được tính ở đây.
 1113|Thông tin công ty
 1114|Trang bìa kèm thông tin công ty
@@ -1147,3 +1147,50 @@
 1147|Email đã được xác nhận
 1148|Địa chỉ email của bạn đã được xác nhận và tài khoản đã được kích hoạt. Hãy đăng nhập để bắt đầu thiết kế.
 1149|Liên kết xác nhận không hợp lệ hoặc đã hết hạn. Hãy đăng nhập và chúng tôi sẽ đề nghị gửi liên kết mới.
+1150|Tìm thành viên khác, trò chuyện, làm việc theo nhóm và chia sẻ tủ điện đã lưu cùng tệp.
+1151|Đính kèm tệp
+1152|Chia sẻ dự án trong cuộc trò chuyện này
+1153|Một thành viên
+1154|Bạn chưa có dự án nào được lưu. Hãy lưu một tủ điện vào tài khoản trước.
+1155|Chia sẻ dự án với
+1156|Họ có thể xem tủ điện và lưu bản sao của riêng mình. Chỉ bạn mới có thể thay đổi bản gốc.
+1157|Mọi người trong cuộc trò chuyện này có thể xem tủ điện và lưu bản sao của riêng mình. Chỉ bạn mới có thể thay đổi bản gốc.
+1158|Bắt đầu trò chuyện nhóm
+1159|Các thành viên được chọn sẽ nhận lời mời và tham gia khi họ chấp nhận.
+1160|Thêm vào nhóm của tôi
+1161|Tìm thành viên
+1162|Tìm theo tên, công ty, quốc gia hoặc nghề nghiệp
+1163|Đánh dấu thành viên để bắt đầu nhóm, chia sẻ dự án hoặc thêm họ vào một nhóm của bạn. Địa chỉ email không bao giờ được hiển thị.
+1164|Thành viên đã chọn
+1165|Thành viên từ
+1166|Chọn
+1167|Gửi tệp
+1168|đã chọn
+1169|Bỏ chọn
+1170|Tệp
+1171|Tải xuống
+1172|Không còn khả dụng
+1173|Dự án được chia sẻ
+1174|Đang tải lên…
+1175|Bỏ qua
+1176|Hiển thị tôi trong danh sách thành viên Cộng đồng
+1177|Các thành viên khác thấy tên, nghề nghiệp, công ty và quốc gia của bạn, không bao giờ thấy email. Khi tắt, chỉ những người biết địa chỉ email của bạn mới có thể bắt đầu trò chuyện với bạn.
+1178|Không có thành viên nào khớp với tìm kiếm.
+1179|Chưa có thành viên nào khác.
+1180|thành viên
+1181|Hiển thị thêm thành viên
+1182|Bạn không thể trò chuyện với chính mình.
+1183|Thành viên đó không khả dụng.
+1184|Bạn không ở trong cuộc trò chuyện này.
+1185|Chọn ít nhất một thành viên hoặc nhập địa chỉ email.
+1186|Không tra cứu được thành viên. Nếu trang vừa được cập nhật, chủ sở hữu cần chạy bản di chuyển cơ sở dữ liệu mới nhất.
+1187|không khả dụng
+1188|Lớn hơn 25 MB, chưa gửi.
+1189|Tệp trống.
+1190|Chia sẻ tệp chưa được thiết lập.
+1191|Tải lên thất bại. Hãy thử lại.
+1192|Đã đạt giới hạn tệp mỗi ngày. Hãy thử lại vào ngày mai.
+1193|Không thể gửi tệp.
+1194|Danh sách thành viên chưa được thiết lập. Chủ trang cần chạy bản di chuyển 0005_members_files.sql trong Supabase.
+1195|Không tải được danh sách thành viên. Kiểm tra kết nối và thử lại.
+1196|Không thể đăng dự án vào cuộc trò chuyện.

@@ -1108,7 +1108,7 @@
 1108|Optional. Fehlerschleifenimpedanz am Anfang der Verteilung, vom Versorger oder aus einer Messung. Dient zur Prüfung, ob jeder LS-Schalter einen Fehler rechtzeitig abschaltet.
 1109|Schutzregeln
 1110|Jeder Schalter wird aus dem Bemessungsstrom bemessen (125 % der Dauerlasten nach NEC), nach der Gehäusetemperatur herabgesetzt und dann auf den nächsten Normwert der gewählten Norm aufgerundet. RCD-Empfindlichkeit (30 mA bzw. GFCI 4–6 mA nach NEC und ABYC), Polzahl (2-polig für 240-V-Lasten) und Gerätenorm (IEC oder UL) richten sich nach Norm und Versorgungsspannung. Bei IEC, BS 7671 und AS/NZS geben Sie Ze in den Einstellungen ein, um die Fehlerschleife jedes LS-Schalter-Stromkreises zu prüfen.
-1111|Öffnen Sie Community im Dashboard, um mit anderen registrierten Mitgliedern zu chatten, Gruppen zu erstellen, Personen per E-Mail einzuladen und gespeicherte Verteilungen zu teilen. Die Glocke in der Kopfzeile zeigt Einladungen, Antworten und geteilte Projekte.
+1111|Öffnen Sie die Community über das Dashboard. Unter Mitglieder sind alle Registrierten aufgeführt: Suchen Sie und schreiben Sie einem Mitglied, teilen Sie ein Projekt oder senden Sie eine Datei, oder haken Sie mehrere an, um eine Gruppe zu starten. In einem Chat können Sie Dateien bis 25 MB anhängen oder einen gespeicherten Verteiler teilen. Die Glocke in der Kopfzeile zeigt Einladungen, Antworten und geteilte Projekte.
 1112|Die Prüfungen umfassen: Bemessungsstrom gegenüber Schalter- und Kabelnennstrom (mit Gehäusetemperatur und NEC-Regel für Dauerlasten), Spannungsfall, RCD-Anforderung, Schaltvermögen, Gerätebemessung gegenüber Norm und Versorgungsspannung, Fehlerschleifenimpedanz bei eingegebenem Ze, Lutron-Eingang sowie Zonen- und Temperaturgrenzen. Selektivität wird hier nicht berechnet.
 1113|Firmenangaben
 1114|Deckblatt mit Firmenangaben
@@ -1147,3 +1147,50 @@
 1147|E-Mail bestätigt
 1148|Deine E-Mail-Adresse ist bestätigt und dein Konto ist aktiv. Melde dich an, um mit dem Entwerfen zu beginnen.
 1149|Der Bestätigungslink ist ungültig oder abgelaufen. Melde dich an, dann bieten wir dir einen neuen an.
+1150|Finden Sie andere Mitglieder, chatten Sie, arbeiten Sie in Gruppen und teilen Sie gespeicherte Verteiler und Dateien.
+1151|Dateien anhängen
+1152|Projekt in diesem Chat teilen
+1153|Ein Mitglied
+1154|Sie haben noch keine gespeicherten Projekte. Speichern Sie zuerst einen Verteiler in Ihrem Konto.
+1155|Projekt teilen mit
+1156|Sie können den Verteiler ansehen und eine eigene Kopie speichern. Nur Sie können das Original ändern.
+1157|Alle in diesem Chat können den Verteiler ansehen und eine eigene Kopie speichern. Nur Sie können das Original ändern.
+1158|Gruppenchat starten
+1159|Die ausgewählten Mitglieder erhalten eine Einladung und treten bei, sobald sie annehmen.
+1160|Zu meiner Gruppe hinzufügen
+1161|Mitglieder suchen
+1162|Nach Name, Firma, Land oder Beruf suchen
+1163|Haken Sie Mitglieder an, um eine Gruppe zu starten, ein Projekt zu teilen oder sie einer Ihrer Gruppen hinzuzufügen. E-Mail-Adressen werden nie angezeigt.
+1164|Ausgewählte Mitglieder
+1165|Mitglied seit
+1166|Auswählen:
+1167|Datei senden
+1168|ausgewählt
+1169|Auswahl aufheben
+1170|Datei
+1171|Herunterladen
+1172|Nicht mehr verfügbar
+1173|Geteiltes Projekt
+1174|Wird hochgeladen…
+1175|Ausblenden
+1176|Mich in der Mitgliederliste der Community anzeigen
+1177|Andere Mitglieder sehen Ihren Namen, Beruf, Ihre Firma und Ihr Land, nie Ihre E-Mail-Adresse. Wenn dies ausgeschaltet ist, können nur Personen, die Ihre E-Mail-Adresse kennen, einen Chat mit Ihnen beginnen.
+1178|Keine Mitglieder entsprechen Ihrer Suche.
+1179|Noch keine weiteren Mitglieder.
+1180|Mitglied
+1181|Weitere Mitglieder anzeigen
+1182|Sie können keinen Chat mit sich selbst beginnen.
+1183|Dieses Mitglied ist nicht verfügbar.
+1184|Sie sind nicht in diesem Chat.
+1185|Wählen Sie mindestens ein Mitglied oder geben Sie eine E-Mail-Adresse ein.
+1186|Die Mitgliedersuche ist fehlgeschlagen. Wenn die Website gerade aktualisiert wurde, muss der Betreiber die neueste Datenbankmigration ausführen.
+1187|ist nicht verfügbar
+1188|Größer als 25 MB, nicht gesendet.
+1189|Die Datei ist leer.
+1190|Die Dateifreigabe ist noch nicht eingerichtet.
+1191|Hochladen fehlgeschlagen. Versuchen Sie es erneut.
+1192|Tageslimit für Dateien erreicht. Versuchen Sie es morgen erneut.
+1193|Die Datei konnte nicht gesendet werden.
+1194|Die Mitgliederliste ist noch nicht eingerichtet. Der Betreiber der Website muss die Migration 0005_members_files.sql in Supabase ausführen.
+1195|Mitglieder konnten nicht geladen werden. Prüfen Sie Ihre Verbindung und versuchen Sie es erneut.
+1196|Das Projekt konnte nicht im Chat gepostet werden.

@@ -1108,7 +1108,7 @@
 1108|Facoltativo. Impedenza dell’anello di guasto a terra all’origine del quadro, dal fornitore o da una misura. Usata per verificare che ogni MCB interrompa un guasto in tempo.
 1109|Regole di protezione
 1110|Ogni interruttore è dimensionato dalla corrente di progetto (125 % dei carichi continui secondo NEC), declassato in base alla temperatura del contenitore, poi arrotondato per eccesso al valore normalizzato successivo della norma scelta. La sensibilità RCD (30 mA, oppure GFCI 4–6 mA secondo NEC e ABYC), il numero di poli (2 poli per carichi a 240 V) e la norma del dispositivo (IEC o UL) seguono la norma e la tensione di alimentazione. Con IEC, BS 7671 e AS/NZS, inserisci Ze in Impostazioni per verificare l’anello di guasto a terra di ogni circuito MCB.
-1111|Apri Community dalla Dashboard per chattare con altri membri registrati, creare gruppi, invitare persone via email e condividere quadri salvati. La campanella nell’intestazione mostra inviti, risposte e progetti condivisi.
+1111|Apri la Community dalla dashboard. Membri elenca tutti gli iscritti: cerca, poi scrivi a un membro, condividi un progetto o invia un file, oppure selezionane diversi per avviare un gruppo. In una chat puoi allegare file fino a 25 MB o condividere un quadro salvato. La campanella nell’intestazione mostra inviti, risposte e progetti condivisi.
 1112|I controlli coprono corrente di progetto rispetto alla portata di interruttore e cavo (con temperatura del contenitore e regola NEC per carichi continui), caduta di tensione, esigenza RCD, potere di interruzione, valore del dispositivo rispetto alla norma e alla tensione di alimentazione, impedenza dell’anello di guasto a terra quando è inserito Ze, ingresso Lutron, limiti di zone e temperatura. Discriminazione e selettività non sono calcolate qui.
 1113|Dati dell’azienda
 1114|Copertina con i dati dell’azienda
@@ -1147,3 +1147,50 @@
 1147|E-mail confermata
 1148|Il tuo indirizzo e-mail è confermato e l'account è attivo. Accedi per iniziare a progettare.
 1149|Il link di conferma non è valido o è scaduto. Accedi e ti offriremo di inviarne uno nuovo.
+1150|Trova altri membri, chatta, lavora in gruppo e condividi quadri salvati e file.
+1151|Allega file
+1152|Condividi un progetto in questa chat
+1153|Un membro
+1154|Non hai ancora progetti salvati. Salva prima un quadro nel tuo account.
+1155|Condividi un progetto con
+1156|Possono vedere il quadro e salvarne una propria copia. Solo tu puoi modificare l’originale.
+1157|Tutti in questa chat possono vedere il quadro e salvarne una propria copia. Solo tu puoi modificare l’originale.
+1158|Avvia una chat di gruppo
+1159|I membri selezionati ricevono un invito e si uniscono quando lo accettano.
+1160|Aggiungi al mio gruppo
+1161|Cerca membri
+1162|Cerca per nome, azienda, paese o professione
+1163|Seleziona i membri per avviare un gruppo, condividere un progetto o aggiungerli a uno dei tuoi gruppi. Gli indirizzi email non vengono mai mostrati.
+1164|Membri selezionati
+1165|Membro dal
+1166|Seleziona
+1167|Invia file
+1168|selezionati
+1169|Deseleziona
+1170|File
+1171|Scarica
+1172|Non più disponibile
+1173|Progetto condiviso
+1174|Caricamento…
+1175|Chiudi
+1176|Mostrami nell’elenco membri della Community
+1177|Gli altri membri vedono nome, professione, azienda e paese, mai il tuo indirizzo email. Se disattivato, solo chi conosce il tuo indirizzo email può avviare una chat con te.
+1178|Nessun membro corrisponde alla ricerca.
+1179|Non ci sono ancora altri membri.
+1180|membro
+1181|Mostra altri membri
+1182|Non puoi avviare una chat con te stesso.
+1183|Questo membro non è disponibile.
+1184|Non fai parte di questa chat.
+1185|Scegli almeno un membro o inserisci un indirizzo email.
+1186|Ricerca dei membri non riuscita. Se il sito è stato appena aggiornato, il proprietario deve eseguire l’ultima migrazione del database.
+1187|non è disponibile
+1188|Più grande di 25 MB, non inviato.
+1189|Il file è vuoto.
+1190|La condivisione dei file non è ancora configurata.
+1191|Caricamento non riuscito. Riprova.
+1192|Limite giornaliero di file raggiunto. Riprova domani.
+1193|Impossibile inviare il file.
+1194|L’elenco dei membri non è ancora configurato. Il proprietario del sito deve eseguire la migrazione 0005_members_files.sql in Supabase.
+1195|Impossibile caricare i membri. Controlla la connessione e riprova.
+1196|Impossibile pubblicare il progetto nella chat.

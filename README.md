@@ -40,7 +40,7 @@ to switch the account system on.
 
 ## 1. Create the database
 
-Supabase, SQL Editor: paste and run `supabase/migrations/0001_init.sql` (idempotent). If you already ran an earlier copy of it, also run `0003_import_events.sql`. For sharing and chat, also run `0004_community.sql` (see the Community section). It creates `profiles`, `projects`,
+Supabase, SQL Editor: paste and run `supabase/migrations/0001_init.sql` (idempotent). If you already ran an earlier copy of it, also run `0003_import_events.sql`. For sharing and chat, also run `0004_community.sql`, then `0005_members_files.sql` for the member list and files in chats (see the Community section). It creates `profiles`, `projects`,
 `feedback`, `usage_events`, `admin_actions`, the sign-up trigger, RLS policies and two admin functions that only the
 service role can call.
 
@@ -241,7 +241,7 @@ Members can share a saved project with other registered members, chat privately,
 
 **Setup (three steps)**
 
-1. **Database.** In the Supabase SQL editor, run `supabase/migrations/0004_community.sql` once. It is safe to run again. Until it is run, the Community page shows "not set up yet".
+1. **Database.** In the Supabase SQL editor, run `supabase/migrations/0004_community.sql`, then `supabase/migrations/0005_members_files.sql`. Both are safe to run again. Until 0004 is run, the Community page shows "not set up yet"; until 0005 is run, the Members tab says so and files cannot be attached. 0005 also creates the private Storage bucket `chat-files` (25 MB per file) and its access rules.
 2. **Invitation emails (optional but recommended).** The Worker sends email through [Resend](https://resend.com). Create an API key and verify a sending domain there, then set:
    - secret `RESEND_API_KEY`: `npx wrangler secret put RESEND_API_KEY` (or Cloudflare dashboard, Worker, Settings, Variables and Secrets)
    - variable `MAIL_FROM`, for example `DBoard Designer <noreply@your-domain.com>`
@@ -253,13 +253,16 @@ Members can share a saved project with other registered members, chat privately,
 **How it behaves**
 
 - **Share a project:** Dashboard, Share on a project card, enter one or more email addresses and an optional message. Only registered members can receive it. They can view it and save their own copy ("Open a copy"); only the owner can change the original. The owner can stop sharing at any time.
-- **Private chat:** Community, New private chat, enter a member's email. Opening it again reuses the same conversation.
+- **Members:** Community, Members lists every active member with a verified email: name, occupation, company, country and join date, never email addresses. Search covers all four fields. Each card has Message, Share project and Send file. Tick several members to start a group chat with them, share a project with all of them, or add them to a group you own. Members can hide themselves in Account settings ("Show me in the Community member list"); hidden members can then only be reached by someone who knows their exact email address.
+- **Private chat:** Message on a member card, or Community, New private chat, and a member's email. Opening it again reuses the same conversation.
+- **Files:** the paperclip in a chat, dragging files onto the chat, or pasting an image. Up to 25 MB per file, 10 per drop, 100 a day per person. Files sit in a private Storage bucket; only members of that chat can open them, through links that expire after an hour. Images show as thumbnails, other files as a download card. Files are not virus-scanned, so tell users to treat attachments from people they do not know with care.
+- **Projects in a chat:** the board icon in a chat shares a saved project with everyone in that chat and posts it as a card. Others get "Open a copy"; the owner gets "Open".
 - **Group chat:** Community, New group. Any member can create one and invite others by email; the creator is the owner and can invite more people, cancel invitations and remove members. Invited members get an email and a dashboard notification, and only see messages after they accept. If the owner leaves, the longest-standing member becomes owner; the group is deleted when the last member leaves.
 - **Notifications:** the bell and the Community tab show unread counts. Several replies in one chat are grouped into one notification. The page checks for new notifications every 30 seconds and the open chat every 4 seconds (no live socket).
-- **Safety:** messages are plain text, limited to 2000 characters and 30 a minute per person. Each person can send 60 invitations and shares a day. Email addresses are only looked up by exact match; there is no member directory.
-- **Not included:** message editing, attachments, blocking and moderation tools, and email notifications for ordinary replies (only invitations and shares are emailed).
+- **Safety:** messages are plain text, limited to 2000 characters and 30 a minute per person. Each person can send 60 invitations and shares a day (sharing into a chat you are already in does not count). The member list never returns email addresses; picking members by id only reaches people who are listed (active, verified, not hidden).
+- **Not included:** message editing or deleting, blocking and moderation tools, virus scanning of files, and email notifications for ordinary replies (only invitations and shares are emailed). Files in a chat stay in Storage after the chat is deleted; clear old ones from the Supabase Storage page if space matters.
 
-**Tests:** `pgtest/community_test.py` (50 checks of the Row Level Security rules on real Postgres) and `test/e2e_community.py` (50 browser checks with three users, the real Worker, real PostgREST/Postgres and a fake email service). Real email delivery through Resend has not been tested.
+**Tests:** `pgtest/community_test.py` (50 checks of the Row Level Security rules on real Postgres), `pgtest/members_test.py` (41 checks of the member list, file storage rules and project cards), `test/e2e_community.py` (50 browser checks with three users) and `test/e2e_members.py` (57 browser checks with five users, including file upload and download, outsiders being refused, and phone width). The browser suites use the real Worker, real PostgREST/Postgres and test stand-ins for Supabase Auth, Supabase Storage and email. Real email delivery through Resend and the real Supabase Storage service have not been tested.
 
 ## DALI lighting network
 

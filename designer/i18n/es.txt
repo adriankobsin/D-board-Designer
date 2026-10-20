@@ -1108,7 +1108,7 @@
 1108|Opcional. Impedancia del bucle de defecto a tierra en el origen del cuadro, del suministrador o de una medición. Se usa para comprobar que cada magnetotérmico desconecta un defecto a tiempo.
 1109|Reglas de protección
 1110|Cada interruptor se dimensiona a partir de la corriente de diseño (125 % de las cargas continuas según NEC), se reduce según la temperatura de la envolvente y se redondea al siguiente valor normalizado de la norma elegida. La sensibilidad del diferencial (30 mA, o GFCI 4–6 mA según NEC y ABYC), el número de polos (2 polos para cargas de 240 V) y la norma del dispositivo (IEC o UL) siguen la norma y la tensión de alimentación. Con IEC, BS 7671 y AS/NZS, introduzca Ze en Configuración para comprobar el bucle de defecto a tierra de cada circuito con magnetotérmico.
-1111|Abra Comunidad desde el Panel para chatear con otros miembros registrados, crear grupos, invitar a personas por correo y compartir cuadros guardados. La campana de la cabecera muestra invitaciones, respuestas y proyectos compartidos.
+1111|Abra la Comunidad desde el panel. Miembros muestra a todos los registrados: busque y luego escriba a un miembro, comparta un proyecto o envíe un archivo, o marque varios para iniciar un grupo. En un chat, adjunte archivos de hasta 25 MB o comparta un cuadro guardado. La campana del encabezado muestra invitaciones, respuestas y proyectos compartidos.
 1112|Las comprobaciones cubren la corriente de diseño frente a la corriente del interruptor y del cable (con la temperatura de la envolvente y la regla NEC de cargas continuas), la caída de tensión, la exigencia de diferencial, el poder de corte, la corriente del dispositivo frente a la norma y la tensión de alimentación, la impedancia del bucle de defecto cuando se introduce Ze, la entrada Lutron y los límites de zonas y temperatura. La discriminación y la selectividad no se calculan aquí.
 1113|Datos de la empresa
 1114|Portada con los datos de la empresa
@@ -1147,3 +1147,50 @@
 1147|Correo confirmado
 1148|Tu correo electrónico está confirmado y tu cuenta está activa. Inicia sesión para empezar a diseñar.
 1149|El enlace de confirmación no es válido o ha caducado. Inicia sesión y te ofreceremos enviar uno nuevo.
+1150|Encuentre a otros miembros, chatee, trabaje en grupos y comparta cuadros guardados y archivos.
+1151|Adjuntar archivos
+1152|Compartir un proyecto en este chat
+1153|Un miembro
+1154|Aún no tiene proyectos guardados. Guarde primero un cuadro en su cuenta.
+1155|Compartir un proyecto con
+1156|Pueden ver el cuadro y guardar su propia copia. Solo usted puede cambiar el original.
+1157|Todos en este chat pueden ver el cuadro y guardar su propia copia. Solo usted puede cambiar el original.
+1158|Iniciar un chat de grupo
+1159|Los miembros seleccionados reciben una invitación y se unen cuando la aceptan.
+1160|Añadir a mi grupo
+1161|Buscar miembros
+1162|Buscar por nombre, empresa, país u ocupación
+1163|Marque miembros para iniciar un grupo, compartir un proyecto o añadirlos a uno de sus grupos. Las direcciones de correo nunca se muestran.
+1164|Miembros seleccionados
+1165|Miembro desde
+1166|Seleccionar
+1167|Enviar archivo
+1168|seleccionados
+1169|Borrar selección
+1170|Archivo
+1171|Descargar
+1172|Ya no está disponible
+1173|Proyecto compartido
+1174|Subiendo…
+1175|Descartar
+1176|Mostrarme en la lista de miembros de la Comunidad
+1177|Los demás miembros ven su nombre, ocupación, empresa y país, nunca su dirección de correo. Si está desactivado, solo quienes conozcan su dirección de correo pueden iniciar un chat con usted.
+1178|Ningún miembro coincide con su búsqueda.
+1179|Aún no hay otros miembros.
+1180|miembro
+1181|Mostrar más miembros
+1182|No puede iniciar un chat consigo mismo.
+1183|Ese miembro no está disponible.
+1184|No forma parte de este chat.
+1185|Elija al menos un miembro o introduzca una dirección de correo.
+1186|La búsqueda de miembros falló. Si el sitio se acaba de actualizar, el propietario debe ejecutar la última migración de la base de datos.
+1187|no está disponible
+1188|Supera los 25 MB, no se envió.
+1189|El archivo está vacío.
+1190|El envío de archivos aún no está configurado.
+1191|Error al subir. Inténtelo de nuevo.
+1192|Se alcanzó el límite diario de archivos. Inténtelo mañana.
+1193|No se pudo enviar el archivo.
+1194|La lista de miembros aún no está configurada. El propietario del sitio debe ejecutar la migración 0005_members_files.sql en Supabase.
+1195|No se pudieron cargar los miembros. Compruebe su conexión e inténtelo de nuevo.
+1196|No se pudo publicar el proyecto en el chat.

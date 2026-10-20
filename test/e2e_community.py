@@ -88,7 +88,7 @@ with sync_playwright() as p:
     ok('A sees Bob message with sender name', 'Bob Bell' in A.inner_text('#saMsgs') and 'Hi all, Bob here' in A.inner_text('#saMsgs'), A.inner_text('.sa-chd')+' | '+A.inner_text('#saMsgs'))
     A.wait_for_timeout(600)
     ok('A unread cleared', A.locator('.sa-bar .sa-bellb [data-nbadge]').is_hidden() or A.inner_text('.sa-bar .sa-bellb [data-nbadge]')=='0')
-    A.fill('#saMsgIn','Welcome Bob\nSecond line <b>x</b>'); A.click('#saSend button'); A.wait_for_selector('.sa-m.me')
+    A.fill('#saMsgIn','Welcome Bob\nSecond line <b>x</b>'); A.click('#saSend button[type=submit]'); A.wait_for_selector('.sa-m.me')
     ok('multi-line + HTML is escaped, not rendered', A.locator('#saMsgs b').count()==0 and '<b>x</b>' in A.inner_text('#saMsgs'))
     # live update on B within the poll interval
     B.wait_for_function("document.querySelector('#saMsgs').innerText.includes('Welcome Bob')",timeout=15000)

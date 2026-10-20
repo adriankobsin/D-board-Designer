@@ -1108,7 +1108,7 @@
 1108|Opcional. Impedância do ciclo de defeito à terra na origem do quadro, do fornecedor ou de uma medição. Usada para verificar que cada disjuntor corta uma falha a tempo.
 1109|Regras de proteção
 1110|Cada disjuntor é dimensionado a partir da corrente de projeto (125 % das cargas contínuas segundo a NEC), reduzido pela temperatura do invólucro e depois arredondado para o valor normalizado seguinte da norma escolhida. A sensibilidade do diferencial (30 mA, ou GFCI 4–6 mA segundo a NEC e a ABYC), o número de polos (2 polos para cargas de 240 V) e a norma do dispositivo (IEC ou UL) seguem a norma e a tensão de alimentação. Com IEC, BS 7671 e AS/NZS, introduza Ze em Configuração para verificar o ciclo de defeito à terra de cada circuito com disjuntor.
-1111|Abra Comunidade a partir do Painel para conversar com outros membros registados, criar grupos, convidar pessoas por e-mail e partilhar quadros guardados. O sino no cabeçalho mostra convites, respostas e projetos partilhados.
+1111|Abra a Comunidade a partir do painel. Membros mostra todos os registados: pesquise e depois envie uma mensagem a um membro, partilhe um projeto ou envie um ficheiro, ou assinale vários para iniciar um grupo. Num chat, anexe ficheiros até 25 MB ou partilhe um quadro guardado. O sino no cabeçalho mostra convites, respostas e projetos partilhados.
 1112|As verificações cobrem a corrente de projeto face à corrente do disjuntor e do cabo (com a temperatura do invólucro e a regra NEC das cargas contínuas), a queda de tensão, a exigência de diferencial, o poder de corte, a corrente do dispositivo face à norma e à tensão de alimentação, a impedância do ciclo de defeito quando se introduz Ze, a entrada Lutron e os limites de zonas e temperatura. A discriminação e a seletividade não são calculadas aqui.
 1113|Dados da empresa
 1114|Capa com os dados da empresa
@@ -1147,3 +1147,50 @@
 1147|E-mail confirmado
 1148|O seu e-mail está confirmado e a sua conta está ativa. Inicie sessão para começar a projetar.
 1149|O link de confirmação é inválido ou expirou. Inicie sessão e ofereceremos o envio de um novo.
+1150|Encontre outros membros, converse, trabalhe em grupos e partilhe quadros guardados e ficheiros.
+1151|Anexar ficheiros
+1152|Partilhar um projeto neste chat
+1153|Um membro
+1154|Ainda não tem projetos guardados. Guarde primeiro um quadro na sua conta.
+1155|Partilhar um projeto com
+1156|Podem ver o quadro e guardar a sua própria cópia. Só o utilizador pode alterar o original.
+1157|Todos neste chat podem ver o quadro e guardar a sua própria cópia. Só o utilizador pode alterar o original.
+1158|Iniciar um chat de grupo
+1159|Os membros selecionados recebem um convite e entram quando o aceitam.
+1160|Adicionar ao meu grupo
+1161|Pesquisar membros
+1162|Pesquisar por nome, empresa, país ou profissão
+1163|Assinale membros para iniciar um grupo, partilhar um projeto ou adicioná-los a um dos seus grupos. Os endereços de e-mail nunca são mostrados.
+1164|Membros selecionados
+1165|Membro desde
+1166|Selecionar
+1167|Enviar ficheiro
+1168|selecionados
+1169|Limpar seleção
+1170|Ficheiro
+1171|Transferir
+1172|Já não está disponível
+1173|Projeto partilhado
+1174|A carregar…
+1175|Dispensar
+1176|Mostrar-me na lista de membros da Comunidade
+1177|Os outros membros veem o seu nome, profissão, empresa e país, nunca o seu endereço de e-mail. Quando está desativado, só quem conhece o seu endereço de e-mail pode iniciar um chat consigo.
+1178|Nenhum membro corresponde à pesquisa.
+1179|Ainda não há outros membros.
+1180|membro
+1181|Mostrar mais membros
+1182|Não pode iniciar um chat consigo próprio.
+1183|Esse membro não está disponível.
+1184|Não faz parte deste chat.
+1185|Escolha pelo menos um membro ou introduza um endereço de e-mail.
+1186|A pesquisa de membros falhou. Se o site acabou de ser atualizado, o proprietário tem de executar a migração mais recente da base de dados.
+1187|não está disponível
+1188|Maior do que 25 MB, não enviado.
+1189|O ficheiro está vazio.
+1190|A partilha de ficheiros ainda não está configurada.
+1191|O carregamento falhou. Tente novamente.
+1192|Limite diário de ficheiros atingido. Tente novamente amanhã.
+1193|Não foi possível enviar o ficheiro.
+1194|A lista de membros ainda não está configurada. O proprietário do site tem de executar a migração 0005_members_files.sql no Supabase.
+1195|Não foi possível carregar os membros. Verifique a ligação e tente novamente.
+1196|Não foi possível publicar o projeto no chat.

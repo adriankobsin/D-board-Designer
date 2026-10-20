@@ -1108,7 +1108,7 @@
 1108|Opcjonalne. Impedancja pętli zwarcia na początku rozdzielnicy, od dostawcy lub z pomiaru. Służy do sprawdzenia, czy każdy MCB wyłącza zwarcie na czas.
 1109|Zasady zabezpieczeń
 1110|Każdy wyłącznik jest dobierany z prądu obliczeniowego (125 % obciążeń ciągłych według NEC), redukowany o temperaturę obudowy, a następnie zaokrąglany w górę do kolejnej wartości znormalizowanej wybranej normy. Czułość RCD (30 mA lub GFCI 4–6 mA według NEC i ABYC), liczba biegunów (2 bieguny dla obciążeń 240 V) i norma urządzenia (IEC lub UL) wynikają z normy i napięcia zasilania. Dla IEC, BS 7671 i AS/NZS wpisz Ze w Ustawieniach, aby sprawdzić pętlę zwarcia każdego obwodu z MCB.
-1111|Otwórz Społeczność z Pulpitu, aby rozmawiać z innymi zarejestrowanymi członkami, tworzyć grupy, zapraszać osoby e-mailem i udostępniać zapisane rozdzielnice. Dzwonek w nagłówku pokazuje zaproszenia, odpowiedzi i udostępnione projekty.
+1111|Otwórz Społeczność z pulpitu. Zakładka Członkowie pokazuje wszystkich zarejestrowanych: wyszukaj, a następnie napisz do członka, udostępnij projekt lub wyślij plik albo zaznacz kilka osób, aby utworzyć grupę. Na czacie możesz dołączać pliki do 25 MB lub udostępnić zapisaną rozdzielnicę. Dzwonek w nagłówku pokazuje zaproszenia, odpowiedzi i udostępnione projekty.
 1112|Kontrole obejmują: prąd obliczeniowy względem prądu wyłącznika i kabla (z temperaturą obudowy i regułą NEC dla obciążeń ciągłych), spadek napięcia, wymóg RCD, zdolność wyłączania, prąd urządzenia względem normy i napięcia zasilania, impedancję pętli zwarcia po wpisaniu Ze, wejście Lutron oraz limity stref i temperatury. Selektywności nie obliczamy tutaj.
 1113|Dane firmy
 1114|Strona tytułowa z danymi firmy
@@ -1147,3 +1147,50 @@
 1147|E-mail potwierdzony
 1148|Twój adres e-mail został potwierdzony, a konto jest aktywne. Zaloguj się, aby zacząć projektować.
 1149|Link potwierdzający jest nieprawidłowy lub wygasł. Zaloguj się, a zaproponujemy wysłanie nowego.
+1150|Znajdź innych członków, rozmawiaj, pracuj w grupach i udostępniaj zapisane rozdzielnice oraz pliki.
+1151|Dołącz pliki
+1152|Udostępnij projekt na tym czacie
+1153|Członek
+1154|Nie masz jeszcze zapisanych projektów. Najpierw zapisz rozdzielnicę na swoim koncie.
+1155|Udostępnij projekt:
+1156|Mogą obejrzeć rozdzielnicę i zapisać własną kopię. Tylko Ty możesz zmienić oryginał.
+1157|Każdy na tym czacie może obejrzeć rozdzielnicę i zapisać własną kopię. Tylko Ty możesz zmienić oryginał.
+1158|Rozpocznij czat grupowy
+1159|Wybrani członkowie otrzymają zaproszenie i dołączą po jego przyjęciu.
+1160|Dodaj do mojej grupy
+1161|Szukaj członków
+1162|Szukaj po nazwisku, firmie, kraju lub zawodzie
+1163|Zaznacz członków, aby utworzyć grupę, udostępnić projekt lub dodać ich do jednej ze swoich grup. Adresy e-mail nigdy nie są wyświetlane.
+1164|Wybrani członkowie
+1165|Członek od
+1166|Zaznacz
+1167|Wyślij plik
+1168|zaznaczono
+1169|Wyczyść
+1170|Plik
+1171|Pobierz
+1172|Już niedostępny
+1173|Udostępniony projekt
+1174|Wysyłanie…
+1175|Odrzuć
+1176|Pokazuj mnie na liście członków Społeczności
+1177|Inni członkowie widzą Twoje imię i nazwisko, zawód, firmę i kraj, nigdy adres e-mail. Gdy ta opcja jest wyłączona, czat mogą z Tobą rozpocząć tylko osoby znające Twój adres e-mail.
+1178|Brak członków pasujących do wyszukiwania.
+1179|Nie ma jeszcze innych członków.
+1180|członek
+1181|Pokaż więcej członków
+1182|Nie możesz rozpocząć czatu z samym sobą.
+1183|Ten członek jest niedostępny.
+1184|Nie należysz do tego czatu.
+1185|Wybierz co najmniej jednego członka lub wpisz adres e-mail.
+1186|Wyszukiwanie członków nie powiodło się. Jeśli witryna została właśnie zaktualizowana, właściciel musi uruchomić najnowszą migrację bazy danych.
+1187|jest niedostępny
+1188|Większy niż 25 MB, nie wysłano.
+1189|Plik jest pusty.
+1190|Udostępnianie plików nie jest jeszcze skonfigurowane.
+1191|Wysyłanie nie powiodło się. Spróbuj ponownie.
+1192|Osiągnięto dzienny limit plików. Spróbuj jutro.
+1193|Nie udało się wysłać pliku.
+1194|Lista członków nie jest jeszcze skonfigurowana. Właściciel witryny musi uruchomić migrację 0005_members_files.sql w Supabase.
+1195|Nie udało się wczytać członków. Sprawdź połączenie i spróbuj ponownie.
+1196|Nie udało się opublikować projektu na czacie.

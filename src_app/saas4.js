@@ -49,6 +49,7 @@ function saViewAccount(el){
   <div class="full">${saField('company', 'Company (optional)', 'text', `maxlength="120" value="${saEsc(p.company || '')}"`)}</div>
   <label class="sa-field"><span>${saEsc(T('Country'))}</span><select id="country">${saCountryOptions(p.country || '')}</select></label>
   <label class="sa-field"><span>${saEsc(T('Professional occupation'))}</span><select id="occupation">${SA_OCC.map(o => `<option value="${o}" ${p.occupation === o ? 'selected' : ''}>${saEsc(T(o))}</option>`).join('')}</select></label>
+  ${'show_in_directory' in p ? `<label class="full sa-chk"><input type="checkbox" id="show_dir" ${p.show_in_directory !== false ? 'checked' : ''}><span>${saEsc(T('Show me in the Community member list'))}<small>${saEsc(T('Other members see your name, occupation, company and country, never your email address. When this is off, only people who know your email address can start a chat with you.'))}</small></span></label>` : ''}
   <div class="full"><button class="sa-btn pri" type="submit">${saEsc(T('Save profile'))}</button></div></form></section>
   <section class="sa-card"><h2>${saEsc(T('Change password'))}</h2><form id="saPw" class="sa-form" style="grid-template-columns:1fr" novalidate>${saPwField('cur', 'Current password', 'current-password')}${saPwField('password', 'New password', 'new-password', 'At least 8 characters, with a letter and a number.')}${saPwField('password2', 'Confirm new password', 'new-password')}<div><button class="sa-btn pri" type="submit">${saEsc(T('Update password'))}</button></div></form></section></div>
   <div class="sa-grid c2" style="margin-top:16px"><section class="sa-card"><h2>${saEsc(T('Your data'))}</h2><p class="sa-sub">${saEsc(T('Download your profile and all your projects as one JSON file.'))}</p><button class="sa-btn" data-sa="export">${saEsc(T('Download my data'))}</button> <button class="sa-btn" data-sa="legal" data-w="privacy">${saEsc(T('Privacy Policy'))}</button> <button class="sa-btn" data-sa="legal" data-w="terms">${saEsc(T('Terms and Conditions'))}</button></section>
@@ -58,6 +59,7 @@ async function saSaveProfile(){
   const v = id => sa$('#' + id).value.trim(); let ok = true;
   ok = saFieldErr('first_name', v('first_name') ? '' : 'Enter your first name.') && ok; ok = saFieldErr('last_name', v('last_name') ? '' : 'Enter your last name.') && ok; if (!ok) return;
   const upd = {first_name: v('first_name'), last_name: v('last_name'), company: v('company') || null, country: v('country') || null, occupation: SA_OCC.includes(v('occupation')) ? v('occupation') : null};
+  if (sa$('#show_dir')) upd.show_in_directory = sa$('#show_dir').checked;
   const {error} = await SA.sb.from('profiles').update(upd).eq('id', SA.user.id);
   if (error){ SA.msg = {t: 'bad', m: saErr(error)}; saRender(); return; }
   await saLoadProfile(); saMenu(); SA.msg = {t: 'ok', m: 'Profile saved.'}; saRender();

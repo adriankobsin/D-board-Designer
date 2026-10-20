@@ -1108,7 +1108,7 @@
 1108|Optional. Earth-fault loop impedance at the origin of the board, from the supplier or a test. Used to check that each MCB disconnects a fault in time.
 1109|Protection rules
 1110|Each breaker is sized from the design current (125 % of continuous loads under NEC), derated for the enclosure temperature, then rounded up to the next standard rating of the chosen standard. The RCD sensitivity (30 mA, or GFCI 4–6 mA under NEC and ABYC), the number of poles (2-pole for 240 V loads) and the device standard (IEC or UL) follow the standard and the supply voltage. With IEC, BS 7671 and AS/NZS, enter Ze in Setup to check the earth-fault loop of each MCB circuit.
-1111|Open Community from the Dashboard to chat with other registered members, create groups, invite people by email and share saved boards. The bell in the header shows invitations, replies and shared projects.
+1111|Open Community from the Dashboard. Members lists everyone registered: search, then message a member, share a project or send a file, or tick several to start a group. In a chat, attach files up to 25 MB or share a saved board. The bell in the header shows invitations, replies and shared projects.
 1112|Checks cover design current against breaker and cable rating (with enclosure temperature and the NEC continuous-load rule), voltage drop, RCD expectation, breaking capacity, device rating against the standard and supply voltage, earth-fault loop impedance when Ze is entered, Lutron input, zone and temperature limits. Discrimination and selectivity are not calculated here.
 1113|Company details
 1114|Cover page with company details
@@ -1147,3 +1147,50 @@
 1147|Email confirmed
 1148|Your email address is confirmed and your account is active. Sign in to start designing.
 1149|That confirmation link is invalid or has expired. Sign in and we will offer to send a new one.
+1150|Find other members, chat, work in groups and share saved boards and files.
+1151|Attach files
+1152|Share a project in this chat
+1153|A member
+1154|You have no saved projects yet. Save a board to your account first.
+1155|Share a project with
+1156|They can view the board and save their own copy. Only you can change the original.
+1157|Everyone in this chat can view the board and save their own copy. Only you can change the original.
+1158|Start a group chat
+1159|The selected members get an invitation and join when they accept.
+1160|Add to my group
+1161|Search members
+1162|Search by name, company, country or occupation
+1163|Tick members to start a group, share a project or add them to one of your groups. Email addresses are never shown.
+1164|Selected members
+1165|Member since
+1166|Select
+1167|Send file
+1168|selected
+1169|Clear
+1170|File
+1171|Download
+1172|No longer available
+1173|Shared project
+1174|Uploading…
+1175|Dismiss
+1176|Show me in the Community member list
+1177|Other members see your name, occupation, company and country, never your email address. When this is off, only people who know your email address can start a chat with you.
+1178|No members match your search.
+1179|No other members yet.
+1180|member
+1181|Show more members
+1182|You cannot start a chat with yourself.
+1183|That member is not available.
+1184|You are not in this chat.
+1185|Choose at least one member, or enter an email address.
+1186|Member lookup failed. If the site was just updated, the owner needs to run the latest database migration.
+1187|is not available
+1188|Larger than 25 MB, not sent.
+1189|The file is empty.
+1190|File sharing is not set up yet.
+1191|Upload failed. Try again.
+1192|Daily file limit reached. Try again tomorrow.
+1193|The file could not be sent.
+1194|The member list is not set up yet. The site owner needs to run the 0005_members_files.sql migration in Supabase.
+1195|Members could not be loaded. Check your connection and try again.
+1196|The project could not be posted in the chat.

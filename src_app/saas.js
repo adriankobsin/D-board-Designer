@@ -386,6 +386,7 @@ const SA_LEGAL = {
   privacy: ['Privacy Policy', `<p><i>Template for the service operator. Complete the operator details and have it reviewed before public launch.</i></p>
   <h3>What we collect</h3><p>Name, email address, country, occupation and optional company, which you give when registering. Your projects. Basic usage events (sign-ins, project opened or created, exports, tools opened) and any feedback you send.</p>
   <h3>Why</h3><p>To run your account, store your projects, secure the service and understand which features are used. We do not sell personal data and do not show advertising.</p>
+  <h3>Community</h3><p>Other signed-in members can see your name, occupation, company and country in the Community member list. You can hide yourself in Account settings. Your email address is never shown there. Messages, files and projects you share are visible to the people in that chat or share.</p>
   <h3>Passwords</h3><p>Passwords are never stored by this application. Authentication is handled by Supabase Auth, which stores only a salted hash.</p>
   <h3>Who processes data</h3><p>Supabase (database and authentication) and Cloudflare (hosting). Administrators of this service can see account details, project counts and feedback. They cannot see your password.</p>
   <h3>Your rights</h3><p>In Account settings you can edit your details, download all your data, and delete your account and projects permanently. Contact the operator for any other privacy request.</p>
@@ -476,6 +477,7 @@ function saViewAccount(el){
   <div class="full">${saField('company', 'Company (optional)', 'text', `maxlength="120" value="${saEsc(p.company || '')}"`)}</div>
   <label class="sa-field"><span>${saEsc(T('Country'))}</span><select id="country">${saCountryOptions(p.country || '')}</select></label>
   <label class="sa-field"><span>${saEsc(T('Professional occupation'))}</span><select id="occupation">${SA_OCC.map(o => `<option value="${o}" ${p.occupation === o ? 'selected' : ''}>${saEsc(T(o))}</option>`).join('')}</select></label>
+  ${'show_in_directory' in p ? `<label class="full sa-chk"><input type="checkbox" id="show_dir" ${p.show_in_directory !== false ? 'checked' : ''}><span>${saEsc(T('Show me in the Community member list'))}<small>${saEsc(T('Other members see your name, occupation, company and country, never your email address. When this is off, only people who know your email address can start a chat with you.'))}</small></span></label>` : ''}
   <div class="full"><button class="sa-btn pri" type="submit">${saEsc(T('Save profile'))}</button></div></form></section>
   <section class="sa-card"><h2>${saEsc(T('Change password'))}</h2><form id="saPw" class="sa-form" style="grid-template-columns:1fr" novalidate>${saPwField('cur', 'Current password', 'current-password')}${saPwField('password', 'New password', 'new-password', 'At least 8 characters, with a letter and a number.')}${saPwField('password2', 'Confirm new password', 'new-password')}<div><button class="sa-btn pri" type="submit">${saEsc(T('Update password'))}</button></div></form></section></div>
   <div class="sa-grid c2" style="margin-top:16px"><section class="sa-card"><h2>${saEsc(T('Your data'))}</h2><p class="sa-sub">${saEsc(T('Download your profile and all your projects as one JSON file.'))}</p><button class="sa-btn" data-sa="export">${saEsc(T('Download my data'))}</button> <button class="sa-btn" data-sa="legal" data-w="privacy">${saEsc(T('Privacy Policy'))}</button> <button class="sa-btn" data-sa="legal" data-w="terms">${saEsc(T('Terms and Conditions'))}</button></section>
@@ -485,6 +487,7 @@ async function saSaveProfile(){
   const v = id => sa$('#' + id).value.trim(); let ok = true;
   ok = saFieldErr('first_name', v('first_name') ? '' : 'Enter your first name.') && ok; ok = saFieldErr('last_name', v('last_name') ? '' : 'Enter your last name.') && ok; if (!ok) return;
   const upd = {first_name: v('first_name'), last_name: v('last_name'), company: v('company') || null, country: v('country') || null, occupation: SA_OCC.includes(v('occupation')) ? v('occupation') : null};
+  if (sa$('#show_dir')) upd.show_in_directory = sa$('#show_dir').checked;
   const {error} = await SA.sb.from('profiles').update(upd).eq('id', SA.user.id);
   if (error){ SA.msg = {t: 'bad', m: saErr(error)}; saRender(); return; }
   await saLoadProfile(); saMenu(); SA.msg = {t: 'ok', m: 'Profile saved.'}; saRender();
@@ -522,7 +525,9 @@ async function saSignOut(){
   SA.session = null; SA.user = null; SA.profile = null; SA.authMode = 'login'; saNoSession();
 }
 /* ---------- community: private and group chats, project sharing, notifications ---------- */
-SA.com = {chats: [], shares: [], tab: 'chats', active: null, msgs: [], names: {}, err: null, loaded: false, poll: null, tpoll: null, lastId: 0, sending: false};
+SA.com = {chats: [], shares: [], tab: 'chats', active: null, msgs: [], names: {}, err: null, loaded: false, poll: null, tpoll: null, lastId: 0, sending: false,
+  dir: {q: '', rows: [], total: 0, loading: false, err: null, seq: 0}, sel: new Map(), who: {}, urls: {}, uploads: []};
+const SA_FILE_MAX = 25 * 1024 * 1024;
 SA.notif = {list: [], err: null, open: false};
 
 const saComOn = () => !!(SA.cfg && SA.cfg.communityEnabled !== false);
@@ -592,9 +597,9 @@ async function saViewCommunity(el){
   const invites = SA.com.chats.filter(c => c.my_status === 'invited').length;
   const unreadChats = SA.com.chats.reduce((a, c) => a + (+c.unread || 0), 0);
   const tab = (t, l, n) => `<button role="tab" data-sa="ctab" data-t="${t}" ${SA.com.tab === t ? 'aria-current="page"' : ''}>${saEsc(T(l))}${n ? ` <span class="sa-pill">${n}</span>` : ''}</button>`;
-  el.innerHTML = saFrame('community', `<h1 class="sa-h1">${saEsc(T('Community'))}</h1><p class="sa-sub">${saEsc(T('Chat with other members, work in groups and share saved boards.'))}</p>${saMsgHtml()}
-    <div class="sa-nav" role="tablist" style="margin-bottom:14px">${tab('chats', 'Chats', invites + unreadChats)}${tab('shared', 'Shared projects', shared)}</div><div id="saComBody"></div>`);
-  if (SA.com.tab === 'shared') saShared(); else saChats();
+  el.innerHTML = saFrame('community', `<h1 class="sa-h1">${saEsc(T('Community'))}</h1><p class="sa-sub">${saEsc(T('Find other members, chat, work in groups and share saved boards and files.'))}</p>${saMsgHtml()}
+    <div class="sa-nav" role="tablist" style="margin-bottom:14px">${tab('chats', 'Chats', invites + unreadChats)}${tab('members', 'Members', 0)}${tab('shared', 'Shared projects', shared)}</div><div id="saComBody"></div>`);
+  if (SA.com.tab === 'shared') saShared(); else if (SA.com.tab === 'members') saMembers(); else saChats();
   SA.com.poll = setInterval(async () => { if (SA.view !== 'community' || document.visibilityState !== 'visible') return; if (await saComLoad()) { if (SA.com.tab === 'chats') saChatListPaint(); } }, 12000);
 }
 function saChats(){
@@ -624,16 +629,19 @@ async function saThreadOpen(id, keep){
   const own = c.kind === 'group' && mem.some(m => m.id === SA.user.id && m.role === 'owner');
   t.innerHTML = `<header class="sa-chd"><button class="sa-btn sm sa-back" data-sa="cback" aria-label="${saEsc(T('Back to conversations'))}">←</button><div class="tt"><b data-nt>${saEsc(saChatName(c))}</b><span data-nt>${c.kind === 'group' ? mem.filter(m => m.status === 'joined').length + ' ' + saEsc(T('members')) + (mem.some(m => m.status === 'invited') ? ' · ' + mem.filter(m => m.status === 'invited').length + ' ' + saEsc(T('invited')) : '') : saEsc(T('Private chat'))}</span></div><span class="sa-row">${c.kind === 'group' ? `<button class="sa-btn sm" data-sa="cmembers">${saEsc(T('Members'))}</button>` : ''}${own ? `<button class="sa-btn sm" data-sa="cinvite">${saEsc(T('Invite'))}</button>` : ''}<button class="sa-btn sm bad" data-sa="cleave">${saEsc(T(c.kind === 'group' ? 'Leave' : 'Leave chat'))}</button></span></header>
   <div class="sa-msgs" id="saMsgs" tabindex="0" aria-live="polite"></div>
-  <form class="sa-comp" id="saSend"><label class="sr" for="saMsgIn">${saEsc(T('Message'))}</label><textarea id="saMsgIn" rows="2" maxlength="2000" placeholder="${saEsc(T('Write a message. Enter sends, Shift+Enter adds a line.'))}"></textarea><button class="sa-btn pri" type="submit">${saEsc(T('Send'))}</button></form>`;
+  <div class="sa-ups" id="saUps" aria-live="polite"></div>
+  <form class="sa-comp" id="saSend"><span class="sa-ctools"><button type="button" class="sa-ib" data-sa="cattach" title="${saEsc(T('Attach files'))}" aria-label="${saEsc(T('Attach files'))}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5 12.6 19.9a5.5 5.5 0 0 1-7.8-7.8l8.5-8.5a3.7 3.7 0 0 1 5.2 5.2l-8.5 8.5a1.8 1.8 0 0 1-2.6-2.6l7.8-7.8"/></svg></button><button type="button" class="sa-ib" data-sa="cproj" title="${saEsc(T('Share a project in this chat'))}" aria-label="${saEsc(T('Share a project in this chat'))}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4" width="17" height="16" rx="1.5"/><path d="M3.5 9h17M8 9v11M12 12.5h5M12 16h5"/></svg></button><input type="file" id="saFileIn" multiple hidden></span><label class="sr" for="saMsgIn">${saEsc(T('Message'))}</label><textarea id="saMsgIn" rows="2" maxlength="2000" placeholder="${saEsc(T('Write a message. Enter sends, Shift+Enter adds a line.'))}"></textarea><button class="sa-btn pri" type="submit">${saEsc(T('Send'))}</button></form>`;
+  saUpPaint();
   await saMsgFetch(true);
   SA.com.tpoll = setInterval(() => { if (SA.view === 'community' && SA.com.active === id && document.visibilityState === 'visible') saMsgFetch(false); }, 4000);
   if (!keep){ const i = sa$('#saMsgIn'); if (i) i.focus(); }
 }
 async function saMsgFetch(first){
   const id = SA.com.active; if (!id) return;
-  let q = SA.sb.from('chat_messages').select('id,sender_id,body,created_at').eq('chat_id', id);
+  let q = SA.sb.from('chat_messages').select(SA.com.cols || 'id,sender_id,body,created_at,attachment,project_id,project_name').eq('chat_id', id);
   q = first ? q.order('id', {ascending: false}).limit(150) : q.gt('id', SA.com.lastId).order('id', {ascending: true}).limit(150);
-  const {data, error} = await q;
+  let {data, error} = await q;
+  if (error && !SA.com.cols && /attachment|project_/.test(error.message || '')){ SA.com.cols = 'id,sender_id,body,created_at'; return saMsgFetch(first); }   // 0005 not run yet
   if (SA.com.active !== id) return;
   if (error){ if (first){ const m = sa$('#saMsgs'); if (m) m.innerHTML = `<div class="sa-msg bad">${saEsc(T('Messages could not be loaded.'))}</div>`; } return; }
   let rows = data || []; if (first) rows = rows.slice().reverse();
@@ -642,6 +650,7 @@ async function saMsgFetch(first){
   if (unknown){ const s = await SA.sb.rpc('chat_senders', {cid: id}); (s.data || []).forEach(x => { if (!(x.user_id in SA.com.names)) SA.com.names[x.user_id] = x.name; }); }
   if (first) SA.com.msgs = rows; else SA.com.msgs = SA.com.msgs.concat(rows.filter(r => !SA.com.msgs.some(m => m.id === r.id)));
   if (SA.com.msgs.length) SA.com.lastId = SA.com.msgs[SA.com.msgs.length - 1].id;
+  saSign(SA.com.msgs);
   saMsgPaint(first || rows.length > 0);
   if (first || rows.some(r => r.sender_id !== SA.user.id)) saChatRead(id);
 }
@@ -654,7 +663,8 @@ function saMsgPaint(stick){
     const mine = m.sender_id === SA.user.id, d = new Date(m.created_at).toDateString();
     const sep = d !== day ? `<div class="sa-day">${saEsc(saDate(m.created_at))}</div>` : ''; day = d;
     const first = prev !== m.sender_id || sep; prev = m.sender_id;
-    return `${sep}<div class="sa-m ${mine ? 'me' : ''}">${grp && !mine && first ? `<span class="who" data-nt>${saEsc(SA.com.names[m.sender_id] || T('Former member'))}</span>` : ''}<div class="bb" data-nt>${saEsc(m.body)}<time>${saEsc(new Date(m.created_at).toLocaleTimeString(saLang(), {hour: '2-digit', minute: '2-digit'}))}</time></div></div>`;
+    const extra = (m.attachment ? saFileHtml(m) : '') + (m.project_name ? saProjMsgHtml(m, mine) : '');
+    return `${sep}<div class="sa-m ${mine ? 'me' : ''}">${grp && !mine && first ? `<span class="who" data-nt>${saEsc(SA.com.names[m.sender_id] || T('Former member'))}</span>` : ''}<div class="bb ${extra ? 'has-x' : ''}" data-nt>${extra}${m.body ? `<span class="tx">${saEsc(m.body)}</span>` : ''}<time>${saEsc(new Date(m.created_at).toLocaleTimeString(saLang(), {hour: '2-digit', minute: '2-digit'}))}</time></div></div>`;
   }).join('') : `<div class="sa-empty sa-cnone">${saEsc(T('No messages yet. Say hello.'))}</div>`;
   if (stick || near) box.scrollTop = box.scrollHeight;
 }
@@ -679,23 +689,33 @@ async function saSendMsg(){
 
 /* ----- dialogs ----- */
 function saResultHtml(r, verb){
-  const why = {not_registered: 'is not a registered member', already: 'is already included', invalid: 'is not a valid email address', self: 'is your own address', limit: 'was left out (20 addresses at a time)', daily_limit: 'Daily invitation limit reached. Try again tomorrow.', failed: 'could not be added'};
+  const why = {not_registered: 'is not a registered member', not_found: 'is not available', already: 'is already included', invalid: 'is not a valid email address', self: 'is your own address', limit: 'was left out (20 addresses at a time)', daily_limit: 'Daily invitation limit reached. Try again tomorrow.', failed: 'could not be added'};
   const done = r.invited || r.shared || [];
   let h = '';
   if (done.length) h += `<div class="sa-msg ok" style="margin-bottom:8px">${saEsc(T(verb))}: ${done.map(x => `<b data-nt>${saEsc(x.name)}</b>`).join(', ')}.${r.mail ? (r.emailed ? ` ${saEsc(T('Email sent to'))} ${r.emailed}.` : ` ${saEsc(T('The email could not be sent. They will still see it on their dashboard.'))}`) : ` ${saEsc(T('They will see it on their dashboard.'))}`}</div>`;
   const sk = (r.skipped || []);
-  if (sk.length) h += `<div class="sa-msg warn">${sk.map(x => x.email ? `<span data-nt>${saEsc(x.email)}</span> ${saEsc(T(why[x.reason] || why.failed))}` : saEsc(T(why[x.reason] || why.failed))).join('<br>')}</div>`;
+  const lab = x => x.email || (x.id && SA.com.who[x.id]) || (x.id ? T('A member') : '');
+  if (sk.length) h += `<div class="sa-msg warn">${sk.map(x => lab(x) ? `<span data-nt>${saEsc(lab(x))}</span> ${saEsc(T(why[x.reason] || why.failed))}` : saEsc(T(why[x.reason] || why.failed))).join('<br>')}</div>`;
   return h;
 }
-function saComDialog(kind, extra){
-  const c = kind === 'cinvite' ? saChatById(SA.com.active) : null;
+function saComDialog(kind, extra, opts){
+  const c = kind === 'cinvite' || kind === 'cproj' ? saChatById(SA.com.active) : null;
+  const ids = String(extra || '').split(',').filter(Boolean), who = ids.map(i => SA.com.who[i] || T('A member'));
+  const people = `<p class="sa-sub" style="margin:0 0 10px" data-nt>${saEsc(who.slice(0, 6).join(', ') + (who.length > 6 ? ' +' + (who.length - 6) : ''))}</p>`;
+  const projSel = opts ? `<label class="sa-field"><span>${saEsc(T('Project'))}</span><select id="saCProj" required>${opts}</select></label><label class="sa-field"><span>${saEsc(T('Message (optional)'))}</span><input id="saCNote" type="text" maxlength="500"></label>` : `<div class="sa-msg warn">${saEsc(T('You have no saved projects yet. Save a board to your account first.'))}</div>`;
+  const groups = SA.com.chats.filter(g => g.kind === 'group' && g.my_status === 'joined' && g.my_role === 'owner');
   const f = {
+    mshare: [ids.length > 1 ? T('Share a project with') + ' ' + ids.length + ' ' + T('members') : T('Share a project with') + ' ' + who[0], `${ids.length > 1 ? people : ''}<p class="sa-sub" style="margin:0 0 8px">${saEsc(T('They can view the board and save their own copy. Only you can change the original.'))}</p>${projSel}`, T('Share')],
+    cproj: [T('Share a project in this chat'), `<p class="sa-sub" style="margin:0 0 8px">${saEsc(T('Everyone in this chat can view the board and save their own copy. Only you can change the original.'))}</p>${projSel}`, T('Share')],
+    mgroup: [T('Start a group chat'), `${people}<label class="sa-field"><span>${saEsc(T('Group name'))}</span><input id="saCTitle" type="text" maxlength="100" required></label><p class="sa-fine" style="margin:0">${saEsc(T('The selected members get an invitation and join when they accept.'))}</p>`, T('Create group')],
+    madd: [T('Add to my group'), `${people}<label class="sa-field"><span>${saEsc(T('Group'))}</span><select id="saCGroup">${groups.map(g => `<option value="${g.id}">${saEsc(g.title || T('Group chat'))}</option>`).join('')}</select></label>`, T('Send invitations')],
     cdirect: [T('New private chat'), `<label class="sa-field"><span>${saEsc(T('Email address of a registered member'))}</span><input id="saCEmail" type="email" autocomplete="off" maxlength="254" required></label>`, T('Start chat')],
     cgroup: [T('New group'), `<label class="sa-field"><span>${saEsc(T('Group name'))}</span><input id="saCTitle" type="text" maxlength="100" required></label><label class="sa-field"><span>${saEsc(T('Invite members by email'))}</span><textarea id="saCEmails" rows="3" placeholder="name@example.com, other@example.com"></textarea><small>${saEsc(T('Separate addresses with commas or new lines. Invited members get an email and a notification, and join when they accept.'))}</small></label>`, T('Create group')],
     cinvite: [T('Invite to') + ' ' + (c ? saChatName(c) : ''), `<label class="sa-field"><span>${saEsc(T('Invite members by email'))}</span><textarea id="saCEmails" rows="3" placeholder="name@example.com"></textarea></label>`, T('Send invitations')],
     cshare: [T('Share project'), `<p class="sa-sub" style="margin:0 0 8px">${saEsc(T('Registered members can view the board and save their own copy. Only you can change the original.'))}</p><label class="sa-field"><span>${saEsc(T('Share with (email addresses)'))}</span><textarea id="saCEmails" rows="2" placeholder="name@example.com"></textarea></label><label class="sa-field"><span>${saEsc(T('Message (optional)'))}</span><input id="saCNote" type="text" maxlength="500"></label>`, T('Share')],
   }[kind];
-  saModal(`<h2 data-nt>${saEsc(f[0])}</h2><form id="saCForm" data-k="${kind}" data-x="${saEsc(extra || '')}">${f[1]}<div id="saCRes" style="margin-top:10px"></div><div class="sa-row" style="margin-top:14px;justify-content:flex-end"><button type="button" class="sa-btn" data-sa="close">${saEsc(T('Close'))}</button><button class="sa-btn pri" type="submit" id="saCGo">${saEsc(f[2])}</button></div></form>`);
+  const noProj = (kind === 'mshare' || kind === 'cproj') && !opts;
+  saModal(`<h2 data-nt>${saEsc(f[0])}</h2><form id="saCForm" data-k="${kind}" data-x="${saEsc(extra || '')}">${f[1]}<div id="saCRes" style="margin-top:10px"></div><div class="sa-row" style="margin-top:14px;justify-content:flex-end"><button type="button" class="sa-btn" data-sa="close">${saEsc(T('Close'))}</button>${noProj ? '' : `<button class="sa-btn pri" type="submit" id="saCGo">${saEsc(f[2])}</button>`}</div></form>`);
 }
 async function saComSubmit(form){
   const kind = form.dataset.k, go = sa$('#saCGo'), res = sa$('#saCRes'), v = id => ((sa$('#' + id) || {}).value || '').trim();
@@ -717,6 +737,30 @@ async function saComSubmit(form){
       const r = await saApi('/api/community/invite', {method: 'POST', body: JSON.stringify({chat_id: SA.com.active, emails: v('saCEmails')})});
       res.innerHTML = saResultHtml(r, 'Invited'); go.disabled = false; if ((r.invited || []).length){ sa$('#saCEmails').value = ''; saComLoad().then(() => { if (SA.com.active) saThreadOpen(SA.com.active, true); }); } return;
     }
+    const ids = String(form.dataset.x || '').split(',').filter(Boolean);
+    if (kind === 'mshare'){
+      const r = await saApi('/api/community/share', {method: 'POST', body: JSON.stringify({project_id: v('saCProj'), user_ids: ids, note: v('saCNote')})});
+      res.innerHTML = saResultHtml(r, 'Shared with'); go.disabled = false; if ((r.shared || []).length) saComLoad(); return;
+    }
+    if (kind === 'cproj'){
+      const cid = SA.com.active;
+      const r = await saApi('/api/community/share', {method: 'POST', body: JSON.stringify({project_id: v('saCProj'), chat_id: cid, note: v('saCNote')})});
+      saModalClose();
+      if (r.message && SA.com.active === cid && !SA.com.msgs.some(m => m.id === r.message.id)){ SA.com.msgs.push(r.message); SA.com.lastId = Math.max(SA.com.lastId, r.message.id); saMsgPaint(true); }
+      const c = saChatById(cid); if (c && r.message){ c.last_body = r.message.body || '▦ ' + r.message.project_name; c.last_sender = saName(); saChatListPaint(); }
+      saComLoad(); return;
+    }
+    if (kind === 'mgroup'){
+      if (!v('saCTitle')){ res.innerHTML = `<div class="sa-msg bad">${saEsc(T('Give the group a name.'))}</div>`; go.disabled = false; return; }
+      const r = await saApi('/api/community/group', {method: 'POST', body: JSON.stringify({title: v('saCTitle'), user_ids: ids})});
+      SA.com.sel.clear(); SA.com.active = r.chat_id; SA.com.tab = 'chats';
+      res.innerHTML = saResultHtml(r, 'Invited'); go.hidden = true; const cl = form.querySelector('[data-sa=close]'); cl.textContent = T('Open group'); cl.className = 'sa-btn pri'; cl.dataset.sa = 'cgo';
+      return;
+    }
+    if (kind === 'madd'){
+      const r = await saApi('/api/community/invite', {method: 'POST', body: JSON.stringify({chat_id: v('saCGroup'), user_ids: ids})});
+      res.innerHTML = saResultHtml(r, 'Invited'); go.disabled = false; if ((r.invited || []).length){ SA.com.sel.clear(); saDirPaint(); saSelPaint(); saComLoad(); } return;
+    }
     if (kind === 'cshare'){
       const r = await saApi('/api/community/share', {method: 'POST', body: JSON.stringify({project_id: form.dataset.x, emails: v('saCEmails'), note: v('saCNote')})});
       res.innerHTML = saResultHtml(r, 'Shared with'); go.disabled = false; if ((r.shared || []).length){ sa$('#saCEmails').value = ''; saComLoad(); } return;
@@ -727,6 +771,120 @@ function saMembersDialog(){
   const c = saChatById(SA.com.active); if (!c) return;
   const mem = c.members || [], own = mem.some(m => m.id === SA.user.id && m.role === 'owner');
   saModal(`<h2 data-nt>${saEsc(saChatName(c))}</h2><ul class="sa-mem">${mem.map(m => `<li><span data-nt><b>${saEsc(m.name)}</b>${m.id === SA.user.id ? ` (${saEsc(T('you'))})` : ''}</span><span class="sa-sub" style="margin:0">${saEsc(T(m.role === 'owner' ? 'Owner' : m.status === 'invited' ? 'Invited' : 'Member'))}</span>${own && m.id !== SA.user.id ? `<button class="sa-btn sm bad" data-sa="crm" data-id="${m.id}">${saEsc(T(m.status === 'invited' ? 'Cancel invite' : 'Remove'))}</button>` : ''}</li>`).join('')}</ul><div class="sa-row" style="justify-content:flex-end;margin-top:14px"><button class="sa-btn" data-sa="close">${saEsc(T('Close'))}</button></div>`);
+}
+
+/* ----- member directory ----- */
+const saSelIds = () => [...SA.com.sel.keys()];
+function saMembers(){
+  const b = sa$('#saComBody'); if (!b) return;
+  b.innerHTML = `<div class="sa-row sa-dirhd"><label class="sr" for="saDirQ">${saEsc(T('Search members'))}</label><input class="sa-in" id="saDirQ" type="search" autocomplete="off" placeholder="${saEsc(T('Search by name, company, country or occupation'))}" value="${saEsc(SA.com.dir.q)}"><span class="sa-sub" id="saDirN" style="margin:0"></span></div>
+  <p class="sa-fine sa-dirnote">${saEsc(T('Tick members to start a group, share a project or add them to one of your groups. Email addresses are never shown.'))}</p>
+  <div id="saDirList" class="sa-dir"></div><div id="saDirMore" style="margin-top:12px;text-align:center"></div><div id="saSelBar" class="sa-selbar" role="region" aria-label="${saEsc(T('Selected members'))}" hidden></div>`;
+  saDirLoad(true); saSelPaint();
+}
+async function saDirLoad(reset){
+  const d = SA.com.dir, seq = ++d.seq;
+  if (reset){ d.rows = []; d.total = 0; }
+  d.loading = true; saDirPaint();
+  const {data, error} = await SA.sb.rpc('member_directory', {q: d.q, lim: 60, off: d.rows.length});
+  if (seq !== d.seq || SA.com.tab !== 'members') return;
+  d.loading = false;
+  if (error){ d.err = /member_directory|schema cache|does not exist|function/i.test(error.message || '') ? 'The member list is not set up yet. The site owner needs to run the 0005_members_files.sql migration in Supabase.' : 'Members could not be loaded. Check your connection and try again.'; saDirPaint(); return; }
+  d.err = null; const rows = data || [];
+  rows.forEach(r => { SA.com.who[r.id] = r.name; });
+  d.rows = d.rows.concat(rows.filter(r => !d.rows.some(x => x.id === r.id)));
+  d.total = rows.length ? +rows[0].total : (reset ? 0 : d.total);
+  saDirPaint();
+}
+function saMemberCard(m){
+  const on = SA.com.sel.has(m.id), ini = m.name.split(/\s+/).map(w => w[0] || '').join('').slice(0, 2).toUpperCase() || '?';
+  const line1 = [m.occupation ? T(m.occupation) : '', m.company].filter(Boolean).join(' · ');
+  const line2 = [m.country, T('Member since') + ' ' + saDate(m.member_since)].filter(Boolean).join(' · ');
+  return `<article class="sa-mcard ${on ? 'on' : ''}"><label class="sa-mchk"><input type="checkbox" data-sa="msel" data-id="${m.id}" ${on ? 'checked' : ''} aria-label="${saEsc(T('Select') + ' ' + m.name)}"></label><span class="sa-cav" aria-hidden="true" data-nt>${saEsc(ini)}</span><div class="tx"><b data-nt>${saEsc(m.name)}</b>${line1 ? `<span data-nt>${saEsc(line1)}</span>` : ''}<span data-nt>${saEsc(line2)}</span></div><div class="acts"><button class="sa-btn pri sm" data-sa="mchat" data-id="${m.id}">${saEsc(T('Message'))}</button><button class="sa-btn sm" data-sa="mshare" data-id="${m.id}">${saEsc(T('Share project'))}</button><button class="sa-btn sm" data-sa="mfile" data-id="${m.id}">${saEsc(T('Send file'))}</button></div></article>`;
+}
+function saDirPaint(){
+  const l = sa$('#saDirList'), n = sa$('#saDirN'), more = sa$('#saDirMore'), d = SA.com.dir; if (!l) return;
+  if (d.err){ l.innerHTML = `<div class="sa-msg warn">${saEsc(T(d.err))}</div>`; n.textContent = ''; more.innerHTML = ''; return; }
+  if (!d.rows.length){ l.innerHTML = `<div class="sa-empty">${saEsc(T(d.loading ? 'Loading…' : d.q ? 'No members match your search.' : 'No other members yet.'))}</div>`; n.textContent = ''; more.innerHTML = ''; return; }
+  l.innerHTML = d.rows.map(saMemberCard).join('');
+  n.textContent = d.total + ' ' + T(d.total === 1 ? 'member' : 'members');
+  more.innerHTML = d.rows.length < d.total ? `<button class="sa-btn" data-sa="mmore" ${d.loading ? 'disabled' : ''}>${saEsc(T(d.loading ? 'Loading…' : 'Show more members'))}</button>` : '';
+}
+function saSelPaint(){
+  const bar = sa$('#saSelBar'); if (!bar) return;
+  const n = SA.com.sel.size; bar.hidden = !n; if (!n) return;
+  const owned = SA.com.chats.filter(c => c.kind === 'group' && c.my_status === 'joined' && c.my_role === 'owner').length;
+  bar.innerHTML = `<b>${n} ${saEsc(T('selected'))}</b><span class="sa-row">${n === 1 ? `<button class="sa-btn pri sm" data-sa="mchat" data-id="${saSelIds()[0]}">${saEsc(T('Message'))}</button>` : ''}<button class="sa-btn ${n > 1 ? 'pri' : ''} sm" data-sa="mgroup">${saEsc(T('Start a group chat'))}</button><button class="sa-btn sm" data-sa="mshare">${saEsc(T('Share project'))}</button>${owned ? `<button class="sa-btn sm" data-sa="madd">${saEsc(T('Add to my group'))}</button>` : ''}<button class="sa-btn sm" data-sa="mclear">${saEsc(T('Clear'))}</button></span>`;
+}
+async function saOpenDirect(uid){
+  const r = await saApi('/api/community/direct', {method: 'POST', body: JSON.stringify({user_id: uid})});
+  SA.com.tab = 'chats'; SA.com.active = r.chat_id; await saComLoad(); await saViewCommunity(sa$('#saas'));
+  return r.chat_id;
+}
+async function saProjOptions(){
+  if (!SA.projects || !SA.projects.length) await saListProjects();
+  return (SA.projects || []).map(p => `<option value="${p.id}">${saEsc(p.name)}</option>`).join('');
+}
+
+/* ----- files and projects inside chats ----- */
+const saImg = t => /^image\/(png|jpe?g|gif|webp)$/i.test(t || '');
+const saSize = n => n >= 1048576 ? (n / 1048576).toFixed(1) + ' MB' : n >= 1024 ? Math.round(n / 1024) + ' KB' : (n || 0) + ' B';
+async function saSign(msgs){
+  const now = Date.now(), need = {v: [], d: []};
+  msgs.forEach(m => { const a = m.attachment; if (!a || !a.path) return;
+    const k = saImg(a.type) ? 'v' : 'd', c = SA.com.urls[a.path + '|' + k]; if (!c || c.exp < now) need[k].push(a.path); });
+  let changed = false;
+  for (const k of ['v', 'd']){
+    if (!need[k].length) continue;
+    const {data, error} = await SA.sb.storage.from('chat-files').createSignedUrls([...new Set(need[k])], 3600, k === 'd' ? {download: true} : undefined);
+    if (error || !data) continue;
+    data.forEach(x => { if (x.signedUrl && x.path) { SA.com.urls[x.path + '|' + k] = {u: x.signedUrl, exp: now + 3300000}; changed = true; } });
+  }
+  if (changed) saMsgPaint(false);
+}
+function saFileHtml(m){
+  const a = m.attachment, img = saImg(a.type), u = SA.com.urls[a.path + '|' + (img ? 'v' : 'd')];
+  const ext = ((a.name || '').match(/\.([a-z0-9]{1,5})$/i) || ['', T('File')])[1].toUpperCase();
+  if (img) return `<a class="sa-fimg" ${u ? `href="${saEsc(u.u)}"` : ''} target="_blank" rel="noopener" title="${saEsc(a.name)}">${u ? `<img src="${saEsc(u.u)}" alt="${saEsc(a.name)}" loading="lazy">` : `<span>${saEsc(T('Loading…'))}</span>`}</a>`;
+  return `<a class="sa-file" ${u ? `href="${saEsc(u.u)}"` : 'aria-disabled="true"'} target="_blank" rel="noopener" download="${saEsc(a.name)}"><span class="ic" aria-hidden="true">${saEsc(ext)}</span><span class="nm"><b>${saEsc(a.name)}</b><em>${saEsc(saSize(a.size))} · ${saEsc(T('Download'))}</em></span></a>`;
+}
+function saProjMsgHtml(m, mine){
+  const act = !m.project_id ? `<em>${saEsc(T('No longer available'))}</em>` : mine ? `<button class="sa-btn sm" data-sa="popen" data-id="${m.project_id}">${saEsc(T('Open'))}</button>` : `<button class="sa-btn sm pri" data-sa="pcopy" data-id="${m.project_id}" data-from="${saEsc(SA.com.names[m.sender_id] || '')}">${saEsc(T('Open a copy'))}</button>`;
+  return `<span class="sa-pcard"><span class="ic" aria-hidden="true">▦</span><span class="nm"><b>${saEsc(m.project_name)}</b><em>${saEsc(T('Shared project'))}</em></span>${act}</span>`;
+}
+function saUpPaint(){
+  const b = sa$('#saUps'); if (!b) return;
+  const list = SA.com.uploads.filter(u => u.chat === SA.com.active);
+  b.innerHTML = list.map(u => `<div class="sa-up ${u.err ? 'bad' : ''}"><span data-nt>${saEsc(u.name)}</span><em>${saEsc(u.err ? T(u.err) : T('Uploading…'))}</em>${u.err ? `<button class="sa-link" data-sa="updismiss" data-id="${u.id}">${saEsc(T('Dismiss'))}</button>` : ''}</div>`).join('');
+}
+async function saUpload(files, chatId){
+  chatId = chatId || SA.com.active; if (!chatId) return;
+  for (const f of [...files].slice(0, 10)){
+    const u = {id: crypto.randomUUID(), chat: chatId, name: f.name || 'file', err: null}; SA.com.uploads.push(u); saUpPaint();
+    if (f.size > SA_FILE_MAX){ u.err = 'Larger than 25 MB, not sent.'; saUpPaint(); continue; }
+    if (!f.size){ u.err = 'The file is empty.'; saUpPaint(); continue; }
+    const safe = (u.name.normalize('NFKD').replace(/[^\w.\-]+/g, '_').replace(/_+/g, '_').replace(/^[._]+/, '') || 'file').slice(-120);
+    const path = `${chatId}/${crypto.randomUUID()}/${safe}`;
+    const up = await SA.sb.storage.from('chat-files').upload(path, f, {contentType: f.type || 'application/octet-stream', upsert: false});
+    if (up.error){ u.err = /not found|bucket/i.test(up.error.message || '') ? 'File sharing is not set up yet.' : /size|large|413/i.test(up.error.message || '') ? 'Larger than 25 MB, not sent.' : 'Upload failed. Try again.'; saUpPaint(); continue; }
+    const {data, error} = await SA.sb.from('chat_messages').insert({chat_id: chatId, body: '', attachment: {path, name: u.name.slice(0, 180), size: f.size, type: f.type || ''}}).select('id,sender_id,body,created_at,attachment,project_id,project_name').single();
+    if (error){ SA.sb.storage.from('chat-files').remove([path]).then(() => {}, () => {}); u.err = /Daily file limit/i.test(error.message || '') ? 'Daily file limit reached. Try again tomorrow.' : /too quickly/i.test(error.message || '') ? 'You are sending messages too quickly. Wait a moment.' : 'The file could not be sent.'; saUpPaint(); continue; }
+    SA.com.uploads = SA.com.uploads.filter(x => x !== u); saUpPaint();
+    if (SA.com.active === chatId && !SA.com.msgs.some(m => m.id === data.id)){ SA.com.msgs.push(data); SA.com.lastId = Math.max(SA.com.lastId, data.id); await saSign([data]); saMsgPaint(true); }
+    const c = saChatById(chatId); if (c){ c.last_body = '📎 ' + data.attachment.name; c.last_sender = saName(); saChatListPaint(); }
+  }
+}
+function saPickFiles(then){
+  const i = document.createElement('input'); i.type = 'file'; i.multiple = true; i.style.display = 'none';
+  i.addEventListener('change', () => { const f = [...i.files]; i.remove(); if (f.length) then(f); });
+  document.body.appendChild(i); i.click();
+}
+async function saCopyShared(pid, from){
+  const {data, error} = await SA.sb.from('projects').select('name,data').eq('id', pid).maybeSingle();
+  if (error || !data){ toast(T('That project is no longer shared with you.')); return; }
+  const p = data.data;
+  if (!p || !p.circuits || !p.modules || !STD[p.std]){ toast(T('This project could not be read.')); return; }
+  try { const row = await saCreateProject(p, (data.name + (from ? ' (from ' + from + ')' : ' (copy)')).slice(0, 200)); await saOpenProject(row.id); } catch (e) { toast(saErr(e)); }
 }
 
 /* ----- shared projects ----- */
@@ -744,14 +902,7 @@ function saShared(){
 }
 async function saShareOpen(id){
   const s = SA.com.shares.find(x => x.id === id); if (!s) return;
-  const {data, error} = await SA.sb.from('projects').select('name,data').eq('id', s.project_id).maybeSingle();
-  if (error || !data){ toast(T('That project is no longer shared with you.')); return; }
-  const p = data.data;
-  if (!p || !p.circuits || !p.modules || !STD[p.std]){ toast(T('This project could not be read.')); return; }
-  try {
-    const row = await saCreateProject(p, (data.name + ' (from ' + s.other_name + ')').slice(0, 200));
-    await saOpenProject(row.id);
-  } catch (e) { toast(saErr(e)); }
+  await saCopyShared(s.project_id, s.other_name);
 }
 
 /* ----- events ----- */
@@ -776,6 +927,19 @@ document.addEventListener('click', async ev => {
     await SA.sb.from('chat_members').delete().eq('chat_id', SA.com.active).eq('user_id', SA.user.id); SA.com.active = null; await saComLoad(); saChats();
   }
   else if (a === 'crm'){ const cid = SA.com.active; await SA.sb.from('chat_members').delete().eq('chat_id', cid).eq('user_id', id); await saComLoad(); saMembersDialog(); saChatListPaint(); if (SA.com.active === cid) saThreadOpen(cid, true); }
+  else if (a === 'msel'){ if (b.checked) SA.com.sel.set(id, SA.com.who[id] || ''); else SA.com.sel.delete(id); const card = b.closest('.sa-mcard'); if (card) card.classList.toggle('on', b.checked); saSelPaint(); }
+  else if (a === 'mclear'){ SA.com.sel.clear(); saDirPaint(); saSelPaint(); }
+  else if (a === 'mmore'){ saDirLoad(false); }
+  else if (a === 'mchat'){ b.disabled = true; try { await saOpenDirect(id); } catch (e) { toast(T(e.message || 'Request failed')); b.disabled = false; } }
+  else if (a === 'mfile'){ saPickFiles(async files => { try { const cid = await saOpenDirect(id); await saUpload(files, cid); } catch (e) { toast(T(e.message || 'Request failed')); } }); }
+  else if (a === 'mshare'){ const ids = id ? [id] : saSelIds(); if (!ids.length) return; b.disabled = true; const o = await saProjOptions().catch(() => ''); b.disabled = false; saComDialog('mshare', ids.join(','), o); }
+  else if (a === 'mgroup'){ if (SA.com.sel.size) saComDialog('mgroup', saSelIds().join(',')); }
+  else if (a === 'madd'){ if (SA.com.sel.size) saComDialog('madd', saSelIds().join(',')); }
+  else if (a === 'cattach'){ const i = sa$('#saFileIn'); if (i) i.click(); }
+  else if (a === 'cproj'){ b.disabled = true; const o = await saProjOptions().catch(() => ''); b.disabled = false; saComDialog('cproj', '', o); }
+  else if (a === 'popen'){ b.disabled = true; try { await saOpenProject(id); } catch (e) { toast(saErr(e)); } b.disabled = false; }
+  else if (a === 'pcopy'){ b.disabled = true; await saCopyShared(id, b.dataset.from); b.disabled = false; }
+  else if (a === 'updismiss'){ SA.com.uploads = SA.com.uploads.filter(u => u.id !== id); saUpPaint(); }
   else if (a === 'shopen'){ b.disabled = true; await saShareOpen(id); b.disabled = false; }
   else if (a === 'shrm'){
     if (b.dataset.sure !== '1'){ b.dataset.sure = '1'; const o = b.textContent; b.textContent = T('Click again to confirm'); setTimeout(() => { if (b.isConnected){ b.dataset.sure = ''; b.textContent = o; } }, 4000); return; }
@@ -788,6 +952,18 @@ document.addEventListener('submit', ev => {
   if (ev.target.id === 'saCForm'){ ev.preventDefault(); saComSubmit(ev.target); }
   else if (ev.target.id === 'saSend'){ ev.preventDefault(); saSendMsg(); }
 });
+document.addEventListener('change', ev => {
+  if (ev.target.id === 'saFileIn'){ const f = [...ev.target.files]; ev.target.value = ''; if (f.length) saUpload(f); }
+});
+document.addEventListener('input', ev => {
+  if (ev.target.id !== 'saDirQ') return;
+  clearTimeout(SA.com.dir.t); const q = ev.target.value.trim().slice(0, 80);
+  SA.com.dir.t = setTimeout(() => { if (q !== SA.com.dir.q){ SA.com.dir.q = q; saDirLoad(true); } }, 300);
+});
+/* drag files onto an open chat */
+['dragenter', 'dragover'].forEach(t => document.addEventListener(t, ev => { const th = ev.target.closest && ev.target.closest('#saCThread'); if (!th || !SA.com.active || !(ev.dataTransfer && [...ev.dataTransfer.types].includes('Files'))) return; ev.preventDefault(); th.classList.add('drop'); }));
+['dragleave', 'drop'].forEach(t => document.addEventListener(t, ev => { const th = ev.target.closest && ev.target.closest('#saCThread'); if (!th) return; if (t === 'dragleave' && th.contains(ev.relatedTarget)) return; th.classList.remove('drop'); if (t === 'drop' && SA.com.active && ev.dataTransfer && ev.dataTransfer.files.length){ ev.preventDefault(); saUpload(ev.dataTransfer.files); } }));
+document.addEventListener('paste', ev => { if (ev.target.id !== 'saMsgIn' || !SA.com.active) return; const f = [...((ev.clipboardData && ev.clipboardData.files) || [])]; if (f.length){ ev.preventDefault(); saUpload(f); } });
 document.addEventListener('keydown', ev => {
   if (ev.target.id === 'saMsgIn' && ev.key === 'Enter' && !ev.shiftKey && !ev.isComposing){ ev.preventDefault(); saSendMsg(); }
   if (ev.key === 'Escape'){ const op = sa$('#saBell'); if (op){ op.remove(); SA.notif.open = false; } }

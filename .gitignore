@@ -8,3 +8,4 @@ mobile/android/app/release/
 *.keystore
 *.jks
 *.p8
+node_modules

@@ -46,9 +46,22 @@ jobs:
         run: npm ci && node prepare-www.mjs && npx cap sync android
       - name: Signing key
         id: key
-        env: { KS: '${{ secrets.ANDROID_KEYSTORE_BASE64 }}' }
+        env:
+          KS: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          PW: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          KPW: ${{ secrets.ANDROID_KEY_PASSWORD }}
+          ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
         run: |
-          if [ -n "$KS" ]; then echo "$KS" | base64 -d > "$RUNNER_TEMP/upload.jks"; echo "file=$RUNNER_TEMP/upload.jks" >> "$GITHUB_OUTPUT"; else echo "No signing key yet: building an unsigned check build."; fi
+          if [ -z "$KS" ]; then echo "No signing key yet: building an unsigned check build."; exit 0; fi
+          # Tolerate copy-and-paste extras: marker lines, spaces and line breaks.
+          clean=$(printf '%s' "$KS" | grep -v -- '-----' | tr -d ' \r\n\t')
+          echo "::notice::ANDROID_KEYSTORE_BASE64 has ${#clean} characters after cleaning (the correct value has 5728)."
+          printf '%s' "$clean" | base64 -d > "$RUNNER_TEMP/upload.jks" 2>/dev/null || { echo "::error::ANDROID_KEYSTORE_BASE64 is not a complete key. Paste the whole long line again (about 5728 characters)."; exit 1; }
+          [ "$ALIAS" = "upload" ] || echo "::warning::ANDROID_KEY_ALIAS is '${#ALIAS}' characters long; it should be the word upload."
+          keytool -list -keystore "$RUNNER_TEMP/upload.jks" -storepass "$PW" -alias "$ALIAS" > /dev/null 2>&1 || { echo "::error::The key file decoded, but ANDROID_KEYSTORE_PASSWORD or ANDROID_KEY_ALIAS does not match it."; exit 1; }
+          [ "$PW" = "$KPW" ] || echo "::warning::ANDROID_KEY_PASSWORD differs from ANDROID_KEYSTORE_PASSWORD; they should be the same."
+          echo "::notice::Signing key OK."
+          echo "file=$RUNNER_TEMP/upload.jks" >> "$GITHUB_OUTPUT"
       - name: Build
         working-directory: mobile/android
         env:

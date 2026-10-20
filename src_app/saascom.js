@@ -111,6 +111,10 @@ async function saThreadOpen(id, keep){
   <div class="sa-ups" id="saUps" aria-live="polite"></div>
   <form class="sa-comp" id="saSend"><span class="sa-ctools"><button type="button" class="sa-ib" data-sa="cattach" title="${saEsc(T('Attach files'))}" aria-label="${saEsc(T('Attach files'))}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5 12.6 19.9a5.5 5.5 0 0 1-7.8-7.8l8.5-8.5a3.7 3.7 0 0 1 5.2 5.2l-8.5 8.5a1.8 1.8 0 0 1-2.6-2.6l7.8-7.8"/></svg></button><button type="button" class="sa-ib" data-sa="cproj" title="${saEsc(T('Share a project in this chat'))}" aria-label="${saEsc(T('Share a project in this chat'))}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4" width="17" height="16" rx="1.5"/><path d="M3.5 9h17M8 9v11M12 12.5h5M12 16h5"/></svg></button><input type="file" id="saFileIn" multiple hidden></span><label class="sr" for="saMsgIn">${saEsc(T('Message'))}</label><textarea id="saMsgIn" rows="2" maxlength="2000" placeholder="${saEsc(T('Write a message. Enter sends, Shift+Enter adds a line.'))}"></textarea><button class="sa-btn pri" type="submit">${saEsc(T('Send'))}</button></form>`;
   saUpPaint();
+  if (matchMedia('(max-width:760px), (max-height:500px) and (max-width:1024px)').matches){   // phones: bring the chat to the top, under the header
+    const bar = sa$('.sa-bar'), hh = bar ? bar.offsetHeight : 0; document.documentElement.style.setProperty('--sa-hdr', hh + 'px');
+    window.scrollTo(0, t.getBoundingClientRect().top + window.scrollY - hh - 6);
+  }
   await saMsgFetch(true);
   SA.com.tpoll = setInterval(() => { if (SA.view === 'community' && SA.com.active === id && document.visibilityState === 'visible') saMsgFetch(false); }, 4000);
   if (!keep){ const i = sa$('#saMsgIn'); if (i) i.focus(); }

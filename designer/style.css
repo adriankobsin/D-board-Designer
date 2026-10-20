@@ -274,3 +274,17 @@ input.qty{width:54px;min-height:26px;padding:2px 6px;font-size:12px;text-align:c
 #refcard{margin-top:16px}
 .pdfsecs{display:flex;flex-direction:column;gap:10px;margin:4px 0 18px}
 .fld textarea{width:100%;font:inherit;resize:vertical;min-height:64px}
+/* Phones: a form control (for example a dropdown with long device names) must never be wider than its column,
+   otherwise the browser zooms the whole page out. */
+select,input,textarea{max-width:100%}
+select{text-overflow:ellipsis}
+/* Phones: Safari sizes a dropdown to its longest option. Let the header columns shrink below that so the page
+   never becomes wider than the screen (which cut off the right-hand side of every screen). */
+@media (max-width:699px){
+  .quick{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .quick > *{min-width:0}
+  .quick select{width:100%;min-width:0;max-width:100%}
+  .quick label.langsel select{flex:1 1 0;width:0}
+  .bar-top > *,.brand,.cobox,#pname{min-width:0}
+  .brand b{white-space:normal}
+}

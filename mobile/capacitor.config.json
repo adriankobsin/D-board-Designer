@@ -3,11 +3,10 @@
   "appName": "DBoard Designer",
   "webDir": "www",
   "android": {
-    "allowMixedContent": false,
-    "adjustMarginsForEdgeToEdge": "auto"
+    "allowMixedContent": false
   },
   "ios": {
-    "contentInset": "never",
+    "contentInset": "always",
     "scheme": "DBoard Designer",
     "limitsNavigationsToAppBoundDomains": false
   },
@@ -21,6 +20,10 @@
     "StatusBar": {
       "style": "DEFAULT",
       "overlaysWebView": false
+    },
+    "SystemBars": {
+      "insetsHandling": "native"
     }
-  }
+  },
+  "backgroundColor": "#F5F7F9"
 }

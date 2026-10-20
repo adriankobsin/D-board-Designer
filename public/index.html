@@ -291,6 +291,20 @@ input.qty{width:54px;min-height:26px;padding:2px 6px;font-size:12px;text-align:c
 #refcard{margin-top:16px}
 .pdfsecs{display:flex;flex-direction:column;gap:10px;margin:4px 0 18px}
 .fld textarea{width:100%;font:inherit;resize:vertical;min-height:64px}
+/* Phones: a form control (for example a dropdown with long device names) must never be wider than its column,
+   otherwise the browser zooms the whole page out. */
+select,input,textarea{max-width:100%}
+select{text-overflow:ellipsis}
+/* Phones: Safari sizes a dropdown to its longest option. Let the header columns shrink below that so the page
+   never becomes wider than the screen (which cut off the right-hand side of every screen). */
+@media (max-width:699px){
+  .quick{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .quick > *{min-width:0}
+  .quick select{width:100%;min-width:0;max-width:100%}
+  .quick label.langsel select{flex:1 1 0;width:0}
+  .bar-top > *,.brand,.cobox,#pname{min-width:0}
+  .brand b{white-space:normal}
+}
 
 /* ---------- accounts, dashboard, admin ---------- */
 html.sa-hold .wrap{visibility:hidden}
@@ -407,7 +421,7 @@ html.sa-page #saas{display:block}
 .sa-dlg .legal{font-size:13.5px;line-height:1.55}
 .sa-dlg .legal h3{text-transform:none;letter-spacing:0;color:var(--ink);font-size:15px;margin:14px 0 4px}
 .sa-splash{min-height:60vh;display:flex;align-items:center;justify-content:center;color:var(--ink-2)}
-@media (max-width:699px){.sa-btn{min-height:42px}.sa-btn.sm{min-height:36px}.sa-h1{font-size:25px}.sa-nav button{padding:8px}.sa-ub .nm{display:none}}
+@media (max-width:699px), (max-height:500px) and (max-width:1024px){.sa-btn{min-height:42px}.sa-btn.sm{min-height:36px}.sa-h1{font-size:25px}.sa-nav button{padding:8px}.sa-ub .nm{display:none}}
 /* layout polish */
 html.sa-page body{margin:0}
 #saas .sa-bar .in,#saas .sa-main{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
@@ -477,7 +491,7 @@ html.sa-page body{padding:0}
 .sa-mem li{display:flex;gap:10px;align-items:center;justify-content:space-between;border:1px solid var(--line);border-radius:5px;padding:8px 10px}
 .sa-proj.new{border-color:var(--accent)}
 .sa-note{font-size:13px;color:var(--ink-2);margin:0 0 8px;overflow-wrap:anywhere}
-@media (max-width:760px){
+@media (max-width:760px), (max-height:500px) and (max-width:1024px){
   .sa-com{grid-template-columns:minmax(0,1fr)}
   .sa-com.open .sa-clist{display:none}
   .sa-com:not(.open) .sa-cthread{display:none}
@@ -489,7 +503,7 @@ html.sa-page body{padding:0}
 
 .sa-helpb{display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:0 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font:500 14px/1 inherit;cursor:pointer}
 .sa-helpb:hover{border-color:var(--accent);color:var(--accent)}
-@media (max-width:699px){.sa-helpb{min-height:42px;padding:0 11px}.sa-helpb span{display:none}}
+@media (max-width:699px), (max-height:500px) and (max-width:1024px){.sa-helpb{min-height:42px;padding:0 11px}.sa-helpb span{display:none}}
 html:lang(km) [class^="sa-"],html:lang(km) [class*=" sa-"],html:lang(km) .sa-main,html:lang(km) .sa-main *{font-family:system-ui,"Khmer UI","Leelawadee UI","Noto Sans Khmer","Khmer Sangam MN","Khmer MN",sans-serif;letter-spacing:0}
 html:lang(km) .sa-main{line-height:1.7}
 
@@ -537,7 +551,7 @@ a.sa-file[href]:hover{border-color:var(--accent)}
 .sa-fimg{display:block;max-width:min(280px,62vw);border-radius:8px;overflow:hidden;background:var(--surface);border:1px solid var(--line)}
 .sa-fimg img{display:block;width:100%;height:auto;max-height:320px;object-fit:cover}
 .sa-fimg span{display:block;padding:30px 20px;font-size:12px;color:var(--ink-2);text-align:center}
-@media (max-width:760px){
+@media (max-width:760px), (max-height:500px) and (max-width:1024px){
   .sa-dir{grid-template-columns:minmax(0,1fr)}
   .sa-selbar{bottom:8px}
   .sa-ib{width:38px}
@@ -556,7 +570,7 @@ a.sa-file[href]:hover{border-color:var(--accent)}
 /* ----- compact header on phones: brand + help, bell, account on one row; sections on a second, scrollable row ----- */
 .sa-mlang{padding:8px 10px 4px;border-top:1px solid var(--line);margin-top:4px}
 .sa-mlang select{width:100%}
-@media (max-width:699px){
+@media (max-width:699px), (max-height:500px) and (max-width:1024px){
   .sa-hide-s{display:none !important}
   #saas .sa-bar .in{gap:6px 8px;flex-wrap:wrap}
   .sa-bar .sa-sp{display:none}
@@ -566,7 +580,7 @@ a.sa-file[href]:hover{border-color:var(--accent)}
   .sa-bar .in>.sa-nav button{white-space:nowrap;flex:none}
   .sa-bar .sa-brand{font-size:19px}
 }
-@media (max-width:699px){.sa-bar .in>.sa-nav{gap:0}.sa-bar .in>.sa-nav button{font-size:15px;padding:8px 7px}}
+@media (max-width:699px), (max-height:500px) and (max-width:1024px){.sa-bar .in>.sa-nav{gap:0}.sa-bar .in>.sa-nav button{font-size:15px;padding:8px 7px}}
 /* ----- calls ----- */
 .sa-callwrap{position:fixed;inset:0;z-index:100;background:#0f1a22}
 .sa-callwrap iframe{border:0;width:100%;height:100%;display:block}
@@ -582,6 +596,22 @@ html.sa-incall body{overflow:hidden}
 @media (prefers-reduced-motion:reduce){.sa-ring{animation:none}}
 .sa-chd .tt{min-width:150px}
 .sa-chd>.sa-row{gap:6px;margin-left:auto}
+/* Account menu on phones: keep it inside the screen whatever the header wraps to */
+@media (max-width:699px), (max-height:500px) and (max-width:1024px){.sa-menu{position:fixed;top:calc(max(10px,env(safe-area-inset-top,0px)) + 52px);right:max(8px,env(safe-area-inset-right,0px));left:auto;width:min(300px,calc(100vw - 16px))}}
+
+/* Very narrow phones: brand and the three header buttons on one row */
+@media (max-width:400px){
+  .sa-bar .sa-brand{font-size:17px}
+  .sa-bar .sa-brand svg{width:26px;height:26px}
+  .sa-bar .sa-helpb,.sa-bar .sa-bellb{min-height:38px;min-width:38px;padding:0 8px}
+  .sa-bar .sa-ub{min-height:38px;padding:2px}
+  #saas .sa-bar .in{gap:6px}
+}
+/* Phones: an open chat fills the screen below the header, so the message box is always visible */
+@media (max-width:760px), (max-height:500px) and (max-width:1024px){
+  .sa-cthread{height:calc(100dvh - var(--sa-hdr,112px) - 12px);min-height:260px}
+}
+@media (max-height:500px) and (max-width:1024px){.sa-cthread{min-height:200px}.sa-chd{padding:6px 10px}.sa-comp{padding:6px 10px}.sa-comp textarea{min-height:38px}}
 </style>
 <div class="wrap">
   <div class="bar">
@@ -3857,6 +3887,10 @@ async function saThreadOpen(id, keep){
   <div class="sa-ups" id="saUps" aria-live="polite"></div>
   <form class="sa-comp" id="saSend"><span class="sa-ctools"><button type="button" class="sa-ib" data-sa="cattach" title="${saEsc(T('Attach files'))}" aria-label="${saEsc(T('Attach files'))}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5 12.6 19.9a5.5 5.5 0 0 1-7.8-7.8l8.5-8.5a3.7 3.7 0 0 1 5.2 5.2l-8.5 8.5a1.8 1.8 0 0 1-2.6-2.6l7.8-7.8"/></svg></button><button type="button" class="sa-ib" data-sa="cproj" title="${saEsc(T('Share a project in this chat'))}" aria-label="${saEsc(T('Share a project in this chat'))}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4" width="17" height="16" rx="1.5"/><path d="M3.5 9h17M8 9v11M12 12.5h5M12 16h5"/></svg></button><input type="file" id="saFileIn" multiple hidden></span><label class="sr" for="saMsgIn">${saEsc(T('Message'))}</label><textarea id="saMsgIn" rows="2" maxlength="2000" placeholder="${saEsc(T('Write a message. Enter sends, Shift+Enter adds a line.'))}"></textarea><button class="sa-btn pri" type="submit">${saEsc(T('Send'))}</button></form>`;
   saUpPaint();
+  if (matchMedia('(max-width:760px), (max-height:500px) and (max-width:1024px)').matches){   // phones: bring the chat to the top, under the header
+    const bar = sa$('.sa-bar'), hh = bar ? bar.offsetHeight : 0; document.documentElement.style.setProperty('--sa-hdr', hh + 'px');
+    window.scrollTo(0, t.getBoundingClientRect().top + window.scrollY - hh - 6);
+  }
   await saMsgFetch(true);
   SA.com.tpoll = setInterval(() => { if (SA.view === 'community' && SA.com.active === id && document.visibilityState === 'visible') saMsgFetch(false); }, 4000);
   if (!keep){ const i = sa$('#saMsgIn'); if (i) i.focus(); }

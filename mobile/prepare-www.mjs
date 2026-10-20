@@ -18,5 +18,10 @@ const inject = `<script>window.DBD_SITE=${JSON.stringify(site)};</script>\n<scri
 const at = html.indexOf('<script');
 if (at < 0) throw new Error('index.html has no <script> tag');
 html = html.slice(0, at) + inject + html.slice(at);
+// In the store apps the page sits inside the safe area (the system draws the status and navigation bars around it),
+// so the page must not ask to extend underneath them.
+html = html.replace(/,\s*viewport-fit=cover/, '');
 writeFileSync(join(out, 'index.html'), html);
+const callPage = join(out, 'call.html');
+if (existsSync(callPage)) writeFileSync(callPage, readFileSync(callPage, 'utf8').replace(/,\s*viewport-fit=cover/, ''));
 console.log('www/ ready for', site);

@@ -1,7 +1,7 @@
 # Builds the iPhone/iPad app on GitHub's Mac machines. On every push it checks the app still builds.
 # Run it by hand (Actions, "iPhone app", Run workflow) to sign it and upload it to App Store Connect (TestFlight).
 # Secrets used, see mobile/STORE-SETUP.md:
-#   APPLE_TEAM_ID, ASC_KEY_ID, ASC_ISSUER_ID, ASC_KEY_P8_BASE64 (App Store Connect API key with Admin access)
+#   APPLE_TEAM_ID, ASC_KEY_ID, ASC_ISSUER_ID, ASC_KEY_P8 (the text of the .p8 file of an App Store Connect API key with Admin access)
 name: iPhone app
 on:
   push:
@@ -33,13 +33,17 @@ jobs:
       - name: Check build (no signing)
         if: github.event_name != 'workflow_dispatch'
         working-directory: mobile/ios/App
-        run: xcodebuild -project App.xcodeproj -scheme App -configuration Debug -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build | tail -40; test ${PIPESTATUS[0]} -eq 0
+        run: |
+          xcodebuild -project App.xcodeproj -scheme App -configuration Debug -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' -derivedDataPath "$RUNNER_TEMP/dd" CODE_SIGNING_ALLOWED=NO build > "$RUNNER_TEMP/build.log" 2>&1 || { tail -60 "$RUNNER_TEMP/build.log"; grep -m5 "error:" "$RUNNER_TEMP/build.log" | sed 's/^/::error::/'; exit 1; }
+          app=$(find "$RUNNER_TEMP/dd" -name "App.app" -type d | head -1)
+          test -f "$app/public/index.html" && test -f "$app/public/capacitor.js"
+          echo "::notice::iPhone build OK with $(xcodebuild -version | head -1): $(du -sh "$app" | cut -f1), site $(grep -o 'DBD_SITE=[^;]*' "$app/public/index.html")"
       - name: App Store Connect key
         if: github.event_name == 'workflow_dispatch'
-        env: { P8: '${{ secrets.ASC_KEY_P8_BASE64 }}' }
+        env: { P8: '${{ secrets.ASC_KEY_P8 }}' }
         run: |
           test -n "$P8" || { echo "Add the App Store Connect secrets first (see mobile/STORE-SETUP.md)"; exit 1; }
-          echo "$P8" | base64 -d > "$RUNNER_TEMP/AuthKey.p8"
+          printf '%s\n' "$P8" > "$RUNNER_TEMP/AuthKey.p8"
       - name: Archive and upload to App Store Connect
         if: github.event_name == 'workflow_dispatch'
         working-directory: mobile/ios/App

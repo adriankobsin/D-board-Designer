@@ -1194,3 +1194,38 @@
 1194|Danh sách thành viên chưa được thiết lập. Chủ trang cần chạy bản di chuyển 0005_members_files.sql trong Supabase.
 1195|Không tải được danh sách thành viên. Kiểm tra kết nối và thử lại.
 1196|Không thể đăng dự án vào cuộc trò chuyện.
+1197|Báo cáo hoặc chặn
+1198|Tin nhắn từ thành viên bạn đã chặn
+1199|Báo cáo tin nhắn
+1200|Bạn không thể gửi tin nhắn trong cuộc trò chuyện này nữa.
+1201|Báo cáo thành viên này
+1202|Bỏ chặn
+1203|Chặn thành viên này
+1204|Thành viên bị chặn không thể nhắn tin, mời hoặc chia sẻ với bạn, và bạn sẽ không thấy tin nhắn của họ. Họ không được thông báo.
+1205|Lý do
+1206|Chi tiết (không bắt buộc)
+1207|Đồng thời chặn thành viên này
+1208|Quản trị viên xem xét mọi báo cáo, thường trong vòng 24 giờ.
+1209|Bản sao tin nhắn được đính kèm.
+1210|Gửi báo cáo
+1211|Hãy chọn lý do.
+1212|Cảm ơn bạn. Báo cáo đã được gửi đến quản trị viên.
+1213|Bạn đã chặn thành viên này.
+1214|Chưa khả dụng.
+1215|Bạn chưa chặn ai.
+1216|Nhấn lần nữa để chặn
+1217|Thành viên bị chặn
+1218|Không thể chặn thành viên này.
+1219|Không thể bỏ chặn thành viên này.
+1220|Đã chặn thành viên.
+1221|Đã bỏ chặn thành viên.
+1222|Thư rác hoặc quảng cáo
+1223|Quấy rối hoặc đe dọa
+1224|Nội dung xúc phạm hoặc không phù hợp
+1225|Mạo danh người khác
+1226|Lý do khác
+1227|Bạn đã chặn thành viên này. Hãy bỏ chặn trong Cài đặt tài khoản trước.
+1228|Hôm nay bạn đã gửi nhiều báo cáo. Hãy thử lại vào ngày mai.
+1229|Tin nhắn đó không còn tồn tại.
+1230|Bạn không thể báo cáo tin nhắn của chính mình.
+1231|Không thể gửi báo cáo. Hãy thử lại.

@@ -1194,3 +1194,38 @@
 1194|The member list is not set up yet. The site owner needs to run the 0005_members_files.sql migration in Supabase.
 1195|Members could not be loaded. Check your connection and try again.
 1196|The project could not be posted in the chat.
+1197|Report or block
+1198|Message from a member you blocked
+1199|Report message
+1200|You can no longer send messages in this chat.
+1201|Report this member
+1202|Unblock
+1203|Block this member
+1204|Blocked members cannot message you, invite you or share with you, and you will not see their messages. They are not told.
+1205|Reason
+1206|Details (optional)
+1207|Also block this member
+1208|An administrator reviews every report, usually within 24 hours.
+1209|A copy of the message is included.
+1210|Send report
+1211|Choose a reason.
+1212|Thank you. Your report was sent to the administrators.
+1213|You have blocked this member.
+1214|Not available yet.
+1215|You have not blocked anyone.
+1216|Click again to block
+1217|Blocked members
+1218|Could not block this member.
+1219|Could not unblock this member.
+1220|Member blocked.
+1221|Member unblocked.
+1222|Spam or advertising
+1223|Harassment or threats
+1224|Offensive or inappropriate content
+1225|Pretending to be someone else
+1226|Something else
+1227|You have blocked this member. Unblock them in Account settings first.
+1228|You have sent many reports today. Try again tomorrow.
+1229|That message no longer exists.
+1230|You cannot report your own message.
+1231|The report could not be sent. Try again.

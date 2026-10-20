@@ -1194,3 +1194,38 @@
 1194|La lista de miembros aún no está configurada. El propietario del sitio debe ejecutar la migración 0005_members_files.sql en Supabase.
 1195|No se pudieron cargar los miembros. Compruebe su conexión e inténtelo de nuevo.
 1196|No se pudo publicar el proyecto en el chat.
+1197|Denunciar o bloquear
+1198|Mensaje de un miembro que ha bloqueado
+1199|Denunciar mensaje
+1200|Ya no puede enviar mensajes en este chat.
+1201|Denunciar a este miembro
+1202|Desbloquear
+1203|Bloquear a este miembro
+1204|Los miembros bloqueados no pueden escribirle, invitarle ni compartir con usted, y usted no verá sus mensajes. No se les avisa.
+1205|Motivo
+1206|Detalles (opcional)
+1207|Bloquear también a este miembro
+1208|Un administrador revisa cada denuncia, normalmente en 24 horas.
+1209|Se incluye una copia del mensaje.
+1210|Enviar denuncia
+1211|Elija un motivo.
+1212|Gracias. Su denuncia se envió a los administradores.
+1213|Ha bloqueado a este miembro.
+1214|Aún no disponible.
+1215|No ha bloqueado a nadie.
+1216|Pulse de nuevo para bloquear
+1217|Miembros bloqueados
+1218|No se pudo bloquear a este miembro.
+1219|No se pudo desbloquear a este miembro.
+1220|Miembro bloqueado.
+1221|Miembro desbloqueado.
+1222|Spam o publicidad
+1223|Acoso o amenazas
+1224|Contenido ofensivo o inapropiado
+1225|Se hace pasar por otra persona
+1226|Otro motivo
+1227|Ha bloqueado a este miembro. Desbloquéelo primero en la configuración de la cuenta.
+1228|Ha enviado muchas denuncias hoy. Inténtelo mañana.
+1229|Ese mensaje ya no existe.
+1230|No puede denunciar su propio mensaje.
+1231|No se pudo enviar la denuncia. Inténtelo de nuevo.

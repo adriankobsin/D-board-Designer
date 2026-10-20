@@ -1194,3 +1194,38 @@
 1194|Die Mitgliederliste ist noch nicht eingerichtet. Der Betreiber der Website muss die Migration 0005_members_files.sql in Supabase ausführen.
 1195|Mitglieder konnten nicht geladen werden. Prüfen Sie Ihre Verbindung und versuchen Sie es erneut.
 1196|Das Projekt konnte nicht im Chat gepostet werden.
+1197|Melden oder blockieren
+1198|Nachricht von einem blockierten Mitglied
+1199|Nachricht melden
+1200|Sie können in diesem Chat keine Nachrichten mehr senden.
+1201|Dieses Mitglied melden
+1202|Blockierung aufheben
+1203|Dieses Mitglied blockieren
+1204|Blockierte Mitglieder können Ihnen nicht schreiben, Sie nicht einladen und nichts mit Ihnen teilen, und Sie sehen ihre Nachrichten nicht. Sie werden nicht benachrichtigt.
+1205|Grund
+1206|Details (optional)
+1207|Dieses Mitglied auch blockieren
+1208|Ein Administrator prüft jede Meldung, in der Regel innerhalb von 24 Stunden.
+1209|Eine Kopie der Nachricht wird beigefügt.
+1210|Meldung senden
+1211|Wählen Sie einen Grund.
+1212|Danke. Ihre Meldung wurde an die Administratoren gesendet.
+1213|Sie haben dieses Mitglied blockiert.
+1214|Noch nicht verfügbar.
+1215|Sie haben niemanden blockiert.
+1216|Zum Blockieren erneut tippen
+1217|Blockierte Mitglieder
+1218|Dieses Mitglied konnte nicht blockiert werden.
+1219|Die Blockierung konnte nicht aufgehoben werden.
+1220|Mitglied blockiert.
+1221|Blockierung aufgehoben.
+1222|Spam oder Werbung
+1223|Belästigung oder Drohungen
+1224|Anstößige oder unangemessene Inhalte
+1225|Gibt sich als jemand anderes aus
+1226|Etwas anderes
+1227|Sie haben dieses Mitglied blockiert. Heben Sie die Blockierung zuerst in den Kontoeinstellungen auf.
+1228|Sie haben heute viele Meldungen gesendet. Versuchen Sie es morgen erneut.
+1229|Diese Nachricht existiert nicht mehr.
+1230|Sie können Ihre eigene Nachricht nicht melden.
+1231|Die Meldung konnte nicht gesendet werden. Versuchen Sie es erneut.

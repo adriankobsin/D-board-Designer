@@ -259,3 +259,17 @@ a.sa-file[href]:hover{border-color:var(--accent)}
 .sa-rr label{display:flex;gap:8px;align-items:center;font-size:14px;cursor:pointer}
 .sa-rr input{accent-color:var(--accent);width:16px;height:16px}
 .sa-quote{margin:6px 0;padding:8px 10px;border-left:3px solid var(--line);background:var(--surface-2);white-space:pre-wrap;overflow-wrap:anywhere;font-size:13.5px}
+/* ----- compact header on phones: brand + help, bell, account on one row; sections on a second, scrollable row ----- */
+.sa-mlang{padding:8px 10px 4px;border-top:1px solid var(--line);margin-top:4px}
+.sa-mlang select{width:100%}
+@media (max-width:699px){
+  .sa-hide-s{display:none !important}
+  #saas .sa-bar .in{gap:6px 8px;flex-wrap:wrap}
+  .sa-bar .sa-sp{display:none}
+  .sa-bar .in>.sa-helpb{margin-left:auto}
+  .sa-bar .in>.sa-nav{order:5;flex:1 1 100%;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -4px}
+  .sa-bar .in>.sa-nav::-webkit-scrollbar{display:none}
+  .sa-bar .in>.sa-nav button{white-space:nowrap;flex:none}
+  .sa-bar .sa-brand{font-size:19px}
+}
+@media (max-width:699px){.sa-bar .in>.sa-nav{gap:0}.sa-bar .in>.sa-nav button{font-size:15px;padding:8px 7px}}

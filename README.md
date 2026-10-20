@@ -40,7 +40,7 @@ to switch the account system on.
 
 ## 1. Create the database
 
-Supabase, SQL Editor: paste and run `supabase/migrations/0001_init.sql` (idempotent). If you already ran an earlier copy of it, also run `0003_import_events.sql`. For sharing and chat, also run `0004_community.sql`, then `0005_members_files.sql` for the member list and files in chats (see the Community section). It creates `profiles`, `projects`,
+Supabase, SQL Editor: paste and run `supabase/migrations/0001_init.sql` (idempotent). If you already ran an earlier copy of it, also run `0003_import_events.sql`. For sharing and chat, also run `0004_community.sql`, then `0005_members_files.sql` for the member list and files in chats, then `0006_safety.sql` for reporting and blocking members (see the Community section). It creates `profiles`, `projects`,
 `feedback`, `usage_events`, `admin_actions`, the sign-up trigger, RLS policies and two admin functions that only the
 service role can call.
 
@@ -263,6 +263,12 @@ Members can share a saved project with other registered members, chat privately,
 - **Not included:** message editing or deleting, blocking and moderation tools, virus scanning of files, and email notifications for ordinary replies (only invitations and shares are emailed). Files in a chat stay in Storage after the chat is deleted; clear old ones from the Supabase Storage page if space matters.
 
 **Tests:** `pgtest/community_test.py` (50 checks of the Row Level Security rules on real Postgres), `pgtest/members_test.py` (41 checks of the member list, file storage rules and project cards), `test/e2e_community.py` (50 browser checks with three users) and `test/e2e_members.py` (57 browser checks with five users, including file upload and download, outsiders being refused, and phone width). The browser suites use the real Worker, real PostgREST/Postgres and test stand-ins for Supabase Auth, Supabase Storage and email. Real email delivery through Resend and the real Supabase Storage service have not been tested.
+
+**Reporting and blocking (0006_safety.sql).** Every message from someone else has a ⚑ report button; ⋯ on a member (member list or private chat) reports or blocks them. Blocking is silent and two-way for contact: no private messages, invitations or shares, hidden from each other's member list, and the blocker no longer sees the blocked person's messages or notifications. Reports go to every administrator (bell notification and email, with a copy of the message); Admin → Reports lets them delete the message, suspend the account and mark the report reviewed. Tests: `pgtest/safety_test.py` (24) and `test/e2e_safety.py` (29). Deleting an account also removes the files that person sent in chats (`test/e2e_delete_files.py`).
+
+## Android and iPhone apps
+
+The store apps wrap this same web app with Capacitor (`mobile/`) and use the same accounts and data. GitHub Actions checks that both build on every push and, when run by hand, signs them and uploads them to Google Play and App Store Connect. Step-by-step setup: `mobile/STORE-SETUP.md`. Listing text and privacy answers: `mobile/STORE-LISTING.md`. Public pages required by the stores (`/privacy`, `/terms`, `/support`, `/delete-account`) are built from `pages/`.
 
 ## DALI lighting network
 

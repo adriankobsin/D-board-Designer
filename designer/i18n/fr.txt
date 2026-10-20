@@ -1194,3 +1194,38 @@
 1194|La liste des membres n’est pas encore configurée. Le propriétaire du site doit exécuter la migration 0005_members_files.sql dans Supabase.
 1195|Impossible de charger les membres. Vérifiez votre connexion et réessayez.
 1196|Le projet n’a pas pu être publié dans la discussion.
+1197|Signaler ou bloquer
+1198|Message d’un membre que vous avez bloqué
+1199|Signaler le message
+1200|Vous ne pouvez plus envoyer de messages dans cette discussion.
+1201|Signaler ce membre
+1202|Débloquer
+1203|Bloquer ce membre
+1204|Les membres bloqués ne peuvent pas vous écrire, vous inviter ni partager avec vous, et vous ne verrez pas leurs messages. Ils n’en sont pas informés.
+1205|Motif
+1206|Détails (facultatif)
+1207|Bloquer aussi ce membre
+1208|Un administrateur examine chaque signalement, généralement sous 24 heures.
+1209|Une copie du message est jointe.
+1210|Envoyer le signalement
+1211|Choisissez un motif.
+1212|Merci. Votre signalement a été envoyé aux administrateurs.
+1213|Vous avez bloqué ce membre.
+1214|Pas encore disponible.
+1215|Vous n’avez bloqué personne.
+1216|Appuyez à nouveau pour bloquer
+1217|Membres bloqués
+1218|Impossible de bloquer ce membre.
+1219|Impossible de débloquer ce membre.
+1220|Membre bloqué.
+1221|Membre débloqué.
+1222|Spam ou publicité
+1223|Harcèlement ou menaces
+1224|Contenu choquant ou inapproprié
+1225|Se fait passer pour quelqu’un d’autre
+1226|Autre chose
+1227|Vous avez bloqué ce membre. Débloquez-le d’abord dans les paramètres du compte.
+1228|Vous avez envoyé beaucoup de signalements aujourd’hui. Réessayez demain.
+1229|Ce message n’existe plus.
+1230|Vous ne pouvez pas signaler votre propre message.
+1231|Le signalement n’a pas pu être envoyé. Réessayez.

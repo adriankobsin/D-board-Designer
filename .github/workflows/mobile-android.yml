@@ -22,6 +22,10 @@ on:
       version:
         description: 'Version shown to users'
         default: '1.0.0'
+      upload:
+        description: 'Upload to Google Play (leave off for the very first build: Google needs that one uploaded by hand)'
+        type: boolean
+        default: true
 concurrency:
   group: android-${{ github.ref }}
   cancel-in-progress: true
@@ -57,6 +61,19 @@ jobs:
         run: |
           chmod +x gradlew
           if [ -n "$ANDROID_KEYSTORE_FILE" ]; then ./gradlew --no-daemon bundleRelease assembleRelease; else ./gradlew --no-daemon assembleDebug; fi
+      - name: Check what went into the app
+        run: |
+          f=$(ls mobile/android/app/build/outputs/apk/*/*.apk | head -1)
+          python3 - "$f" <<'PY'
+          import sys, zipfile, json
+          z = zipfile.ZipFile(sys.argv[1]); n = set(z.namelist())
+          h = z.read('assets/public/index.html').decode()
+          site = h[h.find('DBD_SITE=') + 9:].split(';')[0]
+          plugins = sorted(p['pkg'] for p in json.loads(z.read('assets/capacitor.plugins.json')))
+          ok = 'assets/public/capacitor.js' in n and 'assets/public/privacy.html' in n and site.startswith('"https://')
+          print(('::notice::' if ok else '::error::') + f"APK {sys.argv[1].split('/')[-1]}: site {site}, plugins {', '.join(plugins)}, {len(n)} files")
+          sys.exit(0 if ok else 1)
+          PY
       - uses: actions/upload-artifact@v4
         with:
           name: android-${{ github.run_number }}
@@ -65,7 +82,7 @@ jobs:
             mobile/android/app/build/outputs/apk/**/*.apk
           if-no-files-found: error
       - name: Upload to Google Play
-        if: github.event_name == 'workflow_dispatch' && steps.key.outputs.file != ''
+        if: github.event_name == 'workflow_dispatch' && inputs.upload && steps.key.outputs.file != ''
         uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJsonPlainText: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}

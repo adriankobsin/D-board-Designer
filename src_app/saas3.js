@@ -122,7 +122,12 @@ const SA_LEGAL = {
   <h3>Your rights</h3><p>In Account settings you can edit your details, download all your data, and delete your account and projects permanently. Contact the operator for any other privacy request.</p>
   <h3>Retention</h3><p>Data is kept while your account exists and removed when you delete it.</p>`]
 };
-function saLegal(w){ const L = SA_LEGAL[w]; saModal(`<h2>${saEsc(T(L[0]))}</h2><div class="legal">${L[1]}</div><div class="sa-row" style="margin-top:14px"><button class="sa-btn pri" data-sa="close">${saEsc(T('Close'))}</button></div>`); }
+async function saLegal(w){
+  const L = SA_LEGAL[w]; let body = L[1];
+  // The published pages (pages/*.html, also inside the store apps) are the current text; the copy above is a fallback.
+  try { const r = await fetch(w + '.html', {cache: 'no-cache'}); if (r.ok){ const d = new DOMParser().parseFromString(await r.text(), 'text/html'), m = d.querySelector('main'); if (m){ const h = m.querySelector('h1'); if (h) h.remove(); m.querySelectorAll('h2').forEach(x => { const n = d.createElement('h3'); n.innerHTML = x.innerHTML; x.replaceWith(n); }); body = m.innerHTML; } } } catch (e) {}
+  saModal(`<h2>${saEsc(T(L[0]))}</h2><div class="legal">${body}</div><div class="sa-row" style="margin-top:14px"><button class="sa-btn pri" data-sa="close">${saEsc(T('Close'))}</button></div>`);
+}
 
 /* ---------- header: profile menu + cloud chip ---------- */
 function saMountChrome(){

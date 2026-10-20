@@ -1194,3 +1194,38 @@
 1194|Lista de membri nu este încă configurată. Proprietarul site-ului trebuie să ruleze migrarea 0005_members_files.sql în Supabase.
 1195|Membrii nu au putut fi încărcați. Verificați conexiunea și încercați din nou.
 1196|Proiectul nu a putut fi publicat în chat.
+1197|Raportați sau blocați
+1198|Mesaj de la un membru blocat de dumneavoastră
+1199|Raportați mesajul
+1200|Nu mai puteți trimite mesaje în acest chat.
+1201|Raportați acest membru
+1202|Deblocați
+1203|Blocați acest membru
+1204|Membrii blocați nu vă pot trimite mesaje, invita sau partaja cu dumneavoastră, iar dumneavoastră nu le veți vedea mesajele. Ei nu sunt anunțați.
+1205|Motiv
+1206|Detalii (opțional)
+1207|Blocați și acest membru
+1208|Un administrator analizează fiecare raport, de obicei în 24 de ore.
+1209|Este inclusă o copie a mesajului.
+1210|Trimiteți raportul
+1211|Alegeți un motiv.
+1212|Mulțumim. Raportul a fost trimis administratorilor.
+1213|Ați blocat acest membru.
+1214|Încă nu este disponibil.
+1215|Nu ați blocat pe nimeni.
+1216|Apăsați din nou pentru a bloca
+1217|Membri blocați
+1218|Acest membru nu a putut fi blocat.
+1219|Blocarea acestui membru nu a putut fi anulată.
+1220|Membru blocat.
+1221|Membru deblocat.
+1222|Spam sau reclamă
+1223|Hărțuire sau amenințări
+1224|Conținut ofensator sau nepotrivit
+1225|Se dă drept altcineva
+1226|Altceva
+1227|Ați blocat acest membru. Deblocați-l mai întâi din setările contului.
+1228|Ați trimis multe rapoarte astăzi. Încercați din nou mâine.
+1229|Acest mesaj nu mai există.
+1230|Nu vă puteți raporta propriul mesaj.
+1231|Raportul nu a putut fi trimis. Încercați din nou.

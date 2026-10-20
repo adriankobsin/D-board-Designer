@@ -1194,3 +1194,38 @@
 1194|Lista członków nie jest jeszcze skonfigurowana. Właściciel witryny musi uruchomić migrację 0005_members_files.sql w Supabase.
 1195|Nie udało się wczytać członków. Sprawdź połączenie i spróbuj ponownie.
 1196|Nie udało się opublikować projektu na czacie.
+1197|Zgłoś lub zablokuj
+1198|Wiadomość od zablokowanego członka
+1199|Zgłoś wiadomość
+1200|Nie możesz już wysyłać wiadomości na tym czacie.
+1201|Zgłoś tego członka
+1202|Odblokuj
+1203|Zablokuj tego członka
+1204|Zablokowani członkowie nie mogą do Ciebie pisać, zapraszać Cię ani niczego Ci udostępniać, a Ty nie zobaczysz ich wiadomości. Nie są o tym informowani.
+1205|Powód
+1206|Szczegóły (opcjonalnie)
+1207|Zablokuj też tego członka
+1208|Administrator sprawdza każde zgłoszenie, zwykle w ciągu 24 godzin.
+1209|Dołączona jest kopia wiadomości.
+1210|Wyślij zgłoszenie
+1211|Wybierz powód.
+1212|Dziękujemy. Zgłoszenie zostało wysłane do administratorów.
+1213|Zablokowano tego członka.
+1214|Jeszcze niedostępne.
+1215|Nikogo nie zablokowano.
+1216|Kliknij ponownie, aby zablokować
+1217|Zablokowani członkowie
+1218|Nie udało się zablokować tego członka.
+1219|Nie udało się odblokować tego członka.
+1220|Członek zablokowany.
+1221|Członek odblokowany.
+1222|Spam lub reklama
+1223|Nękanie lub groźby
+1224|Treści obraźliwe lub nieodpowiednie
+1225|Podszywanie się pod kogoś
+1226|Coś innego
+1227|Ten członek jest zablokowany. Najpierw odblokuj go w ustawieniach konta.
+1228|Wysłano dziś wiele zgłoszeń. Spróbuj jutro.
+1229|Ta wiadomość już nie istnieje.
+1230|Nie możesz zgłosić własnej wiadomości.
+1231|Nie udało się wysłać zgłoszenia. Spróbuj ponownie.

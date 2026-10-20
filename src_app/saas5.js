@@ -62,7 +62,7 @@ document.addEventListener('click', async ev => {
   if (b.tagName === 'A') ev.preventDefault();
   if (a === 'menu'){ const w = b.closest('.sa-um'), old = w.querySelector('.sa-menu'); if (old){ old.remove(); b.setAttribute('aria-expanded', 'false'); return; }
     const adm = SA.profile && SA.profile.role === 'admin', m = document.createElement('div'); m.className = 'sa-menu'; m.setAttribute('role', 'menu');
-    m.innerHTML = `<div class="who" data-nt><b>${saEsc(saName())}</b>${saEsc(SA.user.email)}</div><button role="menuitem" data-sa="dash">${saEsc(T('Dashboard'))}</button><button role="menuitem" data-sa="community">${saEsc(T('Community'))}</button><button role="menuitem" data-sa="import">${saEsc(T('Import a panel'))}</button><button role="menuitem" data-sa="account">${saEsc(T('Account settings'))}</button>${adm ? `<button role="menuitem" data-sa="admin">${saEsc(T('Admin dashboard'))}</button>` : ''}<button role="menuitem" data-sa="signout">${saEsc(T('Sign out'))}</button>`; w.appendChild(m); b.setAttribute('aria-expanded', 'true'); return; }
+    m.innerHTML = `<div class="who" data-nt><b>${saEsc(saName())}</b>${saEsc(SA.user.email)}</div><button role="menuitem" data-sa="dash">${saEsc(T('Dashboard'))}</button><button role="menuitem" data-sa="community">${saEsc(T('Community'))}</button><button role="menuitem" data-sa="import">${saEsc(T('Import a panel'))}</button><button role="menuitem" data-sa="app">${saEsc(T('Open designer'))}</button><button role="menuitem" data-sa="account">${saEsc(T('Account settings'))}</button>${adm ? `<button role="menuitem" data-sa="admin">${saEsc(T('Admin dashboard'))}</button>` : ''}<button role="menuitem" data-sa="signout">${saEsc(T('Sign out'))}</button><div class="sa-mlang">${saLangSelect().replace('id="saLang"', 'id="saLang2"')}</div>`; w.appendChild(m); b.setAttribute('aria-expanded', 'true'); return; }
   if (a === 'dash'){ SA.q = ''; saGo('dashboard'); }
   else if (a === 'account') saGo('account');
   else if (a === 'admin'){ SA.adminTab = 'overview'; saGo('admin'); }
@@ -115,7 +115,7 @@ document.addEventListener('input', ev => {
   if (t.id === 'password' && SA.authMode === 'register' && sa$('#saMeter')){ const s = saPwScore(t.value), m = sa$('#saMeter'); m.style.width = (s * 20) + '%'; m.style.background = s <= 2 ? 'var(--bad)' : s <= 3 ? 'var(--warn)' : 'var(--ok)'; }
   if (t.id === 'saQ'){ SA.q = t.value; const l = SA.projects.filter(p => p.name.toLowerCase().includes(SA.q.toLowerCase())); const g = sa$('#saList'); if (g) g.innerHTML = l.map(p => saProjCard(p)).join(''); }
 });
-document.addEventListener('change', ev => { if (ev.target.id === 'saLang'){ setLang(ev.target.value); if (SA.view !== 'app') saRender(); } });
+document.addEventListener('change', ev => { if (ev.target.id === 'saLang' || ev.target.id === 'saLang2'){ setLang(ev.target.value); if (SA.view !== 'app') saRender(); } });
 document.addEventListener('keydown', ev => { if (ev.key === 'Escape'){ const m = sa$('#saModal'); if (m) saModalClose(); const mn = document.querySelector('.sa-menu'); if (mn) mn.remove(); } });
 
 /* ---------- usage tracking on existing exports and tools ---------- */

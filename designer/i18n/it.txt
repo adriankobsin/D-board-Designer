@@ -1194,3 +1194,38 @@
 1194|L’elenco dei membri non è ancora configurato. Il proprietario del sito deve eseguire la migrazione 0005_members_files.sql in Supabase.
 1195|Impossibile caricare i membri. Controlla la connessione e riprova.
 1196|Impossibile pubblicare il progetto nella chat.
+1197|Segnala o blocca
+1198|Messaggio di un membro che hai bloccato
+1199|Segnala messaggio
+1200|Non puoi più inviare messaggi in questa chat.
+1201|Segnala questo membro
+1202|Sblocca
+1203|Blocca questo membro
+1204|I membri bloccati non possono scriverti, invitarti o condividere con te, e tu non vedrai i loro messaggi. Non vengono avvisati.
+1205|Motivo
+1206|Dettagli (facoltativo)
+1207|Blocca anche questo membro
+1208|Un amministratore esamina ogni segnalazione, di solito entro 24 ore.
+1209|È inclusa una copia del messaggio.
+1210|Invia segnalazione
+1211|Scegli un motivo.
+1212|Grazie. La segnalazione è stata inviata agli amministratori.
+1213|Hai bloccato questo membro.
+1214|Non ancora disponibile.
+1215|Non hai bloccato nessuno.
+1216|Tocca di nuovo per bloccare
+1217|Membri bloccati
+1218|Impossibile bloccare questo membro.
+1219|Impossibile sbloccare questo membro.
+1220|Membro bloccato.
+1221|Membro sbloccato.
+1222|Spam o pubblicità
+1223|Molestie o minacce
+1224|Contenuti offensivi o inappropriati
+1225|Si spaccia per qualcun altro
+1226|Altro
+1227|Hai bloccato questo membro. Sbloccalo prima nelle impostazioni dell’account.
+1228|Hai inviato molte segnalazioni oggi. Riprova domani.
+1229|Questo messaggio non esiste più.
+1230|Non puoi segnalare un tuo messaggio.
+1231|Impossibile inviare la segnalazione. Riprova.

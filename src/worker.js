@@ -119,6 +119,12 @@ async function api(request, env, url) {
       const admins = r.ok ? await r.json() : [];
       if (admins.length <= 1) return fail(409, 'You are the only administrator. Promote another administrator first.');
     }
+    // Remove the files this person sent in chats (their messages are removed with the account).
+    try {
+      const fr = await sr(env, `/rest/v1/chat_messages?sender_id=eq.${user.id}&attachment=not.is.null&select=attachment`);
+      const paths = fr.ok ? (await fr.json()).map(x => x.attachment && x.attachment.path).filter(Boolean) : [];
+      for (let i = 0; i < paths.length; i += 100) await sr(env, '/storage/v1/object/chat-files', { method: 'DELETE', body: JSON.stringify({ prefixes: paths.slice(i, i + 100) }) });
+    } catch { /* never block deletion on file clean-up */ }
     const del = await sr(env, `/auth/v1/admin/users/${user.id}`, { method: 'DELETE' });
     if (!del.ok) return fail(502, 'The account could not be deleted. Try again later.');
     return json({ ok: true });

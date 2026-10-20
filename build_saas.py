@@ -21,5 +21,7 @@ open(os.path.join(OUT, 'index.html'), 'w', encoding='utf-8').write(html)
 for f in ['manifest.webmanifest']: shutil.copy(os.path.join(PWA, f), os.path.join(OUT, f))
 shutil.copytree(os.path.join(PWA, 'icons'), os.path.join(OUT, 'icons'), dirs_exist_ok=True)
 for f in ['xlsx.full.min.js', 'jspdf.umd.min.js', 'supabase.js']: shutil.copy(os.path.join(HERE, 'vendor_src', f) if f == 'supabase.js' else os.path.join(PWA, 'vendor', f), os.path.join(OUT, 'vendor', f))
+for f in os.listdir(os.path.join(HERE, 'pages')):   # public pages for the app stores: privacy, terms, support, delete-account
+    if f.endswith('.html'): shutil.copy(os.path.join(HERE, 'pages', f), os.path.join(OUT, f))
 sw = rd(os.path.join(HERE, 'src_app', 'sw.js')); open(os.path.join(OUT, 'sw.js'), 'w').write(sw)
 print('built public/index.html', len(html) // 1024, 'KB')

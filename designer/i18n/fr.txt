@@ -1243,3 +1243,6 @@
 1243|Discussion introuvable.
 1244|Électricien de bord
 1245|ETO (officier électrotechnicien)
+1246|Ce projet ne peut pas être enregistré ici
+1247|Il a peut-être été supprimé, partagé avec vous en lecture seule, ou un autre appareil ne cesse de le modifier. Enregistrez une copie dans votre compte pour continuer à travailler.
+1248|Enregistrer une copie dans mon compte

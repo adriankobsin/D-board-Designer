@@ -1243,3 +1243,6 @@
 1243|Chatul nu a fost găsit.
 1244|Electrician naval
 1245|ETO (ofițer electrotehnic)
+1246|Acest proiect nu poate fi salvat aici
+1247|Poate a fost șters, poate este partajat cu tine doar pentru vizualizare sau un alt dispozitiv îl modifică în continuu. Salvează o copie în contul tău ca să poți continua.
+1248|Salvează o copie în contul meu

@@ -1243,3 +1243,6 @@
 1243|Chat non trovata.
 1244|Elettricista navale
 1245|ETO (ufficiale elettrotecnico)
+1246|Questo progetto non può essere salvato qui
+1247|Potrebbe essere stato eliminato, condiviso con te in sola visualizzazione, oppure un altro dispositivo continua a modificarlo. Salva una copia nel tuo account per continuare a lavorare.
+1248|Salva una copia nel mio account

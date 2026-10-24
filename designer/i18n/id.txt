@@ -1243,3 +1243,6 @@
 1243|Obrolan tidak ditemukan.
 1244|Teknisi listrik kapal
 1245|ETO (Perwira Elektro-Teknik)
+1246|Proyek ini tidak dapat disimpan di sini
+1247|Proyek mungkin telah dihapus, dibagikan kepada Anda hanya untuk dilihat, atau perangkat lain terus mengubahnya. Simpan salinan ke akun Anda untuk terus bekerja.
+1248|Simpan salinan ke akun saya

@@ -1243,3 +1243,6 @@
 1243|Chat not found.
 1244|Marine Electrician
 1245|ETO (Electro-Technical Officer)
+1246|This project cannot be saved here
+1247|It may have been deleted, it may be shared with you to view only, or another device keeps changing it. Save a copy to your account to keep working.
+1248|Save a copy to my account

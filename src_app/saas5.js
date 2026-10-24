@@ -90,6 +90,8 @@ document.addEventListener('click', async ev => {
   else if (a === 'delacct') saDeleteDialog();
   else if (a === 'keepmine') saKeepMine();
   else if (a === 'loadcloud') saLoadCloud();
+  else if (a === 'savecopy') saSaveCopy();
+  else if (a === 'conflictdash') saConflictDash();
   else if (a === 'atab'){ SA.adminTab = b.dataset.t; saRender(); }
   else if (a === 'apage'){ SA.au.page = Math.max(1, SA.au.page + parseInt(b.dataset.d, 10)); saRender(); }
   else if (a === 'rstat'){ try { await saApi(`/api/admin/reports/${id}/status`, {method: 'POST', body: JSON.stringify({status: b.dataset.s})}); saRender(); } catch (e) { toast(e.message); } }

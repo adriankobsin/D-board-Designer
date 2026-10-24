@@ -327,13 +327,13 @@ async function saOpenProject(id){
   const p = row.data;
   if (!p || !p.circuits || !p.modules || !STD[p.std]){ toast('This project could not be read.'); return false; }
   S = p; S.name = row.name; S.order = S.order || []; sel = null;
-  SA.cloudId = row.id; SA.rev = row.updated_at; SA.dirty = false;
+  SA.cloudId = row.id; SA.rev = row.updated_at; SA.dirty = false; SA.noSave = null;
   SA.sb.from('projects').update({last_opened_at: new Date().toISOString()}).eq('id', id).then(() => {}, () => {});
   saTrack('project_opened');
   saGo('app'); saChip(); syncHeader(); refresh(true);
   return true;
 }
-function saCloseProject(){ SA.cloudId = null; SA.rev = null; SA.dirty = false; clearTimeout(SA.saveT); }
+function saCloseProject(){ SA.noSave = null; SA.conflictLog = []; SA.cloudId = null; SA.rev = null; SA.dirty = false; clearTimeout(SA.saveT); }
 function saOpenLocal(){ saCloseProject(); S = load(); S.order = S.order || []; sel = null; saGo('app'); saChip(); syncHeader(); refresh(true); }
 async function saNewProject(){
   try { const row = await saCreateProject(saBlank('New board'), 'New board'); await saOpenProject(row.id); }
@@ -349,7 +349,7 @@ persist = function(){
   return saPersistLocal();
 };
 async function saFlush(){
-  if (!SA.cloudId || !SA.dirty) return;
+  if (!SA.cloudId || !SA.dirty || SA.noSave === SA.cloudId) return;
   if (SA.saving){ SA.saveT = setTimeout(saFlush, 800); return; }
   if (!navigator.onLine){ SA.chip = 'offline'; saChip(); return; }
   SA.saving = true; SA.chip = 'busy'; saChip();
@@ -362,11 +362,31 @@ async function saFlush(){
   SA.rev = data[0].updated_at; SA.dirty = JSON.stringify(S) !== JSON.stringify(snap); SA.chip = null; saChip();
   if (SA.dirty) SA.saveT = setTimeout(saFlush, 800);
 }
-function saConflict(id){
+/* A rejected save is a real version conflict only when the project still exists, is ours and has a newer version.
+   Otherwise (deleted, shared view-only, or a device that keeps overwriting) offering "keep / load" would loop forever. */
+async function saConflict(id){
   if (SA.conflictOpen) return; SA.conflictOpen = true;
+  const now = Date.now(); SA.conflictLog = (SA.conflictLog || []).filter(t => now - t < 20000); SA.conflictLog.push(now);
+  let row = null, err = null;
+  try { const r = await SA.sb.from('projects').select('id,owner_id,updated_at').eq('id', id).maybeSingle(); row = r.data; err = r.error; } catch (e) { err = e; }
+  if (id !== SA.cloudId){ SA.conflictOpen = false; return; }
+  if (err){ SA.conflictOpen = false; SA.chip = 'offline'; saChip(); return; }
+  const real = row && row.owner_id === (SA.user && SA.user.id) && row.updated_at !== SA.rev && SA.conflictLog.length < 3;
+  if (!real){ saCannotSave(id); return; }
   saModal(`<h2>${saEsc(T('This project changed on another device'))}</h2><p>${saEsc(T('A newer version of this project was saved from another device or tab. Choose which version to keep.'))}</p>
   <div class="sa-row"><button class="sa-btn pri" data-sa="keepmine">${saEsc(T('Keep my version'))}</button><button class="sa-btn" data-sa="loadcloud">${saEsc(T('Load the saved version'))}</button></div>`, () => { SA.conflictOpen = false; });
 }
+function saCannotSave(id){
+  SA.noSave = id; clearTimeout(SA.saveT); SA.dirty = false; SA.chip = 'bad'; saChip();
+  saModal(`<h2>${saEsc(T('This project cannot be saved here'))}</h2><p>${saEsc(T('It may have been deleted, it may be shared with you to view only, or another device keeps changing it. Save a copy to your account to keep working.'))}</p>
+  <div class="sa-row"><button class="sa-btn pri" data-sa="savecopy">${saEsc(T('Save a copy to my account'))}</button><button class="sa-btn" data-sa="conflictdash">${saEsc(T('Dashboard'))}</button></div>`, () => { SA.conflictOpen = false; });
+}
+async function saSaveCopy(){
+  const data = JSON.parse(JSON.stringify(S));
+  try { const row = await saCreateProject(data, data.name); SA.conflictOpen = false; saModalClose(); SA.noSave = null; await saOpenProject(row.id); toast('Saved to your account.'); }
+  catch (e) { toast(saErr(e)); }
+}
+function saConflictDash(){ SA.conflictOpen = false; saModalClose(); saCloseProject(); SA.noSave = null; SA.q = ''; saGo('dashboard'); }
 async function saKeepMine(){
   const {data} = await SA.sb.from('projects').select('updated_at').eq('id', SA.cloudId).maybeSingle();
   if (data) SA.rev = data.updated_at; SA.conflictOpen = false; saModalClose(); SA.dirty = true; saFlush();
@@ -1446,6 +1466,8 @@ document.addEventListener('click', async ev => {
   else if (a === 'delacct') saDeleteDialog();
   else if (a === 'keepmine') saKeepMine();
   else if (a === 'loadcloud') saLoadCloud();
+  else if (a === 'savecopy') saSaveCopy();
+  else if (a === 'conflictdash') saConflictDash();
   else if (a === 'atab'){ SA.adminTab = b.dataset.t; saRender(); }
   else if (a === 'apage'){ SA.au.page = Math.max(1, SA.au.page + parseInt(b.dataset.d, 10)); saRender(); }
   else if (a === 'rstat'){ try { await saApi(`/api/admin/reports/${id}/status`, {method: 'POST', body: JSON.stringify({status: b.dataset.s})}); saRender(); } catch (e) { toast(e.message); } }

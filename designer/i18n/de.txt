@@ -1243,3 +1243,6 @@
 1243|Chat nicht gefunden.
 1244|Schiffselektriker
 1245|ETO (Elektrotechnischer Offizier)
+1246|Dieses Projekt kann hier nicht gespeichert werden
+1247|Es wurde möglicherweise gelöscht, ist nur zur Ansicht mit dir geteilt oder ein anderes Gerät ändert es ständig. Speichere eine Kopie in deinem Konto, um weiterzuarbeiten.
+1248|Kopie in meinem Konto speichern

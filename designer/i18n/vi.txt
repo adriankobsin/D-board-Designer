@@ -1243,3 +1243,6 @@
 1243|Không tìm thấy cuộc trò chuyện.
 1244|Thợ điện tàu thủy
 1245|ETO (sĩ quan điện – kỹ thuật)
+1246|Không thể lưu dự án này tại đây
+1247|Dự án có thể đã bị xóa, chỉ được chia sẻ để xem, hoặc một thiết bị khác liên tục thay đổi nó. Hãy lưu một bản sao vào tài khoản để tiếp tục làm việc.
+1248|Lưu bản sao vào tài khoản của tôi

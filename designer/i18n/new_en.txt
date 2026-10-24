@@ -440,3 +440,36 @@
 1249|Tiles
 1250|List
 1251|Project view
+1252|Project and customer
+1253|Shown on the dashboard so you can find this panel, and on the PDF cover page.
+1254|Project / job
+1255|Customer
+1256|Location
+1257|Job reference
+1258|Installation date
+1259|Design
+1260|Quoted
+1261|Approved
+1262|In build
+1263|Installed
+1264|Commissioned
+1265|On hold
+1266|e.g. M/Y Aurora refit
+1267|e.g. Engine room, deck 2
+1268|Details
+1269|Panel details
+1270|Save details
+1271|Recently edited
+1272|Name A–Z
+1273|No grouping
+1274|Group by
+1275|Sort by
+1276|All projects
+1277|All customers
+1278|All locations
+1279|All statuses
+1280|Unassigned
+1281|Showing {1} of {2} panels
+1282|No panels match these filters.
+1283|Clear filters
+1284|Search name, project, customer, location

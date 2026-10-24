@@ -1249,3 +1249,36 @@
 1249|Mosaico
 1250|Lista
 1251|Vista de projetos
+1252|Projeto e cliente
+1253|Mostrado no painel para encontrar este quadro e na capa do PDF.
+1254|Projeto / obra
+1255|Cliente
+1256|Localização
+1257|Referência da obra
+1258|Data de instalação
+1259|Projeto
+1260|Orçamentado
+1261|Aprovado
+1262|Em construção
+1263|Instalado
+1264|Colocado em serviço
+1265|Em pausa
+1266|p. ex. refit M/Y Aurora
+1267|p. ex. Casa das máquinas, convés 2
+1268|Detalhes
+1269|Detalhes do quadro
+1270|Guardar detalhes
+1271|Editados recentemente
+1272|Nome A–Z
+1273|Sem agrupamento
+1274|Agrupar por
+1275|Ordenar por
+1276|Todos os projetos
+1277|Todos os clientes
+1278|Todas as localizações
+1279|Todos os estados
+1280|Não atribuído
+1281|A mostrar {1} de {2} quadros
+1282|Nenhum quadro corresponde aos filtros.
+1283|Limpar filtros
+1284|Pesquisar nome, projeto, cliente, localização

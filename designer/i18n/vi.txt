@@ -1249,3 +1249,36 @@
 1249|Ô lưới
 1250|Danh sách
 1251|Chế độ xem dự án
+1252|Dự án và khách hàng
+1253|Hiển thị trên bảng điều khiển để bạn dễ tìm tủ điện này, và trên trang bìa PDF.
+1254|Dự án / công việc
+1255|Khách hàng
+1256|Vị trí
+1257|Mã công việc
+1258|Ngày lắp đặt
+1259|Thiết kế
+1260|Đã báo giá
+1261|Đã phê duyệt
+1262|Đang lắp ráp
+1263|Đã lắp đặt
+1264|Đã nghiệm thu
+1265|Tạm dừng
+1266|vd. cải tạo M/Y Aurora
+1267|vd. Buồng máy, boong 2
+1268|Chi tiết
+1269|Chi tiết tủ điện
+1270|Lưu chi tiết
+1271|Sửa gần đây
+1272|Tên A–Z
+1273|Không nhóm
+1274|Nhóm theo
+1275|Sắp xếp theo
+1276|Tất cả dự án
+1277|Tất cả khách hàng
+1278|Tất cả vị trí
+1279|Tất cả trạng thái
+1280|Chưa gán
+1281|Hiển thị {1} trên {2} tủ điện
+1282|Không có tủ điện nào khớp bộ lọc.
+1283|Xóa bộ lọc
+1284|Tìm theo tên, dự án, khách hàng, vị trí

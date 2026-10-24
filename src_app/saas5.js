@@ -91,10 +91,14 @@ document.addEventListener('click', async ev => {
   else if (a === 'keepmine') saKeepMine();
   else if (a === 'pview'){
     try { localStorage.setItem('dbd_projview', b.dataset.v === 'list' ? 'list' : 'tiles'); } catch (e) {}
-    const q = (SA.q || '').toLowerCase(), l = SA.projects.filter(p => p.name.toLowerCase().includes(q)), rec = SA.projects.filter(p => p.last_opened_at).sort((x, y) => new Date(y.last_opened_at) - new Date(x.last_opened_at)).slice(0, 4);
-    const g = sa$('#saList'), r = sa$('#saRecent'); if (g){ g.className = saProjCls('sa-grid c3'); g.innerHTML = saProjHtml(l); } if (r){ r.className = saProjCls('sa-grid c4'); r.innerHTML = saProjHtml(rec, true); }
+    const rec = SA.projects.filter(p => p.last_opened_at).sort((x, y) => new Date(y.last_opened_at) - new Date(x.last_opened_at)).slice(0, 4);
+    const r = sa$('#saRecent'); saRepaintList(); if (r){ r.className = saProjCls('sa-grid c4'); r.innerHTML = saProjHtml(rec, true); }
     const vt = b.closest('.sa-vt'); if (vt){ const nv = saPView(); vt.querySelectorAll('button').forEach(x => { x.classList.toggle('pri', x.dataset.v === nv); x.setAttribute('aria-pressed', String(x.dataset.v === nv)); }); }
   }
+  else if (a === 'pinfo') saInfoModal(id);
+  else if (a === 'pinfosave') saInfoSave(id);
+  else if (a === 'pinfox') saModalClose();
+  else if (a === 'fclear'){ SA.q = ''; SA.f = {}; saViewDash(sa$('#saas')); }
   else if (a === 'loadcloud') saLoadCloud();
   else if (a === 'savecopy') saSaveCopy();
   else if (a === 'conflictdash') saConflictDash();
@@ -121,9 +125,15 @@ document.addEventListener('submit', ev => {
 document.addEventListener('input', ev => {
   const t = ev.target;
   if (t.id === 'password' && SA.authMode === 'register' && sa$('#saMeter')){ const s = saPwScore(t.value), m = sa$('#saMeter'); m.style.width = (s * 20) + '%'; m.style.background = s <= 2 ? 'var(--bad)' : s <= 3 ? 'var(--warn)' : 'var(--ok)'; }
-  if (t.id === 'saQ'){ SA.q = t.value; const l = SA.projects.filter(p => p.name.toLowerCase().includes(SA.q.toLowerCase())); const g = sa$('#saList'); if (g) g.innerHTML = saProjHtml(l); }
+  if (t.id === 'saQ'){ SA.q = t.value; saRepaintList(); }
 });
-document.addEventListener('change', ev => { if (ev.target.id === 'saLang' || ev.target.id === 'saLang2'){ setLang(ev.target.value); if (SA.view !== 'app') saRender(); } });
+document.addEventListener('change', ev => {
+  const id = ev.target.id;
+  if (id === 'saLang' || id === 'saLang2'){ setLang(ev.target.value); if (SA.view !== 'app') saRender(); return; }
+  const fm = {saFJob: 'job', saFCust: 'cust', saFLoc: 'loc', saFStatus: 'status'};
+  if (fm[id]){ (SA.f || (SA.f = {}))[fm[id]] = ev.target.value; saRepaintList(); }
+  else if (id === 'saSort' || id === 'saGroup'){ try { localStorage.setItem(id === 'saSort' ? 'dbd_projsort' : 'dbd_projgroup', ev.target.value); } catch (e) {} saRepaintList(); }
+});
 document.addEventListener('keydown', ev => { if (ev.key === 'Escape'){ const m = sa$('#saModal'); if (m) saModalClose(); const mn = document.querySelector('.sa-menu'); if (mn) mn.remove(); } });
 
 /* ---------- usage tracking on existing exports and tools ---------- */

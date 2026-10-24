@@ -1249,3 +1249,36 @@
 1249|Ubin
 1250|Daftar
 1251|Tampilan proyek
+1252|Proyek dan pelanggan
+1253|Ditampilkan di dasbor agar Anda mudah menemukan panel ini, dan di halaman sampul PDF.
+1254|Proyek / pekerjaan
+1255|Pelanggan
+1256|Lokasi
+1257|Referensi pekerjaan
+1258|Tanggal pemasangan
+1259|Desain
+1260|Sudah ditawarkan
+1261|Disetujui
+1262|Dalam pembuatan
+1263|Terpasang
+1264|Telah dikomisioning
+1265|Ditunda
+1266|mis. refit M/Y Aurora
+1267|mis. Ruang mesin, dek 2
+1268|Detail
+1269|Detail panel
+1270|Simpan detail
+1271|Terakhir diedit
+1272|Nama A–Z
+1273|Tanpa pengelompokan
+1274|Kelompokkan menurut
+1275|Urutkan menurut
+1276|Semua proyek
+1277|Semua pelanggan
+1278|Semua lokasi
+1279|Semua status
+1280|Belum ditetapkan
+1281|Menampilkan {1} dari {2} panel
+1282|Tidak ada panel yang cocok dengan filter ini.
+1283|Hapus filter
+1284|Cari nama, proyek, pelanggan, lokasi

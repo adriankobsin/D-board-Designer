@@ -1249,3 +1249,36 @@
 1249|Riquadri
 1250|Elenco
 1251|Vista progetti
+1252|Progetto e cliente
+1253|Mostrato nella dashboard per ritrovare questo quadro e nella copertina del PDF.
+1254|Progetto / commessa
+1255|Cliente
+1256|Ubicazione
+1257|Riferimento commessa
+1258|Data di installazione
+1259|Progettazione
+1260|Preventivato
+1261|Approvato
+1262|In costruzione
+1263|Installato
+1264|Collaudato
+1265|In sospeso
+1266|es. refit M/Y Aurora
+1267|es. Sala macchine, ponte 2
+1268|Dettagli
+1269|Dettagli del quadro
+1270|Salva i dettagli
+1271|Modificati di recente
+1272|Nome A–Z
+1273|Nessun raggruppamento
+1274|Raggruppa per
+1275|Ordina per
+1276|Tutti i progetti
+1277|Tutti i clienti
+1278|Tutte le ubicazioni
+1279|Tutti gli stati
+1280|Non assegnato
+1281|Mostrati {1} di {2} quadri
+1282|Nessun quadro corrisponde ai filtri.
+1283|Cancella i filtri
+1284|Cerca per nome, progetto, cliente, ubicazione

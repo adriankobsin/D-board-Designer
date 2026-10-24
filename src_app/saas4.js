@@ -6,16 +6,19 @@ function saFrame(active, body){
   const nav = [['dashboard', 'Dashboard'], ['community', 'Community'], ['import', 'Import'], ['account', 'Account']].concat(adm ? [['admin', 'Admin']] : []);
   return `<div class="sa-bar"><div class="in">${saBrand('button').replace('class="sa-brand"', 'class="sa-brand" data-sa="dash" aria-label="Dashboard"')}<nav class="sa-nav" aria-label="Main">${nav.map(n => `<button data-sa="${n[0] === 'dashboard' ? 'dash' : n[0]}" ${active === n[0] ? 'aria-current="page"' : ''}>${saEsc(T(n[1]))}${n[0] === 'community' ? ' <span class="sa-nb inl" data-nbadge hidden>0</span>' : ''}</button>`).join('')}</nav><span class="sa-sp"></span><span class="sa-hide-s">${saLangSelect()}</span><button class="sa-helpb" data-sa="help" aria-label="${saEsc(T('Help: how the platform works'))}" title="${saEsc(T('Help'))}"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M9.2 9.3a2.9 2.9 0 1 1 4.3 2.5c-.9.5-1.5 1.1-1.5 2.1M12 17.4h.01"/></svg><span>${saEsc(T('Help'))}</span></button>${saBellBtn()}<button class="sa-btn sa-hide-s" data-sa="app">${saEsc(T('Open designer'))}</button><div class="sa-um" data-nt><button class="sa-ub" data-sa="menu" aria-haspopup="menu" aria-expanded="false"><span class="sa-av">${saEsc(saInitials())}</span><span class="nm">${saEsc((SA.profile && SA.profile.first_name) || '')}</span></button></div></div></div><main class="sa-main">${body}</main>`;
 }
+const saStPill = st => st ? `<span class="sa-st" data-st="${saEsc(st)}">${saEsc(T(st))}</span>` : '';
+const saInstDate = d => { if (!d) return ''; try { return new Date(d + 'T00:00').toLocaleDateString(saLang()); } catch (e) { return d; } };
+const saProjActs = (p, recent) => `<button class="sa-btn pri sm" data-sa="open" data-id="${p.id}">${saEsc(T('Open'))}</button>${recent ? '' : `<button class="sa-btn sm" data-sa="pinfo" data-id="${p.id}">${saEsc(T('Details'))}</button><button class="sa-btn sm" data-sa="share" data-id="${p.id}">${saEsc(T('Share'))}</button><button class="sa-btn sm" data-sa="rename" data-id="${p.id}">${saEsc(T('Rename'))}</button><button class="sa-btn sm" data-sa="dup" data-id="${p.id}">${saEsc(T('Duplicate'))}</button><button class="sa-btn sm bad" data-sa="del" data-id="${p.id}">${saEsc(T('Delete'))}</button>`}`;
 function saProjCard(p, recent){
-  const mt = p.meta || {};
-  return `<article class="sa-card sa-proj"><h3>${saEsc(p.name)}</h3><div class="meta"><span>${saEsc(T('Edited'))} ${saEsc(saRel(p.updated_at))}</span>${mt.circuits != null ? `<span>${mt.circuits} ${saEsc(T('circuits'))}</span>` : ''}${mt.modules != null ? `<span>${mt.modules} ${saEsc(T('devices'))}</span>` : ''}</div>
-  <div class="acts"><button class="sa-btn pri sm" data-sa="open" data-id="${p.id}">${saEsc(T('Open'))}</button>${recent ? '' : `<button class="sa-btn sm" data-sa="share" data-id="${p.id}">${saEsc(T('Share'))}</button><button class="sa-btn sm" data-sa="rename" data-id="${p.id}">${saEsc(T('Rename'))}</button><button class="sa-btn sm" data-sa="dup" data-id="${p.id}">${saEsc(T('Duplicate'))}</button><button class="sa-btn sm bad" data-sa="del" data-id="${p.id}">${saEsc(T('Delete'))}</button>`}</div></article>`;
+  const mt = p.meta || {}, who = [mt.jobName, mt.customer].filter(Boolean).join(' · ');
+  return `<article class="sa-card sa-proj"><h3>${saEsc(p.name)}${mt.jobRef ? ` <small class="sa-ref">${saEsc(mt.jobRef)}</small>` : ''}</h3>${recent ? '' : `${who ? `<div class="sa-who">${saEsc(who)}</div>` : ''}${mt.location ? `<div class="sa-loc">${saEsc(mt.location)}</div>` : ''}`}<div class="meta">${recent ? '' : saStPill(mt.status)}<span>${saEsc(T('Edited'))} ${saEsc(saRel(p.updated_at))}</span>${mt.circuits != null ? `<span>${mt.circuits} ${saEsc(T('circuits'))}</span>` : ''}${mt.modules != null ? `<span>${mt.modules} ${saEsc(T('devices'))}</span>` : ''}${!recent && mt.instDate ? `<span>${saEsc(T('Installation date'))}: ${saEsc(saInstDate(mt.instDate))}</span>` : ''}</div>
+  <div class="acts">${saProjActs(p, recent)}</div></article>`;
 }
 function saPView(){ try { return localStorage.getItem('dbd_projview') === 'list' ? 'list' : 'tiles'; } catch (e) { return 'tiles'; } }
 function saProjRow(p, recent){
   const mt = p.meta || {};
-  return `<article class="sa-prow"><h3 class="nm">${saEsc(p.name)}</h3><span class="ed" data-label="${saEsc(T('Edited'))}">${saEsc(T('Edited'))} ${saEsc(saRel(p.updated_at))}</span><span class="ci">${mt.circuits != null ? mt.circuits + ' ' + saEsc(T('circuits')) : ''}</span><span class="dv">${mt.modules != null ? mt.modules + ' ' + saEsc(T('devices')) : ''}</span>
-  <span class="acts"><button class="sa-btn pri sm" data-sa="open" data-id="${p.id}">${saEsc(T('Open'))}</button>${recent ? '' : `<button class="sa-btn sm" data-sa="share" data-id="${p.id}">${saEsc(T('Share'))}</button><button class="sa-btn sm" data-sa="rename" data-id="${p.id}">${saEsc(T('Rename'))}</button><button class="sa-btn sm" data-sa="dup" data-id="${p.id}">${saEsc(T('Duplicate'))}</button><button class="sa-btn sm bad" data-sa="del" data-id="${p.id}">${saEsc(T('Delete'))}</button>`}</span></article>`;
+  return `<article class="sa-prow"><h3 class="nm">${saEsc(p.name)}${mt.jobRef ? ` <small class="sa-ref">${saEsc(mt.jobRef)}</small>` : ''}</h3>${recent ? '' : `<span class="jb">${saEsc(mt.jobName || '')}</span><span class="cu">${saEsc(mt.customer || '')}</span><span class="lo">${saEsc(mt.location || '')}</span><span class="stc">${saStPill(mt.status)}</span>`}<span class="ed"><span>${saEsc(T('Edited'))} ${saEsc(saRel(p.updated_at))}</span><small>${mt.circuits != null ? mt.circuits + ' ' + saEsc(T('circuits')) : ''}${mt.modules != null ? ' · ' + mt.modules + ' ' + saEsc(T('devices')) : ''}</small></span>
+  <span class="acts">${saProjActs(p, recent)}</span></article>`;
 }
 /* the project lists can be shown as tiles or as one row per project */
 function saProjHtml(list, recent){ return saPView() === 'list' ? list.map(p => saProjRow(p, recent)).join('') : list.map(p => saProjCard(p, recent)).join(''); }
@@ -23,6 +26,70 @@ const saProjCls = (base) => saPView() === 'list' ? 'sa-plist' : base;
 function saProjToggle(){
   const v = saPView(), b = (k, t) => `<button type="button" class="sa-btn sm${v === k ? ' pri' : ''}" data-sa="pview" data-v="${k}" aria-pressed="${v === k}">${saEsc(T(t))}</button>`;
   return `<span class="sa-row sa-vt" role="group" aria-label="${saEsc(T('Project view'))}" style="gap:6px">${b('tiles', 'Tiles')}${b('list', 'List')}</span>`;
+}
+/* ---- filters, sorting and grouping for the saved projects ---- */
+const SA_SORTS = [['edited', 'Recently edited'], ['name', 'Name A–Z'], ['job', 'Project / job'], ['cust', 'Customer']];
+const SA_GROUPS = [['none', 'No grouping'], ['job', 'Project / job'], ['cust', 'Customer'], ['loc', 'Location'], ['status', 'Status']];
+const SA_STATUSES = ['Design', 'Quoted', 'Approved', 'In build', 'Installed', 'Commissioned', 'On hold'];
+const saPref = (k, def, ok) => { try { const v = localStorage.getItem('dbd_proj' + k); return ok.includes(v) ? v : def; } catch (e) { return def; } };
+const saMk = p => (p.meta || {});
+const saGKey = {job: p => saMk(p).jobName || '', cust: p => saMk(p).customer || '', loc: p => saMk(p).location || '', status: p => saMk(p).status || ''};
+function saFiltered(){
+  const f = SA.f || (SA.f = {}), q = (SA.q || '').toLowerCase();
+  return SA.projects.filter(p => { const m = saMk(p);
+    if (q && !(p.name + ' ' + (m.jobName || '') + ' ' + (m.customer || '') + ' ' + (m.location || '') + ' ' + (m.jobRef || '')).toLowerCase().includes(q)) return false;
+    if (f.job && (m.jobName || '') !== (f.job === '\u0001' ? '' : f.job)) return false;
+    if (f.cust && (m.customer || '') !== (f.cust === '\u0001' ? '' : f.cust)) return false;
+    if (f.loc && (m.location || '') !== (f.loc === '\u0001' ? '' : f.loc)) return false;
+    if (f.status && (m.status || '') !== (f.status === '\u0001' ? '' : f.status)) return false;
+    return true; });
+}
+function saSortedList(list){
+  const k = saPref('sort', 'edited', SA_SORTS.map(x => x[0])), cmp = (a, b) => String(a || '').localeCompare(String(b || ''), saLang(), {sensitivity: 'base', numeric: true});
+  const by = {edited: (a, b) => new Date(b.updated_at) - new Date(a.updated_at), name: (a, b) => cmp(a.name, b.name), job: (a, b) => (!saMk(a).jobName - !saMk(b).jobName) || cmp(saMk(a).jobName, saMk(b).jobName) || cmp(a.name, b.name), cust: (a, b) => (!saMk(a).customer - !saMk(b).customer) || cmp(saMk(a).customer, saMk(b).customer) || cmp(a.name, b.name)};
+  return list.slice().sort(by[k]);
+}
+function saListHtml(){
+  const all = SA.projects, list = saSortedList(saFiltered()), g = saPref('group', 'none', SA_GROUPS.map(x => x[0]));
+  const cnt = `<div class="sa-count" id="saCount" role="status">${saEsc(T('Showing {1} of {2} panels').replace('{1}', list.length).replace('{2}', all.length))}</div>`;
+  if (!list.length) return cnt + `<div class="sa-empty">${saEsc(T(all.length ? 'No panels match these filters.' : 'No saved projects yet. Create your first board above.'))}</div>`;
+  const wrap = items => { const lst = saPView() === 'list'; return `<div class="${saProjCls('sa-grid c3')}">${lst ? `<div class="sa-prow hd" aria-hidden="true"><span>${saEsc(T('Name'))}</span><span>${saEsc(T('Project / job'))}</span><span>${saEsc(T('Customer'))}</span><span>${saEsc(T('Location'))}</span><span>${saEsc(T('Status'))}</span><span>${saEsc(T('Edited'))}</span><span></span></div>` : ''}${items.map(p => saProjHtml([p]).trim()).join('')}</div>`; };
+  if (g === 'none') return cnt + wrap(list);
+  const groups = new Map(); list.forEach(p => { const k = saGKey[g](p); if (!groups.has(k)) groups.set(k, []); groups.get(k).push(p); });
+  const keys = [...groups.keys()].sort((a, b) => (!a - !b) || String(a).localeCompare(String(b), saLang(), {sensitivity: 'base', numeric: true}));
+  return cnt + keys.map(k => `<section class="sa-grp"><h3>${saEsc(k ? (g === 'status' ? T(k) : k) : T('Unassigned'))} <span class="n">${groups.get(k).length}</span></h3>${wrap(groups.get(k))}</section>`).join('');
+}
+function saRepaintList(){ const l = sa$('#saList'); if (l) l.innerHTML = saListHtml(); const c = sa$('#saClear'); if (c) c.hidden = !(SA.q || Object.values(SA.f || {}).some(Boolean)); }
+function saFilterBar(){
+  const vals = fn => [...new Set(SA.projects.map(fn).filter(Boolean))].sort((a, b) => a.localeCompare(b, saLang(), {sensitivity: 'base', numeric: true}));
+  const f = SA.f || {}, sel = (id, all, vs, cur, tr) => `<select class="sa-in" id="${id}" aria-label="${saEsc(T(all))}"><option value="">${saEsc(T(all))}</option>${vs.map(v => `<option value="${saEsc(v)}" ${cur === v ? 'selected' : ''}>${saEsc(tr ? T(v) : v)}</option>`).join('')}</select>`;
+  const so = saPref('sort', 'edited', SA_SORTS.map(x => x[0])), gr = saPref('group', 'none', SA_GROUPS.map(x => x[0]));
+  const st = SA_STATUSES.filter(x => SA.projects.some(p => saMk(p).status === x));
+  return `<div class="sa-filters" role="search"><input class="sa-in" id="saQ" type="search" placeholder="${saEsc(T('Search name, project, customer, location'))}" aria-label="${saEsc(T('Search projects'))}" value="${saEsc(SA.q || '')}">
+  ${sel('saFJob', 'All projects', vals(p => saMk(p).jobName), f.job)}${sel('saFCust', 'All customers', vals(p => saMk(p).customer), f.cust)}${sel('saFLoc', 'All locations', vals(p => saMk(p).location), f.loc)}${sel('saFStatus', 'All statuses', st, f.status, true)}
+  <label class="sa-fl"><span>${saEsc(T('Sort by'))}</span><select class="sa-in" id="saSort">${SA_SORTS.map(x => `<option value="${x[0]}" ${so === x[0] ? 'selected' : ''}>${saEsc(T(x[1]))}</option>`).join('')}</select></label>
+  <label class="sa-fl"><span>${saEsc(T('Group by'))}</span><select class="sa-in" id="saGroup">${SA_GROUPS.map(x => `<option value="${x[0]}" ${gr === x[0] ? 'selected' : ''}>${saEsc(T(x[1]))}</option>`).join('')}</select></label>
+  ${saProjToggle()}<button type="button" class="sa-btn sm" id="saClear" data-sa="fclear" ${(SA.q || Object.values(f).some(Boolean)) ? '' : 'hidden'}>${saEsc(T('Clear filters'))}</button></div>`;
+}
+/* details of one panel: project, customer, location, status */
+function saInfoModal(id){
+  const p = SA.projects.find(x => x.id === id); if (!p) return; const m = saMk(p);
+  const f = (k, label, type, val, extra = '') => `<label class="sa-field"><span>${saEsc(T(label))}</span><input id="pi_${k}" type="${type}" value="${saEsc(val || '')}" ${extra}></label>`;
+  saModal(`<h2>${saEsc(T('Panel details'))}</h2><p class="sa-sub" style="margin:0 0 12px"><b>${saEsc(p.name)}</b></p>
+  <div class="sa-form" style="grid-template-columns:1fr">${f('jobName', 'Project / job', 'text', m.jobName, 'maxlength="120"')}${f('customer', 'Customer', 'text', m.customer, 'maxlength="120"')}${f('location', 'Location', 'text', m.location, 'maxlength="120"')}${f('jobRef', 'Job reference', 'text', m.jobRef, 'maxlength="60"')}
+  <label class="sa-field"><span>${saEsc(T('Status'))}</span><select id="pi_status"><option value="">–</option>${SA_STATUSES.map(x => `<option value="${x}" ${m.status === x ? 'selected' : ''}>${saEsc(T(x))}</option>`).join('')}</select></label>${f('instDate', 'Installation date', 'date', m.instDate)}
+  <label class="sa-field"><span>${saEsc(T('Notes'))}</span><textarea id="pi_jobNotes" rows="3" maxlength="500">${saEsc(m.jobNotes || '')}</textarea></label></div>
+  <div class="sa-row" style="margin-top:14px"><button class="sa-btn pri" data-sa="pinfosave" data-id="${id}">${saEsc(T('Save details'))}</button><button class="sa-btn" data-sa="pinfox">${saEsc(T('Cancel'))}</button></div>`);
+}
+async function saInfoSave(id){
+  const {data: row} = await SA.sb.from('projects').select('data').eq('id', id).maybeSingle();
+  if (!row || !row.data){ toast('That project no longer exists.'); saModalClose(); return; }
+  const nd = Object.assign({}, row.data);
+  SA_INFO.forEach(f => { const e = sa$('#pi_' + f[0]), v = e ? e.value.trim().slice(0, f[1]) : ''; if (v) nd[f[0]] = v; else delete nd[f[0]]; });
+  const {data: up, error} = await SA.sb.from('projects').update({data: nd, meta: saMeta(nd)}).eq('id', id).select('updated_at,meta');
+  if (error || !up || !up.length){ toast(error ? saErr(error) : 'The project could not be read.'); return; }
+  const p = SA.projects.find(x => x.id === id); if (p){ p.meta = up[0].meta; p.updated_at = up[0].updated_at; }
+  saModalClose(); saViewDash(sa$('#saas')); toast('Saved');
 }
 async function saViewDash(el){
   el.innerHTML = saFrame('dashboard', `<div class="sa-splash">${saEsc(T('Loading your projects…'))}</div>`);
@@ -38,8 +105,8 @@ async function saViewDash(el){
   <div class="sa-card"><h2>${saEsc(T('Import a panel'))}</h2><p class="sa-sub" style="margin-bottom:12px">${saEsc(T('Turn a photo of a built panel, or a PDF schematic, into an editable board.'))}</p><button class="sa-btn pri" data-sa="import">${saEsc(T('Import from photo or PDF'))}</button></div><div class="sa-card sa-tile"><b>${list.length}</b><span>${saEsc(T('Saved projects'))}</span></div><div class="sa-card"><h2>${saEsc(T('Work on this device'))}</h2><p class="sa-sub" style="margin-bottom:12px">${saEsc(T('Open the board stored in this browser, without saving it to the cloud.'))}</p><button class="sa-btn" data-sa="local">${saEsc(T('Open local board'))}</button></div></div>
   ${SA.listErr ? `<div class="sa-msg bad">${saEsc(T(SA.listErr))}</div>` : ''}
   ${recent.length ? `<h2 style="margin:0 0 10px">${saEsc(T('Recently Opened Projects'))}</h2><div class="${saProjCls('sa-grid c4')}" id="saRecent" style="margin-bottom:22px">${saProjHtml(recent, true)}</div>` : ''}
-  <div class="sa-row" style="justify-content:space-between;margin-bottom:10px"><h2 style="margin:0">${saEsc(T('My Saved Projects'))}</h2><span class="sa-row" style="gap:10px;flex-wrap:wrap">${saProjToggle()}<input class="sa-in" id="saQ" type="search" placeholder="${saEsc(T('Search projects'))}" aria-label="${saEsc(T('Search projects'))}" value="${saEsc(SA.q || '')}" style="max-width:260px"></span></div>
-  ${shown.length ? `<div class="${saProjCls('sa-grid c3')}" id="saList">${saProjHtml(shown)}</div>` : `<div class="sa-empty">${saEsc(T(list.length ? 'No projects match your search.' : 'No saved projects yet. Create your first board above.'))}</div>`}
+  <h2 style="margin:0 0 10px">${saEsc(T('My Saved Projects'))}</h2>${saFilterBar()}
+  <div id="saList">${saListHtml()}</div>
   <div class="sa-card" style="margin-top:26px"><h2>${saEsc(T('Send feedback'))}</h2>${saFeedbackForm()}</div>`);
 }
 function saFeedbackForm(){

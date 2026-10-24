@@ -1249,3 +1249,36 @@
 1249|Plăci
 1250|Listă
 1251|Vizualizare proiecte
+1252|Proiect și client
+1253|Afișat în panou ca să găsești ușor acest tablou, și pe pagina de copertă a PDF-ului.
+1254|Proiect / lucrare
+1255|Client
+1256|Locație
+1257|Referință lucrare
+1258|Data instalării
+1259|Proiectare
+1260|Ofertat
+1261|Aprobat
+1262|În execuție
+1263|Instalat
+1264|Pus în funcțiune
+1265|În așteptare
+1266|de ex. refacerea M/Y Aurora
+1267|de ex. Sala mașinilor, puntea 2
+1268|Detalii
+1269|Detaliile tabloului
+1270|Salvează detaliile
+1271|Editate recent
+1272|Nume A–Z
+1273|Fără grupare
+1274|Grupează după
+1275|Sortează după
+1276|Toate proiectele
+1277|Toți clienții
+1278|Toate locațiile
+1279|Toate stările
+1280|Neatribuit
+1281|Se afișează {1} din {2} tablouri
+1282|Niciun tablou nu corespunde filtrelor.
+1283|Șterge filtrele
+1284|Caută după nume, proiect, client, locație

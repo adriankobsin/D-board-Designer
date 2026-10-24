@@ -1249,3 +1249,36 @@
 1249|Kafelki
 1250|Lista
 1251|Widok projektów
+1252|Projekt i klient
+1253|Wyświetlane na pulpicie, aby łatwo znaleźć tę rozdzielnicę, oraz na stronie tytułowej PDF.
+1254|Projekt / zlecenie
+1255|Klient
+1256|Lokalizacja
+1257|Numer zlecenia
+1258|Data instalacji
+1259|Projektowanie
+1260|Wycenione
+1261|Zatwierdzone
+1262|W budowie
+1263|Zainstalowane
+1264|Uruchomione
+1265|Wstrzymane
+1266|np. refit M/Y Aurora
+1267|np. Maszynownia, pokład 2
+1268|Szczegóły
+1269|Szczegóły rozdzielnicy
+1270|Zapisz szczegóły
+1271|Ostatnio edytowane
+1272|Nazwa A–Z
+1273|Bez grupowania
+1274|Grupuj według
+1275|Sortuj według
+1276|Wszystkie projekty
+1277|Wszyscy klienci
+1278|Wszystkie lokalizacje
+1279|Wszystkie statusy
+1280|Nieprzypisane
+1281|Wyświetlono {1} z {2} rozdzielnic
+1282|Żadna rozdzielnica nie pasuje do filtrów.
+1283|Wyczyść filtry
+1284|Szukaj: nazwa, projekt, klient, lokalizacja

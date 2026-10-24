@@ -2,7 +2,8 @@
 /* ---------- cloud projects ---------- */
 const SA_COLS = 'id,name,meta,created_at,updated_at,last_opened_at';
 function saBlank(name){ return Object.assign(exampleProject(), {name: name || 'New board', circuits: [], modules: [], order: []}); }
-function saMeta(p){ return {circuits: (p.circuits || []).length, modules: (p.modules || []).length, std: p.std || '', sys: p.sys || ''}; }
+const SA_INFO = [['jobName', 120], ['customer', 120], ['location', 120], ['jobRef', 60], ['status', 30], ['instDate', 10], ['jobNotes', 500]];
+function saMeta(p){ const m = {circuits: (p.circuits || []).length, modules: (p.modules || []).length, std: p.std || '', sys: p.sys || ''}; SA_INFO.forEach(f => { const v = String(p[f[0]] == null ? '' : p[f[0]]).trim().slice(0, f[1]); if (v) m[f[0]] = v; }); return m; }
 async function saListProjects(){
   const {data, error} = await SA.sb.from('projects').select(SA_COLS).order('updated_at', {ascending: false}).limit(500);
   if (error){ SA.listErr = saErr(error); return []; }

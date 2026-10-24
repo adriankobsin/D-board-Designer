@@ -1249,3 +1249,36 @@
 1249|Vignettes
 1250|Liste
 1251|Affichage des projets
+1252|Projet et client
+1253|Affiché dans le tableau de bord pour retrouver ce tableau, et sur la page de garde du PDF.
+1254|Projet / chantier
+1255|Client
+1256|Emplacement
+1257|Référence du chantier
+1258|Date d'installation
+1259|Conception
+1260|Devisé
+1261|Approuvé
+1262|En fabrication
+1263|Installé
+1264|Mis en service
+1265|En attente
+1266|p. ex. refit M/Y Aurora
+1267|p. ex. Salle des machines, pont 2
+1268|Détails
+1269|Détails du tableau
+1270|Enregistrer les détails
+1271|Modifiés récemment
+1272|Nom A–Z
+1273|Sans regroupement
+1274|Grouper par
+1275|Trier par
+1276|Tous les projets
+1277|Tous les clients
+1278|Tous les emplacements
+1279|Tous les statuts
+1280|Non attribué
+1281|{1} tableaux affichés sur {2}
+1282|Aucun tableau ne correspond à ces filtres.
+1283|Effacer les filtres
+1284|Rechercher nom, projet, client, emplacement

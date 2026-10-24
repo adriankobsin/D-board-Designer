@@ -1249,3 +1249,36 @@
 1249|Kacheln
 1250|Liste
 1251|Projektansicht
+1252|Projekt und Kunde
+1253|Wird im Dashboard angezeigt, damit du diese Verteilung findest, und auf dem PDF-Deckblatt.
+1254|Projekt / Auftrag
+1255|Kunde
+1256|Standort
+1257|Auftragsnummer
+1258|Installationsdatum
+1259|Entwurf
+1260|Angeboten
+1261|Freigegeben
+1262|Im Bau
+1263|Installiert
+1264|In Betrieb genommen
+1265|Angehalten
+1266|z. B. Refit M/Y Aurora
+1267|z. B. Maschinenraum, Deck 2
+1268|Details
+1269|Verteilerdetails
+1270|Details speichern
+1271|Zuletzt bearbeitet
+1272|Name A–Z
+1273|Keine Gruppierung
+1274|Gruppieren nach
+1275|Sortieren nach
+1276|Alle Projekte
+1277|Alle Kunden
+1278|Alle Standorte
+1279|Alle Status
+1280|Nicht zugeordnet
+1281|{1} von {2} Verteilern angezeigt
+1282|Keine Verteiler entsprechen diesen Filtern.
+1283|Filter zurücksetzen
+1284|Name, Projekt, Kunde, Standort suchen

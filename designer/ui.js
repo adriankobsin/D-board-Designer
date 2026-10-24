@@ -59,10 +59,22 @@ function brkSelect(kinds, f){
   const cur = S[f] || '';
   return `<select data-k="s" data-f="${f}"><option value="">Generic (standard defaults)</option>${BRK.filter(b => kinds.includes(b.kind) && (!isDC(S) || (b.vdc != null && b.vdc >= S.vLN * 1.25))).map(b => `<option value="${b.id}" ${cur === b.id ? 'selected' : ''}>${esc(b.mfr + ' ' + b.series)}</option>`).join('')}</select>`;
 }
+const JOB_STATUS = ['Design', 'Quoted', 'Approved', 'In build', 'Installed', 'Commissioned', 'On hold'];
 function renderSetup(){
   const std = STD[S.std], lvm = isLV(S), dcm = isDC(S), vd = vdDef(S), sysList = SYSTEMS.filter(x => lvm ? x.lv : (x.phases === S.phases && !x.lv));
   const seg = (n, t) => `<button class="seg ${(n === 'lv' ? lvm : (!lvm && S.phases === n)) ? 'on' : ''}" data-a="phase" data-p="${n}" aria-pressed="${n === 'lv' ? lvm : (!lvm && S.phases === n)}">${t}</button>`;
-  return `<div class="card"><h2>Company and supply</h2>
+  return `<div class="card"><h2>Project and customer</h2>
+  <p class="muted" style="max-width:75ch">Shown on the dashboard so you can find this panel, and on the PDF cover page.</p>
+  <div class="form" style="margin-top:14px">
+    ${fld('Project / job', `<input type="text" data-k="s" data-f="jobName" maxlength="120" value="${esc(S.jobName || '')}" placeholder="e.g. M/Y Aurora refit">`)}
+    ${fld('Customer', `<input type="text" data-k="s" data-f="customer" maxlength="120" value="${esc(S.customer || '')}">`)}
+    ${fld('Location', `<input type="text" data-k="s" data-f="location" maxlength="120" value="${esc(S.location || '')}" placeholder="e.g. Engine room, deck 2">`)}
+    ${fld('Job reference', `<input type="text" data-k="s" data-f="jobRef" maxlength="60" value="${esc(S.jobRef || '')}">`)}
+    ${fld('Status', `<select data-k="s" data-f="status"><option value="">–</option>${JOB_STATUS.map(x => `<option value="${x}" ${S.status === x ? 'selected' : ''}>${x}</option>`).join('')}</select>`)}
+    ${fld('Installation date', `<input type="date" data-k="s" data-f="instDate" value="${esc(S.instDate || '')}">`)}
+    ${fld('Notes', `<textarea data-k="s" data-f="jobNotes" rows="3" maxlength="500">${esc(S.jobNotes || '')}</textarea>`)}
+  </div></div>
+  <div class="card"><h2>Company and supply</h2>
   <div class="form" style="margin-top:14px">
     ${fld('Company name', `<input type="text" data-k="s" data-f="company" value="${esc(S.company || '')}" placeholder="Shown beside the logo and on exports">`)}
     ${fld('Company details', `<textarea data-k="s" data-f="companyInfo" rows="3" maxlength="300" placeholder="Address, phone, email, website. Shown on the PDF cover page.">${esc(S.companyInfo || '')}</textarea>`)}
@@ -649,7 +661,7 @@ function exportXLSX(){
   XLSX.utils.book_append_sheet(wb, mk([[T('Item'), T('Qty')]].concat(bomRows()), [52, 6]), sheetName('Bill of materials'));
   const ph = [[T('Phase'), T('Current A (after diversity)')]].concat((S.phases === 3 ? ['L1', 'L2', 'L3'] : ['L1']).map(p => [p + ' (A, ' + (R.power.phW[p] / 1000).toFixed(2) + ' kW)', +R.ph[p].toFixed(2)])).concat([[T('Incomer A'), R.inc.In], [T('Imbalance %'), +R.inc.imb.toFixed(1)], [T('Connected kW'), +(R.power.conn / 1000).toFixed(2)], [T('Demand kW (after diversity)'), +(R.power.dem / 1000).toFixed(2)], [T('Apparent kVA'), +(R.power.kva / 1000).toFixed(2)], [T('Power factor'), +R.power.pf.toFixed(2)], [T('Dissipation W'), +R.heatW.toFixed(0)]]);
   XLSX.utils.book_append_sheet(wb, mk(ph, [28, 26]), sheetName('Phases'));
-  XLSX.utils.book_append_sheet(wb, mk([[T('Project'), S.name], [T('Company'), S.company || ''], [T('Standard'), STD[S.std].n], [T('System'), T((SYSTEMS.find(s => s.id === S.sysId) || {}).label)], [T('Fault level kA'), S.ik], [T('Cable ambient C'), S.ambient], [T('Diversity'), S.diversity], [T('MCB series'), R.sel.mcbS ? R.sel.mcbS.mfr + ' ' + R.sel.mcbS.series : T('Generic')], [T('RCBO series'), R.sel.rcboS ? R.sel.rcboS.mfr + ' ' + R.sel.rcboS.series : T('Generic')], [T('Main switch'), R.sel.mainS ? R.sel.mainS.mfr + ' ' + R.sel.mainS.series : T('Generic')]], [20, 36]), sheetName('Project'));
+  XLSX.utils.book_append_sheet(wb, mk([[T('Project'), S.name], [T('Company'), S.company || ''], [T('Project / job'), S.jobName || ''], [T('Customer'), S.customer || ''], [T('Location'), S.location || ''], [T('Job reference'), S.jobRef || ''], [T('Status'), S.status ? T(S.status) : ''], [T('Installation date'), S.instDate || ''], [T('Standard'), STD[S.std].n], [T('System'), T((SYSTEMS.find(s => s.id === S.sysId) || {}).label)], [T('Fault level kA'), S.ik], [T('Cable ambient C'), S.ambient], [T('Diversity'), S.diversity], [T('MCB series'), R.sel.mcbS ? R.sel.mcbS.mfr + ' ' + R.sel.mcbS.series : T('Generic')], [T('RCBO series'), R.sel.rcboS ? R.sel.rcboS.mfr + ' ' + R.sel.rcboS.series : T('Generic')], [T('Main switch'), R.sel.mainS ? R.sel.mainS.mfr + ' ' + R.sel.mainS.series : T('Generic')]], [20, 36]), sheetName('Project'));
   dl(slug() + '.xlsx', XLSX.write(wb, {type: 'array', bookType: 'xlsx'}));
 }
 function exportJSON(){ dl(slug() + '.json', JSON.stringify(S, null, 1)); }
@@ -788,6 +800,8 @@ function exportPDF(){
     doc.setDrawColor(11, 107, 142); doc.setLineWidth(0.8); doc.line(ML, y, ML + 40, y); y += 9;
     if (S.company){ doc.setFont('helvetica', 'bold'); doc.setFontSize(13); doc.setTextColor(30); doc.text(a8(S.company), ML, y); y += 6.5; }
     if (S.companyInfo){ doc.setFont('helvetica', 'normal'); doc.setFontSize(10); doc.setTextColor(70); a8(S.companyInfo).split('\n').forEach(l => doc.splitTextToSize(l, 120).forEach(w => { doc.text(w, ML, y); y += 5; })); }
+    { const jl = [['Project / job', S.jobName], ['Customer', S.customer], ['Location', S.location], ['Job reference', S.jobRef], ['Status', S.status], ['Installation date', S.instDate]].filter(r => r[1]);
+      if (jl.length){ y += 3; doc.setFontSize(10); jl.forEach(r => { doc.setFont('helvetica', 'bold'); doc.setTextColor(40); doc.text(PT(r[0]) + ':', ML, y); doc.setFont('helvetica', 'normal'); doc.setTextColor(70); doc.text(a8(r[0] === 'Status' ? PT(r[1]) : r[1]).slice(0, 80), ML + 42, y); y += 5.5; }); } }
     y = Math.max(y + 8, 112);
     doc.setFont('helvetica', 'bold'); doc.setFontSize(10); doc.setTextColor(40); doc.text(PT('Project summary'), ML, y); y += 6;
     doc.setFont('helvetica', 'normal'); doc.setFontSize(9); doc.setTextColor(70); doc.text(doc.splitTextToSize(a8(summary1), PW - 2 * ML), ML, y); y += 5.5 * doc.splitTextToSize(a8(summary1), PW - 2 * ML).length; doc.text(a8(summary2), ML, y); y += 10;

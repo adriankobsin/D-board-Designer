@@ -1246,3 +1246,6 @@
 1246|Tego projektu nie można tu zapisać
 1247|Mógł zostać usunięty, udostępniony Ci tylko do podglądu albo inne urządzenie stale go zmienia. Zapisz kopię na swoim koncie, aby pracować dalej.
 1248|Zapisz kopię na moim koncie
+1249|Kafelki
+1250|Lista
+1251|Widok projektów

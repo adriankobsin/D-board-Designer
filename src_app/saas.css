@@ -304,3 +304,14 @@ html.sa-incall body{overflow:hidden}
   .sa-cthread{height:calc(100dvh - var(--sa-hdr,112px) - 12px);min-height:260px}
 }
 @media (max-height:500px) and (max-width:1024px){.sa-cthread{min-height:200px}.sa-chd{padding:6px 10px}.sa-comp{padding:6px 10px}.sa-comp textarea{min-height:38px}}
+
+/* project list view */
+.sa-plist{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:6px;background:var(--surface);overflow:hidden}
+.sa-prow{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(130px,.9fr) 90px 90px auto;gap:8px 16px;align-items:center;padding:10px 16px;border-top:1px solid var(--line)}
+.sa-prow:first-child{border-top:0}
+.sa-prow:hover{background:var(--surface-2,rgba(127,127,127,.07))}
+.sa-prow .nm{margin:0;font-size:16px;text-transform:none;letter-spacing:0;color:var(--ink);overflow-wrap:anywhere}
+.sa-prow .ed,.sa-prow .ci,.sa-prow .dv{color:var(--ink-2);font-size:12.5px;min-width:0}
+.sa-prow .acts{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+@media (max-width:820px){.sa-prow{grid-template-columns:1fr 1fr;padding:12px 14px}.sa-prow .nm{grid-column:1/-1}.sa-prow .acts{grid-column:1/-1;justify-content:flex-start}}
+html:lang(km) .sa-prow .nm{line-height:1.7}

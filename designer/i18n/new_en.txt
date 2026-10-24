@@ -437,3 +437,6 @@
 1246|This project cannot be saved here
 1247|It may have been deleted, it may be shared with you to view only, or another device keeps changing it. Save a copy to your account to keep working.
 1248|Save a copy to my account
+1249|Tiles
+1250|List
+1251|Project view

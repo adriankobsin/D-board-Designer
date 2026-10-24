@@ -1246,3 +1246,6 @@
 1246|Proyek ini tidak dapat disimpan di sini
 1247|Proyek mungkin telah dihapus, dibagikan kepada Anda hanya untuk dilihat, atau perangkat lain terus mengubahnya. Simpan salinan ke akun Anda untuk terus bekerja.
 1248|Simpan salinan ke akun saya
+1249|Ubin
+1250|Daftar
+1251|Tampilan proyek

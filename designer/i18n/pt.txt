@@ -1246,3 +1246,6 @@
 1246|Este projeto não pode ser guardado aqui
 1247|Pode ter sido eliminado, estar partilhado consigo apenas para visualização, ou outro dispositivo continua a alterá-lo. Guarde uma cópia na sua conta para continuar a trabalhar.
 1248|Guardar uma cópia na minha conta
+1249|Mosaico
+1250|Lista
+1251|Vista de projetos

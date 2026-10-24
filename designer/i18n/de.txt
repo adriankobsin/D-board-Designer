@@ -1246,3 +1246,6 @@
 1246|Dieses Projekt kann hier nicht gespeichert werden
 1247|Es wurde möglicherweise gelöscht, ist nur zur Ansicht mit dir geteilt oder ein anderes Gerät ändert es ständig. Speichere eine Kopie in deinem Konto, um weiterzuarbeiten.
 1248|Kopie in meinem Konto speichern
+1249|Kacheln
+1250|Liste
+1251|Projektansicht

@@ -1246,3 +1246,6 @@
 1246|Questo progetto non può essere salvato qui
 1247|Potrebbe essere stato eliminato, condiviso con te in sola visualizzazione, oppure un altro dispositivo continua a modificarlo. Salva una copia nel tuo account per continuare a lavorare.
 1248|Salva una copia nel mio account
+1249|Riquadri
+1250|Elenco
+1251|Vista progetti

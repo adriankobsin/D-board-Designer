@@ -1294,3 +1294,58 @@
 1294|Fără întrerupător de alimentare
 1295|Treceți la modul întunecat
 1296|Treceți la modul luminos
+1297|Planuri
+1298|Conturile Demo sunt limitate la un proiect, un export PDF demo, fără chat sau import de panou. Conturile Gratuit și Plătit și administratorii au acces complet.
+1299|Limitele planurilor sunt ACTIVE
+1300|Limitele planurilor sunt OPRITE (toți au acces complet)
+1301|Plan
+1302|Demo
+1303|Acces gratuit
+1304|Plătit
+1305|Orice plan
+1306|Editează planul
+1307|Accesul se încheie (opțional)
+1308|Notă (opțional)
+1309|Salvează planul
+1310|Plan salvat
+1311|Rulați mai întâi migrarea 0009_plans.sql în Supabase.
+1312|Acces complet
+1313|Limite plan
+1314|Limitele încep la data aleasă
+1315|Niciodată (toți au acces complet)
+1316|Limitează acum
+1317|Limitează de la o dată
+1318|Când se limitează
+1319|Data de început
+1320|Salvează limitele
+1321|Plăți
+1322|Webhook pregătit
+1323|Adăugați STRIPE_WEBHOOK_SECRET în Worker
+1324|Creați un Payment Link în Stripe, lipiți-l aici și activați plățile. Utilizatorii Demo vor vedea un buton Upgrade. O plată reușită îi trece automat la Plătit.
+1325|Link de plată Stripe
+1326|Preț afișat utilizatorilor
+1327|Arată butonul Upgrade
+1328|Adresa webhook pentru Stripe
+1329|Salvează plățile
+1330|Alegeți o dată de început.
+1331|Funcție din planul complet
+1332|aceasta face parte din planul complet.
+1333|Planul demo include un proiect și un export PDF marcat „DBoard Designer Demo”.
+1334|Upgrade
+1335|Cere acces complet
+1336|Cerere trimisă. Administratorul o va analiza.
+1337|Planul demo permite un singur proiect.
+1338|Importul de panou face parte din planul complet.
+1339|Chatul, partajarea și apelurile fac parte din planul complet. Puteți citi comunitatea, dar nu puteți posta.
+1340|Mai mult de un proiect
+1341|Import panou
+1342|Chat
+1343|Chat, partajare și apeluri
+1344|Apeluri
+1345|Partajare fișiere
+1346|Partajare proiecte
+1347|Export Excel, CSV și fișier de proiect
+1348|Aceasta face parte din planul complet.
+1349|Plan demo: este disponibil doar exportul PDF, marcat „DBoard Designer Demo”. Excel, CSV și fișierul de proiect fac parte din planul complet.
+1350|Activați limitele planurilor? Conturile noi și demo vor fi limitate imediat. Conturile existente cu acces Gratuit sau Plătit nu sunt afectate.
+1351|Limitați conturile demo de la data aleasă? Conturile existente cu acces Gratuit sau Plătit nu sunt afectate.

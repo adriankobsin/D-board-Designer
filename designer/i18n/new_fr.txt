@@ -444,3 +444,58 @@
 1294|Pas de disjoncteur d'alimentation
 1295|Passer en mode sombre
 1296|Passer en mode clair
+1297|Forfaits
+1298|Les comptes Démo sont limités à un projet, un export PDF démo, sans chat ni import de tableau. Les comptes Gratuit et Payant et les administrateurs ont un accès complet.
+1299|Les limites de forfait sont ACTIVES
+1300|Les limites de forfait sont DÉSACTIVÉES (accès complet pour tous)
+1301|Forfait
+1302|Démo
+1303|Accès gratuit
+1304|Payant
+1305|Tout forfait
+1306|Modifier le forfait
+1307|Fin d'accès (facultatif)
+1308|Note (facultatif)
+1309|Enregistrer le forfait
+1310|Forfait enregistré
+1311|Exécutez d'abord la migration 0009_plans.sql dans Supabase.
+1312|Accès complet
+1313|Limites de forfait
+1314|Les limites commencent à la date choisie
+1315|Jamais (accès complet pour tous)
+1316|Limiter maintenant
+1317|Limiter à partir d'une date
+1318|Quand limiter
+1319|Date de début
+1320|Enregistrer les limites
+1321|Paiements
+1322|Webhook prêt
+1323|Ajoutez STRIPE_WEBHOOK_SECRET au Worker
+1324|Créez un Payment Link dans Stripe, collez-le ici et activez les paiements. Les utilisateurs Démo verront un bouton Upgrade. Un paiement réussi les passe automatiquement en Payant.
+1325|Lien de paiement Stripe
+1326|Prix affiché aux utilisateurs
+1327|Afficher le bouton Upgrade
+1328|Adresse webhook pour Stripe
+1329|Enregistrer les paiements
+1330|Choisissez une date de début.
+1331|Fonction du forfait complet
+1332|cette fonction fait partie du forfait complet.
+1333|Le forfait démo comprend un projet et un export PDF marqué « DBoard Designer Demo ».
+1334|Upgrade
+1335|Demander l'accès complet
+1336|Demande envoyée. L'administrateur l'examinera.
+1337|Le forfait démo autorise un seul projet.
+1338|L'import de tableau fait partie du forfait complet.
+1339|Le chat, le partage et les appels font partie du forfait complet. Vous pouvez lire la communauté mais pas publier.
+1340|Plus d'un projet
+1341|Import de tableau
+1342|Chat
+1343|Chat, partage et appels
+1344|Appels
+1345|Partage de fichiers
+1346|Partage de projets
+1347|Export Excel, CSV et fichier de projet
+1348|Cette fonction fait partie du forfait complet.
+1349|Forfait démo : seul l'export PDF est disponible, marqué « DBoard Designer Demo ». Excel, CSV et le fichier de projet font partie du forfait complet.
+1350|Activer les limites de forfait ? Les nouveaux comptes et les comptes démo seront limités immédiatement. Les comptes existants avec accès Gratuit ou Payant ne sont pas concernés.
+1351|Limiter les comptes démo à partir de la date choisie ? Les comptes existants avec accès Gratuit ou Payant ne sont pas concernés.

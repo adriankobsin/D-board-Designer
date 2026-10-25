@@ -444,3 +444,58 @@
 1294|Kein Einspeise-Schutzschalter
 1295|Zum dunklen Modus wechseln
 1296|Zum hellen Modus wechseln
+1297|Tarife
+1298|Demo-Konten sind auf ein Projekt, einen Demo-PDF-Export und ohne Chat oder Verteiler-Import begrenzt. Kostenlose und Bezahl-Konten sowie Administratoren haben vollen Zugriff.
+1299|Tarifbeschränkungen sind EIN
+1300|Tarifbeschränkungen sind AUS (alle haben vollen Zugriff)
+1301|Tarif
+1302|Demo
+1303|Kostenloser Zugang
+1304|Bezahlt
+1305|Beliebiger Tarif
+1306|Tarif bearbeiten
+1307|Zugang endet (optional)
+1308|Notiz (optional)
+1309|Tarif speichern
+1310|Tarif gespeichert
+1311|Führen Sie zuerst die Migration 0009_plans.sql in Supabase aus.
+1312|Voller Zugriff
+1313|Tarifbeschränkungen
+1314|Beschränkungen beginnen am gewählten Datum
+1315|Nie (alle haben vollen Zugriff)
+1316|Jetzt beschränken
+1317|Ab einem Datum beschränken
+1318|Wann beschränken
+1319|Startdatum
+1320|Beschränkungen speichern
+1321|Zahlungen
+1322|Webhook bereit
+1323|STRIPE_WEBHOOK_SECRET zum Worker hinzufügen
+1324|Erstellen Sie in Stripe einen Payment Link, fügen Sie ihn hier ein und aktivieren Sie Zahlungen. Demo-Nutzer sehen dann eine Upgrade-Schaltfläche. Eine erfolgreiche Zahlung stellt sie automatisch auf Bezahlt.
+1325|Stripe-Zahlungslink
+1326|Preis, der Nutzern angezeigt wird
+1327|Upgrade-Schaltfläche anzeigen
+1328|Webhook-Adresse für Stripe
+1329|Zahlungen speichern
+1330|Wählen Sie ein Startdatum.
+1331|Funktion des Vollplans
+1332|das gehört zum Vollplan.
+1333|Der Demo-Plan enthält ein Projekt und einen PDF-Export mit der Kennzeichnung „DBoard Designer Demo“.
+1334|Upgrade
+1335|Vollen Zugriff anfragen
+1336|Anfrage gesendet. Der Administrator prüft sie.
+1337|Der Demo-Plan erlaubt nur ein Projekt.
+1338|Der Verteiler-Import gehört zum Vollplan.
+1339|Chat, Teilen und Anrufe gehören zum Vollplan. Sie können die Community lesen, aber nichts posten.
+1340|Mehr als ein Projekt
+1341|Verteiler-Import
+1342|Chat
+1343|Chat, Teilen und Anrufe
+1344|Anrufe
+1345|Dateien teilen
+1346|Projekte teilen
+1347|Export als Excel, CSV und Projektdatei
+1348|Das gehört zum Vollplan.
+1349|Demo-Plan: Nur der PDF-Export ist verfügbar, gekennzeichnet mit „DBoard Designer Demo“. Excel, CSV und die Projektdatei gehören zum Vollplan.
+1350|Tarifbeschränkungen einschalten? Neue und Demo-Konten werden sofort beschränkt. Bestehende Konten mit kostenlosem oder bezahltem Zugang sind nicht betroffen.
+1351|Demo-Konten ab dem gewählten Datum beschränken? Bestehende Konten mit kostenlosem oder bezahltem Zugang sind nicht betroffen.

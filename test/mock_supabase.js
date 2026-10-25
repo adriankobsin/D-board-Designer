@@ -3,7 +3,9 @@
    It does NOT prove Row Level Security (that is tested against real Postgres in pgtest/) or real email delivery. */
 const http = require('http'), crypto = require('crypto');
 const SERVICE = 'test-service-role-key', ANON = 'test-anon-key';
-const db = {users: [], profiles: [], projects: [], feedback: [], usage_events: [], admin_actions: [], outbox: []};
+const db = {users: [], profiles: [], projects: [], feedback: [], usage_events: [], admin_actions: [], outbox: [], settings: {plans_enforced: false}};
+const limitsOn = () => db.settings.plans_enforced === true || (!!db.settings.plans_start_at && new Date(db.settings.plans_start_at) <= new Date());
+const fullAccess = uid => { if (!limitsOn()) return true; const p = db.profiles.find(x => x.id === uid); return !!p && (p.role === 'admin' || ((p.plan === 'free' || p.plan === 'paid') && (!p.plan_until || new Date(p.plan_until) > new Date()))); };
 const b64 = o => Buffer.from(JSON.stringify(o)).toString('base64url');
 const mkTok = (u, kind = 'a') => `${b64({alg: 'none'})}.${b64({sub: u.id, kind, n: crypto.randomUUID()})}.sig`;
 const tokens = new Map();   // token -> {uid, kind}
@@ -23,6 +25,7 @@ function applyFilters(rows, q){
     if (['select', 'order', 'limit', 'offset'].includes(k)) continue;
     let m;
     if ((m = /^eq\.(.*)$/.exec(v))) rows = rows.filter(r => String(r[k]) === m[1]);
+    else if ((m = /^neq\.(.*)$/.exec(v))) rows = rows.filter(r => String(r[k]) !== m[1]);
     else if ((m = /^gte\.(.*)$/.exec(v))) rows = rows.filter(r => String(r[k]) >= m[1]);
     else if ((m = /^in\.\((.*)\)$/.exec(v))) { const s = m[1].split(','); rows = rows.filter(r => s.includes(String(r[k]))); }
   }
@@ -50,7 +53,7 @@ http.createServer((req, res) => {
       if (String(body.password || '').length < 6) return authErr(res, 422, 'weak_password', 'Password should be at least 6 characters.');
       const u = {id: crypto.randomUUID(), email, meta: (body.data || {}), confirmed: false, created_at: now()}; db.users.push(u); pw[email] = body.password;
       const md = body.data || {};
-      db.profiles.push({id: u.id, email, first_name: md.first_name || '', last_name: md.last_name || '', company: md.company || null, country: md.country || null, occupation: md.occupation || null, role: 'user', status: 'active', created_at: u.created_at, last_seen_at: null, accepted_terms_at: md.accepted_terms === 'true' ? now() : null});
+      db.profiles.push({id: u.id, email, first_name: md.first_name || '', last_name: md.last_name || '', company: md.company || null, country: md.country || null, occupation: md.occupation || null, role: 'user', status: 'active', plan: 'demo', plan_until: null, plan_note: null, created_at: u.created_at, last_seen_at: null, accepted_terms_at: md.accepted_terms === 'true' ? now() : null});
       db.outbox.push({to: email, kind: 'confirm'});
       return send(res, 200, userOut(u));
     }
@@ -85,16 +88,22 @@ http.createServer((req, res) => {
       if (t === 'rpc/admin_list_users'){ if (!w.service) return send(res, 403, {message: 'permission denied'});
         let rows = db.profiles.map(p => { const u = db.users.find(x => x.id === p.id); return Object.assign({}, p, {email_confirmed_at: u && u.confirmed ? u.confirmed_at : null, project_count: db.projects.filter(x => x.owner_id === p.id).length}); });
         const s = (body.p_search || '').toLowerCase(); if (s) rows = rows.filter(r => [r.email, r.first_name, r.last_name, r.company].join(' ').toLowerCase().includes(s));
-        if (body.p_status) rows = rows.filter(r => r.status === body.p_status); if (body.p_verified === 'yes') rows = rows.filter(r => r.email_confirmed_at); if (body.p_verified === 'no') rows = rows.filter(r => !r.email_confirmed_at);
+        if (body.p_status) rows = rows.filter(r => r.status === body.p_status); if (body.p_plan) rows = rows.filter(r => r.plan === body.p_plan); if (body.p_verified === 'yes') rows = rows.filter(r => r.email_confirmed_at); if (body.p_verified === 'no') rows = rows.filter(r => !r.email_confirmed_at);
         const total = rows.length; rows = rows.slice(body.p_offset || 0, (body.p_offset || 0) + (body.p_limit || 25)).map(r => Object.assign(r, {total_count: total})); return send(res, 200, rows); }
+      if (t === 'rpc/has_full_access'){ return send(res, 200, fullAccess(body.p_uid || uid)); }
+      if (t.startsWith('app_settings')){
+        if (m === 'GET') return send(res, 200, Object.keys(db.settings).map(k => ({key: k, value: db.settings[k]})));
+        if (m === 'POST' && w.service){ [].concat(body).forEach(r => { db.settings[r.key] = r.value; }); return send(res, 201); }
+        return send(res, 403, {message: 'permission denied'});
+      }
       if (t === 'profiles'){
         if (m === 'GET') return out(applyFilters(mine('profiles', 'id'), q).map(r => pick(r, q.get('select'))));
-        if (m === 'PATCH'){ const rows = applyFilters(mine('profiles', 'id'), q); rows.forEach(r => { const allowed = w.service ? Object.keys(body) : ['first_name', 'last_name', 'company', 'country', 'occupation']; allowed.forEach(k => { if (k in body) r[k] = body[k]; }); }); return send(res, 204); }
+        if (m === 'PATCH'){ const rows = applyFilters(mine('profiles', 'id'), q); rows.forEach(r => { const allowed = w.service ? Object.keys(body) : ['first_name', 'last_name', 'company', 'country', 'occupation']; allowed.forEach(k => { if (k in body) r[k] = body[k]; }); }); return wantRep ? send(res, 200, rows) : send(res, 204); }
       }
       if (t === 'projects'){
         if (w.user && w.user.banned) return send(res, 403, {message: 'suspended'});
         if (m === 'GET') return out(applyFilters(mine('projects', 'owner_id'), q).map(r => pick(r, q.get('select'))));
-        if (m === 'POST'){ const r = Object.assign({id: crypto.randomUUID(), owner_id: uid, meta: {}, created_at: now(), updated_at: now(), last_opened_at: null}, body, {owner_id: uid}); db.projects.push(r); return wantRep ? out([pick(r, q.get('select'))]) : send(res, 201); }
+        if (m === 'POST'){ if (!fullAccess(uid) && db.projects.filter(x => x.owner_id === uid).length >= 1) return send(res, 400, {code: 'P0001', message: 'PLAN_LIMIT_PROJECTS'}); const r = Object.assign({id: crypto.randomUUID(), owner_id: uid, meta: {}, created_at: now(), updated_at: now(), last_opened_at: null}, body, {owner_id: uid}); db.projects.push(r); return wantRep ? out([pick(r, q.get('select'))]) : send(res, 201); }
         if (m === 'PATCH'){ const rows = applyFilters(mine('projects', 'owner_id'), q); rows.forEach(r => { const touched = 'data' in body || 'name' in body; Object.assign(r, body); if (touched) r.updated_at = now(); }); return wantRep ? send(res, 200, rows.map(r => pick(r, q.get('select')))) : send(res, 204); }
         if (m === 'DELETE'){ const rows = applyFilters(mine('projects', 'owner_id'), q); db.projects = db.projects.filter(r => !rows.includes(r)); return send(res, 204); }
       }

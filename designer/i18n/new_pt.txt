@@ -444,3 +444,58 @@
 1294|Sem disjuntor de alimentação
 1295|Mudar para o modo escuro
 1296|Mudar para o modo claro
+1297|Planos
+1298|As contas Demo ficam limitadas a um projeto, uma exportação PDF demo, sem chat nem importação de quadro. As contas Grátis e Pagas e os administradores têm acesso completo.
+1299|Os limites de plano estão ATIVOS
+1300|Os limites de plano estão DESATIVADOS (todos têm acesso completo)
+1301|Plano
+1302|Demo
+1303|Acesso gratuito
+1304|Pago
+1305|Qualquer plano
+1306|Editar plano
+1307|Fim do acesso (opcional)
+1308|Nota (opcional)
+1309|Guardar plano
+1310|Plano guardado
+1311|Execute primeiro a migração 0009_plans.sql no Supabase.
+1312|Acesso completo
+1313|Limites de plano
+1314|Os limites começam na data escolhida
+1315|Nunca (todos têm acesso completo)
+1316|Limitar agora
+1317|Limitar a partir de uma data
+1318|Quando limitar
+1319|Data de início
+1320|Guardar limites
+1321|Pagamentos
+1322|Webhook pronto
+1323|Adicione STRIPE_WEBHOOK_SECRET ao Worker
+1324|Crie um Payment Link no Stripe, cole-o aqui e ative os pagamentos. Os utilizadores Demo verão um botão Upgrade. Um pagamento bem-sucedido passa-os automaticamente para Pago.
+1325|Link de pagamento Stripe
+1326|Preço mostrado aos utilizadores
+1327|Mostrar o botão Upgrade
+1328|Endereço webhook para o Stripe
+1329|Guardar pagamentos
+1330|Escolha uma data de início.
+1331|Funcionalidade do plano completo
+1332|isto faz parte do plano completo.
+1333|O plano demo inclui um projeto e uma exportação PDF marcada «DBoard Designer Demo».
+1334|Upgrade
+1335|Pedir acesso completo
+1336|Pedido enviado. O administrador irá analisá-lo.
+1337|O plano demo permite apenas um projeto.
+1338|A importação de quadro faz parte do plano completo.
+1339|O chat, a partilha e as chamadas fazem parte do plano completo. Pode ler a comunidade, mas não publicar.
+1340|Mais de um projeto
+1341|Importação de quadro
+1342|Chat
+1343|Chat, partilha e chamadas
+1344|Chamadas
+1345|Partilha de ficheiros
+1346|Partilha de projetos
+1347|Exportação Excel, CSV e ficheiro de projeto
+1348|Isto faz parte do plano completo.
+1349|Plano demo: só está disponível a exportação PDF, marcada «DBoard Designer Demo». Excel, CSV e o ficheiro de projeto fazem parte do plano completo.
+1350|Ativar os limites de plano? As contas novas e demo ficarão limitadas de imediato. As contas existentes com acesso Grátis ou Pago não são afetadas.
+1351|Limitar as contas demo a partir da data escolhida? As contas existentes com acesso Grátis ou Pago não são afetadas.

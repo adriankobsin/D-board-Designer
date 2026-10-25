@@ -123,6 +123,7 @@ function saImpTable(){
   }).join('')}</tbody></table></div>`;
 }
 function saViewImport(el){
+  if (!saFull()){ el.innerHTML = saFrame('import', `<h1 class="sa-h1">${saEsc(T('Import a panel'))}</h1><div class="sa-msg warn">${saEsc(T('Panel import is part of the full plan.'))}</div><p><button class="sa-btn pri" data-sa="upgrade" data-w="Panel import">${saEsc(T('Upgrade'))}</button></p>`); return; }
   const I = SA.imp || (saImpReset(), SA.imp);
   let body = '';
   if (I.stage === 'busy'){

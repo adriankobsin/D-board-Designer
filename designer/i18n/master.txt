@@ -1294,3 +1294,58 @@
 1294|No feed breaker
 1295|Switch to dark mode
 1296|Switch to light mode
+1297|Plans
+1298|Demo accounts are limited to one project, a demo PDF export, and no chat or panel import. Free and Paid accounts and administrators have full access.
+1299|Plan limits are ON
+1300|Plan limits are OFF (everyone has full access)
+1301|Plan
+1302|Demo
+1303|Free access
+1304|Paid
+1305|Any plan
+1306|Edit plan
+1307|Access ends (optional)
+1308|Note (optional)
+1309|Save plan
+1310|Plan saved
+1311|Run migration 0009_plans.sql in Supabase first.
+1312|Full access
+1313|Plan limits
+1314|Limits start on the chosen date
+1315|Never (everyone has full access)
+1316|Limit now
+1317|Limit from a date
+1318|When to limit
+1319|Start date
+1320|Save limits
+1321|Payments
+1322|Webhook ready
+1323|Add STRIPE_WEBHOOK_SECRET to the Worker
+1324|Create a Payment Link in Stripe, paste it here and turn payments on. Demo users then see an Upgrade button. A successful payment sets them to Paid automatically.
+1325|Stripe payment link
+1326|Price shown to users
+1327|Show the Upgrade button
+1328|Webhook address for Stripe
+1329|Save payments
+1330|Choose a start date.
+1331|Full plan feature
+1332|this is part of the full plan.
+1333|The demo plan includes one project and a PDF export marked "DBoard Designer Demo".
+1334|Upgrade
+1335|Request full access
+1336|Request sent. The administrator will review it.
+1337|The demo plan allows one project.
+1338|Panel import is part of the full plan.
+1339|Chat, sharing and calls are part of the full plan. You can read the community but not post.
+1340|More than one project
+1341|Panel import
+1342|Chat
+1343|Chat, sharing and calls
+1344|Calls
+1345|File sharing
+1346|Project sharing
+1347|Excel, CSV and project file export
+1348|This is part of the full plan.
+1349|Demo plan: only the PDF export is available, marked "DBoard Designer Demo". Excel, CSV and the project file are part of the full plan.
+1350|Turn plan limits ON? New and demo accounts will be limited straight away. Existing accounts with Free or Paid access are not affected.
+1351|Limit demo accounts from the chosen date? Existing accounts with Free or Paid access are not affected.

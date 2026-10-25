@@ -1294,3 +1294,58 @@
 1294|Tanpa breaker catu daya
 1295|Beralih ke mode gelap
 1296|Beralih ke mode terang
+1297|Paket
+1298|Akun Demo dibatasi satu proyek, ekspor PDF demo, tanpa chat atau impor panel. Akun Gratis dan Berbayar serta administrator memiliki akses penuh.
+1299|Batas paket AKTIF
+1300|Batas paket NONAKTIF (semua orang memiliki akses penuh)
+1301|Paket
+1302|Demo
+1303|Akses gratis
+1304|Berbayar
+1305|Paket apa pun
+1306|Ubah paket
+1307|Akses berakhir (opsional)
+1308|Catatan (opsional)
+1309|Simpan paket
+1310|Paket disimpan
+1311|Jalankan dulu migrasi 0009_plans.sql di Supabase.
+1312|Akses penuh
+1313|Batas paket
+1314|Batas dimulai pada tanggal yang dipilih
+1315|Tidak pernah (semua orang memiliki akses penuh)
+1316|Batasi sekarang
+1317|Batasi mulai tanggal
+1318|Kapan membatasi
+1319|Tanggal mulai
+1320|Simpan batas
+1321|Pembayaran
+1322|Webhook siap
+1323|Tambahkan STRIPE_WEBHOOK_SECRET ke Worker
+1324|Buat Payment Link di Stripe, tempel di sini, lalu aktifkan pembayaran. Pengguna Demo akan melihat tombol Upgrade. Pembayaran yang berhasil otomatis mengubah mereka menjadi Berbayar.
+1325|Tautan pembayaran Stripe
+1326|Harga yang ditampilkan ke pengguna
+1327|Tampilkan tombol Upgrade
+1328|Alamat webhook untuk Stripe
+1329|Simpan pembayaran
+1330|Pilih tanggal mulai.
+1331|Fitur paket penuh
+1332|ini bagian dari paket penuh.
+1333|Paket demo mencakup satu proyek dan ekspor PDF bertanda "DBoard Designer Demo".
+1334|Upgrade
+1335|Minta akses penuh
+1336|Permintaan terkirim. Administrator akan meninjaunya.
+1337|Paket demo hanya mengizinkan satu proyek.
+1338|Impor panel adalah bagian dari paket penuh.
+1339|Chat, berbagi, dan panggilan adalah bagian dari paket penuh. Anda dapat membaca komunitas tetapi tidak dapat memposting.
+1340|Lebih dari satu proyek
+1341|Impor panel
+1342|Chat
+1343|Chat, berbagi, dan panggilan
+1344|Panggilan
+1345|Berbagi file
+1346|Berbagi proyek
+1347|Ekspor Excel, CSV, dan file proyek
+1348|Ini bagian dari paket penuh.
+1349|Paket demo: hanya ekspor PDF yang tersedia, bertanda "DBoard Designer Demo". Excel, CSV, dan file proyek adalah bagian dari paket penuh.
+1350|Aktifkan batas paket? Akun baru dan akun demo akan langsung dibatasi. Akun yang sudah ada dengan akses Gratis atau Berbayar tidak terpengaruh.
+1351|Batasi akun demo mulai tanggal yang dipilih? Akun yang sudah ada dengan akses Gratis atau Berbayar tidak terpengaruh.

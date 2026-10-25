@@ -64,6 +64,24 @@ async function profileOf(env, id) {
   return rows[0] || null;
 }
 
+/** True when this user may use every feature (plans not enforced, an admin, or a free/paid plan that has not ended). */
+async function hasFull(env, id) {
+  const r = await sr(env, '/rest/v1/rpc/has_full_access', { method: 'POST', body: JSON.stringify({ p_uid: id }) });
+  if (!r.ok) return true; // if the plan check itself is unreachable, do not lock people out
+  return (await r.json().catch(() => true)) !== false;
+}
+async function stripeSigOk(raw, header, secret) {
+  const parts = Object.fromEntries(String(header).split(',').map(x => x.trim().split('=')).filter(x => x.length === 2));
+  const t = parseInt(parts.t, 10); if (!t || Math.abs(Date.now() / 1000 - t) > 300 || !parts.v1) return false;
+  const key = await crypto.subtle.importKey('raw', new TextEncoder().encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
+  const sig = new Uint8Array(await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(`${t}.${raw}`)));
+  const hex = Array.from(sig, b => b.toString(16).padStart(2, '0')).join('');
+  if (hex.length !== parts.v1.length) return false;
+  let d = 0; for (let i = 0; i < hex.length; i++) d |= hex.charCodeAt(i) ^ parts.v1.charCodeAt(i);
+  return d === 0;
+}
+const planFail = what => json({ error: `${what} is part of the full plan. Ask the administrator for full access.`, code: 'plan' }, 402);
+
 /** Returns { user, profile } for a verified, active administrator, or a Response to send back. */
 async function requireAdmin(request, env) {
   if (!env.SUPABASE_SERVICE_ROLE_KEY) return fail(503, 'Administrator API is not configured (missing service role secret).');
@@ -140,6 +158,7 @@ async function api(request, env, url) {
     if (!user.email_confirmed_at) return fail(403, 'Verify your email first.');
     const profile = await profileOf(env, user.id);
     if (!profile || profile.status !== 'active') return fail(403, 'This account cannot use import.');
+    if (!(await hasFull(env, user.id))) return planFail('Panel import');
     const len = Number(request.headers.get('Content-Length') || 0);
     if (len > LIMITS.body) return fail(413, 'The upload is too large. Use smaller photos or a smaller PDF.');
     const limit = Math.max(1, parseInt(env.IMPORT_DAILY_LIMIT || '20', 10) || 20);
@@ -155,8 +174,42 @@ async function api(request, env, url) {
     return json({ ok: true, kind: built.kind, panel: out.panel, truncated: !!out.truncated });
   }
 
+  /* ----- Stripe: a completed payment or a changed subscription updates the user's plan ----- */
+  if (path === '/api/stripe/webhook' && method === 'POST') {
+    if (!env.STRIPE_WEBHOOK_SECRET || !env.SUPABASE_SERVICE_ROLE_KEY) return fail(503, 'Payments are not connected. Add the STRIPE_WEBHOOK_SECRET secret to the Worker.');
+    const raw = await request.text();
+    if (!(await stripeSigOk(raw, request.headers.get('Stripe-Signature') || '', env.STRIPE_WEBHOOK_SECRET))) return fail(400, 'Bad signature.');
+    let ev; try { ev = JSON.parse(raw); } catch { return fail(400, 'Bad payload.'); }
+    const o = (ev.data && ev.data.object) || {};
+    const patch = async (filter, body, action, detail) => {
+      const rr = await sr(env, `/rest/v1/profiles?${filter}`, { method: 'PATCH', headers: { Prefer: 'return=representation' }, body: JSON.stringify(body) });
+      const rows = rr.ok ? await rr.json().catch(() => []) : [];
+      await audit(env, null, rows[0] ? rows[0].id : null, action, { event: ev.id, ...detail });
+      return rr.ok;
+    };
+    if (ev.type === 'checkout.session.completed') {
+      const uid = String(o.client_reference_id || '');
+      if (!UUID.test(uid)) return json({ ok: true, ignored: 'no user' });
+      if (o.payment_status && !['paid', 'no_payment_required'].includes(o.payment_status)) return json({ ok: true, ignored: 'unpaid' });
+      const ok = await patch(`id=eq.${uid}&plan=neq.free`, { plan: 'paid', plan_until: null, plan_note: 'Stripe', stripe_customer_id: o.customer || null, stripe_subscription_id: o.subscription || null }, 'stripe_paid', { mode: o.mode });
+      return ok ? json({ ok: true }) : fail(502, 'Could not update the plan.');
+    }
+    if (ev.type === 'customer.subscription.updated' || ev.type === 'customer.subscription.deleted') {
+      const cust = String(o.customer || '');
+      if (!cust) return json({ ok: true, ignored: 'no customer' });
+      const live = ev.type !== 'customer.subscription.deleted' && ['active', 'trialing', 'past_due'].includes(o.status);
+      const ok = await patch(`stripe_customer_id=eq.${encodeURIComponent(cust)}&plan=neq.free`, live ? { plan: 'paid', plan_until: null, stripe_subscription_id: o.id || null } : { plan: 'demo', plan_until: null, plan_note: 'Subscription ended' }, live ? 'stripe_active' : 'stripe_ended', { status: o.status });
+      return ok ? json({ ok: true }) : fail(502, 'Could not update the plan.');
+    }
+    return json({ ok: true, ignored: ev.type });
+  }
+
   /* ----- community: private and group chats, invitations, project sharing ----- */
   if (path.startsWith('/api/community/')) {
+    if (path !== '/api/community/report' && env.SUPABASE_SERVICE_ROLE_KEY) {
+      const cu = await authUser(request, env);
+      if (cu && !(await hasFull(env, cu.id))) return planFail('Chat, sharing and calls');
+    }
     try { return await community(request, env, url, { sr, authUser, profileOf, json, fail, UUID }); }
     catch (e) { return fail(502, 'Member lookup failed. If the site was just updated, the owner needs to run the latest database migration.'); }
   }
@@ -182,7 +235,7 @@ async function api(request, env, url) {
       const size = int(q.get('size'), 25, 1, 100), page = int(q.get('page'), 1, 1, 100000);
       const r = await sr(env, '/rest/v1/rpc/admin_list_users', {
         method: 'POST',
-        body: JSON.stringify({ p_search: clean(q.get('search'), 80) || null, p_status: status, p_verified: verified, p_limit: size, p_offset: (page - 1) * size }),
+        body: JSON.stringify({ p_search: clean(q.get('search'), 80) || null, p_status: status, p_verified: verified, p_limit: size, p_offset: (page - 1) * size, p_plan: ['demo', 'free', 'paid'].includes(q.get('plan')) ? q.get('plan') : null }),
       });
       if (!r.ok) return fail(502, 'Could not load users.');
       const rows = await r.json();
@@ -205,6 +258,54 @@ async function api(request, env, url) {
       const ban = await sr(env, `/auth/v1/admin/users/${id}`, { method: 'PUT', body: JSON.stringify({ ban_duration: body.status === 'suspended' ? '876000h' : 'none' }) });
       await audit(env, admin.id, id, body.status === 'suspended' ? 'suspend' : 'reactivate', { auth_ban_ok: ban.ok });
       return json({ ok: true, status: body.status, authUpdated: ban.ok });
+    }
+
+    m = /^\/api\/admin\/users\/([^/]+)\/plan$/.exec(path);
+    if (m && method === 'POST') {
+      const id = m[1];
+      if (!UUID.test(id)) return fail(400, 'Invalid user id.');
+      const body = await request.json().catch(() => ({}));
+      if (!['demo', 'free', 'paid'].includes(body.plan)) return fail(400, 'Plan must be demo, free or paid.');
+      let until = null;
+      if (body.until) { const d = new Date(body.until); if (isNaN(d.getTime())) return fail(400, 'That end date is not valid.'); until = d.toISOString(); }
+      const target = await profileOf(env, id);
+      if (!target) return fail(404, 'User not found.');
+      const note = clean(body.note, 200).trim() || null;
+      const up = await sr(env, `/rest/v1/profiles?id=eq.${id}`, { method: 'PATCH', body: JSON.stringify({ plan: body.plan, plan_until: body.plan === 'demo' ? null : until, plan_note: note }) });
+      if (!up.ok) return fail(502, 'Could not update the plan.');
+      await audit(env, admin.id, id, 'plan', { plan: body.plan, until, note });
+      return json({ ok: true, plan: body.plan, until, note });
+    }
+
+    if (path === '/api/admin/settings' && method === 'GET') {
+      const r = await sr(env, '/rest/v1/app_settings?select=key,value');
+      if (!r.ok) return fail(502, 'Could not load settings. Run migration 0009_plans.sql.');
+      const rows = await r.json().catch(() => []), o = {};
+      rows.forEach(x => { o[x.key] = x.value; });
+      return json({ plans_enforced: o.plans_enforced === true, plans_start_at: typeof o.plans_start_at === 'string' ? o.plans_start_at : '',
+        pay_enabled: o.pay_enabled === true, pay_link: typeof o.pay_link === 'string' ? o.pay_link : '', pay_price: typeof o.pay_price === 'string' ? o.pay_price : '',
+        stripe_webhook: Boolean(env.STRIPE_WEBHOOK_SECRET), webhook_url: `${url.origin}/api/stripe/webhook` });
+    }
+    if (path === '/api/admin/settings' && method === 'POST') {
+      const body = await request.json().catch(() => ({})), rows = [], now = new Date().toISOString();
+      if ('plans_enforced' in body) { if (typeof body.plans_enforced !== 'boolean') return fail(400, 'plans_enforced must be true or false.'); rows.push({ key: 'plans_enforced', value: body.plans_enforced, updated_at: now }); }
+      if ('plans_start_at' in body) {
+        const v = clean(body.plans_start_at, 40).trim();
+        if (v && isNaN(new Date(v).getTime())) return fail(400, 'That start date is not valid.');
+        rows.push({ key: 'plans_start_at', value: v ? new Date(v).toISOString() : '', updated_at: now });
+      }
+      if ('pay_enabled' in body) { if (typeof body.pay_enabled !== 'boolean') return fail(400, 'pay_enabled must be true or false.'); rows.push({ key: 'pay_enabled', value: body.pay_enabled, updated_at: now }); }
+      if ('pay_link' in body) {
+        const v = clean(body.pay_link, 500).trim();
+        if (v && !/^https:\/\/[^\s]+$/i.test(v)) return fail(400, 'The payment link must start with https://');
+        rows.push({ key: 'pay_link', value: v, updated_at: now });
+      }
+      if ('pay_price' in body) rows.push({ key: 'pay_price', value: clean(body.pay_price, 80).trim(), updated_at: now });
+      if (!rows.length) return fail(400, 'Nothing to save.');
+      const up = await sr(env, '/rest/v1/app_settings?on_conflict=key', { method: 'POST', headers: { Prefer: 'resolution=merge-duplicates' }, body: JSON.stringify(rows) });
+      if (!up.ok) return fail(502, 'Could not save the setting.');
+      await audit(env, admin.id, null, 'plan_settings', Object.fromEntries(rows.map(r => [r.key, r.key === 'pay_link' ? '(link)' : r.value])));
+      return json({ ok: true });
     }
 
     if (path === '/api/admin/feedback' && method === 'GET') {

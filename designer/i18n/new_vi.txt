@@ -444,3 +444,58 @@
 1294|Không có aptomat cấp nguồn
 1295|Chuyển sang chế độ tối
 1296|Chuyển sang chế độ sáng
+1297|Gói
+1298|Tài khoản Demo bị giới hạn một dự án, xuất PDF demo, không có chat hay nhập tủ điện. Tài khoản Miễn phí, Trả phí và quản trị viên có toàn quyền.
+1299|Giới hạn gói đang BẬT
+1300|Giới hạn gói đang TẮT (mọi người có toàn quyền)
+1301|Gói
+1302|Demo
+1303|Truy cập miễn phí
+1304|Trả phí
+1305|Mọi gói
+1306|Sửa gói
+1307|Ngày hết quyền truy cập (tuỳ chọn)
+1308|Ghi chú (tuỳ chọn)
+1309|Lưu gói
+1310|Đã lưu gói
+1311|Hãy chạy migration 0009_plans.sql trong Supabase trước.
+1312|Toàn quyền
+1313|Giới hạn gói
+1314|Giới hạn bắt đầu vào ngày đã chọn
+1315|Không bao giờ (mọi người có toàn quyền)
+1316|Giới hạn ngay
+1317|Giới hạn từ một ngày
+1318|Khi nào giới hạn
+1319|Ngày bắt đầu
+1320|Lưu giới hạn
+1321|Thanh toán
+1322|Webhook sẵn sàng
+1323|Thêm STRIPE_WEBHOOK_SECRET vào Worker
+1324|Tạo Payment Link trong Stripe, dán vào đây và bật thanh toán. Người dùng Demo sẽ thấy nút Nâng cấp. Thanh toán thành công sẽ tự động chuyển họ sang Trả phí.
+1325|Liên kết thanh toán Stripe
+1326|Giá hiển thị cho người dùng
+1327|Hiện nút Nâng cấp
+1328|Địa chỉ webhook cho Stripe
+1329|Lưu thanh toán
+1330|Hãy chọn ngày bắt đầu.
+1331|Tính năng của gói đầy đủ
+1332|đây là tính năng của gói đầy đủ.
+1333|Gói demo gồm một dự án và xuất PDF có dấu "DBoard Designer Demo".
+1334|Nâng cấp
+1335|Yêu cầu toàn quyền
+1336|Đã gửi yêu cầu. Quản trị viên sẽ xem xét.
+1337|Gói demo chỉ cho phép một dự án.
+1338|Nhập tủ điện là tính năng của gói đầy đủ.
+1339|Chat, chia sẻ và cuộc gọi là tính năng của gói đầy đủ. Bạn có thể đọc cộng đồng nhưng không thể đăng bài.
+1340|Nhiều hơn một dự án
+1341|Nhập tủ điện
+1342|Chat
+1343|Chat, chia sẻ và cuộc gọi
+1344|Cuộc gọi
+1345|Chia sẻ tệp
+1346|Chia sẻ dự án
+1347|Xuất Excel, CSV và tệp dự án
+1348|Đây là tính năng của gói đầy đủ.
+1349|Gói demo: chỉ có xuất PDF, có dấu "DBoard Designer Demo". Excel, CSV và tệp dự án là tính năng của gói đầy đủ.
+1350|Bật giới hạn gói? Tài khoản mới và tài khoản demo sẽ bị giới hạn ngay. Tài khoản hiện có với quyền Miễn phí hoặc Trả phí không bị ảnh hưởng.
+1351|Giới hạn tài khoản demo từ ngày đã chọn? Tài khoản hiện có với quyền Miễn phí hoặc Trả phí không bị ảnh hưởng.

@@ -97,6 +97,7 @@ Before a public launch also review Auth rate limits and enable CAPTCHA (Auth, Bo
 | `IMPORT_DAILY_LIMIT` | var | no (default `20`) | Analyses per user per 24 h, to cap your API cost |
 | `RESEND_API_KEY` | **secret** | for invitation and share emails | Key from resend.com. Without it, people are notified on the dashboard only |
 | `MAIL_FROM` | var | with `RESEND_API_KEY` | Sender, e.g. `DBoard Designer <noreply@your-domain.com>` (domain verified in Resend) |
+| `STRIPE_WEBHOOK_SECRET` | **secret** | for payments | Signing secret (`whsec_…`) of the Stripe webhook that points to `https://YOUR-SITE/api/stripe/webhook`. Without it, payments are not connected and the admin grants Paid access by hand |
 | `APP_URL` | var | no | Address used in email links |
 
 ## 4. Create the first administrator
@@ -279,3 +280,19 @@ The store apps wrap this same web app with Capacitor (`mobile/`) and use the sam
 ## DALI lighting network
 
 The Equipment tab has a DALI library (Lunatone, OSRAM, LTECH; DIN-rail and remote devices). The DALI tab manages quantities, device names, the DALI line each device connects to, address and bus-current checks, a network schematic and a module layout. Both drawings are in the PDF export; the Excel export adds DALI sheets; the BOM includes the devices. Source file: `designer/dali.js`. Catalogue entries marked Assumed lack a manufacturer figure for DALI current, width or mounting.
+
+
+## Plans, limits and payments
+
+Run `supabase/migrations/0009_plans.sql` once. Every existing account becomes **Free access** (full features), new accounts start as **Demo**. Nothing is limited until the administrator turns limits on.
+
+Admin → Users has a **Plan limits** card (never, now, or from a chosen date) and a **Payments** card (Stripe Payment Link, price text, show the Upgrade button). Each user's plan (Demo, Free access, Paid) can be set with an optional end date and note.
+
+Demo accounts: one project, PDF export only (marked "DBoard Designer Demo"), no chat, sharing, calls or panel import. These limits are enforced in the database and the Worker, not only in the interface.
+
+Payments with Stripe:
+1. In Stripe create a product and a **Payment Link** (subscription or one-time).
+2. In Stripe → Developers → Webhooks add the endpoint `https://YOUR-SITE/api/stripe/webhook` for the events `checkout.session.completed`, `customer.subscription.updated` and `customer.subscription.deleted`. Copy its signing secret into the Worker secret `STRIPE_WEBHOOK_SECRET`.
+3. Paste the Payment Link in Admin → Payments and turn on the Upgrade button.
+
+A completed payment sets the user to Paid; a cancelled or ended subscription returns them to Demo. Accounts set to Free access by an administrator are never changed by Stripe events. Check the signed webhook against real Stripe test mode before going live: the automated tests use locally signed test events only.

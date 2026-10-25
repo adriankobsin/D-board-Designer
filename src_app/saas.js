@@ -95,6 +95,7 @@ function saErr(e){
   if (m.includes('same password')) return 'Choose a password you have not used on this account before.';
   if (m.includes('weak') || m.includes('password should')) return 'That password is too weak. Use at least 8 characters with a letter and a number.';
   if (m.includes('failed to fetch') || m.includes('network')) return 'No connection. Check your internet and try again.';
+  if (m.includes('plan_limit_projects')) return 'The demo plan allows one project.';
   if (m.includes('jwt') || c === 401) return 'Your session has expired. Sign in again.';
   return 'Something went wrong. Try again.';
 }
@@ -178,6 +179,41 @@ async function saLoadProfile(){
   const {data, error} = await SA.sb.from('profiles').select('*').eq('id', SA.user.id).maybeSingle();
   if (!error) SA.profile = data || null;
   else if (!SA.profile){ const c = saCachedUser(); if (c && c.user.id === SA.user.id) SA.profile = c.profile; }
+  await saLoadPlans();
+}
+/* ---------- plans: demo accounts are limited, full accounts are not ---------- */
+SA.plans = {enforced: false, start: '', pay: false, link: '', price: ''};
+async function saLoadPlans(){
+  try {
+    const {data, error} = await SA.sb.from('app_settings').select('key,value');
+    if (!error && data){ const o = {}; data.forEach(r => { o[r.key] = r.value; });
+      SA.plans = {enforced: o.plans_enforced === true, start: typeof o.plans_start_at === 'string' ? o.plans_start_at : '', pay: o.pay_enabled === true, link: typeof o.pay_link === 'string' ? o.pay_link : '', price: typeof o.pay_price === 'string' ? o.pay_price : ''}; }
+  } catch (e) {}
+  saPlanApply();
+}
+function saLimitsOn(){ const P = SA.plans; return P.enforced || (!!P.start && new Date(P.start) <= new Date()); }
+function saFull(){
+  if (!saLimitsOn()) return true;
+  const p = SA.profile; if (!p) return true;
+  if (p.role === 'admin') return true;
+  return (p.plan === 'free' || p.plan === 'paid') && (!p.plan_until || new Date(p.plan_until) > new Date());
+}
+function saPlanApply(){ if (typeof DEMO !== 'undefined') DEMO = !saFull(); }
+function saPayUrl(){
+  const P = SA.plans; if (!P.pay || !/^https:\/\//i.test(P.link || '')) return '';
+  try { const u = new URL(P.link); if (SA.user){ u.searchParams.set('client_reference_id', SA.user.id); if (SA.user.email) u.searchParams.set('prefilled_email', SA.user.email); } return u.toString(); } catch (e) { return ''; }
+}
+function saUpgrade(what){
+  const url = saPayUrl(), P = SA.plans;
+  saModal(`<h2 style="margin-top:0">${saEsc(T('Full plan feature'))}</h2><p>${saEsc(T(what))}: ${saEsc(T('this is part of the full plan.'))}</p>
+    <p class="sa-sub">${saEsc(T('The demo plan includes one project and a PDF export marked "DBoard Designer Demo".'))}</p>
+    ${url && P.price ? `<p><b data-nt>${saEsc(P.price)}</b></p>` : ''}
+    <div class="sa-row" style="margin-top:14px">${url ? `<button class="sa-btn pri" data-sa="payopen">${saEsc(T('Upgrade'))}</button>` : `<button class="sa-btn pri" data-sa="planreq">${saEsc(T('Request full access'))}</button>`}<button class="sa-btn" data-sa="pinfox">${saEsc(T('Close'))}</button></div>`);
+}
+async function saPlanRequest(){
+  if (!SA.sb || !SA.user) return;
+  const {error} = await SA.sb.from('feedback').insert({message: 'Plan request: please grant full access to ' + (SA.user.email || ''), page: 'plan'});
+  saModalClose(); toast(error ? saErr(error) : 'Request sent. The administrator will review it.');
 }
 function saTrack(event, meta){ if (!SA.sb || !SA.user) return; SA.sb.from('usage_events').insert({event, meta: meta || {}}).then(() => {}, () => {}); }
 
@@ -328,9 +364,10 @@ async function saListProjects(){
   SA.listErr = null; SA.projects = data || []; return SA.projects;
 }
 async function saCreateProject(data, name){
+  if (!saFull() && Array.isArray(SA.projects) && SA.projects.length >= 1){ saUpgrade('More than one project'); throw new Error('PLAN_LIMIT_PROJECTS'); }
   const nm = (name || data.name || 'New board').slice(0, 200);
   const {data: row, error} = await SA.sb.from('projects').insert({name: nm, data: Object.assign({}, data, {name: nm}), meta: saMeta(data), last_opened_at: new Date().toISOString()}).select(SA_COLS).single();
-  if (error) throw error;
+  if (error){ if (/PLAN_LIMIT_PROJECTS/.test(error.message || '')) saUpgrade('More than one project'); throw error; }
   saTrack('project_created'); return row;
 }
 async function saOpenProject(id){
@@ -506,7 +543,7 @@ const saBellBtn = () => `<span class="sa-bw" data-nt><button class="sa-bellb" da
 function saFrame(active, body){
   const adm = SA.profile && SA.profile.role === 'admin';
   const nav = [['dashboard', 'Dashboard'], ['community', 'Community'], ['import', 'Import'], ['account', 'Account']].concat(adm ? [['admin', 'Admin']] : []);
-  return `<div class="sa-bar"><div class="in">${saBrand('button').replace('class="sa-brand"', 'class="sa-brand" data-sa="dash" aria-label="Dashboard"')}<nav class="sa-nav" aria-label="Main">${nav.map(n => `<button data-sa="${n[0] === 'dashboard' ? 'dash' : n[0]}" ${active === n[0] ? 'aria-current="page"' : ''}>${saEsc(T(n[1]))}${n[0] === 'community' ? ' <span class="sa-nb inl" data-nbadge hidden>0</span>' : ''}</button>`).join('')}</nav><span class="sa-sp"></span>${saLangSelect()}${saThemeBtn()}<button class="sa-helpb" data-sa="help" aria-label="${saEsc(T('Help: how the platform works'))}" title="${saEsc(T('Help'))}"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M9.2 9.3a2.9 2.9 0 1 1 4.3 2.5c-.9.5-1.5 1.1-1.5 2.1M12 17.4h.01"/></svg><span>${saEsc(T('Help'))}</span></button>${saBellBtn()}<button class="sa-btn sa-hide-s" data-sa="app">${saEsc(T('Open designer'))}</button><div class="sa-um" data-nt><button class="sa-ub" data-sa="menu" aria-haspopup="menu" aria-expanded="false"><span class="sa-av">${saEsc(saInitials())}</span><span class="nm">${saEsc((SA.profile && SA.profile.first_name) || '')}</span></button></div></div></div><main class="sa-main">${body}</main>`;
+  return `<div class="sa-bar"><div class="in">${saBrand('button').replace('class="sa-brand"', 'class="sa-brand" data-sa="dash" aria-label="Dashboard"')}<nav class="sa-nav" aria-label="Main">${nav.map(n => `<button data-sa="${n[0] === 'dashboard' ? 'dash' : n[0]}" ${active === n[0] ? 'aria-current="page"' : ''}>${saEsc(T(n[1]))}${n[0] === 'community' ? ' <span class="sa-nb inl" data-nbadge hidden>0</span>' : ''}</button>`).join('')}</nav><span class="sa-sp"></span>${saLangSelect()}${saThemeBtn()}<button class="sa-helpb" data-sa="help" aria-label="${saEsc(T('Help: how the platform works'))}" title="${saEsc(T('Help'))}"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M9.2 9.3a2.9 2.9 0 1 1 4.3 2.5c-.9.5-1.5 1.1-1.5 2.1M12 17.4h.01"/></svg><span>${saEsc(T('Help'))}</span></button>${saBellBtn()}<button class="sa-btn sa-hide-s" data-sa="app">${saEsc(T('Open designer'))}</button><div class="sa-um" data-nt><button class="sa-ub" data-sa="menu" aria-haspopup="menu" aria-expanded="false"><span class="sa-av">${saEsc(saInitials())}</span><span class="nm">${saEsc((SA.profile && SA.profile.first_name) || '')}</span></button></div></div></div><main class="sa-main">${active === 'community' && !saFull() ? `<div class="sa-msg warn" style="margin-bottom:12px">${saEsc(T('Chat, sharing and calls are part of the full plan. You can read the community but not post.'))} <button class="sa-btn sm" data-sa="upgrade" data-w="Chat, sharing and calls">${saEsc(T('Upgrade'))}</button></div>` : ''}${body}</main>`;
 }
 const saStPill = st => st ? `<span class="sa-st" data-st="${saEsc(st)}">${saEsc(T(st))}</span>` : '';
 const saInstDate = d => { if (!d) return ''; try { return new Date(d + 'T00:00').toLocaleDateString(saLang()); } catch (e) { return d; } };
@@ -1408,6 +1445,7 @@ function saImpTable(){
   }).join('')}</tbody></table></div>`;
 }
 function saViewImport(el){
+  if (!saFull()){ el.innerHTML = saFrame('import', `<h1 class="sa-h1">${saEsc(T('Import a panel'))}</h1><div class="sa-msg warn">${saEsc(T('Panel import is part of the full plan.'))}</div><p><button class="sa-btn pri" data-sa="upgrade" data-w="Panel import">${saEsc(T('Upgrade'))}</button></p>`); return; }
   const I = SA.imp || (saImpReset(), SA.imp);
   let body = '';
   if (I.stage === 'busy'){
@@ -1475,7 +1513,9 @@ async function saApi(path, opt){
   if (!r.ok){ const e = new Error(j.error || 'Request failed'); e.status = r.status; throw e; }
   return j;
 }
-SA.au = {search: '', status: '', verified: '', page: 1, size: 25};
+SA.au = {search: '', status: '', verified: '', plan: '', page: 1, size: 25};
+const SA_PLANS = [['demo', 'Demo'], ['free', 'Free access'], ['paid', 'Paid']];
+const saPlanName = p => T((SA_PLANS.find(x => x[0] === p) || SA_PLANS[0])[1]);
 async function saViewAdmin(el){
   el.innerHTML = saFrame('admin', `<div class="sa-splash">${saEsc(T('Loading…'))}</div>`);
   try { await saApi('/api/admin/me'); } catch (e) { el.innerHTML = saFrame('admin', `<div class="sa-msg bad">${saEsc(T(e.status === 403 ? 'You do not have administrator access.' : e.message))}</div>`); return; }
@@ -1499,11 +1539,25 @@ async function saAdmOverview(box){
   <section class="sa-card"><h2>${saEsc(T('Top countries'))}</h2><table class="sa-tab"><tbody>${(s.countries || []).map(c => `<tr><td>${saEsc(c.country)}</td><td>${c.count}</td></tr>`).join('')}</tbody></table></section></div>`;
 }
 async function saAdmUsers(box){
-  const f = SA.au, qs = new URLSearchParams({search: f.search, status: f.status, verified: f.verified, page: f.page, size: f.size});
-  const r = await saApi('/api/admin/users?' + qs);
+  const f = SA.au, qs = new URLSearchParams({search: f.search, status: f.status, verified: f.verified, plan: f.plan, page: f.page, size: f.size});
+  const [r, cfg] = await Promise.all([saApi('/api/admin/users?' + qs), saApi('/api/admin/settings').catch(() => null)]);
+  SA.auRows = r.users;
   const pages = Math.max(1, Math.ceil(r.total / f.size));
-  box.innerHTML = `<form id="saUF" class="sa-row" style="margin-bottom:12px"><input class="sa-in" id="auS" type="search" placeholder="${saEsc(T('Search name, email, company'))}" value="${saEsc(f.search)}" style="max-width:300px" aria-label="${saEsc(T('Search users'))}"><select class="sa-in" id="auSt" style="max-width:170px" aria-label="${saEsc(T('Status'))}"><option value="">${saEsc(T('Any status'))}</option><option value="active" ${f.status === 'active' ? 'selected' : ''}>${saEsc(T('Active'))}</option><option value="suspended" ${f.status === 'suspended' ? 'selected' : ''}>${saEsc(T('Suspended'))}</option></select><select class="sa-in" id="auV" style="max-width:190px" aria-label="${saEsc(T('Email verification'))}"><option value="">${saEsc(T('Any verification'))}</option><option value="yes" ${f.verified === 'yes' ? 'selected' : ''}>${saEsc(T('Verified'))}</option><option value="no" ${f.verified === 'no' ? 'selected' : ''}>${saEsc(T('Not verified'))}</option></select><button class="sa-btn" type="submit">${saEsc(T('Search'))}</button><span class="sa-fine" style="color:var(--ink-2)">${r.total} ${saEsc(T('users'))}</span></form>
-  <div class="sa-card sa-tw" style="padding:0"><table class="sa-tab"><thead><tr><th>${saEsc(T('Name'))}</th><th>${saEsc(T('Email'))}</th><th>${saEsc(T('Registered'))}</th><th>${saEsc(T('Verified'))}</th><th>${saEsc(T('Projects'))}</th><th>${saEsc(T('Last seen'))}</th><th>${saEsc(T('Status'))}</th><th></th></tr></thead><tbody>${r.users.length ? r.users.map(u => `<tr><td>${saEsc((u.first_name || '') + ' ' + (u.last_name || ''))}<br><span class="sa-fine" style="color:var(--ink-2)">${saEsc([u.company, u.country, u.occupation].filter(Boolean).join(' · '))}</span></td><td style="overflow-wrap:anywhere">${saEsc(u.email)}${u.role === 'admin' ? ' <span class="sa-pill">admin</span>' : ''}</td><td>${saEsc(saDate(u.created_at))}</td><td><span class="sa-pill ${u.email_confirmed_at ? 'ok' : 'warn'}">${saEsc(T(u.email_confirmed_at ? 'Yes' : 'No'))}</span></td><td>${u.project_count}</td><td>${u.last_seen_at ? saEsc(saRel(u.last_seen_at)) : '–'}</td><td><span class="sa-pill ${u.status === 'active' ? 'ok' : 'bad'}">${saEsc(T(u.status === 'active' ? 'Active' : 'Suspended'))}</span></td><td>${u.role === 'admin' || u.id === SA.user.id ? '' : `<button class="sa-btn sm ${u.status === 'active' ? 'bad' : ''}" data-sa="ustatus" data-id="${u.id}" data-s="${u.status === 'active' ? 'suspended' : 'active'}" data-e="${saEsc(u.email)}">${saEsc(T(u.status === 'active' ? 'Suspend' : 'Reactivate'))}</button>`}</td></tr>`).join('') : `<tr><td colspan="8"><div class="sa-empty">${saEsc(T('No users match.'))}</div></td></tr>`}</tbody></table></div>
+  const on = !!(cfg && cfg.plans_enforced), startAt = cfg && cfg.plans_start_at ? String(cfg.plans_start_at) : '', pending = !on && startAt && new Date(startAt) > new Date(), live = on || (startAt && !pending);
+  const mode = on ? 'on' : startAt ? 'date' : 'off', fld = (l, inner) => `<label class="sa-field"><span>${saEsc(T(l))}</span>${inner}</label>`;
+  const planCard = !cfg ? `<section class="sa-card" style="margin-bottom:14px"><span class="sa-pill bad">${saEsc(T('Run migration 0009_plans.sql in Supabase first.'))}</span></section>` : `<div class="sa-grid c2" style="margin-bottom:14px;align-items:start">
+    <section class="sa-card"><div class="sa-row" style="justify-content:space-between;align-items:center;gap:10px"><h2 style="margin:0">${saEsc(T('Plan limits'))}</h2><span class="sa-pill ${live ? 'warn' : 'ok'}">${saEsc(T(live ? 'Plan limits are ON' : pending ? 'Limits start on the chosen date' : 'Plan limits are OFF (everyone has full access)'))}</span></div>
+      <p class="sa-fine" style="color:var(--ink-2);margin:6px 0 10px">${saEsc(T('Demo accounts are limited to one project, a demo PDF export, and no chat or panel import. Free and Paid accounts and administrators have full access.'))}</p>
+      <div class="sa-form" style="grid-template-columns:1fr 1fr">${fld('When to limit', `<select id="plMode"><option value="off" ${mode === 'off' ? 'selected' : ''}>${saEsc(T('Never (everyone has full access)'))}</option><option value="on" ${mode === 'on' ? 'selected' : ''}>${saEsc(T('Limit now'))}</option><option value="date" ${mode === 'date' ? 'selected' : ''}>${saEsc(T('Limit from a date'))}</option></select>`)}${fld('Start date', `<input id="plDate" type="date" value="${saEsc(startAt ? startAt.slice(0, 10) : '')}">`)}</div>
+      <div class="sa-row" style="margin-top:12px"><button class="sa-btn pri" data-sa="plsave">${saEsc(T('Save limits'))}</button></div></section>
+    <section class="sa-card"><div class="sa-row" style="justify-content:space-between;align-items:center;gap:10px"><h2 style="margin:0">${saEsc(T('Payments'))}</h2><span class="sa-pill ${cfg.stripe_webhook ? 'ok' : 'warn'}">${saEsc(T(cfg.stripe_webhook ? 'Webhook ready' : 'Add STRIPE_WEBHOOK_SECRET to the Worker'))}</span></div>
+      <p class="sa-fine" style="color:var(--ink-2);margin:6px 0 10px">${saEsc(T('Create a Payment Link in Stripe, paste it here and turn payments on. Demo users then see an Upgrade button. A successful payment sets them to Paid automatically.'))}</p>
+      <div class="sa-form" style="grid-template-columns:1fr">${fld('Stripe payment link', `<input id="payLink" type="url" placeholder="https://buy.stripe.com/…" value="${saEsc(cfg.pay_link || '')}" data-nt>`)}${fld('Price shown to users', `<input id="payPrice" type="text" maxlength="80" placeholder="USD 9.99 / month" value="${saEsc(cfg.pay_price || '')}" data-nt>`)}
+      <label class="sa-chk" style="display:flex;gap:8px;align-items:center"><input id="payOn" type="checkbox" ${cfg.pay_enabled ? 'checked' : ''}> ${saEsc(T('Show the Upgrade button'))}</label></div>
+      <p class="sa-fine" style="color:var(--ink-2);margin:10px 0 0;overflow-wrap:anywhere">${saEsc(T('Webhook address for Stripe'))}: <code data-nt>${saEsc(cfg.webhook_url || '')}</code></p>
+      <div class="sa-row" style="margin-top:12px"><button class="sa-btn pri" data-sa="paysave">${saEsc(T('Save payments'))}</button></div></section></div>`;
+  box.innerHTML = planCard + `<form id="saUF" class="sa-row" style="margin-bottom:12px"><input class="sa-in" id="auS" type="search" placeholder="${saEsc(T('Search name, email, company'))}" value="${saEsc(f.search)}" style="max-width:300px" aria-label="${saEsc(T('Search users'))}"><select class="sa-in" id="auSt" style="max-width:170px" aria-label="${saEsc(T('Status'))}"><option value="">${saEsc(T('Any status'))}</option><option value="active" ${f.status === 'active' ? 'selected' : ''}>${saEsc(T('Active'))}</option><option value="suspended" ${f.status === 'suspended' ? 'selected' : ''}>${saEsc(T('Suspended'))}</option></select><select class="sa-in" id="auV" style="max-width:190px" aria-label="${saEsc(T('Email verification'))}"><option value="">${saEsc(T('Any verification'))}</option><option value="yes" ${f.verified === 'yes' ? 'selected' : ''}>${saEsc(T('Verified'))}</option><option value="no" ${f.verified === 'no' ? 'selected' : ''}>${saEsc(T('Not verified'))}</option></select><select class="sa-in" id="auP" style="max-width:170px" aria-label="${saEsc(T('Plan'))}"><option value="">${saEsc(T('Any plan'))}</option>${SA_PLANS.map(x => `<option value="${x[0]}" ${f.plan === x[0] ? 'selected' : ''}>${saEsc(T(x[1]))}</option>`).join('')}</select><button class="sa-btn" type="submit">${saEsc(T('Search'))}</button><span class="sa-fine" style="color:var(--ink-2)">${r.total} ${saEsc(T('users'))}</span></form>
+  <div class="sa-card sa-tw" style="padding:0"><table class="sa-tab"><thead><tr><th>${saEsc(T('Name'))}</th><th>${saEsc(T('Email'))}</th><th>${saEsc(T('Registered'))}</th><th>${saEsc(T('Verified'))}</th><th>${saEsc(T('Projects'))}</th><th>${saEsc(T('Last seen'))}</th><th>${saEsc(T('Status'))}</th><th>${saEsc(T('Plan'))}</th><th></th></tr></thead><tbody>${r.users.length ? r.users.map(u => `<tr><td>${saEsc((u.first_name || '') + ' ' + (u.last_name || ''))}<br><span class="sa-fine" style="color:var(--ink-2)">${saEsc([u.company, u.country, u.occupation].filter(Boolean).join(' · '))}</span></td><td style="overflow-wrap:anywhere">${saEsc(u.email)}${u.role === 'admin' ? ' <span class="sa-pill">admin</span>' : ''}</td><td>${saEsc(saDate(u.created_at))}</td><td><span class="sa-pill ${u.email_confirmed_at ? 'ok' : 'warn'}">${saEsc(T(u.email_confirmed_at ? 'Yes' : 'No'))}</span></td><td>${u.project_count}</td><td>${u.last_seen_at ? saEsc(saRel(u.last_seen_at)) : '–'}</td><td><span class="sa-pill ${u.status === 'active' ? 'ok' : 'bad'}">${saEsc(T(u.status === 'active' ? 'Active' : 'Suspended'))}</span></td><td>${u.role === 'admin' ? `<span class="sa-fine" style="color:var(--ink-2)">${saEsc(T('Full access'))}</span>` : `<button class="sa-btn sm" data-sa="uplan" data-id="${u.id}" title="${saEsc(T('Edit plan'))}"><span class="sa-pill ${u.plan === 'demo' ? 'warn' : 'ok'}" style="margin-right:4px">${saEsc(saPlanName(u.plan))}</span>${saEsc(T('Edit plan'))}</button>${u.plan !== 'demo' && u.plan_until ? `<div class="sa-fine" style="color:var(--ink-2)">${saEsc(saDate(u.plan_until))}</div>` : ''}${u.plan_note ? `<div class="sa-fine" style="color:var(--ink-2);overflow-wrap:anywhere" data-nt>${saEsc(u.plan_note)}</div>` : ''}`}</td><td>${u.role === 'admin' || u.id === SA.user.id ? '' : `<button class="sa-btn sm ${u.status === 'active' ? 'bad' : ''}" data-sa="ustatus" data-id="${u.id}" data-s="${u.status === 'active' ? 'suspended' : 'active'}" data-e="${saEsc(u.email)}">${saEsc(T(u.status === 'active' ? 'Suspend' : 'Reactivate'))}</button>`}</td></tr>`).join('') : `<tr><td colspan="9"><div class="sa-empty">${saEsc(T('No users match.'))}</div></td></tr>`}</tbody></table></div>
   <div class="sa-row" style="margin-top:12px;justify-content:center"><button class="sa-btn sm" data-sa="apage" data-d="-1" ${f.page <= 1 ? 'disabled' : ''}>${saEsc(T('Previous'))}</button><span>${f.page} / ${pages}</span><button class="sa-btn sm" data-sa="apage" data-d="1" ${f.page >= pages ? 'disabled' : ''}>${saEsc(T('Next'))}</button></div>`;
 }
 const SA_REASON_LABEL = {spam: 'Spam or advertising', harassment: 'Harassment or threats', inappropriate: 'Offensive or inappropriate content', impersonation: 'Pretending to be someone else', other: 'Something else'};
@@ -1581,6 +1635,31 @@ document.addEventListener('click', async ev => {
     const to = b.dataset.s; if (!confirm(T(to === 'suspended' ? 'Suspend this account? The user will be signed out of cloud features.' : 'Reactivate this account?') + '\n\n' + b.dataset.e)) return;
     try { await saApi(`/api/admin/users/${id}/status`, {method: 'POST', body: JSON.stringify({status: to})}); saRender(); } catch (e) { toast(e.message); }
   }
+  else if (a === 'plsave'){
+    const mode = sa$('#plMode').value, d = sa$('#plDate').value;
+    if (mode === 'date' && !d){ toast('Choose a start date.'); return; }
+    if (mode !== 'off' && !confirm(T(mode === 'on' ? 'Turn plan limits ON? New and demo accounts will be limited straight away. Existing accounts with Free or Paid access are not affected.' : 'Limit demo accounts from the chosen date? Existing accounts with Free or Paid access are not affected.'))) return;
+    try { await saApi('/api/admin/settings', {method: 'POST', body: JSON.stringify({plans_enforced: mode === 'on', plans_start_at: mode === 'date' ? d : ''})}); toast('Saved'); saRender(); } catch (e) { toast(e.message); }
+  }
+  else if (a === 'paysave'){
+    try { await saApi('/api/admin/settings', {method: 'POST', body: JSON.stringify({pay_link: sa$('#payLink').value.trim(), pay_price: sa$('#payPrice').value.trim(), pay_enabled: sa$('#payOn').checked})}); toast('Saved'); saRender(); } catch (e) { toast(e.message); }
+  }
+  else if (a === 'uplan'){
+    const u = (SA.auRows || []).find(x => x.id === id); if (!u) return;
+    const until = u.plan_until ? String(u.plan_until).slice(0, 10) : '';
+    saModal(`<h2 style="margin-top:0">${saEsc(T('Edit plan'))}</h2><p class="sa-fine" style="overflow-wrap:anywhere" data-nt>${saEsc(u.email)}</p>
+      <div class="sa-form" style="grid-template-columns:1fr"><label class="sa-field"><span>${saEsc(T('Plan'))}</span><select id="upPlan">${SA_PLANS.map(x => `<option value="${x[0]}" ${u.plan === x[0] ? 'selected' : ''}>${saEsc(T(x[1]))}</option>`).join('')}</select></label>
+      <label class="sa-field"><span>${saEsc(T('Access ends (optional)'))}</span><input id="upUntil" type="date" value="${saEsc(until)}"></label>
+      <label class="sa-field"><span>${saEsc(T('Note (optional)'))}</span><input id="upNote" type="text" maxlength="200" value="${saEsc(u.plan_note || '')}" data-nt></label></div>
+      <div class="sa-row" style="margin-top:14px"><button class="sa-btn pri" data-sa="uplansave" data-id="${u.id}">${saEsc(T('Save plan'))}</button><button class="sa-btn" data-sa="pinfox">${saEsc(T('Cancel'))}</button></div>`);
+  }
+  else if (a === 'uplansave'){
+    const plan = sa$('#upPlan').value, until = sa$('#upUntil').value, note = sa$('#upNote').value.trim();
+    try { await saApi(`/api/admin/users/${id}/plan`, {method: 'POST', body: JSON.stringify({plan, until: plan === 'demo' ? '' : until, note})}); saModalClose(); toast('Plan saved'); saRender(); } catch (e) { toast(e.message); }
+  }
+  else if (a === 'payopen'){ const u = saPayUrl(); if (u){ try { if (typeof saOpenExternal === 'function') saOpenExternal(u); else window.open(u, '_blank', 'noopener'); } catch (e) { window.open(u, '_blank'); } } saModalClose(); }
+  else if (a === 'planreq') saPlanRequest();
+  else if (a === 'upgrade') saUpgrade(b.dataset.w || 'This feature');
   else if (a === 'fbstat'){ try { await saApi(`/api/admin/feedback/${id}/status`, {method: 'POST', body: JSON.stringify({status: b.dataset.s})}); saRender(); } catch (e) { toast(e.message); } }
 });
 function saOpenLast(){ if (SA.cloudId) { saGo('app'); saChip(); } else saOpenLocal(); }
@@ -1588,7 +1667,7 @@ document.addEventListener('submit', ev => {
   const f = ev.target.id; if (!['saForm', 'saRec', 'saProf', 'saPw', 'saFb', 'saDel', 'saUF'].includes(f)) return;
   ev.preventDefault();
   if (f === 'saForm') saSubmitAuth(); else if (f === 'saRec') saSubmitRecovery(); else if (f === 'saProf') saSaveProfile(); else if (f === 'saPw') saChangePw(); else if (f === 'saFb') saSendFeedback(); else if (f === 'saDel') saDoDelete();
-  else { SA.au.search = sa$('#auS').value.trim(); SA.au.status = sa$('#auSt').value; SA.au.verified = sa$('#auV').value; SA.au.page = 1; saRender(); }
+  else { SA.au.search = sa$('#auS').value.trim(); SA.au.status = sa$('#auSt').value; SA.au.verified = sa$('#auV').value; SA.au.plan = sa$('#auP').value; SA.au.page = 1; saRender(); }
 });
 document.addEventListener('input', ev => {
   const t = ev.target;
@@ -1613,4 +1692,8 @@ document.addEventListener('keydown', ev => { if (ev.key === 'Escape'){ const m =
   renderTools = function(){ if (!SA.toolT || Date.now() - SA.toolT > 600000){ SA.toolT = Date.now(); saTrack('tool_opened'); } return r.apply(this, arguments); };
 }
 
+/* Community writes are part of the full plan: reading stays open, anything that posts, shares or calls shows the upgrade note. */
+const saGate = (f, w) => function(){ if (!saFull()){ saUpgrade(w); return; } return f.apply(this, arguments); };
+saSendMsg = saGate(saSendMsg, 'Chat'); saComSubmit = saGate(saComSubmit, 'Chat, sharing and calls'); saComDialog = saGate(saComDialog, 'Chat, sharing and calls');
+saCall = saGate(saCall, 'Calls'); saUpload = saGate(saUpload, 'File sharing'); saShareOpen = saGate(saShareOpen, 'Project sharing'); saOpenDirect = saGate(saOpenDirect, 'Chat');
 saInit();

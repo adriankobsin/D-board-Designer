@@ -660,8 +660,17 @@ async function dl(name, data){
   catch (e) { if (!e || e.code !== 'declined') toast('Could not save: ' + ((e && e.message) || 'unavailable')); }
 }
 function csvOf(rows){ return rows.map(r => r.map(v => { v = String(v == null ? '' : v); return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }).join(',')).join('\n'); }
-function exportCSV(){ dl(slug() + '-schedule.csv', csvOf([SCHED_HEAD.map(h => T(h))].concat(schedRows()))); }
+/* Demo plan: the SaaS layer sets DEMO = true for accounts without full access. Only the PDF export is open to them. */
+let DEMO = false;
+const DEMO_TEXT = 'DBoard Designer Demo';
+function demoBlocked(what){
+  if (!DEMO) return false;
+  if (typeof saUpgrade === 'function') saUpgrade(what); else toast('This is part of the full plan.');
+  return true;
+}
+function exportCSV(){ if (demoBlocked('Excel, CSV and project file export')) return; dl(slug() + '-schedule.csv', csvOf([SCHED_HEAD.map(h => T(h))].concat(schedRows()))); }
 function exportXLSX(){
+  if (demoBlocked('Excel, CSV and project file export')) return;
   if (!window.XLSX){ toast('Excel library did not load.'); return; }
   const wb = XLSX.utils.book_new();
   const sheetName = s => T(s).replace(/[\[\]:*?\/\\]/g, ' ').slice(0, 31);
@@ -676,7 +685,7 @@ function exportXLSX(){
   XLSX.utils.book_append_sheet(wb, mk([[T('Project'), S.name], [T('Company'), S.company || ''], [T('Project / job'), S.jobName || ''], [T('Customer'), S.customer || ''], [T('Location'), S.location || ''], [T('Job reference'), S.jobRef || ''], [T('Status'), S.status ? T(S.status) : ''], [T('Installation date'), S.instDate || ''], [T('Standard'), STD[S.std].n], [T('System'), T((SYSTEMS.find(s => s.id === S.sysId) || {}).label)], [T('Fault level kA'), S.ik], [T('Cable ambient C'), S.ambient], [T('Diversity'), S.diversity], [T('MCB series'), R.sel.mcbS ? R.sel.mcbS.mfr + ' ' + R.sel.mcbS.series : T('Generic')], [T('RCBO series'), R.sel.rcboS ? R.sel.rcboS.mfr + ' ' + R.sel.rcboS.series : T('Generic')], [T('Main switch'), R.sel.mainS ? R.sel.mainS.mfr + ' ' + R.sel.mainS.series : T('Generic')]], [20, 36]), sheetName('Project'));
   dl(slug() + '.xlsx', XLSX.write(wb, {type: 'array', bookType: 'xlsx'}));
 }
-function exportJSON(){ dl(slug() + '.json', JSON.stringify(S, null, 1)); }
+function exportJSON(){ if (demoBlocked('Excel, CSV and project file export')) return; dl(slug() + '.json', JSON.stringify(S, null, 1)); }
 function importJSON(file){
   const fr = new FileReader();
   fr.onload = () => { try { const p = JSON.parse(fr.result); if (!p.circuits || !p.modules || !STD[p.std]) throw 0; S = p; S.order = S.order || []; sel = null; syncHeader(); refresh(true); toast('Project loaded'); } catch (e) { toast('That file is not a DBoard Designer project.'); } };
@@ -902,6 +911,15 @@ function exportPDF(){
   bomRows().forEach(b => { if (y > 196){ doc.addPage(); y = 16; } doc.text(String(b[1]) + ' x', ML, y); doc.text(b[0], ML + 14, y); y += 5; }); }
   if (want('sched') || want('bom')){ y += 4; doc.setFontSize(7); doc.setTextColor(110); doc.text(PT('Design aid. Verify ratings against the standard edition, manufacturer datasheets and a qualified engineer before building.'), ML, Math.min(y, 200)); }
   if (dropFirst && doc.getNumberOfPages() > 1) doc.deletePage(1);
+  if (DEMO){
+    const np = doc.getNumberOfPages();
+    for (let i = 1; i <= np; i++){
+      doc.setPage(i);
+      doc.setFont('helvetica', 'bold'); doc.setFontSize(9); doc.setTextColor(190, 40, 40); doc.text(DEMO_TEXT, PW / 2, 205, {align: 'center'});
+      if (i === 1){ doc.setFontSize(17); doc.setTextColor(190, 40, 40); doc.text(DEMO_TEXT.toUpperCase(), PW - ML, 18, {align: 'right'}); doc.setFontSize(8.5); doc.setFont('helvetica', 'normal'); doc.text('Created with the demo plan. Not for construction use.', PW - ML, 24, {align: 'right'}); }
+      doc.setTextColor(0);
+    }
+  }
   dl(slug() + '.pdf', doc.output('arraybuffer'));
 }
 function renderExport(){
@@ -910,7 +928,7 @@ function renderExport(){
    <div class="card"><h3>Excel workbook</h3><p class="muted">Schedule, Lutron modules, bill of materials, phase balance, power and project sheets. Holds the company name; Excel files from this tool cannot embed the logo image.</p><button class="btn pri" data-a="xlsx">Save Excel</button></div>
    <div class="card"><h3>CSV schedule</h3><p class="muted">Plain circuit schedule for import into other tools.</p><button class="btn" data-a="csv">Save CSV</button></div>
    <div class="card"><h3>Project file</h3><p class="muted">Save the whole design as JSON, or open one you saved earlier.</p><div class="row"><button class="btn" data-a="json">Save project</button><label class="btn" for="openfile" style="cursor:pointer">Open project…</label><input type="file" id="openfile" accept=".json,application/json" hidden></div></div></div>
-   <p class="note">The board also saves in this browser while you work. Exports open a save prompt each time.</p>`;
+   <p class="note">The board also saves in this browser while you work. Exports open a save prompt each time.</p>${DEMO ? `<p class="note" style="color:var(--warn,#B45309)">Demo plan: only the PDF export is available, marked "${DEMO_TEXT}". Excel, CSV and the project file are part of the full plan.</p>` : ''}`;
 }
 
 /* ---------- router and events ---------- */

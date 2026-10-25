@@ -59,6 +59,7 @@ function saErr(e){
   if (m.includes('same password')) return 'Choose a password you have not used on this account before.';
   if (m.includes('weak') || m.includes('password should')) return 'That password is too weak. Use at least 8 characters with a letter and a number.';
   if (m.includes('failed to fetch') || m.includes('network')) return 'No connection. Check your internet and try again.';
+  if (m.includes('plan_limit_projects')) return 'The demo plan allows one project.';
   if (m.includes('jwt') || c === 401) return 'Your session has expired. Sign in again.';
   return 'Something went wrong. Try again.';
 }
@@ -142,5 +143,40 @@ async function saLoadProfile(){
   const {data, error} = await SA.sb.from('profiles').select('*').eq('id', SA.user.id).maybeSingle();
   if (!error) SA.profile = data || null;
   else if (!SA.profile){ const c = saCachedUser(); if (c && c.user.id === SA.user.id) SA.profile = c.profile; }
+  await saLoadPlans();
+}
+/* ---------- plans: demo accounts are limited, full accounts are not ---------- */
+SA.plans = {enforced: false, start: '', pay: false, link: '', price: ''};
+async function saLoadPlans(){
+  try {
+    const {data, error} = await SA.sb.from('app_settings').select('key,value');
+    if (!error && data){ const o = {}; data.forEach(r => { o[r.key] = r.value; });
+      SA.plans = {enforced: o.plans_enforced === true, start: typeof o.plans_start_at === 'string' ? o.plans_start_at : '', pay: o.pay_enabled === true, link: typeof o.pay_link === 'string' ? o.pay_link : '', price: typeof o.pay_price === 'string' ? o.pay_price : ''}; }
+  } catch (e) {}
+  saPlanApply();
+}
+function saLimitsOn(){ const P = SA.plans; return P.enforced || (!!P.start && new Date(P.start) <= new Date()); }
+function saFull(){
+  if (!saLimitsOn()) return true;
+  const p = SA.profile; if (!p) return true;
+  if (p.role === 'admin') return true;
+  return (p.plan === 'free' || p.plan === 'paid') && (!p.plan_until || new Date(p.plan_until) > new Date());
+}
+function saPlanApply(){ if (typeof DEMO !== 'undefined') DEMO = !saFull(); }
+function saPayUrl(){
+  const P = SA.plans; if (!P.pay || !/^https:\/\//i.test(P.link || '')) return '';
+  try { const u = new URL(P.link); if (SA.user){ u.searchParams.set('client_reference_id', SA.user.id); if (SA.user.email) u.searchParams.set('prefilled_email', SA.user.email); } return u.toString(); } catch (e) { return ''; }
+}
+function saUpgrade(what){
+  const url = saPayUrl(), P = SA.plans;
+  saModal(`<h2 style="margin-top:0">${saEsc(T('Full plan feature'))}</h2><p>${saEsc(T(what))}: ${saEsc(T('this is part of the full plan.'))}</p>
+    <p class="sa-sub">${saEsc(T('The demo plan includes one project and a PDF export marked "DBoard Designer Demo".'))}</p>
+    ${url && P.price ? `<p><b data-nt>${saEsc(P.price)}</b></p>` : ''}
+    <div class="sa-row" style="margin-top:14px">${url ? `<button class="sa-btn pri" data-sa="payopen">${saEsc(T('Upgrade'))}</button>` : `<button class="sa-btn pri" data-sa="planreq">${saEsc(T('Request full access'))}</button>`}<button class="sa-btn" data-sa="pinfox">${saEsc(T('Close'))}</button></div>`);
+}
+async function saPlanRequest(){
+  if (!SA.sb || !SA.user) return;
+  const {error} = await SA.sb.from('feedback').insert({message: 'Plan request: please grant full access to ' + (SA.user.email || ''), page: 'plan'});
+  saModalClose(); toast(error ? saErr(error) : 'Request sent. The administrator will review it.');
 }
 function saTrack(event, meta){ if (!SA.sb || !SA.user) return; SA.sb.from('usage_events').insert({event, meta: meta || {}}).then(() => {}, () => {}); }

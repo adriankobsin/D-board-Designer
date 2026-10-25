@@ -10,9 +10,10 @@ async function saListProjects(){
   SA.listErr = null; SA.projects = data || []; return SA.projects;
 }
 async function saCreateProject(data, name){
+  if (!saFull() && Array.isArray(SA.projects) && SA.projects.length >= 1){ saUpgrade('More than one project'); throw new Error('PLAN_LIMIT_PROJECTS'); }
   const nm = (name || data.name || 'New board').slice(0, 200);
   const {data: row, error} = await SA.sb.from('projects').insert({name: nm, data: Object.assign({}, data, {name: nm}), meta: saMeta(data), last_opened_at: new Date().toISOString()}).select(SA_COLS).single();
-  if (error) throw error;
+  if (error){ if (/PLAN_LIMIT_PROJECTS/.test(error.message || '')) saUpgrade('More than one project'); throw error; }
   saTrack('project_created'); return row;
 }
 async function saOpenProject(id){

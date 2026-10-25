@@ -442,3 +442,5 @@
 1292|ex. Alimentare iluminat salon
 1293|Circuite alimentate
 1294|Fără întrerupător de alimentare
+1295|Treceți la modul întunecat
+1296|Treceți la modul luminos

@@ -442,3 +442,5 @@
 1292|p. ex. Alimentação iluminação salão
 1293|Circuitos alimentados
 1294|Sem disjuntor de alimentação
+1295|Mudar para o modo escuro
+1296|Mudar para o modo claro

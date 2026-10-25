@@ -442,3 +442,5 @@
 1292|es. Alimentazione luci salone
 1293|Circuiti alimentati
 1294|Nessun interruttore di alimentazione
+1295|Passa alla modalità scura
+1296|Passa alla modalità chiara

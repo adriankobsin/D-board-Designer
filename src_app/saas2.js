@@ -66,7 +66,7 @@ function saViewAuth(el){
     <button class="sa-btn pri" type="submit" id="saGo">Send reset link</button></form>
     <p class="sa-alt"><button class="sa-link" data-sa="mode" data-m="login">Back to sign in</button></p>`;
   }
-  el.innerHTML = `<div class="sa-auth">${saAside()}<div class="sa-pane"><div class="sa-box"><div class="sa-row" style="justify-content:flex-end;margin-bottom:8px">${saLangSelect()}</div>${form}</div></div></div>`;
+  el.innerHTML = `<div class="sa-auth">${saAside()}<div class="sa-pane"><div class="sa-box"><div class="sa-row" style="justify-content:flex-end;margin-bottom:8px;gap:8px">${saThemeBtn()}${saLangSelect()}</div>${form}</div></div></div>`;
   const first = sa$('#saForm input'); if (first && !first.value) first.focus();
 }
 function saFieldErr(id, msg){ const e = sa$(`[data-err="${id}"]`); if (e) e.textContent = msg ? T(msg) : ''; const i = sa$('#' + id); if (i) i.setAttribute('aria-invalid', msg ? 'true' : 'false'); return !msg; }

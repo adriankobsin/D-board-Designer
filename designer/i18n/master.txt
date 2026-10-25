@@ -1292,3 +1292,5 @@
 1292|e.g. Saloon lighting supply
 1293|Circuits fed
 1294|No feed breaker
+1295|Switch to dark mode
+1296|Switch to light mode

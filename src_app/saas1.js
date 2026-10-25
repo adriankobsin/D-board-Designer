@@ -7,6 +7,17 @@ const SA = {cfg: null, sb: null, session: null, user: null, profile: null, view:
   saveT: null, saving: false, offline: false, authMode: 'login', msg: null, userSignedOut: false, adminTab: 'overview'};
 const SA_COUNTRIES = 'AF AL DZ AD AO AG AR AM AU AT AZ BS BH BD BB BY BE BZ BJ BT BO BA BW BR BN BG BF BI KH CM CA CV CF TD CL CN CO KM CG CD CR CI HR CU CY CZ DK DJ DM DO EC EG SV GQ ER EE SZ ET FJ FI FR GA GM GE DE GH GR GD GT GN GW GY HT HN HK HU IS IN ID IR IQ IE IL IT JM JP JO KZ KE KI KW KG LA LV LB LS LR LY LI LT LU MO MG MW MY MV ML MT MH MR MU MX FM MD MC MN ME MA MZ MM NA NR NP NL NZ NI NE NG KP MK NO OM PK PW PS PA PG PY PE PH PL PT PR QA RO RU RW KN LC VC WS SM ST SA SN RS SC SL SG SK SI SB SO ZA KR SS ES LK SD SR SE CH SY TW TJ TZ TH TL TG TO TT TN TR TM TV UG UA AE GB US UY UZ VU VA VE VN YE ZM ZW'.split(' ');
 const SA_OCC = ['Electrical Engineer', 'Electrician', 'Marine Electrician', 'ETO (Electro-Technical Officer)', 'Panel Builder', 'System Integrator', 'Student', 'Other'];
+/* Light / dark mode: an explicit choice is stored; otherwise the device setting is followed. */
+function saThemeGet(){ try { const v = localStorage.getItem('dbd_theme'); return v === 'dark' || v === 'light' ? v : ''; } catch (e) { return ''; } }
+function saThemeEff(){ return saThemeGet() || (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); }
+function saThemeApply(){ const v = saThemeGet(), r = document.documentElement; if (v) r.setAttribute('data-theme', v); else r.removeAttribute('data-theme');
+  const dark = saThemeEff() === 'dark', t = typeof T === 'function' ? T : x => x;
+  document.querySelectorAll('[data-theme-toggle]').forEach(b => { const lab = t(dark ? 'Switch to light mode' : 'Switch to dark mode'); b.setAttribute('data-mode', dark ? 'dark' : 'light'); b.setAttribute('aria-label', lab); b.setAttribute('title', lab); });
+}
+function saThemeBtn(){ const dark = saThemeEff() === 'dark'; return `<button class="sa-theme" type="button" data-theme-toggle data-mode="${dark ? 'dark' : 'light'}" data-nt aria-label="${dark ? 'Switch to light mode' : 'Switch to dark mode'}" title="${dark ? 'Switch to light mode' : 'Switch to dark mode'}"><svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 1 1 9.8 3.5a6.8 6.8 0 0 0 10.7 10.7z"/></svg><svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg></button>`; }
+document.addEventListener('click', ev => { const b = ev.target.closest && ev.target.closest('[data-theme-toggle]'); if (!b) return; ev.preventDefault();
+  try { localStorage.setItem('dbd_theme', saThemeEff() === 'dark' ? 'light' : 'dark'); } catch (e) {} saThemeApply(); });
+saThemeApply();
 const sa$ = (s, r = document) => r.querySelector(s);
 const saEsc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
 const saLang = () => (typeof LANG === 'string' ? LANG : 'en');

@@ -1292,3 +1292,5 @@
 1292|mis. Catu lampu salon
 1293|Sirkuit yang disuplai
 1294|Tanpa breaker catu daya
+1295|Beralih ke mode gelap
+1296|Beralih ke mode terang

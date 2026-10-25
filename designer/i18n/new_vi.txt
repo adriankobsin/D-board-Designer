@@ -442,3 +442,5 @@
 1292|vd: Nguồn đèn phòng khách
 1293|Mạch được cấp
 1294|Không có aptomat cấp nguồn
+1295|Chuyển sang chế độ tối
+1296|Chuyển sang chế độ sáng

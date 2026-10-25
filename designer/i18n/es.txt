@@ -1292,3 +1292,5 @@
 1292|p. ej. Alimentación iluminación salón
 1293|Circuitos alimentados
 1294|Sin interruptor de alimentación
+1295|Cambiar a modo oscuro
+1296|Cambiar a modo claro

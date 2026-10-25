@@ -1292,3 +1292,5 @@
 1292|np. Zasilanie oświetlenia salonu
 1293|Zasilane obwody
 1294|Brak wyłącznika zasilania
+1295|Przełącz na tryb ciemny
+1296|Przełącz na tryb jasny

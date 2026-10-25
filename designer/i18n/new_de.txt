@@ -442,3 +442,5 @@
 1292|z. B. Versorgung Salonbeleuchtung
 1293|Versorgte Stromkreise
 1294|Kein Einspeise-Schutzschalter
+1295|Zum dunklen Modus wechseln
+1296|Zum hellen Modus wechseln

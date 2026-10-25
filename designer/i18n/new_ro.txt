@@ -437,6 +437,8 @@
 1287|Controlează
 1288|ex. Dimmer salon
 1289|Întrerupătoare de alimentare module
-1290|Aceste întrerupătoare protejează alimentarea fiecărui modul Lutron. Denumiți-le aici; numele apare pe desenul panoului și în schemă.
+1290|Toate modulele din panou sunt listate aici. Denumiți întrerupătorul de alimentare al fiecărui modul; numele apare pe desenul panoului și în schemă. Modulele fără întrerupător de alimentare (joasă tensiune sau alimentate de alt dispozitiv) sunt afișate pentru referință.
 1291|Nume întrerupător
 1292|ex. Alimentare iluminat salon
+1293|Circuite alimentate
+1294|Fără întrerupător de alimentare

@@ -437,6 +437,8 @@
 1287|Steruje
 1288|np. Ściemniacz salonu
 1289|Wyłączniki zasilania modułów
-1290|Te wyłączniki zabezpieczają zasilanie każdego modułu Lutron. Nazwij je tutaj; nazwa pojawi się na rysunku rozdzielnicy i na schemacie.
+1290|Wszystkie moduły w rozdzielnicy są wymienione tutaj. Nazwij wyłącznik zasilania każdego modułu; nazwa pojawi się na rysunku rozdzielnicy i na schemacie. Moduły bez wyłącznika zasilania (niskie napięcie lub zasilane z innego urządzenia) są pokazane informacyjnie.
 1291|Nazwa wyłącznika
 1292|np. Zasilanie oświetlenia salonu
+1293|Zasilane obwody
+1294|Brak wyłącznika zasilania

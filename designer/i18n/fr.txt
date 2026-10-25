@@ -1287,6 +1287,8 @@
 1287|Commande
 1288|p. ex. Variateur salon
 1289|Disjoncteurs d'alimentation des modules
-1290|Ces disjoncteurs protègent l'alimentation de chaque module Lutron. Nommez-les ici ; le nom apparaît sur le dessin du tableau et le schéma.
+1290|Tous les modules du tableau sont listés ici. Nommez le disjoncteur d'alimentation de chaque module ; le nom apparaît sur le dessin du tableau et le schéma. Les modules sans disjoncteur d'alimentation (basse tension ou alimentés par un autre appareil) sont affichés pour information.
 1291|Nom du disjoncteur
 1292|p. ex. Alimentation éclairage salon
+1293|Circuits alimentés
+1294|Pas de disjoncteur d'alimentation

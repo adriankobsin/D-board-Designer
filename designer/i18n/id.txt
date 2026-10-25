@@ -1287,6 +1287,8 @@
 1287|Mengontrol
 1288|mis. Dimmer salon
 1289|Breaker catu daya modul
-1290|Breaker ini melindungi catu daya setiap modul Lutron. Beri nama di sini; nama tampil di gambar panel dan diagram.
+1290|Semua modul di panel tercantum di sini. Beri nama breaker catu daya setiap modul; nama tampil di gambar panel dan diagram. Modul tanpa breaker catu daya (tegangan rendah atau disuplai perangkat lain) ditampilkan sebagai referensi.
 1291|Nama breaker
 1292|mis. Catu lampu salon
+1293|Sirkuit yang disuplai
+1294|Tanpa breaker catu daya

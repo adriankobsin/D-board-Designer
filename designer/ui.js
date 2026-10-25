@@ -428,12 +428,15 @@ function quickCalc(){
    <dt>Series that fit</dt><dd>${sers}</dd></dl>`;
 }
 function feedCard(){
-  const ms = S.modules.filter(m => R.m[m.id] && !R.m[m.id].lv);
+  const ms = S.modules.filter(m => R.m[m.id]);
   if (!ms.length) return '';
-  return `<div class="card"><h2>Module feed breakers</h2><p class="note" style="margin:6px 0 10px">These breakers protect the supply to each Lutron module. Name them here and the name appears on the panel drawing and the diagram.</p>
-    <div class="scroll"><table class="stack" style="min-width:820px"><thead><tr><th>Ref</th><th>Breaker name</th><th>Module</th><th>Phase</th><th>Ib A</th><th>In A</th><th>Feed cable</th><th>Status</th></tr></thead><tbody>${ms.map(m => { const r = R.m[m.id]; return `<tr><td style="width:90px"><input type="text" data-k="m" data-id="${m.id}" data-f="bref" value="${esc(m.bref || 'F-' + m.id)}" maxlength="12" aria-label="Ref ${m.id}"></td>
-      <td style="min-width:220px"><input type="text" data-k="m" data-id="${m.id}" data-f="bname" value="${esc(m.bname || '')}" maxlength="40" placeholder="e.g. Saloon lighting supply" aria-label="Breaker name ${m.id}"></td>
-      <td><b>${m.id}</b> ${esc(m.name || m.model)}${m.area ? `<div class="note">${esc(m.area)}</div>` : ''}</td><td class="mono">${r.ph}</td><td class="mono" style="text-align:right">${fmt(r.Ib, 2)}</td><td class="mono" style="text-align:right">${r.In || '–'}</td><td class="mono">${r.cab.size} mm²</td><td>${tag(statusOf(m.id))}</td></tr>`; }).join('')}</tbody></table></div></div>`;
+  return `<div class="card"><h2>Module feed breakers</h2><p class="note" style="margin:6px 0 10px">Every module on the panel is listed here. Name the feed breaker of each module; the name appears on the panel drawing and the diagram. Modules without a feed breaker (low voltage or powered from another device) are shown for reference.</p>
+    <div class="scroll"><table class="stack" style="min-width:900px"><thead><tr><th>Ref</th><th>Breaker name</th><th>Module</th><th>Circuits fed</th><th>Phase</th><th>Ib A</th><th>In A</th><th>Feed cable</th><th>Status</th></tr></thead><tbody>${ms.map(m => { const r = R.m[m.id], cs = S.circuits.filter(c => c.mod === m.id), fed = !r.lv;
+      return `<tr><td style="width:90px">${fed ? `<input type="text" data-k="m" data-id="${m.id}" data-f="bref" value="${esc(m.bref || 'F-' + m.id)}" maxlength="12" aria-label="Ref ${m.id}">` : `<span class="mono">${m.id}</span>`}</td>
+      <td style="min-width:220px">${fed ? `<input type="text" data-k="m" data-id="${m.id}" data-f="bname" value="${esc(m.bname || '')}" maxlength="40" placeholder="e.g. Saloon lighting supply" aria-label="Breaker name ${m.id}">` : `<span class="muted">No feed breaker</span>`}</td>
+      <td><b>${m.id}</b> ${esc(m.name || m.model)}${m.name ? `<div class="note">${esc(m.model)}</div>` : ''}${m.area ? `<div class="note">${esc(m.area)}</div>` : ''}</td>
+      <td>${cs.length ? cs.map(c => `<div class="note"><b>${esc(c.ref)}</b> ${esc(c.name)}</div>`).join('') : '<span class="muted">–</span>'}</td>
+      <td class="mono">${fed ? r.ph : '–'}</td><td class="mono" style="text-align:right">${fed ? fmt(r.Ib, 2) : '–'}</td><td class="mono" style="text-align:right">${fed ? (r.In || '–') : '–'}</td><td class="mono">${fed ? r.cab.size + ' mm²' : '–'}</td><td>${tag(statusOf(m.id))}</td></tr>`; }).join('')}</tbody></table></div></div>`;
 }
 function renderCircuits(){
   return `${quickCard()}${feedCard()}<div class="card"><div class="row" style="justify-content:space-between"><h2>Circuit schedule</h2><div class="card"><div class="row" style="justify-content:space-between"><h2>Circuit schedule</h2><div class="row">

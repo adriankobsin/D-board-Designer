@@ -437,6 +437,8 @@
 1287|Steuert
 1288|z. B. Dimmer Salon
 1289|Einspeise-Schutzschalter der Module
-1290|Diese Schutzschalter sichern die Versorgung jedes Lutron-Moduls. Benennen Sie sie hier; der Name erscheint in der Verteilerzeichnung und im Schaltplan.
+1290|Hier sind alle Module der Verteilung aufgeführt. Benennen Sie den Einspeise-Schutzschalter jedes Moduls; der Name erscheint in der Verteilerzeichnung und im Schaltplan. Module ohne Einspeise-Schutzschalter (Kleinspannung oder von einem anderen Gerät versorgt) werden zur Information angezeigt.
 1291|Name des Schutzschalters
 1292|z. B. Versorgung Salonbeleuchtung
+1293|Versorgte Stromkreise
+1294|Kein Einspeise-Schutzschalter

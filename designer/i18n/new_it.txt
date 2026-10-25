@@ -437,6 +437,8 @@
 1287|Controlla
 1288|es. Dimmer salone
 1289|Interruttori di alimentazione moduli
-1290|Questi interruttori proteggono l'alimentazione di ogni modulo Lutron. Assegna qui un nome: compare nel disegno del quadro e nello schema.
+1290|Qui sono elencati tutti i moduli del quadro. Assegna un nome all'interruttore di alimentazione di ogni modulo; compare nel disegno del quadro e nello schema. I moduli senza interruttore di alimentazione (bassa tensione o alimentati da un altro dispositivo) sono mostrati per riferimento.
 1291|Nome interruttore
 1292|es. Alimentazione luci salone
+1293|Circuiti alimentati
+1294|Nessun interruttore di alimentazione

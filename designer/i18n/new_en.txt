@@ -478,6 +478,8 @@
 1287|Controls
 1288|e.g. Saloon dimmer
 1289|Module feed breakers
-1290|These breakers protect the supply to each Lutron module. Name them here and the name appears on the panel drawing and the diagram.
+1290|Every module on the panel is listed here. Name the feed breaker of each module; the name appears on the panel drawing and the diagram. Modules without a feed breaker (low voltage or powered from another device) are shown for reference.
 1291|Breaker name
 1292|e.g. Saloon lighting supply
+1293|Circuits fed
+1294|No feed breaker

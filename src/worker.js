@@ -235,7 +235,7 @@ async function api(request, env, url) {
       const size = int(q.get('size'), 25, 1, 100), page = int(q.get('page'), 1, 1, 100000);
       const r = await sr(env, '/rest/v1/rpc/admin_list_users', {
         method: 'POST',
-        body: JSON.stringify({ p_search: clean(q.get('search'), 80) || null, p_status: status, p_verified: verified, p_limit: size, p_offset: (page - 1) * size, p_plan: ['demo', 'free', 'paid'].includes(q.get('plan')) ? q.get('plan') : null }),
+        body: JSON.stringify({ p_search: clean(q.get('search'), 80) || null, p_status: status, p_verified: verified, p_limit: size, p_offset: (page - 1) * size, ...(['demo', 'free', 'paid'].includes(q.get('plan')) ? { p_plan: q.get('plan') } : {}) }),
       });
       if (!r.ok) return fail(502, 'Could not load users.');
       const rows = await r.json();

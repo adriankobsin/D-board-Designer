@@ -1286,3 +1286,7 @@
 1286|p. ex. Grand salon, salle à manger
 1287|Commande
 1288|p. ex. Variateur salon
+1289|Disjoncteurs d'alimentation des modules
+1290|Ces disjoncteurs protègent l'alimentation de chaque module Lutron. Nommez-les ici ; le nom apparaît sur le dessin du tableau et le schéma.
+1291|Nom du disjoncteur
+1292|p. ex. Alimentation éclairage salon

@@ -1286,3 +1286,7 @@
 1286|np. Salon główny, jadalnia
 1287|Steruje
 1288|np. Ściemniacz salonu
+1289|Wyłączniki zasilania modułów
+1290|Te wyłączniki zabezpieczają zasilanie każdego modułu Lutron. Nazwij je tutaj; nazwa pojawi się na rysunku rozdzielnicy i na schemacie.
+1291|Nazwa wyłącznika
+1292|np. Zasilanie oświetlenia salonu

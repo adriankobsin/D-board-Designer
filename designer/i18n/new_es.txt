@@ -436,3 +436,7 @@
 1286|p. ej. Salón principal, comedor
 1287|Controla
 1288|p. ej. Regulador del salón
+1289|Interruptores de alimentación de módulos
+1290|Estos interruptores protegen la alimentación de cada módulo Lutron. Póngales nombre aquí; aparecerá en el dibujo del cuadro y en el esquema.
+1291|Nombre del interruptor
+1292|p. ej. Alimentación iluminación salón

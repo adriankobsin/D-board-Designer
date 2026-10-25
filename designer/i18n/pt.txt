@@ -1286,3 +1286,7 @@
 1286|p. ex. Salão principal, sala de jantar
 1287|Controla
 1288|p. ex. Dimmer do salão
+1289|Disjuntores de alimentação dos módulos
+1290|Estes disjuntores protegem a alimentação de cada módulo Lutron. Dê-lhes um nome aqui; o nome aparece no desenho do quadro e no esquema.
+1291|Nome do disjuntor
+1292|p. ex. Alimentação iluminação salão

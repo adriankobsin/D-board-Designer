@@ -509,7 +509,7 @@ function buildDevices(S, R){
   S.modules.forEach(m => {
     const r = R.m[m.id];
     if (r.lv) return;
-    devs.push({key:'f:' + m.id, kind:'feed', ref:'F-' + m.id, rating:r.In, label:'Feed ' + m.id, w: dpm ? (mcbS && mcbS.wdp != null ? Math.ceil(mcbS.wdp) : 2) : (mcbS && mcbS.w1 != null ? Math.ceil(mcbS.w1) : 1), sec:1, ph:r.ph, mod:m.id, series:sn(mcbS)});
+    devs.push({key:'f:' + m.id, kind:'feed', ref:m.bref || ('F-' + m.id), rating:r.In, label:m.bname || ('Feed ' + m.id), w: dpm ? (mcbS && mcbS.wdp != null ? Math.ceil(mcbS.wdp) : 2) : (mcbS && mcbS.w1 != null ? Math.ceil(mcbS.w1) : 1), sec:1, ph:r.ph, mod:m.id, series:sn(mcbS)});
   });
   S.circuits.forEach(c => {
     if (c.mod) return;

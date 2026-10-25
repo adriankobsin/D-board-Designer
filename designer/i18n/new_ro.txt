@@ -436,3 +436,7 @@
 1286|ex. Salon principal, sufragerie
 1287|Controlează
 1288|ex. Dimmer salon
+1289|Întrerupătoare de alimentare module
+1290|Aceste întrerupătoare protejează alimentarea fiecărui modul Lutron. Denumiți-le aici; numele apare pe desenul panoului și în schemă.
+1291|Nume întrerupător
+1292|ex. Alimentare iluminat salon

@@ -257,7 +257,7 @@ function inspector(){
   } else if (d.kind === 'feed' || d.kind === 'lutron'){
     const m = S.modules.find(x => x.id === d.mod), r = R.m[m.id], std = STD[S.std], three = S.phases === 3, n = S.circuits.filter(c => c.mod === m.id).length;
     ttl = m.id + ' · ' + (m.name || m.model);
-    form = `<div class="iform"><div style="grid-column:1/-1">${fl('Name / location', inp('m', m.id, 'name', m.name || '', 'text', 'maxlength="40" placeholder="e.g. Saloon dimmer"'))}</div><div style="grid-column:1/-1">${fl('Area controlled', inp('m', m.id, 'area', m.area || '', 'text', 'maxlength="80" placeholder="e.g. Main saloon, dining"'))}</div>${fl('Model', `<select data-k="m" data-id="${m.id}" data-f="model">${LIB.filter(l => l.din !== 0).map(l => `<option value="${l.model}" ${l.model === m.model ? 'selected' : ''}>${l.model}</option>`).join('')}</select>`)}
+    form = `<div class="iform">${d.kind === 'feed' && !r.lv ? `<div style="grid-column:1/-1">${fl('Breaker name', inp('m', m.id, 'bname', m.bname || '', 'text', 'maxlength="40" placeholder="e.g. Saloon lighting supply"'))}</div>` : ''}<div style="grid-column:1/-1">${fl('Name / location', inp('m', m.id, 'name', m.name || '', 'text', 'maxlength="40" placeholder="e.g. Saloon dimmer"'))}</div><div style="grid-column:1/-1">${fl('Area controlled', inp('m', m.id, 'area', m.area || '', 'text', 'maxlength="80" placeholder="e.g. Main saloon, dining"'))}</div>${fl('Model', `<select data-k="m" data-id="${m.id}" data-f="model">${LIB.filter(l => l.din !== 0).map(l => `<option value="${l.model}" ${l.model === m.model ? 'selected' : ''}>${l.model}</option>`).join('')}</select>`)}
      ${r.lv ? '' : fl('Feed breaker', `<select data-k="m" data-id="${m.id}" data-f="inSel" data-t="n"><option value="0">Auto</option>${ratingsOf(S).map(x => `<option value="${x}" ${+m.inSel === x ? 'selected' : ''}>${x} A</option>`).join('')}</select>`)}
      ${r.lv ? '' : fl('Feed length m', inp('m', m.id, 'len', m.len, 'number', 'step="1"'))}${three && !r.lv ? fl('Feed phase', sl('m', m.id, 'phase', ['L1', 'L2', 'L3'], m.phase)) : ''}</div>`;
     dl = (m.area ? row('Controls', esc(m.area)) : '') + row('Family', esc(r.lib.fam || '')) + row('Supply', esc(r.lib.volt || '')) + (r.lv ? '' : row('Feed load', fmt(r.Ib, 1) + ' A') + row('Feed cable', `${r.cab.size} mm²`)) + row('Width', `${r.lib.din == null ? 'not listed' : r.lib.din + ' modules'}`) + row('Heat', `${r.lib.btu || 0} BTU/h`) + row('Circuits', n ? n + ' fed' : 'none') + row('Status', tag(statusOf(m.id)));
@@ -427,8 +427,16 @@ function quickCalc(){
    <dt>Cable</dt><dd><b>${cab.size} mm²</b> copper PVC, rating ${fmt(cab.Iz, 0)} A, voltage drop ${fmt(cab.vd, 2)} % of ${V} V (limit ${lim} %)</dd>
    <dt>Series that fit</dt><dd>${sers}</dd></dl>`;
 }
+function feedCard(){
+  const ms = S.modules.filter(m => R.m[m.id] && !R.m[m.id].lv);
+  if (!ms.length) return '';
+  return `<div class="card"><h2>Module feed breakers</h2><p class="note" style="margin:6px 0 10px">These breakers protect the supply to each Lutron module. Name them here and the name appears on the panel drawing and the diagram.</p>
+    <div class="scroll"><table class="stack" style="min-width:820px"><thead><tr><th>Ref</th><th>Breaker name</th><th>Module</th><th>Phase</th><th>Ib A</th><th>In A</th><th>Feed cable</th><th>Status</th></tr></thead><tbody>${ms.map(m => { const r = R.m[m.id]; return `<tr><td style="width:90px"><input type="text" data-k="m" data-id="${m.id}" data-f="bref" value="${esc(m.bref || 'F-' + m.id)}" maxlength="12" aria-label="Ref ${m.id}"></td>
+      <td style="min-width:220px"><input type="text" data-k="m" data-id="${m.id}" data-f="bname" value="${esc(m.bname || '')}" maxlength="40" placeholder="e.g. Saloon lighting supply" aria-label="Breaker name ${m.id}"></td>
+      <td><b>${m.id}</b> ${esc(m.name || m.model)}${m.area ? `<div class="note">${esc(m.area)}</div>` : ''}</td><td class="mono">${r.ph}</td><td class="mono" style="text-align:right">${fmt(r.Ib, 2)}</td><td class="mono" style="text-align:right">${r.In || '–'}</td><td class="mono">${r.cab.size} mm²</td><td>${tag(statusOf(m.id))}</td></tr>`; }).join('')}</tbody></table></div></div>`;
+}
 function renderCircuits(){
-  return `${quickCard()}<div class="card"><div class="row" style="justify-content:space-between"><h2>Circuit schedule</h2><div class="row">
+  return `${quickCard()}${feedCard()}<div class="card"><div class="row" style="justify-content:space-between"><h2>Circuit schedule</h2><div class="card"><div class="row" style="justify-content:space-between"><h2>Circuit schedule</h2><div class="row">
     <button class="btn pri" data-a="addc">Add circuit</button><button class="btn" data-a="bal">Auto-balance phases</button><button class="btn" data-a="renum">Renumber</button></div></div>
     <p class="note" style="margin:6px 0 10px">Circuits fed from a Lutron module zone share the module's feed breaker, so their cable is checked against that breaker rating. Grouping factor multiplies the cable rating (use 1 if none).</p>
     <div class="scroll"><table class="tbl-c stack"><thead><tr><th></th><th>Ref</th><th>Description</th><th>Type</th><th>Fed from</th><th>Load W</th><th>PF</th><th>Phase</th><th>Length m</th><th>Device</th><th>Curve</th><th>Width</th><th>Cable</th><th>Size mm²</th><th>Grp</th><th>Ib A</th><th>In A</th><th>Cable</th><th>VD %</th><th>Status</th></tr></thead>
@@ -589,7 +597,7 @@ function renderDiagram(){
       const r = R.m[o.m.id], col = PHV[r.ph], sc = stCol[statusOf(o.m.id)], n = S.circuits.filter(c => c.mod === o.m.id).length;
       g += conductors([{p: r.ph, y: y - 5}], y + 7, false, {n: dp}, false);
       if (n){ const endY = ytop[i] + hts[i] + (n - 1) * 42 + 21; g += `<line x1="150" y1="${y - 5}" x2="150" y2="${endY - 7}" stroke="${col}" stroke-dasharray="3 3" stroke-width="1.6"/><line x1="158" y1="${y + 7}" x2="158" y2="${endY + 5}" stroke="${NC}" stroke-dasharray="3 3" stroke-width="1.6"/>`; }
-      g += `<rect x="${colX.name - 4}" y="${y - 11}" width="260" height="22" rx="4" fill="var(--lut)" /><text class="lutink" x="${colX.name + 6}" y="${y + 4}" font-size="11" font-weight="600">${o.m.id} ${esc(o.m.name ? clip(o.m.name, 24) : o.m.model)}</text><text class="ink2" x="${colX.prot}" y="${y + 4}" font-size="11">MCB ${r.In} A · ${r.ph} + N</text><text class="ink2" x="${colX.cab}" y="${y + 4}" font-size="11">${S.phases === 3 ? '2' : '2'}×${r.cab.size} mm² · ${o.m.len} m</text>
+      g += `<rect x="${colX.name - 4}" y="${y - 11}" width="260" height="22" rx="4" fill="var(--lut)" /><text class="lutink" x="${colX.name + 6}" y="${y + 4}" font-size="11" font-weight="600">${o.m.id} ${esc(o.m.name ? clip(o.m.name, 24) : o.m.model)}</text><text class="ink2" x="${colX.prot}" y="${y + 4}" font-size="11">${o.m.bname ? esc(clip(o.m.bname, 18)) + ' · ' : ''}MCB ${r.In} A · ${r.ph} + N</text><text class="ink2" x="${colX.cab}" y="${y + 4}" font-size="11">${S.phases === 3 ? '2' : '2'}×${r.cab.size} mm² · ${o.m.len} m</text>
        ${loadBar(colX.load, y, r.Ib, r.In)}<text class="ink2" x="${colX.load + 62}" y="${y + 4}" font-size="11">feed ${fmt(r.Ib, 1)} A</text><text class="ink2" x="${colX.vd}" y="${y + 4}" font-size="11">${fmt(r.cab.vd, 1)}%</text><circle cx="${colX.st}" cy="${y}" r="5" fill="${sc}"/>`;
     } else {
       const c = o.c, r = R.c[c.id], col = PHV[r.thr ? '3P' : r.ph], sc = stCol[statusOf(c.ref)], rcd = c.prot === 'RCBO';
@@ -753,7 +761,7 @@ function pdfDiagram(doc, logo, PW, ML){
         cond([{p: r.ph, y: yc - 2.2}], yc + 2.2, dp, false);
         if (next) { doc.setLineDashPattern([.6, .6], 0); line(X(150), yc - 2.2, X(150), yy + h, col(r.ph), .4); line(X(158), yc + 2.2, X(158), yy + h, PHRGB.N, .4); doc.setLineDashPattern([], 0); }
         doc.setFillColor(36, 44, 52); doc.rect(X(222) - 1, yc - 2.2, 62, 4.4, 'F'); txt(`${o.m.id} ${o.m.model}${o.m.name || o.m.area ? ' - ' + clip(o.m.name || o.m.area, 40) : ''}`, X(222) + 1, yc + .8, 6.5, true, [235, 238, 241]);
-        txt(`MCB ${r.In} A ${r.ph}+N`, X(520), yc + 1, 6.5, false, [80, 88, 96]); txt(`2x${r.cab.size} mm2 ${o.m.len} m`, X(700), yc + 1, 6.5, false, [80, 88, 96]);
+        txt(`${o.m.bname ? clip(o.m.bname, 18) + ' ' : ''}MCB ${r.In} A ${r.ph}+N`, X(520), yc + 1, 6.5, false, [80, 88, 96]); txt(`2x${r.cab.size} mm2 ${o.m.len} m`, X(700), yc + 1, 6.5, false, [80, 88, 96]);
         doc.setFillColor(226, 231, 236); doc.rect(X(905), yc - .8, 54 * k, 1.6, 'F'); const f = r.In ? Math.min(1, r.Ib / r.In) : 0; doc.setFillColor(...(f > .9 ? [154, 106, 18] : [11, 107, 142])); doc.rect(X(905), yc - .8, 54 * k * f, 1.6, 'F');
         txt(`feed ${fmt(r.Ib, 1)} A`, X(905) + 54 * k + 1.5, yc + 1, 6.5, false, [80, 88, 96]); txt(fmt(r.cab.vd, 1) + '%', X(1075), yc + 1, 6.5, false, [80, 88, 96]); dot(o.m.id);
       } else {

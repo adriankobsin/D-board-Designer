@@ -1286,3 +1286,7 @@
 1286|e.g. Main saloon, dining
 1287|Controls
 1288|e.g. Saloon dimmer
+1289|Module feed breakers
+1290|These breakers protect the supply to each Lutron module. Name them here and the name appears on the panel drawing and the diagram.
+1291|Breaker name
+1292|e.g. Saloon lighting supply

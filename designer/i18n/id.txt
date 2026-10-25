@@ -1286,3 +1286,7 @@
 1286|mis. Salon utama, ruang makan
 1287|Mengontrol
 1288|mis. Dimmer salon
+1289|Breaker catu daya modul
+1290|Breaker ini melindungi catu daya setiap modul Lutron. Beri nama di sini; nama tampil di gambar panel dan diagram.
+1291|Nama breaker
+1292|mis. Catu lampu salon

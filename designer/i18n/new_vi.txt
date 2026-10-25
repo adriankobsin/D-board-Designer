@@ -436,3 +436,7 @@
 1286|vd: Phòng khách chính, phòng ăn
 1287|Điều khiển
 1288|vd: Bộ chỉnh sáng phòng khách
+1289|Aptomat cấp nguồn cho module
+1290|Các aptomat này bảo vệ nguồn cấp cho từng module Lutron. Đặt tên tại đây, tên sẽ hiện trên bản vẽ tủ và sơ đồ.
+1291|Tên aptomat
+1292|vd: Nguồn đèn phòng khách

@@ -1,0 +1,46 @@
+"""Name and area controlled on Lutron/DIN modules, DALI units and custom devices.
+Real Worker + front-end, TEST-ONLY Supabase mock."""
+import json, sys, urllib.request
+from playwright.sync_api import sync_playwright
+BASE=sys.argv[1] if len(sys.argv)>1 else 'http://localhost:8799'; MOCK='http://127.0.0.1:54321'; res=[]
+def ok(n,c,i=''): res.append(bool(c)); print(('PASS ' if c else 'FAIL ')+n+(' :: '+str(i)[:300] if not c and i else ''))
+def post(path,body): return json.loads(urllib.request.urlopen(urllib.request.Request(MOCK+path,json.dumps(body).encode(),{'Content-Type':'application/json'})).read() or b'{}')
+post('/__test/reset',{})
+with sync_playwright() as p:
+    b=p.chromium.launch(); pg=b.new_page(viewport={'width':1366,'height':900}); errs=[]
+    pg.on('pageerror',lambda e:errs.append(str(e)))
+    pg.goto(BASE); pg.wait_for_selector('[data-m=register]'); pg.click('[data-m=register]')
+    for k,v in dict(first_name='Pat',last_name='Test',email='pat@example.com',password='Passw0rd!!',password2='Passw0rd!!').items(): pg.fill('#'+k,v)
+    pg.select_option('#country',index=9); pg.select_option('#occupation','Marine Electrician'); pg.check('#terms'); pg.click('#saGo'); pg.wait_for_selector('text=Check your email')
+    post('/__test/confirm',{'email':'pat@example.com'})
+    pg.goto(BASE); pg.wait_for_selector('#saForm'); pg.fill('#email','pat@example.com'); pg.fill('#password','Passw0rd!!'); pg.click('#saGo'); pg.wait_for_selector('text=Welcome, Pat')
+    pg.click('[data-sa=new]'); pg.wait_for_selector('.wrap',state='visible'); pg.wait_for_timeout(1000)
+    mid=pg.evaluate("S.modules.length? S.modules[0].id : (S.modules.push({id:'M1',model:'LQSE-4A5-230-D',phase:'L1',len:10,inSel:0,cable:'pvc',size:'auto'}), refresh(true), 'M1')")
+    pg.evaluate("tab='panel'; draw(); renderTabs()")
+    pg.evaluate("sel='m:%s'; draw()"%mid)
+    pg.wait_for_selector('.insp [data-f=area]')
+    ok('module inspector has name and area fields', pg.is_visible('.insp [data-f=name]') and pg.is_visible('.insp [data-f=area]'))
+    pg.fill('.insp [data-f=name]','Saloon dimmer'); pg.fill('.insp [data-f=area]','Main saloon, dining')
+    pg.wait_for_timeout(300)
+    m=pg.evaluate("S.modules.find(m=>m.id=='%s')"%mid)
+    ok('module name and area are stored', m.get('name')=='Saloon dimmer' and m.get('area')=='Main saloon, dining', m)
+    pg.evaluate("sel='m:%s'; draw()"%mid)
+    ok('module inspector shows Controls row', 'Main saloon, dining' in pg.inner_text('.insp dl'))
+    ok('panel drawing labels the module with its name', pg.evaluate("document.body.innerHTML.includes('Saloon dimmer')"))
+    pg.evaluate("tab='equipment'; draw(); renderTabs()"); pg.wait_for_selector('input[data-k=m][data-f=area]')
+    ok('Equipment list shows the module name and area', pg.input_value('input[data-k=m][data-f=name]')=='Saloon dimmer' and pg.input_value('input[data-k=m][data-f=area]')=='Main saloon, dining')
+    pg.fill('input[data-k=m][data-f=area]','Bridge'); pg.wait_for_timeout(300)
+    ok('editing from the Equipment list updates the area', pg.evaluate("S.modules[0].area")=='Bridge')
+    pg.evaluate("tab='dali'; draw(); renderTabs()")
+    if pg.locator('input[data-dk=area]').count():
+        pg.locator('input[data-dk=area]').first.fill('Main saloon and dining'); pg.keyboard.press('Tab'); pg.wait_for_timeout(300)
+        us=pg.evaluate("S.dali.units"); ok('DALI unit area is stored', any(u.get('area')=='Main saloon and dining' for u in us), us)
+    else: ok('DALI table has an area field', False)
+    pg.evaluate("addCircuit(); refresh(true); tab='circuits'; draw(); renderTabs()")
+    ok('Fed-from menu includes the module name', pg.evaluate("[...document.querySelectorAll('select[data-f=fed] option')].some(o=>o.textContent.includes('Saloon dimmer'))"))
+    pg.evaluate("S.custom=S.custom||[]; S.custom.push({id:'X1',name:'Blind controller',w:2,ph:'N'}); refresh(true); tab='panel'; draw(); renderTabs(); sel='x:X1'; draw()")
+    pg.wait_for_selector('.insp [data-k=x][data-f=area]'); pg.fill('.insp [data-k=x][data-f=area]','Owner cabin'); pg.wait_for_timeout(300)
+    ok('custom device area is stored', pg.evaluate("S.custom.find(x=>x.id=='X1')").get('area')=='Owner cabin')
+    ok('no page errors', not errs, errs)
+    b.close()
+print(f'{sum(res)}/{len(res)} passed'); sys.exit(0 if all(res) else 1)

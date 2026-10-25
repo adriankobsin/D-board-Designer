@@ -432,3 +432,7 @@
 1147|Email đã được xác nhận
 1148|Địa chỉ email của bạn đã được xác nhận và tài khoản đã được kích hoạt. Hãy đăng nhập để bắt đầu thiết kế.
 1149|Liên kết xác nhận không hợp lệ hoặc đã hết hạn. Hãy đăng nhập và chúng tôi sẽ đề nghị gửi liên kết mới.
+1285|Khu vực điều khiển
+1286|vd: Phòng khách chính, phòng ăn
+1287|Điều khiển
+1288|vd: Bộ chỉnh sáng phòng khách

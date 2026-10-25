@@ -155,7 +155,7 @@ function devSVG(p){
     let tb = ''; for (let k = 0; k < nT; k++){ const tx = x + 8 + k * ((w - 16) / nT); tb += `<rect x="${tx}" y="${y + 6}" width="${(w - 16) / nT - 5}" height="11" rx="2" fill="#0B0F13" stroke="#fff2"/>${screw(tx + ((w - 16) / nT - 5) / 2, y + 11.5, 3)}`; }
     b = `${body('d-lut')}<rect x="${x}" y="${y}" width="${w}" height="5" rx="2" fill="${phc}"/>${tb}
     <text class="lutink" x="${x + 10}" y="${y + 33}" font-size="${w < 140 ? 10.5 : 13}" font-weight="700">${esc(clip(lib.model || d.label, Math.floor((w - 20) / (w < 140 ? 6.6 : 8.2))))}</text>
-    <text class="lutink" x="${x + 10}" y="${y + 47}" font-size="9" opacity=".7">${esc(clip(d.ref + ' · ' + (lib.fam || ''), Math.floor((w - 20) / 5.4)))}</text>${zl}
+    <text class="lutink" x="${x + 10}" y="${y + 47}" font-size="9" opacity=".7">${esc(clip(d.ref + ' · ' + ((S.modules.find(q => q.id === d.mod) || {}).name || lib.fam || ''), Math.floor((w - 20) / 5.4)))}</text>${zl}
     ${zs ? '' : `<text class="lutink" x="${x + 10}" y="${y + 72}" font-size="9" opacity=".7">${lib.din == null ? 'width not listed' : lib.din + ' modules · ' + (lib.din * 18).toFixed(0) + ' mm'}</text>`}
     ${w > 150 ? [0, 1, 2, 3].map(k => `<rect x="${x + w - 30}" y="${y + 24 + k * 5}" width="20" height="2" rx="1" fill="#fff" opacity=".12"/>`).join('') : ''}`;
   } else if (d.kind === 'dali'){
@@ -256,26 +256,27 @@ function inspector(){
     delTxt = 'Delete circuit';
   } else if (d.kind === 'feed' || d.kind === 'lutron'){
     const m = S.modules.find(x => x.id === d.mod), r = R.m[m.id], std = STD[S.std], three = S.phases === 3, n = S.circuits.filter(c => c.mod === m.id).length;
-    ttl = m.id + ' · ' + m.model;
-    form = `<div class="iform">${fl('Model', `<select data-k="m" data-id="${m.id}" data-f="model">${LIB.filter(l => l.din !== 0).map(l => `<option value="${l.model}" ${l.model === m.model ? 'selected' : ''}>${l.model}</option>`).join('')}</select>`)}
+    ttl = m.id + ' · ' + (m.name || m.model);
+    form = `<div class="iform"><div style="grid-column:1/-1">${fl('Name / location', inp('m', m.id, 'name', m.name || '', 'text', 'maxlength="40" placeholder="e.g. Saloon dimmer"'))}</div><div style="grid-column:1/-1">${fl('Area controlled', inp('m', m.id, 'area', m.area || '', 'text', 'maxlength="80" placeholder="e.g. Main saloon, dining"'))}</div>${fl('Model', `<select data-k="m" data-id="${m.id}" data-f="model">${LIB.filter(l => l.din !== 0).map(l => `<option value="${l.model}" ${l.model === m.model ? 'selected' : ''}>${l.model}</option>`).join('')}</select>`)}
      ${r.lv ? '' : fl('Feed breaker', `<select data-k="m" data-id="${m.id}" data-f="inSel" data-t="n"><option value="0">Auto</option>${ratingsOf(S).map(x => `<option value="${x}" ${+m.inSel === x ? 'selected' : ''}>${x} A</option>`).join('')}</select>`)}
      ${r.lv ? '' : fl('Feed length m', inp('m', m.id, 'len', m.len, 'number', 'step="1"'))}${three && !r.lv ? fl('Feed phase', sl('m', m.id, 'phase', ['L1', 'L2', 'L3'], m.phase)) : ''}</div>`;
-    dl = row('Family', esc(r.lib.fam || '')) + row('Supply', esc(r.lib.volt || '')) + (r.lv ? '' : row('Feed load', fmt(r.Ib, 1) + ' A') + row('Feed cable', `${r.cab.size} mm²`)) + row('Width', `${r.lib.din == null ? 'not listed' : r.lib.din + ' modules'}`) + row('Heat', `${r.lib.btu || 0} BTU/h`) + row('Circuits', n ? n + ' fed' : 'none') + row('Status', tag(statusOf(m.id)));
+    dl = (m.area ? row('Controls', esc(m.area)) : '') + row('Family', esc(r.lib.fam || '')) + row('Supply', esc(r.lib.volt || '')) + (r.lv ? '' : row('Feed load', fmt(r.Ib, 1) + ' A') + row('Feed cable', `${r.cab.size} mm²`)) + row('Width', `${r.lib.din == null ? 'not listed' : r.lib.din + ' modules'}`) + row('Heat', `${r.lib.btu || 0} BTU/h`) + row('Circuits', n ? n + ' fed' : 'none') + row('Status', tag(statusOf(m.id)));
     acts = `<button class="btn sm" data-a="tab" data-t="equipment">Equipment list</button>`;
     delTxt = 'Delete module'; delNote = n ? `${n} circuit${n > 1 ? 's' : ''} fed from it will become direct breakers.` : '';
   } else if (d.kind === 'dali'){
     const du = S.dali.units.find(x => x.id === d.dali), dc = d.dc, DA = dAnalyse(), dl2 = DA.by[du.link];
     ttl = du.id + ' · ' + dc.m;
     form = `<div class="iform"><div style="grid-column:1/-1">${fl('Name / location', `<input type="text" data-dk="label" data-id="${du.id}" value="${esc(du.label)}" maxlength="40">`)}</div>
+     <div style="grid-column:1/-1">${fl('Area controlled', `<input type="text" data-dk="area" data-id="${du.id}" value="${esc(du.area || '')}" maxlength="80" placeholder="e.g. Main saloon, dining">`)}</div>
      <div style="grid-column:1/-1">${fl('Model', `<select data-dk="model" data-id="${du.id}">${dModelOpts(du.model)}</select>`)}</div>
      ${dc.k === 'master' ? '' : `<div style="grid-column:1/-1">${fl('DALI link', dLinkSelect(du, DA))}</div>`}</div>`;
-    dl = row('Type', DKIND[dc.k]) + row('Width', `${dc.du} DU · ${(dc.du * 17.5).toFixed(0)} mm`) + (dc.k === 'master' ? row('Lines', dc.ln) : dc.k === 'psu' ? row('Bus supply', dc.sup + ' mA') : row('Address', d.addr || '–') + row('DALI current', dc.ma + ' mA')) + (dl2 ? row('Line load', `${dl2.addr}/${dl2.max} addr · ${+dl2.mA.toFixed(1)}/${dl2.sup || '?'} mA`) : '');
+    dl = (du.area ? row('Controls', esc(du.area)) : '') + row('Type', DKIND[dc.k]) + row('Width', `${dc.du} DU · ${(dc.du * 17.5).toFixed(0)} mm`) + (dc.k === 'master' ? row('Lines', dc.ln) : dc.k === 'psu' ? row('Bus supply', dc.sup + ' mA') : row('Address', d.addr || '–') + row('DALI current', dc.ma + ' mA')) + (dl2 ? row('Line load', `${dl2.addr}/${dl2.max} addr · ${+dl2.mA.toFixed(1)}/${dl2.sup || '?'} mA`) : '');
     acts = `<button class="btn sm" data-a="tab" data-t="dali">DALI page</button>`;
     delTxt = 'Delete DALI module'; delNote = dc.k === 'master' ? 'Devices connected to its lines will become not connected.' : '';
   } else if (d.kind === 'custom'){
     const x = S.custom.find(q => q.id === d.cx), three = S.phases === 3;
     ttl = x.id + ' · ' + (x.name || 'Custom device');
-    form = `<div class="iform"><div style="grid-column:1/-1">${fl('Name', inp('x', x.id, 'name', x.name))}</div><div style="grid-column:1/-1">${fl('Manufacturer, part number or note', inp('x', x.id, 'note', x.note || ''))}</div>
+    form = `<div class="iform"><div style="grid-column:1/-1">${fl('Name', inp('x', x.id, 'name', x.name))}</div><div style="grid-column:1/-1">${fl('Area controlled', inp('x', x.id, 'area', x.area || '', 'text', 'maxlength="80" placeholder="e.g. Main saloon, dining"'))}</div><div style="grid-column:1/-1">${fl('Manufacturer, part number or note', inp('x', x.id, 'note', x.note || ''))}</div>
      ${fl('Width (modules)', inp('x', x.id, 'w', x.w, 'number', 'step="1" min="1" max="36"'))}${fl('Rating A', inp('x', x.id, 'rating', x.rating == null ? '' : x.rating, 'number', 'step="1" min="0"'))}
      ${fl('Heat W', inp('x', x.id, 'heatW', x.heatW || 0, 'number', 'step="0.5" min="0"'))}${fl('Colour band', sl('x', x.id, 'ph', three ? ['L1', 'L2', 'L3', '3P', 'N'] : ['L1', 'N'], x.ph || 'N'))}</div>`;
     delTxt = 'Delete device';
@@ -373,7 +374,7 @@ function circuitRow(c){
   const std = STD[S.std], mod = c.mod, three = S.phases === 3;
   const fedOpts = `<option value="" ${!mod ? 'selected' : ''}>Direct breaker</option>` + S.modules.map(m => {
     const lib = libOf(m.model) || {}; if (!lib.power) return '';
-    return Array.from({length: lib.zones}, (_, z) => `<option value="${m.id}|${z + 1}" ${mod === m.id && c.zone === z + 1 ? 'selected' : ''}>${m.id} zone ${z + 1}</option>`).join('');
+    return Array.from({length: lib.zones}, (_, z) => `<option value="${m.id}|${z + 1}" ${mod === m.id && c.zone === z + 1 ? 'selected' : ''}>${m.id}${m.name ? ' ' + esc(m.name) : ''} zone ${z + 1}</option>`).join('');
   }).join('');
   const ph = three ? ['L1', 'L2', 'L3', '3P'] : ['L1'];
   const sizes = ['auto'].concat(SZ);
@@ -445,7 +446,7 @@ function updateCircuitCells(){
 /* ---------- equipment ---------- */
 function modRow(m){
   const r = R.m[m.id], std = STD[S.std], three = S.phases === 3;
-  return `<tr><td class="mono">${m.id}</td><td><b>${esc(m.model)}</b><div class="note">${esc(r.lib.fam || '')} · ${r.lib.din === 0 ? 'not on a DIN rail' : r.lib.din == null ? 'width not listed' : r.lib.din + ' modules'}</div></td>
+  return `<tr><td class="mono">${m.id}</td><td><b>${esc(m.model)}</b><div class="note">${esc(r.lib.fam || '')} · ${r.lib.din === 0 ? 'not on a DIN rail' : r.lib.din == null ? 'width not listed' : r.lib.din + ' modules'}</div><input type="text" data-k="m" data-id="${m.id}" data-f="name" value="${esc(m.name || '')}" maxlength="40" placeholder="${T('Name / location')}" aria-label="${T('Name / location')} ${m.id}" style="margin-top:6px"><input type="text" data-k="m" data-id="${m.id}" data-f="area" value="${esc(m.area || '')}" maxlength="80" placeholder="${T('Area controlled')}: ${T('e.g. Main saloon, dining')}" aria-label="${T('Area controlled')} ${m.id}" style="margin-top:4px"></td>
   <td style="width:80px"><select data-k="m" data-id="${m.id}" data-f="phase" ${three ? '' : 'disabled'}>${(three ? ['L1', 'L2', 'L3'] : ['L1']).map(p => `<option ${m.phase === p ? 'selected' : ''}>${p}</option>`).join('')}</select></td>
   <td style="width:84px"><input type="number" data-k="m" data-id="${m.id}" data-f="len" data-t="n" value="${m.len}" step="1"></td>
   <td style="width:110px"><select data-k="m" data-id="${m.id}" data-f="inSel" data-t="n"><option value="0">Auto</option>${ratingsOf(S).map(x => `<option value="${x}" ${+m.inSel === x ? 'selected' : ''}>${x} A</option>`).join('')}</select></td>
@@ -588,7 +589,7 @@ function renderDiagram(){
       const r = R.m[o.m.id], col = PHV[r.ph], sc = stCol[statusOf(o.m.id)], n = S.circuits.filter(c => c.mod === o.m.id).length;
       g += conductors([{p: r.ph, y: y - 5}], y + 7, false, {n: dp}, false);
       if (n){ const endY = ytop[i] + hts[i] + (n - 1) * 42 + 21; g += `<line x1="150" y1="${y - 5}" x2="150" y2="${endY - 7}" stroke="${col}" stroke-dasharray="3 3" stroke-width="1.6"/><line x1="158" y1="${y + 7}" x2="158" y2="${endY + 5}" stroke="${NC}" stroke-dasharray="3 3" stroke-width="1.6"/>`; }
-      g += `<rect x="${colX.name - 4}" y="${y - 11}" width="260" height="22" rx="4" fill="var(--lut)" /><text class="lutink" x="${colX.name + 6}" y="${y + 4}" font-size="11" font-weight="600">${o.m.id} ${esc(o.m.model)}</text><text class="ink2" x="${colX.prot}" y="${y + 4}" font-size="11">MCB ${r.In} A · ${r.ph} + N</text><text class="ink2" x="${colX.cab}" y="${y + 4}" font-size="11">${S.phases === 3 ? '2' : '2'}×${r.cab.size} mm² · ${o.m.len} m</text>
+      g += `<rect x="${colX.name - 4}" y="${y - 11}" width="260" height="22" rx="4" fill="var(--lut)" /><text class="lutink" x="${colX.name + 6}" y="${y + 4}" font-size="11" font-weight="600">${o.m.id} ${esc(o.m.name ? clip(o.m.name, 24) : o.m.model)}</text><text class="ink2" x="${colX.prot}" y="${y + 4}" font-size="11">MCB ${r.In} A · ${r.ph} + N</text><text class="ink2" x="${colX.cab}" y="${y + 4}" font-size="11">${S.phases === 3 ? '2' : '2'}×${r.cab.size} mm² · ${o.m.len} m</text>
        ${loadBar(colX.load, y, r.Ib, r.In)}<text class="ink2" x="${colX.load + 62}" y="${y + 4}" font-size="11">feed ${fmt(r.Ib, 1)} A</text><text class="ink2" x="${colX.vd}" y="${y + 4}" font-size="11">${fmt(r.cab.vd, 1)}%</text><circle cx="${colX.st}" cy="${y}" r="5" fill="${sc}"/>`;
     } else {
       const c = o.c, r = R.c[c.id], col = PHV[r.thr ? '3P' : r.ph], sc = stCol[statusOf(c.ref)], rcd = c.prot === 'RCBO';
@@ -655,9 +656,9 @@ function exportXLSX(){
   const sheetName = s => T(s).replace(/[\[\]:*?\/\\]/g, ' ').slice(0, 31);
   const mk = (rows, widths) => { const ws = XLSX.utils.aoa_to_sheet(rows); ws['!cols'] = widths.map(w => ({wch: w})); return ws; };
   XLSX.utils.book_append_sheet(wb, mk([SCHED_HEAD.map(h => T(h))].concat(schedRows()), [6, 28, 16, 14, 8, 9, 6, 8, 8, 18, 6, 20, 9, 12, 7, 8]), sheetName('Schedule'));
-  const eq = [['Ref', 'Model', 'Family', 'Feed phase', 'Feed A', 'Feed breaker A', 'Feed cable mm2', 'Modules (18 mm)', 'Heat BTU/h'].map(h => T(h))].concat(S.modules.map(m => { const r = R.m[m.id]; return [m.id, m.model, r.lib.fam, r.ph, +r.Ib.toFixed(2), r.In, r.cab.size, r.lib.din, r.lib.btu]; }));
-  XLSX.utils.book_append_sheet(wb, mk(eq, [6, 20, 24, 10, 8, 14, 14, 14, 11]), sheetName('DIN modules'));
-  if (dS().units.length){ const A = dAnalyse(); XLSX.utils.book_append_sheet(wb, mk([['Ref', 'Model', 'Brand', 'Article', 'Type', 'Mounting', 'DIN DU', 'DALI line', 'Address', 'DALI mA', 'Name / location'].map(h => T(h))].concat(A.units.map(x => { const c = dCat(x.model), l = A.by[x.link]; return [x.id, c.m, c.b, c.art, DKIND[c.k], DMOUNT[c.mt], c.du || '', l ? l.label : '', l && c.k !== 'psu' ? dAddr(l, x) : '', c.k === 'master' || c.k === 'psu' ? '' : c.ma, x.label || '']; })), [6, 36, 10, 16, 24, 22, 8, 14, 10, 8, 24]), sheetName('DALI')); XLSX.utils.book_append_sheet(wb, mk([['Line', 'Master', 'Devices', 'Addresses (max 64)', 'Bus load mA', 'Bus supply mA', 'Supply from'].map(h => T(h))].concat(A.lines.map(l => [l.label, l.c.m, l.members.length, l.addr, +l.mA.toFixed(1), l.sup || '', l.supBy || ''])), [14, 30, 9, 18, 12, 14, 18]), sheetName('DALI lines')); }
+  const eq = [['Ref', 'Model', 'Family', 'Feed phase', 'Feed A', 'Feed breaker A', 'Feed cable mm2', 'Modules (18 mm)', 'Heat BTU/h', 'Name / location', 'Area controlled'].map(h => T(h))].concat(S.modules.map(m => { const r = R.m[m.id]; return [m.id, m.model, r.lib.fam, r.ph, +r.Ib.toFixed(2), r.In, r.cab.size, r.lib.din, r.lib.btu, m.name || '', m.area || '']; }));
+  XLSX.utils.book_append_sheet(wb, mk(eq, [6, 20, 24, 10, 8, 14, 14, 14, 11, 24, 32]), sheetName('DIN modules'));
+  if (dS().units.length){ const A = dAnalyse(); XLSX.utils.book_append_sheet(wb, mk([['Ref', 'Model', 'Brand', 'Article', 'Type', 'Mounting', 'DIN DU', 'DALI line', 'Address', 'DALI mA', 'Name / location', 'Area controlled'].map(h => T(h))].concat(A.units.map(x => { const c = dCat(x.model), l = A.by[x.link]; return [x.id, c.m, c.b, c.art, DKIND[c.k], DMOUNT[c.mt], c.du || '', l ? l.label : '', l && c.k !== 'psu' ? dAddr(l, x) : '', c.k === 'master' || c.k === 'psu' ? '' : c.ma, x.label || '', x.area || '']; })), [6, 36, 10, 16, 24, 22, 8, 14, 10, 8, 24, 32]), sheetName('DALI')); XLSX.utils.book_append_sheet(wb, mk([['Line', 'Master', 'Devices', 'Addresses (max 64)', 'Bus load mA', 'Bus supply mA', 'Supply from'].map(h => T(h))].concat(A.lines.map(l => [l.label, l.c.m, l.members.length, l.addr, +l.mA.toFixed(1), l.sup || '', l.supBy || ''])), [14, 30, 9, 18, 12, 14, 18]), sheetName('DALI lines')); }
   XLSX.utils.book_append_sheet(wb, mk([[T('Item'), T('Qty')]].concat(bomRows()), [52, 6]), sheetName('Bill of materials'));
   const ph = [[T('Phase'), T('Current A (after diversity)')]].concat((S.phases === 3 ? ['L1', 'L2', 'L3'] : ['L1']).map(p => [p + ' (A, ' + (R.power.phW[p] / 1000).toFixed(2) + ' kW)', +R.ph[p].toFixed(2)])).concat([[T('Incomer A'), R.inc.In], [T('Imbalance %'), +R.inc.imb.toFixed(1)], [T('Connected kW'), +(R.power.conn / 1000).toFixed(2)], [T('Demand kW (after diversity)'), +(R.power.dem / 1000).toFixed(2)], [T('Apparent kVA'), +(R.power.kva / 1000).toFixed(2)], [T('Power factor'), +R.power.pf.toFixed(2)], [T('Dissipation W'), +R.heatW.toFixed(0)]]);
   XLSX.utils.book_append_sheet(wb, mk(ph, [28, 26]), sheetName('Phases'));
@@ -751,7 +752,7 @@ function pdfDiagram(doc, logo, PW, ML){
         const r = R.m[o.m.id];
         cond([{p: r.ph, y: yc - 2.2}], yc + 2.2, dp, false);
         if (next) { doc.setLineDashPattern([.6, .6], 0); line(X(150), yc - 2.2, X(150), yy + h, col(r.ph), .4); line(X(158), yc + 2.2, X(158), yy + h, PHRGB.N, .4); doc.setLineDashPattern([], 0); }
-        doc.setFillColor(36, 44, 52); doc.rect(X(222) - 1, yc - 2.2, 62, 4.4, 'F'); txt(`${o.m.id} ${o.m.model}`, X(222) + 1, yc + .8, 6.5, true, [235, 238, 241]);
+        doc.setFillColor(36, 44, 52); doc.rect(X(222) - 1, yc - 2.2, 62, 4.4, 'F'); txt(`${o.m.id} ${o.m.model}${o.m.name || o.m.area ? ' - ' + clip(o.m.name || o.m.area, 40) : ''}`, X(222) + 1, yc + .8, 6.5, true, [235, 238, 241]);
         txt(`MCB ${r.In} A ${r.ph}+N`, X(520), yc + 1, 6.5, false, [80, 88, 96]); txt(`2x${r.cab.size} mm2 ${o.m.len} m`, X(700), yc + 1, 6.5, false, [80, 88, 96]);
         doc.setFillColor(226, 231, 236); doc.rect(X(905), yc - .8, 54 * k, 1.6, 'F'); const f = r.In ? Math.min(1, r.Ib / r.In) : 0; doc.setFillColor(...(f > .9 ? [154, 106, 18] : [11, 107, 142])); doc.rect(X(905), yc - .8, 54 * k * f, 1.6, 'F');
         txt(`feed ${fmt(r.Ib, 1)} A`, X(905) + 54 * k + 1.5, yc + 1, 6.5, false, [80, 88, 96]); txt(fmt(r.cab.vd, 1) + '%', X(1075), yc + 1, 6.5, false, [80, 88, 96]); dot(o.m.id);

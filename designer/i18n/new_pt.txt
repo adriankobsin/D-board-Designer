@@ -432,3 +432,7 @@
 1147|E-mail confirmado
 1148|O seu e-mail está confirmado e a sua conta está ativa. Inicie sessão para começar a projetar.
 1149|O link de confirmação é inválido ou expirou. Inicie sessão e ofereceremos o envio de um novo.
+1285|Área controlada
+1286|p. ex. Salão principal, sala de jantar
+1287|Controla
+1288|p. ex. Dimmer do salão

@@ -1282,3 +1282,7 @@
 1282|Không có tủ điện nào khớp bộ lọc.
 1283|Xóa bộ lọc
 1284|Tìm theo tên, dự án, khách hàng, vị trí
+1285|Khu vực điều khiển
+1286|vd: Phòng khách chính, phòng ăn
+1287|Điều khiển
+1288|vd: Bộ chỉnh sáng phòng khách

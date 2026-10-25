@@ -1282,3 +1282,7 @@
 1282|No panels match these filters.
 1283|Clear filters
 1284|Search name, project, customer, location
+1285|Area controlled
+1286|e.g. Main saloon, dining
+1287|Controls
+1288|e.g. Saloon dimmer

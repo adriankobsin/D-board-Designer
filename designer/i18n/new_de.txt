@@ -432,3 +432,7 @@
 1147|E-Mail bestätigt
 1148|Deine E-Mail-Adresse ist bestätigt und dein Konto ist aktiv. Melde dich an, um mit dem Entwerfen zu beginnen.
 1149|Der Bestätigungslink ist ungültig oder abgelaufen. Melde dich an, dann bieten wir dir einen neuen an.
+1285|Gesteuerter Bereich
+1286|z. B. Hauptsalon, Esszimmer
+1287|Steuert
+1288|z. B. Dimmer Salon

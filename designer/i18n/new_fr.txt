@@ -432,3 +432,7 @@
 1147|E-mail confirmé
 1148|Votre adresse e-mail est confirmée et votre compte est actif. Connectez-vous pour commencer à concevoir.
 1149|Le lien de confirmation n'est pas valide ou a expiré. Connectez-vous et nous vous proposerons d'en envoyer un nouveau.
+1285|Zone commandée
+1286|p. ex. Grand salon, salle à manger
+1287|Commande
+1288|p. ex. Variateur salon

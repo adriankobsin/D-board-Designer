@@ -1282,3 +1282,7 @@
 1282|Ningún cuadro coincide con los filtros.
 1283|Borrar filtros
 1284|Buscar nombre, proyecto, cliente, ubicación
+1285|Zona controlada
+1286|p. ej. Salón principal, comedor
+1287|Controla
+1288|p. ej. Regulador del salón

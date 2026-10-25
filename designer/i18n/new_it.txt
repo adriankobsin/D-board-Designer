@@ -432,3 +432,7 @@
 1147|E-mail confermata
 1148|Il tuo indirizzo e-mail è confermato e l'account è attivo. Accedi per iniziare a progettare.
 1149|Il link di conferma non è valido o è scaduto. Accedi e ti offriremo di inviarne uno nuovo.
+1285|Area controllata
+1286|es. Salone principale, sala da pranzo
+1287|Controlla
+1288|es. Dimmer salone

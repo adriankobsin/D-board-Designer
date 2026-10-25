@@ -1282,3 +1282,7 @@
 1282|Keine Verteiler entsprechen diesen Filtern.
 1283|Filter zurücksetzen
 1284|Name, Projekt, Kunde, Standort suchen
+1285|Gesteuerter Bereich
+1286|z. B. Hauptsalon, Esszimmer
+1287|Steuert
+1288|z. B. Dimmer Salon

@@ -1282,3 +1282,7 @@
 1282|Aucun tableau ne correspond à ces filtres.
 1283|Effacer les filtres
 1284|Rechercher nom, projet, client, emplacement
+1285|Zone commandée
+1286|p. ex. Grand salon, salle à manger
+1287|Commande
+1288|p. ex. Variateur salon

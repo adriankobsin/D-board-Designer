@@ -432,3 +432,7 @@
 1147|Correo confirmado
 1148|Tu correo electrónico está confirmado y tu cuenta está activa. Inicia sesión para empezar a diseñar.
 1149|El enlace de confirmación no es válido o ha caducado. Inicia sesión y te ofreceremos enviar uno nuevo.
+1285|Zona controlada
+1286|p. ej. Salón principal, comedor
+1287|Controla
+1288|p. ej. Regulador del salón

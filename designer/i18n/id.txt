@@ -1282,3 +1282,7 @@
 1282|Tidak ada panel yang cocok dengan filter ini.
 1283|Hapus filter
 1284|Cari nama, proyek, pelanggan, lokasi
+1285|Area yang dikontrol
+1286|mis. Salon utama, ruang makan
+1287|Mengontrol
+1288|mis. Dimmer salon

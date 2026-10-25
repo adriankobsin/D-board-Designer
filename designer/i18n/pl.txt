@@ -1282,3 +1282,7 @@
 1282|Żadna rozdzielnica nie pasuje do filtrów.
 1283|Wyczyść filtry
 1284|Szukaj: nazwa, projekt, klient, lokalizacja
+1285|Sterowany obszar
+1286|np. Salon główny, jadalnia
+1287|Steruje
+1288|np. Ściemniacz salonu

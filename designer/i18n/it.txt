@@ -1282,3 +1282,7 @@
 1282|Nessun quadro corrisponde ai filtri.
 1283|Cancella i filtri
 1284|Cerca per nome, progetto, cliente, ubicazione
+1285|Area controllata
+1286|es. Salone principale, sala da pranzo
+1287|Controlla
+1288|es. Dimmer salone

@@ -432,3 +432,7 @@
 1147|E-mail potwierdzony
 1148|Twój adres e-mail został potwierdzony, a konto jest aktywne. Zaloguj się, aby zacząć projektować.
 1149|Link potwierdzający jest nieprawidłowy lub wygasł. Zaloguj się, a zaproponujemy wysłanie nowego.
+1285|Sterowany obszar
+1286|np. Salon główny, jadalnia
+1287|Steruje
+1288|np. Ściemniacz salonu

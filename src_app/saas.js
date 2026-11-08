@@ -494,6 +494,7 @@ const SA_LEGAL = {
   <h3>3. Your account</h3><p>Keep your password confidential. You are responsible for activity under your account. Provide accurate registration details.</p>
   <h3>4. Your content</h3><p>You own the projects you create. You grant the operator the right to store and process them to run the service for you.</p>
   <h3>5. Acceptable use</h3><p>Do not attempt to access other users' data, disrupt the service or use it unlawfully. Accounts that do so may be suspended.</p>
+  <h3>Plans, payments, cancellation and refunds</h3><p>The demo plan is free (one project, demo PDF export). The full plan can be paid by card (Stripe), PayPal or Revolut. You can cancel at any time and keep full access until the end of the paid period. Refunds: full refund if you contact us within 14 days of your first payment; none after that. Nothing here limits your legal rights.</p>
   <h3>6. Availability and liability</h3><p>The service is provided as is during beta. To the extent the law allows, the operator is not liable for losses arising from its use. Keep your own exports of important projects.</p>
   <h3>7. Ending your account</h3><p>You can delete your account at any time in Account settings. Your projects and profile are then permanently removed.</p>`],
   privacy: ['Privacy Policy', `<p><i>Template for the service operator. Complete the operator details and have it reviewed before public launch.</i></p>

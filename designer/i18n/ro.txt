@@ -1349,3 +1349,12 @@
 1349|Plan demo: este disponibil doar exportul PDF, marcat „DBoard Designer Demo”. Excel, CSV și fișierul de proiect fac parte din planul complet.
 1350|Activați limitele planurilor? Conturile noi și demo vor fi limitate imediat. Conturile existente cu acces Gratuit sau Plătit nu sunt afectate.
 1351|Limitați conturile demo de la data aleasă? Conturile existente cu acces Gratuit sau Plătit nu sunt afectate.
+1352|Plătește cu cardul
+1353|Plătește cu PayPal
+1354|Plătește cu Revolut
+1355|Alege cum plătești
+1356|După plata prin PayPal sau Revolut, apasă „Am plătit”. Administratorul verifică plata și activează planul tău.
+1357|Am plătit
+1358|Link de plată PayPal
+1359|Link de plată Revolut
+1360|Linkurile PayPal și Revolut nu sunt automate. Când sosește o plată, setează planul utilizatorului pe Plătit din lista de utilizatori (Editează planul).

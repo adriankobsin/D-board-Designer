@@ -540,3 +540,12 @@
 1349|Demo plan: only the PDF export is available, marked "DBoard Designer Demo". Excel, CSV and the project file are part of the full plan.
 1350|Turn plan limits ON? New and demo accounts will be limited straight away. Existing accounts with Free or Paid access are not affected.
 1351|Limit demo accounts from the chosen date? Existing accounts with Free or Paid access are not affected.
+1352|Pay by card
+1353|Pay with PayPal
+1354|Pay with Revolut
+1355|Choose how to pay
+1356|After paying with PayPal or Revolut, press "I have paid". The administrator checks the payment and activates your plan.
+1357|I have paid
+1358|PayPal payment link
+1359|Revolut payment link
+1360|PayPal and Revolut links are not automatic. When a payment arrives, set the user's plan to Paid from the user list (Edit plan).

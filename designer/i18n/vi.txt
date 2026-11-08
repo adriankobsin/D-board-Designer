@@ -1349,3 +1349,12 @@
 1349|Gói demo: chỉ có xuất PDF, có dấu "DBoard Designer Demo". Excel, CSV và tệp dự án là tính năng của gói đầy đủ.
 1350|Bật giới hạn gói? Tài khoản mới và tài khoản demo sẽ bị giới hạn ngay. Tài khoản hiện có với quyền Miễn phí hoặc Trả phí không bị ảnh hưởng.
 1351|Giới hạn tài khoản demo từ ngày đã chọn? Tài khoản hiện có với quyền Miễn phí hoặc Trả phí không bị ảnh hưởng.
+1352|Thanh toán bằng thẻ
+1353|Thanh toán bằng PayPal
+1354|Thanh toán bằng Revolut
+1355|Chọn cách thanh toán
+1356|Sau khi thanh toán qua PayPal hoặc Revolut, hãy nhấn "Tôi đã thanh toán". Quản trị viên sẽ kiểm tra khoản thanh toán và kích hoạt gói của bạn.
+1357|Tôi đã thanh toán
+1358|Liên kết thanh toán PayPal
+1359|Liên kết thanh toán Revolut
+1360|Liên kết PayPal và Revolut không tự động. Khi nhận được thanh toán, hãy đặt gói của người dùng thành Trả phí trong danh sách người dùng (Sửa gói).

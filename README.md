@@ -286,7 +286,7 @@ The Equipment tab has a DALI library (Lunatone, OSRAM, LTECH; DIN-rail and remot
 
 Run `supabase/migrations/0009_plans.sql` once. Every existing account becomes **Free access** (full features), new accounts start as **Demo**. Nothing is limited until the administrator turns limits on.
 
-Admin → Users has a **Plan limits** card (never, now, or from a chosen date) and a **Payments** card (Stripe Payment Link, price text, show the Upgrade button). Each user's plan (Demo, Free access, Paid) can be set with an optional end date and note.
+Admin → Users has a **Plan limits** card (never, now, or from a chosen date) and a **Payments** card (Stripe Payment Link, PayPal link, Revolut link, price text, show the Upgrade button). Each user's plan (Demo, Free access, Paid) can be set with an optional end date and note.
 
 Demo accounts: one project, PDF export only (marked "DBoard Designer Demo"), no chat, sharing, calls or panel import. These limits are enforced in the database and the Worker, not only in the interface.
 
@@ -294,5 +294,7 @@ Payments with Stripe:
 1. In Stripe create a product and a **Payment Link** (subscription or one-time).
 2. In Stripe → Developers → Webhooks add the endpoint `https://YOUR-SITE/api/stripe/webhook` for the events `checkout.session.completed`, `customer.subscription.updated` and `customer.subscription.deleted`. Copy its signing secret into the Worker secret `STRIPE_WEBHOOK_SECRET`.
 3. Paste the Payment Link in Admin → Payments and turn on the Upgrade button.
+
+PayPal and Revolut links are optional and manual: paste a PayPal or Revolut payment link in the same card. The Upgrade box then shows a button for each method plus **I have paid**, which sends a request to Admin → Feedback. After the money arrives, set the user to Paid with **Edit plan**. Only the Stripe card link is automatic (webhook).
 
 A completed payment sets the user to Paid; a cancelled or ended subscription returns them to Demo. Accounts set to Free access by an administrator are never changed by Stripe events. Check the signed webhook against real Stripe test mode before going live: the automated tests use locally signed test events only.

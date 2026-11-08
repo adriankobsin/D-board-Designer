@@ -1349,3 +1349,12 @@
 1349|Plano demo: só está disponível a exportação PDF, marcada «DBoard Designer Demo». Excel, CSV e o ficheiro de projeto fazem parte do plano completo.
 1350|Ativar os limites de plano? As contas novas e demo ficarão limitadas de imediato. As contas existentes com acesso Grátis ou Pago não são afetadas.
 1351|Limitar as contas demo a partir da data escolhida? As contas existentes com acesso Grátis ou Pago não são afetadas.
+1352|Pagar com cartão
+1353|Pagar com PayPal
+1354|Pagar com Revolut
+1355|Escolha como pagar
+1356|Depois de pagar com PayPal ou Revolut, prima «Já paguei». O administrador verifica o pagamento e ativa o seu plano.
+1357|Já paguei
+1358|Link de pagamento PayPal
+1359|Link de pagamento Revolut
+1360|Os links PayPal e Revolut não são automáticos. Quando chegar um pagamento, defina o plano do utilizador como Pago na lista de utilizadores (Editar plano).

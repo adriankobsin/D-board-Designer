@@ -1349,3 +1349,12 @@
 1349|Demo-Plan: Nur der PDF-Export ist verfügbar, gekennzeichnet mit „DBoard Designer Demo“. Excel, CSV und die Projektdatei gehören zum Vollplan.
 1350|Tarifbeschränkungen einschalten? Neue und Demo-Konten werden sofort beschränkt. Bestehende Konten mit kostenlosem oder bezahltem Zugang sind nicht betroffen.
 1351|Demo-Konten ab dem gewählten Datum beschränken? Bestehende Konten mit kostenlosem oder bezahltem Zugang sind nicht betroffen.
+1352|Mit Karte zahlen
+1353|Mit PayPal zahlen
+1354|Mit Revolut zahlen
+1355|Zahlungsart wählen
+1356|Nach der Zahlung per PayPal oder Revolut tippen Sie auf „Ich habe bezahlt“. Der Administrator prüft die Zahlung und aktiviert Ihren Tarif.
+1357|Ich habe bezahlt
+1358|PayPal-Zahlungslink
+1359|Revolut-Zahlungslink
+1360|PayPal- und Revolut-Links arbeiten nicht automatisch. Sobald eine Zahlung eingeht, setzen Sie den Tarif des Nutzers in der Nutzerliste (Tarif bearbeiten) auf Bezahlt.

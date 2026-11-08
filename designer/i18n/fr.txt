@@ -1349,3 +1349,12 @@
 1349|Forfait démo : seul l'export PDF est disponible, marqué « DBoard Designer Demo ». Excel, CSV et le fichier de projet font partie du forfait complet.
 1350|Activer les limites de forfait ? Les nouveaux comptes et les comptes démo seront limités immédiatement. Les comptes existants avec accès Gratuit ou Payant ne sont pas concernés.
 1351|Limiter les comptes démo à partir de la date choisie ? Les comptes existants avec accès Gratuit ou Payant ne sont pas concernés.
+1352|Payer par carte
+1353|Payer avec PayPal
+1354|Payer avec Revolut
+1355|Choisissez comment payer
+1356|Après le paiement par PayPal ou Revolut, appuyez sur « J'ai payé ». L'administrateur vérifie le paiement et active votre forfait.
+1357|J'ai payé
+1358|Lien de paiement PayPal
+1359|Lien de paiement Revolut
+1360|Les liens PayPal et Revolut ne sont pas automatiques. Quand un paiement arrive, passez le forfait de l'utilisateur sur Payant depuis la liste des utilisateurs (Modifier le forfait).

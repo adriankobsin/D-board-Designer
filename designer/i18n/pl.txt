@@ -1349,3 +1349,12 @@
 1349|Plan demo: dostępny jest tylko eksport PDF oznaczony „DBoard Designer Demo”. Excel, CSV i plik projektu są częścią planu pełnego.
 1350|Włączyć ograniczenia planów? Nowe konta i konta demo zostaną ograniczone od razu. Istniejące konta z dostępem bezpłatnym lub płatnym nie są objęte.
 1351|Ograniczyć konta demo od wybranej daty? Istniejące konta z dostępem bezpłatnym lub płatnym nie są objęte.
+1352|Zapłać kartą
+1353|Zapłać przez PayPal
+1354|Zapłać przez Revolut
+1355|Wybierz sposób płatności
+1356|Po zapłaceniu przez PayPal lub Revolut naciśnij „Zapłaciłem”. Administrator sprawdzi płatność i aktywuje Twój plan.
+1357|Zapłaciłem
+1358|Link do płatności PayPal
+1359|Link do płatności Revolut
+1360|Linki PayPal i Revolut nie działają automatycznie. Gdy wpłata dotrze, ustaw użytkownikowi plan Płatny na liście użytkowników (Edytuj plan).

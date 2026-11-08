@@ -283,7 +283,7 @@ async function api(request, env, url) {
       const rows = await r.json().catch(() => []), o = {};
       rows.forEach(x => { o[x.key] = x.value; });
       return json({ plans_enforced: o.plans_enforced === true, plans_start_at: typeof o.plans_start_at === 'string' ? o.plans_start_at : '',
-        pay_enabled: o.pay_enabled === true, pay_link: typeof o.pay_link === 'string' ? o.pay_link : '', pay_price: typeof o.pay_price === 'string' ? o.pay_price : '',
+        pay_enabled: o.pay_enabled === true, pay_link: typeof o.pay_link === 'string' ? o.pay_link : '', pay_paypal: typeof o.pay_paypal === 'string' ? o.pay_paypal : '', pay_revolut: typeof o.pay_revolut === 'string' ? o.pay_revolut : '', pay_price: typeof o.pay_price === 'string' ? o.pay_price : '',
         stripe_webhook: Boolean(env.STRIPE_WEBHOOK_SECRET), webhook_url: `${url.origin}/api/stripe/webhook` });
     }
     if (path === '/api/admin/settings' && method === 'POST') {
@@ -300,11 +300,17 @@ async function api(request, env, url) {
         if (v && !/^https:\/\/[^\s]+$/i.test(v)) return fail(400, 'The payment link must start with https://');
         rows.push({ key: 'pay_link', value: v, updated_at: now });
       }
+      for (const [k, nm] of [['pay_paypal', 'PayPal'], ['pay_revolut', 'Revolut']]) {
+        if (!(k in body)) continue;
+        const v = clean(body[k], 500).trim();
+        if (v && !/^https:\/\/[^\s]+$/i.test(v)) return fail(400, `The ${nm} link must start with https://`);
+        rows.push({ key: k, value: v, updated_at: now });
+      }
       if ('pay_price' in body) rows.push({ key: 'pay_price', value: clean(body.pay_price, 80).trim(), updated_at: now });
       if (!rows.length) return fail(400, 'Nothing to save.');
       const up = await sr(env, '/rest/v1/app_settings?on_conflict=key', { method: 'POST', headers: { Prefer: 'resolution=merge-duplicates' }, body: JSON.stringify(rows) });
       if (!up.ok) return fail(502, 'Could not save the setting.');
-      await audit(env, admin.id, null, 'plan_settings', Object.fromEntries(rows.map(r => [r.key, r.key === 'pay_link' ? '(link)' : r.value])));
+      await audit(env, admin.id, null, 'plan_settings', Object.fromEntries(rows.map(r => [r.key, /^pay_(link|paypal|revolut)$/.test(r.key) ? '(link)' : r.value])));
       return json({ ok: true });
     }
 

@@ -1349,3 +1349,12 @@
 1349|Paket demo: hanya ekspor PDF yang tersedia, bertanda "DBoard Designer Demo". Excel, CSV, dan file proyek adalah bagian dari paket penuh.
 1350|Aktifkan batas paket? Akun baru dan akun demo akan langsung dibatasi. Akun yang sudah ada dengan akses Gratis atau Berbayar tidak terpengaruh.
 1351|Batasi akun demo mulai tanggal yang dipilih? Akun yang sudah ada dengan akses Gratis atau Berbayar tidak terpengaruh.
+1352|Bayar dengan kartu
+1353|Bayar dengan PayPal
+1354|Bayar dengan Revolut
+1355|Pilih cara pembayaran
+1356|Setelah membayar lewat PayPal atau Revolut, tekan "Saya sudah membayar". Administrator memeriksa pembayaran dan mengaktifkan paket Anda.
+1357|Saya sudah membayar
+1358|Tautan pembayaran PayPal
+1359|Tautan pembayaran Revolut
+1360|Tautan PayPal dan Revolut tidak otomatis. Saat pembayaran masuk, ubah paket pengguna menjadi Berbayar dari daftar pengguna (Ubah paket).

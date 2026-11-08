@@ -58,12 +58,17 @@ with sync_playwright() as p:
     ok('free access gives full access again', usr.evaluate("DEMO===false && saFull()===true"))
     adm.locator('[data-sa=uplan][data-id="%s"]'%uid).click(); adm.select_option('#upPlan','demo'); adm.click('[data-sa=uplansave]'); adm.wait_for_timeout(700)
     # payments: admin saves a link, demo user sees Upgrade
-    adm.fill('#payLink','https://buy.stripe.com/test_123'); adm.fill('#payPrice','USD 9.99 / month'); adm.check('#payOn'); adm.click('[data-sa=paysave]'); adm.wait_for_timeout(700)
+    adm.fill('#payLink','https://buy.stripe.com/test_123'); adm.fill('#payPaypal','https://www.paypal.com/paypalme/wave'); adm.fill('#payRevolut','https://revolut.me/wave'); adm.fill('#payPrice','USD 9.99 / month'); adm.check('#payOn'); adm.click('[data-sa=paysave]'); adm.wait_for_timeout(700)
     ok('admin payments saved', adm.input_value('#payLink')=='https://buy.stripe.com/test_123' and adm.is_checked('#payOn'))
     usr.reload(); usr.wait_for_selector('text=Welcome, Dan'); usr.wait_for_timeout(500)
     ok('pay link carries the user id', usr.evaluate("saPayUrl()").startswith('https://buy.stripe.com/test_123') and uid in usr.evaluate("saPayUrl()"))
     usr.evaluate("saUpgrade('Test')"); ok('upgrade note has an Upgrade button and the price', usr.is_visible('#saModal [data-sa=payopen]') and 'USD 9.99' in usr.inner_text('#saModal'))
+    ok('PayPal and Revolut buttons shown with I have paid', usr.is_visible('#saModal [data-k=paypal]') and usr.is_visible('#saModal [data-k=revolut]') and usr.is_visible('#saModal [data-k=paid]'))
+    ok('PayPal and Revolut links are used as saved', usr.evaluate("saPayUrl('paypal')")=='https://www.paypal.com/paypalme/wave' and usr.evaluate("saPayUrl('revolut')")=='https://revolut.me/wave')
+    usr.click('#saModal [data-k=paid]'); usr.wait_for_timeout(500)
+    ok('I have paid closes the box after sending the request', not usr.is_visible('#saModal [data-k=paid]'))
     usr.evaluate("saModalClose()")
+    ok('admin rejects a non-https PayPal link', adm.evaluate("saApi('/api/admin/settings',{method:'POST',body:JSON.stringify({pay_paypal:'http://x'})}).then(()=>false,()=>true)"))
     # stripe webhook
     ev={'id':'evt_1','type':'checkout.session.completed','data':{'object':{'client_reference_id':uid,'customer':'cus_1','subscription':'sub_1','mode':'subscription','payment_status':'paid'}}}
     ok('webhook rejects a missing signature', hook(ev,sig=False)==400)

@@ -146,12 +146,12 @@ async function saLoadProfile(){
   await saLoadPlans();
 }
 /* ---------- plans: demo accounts are limited, full accounts are not ---------- */
-SA.plans = {enforced: false, start: '', pay: false, link: '', price: ''};
+SA.plans = {enforced: false, start: '', pay: false, link: '', paypal: '', revolut: '', price: ''};
 async function saLoadPlans(){
   try {
     const {data, error} = await SA.sb.from('app_settings').select('key,value');
     if (!error && data){ const o = {}; data.forEach(r => { o[r.key] = r.value; });
-      SA.plans = {enforced: o.plans_enforced === true, start: typeof o.plans_start_at === 'string' ? o.plans_start_at : '', pay: o.pay_enabled === true, link: typeof o.pay_link === 'string' ? o.pay_link : '', price: typeof o.pay_price === 'string' ? o.pay_price : ''}; }
+      SA.plans = {enforced: o.plans_enforced === true, start: typeof o.plans_start_at === 'string' ? o.plans_start_at : '', pay: o.pay_enabled === true, link: typeof o.pay_link === 'string' ? o.pay_link : '', paypal: typeof o.pay_paypal === 'string' ? o.pay_paypal : '', revolut: typeof o.pay_revolut === 'string' ? o.pay_revolut : '', price: typeof o.pay_price === 'string' ? o.pay_price : ''}; }
   } catch (e) {}
   saPlanApply();
 }
@@ -163,20 +163,27 @@ function saFull(){
   return (p.plan === 'free' || p.plan === 'paid') && (!p.plan_until || new Date(p.plan_until) > new Date());
 }
 function saPlanApply(){ if (typeof DEMO !== 'undefined') DEMO = !saFull(); }
-function saPayUrl(){
-  const P = SA.plans; if (!P.pay || !/^https:\/\//i.test(P.link || '')) return '';
-  try { const u = new URL(P.link); if (SA.user){ u.searchParams.set('client_reference_id', SA.user.id); if (SA.user.email) u.searchParams.set('prefilled_email', SA.user.email); } return u.toString(); } catch (e) { return ''; }
+function saPayUrl(kind){
+  const P = SA.plans; if (!P.pay) return '';
+  const raw = kind === 'paypal' ? P.paypal : kind === 'revolut' ? P.revolut : P.link;
+  if (!/^https:\/\//i.test(raw || '')) return '';
+  try { const u = new URL(raw);
+    if (!kind || kind === 'card'){ if (SA.user){ u.searchParams.set('client_reference_id', SA.user.id); if (SA.user.email) u.searchParams.set('prefilled_email', SA.user.email); } }
+    return u.toString(); } catch (e) { return ''; }
 }
+const SA_PAY = [['card', 'Pay by card'], ['paypal', 'Pay with PayPal'], ['revolut', 'Pay with Revolut']];
 function saUpgrade(what){
-  const url = saPayUrl(), P = SA.plans;
+  const P = SA.plans, ways = SA_PAY.filter(x => saPayUrl(x[0])), manual = ways.some(x => x[0] !== 'card');
   saModal(`<h2 style="margin-top:0">${saEsc(T('Full plan feature'))}</h2><p>${saEsc(T(what))}: ${saEsc(T('this is part of the full plan.'))}</p>
     <p class="sa-sub">${saEsc(T('The demo plan includes one project and a PDF export marked "DBoard Designer Demo".'))}</p>
-    ${url && P.price ? `<p><b data-nt>${saEsc(P.price)}</b></p>` : ''}
-    <div class="sa-row" style="margin-top:14px">${url ? `<button class="sa-btn pri" data-sa="payopen">${saEsc(T('Upgrade'))}</button>` : `<button class="sa-btn pri" data-sa="planreq">${saEsc(T('Request full access'))}</button>`}<button class="sa-btn" data-sa="pinfox">${saEsc(T('Close'))}</button></div>`);
+    ${ways.length && P.price ? `<p><b data-nt>${saEsc(P.price)}</b></p>` : ''}
+    ${ways.length > 1 ? `<p class="sa-sub">${saEsc(T('Choose how to pay'))}</p>` : ''}
+    <div class="sa-row" style="margin-top:14px;flex-wrap:wrap">${ways.length === 1 && ways[0][0] === 'card' ? `<button class="sa-btn pri" data-sa="payopen" data-k="card">${saEsc(T('Upgrade'))}</button>` : ways.map(x => `<button class="sa-btn pri" data-sa="payopen" data-k="${x[0]}">${saEsc(T(x[1]))}</button>`).join('') || `<button class="sa-btn pri" data-sa="planreq">${saEsc(T('Request full access'))}</button>`}<button class="sa-btn" data-sa="pinfox">${saEsc(T('Close'))}</button></div>
+    ${manual ? `<p class="sa-fine" style="color:var(--ink-2);margin-top:12px">${saEsc(T('After paying with PayPal or Revolut, press "I have paid". The administrator checks the payment and activates your plan.'))}</p><div class="sa-row"><button class="sa-btn" data-sa="planreq" data-k="paid">${saEsc(T('I have paid'))}</button></div>` : ''}`);
 }
-async function saPlanRequest(){
+async function saPlanRequest(paid){
   if (!SA.sb || !SA.user) return;
-  const {error} = await SA.sb.from('feedback').insert({message: 'Plan request: please grant full access to ' + (SA.user.email || ''), page: 'plan'});
+  const {error} = await SA.sb.from('feedback').insert({message: (paid ? 'Plan request: I have paid by PayPal or Revolut, please activate ' : 'Plan request: please grant full access to ') + (SA.user.email || ''), page: 'plan'});
   saModalClose(); toast(error ? saErr(error) : 'Request sent. The administrator will review it.');
 }
 function saTrack(event, meta){ if (!SA.sb || !SA.user) return; SA.sb.from('usage_events').insert({event, meta: meta || {}}).then(() => {}, () => {}); }

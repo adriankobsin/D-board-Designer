@@ -1385,3 +1385,13 @@
 1385|Abrir DALI
 1386|Quadro de iluminação
 1387|Quadro de iluminação (área e o que controla cada circuito)
+1388|Corrigir o que as verificações encontram
+1389|No separador <b>Checks</b>, cada <b>Fail</b> e <b>Review</b> diz o que está errado e tem uma linha <b>How to fix</b> com a alteração a fazer, por exemplo outro modelo de módulo, um disjuntor maior ou um cabo mais curto. Carregue em <b>Go to</b> para ir ao circuito, módulo ou definição em causa. O inspetor do separador Panel mostra os mesmos problemas numa caixa para o dispositivo selecionado, e o resumo no topo tem um botão <b>See how to fix</b>.
+1390|Circuitos de iluminação nos desenhos e no PDF
+1391|Cada circuito de iluminação mostra a sua <b>Area</b> e o que o controla por baixo do nome, no <b>Diagram</b> e no diagrama do PDF. O quadro de circuitos do PDF tem uma coluna <b>Area</b>, e o PDF tem a sua própria página <b>Lighting schedule</b>: cada circuito com a sua zona, carga e controlador, e depois uma tabela do que cada canal de regulador ou driver controla, com os watts totais face ao limite. Marque ou desmarque em <b>Export</b>. As tabelas Excel e CSV terminam com as colunas <b>Area</b> e <b>Controlled by</b>.
+1392|Plano demo e plano completo
+1393|O plano demo inclui um projeto e um PDF marcado "DBoard Designer Demo". Quando chega a uma função do plano completo, uma janela mostra como fazer o upgrade: pagamento por cartão, PayPal ou Revolut. Os pagamentos por cartão ativam o plano automaticamente; os pagamentos por PayPal e Revolut são ativados por nós quando o pagamento chega. O primeiro pagamento pode ser reembolsado em 14 dias e pode cancelar a qualquer momento. Os detalhes estão na página Terms.
+1394|Modo escuro e idioma
+1395|Use o botão de sol e lua para alternar entre modo claro e escuro, e o menu de idioma no topo para mudar o idioma. Ambos ficam guardados neste dispositivo.
+1396|A introdução no topo
+1397|A breve introdução acima dos separadores pode ser removida com o botão <b>Hide</b>. Fica oculta neste dispositivo.

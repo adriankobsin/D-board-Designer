@@ -1385,3 +1385,13 @@
 1385|Ouvrir DALI
 1386|Tableau d'éclairage
 1387|Tableau d'éclairage (zone et commande de chaque circuit)
+1388|Corriger ce que trouvent les contrôles
+1389|Dans l'onglet <b>Checks</b>, chaque <b>Fail</b> et <b>Review</b> dit ce qui ne va pas et a une ligne <b>How to fix</b> avec la modification à faire, par exemple un autre modèle de module, un disjoncteur plus gros ou un câble plus court. Appuyez sur <b>Go to</b> pour aller au circuit, au module ou au réglage concerné. L'inspecteur de l'onglet Panel affiche les mêmes problèmes dans un cadre pour l'appareil sélectionné, et le résumé en haut a un bouton <b>See how to fix</b>.
+1390|Circuits d'éclairage sur les plans et le PDF
+1391|Chaque circuit d'éclairage affiche sa <b>Area</b> et ce qui le commande sous son nom, dans le <b>Diagram</b> et dans le schéma du PDF. Le tableau des circuits du PDF a une colonne <b>Area</b>, et le PDF a sa propre page <b>Lighting schedule</b> : chaque circuit avec sa zone, sa charge et son contrôleur, puis un tableau de ce que commande chaque canal de variateur ou driver, avec les watts totaux face à la limite. Cochez-la ou décochez-la dans <b>Export</b>. Les tableaux Excel et CSV se terminent par les colonnes <b>Area</b> et <b>Controlled by</b>.
+1392|Formule démo et formule complète
+1393|La formule démo comprend un projet et un PDF marqué « DBoard Designer Demo ». Quand vous atteignez une fonction de la formule complète, une fenêtre montre comment passer à l'offre complète : paiement par carte, PayPal ou Revolut. Les paiements par carte activent la formule automatiquement ; les paiements PayPal et Revolut sont activés par nous à réception du paiement. Le premier paiement peut être remboursé sous 14 jours et vous pouvez résilier à tout moment. Les détails sont sur la page Terms.
+1394|Mode sombre et langue
+1395|Utilisez le bouton soleil et lune pour passer du mode clair au mode sombre, et le menu de langue en haut pour changer de langue. Les deux sont mémorisés sur cet appareil.
+1396|L'introduction en haut
+1397|La courte introduction au-dessus des onglets peut être retirée avec son bouton <b>Hide</b>. Elle reste masquée sur cet appareil.

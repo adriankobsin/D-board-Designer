@@ -1385,3 +1385,13 @@
 1385|Buka DALI
 1386|Jadwal pencahayaan
 1387|Jadwal pencahayaan (area dan apa yang mengendalikan setiap sirkuit)
+1388|Perbaiki yang ditemukan pemeriksaan
+1389|Di tab <b>Checks</b>, setiap <b>Fail</b> dan <b>Review</b> menjelaskan apa yang salah dan punya baris <b>How to fix</b> berisi perubahan yang perlu dibuat, misalnya model modul lain, MCB lebih besar, atau kabel lebih pendek. Tekan <b>Go to</b> untuk melompat ke sirkuit, modul, atau pengaturan terkait. Inspektor di tab Panel menampilkan masalah yang sama dalam kotak untuk perangkat yang Anda klik, dan ringkasan di atas punya tombol <b>See how to fix</b>.
+1390|Sirkuit pencahayaan di gambar dan PDF
+1391|Setiap sirkuit pencahayaan menampilkan <b>Area</b> dan apa yang mengendalikannya di bawah namanya, di <b>Diagram</b> dan di diagram PDF. Tabel sirkuit di PDF punya kolom <b>Area</b>, dan PDF punya halaman <b>Lighting schedule</b> sendiri: setiap sirkuit dengan area, beban, dan pengendalinya, lalu tabel apa yang dikendalikan tiap kanal dimmer atau driver dengan total watt terhadap batasnya. Centang atau hapus centang di <b>Export</b>. Tabel Excel dan CSV diakhiri kolom <b>Area</b> dan <b>Controlled by</b>.
+1392|Paket demo dan paket penuh
+1393|Paket demo mencakup satu proyek dan PDF bertanda "DBoard Designer Demo". Saat Anda mencapai fitur paket penuh, sebuah jendela menunjukkan cara upgrade: bayar dengan kartu, PayPal, atau Revolut. Pembayaran kartu mengaktifkan paket secara otomatis; pembayaran PayPal dan Revolut kami aktifkan setelah pembayaran diterima. Pembayaran pertama dapat dikembalikan dalam 14 hari dan Anda bisa berhenti kapan saja. Detailnya ada di halaman Terms.
+1394|Mode gelap dan bahasa
+1395|Gunakan tombol matahari dan bulan untuk beralih antara mode terang dan gelap, dan menu bahasa di atas untuk mengganti bahasa. Keduanya diingat di perangkat ini.
+1396|Pengantar di atas
+1397|Pengantar singkat di atas tab dapat dihapus dengan tombol <b>Hide</b>. Tetap tersembunyi di perangkat ini.

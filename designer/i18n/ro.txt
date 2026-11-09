@@ -1385,3 +1385,13 @@
 1385|Deschide DALI
 1386|Program iluminat
 1387|Program iluminat (zona și ce controlează fiecare circuit)
+1388|Remediază ce găsesc verificările
+1389|În fila <b>Checks</b>, fiecare <b>Fail</b> și <b>Review</b> spune ce nu e în regulă și are o linie <b>How to fix</b> cu modificarea de făcut, de exemplu alt model de modul, o siguranță mai mare sau un cablu mai scurt. Apasă <b>Go to</b> pentru a sări la circuitul, modulul sau setarea în cauză. Inspectorul din fila Panel arată aceleași probleme într-o casetă pentru dispozitivul pe care ai dat clic, iar rezumatul de sus are un buton <b>See how to fix</b>.
+1390|Circuitele de iluminat pe desene și în PDF
+1391|Fiecare circuit de iluminat își arată <b>Area</b> și ce îl controlează sub nume, în <b>Diagram</b> și în diagrama din PDF. Programul de circuite din PDF are o coloană <b>Area</b>, iar PDF-ul are propria pagină <b>Lighting schedule</b>: fiecare circuit de iluminat cu zona, sarcina și controlerul, apoi un tabel cu ce controlează fiecare canal de dimmer sau driver, cu wații totali față de limită. Bifează-l sau debifează-l la <b>Export</b>. Programele Excel și CSV se termină cu coloanele <b>Area</b> și <b>Controlled by</b>.
+1392|Planul demo și planul complet
+1393|Planul demo include un proiect și un PDF marcat „DBoard Designer Demo”. Când ajungi la o funcție din planul complet, o fereastră arată cum faci upgrade: plată cu cardul, PayPal sau Revolut. Plățile cu cardul activează planul automat; plățile PayPal și Revolut sunt activate de noi după ce sosește plata. Prima plată poate fi rambursată în 14 zile și poți anula oricând. Detalii în pagina Terms.
+1394|Mod întunecat și limbă
+1395|Folosește butonul cu soare și lună pentru a comuta între modul luminos și cel întunecat, iar meniul de limbă de sus pentru a schimba limba. Ambele sunt reținute pe acest dispozitiv.
+1396|Introducerea de sus
+1397|Scurta introducere de deasupra filelor poate fi eliminată cu butonul <b>Hide</b>. Rămâne ascunsă pe acest dispozitiv.

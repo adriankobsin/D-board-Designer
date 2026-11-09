@@ -1385,3 +1385,13 @@
 1385|Open DALI
 1386|Lighting schedule
 1387|Lighting schedule (area and what controls each circuit)
+1388|Fix what the checks find
+1389|On the <b>Checks</b> tab every <b>Fail</b> and <b>Review</b> says what is wrong and has a <b>How to fix</b> line with the change to make, for example a different module model, a larger breaker or a shorter cable. Press <b>Go to</b> to jump to the circuit, module or setting concerned. The inspector in the Panel tab shows the same problems in a box for the device you clicked, and the summary at the top has a <b>See how to fix</b> button.
+1390|Lighting circuits on the drawings and PDF
+1391|Every lighting circuit shows its <b>Area</b> and what controls it under its name on the <b>Diagram</b> and in the PDF diagram. The PDF circuit schedule has an <b>Area</b> column, and the PDF has its own <b>Lighting schedule</b> page: each lighting circuit with its area, load and controller, then a table of what each dimmer channel or driver controls with the total watts against its limit. Tick or untick it under <b>Export</b>. The Excel and CSV schedules end with <b>Area</b> and <b>Controlled by</b> columns.
+1392|Demo and full plan
+1393|The demo plan includes one project and a PDF marked "DBoard Designer Demo". When you reach a full-plan feature, a window shows how to upgrade: pay by card, PayPal or Revolut. Card payments switch your plan on automatically; PayPal and Revolut payments are switched on by us once the payment arrives. Your first payment can be refunded within 14 days, and you can cancel any time. The Terms page has the details.
+1394|Dark mode and language
+1395|Use the sun and moon button to switch between light and dark mode, and the language menu at the top to change the language. Both are remembered on this device.
+1396|The introduction at the top
+1397|The short introduction above the tabs can be removed with its <b>Hide</b> button. It stays hidden on this device.

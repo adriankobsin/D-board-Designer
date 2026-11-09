@@ -1385,3 +1385,13 @@
 1385|DALI öffnen
 1386|Beleuchtungsliste
 1387|Beleuchtungsliste (Bereich und Ansteuerung jedes Stromkreises)
+1388|Beheben, was die Prüfungen finden
+1389|Auf der Registerkarte <b>Checks</b> sagt jeder <b>Fail</b> und <b>Review</b>, was nicht stimmt, und hat eine Zeile <b>How to fix</b> mit der nötigen Änderung, etwa ein anderes Modulmodell, einen größeren Leitungsschutzschalter oder ein kürzeres Kabel. Mit <b>Go to</b> springen Sie zum betroffenen Stromkreis, Modul oder zur Einstellung. Der Inspektor auf der Registerkarte Panel zeigt dieselben Probleme in einem Kasten für das angeklickte Gerät, und die Zusammenfassung oben hat die Schaltfläche <b>See how to fix</b>.
+1390|Beleuchtungsstromkreise in Zeichnungen und PDF
+1391|Jeder Beleuchtungsstromkreis zeigt unter seinem Namen seine <b>Area</b> und was ihn ansteuert, im <b>Diagram</b> und im PDF-Schaltplan. Die Stromkreisliste im PDF hat eine Spalte <b>Area</b>, und das PDF hat eine eigene Seite <b>Lighting schedule</b>: jeder Stromkreis mit Bereich, Last und Steuerung, danach eine Tabelle, was jeder Dimmerkanal oder Treiber ansteuert, mit Gesamtwatt gegenüber dem Grenzwert. Sie lässt sich unter <b>Export</b> an- oder abwählen. Die Excel- und CSV-Listen enden mit den Spalten <b>Area</b> und <b>Controlled by</b>.
+1392|Demo- und Vollversion
+1393|Der Demo-Plan enthält ein Projekt und ein PDF mit dem Aufdruck „DBoard Designer Demo“. Wenn Sie eine Funktion des Vollplans erreichen, zeigt ein Fenster, wie Sie upgraden: Zahlung per Karte, PayPal oder Revolut. Kartenzahlungen schalten den Plan automatisch frei; PayPal- und Revolut-Zahlungen schalten wir nach Zahlungseingang frei. Die erste Zahlung kann innerhalb von 14 Tagen erstattet werden, Kündigung ist jederzeit möglich. Details stehen auf der Seite Terms.
+1394|Dunkelmodus und Sprache
+1395|Mit der Sonne-und-Mond-Schaltfläche wechseln Sie zwischen hellem und dunklem Modus, mit dem Sprachmenü oben ändern Sie die Sprache. Beides wird auf diesem Gerät gespeichert.
+1396|Die Einleitung oben
+1397|Die kurze Einleitung über den Registerkarten lässt sich mit der Schaltfläche <b>Hide</b> entfernen. Sie bleibt auf diesem Gerät ausgeblendet.

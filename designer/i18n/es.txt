@@ -1385,3 +1385,13 @@
 1385|Abrir DALI
 1386|Cuadro de iluminación
 1387|Cuadro de iluminación (área y qué controla cada circuito)
+1388|Corregir lo que encuentran las comprobaciones
+1389|En la pestaña <b>Checks</b>, cada <b>Fail</b> y <b>Review</b> dice qué está mal y tiene una línea <b>How to fix</b> con el cambio a hacer, por ejemplo otro modelo de módulo, un magnetotérmico mayor o un cable más corto. Pulsa <b>Go to</b> para ir al circuito, módulo o ajuste afectado. El inspector de la pestaña Panel muestra los mismos problemas en un recuadro para el dispositivo seleccionado, y el resumen de arriba tiene un botón <b>See how to fix</b>.
+1390|Circuitos de iluminación en los planos y el PDF
+1391|Cada circuito de iluminación muestra su <b>Area</b> y qué lo controla bajo su nombre, en el <b>Diagram</b> y en el diagrama del PDF. El cuadro de circuitos del PDF tiene una columna <b>Area</b>, y el PDF tiene su propia página <b>Lighting schedule</b>: cada circuito con su zona, carga y controlador, y luego una tabla de lo que controla cada canal de regulador o driver con los vatios totales frente al límite. Márcala o desmárcala en <b>Export</b>. Las tablas de Excel y CSV terminan con las columnas <b>Area</b> y <b>Controlled by</b>.
+1392|Plan demo y plan completo
+1393|El plan demo incluye un proyecto y un PDF marcado "DBoard Designer Demo". Cuando llegas a una función del plan completo, una ventana muestra cómo pasar a él: pago con tarjeta, PayPal o Revolut. Los pagos con tarjeta activan el plan automáticamente; los pagos con PayPal y Revolut los activamos nosotros cuando llega el pago. El primer pago puede reembolsarse en 14 días y puedes cancelar cuando quieras. Los detalles están en la página Terms.
+1394|Modo oscuro e idioma
+1395|Usa el botón de sol y luna para cambiar entre modo claro y oscuro, y el menú de idioma de arriba para cambiar el idioma. Ambos se recuerdan en este dispositivo.
+1396|La introducción de arriba
+1397|La breve introducción sobre las pestañas se puede quitar con su botón <b>Hide</b>. Sigue oculta en este dispositivo.

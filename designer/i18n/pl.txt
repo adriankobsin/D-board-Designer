@@ -1385,3 +1385,13 @@
 1385|Otwórz DALI
 1386|Zestawienie oświetlenia
 1387|Zestawienie oświetlenia (strefa i element sterujący każdym obwodem)
+1388|Napraw to, co znajdą kontrole
+1389|Na karcie <b>Checks</b> każdy <b>Fail</b> i <b>Review</b> mówi, co jest nie tak, i ma wiersz <b>How to fix</b> z potrzebną zmianą, na przykład inny model modułu, większy wyłącznik lub krótszy kabel. Naciśnij <b>Go to</b>, aby przejść do danego obwodu, modułu lub ustawienia. Inspektor na karcie Panel pokazuje te same problemy w ramce dla klikniętego urządzenia, a podsumowanie u góry ma przycisk <b>See how to fix</b>.
+1390|Obwody oświetleniowe na rysunkach i w PDF
+1391|Każdy obwód oświetleniowy pokazuje swoją <b>Area</b> i to, co nim steruje, pod nazwą — na <b>Diagram</b> i w schemacie PDF. Zestawienie obwodów w PDF ma kolumnę <b>Area</b>, a PDF ma własną stronę <b>Lighting schedule</b>: każdy obwód ze strefą, obciążeniem i sterownikiem, a potem tabela tego, czym steruje każdy kanał ściemniacza lub driver, z sumą watów względem limitu. Włączysz ją lub wyłączysz w <b>Export</b>. Tabele Excel i CSV kończą się kolumnami <b>Area</b> i <b>Controlled by</b>.
+1392|Plan demo i pełny plan
+1393|Plan demo obejmuje jeden projekt i PDF z oznaczeniem „DBoard Designer Demo”. Gdy sięgniesz po funkcję pełnego planu, okno pokaże, jak przejść na wyższy: płatność kartą, PayPal lub Revolut. Płatności kartą włączają plan automatycznie; płatności PayPal i Revolut włączamy my po otrzymaniu wpłaty. Pierwszą płatność można zwrócić w ciągu 14 dni, a subskrypcję anulować w dowolnej chwili. Szczegóły na stronie Terms.
+1394|Tryb ciemny i język
+1395|Przycisk ze słońcem i księżycem przełącza tryb jasny i ciemny, a menu języka u góry zmienia język. Oba ustawienia są zapamiętywane na tym urządzeniu.
+1396|Wstęp u góry
+1397|Krótki wstęp nad kartami można usunąć przyciskiem <b>Hide</b>. Pozostaje ukryty na tym urządzeniu.

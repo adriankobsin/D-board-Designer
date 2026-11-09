@@ -1385,3 +1385,13 @@
 1385|Apri DALI
 1386|Schema illuminazione
 1387|Schema illuminazione (area e cosa comanda ogni circuito)
+1388|Correggere ciò che trovano i controlli
+1389|Nella scheda <b>Checks</b> ogni <b>Fail</b> e <b>Review</b> dice cosa non va e ha una riga <b>How to fix</b> con la modifica da fare, ad esempio un altro modello di modulo, un interruttore più grande o un cavo più corto. Premi <b>Go to</b> per andare al circuito, modulo o impostazione interessati. L'ispettore nella scheda Panel mostra gli stessi problemi in un riquadro per il dispositivo selezionato, e il riepilogo in alto ha un pulsante <b>See how to fix</b>.
+1390|Circuiti di illuminazione nei disegni e nel PDF
+1391|Ogni circuito di illuminazione mostra la sua <b>Area</b> e cosa lo comanda sotto il nome, nel <b>Diagram</b> e nello schema del PDF. Lo schema dei circuiti nel PDF ha una colonna <b>Area</b> e il PDF ha una pagina <b>Lighting schedule</b>: ogni circuito con area, carico e controllore, poi una tabella di cosa comanda ogni canale dimmer o driver con i watt totali rispetto al limite. Attivala o disattivala in <b>Export</b>. Le tabelle Excel e CSV finiscono con le colonne <b>Area</b> e <b>Controlled by</b>.
+1392|Piano demo e piano completo
+1393|Il piano demo comprende un progetto e un PDF con la scritta "DBoard Designer Demo". Quando raggiungi una funzione del piano completo, una finestra mostra come passare: pagamento con carta, PayPal o Revolut. I pagamenti con carta attivano il piano automaticamente; quelli con PayPal e Revolut li attiviamo noi all'arrivo del pagamento. Il primo pagamento può essere rimborsato entro 14 giorni e puoi annullare in qualsiasi momento. I dettagli sono nella pagina Terms.
+1394|Modalità scura e lingua
+1395|Usa il pulsante sole e luna per passare tra modalità chiara e scura e il menu della lingua in alto per cambiare lingua. Entrambe le scelte restano su questo dispositivo.
+1396|L'introduzione in alto
+1397|La breve introduzione sopra le schede si può rimuovere con il pulsante <b>Hide</b>. Resta nascosta su questo dispositivo.

@@ -1385,3 +1385,13 @@
 1385|Mở DALI
 1386|Bảng mạch chiếu sáng
 1387|Bảng mạch chiếu sáng (khu vực và thiết bị điều khiển từng mạch)
+1388|Sửa những gì phần kiểm tra tìm thấy
+1389|Trong tab <b>Checks</b>, mỗi mục <b>Fail</b> và <b>Review</b> cho biết lỗi gì và có dòng <b>How to fix</b> nêu cách sửa, ví dụ đổi kiểu module, dùng aptomat lớn hơn hoặc cáp ngắn hơn. Nhấn <b>Go to</b> để nhảy tới mạch, module hoặc thiết lập liên quan. Trình kiểm tra ở tab Panel hiển thị cùng các vấn đề trong một khung cho thiết bị bạn chọn, và phần tóm tắt ở trên có nút <b>See how to fix</b>.
+1390|Mạch chiếu sáng trên bản vẽ và PDF
+1391|Mỗi mạch chiếu sáng hiển thị <b>Area</b> và thiết bị điều khiển dưới tên của nó, trong <b>Diagram</b> và trong sơ đồ PDF. Bảng mạch trong PDF có cột <b>Area</b>, và PDF có trang <b>Lighting schedule</b> riêng: mỗi mạch kèm khu vực, tải và bộ điều khiển, sau đó là bảng cho biết mỗi kênh dimmer hoặc driver điều khiển gì, với tổng watt so với giới hạn. Bật hoặc tắt trong <b>Export</b>. Bảng Excel và CSV kết thúc bằng các cột <b>Area</b> và <b>Controlled by</b>.
+1392|Gói demo và gói đầy đủ
+1393|Gói demo gồm một dự án và một PDF đóng dấu "DBoard Designer Demo". Khi bạn dùng tính năng của gói đầy đủ, một cửa sổ sẽ hướng dẫn nâng cấp: thanh toán bằng thẻ, PayPal hoặc Revolut. Thanh toán thẻ kích hoạt gói tự động; PayPal và Revolut do chúng tôi kích hoạt khi nhận được tiền. Khoản thanh toán đầu tiên được hoàn lại trong 14 ngày và bạn có thể hủy bất cứ lúc nào. Chi tiết ở trang Terms.
+1394|Chế độ tối và ngôn ngữ
+1395|Dùng nút mặt trời và mặt trăng để chuyển giữa chế độ sáng và tối, và menu ngôn ngữ ở trên cùng để đổi ngôn ngữ. Cả hai được nhớ trên thiết bị này.
+1396|Phần giới thiệu ở trên cùng
+1397|Phần giới thiệu ngắn phía trên các tab có thể gỡ bằng nút <b>Hide</b>. Nó vẫn bị ẩn trên thiết bị này.

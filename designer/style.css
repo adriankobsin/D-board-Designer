@@ -288,3 +288,7 @@ select{text-overflow:ellipsis}
   .bar-top > *,.brand,.cobox,#pname{min-width:0}
   .brand b{white-space:normal}
 }
+
+.checks li.chk{grid-template-columns:auto 76px minmax(0,1fr)}.checks li.err{border-left:3px solid var(--bad)}.checks li.warn{border-left:3px solid var(--warn)}
+.how{display:block;margin-top:5px;color:var(--ink-2);font-size:13px}.how b{color:var(--ink)}
+.insp .issues{border:1px solid var(--bad);border-radius:6px;padding:8px 10px;margin:8px 0;background:var(--surface-2)}.insp .issues ul.checks li{grid-template-columns:auto minmax(0,1fr)}

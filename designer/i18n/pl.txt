@@ -1375,3 +1375,11 @@
 1375|Czym steruje każde wyjście
 1376|Przypisz obwody oświetleniowe
 1377|Otwórz <b>Oświetlenie</b> i naciśnij <b>Dodaj obwód oświetleniowy</b>. Nadaj każdemu obwodowi opis, <b>Strefę</b>, którą oświetla, i obciążenie w watach, a następnie wybierz w <b>Sterowany przez</b>, co go napędza: kanał ściemniacza modułu w rozdzielnicy, sterownik lub przekaźnik DALI dodany na karcie DALI albo inne urządzenie dodane jako urządzenie własne. Tabela poniżej pokazuje dla każdego kanału ściemniacza, sterownika i urządzenia, jakimi obwodami steruje, oraz sumę watów względem limitu kanału. Te same obwody są na karcie <b>Obwody</b>, gdzie ustawiasz kabel i zabezpieczenie, oraz w pliku Excel na arkuszu Oświetlenie.
+1378|Jak to naprawić
+1379|Problemy z tym elementem
+1380|Zobacz, jak naprawić
+1381|Otwórz w Rozdzielnicy
+1382|Otwórz w Obwodach
+1383|Otwórz Obwody
+1384|Otwórz Ustawienia
+1385|Otwórz DALI

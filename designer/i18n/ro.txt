@@ -1375,3 +1375,11 @@
 1375|Ce controlează fiecare ieșire
 1376|Atribuie circuite de iluminat
 1377|Deschide <b>Iluminat</b> și apasă <b>Adaugă circuit de iluminat</b>. Dă fiecărui circuit o descriere, <b>Zona</b> pe care o luminează și puterea în wați, apoi alege în <b>Controlat de</b> ce îl comandă: un canal de dimmer al unui modul din tablou, un driver sau releu DALI adăugat în fila DALI sau alt dispozitiv adăugat ca dispozitiv personalizat. Tabelul de dedesubt arată, pentru fiecare canal de dimmer, driver și dispozitiv, ce circuite controlează și totalul de wați față de limita canalului. Aceleași circuite apar în fila <b>Circuite</b>, unde setezi cablul și protecția, și în fișierul Excel pe o foaie Iluminat.
+1378|Cum se rezolvă
+1379|Probleme cu acest element
+1380|Vezi cum se rezolvă
+1381|Deschide în Tablou
+1382|Deschide în Circuite
+1383|Deschide Circuite
+1384|Deschide Configurare
+1385|Deschide DALI

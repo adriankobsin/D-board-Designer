@@ -1375,3 +1375,11 @@
 1375|Qué controla cada salida
 1376|Asignar circuitos de iluminación
 1377|Abre <b>Iluminación</b> y pulsa <b>Añadir circuito de iluminación</b>. Da a cada circuito una descripción, la <b>Zona</b> que ilumina y su carga en vatios; luego elige en <b>Controlado por</b> qué lo maneja: un canal de regulador de un módulo del cuadro, un driver o relé DALI añadido en la pestaña DALI u otro dispositivo añadido como dispositivo personalizado. La tabla de abajo muestra, para cada canal de regulador, driver y dispositivo, qué circuitos controla y los vatios totales frente al límite del canal. Los mismos circuitos aparecen en la pestaña <b>Circuitos</b>, donde ajustas cable y protección, y en el archivo Excel en una hoja Iluminación.
+1378|Cómo solucionarlo
+1379|Problemas con este elemento
+1380|Ver cómo solucionarlo
+1381|Abrir en Cuadro
+1382|Abrir en Circuitos
+1383|Abrir Circuitos
+1384|Abrir Configuración
+1385|Abrir DALI

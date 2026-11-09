@@ -566,3 +566,11 @@
 1375|What each output controls
 1376|Assign lighting circuits
 1377|Open <b>Lighting</b> and press <b>Add lighting circuit</b>. Give each circuit a description, the <b>Area</b> it lights and its load in watts, then choose in <b>Controlled by</b> what drives it: a dimmer channel of a module in the panel, a DALI driver or relay added on the DALI tab, or another device you added as a custom device. The table below shows, for every dimmer channel, driver and device, which circuits it controls and the total watts against the channel limit. The same circuits appear in the <b>Circuits</b> tab, where you set their cable and protection, and in the Excel file on a Lighting sheet.
+1378|How to fix
+1379|Problems with this item
+1380|See how to fix
+1381|Open in Panel
+1382|Open in Circuits
+1383|Open Circuits
+1384|Open Setup
+1385|Open DALI

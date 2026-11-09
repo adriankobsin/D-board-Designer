@@ -301,7 +301,8 @@ function inspector(){
   const i = S.order.indexOf(d.key), movable = i >= 0, armed = delArm === d.key, deletable = movable || d.key === 'inc' || d.key === 'spd';
   const mvBtns = movable ? `<div class="row"><button class="btn sm" data-a="mv" data-d="-1" ${i === 0 ? 'disabled' : ''}>← Earlier</button><button class="btn sm" data-a="mv" data-d="1" ${i === S.order.length - 1 ? 'disabled' : ''}>Later →</button><button class="btn sm" data-a="mvrail" data-d="-1">↑ Rail up</button><button class="btn sm" data-a="mvrail" data-d="1">↓ Rail down</button></div>` : '';
   const delBtn = deletable ? `<div class="row" style="margin-top:4px">${armed ? `<button class="btn sm danger" data-a="del">Confirm delete</button><button class="btn sm" data-a="delcancel">Cancel</button>` : `<button class="btn sm" data-a="delarm">${delTxt}</button>`}</div>${armed && delNote ? `<p class="note" style="margin-top:6px">${delNote}</p>` : ''}` : '';
-  return `<div class="card insp"><h3>${esc(ttl)}</h3>${form}<dl>${dl}</dl><div class="row">${acts}</div>${movable ? '<p class="note" style="margin:10px 0 4px">Move</p>' : ''}${mvBtns}${delBtn}<div class="row" style="margin-top:10px"><button class="btn sm" data-a="desel">Close</button></div></div>`;
+  const issueRefs = d.cid ? [S.circuits.find(x => x.id === d.cid).ref] : (d.kind === 'feed' || d.kind === 'lutron') ? [d.mod] : d.kind === 'incomer' ? ['Incomer'] : d.kind === 'dali' ? [d.dali] : [];
+  return `<div class="card insp"><h3>${esc(ttl)}</h3>${issuesFor(issueRefs)}${form}<dl>${dl}</dl><div class="row">${acts}</div>${movable ? '<p class="note" style="margin:10px 0 4px">Move</p>' : ''}${mvBtns}${delBtn}<div class="row" style="margin-top:10px"><button class="btn sm" data-a="desel">Close</button></div></div>`;
 }
 function panelStats(){
   const P = R.power, three = S.phases === 3;
@@ -311,7 +312,7 @@ function panelStats(){
   return `<div class="stats pw"><span>Connected <b>${fmt(P.conn / 1000, 2)} kW</b></span><span>Demand <b>${fmt(P.dem / 1000, 2)} kW</b> at ${S.diversity} diversity</span>${dcm ? '' : `<span>Apparent <b>${fmt(P.kva / 1000, 2)} kVA</b>, PF <b>${fmt(P.pf, 2)}</b></span>`}<span>${ph}</span></div>
    <div class="stats" style="margin-top:8px"><span>Enclosure ≈ <b>${B.widthMm} × ${B.heightMm} mm</b></span><span>Rails <b>${B.rows}</b></span><span>Modules <b>${B.used}</b> used, <b>${B.free}</b> free</span>
     <span>Dissipation ≈ <b>${fmt(R.heatW, 0)} W</b></span><span>Incomer <b>${R.inc.In || '–'} A</b></span>
-    <span>Checks <b style="color:${nErr ? 'var(--bad)' : nW ? 'var(--warn)' : 'var(--ok)'}">${nErr} fail · ${nW} review</b></span></div>`;
+    <span>Checks <b style="color:${nErr ? 'var(--bad)' : nW ? 'var(--warn)' : 'var(--ok)'}">${nErr} fail · ${nW} review</b>${nErr || nW ? ` <button class="btn sm" data-a="tab" data-t="checks">${T('See how to fix')}</button>` : ''}</span></div>`;
 }
 function renderPanel(){
   return `<div class="card" id="pstats">${panelStats()}</div>
@@ -549,6 +550,91 @@ function renderEquipment(){
 }
 
 /* ---------- checks ---------- */
+/* Design checks: where each one points to and how to fix it */
+function checkTarget(ref){
+  ref = String(ref || '');
+  if (S.modules.some(m => m.id === ref)) return {tab: 'panel', sel: 'm:' + ref, label: 'Open in Panel'};
+  const c = S.circuits.find(x => x.ref === ref); if (c) return {tab: 'circuits', row: c.id, label: 'Open in Circuits'};
+  if (ref === 'Incomer') return {tab: 'panel', sel: 'inc', label: 'Open in Panel'};
+  if (ref === 'Balance') return {tab: 'circuits', label: 'Open Circuits'};
+  if (ref === 'Thermal' || ref === 'Earth fault' || ref === 'Breakers' || ref === 'Layout' || ref === 'Low voltage') return {tab: 'setup', label: 'Open Setup'};
+  try { if (ref === 'DALI' || dS().units.some(u => u.id === ref) || dLines().some(l => l.label === ref)) return {tab: 'dali', label: 'Open DALI'}; } catch (e) {}
+  return null;
+}
+function nextRating(list, fn){ return (list || []).find(fn); }
+function checkHelp(c){
+  const m = String(c.msg || ''), ref = String(c.ref || ''), num1 = re => { const x = m.match(re); return x ? +x[1] : NaN; };
+  const hit = (re, t) => re.test(m) ? t : null;
+  const cp = (a, b) => { let i = 0; while (i < a.length && a[i] === b[i]) i++; return i; };
+  let t = null;
+  if (/is rated .+; the system line-neutral voltage is (\d+) V/.test(m)){
+    const V = num1(/voltage is (\d+) V/), mod = S.modules.find(x => x.id === ref), lib = mod && libOf(mod.model), alts = lib && lib.vmin != null ? LIB.filter(l => l.fam === lib.fam && l.line === lib.line && l.zones === lib.zones && l.model !== lib.model && l.vmin != null && l.vmin <= V && V <= l.vmax).map(l => l.model).sort((a, b) => cp(b, lib.model) - cp(a, lib.model)) : [];
+    t = `This module is made for a different supply voltage. ${alts.length ? 'Use the ' + V + ' V version, ' + alts[0] + (alts.length > 1 ? ' (other options: ' + alts.slice(1, 3).join(', ') + ')' : '') + '. ' : 'Choose a version made for ' + V + ' V. '}In Panel click ${ref}, then change Model in the box on the right. If your supply really is ${lib ? lib.volt : 'that voltage'}, change the supply voltage in Setup instead.`;
+  }
+  else if (/derated to .* at .* C inside the enclosure, below the .* maximum phase current/.test(m)){
+    const inc = num1(/The (\d+) A incomer/), der = num1(/derated to ([\d.]+) A/), mx = num1(/below the ([\d.]+) A maximum/), ratio = der / inc, nx = nextRating(incRatings(S), r => r >= mx && r * ratio >= mx);
+    t = `The main breaker loses capacity because of the heat inside the enclosure. In Setup set Incomer rating override (A) to ${nx ? nx + ' A' : 'a larger size'}, or lower Inside-enclosure ambient (°C) if the real temperature is lower.`;
+  }
+  else t =
+    hit(/feed carries .* above its .* input rating/, 'The module is carrying more current than it is rated for. Move some circuits to another module: Circuits tab, then Fed from.') ||
+    hit(/allows .* C inside the enclosure/, 'The enclosure is hotter than this module allows. Lower Inside-enclosure ambient (°C) in Setup by ventilating or using a larger enclosure, or choose a module with a higher temperature rating.') ||
+    hit(/feed breaker .* is (below its load|derated)/, 'Choose a larger feed breaker: in Panel click this module and set Feed breaker to the next size up (or Auto).') ||
+    hit(/feed carries continuous lighting/, 'The standard asks for a breaker larger than the load. In Panel click this module and choose the next Feed breaker size up.') ||
+    hit(/feed cable carries .* below the/, 'The feed cable is too small for its breaker. In Panel click this module and set Feed breaker to Auto or a smaller size, or shorten the feed length.') ||
+    hit(/feed voltage drop is/, 'Shorten the feed length: in Panel click this module and lower Feed length m.') ||
+    hit(/feed current is above the largest breaker/, 'The load is too big for one feed. Split the circuits over two modules (Circuits tab, Fed from).') ||
+    hit(/Fault level .* above the .* breaking capacity/, 'Use breakers with a higher kA rating (Setup, MCB series or RCBO series), or correct the supply fault level in Setup if it is lower than entered.') ||
+    hit(/covers .* A; .* A is outside that range/, 'This breaker series does not offer that rating. Choose another series in Setup, or another rating.') ||
+    hit(/does not list a .* curve/, 'Choose a curve the series offers, in the Curve column of the Circuits tab, or another series in Setup.') ||
+    hit(/Design current exceeds the largest breaker/, 'The circuit is too big for one breaker. Split it into two circuits, or choose a series with larger ratings in Setup.') ||
+    hit(/Design current .* is above the .* A breaker/, 'The breaker is too small for the load. In the Circuits tab set In A to Auto or a larger rating, or reduce or split the load.') ||
+    hit(/derated to .* below the .* load\. Choose the next size up/, 'In the Circuits tab choose the next breaker size up in In A, or lower Inside-enclosure ambient (°C) in Setup.') ||
+    hit(/of a continuous load/, 'The standard asks for a breaker larger than this continuous load. In the Circuits tab choose a larger rating in In A.') ||
+    hit(/starting current/, 'In the Circuits tab change Curve to C or D.') ||
+    hit(/type AC only/, 'In Setup choose an RCBO series that offers type A.') ||
+    hit(/EV charger/, 'Check that the charger has 6 mA DC detection built in, or fit a type B RCD.') ||
+    hit(/Earth-fault loop impedance/, 'Use a larger cable (Size mm²), shorten the circuit, lower the breaker rating or protect it with an RCBO.') ||
+    hit(/Cable .* mm² carries .* below the/, 'The cable is too small for the breaker. In the Circuits tab set Size mm² to Auto or larger, shorten Length m, or lower the breaker rating.') ||
+    hit(/Voltage drop .* above the/, 'In the Circuits tab use a larger Size mm² or shorten Length m. The target is set in Setup.') ||
+    hit(/circuit has no RCBO/, 'In the Circuits tab set Device to RCBO for this circuit, or protect the group with an RCD.') ||
+    hit(/has no 3-phase version|is a 4P device and cannot/, 'Pick a different RCBO series in Setup, or use an MCB with a group RCD.') ||
+    hit(/has .* zones; zone .* does not exist/, 'In the Circuits tab set Fed from to a channel this module has.') ||
+    hit(/Zone current .* above the/, 'Move some of the load to another channel or module (Fed from), or reduce the load.') ||
+    hit(/Zone load .* above the/, 'Reduce Load W or move part of it to another dimmer channel (Circuits tab, Fed from).') ||
+    hit(/does not switch loads/, 'In the Circuits tab set Fed from to Direct breaker or to a module that switches loads.') ||
+    hit(/is shared with/, 'Give each circuit its own channel in the Circuits tab (Fed from), unless they really are one load.') ||
+    hit(/IEC 60898 .* device/, 'Choose a breaker series rated for this supply voltage in Setup.') ||
+    hit(/Enter the supply loop impedance Ze/, 'Open Setup and enter Ze, the supply earth-loop impedance.') ||
+    hit(/not listed as DC rated/, 'Choose a DC-rated series in Setup, or Generic and specify a DC-rated device.') ||
+    hit(/No DC series chosen/, 'Choose a DC series in Setup if you know the breaker you will fit.') ||
+    hit(/above the largest incomer rating/, 'The load is too big for one incomer. Reduce the load or diversity, or split the board.') ||
+    hit(/Maximum phase current .* above the .* A incomer/, 'In Setup set Incomer rating override (A) to a larger size, or Auto.') ||
+    hit(/sizes the main at/, 'In Setup set Incomer rating override (A) to a larger size.') ||
+    hit(/Incomer cable .* below/, 'In Setup choose XLPE for the incomer cable or shorten Incomer cable length (m); set Incomer rating override to Auto.') ||
+    hit(/Incomer voltage drop/, 'Shorten Incomer cable length (m) in Setup.') ||
+    hit(/Phase imbalance/, 'Press Auto-balance phases on this tab, or move circuits to the lighter phase.') ||
+    hit(/Estimated dissipation/, 'Use a larger or ventilated enclosure, or enter its real heat rating in Setup.') ||
+    hit(/need zone derating/, 'Keep room temperature below 30 °C or lower the zone loads. See Lutron App Note #466.') ||
+    hit(/150 mm between DIN rails/, 'Leave that space between rails when you build the enclosure.') ||
+    hit(/no DALI master or gateway/, 'Add a DALI master or gateway: Equipment tab, DALI equipment library, or place a Lutron, Crestron or MDT DALI controller in the panel.') ||
+    hit(/DALI addresses are used/, 'Move some devices to another DALI line (DALI tab, DALI modules, DALI link), or add a master.') ||
+    hit(/No bus power supply/, 'Add a DALI bus power supply (Equipment tab, DALI library) and link it to this line on the DALI tab.') ||
+    hit(/Devices draw .* mA but/, 'Add a bigger bus power supply or move devices to another line (DALI tab).') ||
+    hit(/Bus load is .* % of/, 'Add a bus power supply or move devices to another line to keep some margin.') ||
+    hit(/bus power supplies are linked/, 'Remove the extra supply or link it to another line (DALI tab).') ||
+    hit(/not connected to a line/, 'On the DALI tab, DALI modules, choose a DALI link for each of these devices.');
+  return t || '';
+}
+function checkGo(ref){ const g = checkTarget(ref); return g ? `<button class="btn sm" data-a="chkgo" data-ref="${esc(String(ref))}">${T(g.label)}</button>` : ''; }
+function checkItem(c){
+  const how = checkHelp(c), lv = {err: 'Fail', warn: 'Review', info: 'Note'};
+  return `<li class="chk ${c.lvl}"><span class="lvl ${c.lvl}">${T(lv[c.lvl])}</span><span class="mono">${esc(c.ref)}</span><span>${esc(c.msg)}${how ? `<span class="how"><b>${T('How to fix')}:</b> ${esc(how)}</span>` : ''}${c.lvl !== 'info' ? `<span class="how">${checkGo(c.ref)}</span>` : ''}</span></li>`;
+}
+function issuesFor(refs){
+  const set = new Set(refs.map(String)), l = R.checks.filter(c => set.has(String(c.ref)) && c.lvl !== 'info');
+  if (!l.length) return '';
+  return `<div class="issues"><b>${T('Problems with this item')}</b><ul class="checks">${l.map(c => `<li class="chk ${c.lvl}"><span class="lvl ${c.lvl}">${T(c.lvl === 'err' ? 'Fail' : 'Review')}</span><span>${esc(c.msg)}${checkHelp(c) ? `<span class="how"><b>${T('How to fix')}:</b> ${esc(checkHelp(c))}</span>` : ''}</span></li>`).join('')}</ul></div>`;
+}
 function renderChecks(){
   const act = S.phases === 3 ? ['L1', 'L2', 'L3'] : ['L1'], mx = Math.max(R.inc.Imax, 1);
   const bars = act.map(p => `<div class="bar-r"><span class="mono">${busLab(p)}</span><div class="bar-t"><div class="bar-f" style="width:${R.ph[p] / mx * 100}%;background:${PHV[p]}"></div></div><span class="mono">${fmt(R.ph[p], 1)} A · ${fmt(R.power.phW[p] / 1000, 2)} kW</span></div>`).join('');
@@ -558,7 +644,7 @@ function renderChecks(){
   return `<div class="card"><h2>Phase balance and incomer</h2><div class="bars" style="margin-top:12px">${bars}</div>
    <div class="stats" style="margin-top:14px"><span>Connected load <b>${fmt(R.power.conn / 1000, 2)} kW</b></span><span>Demand <b>${fmt(R.power.dem / 1000, 2)} kW</b></span>${isDC(S) ? '' : `<span>Apparent <b>${fmt(R.power.kva / 1000, 2)} kVA</b></span><span>PF <b>${fmt(R.power.pf, 2)}</b></span>`}<span>Diversity <b>${S.diversity}</b></span><span>Max phase <b>${fmt(R.inc.Imax, 1)} A</b></span><span>Imbalance <b>${fmt(R.inc.imb, 0)} %</b></span><span>Incomer <b>${R.inc.In || '–'} A</b>, cable <b>${R.inc.cab.size} mm²</b></span><span>Worst end-to-end drop <b>${fmt(R.worstVd, 2)} %</b></span><span>Heat in enclosure ≈ <b>${fmt(R.heatW, 0)} W</b></span></div>
    ${S.phases === 3 ? '<div class="row" style="margin-top:12px"><button class="btn" data-a="bal">Auto-balance phases</button></div>' : ''}</div>
-  <div class="card"><h2>Design checks</h2>${items.length ? `<ul class="checks" style="margin-top:12px">${items.map(c => `<li><span class="lvl ${c.lvl}">${lv[c.lvl]}</span><span class="mono">${esc(c.ref)}</span><span>${esc(c.msg)}</span></li>`).join('')}</ul>` : '<p class="muted" style="margin-top:8px">All checks pass for the current board.</p>'}
+  <div class="card"><h2>Design checks</h2>${items.length ? `<ul class="checks" style="margin-top:12px">${items.map(checkItem).join('')}</ul>` : '<p class="muted" style="margin-top:8px">All checks pass for the current board.</p>'}
    <p class="note" style="margin-top:12px">Checks cover design current against breaker and cable rating (with enclosure temperature and the NEC continuous-load rule), voltage drop, RCD expectation, breaking capacity, device rating against the standard and supply voltage, earth-fault loop impedance when Ze is entered, Lutron input, zone and temperature limits. Discrimination and selectivity are not calculated here.</p></div>`;
 }
 
@@ -1148,6 +1234,7 @@ document.addEventListener('click', e => {
   const a = b.dataset.a;
   if (a === 'tab'){ tab = b.dataset.t; draw(); renderTabs(); return; }
   if (a === 'addl'){ addLight(); refresh(true); }
+  else if (a === 'chkgo'){ const g = checkTarget(b.dataset.ref); if (!g) return; tab = g.tab; if (g.sel) sel = g.sel; refresh(true); if (g.row){ const row = $(`[data-row="${g.row}"]`); if (row){ row.scrollIntoView({block: 'center'}); row.style.outline = '2px solid var(--accent)'; } } if (g.sel && window.innerWidth < 980){ const ins = $('#insp'); if (ins) ins.scrollIntoView({block: 'nearest', behavior: 'smooth'}); } }
   else if (a === 'addl'){ addLight(); refresh(true); }
   else if (a === 'addc'){ addCircuit(); if (tab === 'panel') sel = 'c:' + S.circuits[S.circuits.length - 1].id; refresh(true); }
   else if (a === 'zoomP'){ fitP = !fitP; softPanel(false); }

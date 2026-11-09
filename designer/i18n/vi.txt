@@ -1375,3 +1375,11 @@
 1375|Mỗi đầu ra điều khiển gì
 1376|Gán mạch chiếu sáng
 1377|Mở <b>Chiếu sáng</b> và nhấn <b>Thêm mạch chiếu sáng</b>. Đặt mô tả cho từng mạch, <b>Khu vực</b> nó chiếu sáng và công suất tính bằng watt, rồi chọn trong <b>Điều khiển bởi</b> thứ điều khiển nó: một kênh dimmer của module trong tủ, một driver hoặc rơ-le DALI đã thêm ở tab DALI, hoặc thiết bị khác đã thêm làm thiết bị tùy chỉnh. Bảng bên dưới cho biết với mỗi kênh dimmer, driver và thiết bị, nó điều khiển những mạch nào và tổng watt so với giới hạn của kênh. Các mạch này cũng xuất hiện trong tab <b>Mạch</b>, nơi bạn đặt cáp và bảo vệ, và trong tệp Excel ở một trang Chiếu sáng.
+1378|Cách khắc phục
+1379|Vấn đề với mục này
+1380|Xem cách khắc phục
+1381|Mở trong Tủ điện
+1382|Mở trong Mạch
+1383|Mở Mạch
+1384|Mở Thiết lập
+1385|Mở DALI

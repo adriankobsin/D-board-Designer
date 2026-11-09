@@ -1375,3 +1375,11 @@
 1375|O que cada saída controla
 1376|Atribuir circuitos de iluminação
 1377|Abra <b>Iluminação</b> e prima <b>Adicionar circuito de iluminação</b>. Dê a cada circuito uma descrição, a <b>Área</b> que ilumina e a carga em watts; depois escolha em <b>Controlado por</b> o que o comanda: um canal de dimmer de um módulo no quadro, um driver ou relé DALI adicionado no separador DALI ou outro dispositivo adicionado como dispositivo personalizado. A tabela abaixo mostra, para cada canal de dimmer, driver e dispositivo, que circuitos controla e o total de watts face ao limite do canal. Os mesmos circuitos aparecem no separador <b>Circuitos</b>, onde define cabo e proteção, e no ficheiro Excel numa folha Iluminação.
+1378|Como corrigir
+1379|Problemas com este item
+1380|Ver como corrigir
+1381|Abrir no Quadro
+1382|Abrir em Circuitos
+1383|Abrir Circuitos
+1384|Abrir Configuração
+1385|Abrir DALI

@@ -1375,3 +1375,11 @@
 1375|Apa yang dikontrol setiap keluaran
 1376|Tetapkan sirkuit pencahayaan
 1377|Buka <b>Pencahayaan</b> dan tekan <b>Tambah sirkuit pencahayaan</b>. Beri setiap sirkuit deskripsi, <b>Area</b> yang diterangi, dan beban dalam watt, lalu pilih di <b>Dikontrol oleh</b> apa yang menggerakkannya: kanal dimmer dari modul di panel, driver atau relai DALI yang ditambahkan di tab DALI, atau perangkat lain yang ditambahkan sebagai perangkat khusus. Tabel di bawah menunjukkan, untuk setiap kanal dimmer, driver, dan perangkat, sirkuit apa yang dikontrolnya dan total watt terhadap batas kanal. Sirkuit yang sama muncul di tab <b>Sirkuit</b>, tempat Anda mengatur kabel dan proteksi, dan di file Excel pada lembar Pencahayaan.
+1378|Cara memperbaiki
+1379|Masalah pada item ini
+1380|Lihat cara memperbaiki
+1381|Buka di Panel
+1382|Buka di Sirkuit
+1383|Buka Sirkuit
+1384|Buka Pengaturan
+1385|Buka DALI

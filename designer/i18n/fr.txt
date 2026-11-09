@@ -1375,3 +1375,11 @@
 1375|Ce que commande chaque sortie
 1376|Affecter les circuits d'éclairage
 1377|Ouvrez <b>Éclairage</b> et appuyez sur <b>Ajouter un circuit d'éclairage</b>. Donnez à chaque circuit une description, la <b>Zone</b> qu'il éclaire et sa charge en watts, puis choisissez dans <b>Commandé par</b> ce qui le pilote : un canal de variateur d'un module du tableau, un driver ou relais DALI ajouté dans l'onglet DALI, ou un autre appareil ajouté comme appareil personnalisé. Le tableau ci-dessous indique, pour chaque canal de variateur, driver et appareil, les circuits qu'il commande et le total en watts par rapport à la limite du canal. Les mêmes circuits figurent dans l'onglet <b>Circuits</b>, où vous réglez câble et protection, et dans le fichier Excel sur une feuille Éclairage.
+1378|Comment corriger
+1379|Problèmes avec cet élément
+1380|Voir comment corriger
+1381|Ouvrir dans Tableau
+1382|Ouvrir dans Circuits
+1383|Ouvrir Circuits
+1384|Ouvrir Configuration
+1385|Ouvrir DALI

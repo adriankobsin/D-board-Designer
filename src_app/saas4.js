@@ -177,5 +177,6 @@ async function saSignOut(){
   SA.userSignedOut = true; saCloseProject();
   try { await SA.sb.auth.signOut(); } catch (e) {}
   try { localStorage.removeItem('dbd_user'); sessionStorage.removeItem('dbd_login_logged'); } catch (e) {}
+  try { window.hcReset && window.hcReset(); } catch (e) {}
   SA.session = null; SA.user = null; SA.profile = null; SA.authMode = 'login'; saNoSession();
 }

@@ -394,7 +394,7 @@ async function api(request, env, url) {
 function secure(response, env, pathname = '') {
   const h = new Headers(response.headers);
   const supa = supaOrigin(env);
-  const connect = ["'self'", supa, supa.replace(/^http/, 'ws')].filter(Boolean).join(' ');   // https -> wss (live notifications)
+  const connect = ["'self'", supa, supa.replace(/^http/, 'ws'), 'https://in.heycatch.ai', 'https://esm.sh'].filter(Boolean).join(' ');   // https -> wss (live notifications)
   h.set('X-Content-Type-Options', 'nosniff');
   h.set('Referrer-Policy', 'strict-origin-when-cross-origin');
   const call = pathname === '/call.html' || pathname === '/call';
@@ -408,7 +408,7 @@ function secure(response, env, pathname = '') {
   } else if ((h.get('Content-Type') || '').includes('text/html')) {
     h.set('Content-Security-Policy', [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline'",
+      "script-src 'self' 'unsafe-inline' https://esm.sh https://in.heycatch.ai",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com",
       `img-src 'self' data: blob: ${supa}`.trim(),

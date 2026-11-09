@@ -16,3 +16,13 @@
   <main id="view"></main>
   <p class="note" style="margin-top:24px;max-width:80ch">DBoard Designer is a design aid. Cable ratings, voltage-drop limits and Lutron data are indicative; check them against the current edition of your standard, the manufacturer's submittal and a qualified engineer before building.</p>
 </div>
+<script>window.hcWho=function(u,p){(window.__hcQ=window.__hcQ||[]).push(['w',u,p])};window.hcReset=function(){(window.__hcQ=window.__hcQ||[]).push(['r'])};</script>
+<script type="module">
+import { analytics } from 'https://esm.sh/@heycatch/sdk@0.8.5';
+analytics.init({ projectKey: 'hck_pk_sM2oLfy39cihCZlwrGywhm6jcXhJQvoR', install: { framework: 'web', agent: 'claude-code' } });
+const run = (a) => { try {
+  if (a[0] === 'w'){ const u = a[1] || {}, p = a[2] || {}; analytics.setIdentity(u.id, { email: u.email, name: ((p.first_name || '') + ' ' + (p.last_name || '')).trim() || undefined, plan: p.plan || undefined }, u.created_at ? { signup_date: u.created_at } : undefined); }
+  else analytics.resetIdentity();
+} catch (e) {} };
+(window.__hcQ || []).forEach(run); window.__hcQ = []; window.hcWho = (u, p) => run(['w', u, p]); window.hcReset = () => run(['r']);
+</script>

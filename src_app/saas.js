@@ -168,6 +168,7 @@ async function saSession(s, why){
   if (SA.profile && SA.profile.status === 'suspended'){ saGo('suspended'); saMenu(); return; }
   try { localStorage.setItem('dbd_user', JSON.stringify({user: {id: SA.user.id, email: SA.user.email}, profile: SA.profile})); } catch (e) {}
   try { saNotifLoad(); } catch (e) {}
+  try { window.hcWho && window.hcWho(SA.user, SA.profile); } catch (e) {}
   if (why === 'signin' || why === 'restore'){
     try { if (!sessionStorage.getItem('dbd_login_logged')){ sessionStorage.setItem('dbd_login_logged', '1'); saTrack('login'); } } catch (e) {}
     SA.sb.rpc('touch_last_seen').then(() => {}, () => {});
@@ -724,6 +725,7 @@ async function saSignOut(){
   SA.userSignedOut = true; saCloseProject();
   try { await SA.sb.auth.signOut(); } catch (e) {}
   try { localStorage.removeItem('dbd_user'); sessionStorage.removeItem('dbd_login_logged'); } catch (e) {}
+  try { window.hcReset && window.hcReset(); } catch (e) {}
   SA.session = null; SA.user = null; SA.profile = null; SA.authMode = 'login'; saNoSession();
 }
 /* ---------- community: private and group chats, project sharing, notifications ---------- */

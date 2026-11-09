@@ -1383,3 +1383,5 @@
 1383|Deschide Circuite
 1384|Deschide Configurare
 1385|Deschide DALI
+1386|Program iluminat
+1387|Program iluminat (zona și ce controlează fiecare circuit)

@@ -1383,3 +1383,5 @@
 1383|Open Circuits
 1384|Open Setup
 1385|Open DALI
+1386|Lighting schedule
+1387|Lighting schedule (area and what controls each circuit)

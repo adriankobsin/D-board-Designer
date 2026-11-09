@@ -1383,3 +1383,5 @@
 1383|Ouvrir Circuits
 1384|Ouvrir Configuration
 1385|Ouvrir DALI
+1386|Tableau d'éclairage
+1387|Tableau d'éclairage (zone et commande de chaque circuit)

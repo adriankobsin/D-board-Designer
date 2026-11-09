@@ -392,10 +392,16 @@ function fedOptions(c){
   return `<option value="" ${!c.mod && !c.ctl ? 'selected' : ''}>${T('Direct breaker')}</option>${mods ? `<optgroup label="${esc(T('Dimmer channels in the panel'))}">${mods}</optgroup>` : ''}${grp('DALI', 'DALI drivers and relays')}${grp('Device', 'Other devices')}`;
 }
 function loadsOf(key){ return S.circuits.filter(c => c.ctl === key); }
-function lightSummary(){
+function lightSub(c){ const a = (c.area || '').trim(), by = (c.mod || c.ctl) ? ctlLabel(c) : ''; return [a ? 'Area: ' + a : '', by ? (c.mod ? '' : 'Ctrl: ') + by : ''].filter(Boolean).join(' | '); }
+function subSvg(c, y, x){ const t = lightSub(c); return t ? `<text class="ink2" x="${x}" y="${y + 17}" font-size="9.5">${esc(clip(t, 56))}</text>` : ''; }
+function lightRows(){
   const rows = [];
   S.modules.forEach(m => { const lib = libOf(m.model) || {}; if (!lib.power) return; for (let z = 1; z <= lib.zones; z++){ const cs = S.circuits.filter(c => c.mod === m.id && c.zone === z); if (cs.length){ const W = cs.reduce((a, c) => a + num(c.P, 0), 0), lim = Array.isArray(lib.zoneW) ? lib.zoneW[z - 1] : null; rows.push({dev: `${m.id}${m.name ? ' ' + m.name : ''}`, out: `${T('channel')} ${z}`, area: m.area || '', cs, W, lim}); } } });
   ctlTargets().forEach(t => { const cs = S.circuits.filter(c => c.ctl === t.v); if (cs.length) rows.push({dev: `${t.id}${t.name ? ' ' + t.name : ''}`, out: t.model || '', area: t.area || '', cs, W: cs.reduce((a, c) => a + num(c.P, 0), 0), lim: null}); });
+  return rows;
+}
+function lightSummary(){
+  const rows = lightRows();
   if (!rows.length) return `<p class="muted" style="padding:12px 0">${T('No lighting circuit is assigned to a dimmer channel, DALI driver or device yet.')}</p>`;
   return `<div class="scroll"><table class="stack" style="min-width:640px"><thead><tr><th>${T('Device')}</th><th>${T('Output')}</th><th>${T('Area controlled')}</th><th>${T('Circuits')}</th><th>${T('Total W')}</th><th>${T('Limit W')}</th></tr></thead><tbody>${rows.map(r => `<tr><td><b>${esc(r.dev)}</b></td><td>${esc(r.out)}</td><td>${esc(r.area)}</td><td>${esc(r.cs.map(c => c.ref + ' ' + c.name).join(', '))}</td><td>${r.W}</td><td>${r.lim ? (r.W > r.lim ? `<span class="tag bad">${r.lim} · ${T('over')}</span>` : r.lim) : '–'}</td></tr>`).join('')}</tbody></table></div>`;
 }
@@ -727,7 +733,7 @@ function renderDiagram(){
     if (o.t === 'z'){
       const r = R.c[o.c.id], col = PHV[r.ph], sc = stCol[statusOf(o.c.ref)];
       g += `<line x1="150" y1="${y - 5}" x2="176" y2="${y - 5}" stroke="${col}" stroke-width="2"/><line x1="158" y1="${y + 7}" x2="196" y2="${y + 7}" stroke="${NC}" stroke-width="2"/><circle cx="158" cy="${y + 7}" r="2.6" fill="${NC}"/><rect x="176" y="${y - 14}" width="28" height="16" rx="3" fill="var(--surface)" stroke="var(--ink-2)"/><text class="ink2" x="190" y="${y - 2}" text-anchor="middle" font-size="10">Z${o.c.zone}</text>
-       <text class="ink" x="${colX.name}" y="${y + 4}" font-size="11"><tspan font-weight="600">${esc(o.c.ref)}</tspan> ${esc(clip(o.c.name, 30))}</text><text class="ink2" x="${colX.prot}" y="${y + 4}" font-size="11">via ${o.m.id} (${R.m[o.m.id].In || '–'} A) · L + N</text><text class="ink2" x="${colX.cab}" y="${y + 4}" font-size="11">${cabTxt(r.cab, false, o.c.cable)} · ${o.c.len} m</text>
+       <text class="ink" x="${colX.name}" y="${y + 4}" font-size="11"><tspan font-weight="600">${esc(o.c.ref)}</tspan> ${esc(clip(o.c.name, 30))}</text>${subSvg(o.c, y, colX.name)}<text class="ink2" x="${colX.prot}" y="${y + 4}" font-size="11">via ${o.m.id} (${R.m[o.m.id].In || '–'} A) · L + N</text><text class="ink2" x="${colX.cab}" y="${y + 4}" font-size="11">${cabTxt(r.cab, false, o.c.cable)} · ${o.c.len} m</text>
        ${loadSym(o.c.type, 884, y)}${loadBar(colX.load, y, r.Ib, R.m[o.m.id].In)}<text class="ink2" x="${colX.load + 62}" y="${y + 4}" font-size="11">${o.c.P} W · ${fmt(r.Ib, 1)} A</text><text fill="${r.vdTot > r.lim ? 'var(--bad)' : 'var(--ink-2)'}" font-weight="${r.vdTot > r.lim ? 700 : 400}" x="${colX.vd}" y="${y + 4}" font-size="11">${fmt(r.vdTot, 1)}%</text><circle cx="${colX.st}" cy="${y}" r="5" fill="${sc}"/>`;
     } else if (o.t === 'f'){
       const r = R.m[o.m.id], col = PHV[r.ph], sc = stCol[statusOf(o.m.id)], n = S.circuits.filter(c => c.mod === o.m.id).length;
@@ -740,7 +746,7 @@ function renderDiagram(){
       const lives = r.thr ? [{p:'L1', y: y - 21}, {p:'L2', y: y - 11}, {p:'L3', y: y - 1}] : [{p: r.ph, y: y - 5}];
       const yN = r.thr ? y + 11 : y + 7;
       g += conductors(lives, yN, r.thr, {n: rcd || dp || r.thr && rcd}, rcd);
-      g += `${chip(XE + 6, c.ref, col)}<text class="ink" x="${colX.name + 0}" y="${y + 4}" font-size="11">${esc(clip(c.name, 32))}</text><text class="ink2" x="${colX.prot}" y="${y + 4}" font-size="11">${c.prot} ${r.curve === 'Std' ? '' : r.curve}${r.In} A${rcd ? ' ' + (r.rcdMA || '30 mA') : ''} · ${isDC(S) ? '+ / −' : (r.thr ? 'L1L2L3' : r.ph) + '+N'}</text><text class="ink2" x="${colX.cab}" y="${y + 4}" font-size="11">${cabTxt(r.cab, r.thr, c.cable)} · ${c.len} m</text>
+      g += `${chip(XE + 6, c.ref, col)}<text class="ink" x="${colX.name + 0}" y="${y + 4}" font-size="11">${esc(clip(c.name, 32))}</text>${subSvg(c, y, colX.name)}<text class="ink2" x="${colX.prot}" y="${y + 4}" font-size="11">${c.prot} ${r.curve === 'Std' ? '' : r.curve}${r.In} A${rcd ? ' ' + (r.rcdMA || '30 mA') : ''} · ${isDC(S) ? '+ / −' : (r.thr ? 'L1L2L3' : r.ph) + '+N'}</text><text class="ink2" x="${colX.cab}" y="${y + 4}" font-size="11">${cabTxt(r.cab, r.thr, c.cable)} · ${c.len} m</text>
        ${loadSym(c.type, 884, y)}${loadBar(colX.load, y, r.Ib, r.In)}<text class="ink2" x="${colX.load + 62}" y="${y + 4}" font-size="11">${c.P} W · ${fmt(r.Ib, 1)} A</text><text fill="${r.vdTot > r.lim ? 'var(--bad)' : 'var(--ink-2)'}" font-weight="${r.vdTot > r.lim ? 700 : 400}" x="${colX.vd}" y="${y + 4}" font-size="11">${fmt(r.vdTot, 1)}%</text><circle cx="${colX.st}" cy="${y}" r="5" fill="${sc}"/>`;
     }
   });
@@ -762,10 +768,10 @@ function schedRows(){
   return S.circuits.map(c => {
     const r = R.c[c.id], m = c.mod;
     return [c.ref, c.name, T(TYPES[c.type].l), m ? T(`${m} zone ${c.zone}`) : c.ctl ? ctlLabel(c) : T('Direct'), r.thr ? 'L1L2L3' : r.ph, +num(c.P, 0), +r.pf.toFixed(2), +num(c.dem, 1), +r.Ib.toFixed(2),
-      m ? T(`Via ${m} feed`) : `${c.prot} ${r.curve === 'Std' ? '' : r.curve}${r.In}${c.prot === 'RCBO' ? ' ' + (r.rcdMA || '30 mA').replace(' mA', 'mA') : ''}`.replace('  ', ' '), r.In || '', `${r.thr ? 4 : 3}x${r.cab.size} mm2 ${c.cable === 'xlpe' ? 'XLPE' : 'PVC'}`, +num(c.len, 0), +r.cab.Iz.toFixed(1), +r.vdTot.toFixed(2), T(stLabel[statusOf(c.ref)])];
+      m ? T(`Via ${m} feed`) : `${c.prot} ${r.curve === 'Std' ? '' : r.curve}${r.In}${c.prot === 'RCBO' ? ' ' + (r.rcdMA || '30 mA').replace(' mA', 'mA') : ''}`.replace('  ', ' '), r.In || '', `${r.thr ? 4 : 3}x${r.cab.size} mm2 ${c.cable === 'xlpe' ? 'XLPE' : 'PVC'}`, +num(c.len, 0), +r.cab.Iz.toFixed(1), +r.vdTot.toFixed(2), T(stLabel[statusOf(c.ref)]), c.area || '', m || c.ctl ? ctlLabel(c) : ''];
   });
 }
-const SCHED_HEAD = ['Ref', 'Description', 'Type', 'Fed from', 'Phase', 'Load W', 'PF', 'Demand', 'Ib A', 'Protection', 'In A', 'Cable', 'Length m', 'Cable rating A', 'VD %', 'Status'];
+const SCHED_HEAD = ['Ref', 'Description', 'Type', 'Fed from', 'Phase', 'Load W', 'PF', 'Demand', 'Ib A', 'Protection', 'In A', 'Cable', 'Length m', 'Cable rating A', 'VD %', 'Status', 'Area', 'Controlled by'];
 function bomRows(){
   const map = {}, add = (k, d, q = 1) => { map[k] = map[k] || {d, q: 0}; map[k].q += q; };
   const sn = ser => ser ? ser.mfr + ' ' + ser.series + ' ' : '';
@@ -808,7 +814,7 @@ function exportXLSX(){
   const wb = XLSX.utils.book_new();
   const sheetName = s => T(s).replace(/[\[\]:*?\/\\]/g, ' ').slice(0, 31);
   const mk = (rows, widths) => { const ws = XLSX.utils.aoa_to_sheet(rows); ws['!cols'] = widths.map(w => ({wch: w})); return ws; };
-  XLSX.utils.book_append_sheet(wb, mk([SCHED_HEAD.map(h => T(h))].concat(schedRows()), [6, 28, 16, 14, 8, 9, 6, 8, 8, 18, 6, 20, 9, 12, 7, 8]), sheetName('Schedule'));
+  XLSX.utils.book_append_sheet(wb, mk([SCHED_HEAD.map(h => T(h))].concat(schedRows()), [6, 28, 16, 14, 8, 9, 6, 8, 8, 18, 6, 20, 9, 12, 7, 8, 22, 22]), sheetName('Schedule'));
   XLSX.utils.book_append_sheet(wb, mk([['Ref', 'Description', 'Area', 'Load W', 'Controlled by', 'Phase'].map(h => T(h))].concat(S.circuits.filter(c => c.type === 'lighting' || c.ctl || c.mod).map(c => [c.ref, c.name, c.area || '', +num(c.P, 0), c.mod || c.ctl ? ctlLabel(c) : T('Direct breaker'), R.c[c.id].thr ? 'L1L2L3' : R.c[c.id].ph])), [6, 30, 28, 9, 32, 8]), sheetName('Lighting'));
   const eq = [['Ref', 'Model', 'Family', 'Feed phase', 'Feed A', 'Feed breaker A', 'Feed cable mm2', 'Modules (18 mm)', 'Heat BTU/h', 'Name / location', 'Area controlled'].map(h => T(h))].concat(S.modules.map(m => { const r = R.m[m.id]; return [m.id, m.model, r.lib.fam, r.ph, +r.Ib.toFixed(2), r.In, r.cab.size, r.lib.din, r.lib.btu, m.name || '', m.area || '']; }));
   XLSX.utils.book_append_sheet(wb, mk(eq, [6, 20, 24, 10, 8, 14, 14, 14, 11, 24, 32]), sheetName('DIN modules'));
@@ -892,7 +898,7 @@ function pdfDiagram(doc, logo, PW, ML){
         if (neutralSw){ const t = lives[0].y - 3.4, b = yN + 1.6; doc.setDrawColor(...(rcd ? PHRGB.N : [110, 120, 130])); doc.setLineWidth(.25); doc.setLineDashPattern(rcd ? [] : [.8, .6], 0); doc.rect(X(112) - 4.2, t, 8.4, b - t); doc.setLineDashPattern([], 0); sym(X(112) - 1.6, yN, PHRGB.N); }
         if (rcd) txt('Δ', X(112) + 4.6, (lives[0].y + yN) / 2 + 1, 6, true, PHRGB.N);
       };
-      const colsTxt = (name, prot, cab, load, vd, ib, inn, ref, lt) => { if (lt) pdfLoadSym(doc, lt, X(884), yc); txt(name, X(222), yc + 1, 6.5); txt(prot, X(520), yc + 1, 6.5, false, [80, 88, 96]); txt(cab, X(700), yc + 1, 6.5, false, [80, 88, 96]);
+      const colsTxt = (name, prot, cab, load, vd, ib, inn, ref, lt, sub) => { if (lt) pdfLoadSym(doc, lt, X(884), yc); txt(name, X(222), yc + 1, 6.5); if (sub) txt(clip(sub, 62), X(222), yc + 3.9, 5, false, [110, 118, 126]); txt(prot, X(520), yc + 1, 6.5, false, [80, 88, 96]); txt(cab, X(700), yc + 1, 6.5, false, [80, 88, 96]);
         doc.setFillColor(226, 231, 236); doc.rect(X(905), yc - .8, 54 * k, 1.6, 'F'); const f = inn ? Math.min(1, ib / inn) : 0; doc.setFillColor(...(f > .9 ? [154, 106, 18] : [11, 107, 142])); doc.rect(X(905), yc - .8, 54 * k * f, 1.6, 'F');
         txt(load, X(905) + 54 * k + 1.5, yc + 1, 6.5, false, [80, 88, 96]); txt(vd, X(1075), yc + 1, 6.5, false, [80, 88, 96]); dot(ref); };
       if (o.t === 'z'){
@@ -901,7 +907,7 @@ function pdfDiagram(doc, logo, PW, ML){
         if (next) { doc.setLineDashPattern([.6, .6], 0); line(X(150), yy, X(150), yy + h, c, .4); line(X(158), yy, X(158), yy + h, PHRGB.N, .4); doc.setLineDashPattern([], 0); }
         else { doc.setLineDashPattern([.6, .6], 0); line(X(150), yy, X(150), yc - 2.3, c, .4); line(X(158), yy, X(158), yc + 2.3, PHRGB.N, .4); doc.setLineDashPattern([], 0); }
         doc.setDrawColor(90); doc.setLineWidth(.25); doc.rect(X(176), yc - 3.8, 28 * k, 3.4); txt('Z' + o.c.zone, X(180), yc - 1.2, 5.5);
-        colsTxt(`${o.c.ref} ${clip(o.c.name, 30)}`, `via ${o.m.id} (${R.m[o.m.id].In || '-'} A) L+N`, `${cabTxt(r.cab, false, o.c.cable)} ${o.c.len} m`, `${o.c.P} W ${fmt(r.Ib, 1)} A`, fmt(r.vdTot, 1) + '%', r.Ib, R.m[o.m.id].In, o.c.ref, o.c.type);
+        colsTxt(`${o.c.ref} ${clip(o.c.name, 30)}`, `via ${o.m.id} (${R.m[o.m.id].In || '-'} A) L+N`, `${cabTxt(r.cab, false, o.c.cable)} ${o.c.len} m`, `${o.c.P} W ${fmt(r.Ib, 1)} A`, fmt(r.vdTot, 1) + '%', r.Ib, R.m[o.m.id].In, o.c.ref, o.c.type, lightSub(o.c));
       } else if (o.t === 'f'){
         const r = R.m[o.m.id];
         cond([{p: r.ph, y: yc - 2.2}], yc + 2.2, dp, false);
@@ -915,7 +921,7 @@ function pdfDiagram(doc, logo, PW, ML){
         const lives = r.thr ? [{p: 'L1', y: yc - 4.6}, {p: 'L2', y: yc - 2.4}, {p: 'L3', y: yc - .2}] : [{p: r.ph, y: yc - 2.2}];
         cond(lives, r.thr ? yc + 2.6 : yc + 2.2, rcd || dp, rcd);
         doc.setDrawColor(...cc); doc.setLineWidth(.3); doc.rect(X(166), yc - 2, 9, 4); txt(clip(c.ref, 5), X(166) + 1.1, yc + .8, 6, true);
-        colsTxt(clip(c.name, 32), `${c.prot} ${r.curve === 'Std' ? '' : r.curve}${r.In} A${rcd ? ' ' + (r.rcdMA || '30 mA') : ''} ${isDC(S) ? '+/-' : (r.thr ? 'L1L2L3' : r.ph) + '+N'}`, `${cabTxt(r.cab, r.thr, c.cable)} ${c.len} m`, `${c.P} W ${fmt(r.Ib, 1)} A`, fmt(r.vdTot, 1) + '%', r.Ib, r.In, c.ref, c.type);
+        colsTxt(clip(c.name, 32), `${c.prot} ${r.curve === 'Std' ? '' : r.curve}${r.In} A${rcd ? ' ' + (r.rcdMA || '30 mA') : ''} ${isDC(S) ? '+/-' : (r.thr ? 'L1L2L3' : r.ph) + '+N'}`, `${cabTxt(r.cab, r.thr, c.cable)} ${c.len} m`, `${c.P} W ${fmt(r.Ib, 1)} A`, fmt(r.vdTot, 1) + '%', r.Ib, r.In, c.ref, c.type, lightSub(c));
       }
       yy += h;
     });
@@ -926,7 +932,7 @@ function pdfDiagram(doc, logo, PW, ML){
       cells.forEach(c => { txt(PT(c[0]), bx0 + c[2] * cw + 1, by0 + c[3] * rh + 2, 4.5, false, [110, 118, 126]); txt(clip(String(c[1]), 24), bx0 + c[2] * cw + 1, by0 + c[3] * rh + 4.8, 6, true); }); }
   });
 }
-const PDF_SECS = [['cover', 'Cover page with company details', 1], ['panel', 'Panel layout', 1], ['diagram', 'Multi-line diagram', 1], ['dali', 'DALI network and module layout', 1], ['sched', 'Circuit schedule', 1], ['bom', 'Bill of materials', 0]];
+const PDF_SECS = [['cover', 'Cover page with company details', 1], ['panel', 'Panel layout', 1], ['diagram', 'Multi-line diagram', 1], ['dali', 'DALI network and module layout', 1], ['sched', 'Circuit schedule', 1], ['lighting', 'Lighting schedule (area and what controls each circuit)', 1], ['bom', 'Bill of materials', 0]];
 let pdfOpt = {};
 PDF_SECS.forEach(x => { pdfOpt[x[0]] = !!x[2]; });
 try { const sv = JSON.parse(localStorage.getItem('dbd_pdfsecs') || 'null'); if (sv) PDF_SECS.forEach(x => { if (typeof sv[x[0]] === 'boolean') pdfOpt[x[0]] = sv[x[0]]; }); } catch (e) {}
@@ -1026,21 +1032,37 @@ function exportPDF(){
   if (want('panel')) for (let r0 = 0; r0 < B.rows; r0 += RPP){ newPage(); pageHead(PT('Panel layout')); panelPage(r0, Math.min(B.rows, r0 + RPP)); }
   if (want('diagram')){ if (firstPage){ dropFirst = true; firstPage = false; } pdfDiagram(doc, logo, PW, ML); doc.setTextColor(0); firstPage = false; }
   if (want('dali')){ if (firstPage && dS().units.length){ dropFirst = true; firstPage = false; } try { dPdf(doc, logo, PW, ML); firstPage = false; } catch (e) { console.warn('DALI pages skipped', e); } }
-  if (want('sched') || want('bom')){ newPage(); logo(); }
+  if (want('sched') || (want('bom') && !want('lighting'))){ newPage(); logo(); }
   if (want('sched')){ doc.setFont('helvetica', 'bold'); doc.setFontSize(13); doc.text(PT('Circuit schedule'), ML, 14); }
   let y = 22;
   if (want('sched')){
-  const cols = [['Ref', 12], ['Description', 48], ['Fed from', 22], ['Ph', 12], ['Load W', 16], ['Ib A', 13], ['Protection', 26], ['Cable', 38], ['Len m', 12], ['Iz A', 12], ['VD %', 13], ['Status', 14]];
+  const cols = [['Ref', 12], ['Description', 42], ['Area', 32], ['Fed from', 22], ['Ph', 12], ['Load W', 16], ['Ib A', 13], ['Protection', 26], ['Cable', 36], ['Len m', 12], ['Iz A', 11], ['VD %', 12], ['Status', 13]];
   const rows = schedRows(); 
   const head = () => { doc.setFontSize(7.5); doc.setFont('helvetica', 'bold'); doc.setFillColor(230, 234, 238); doc.rect(ML, y - 4, PW - 2 * ML, 6, 'F'); let x = ML + 1; cols.forEach(c => { doc.text(String(PT(c[0])).slice(0, Math.max(3, Math.floor(c[1] / 1.45))), x, y); x += c[1]; }); y += 6; doc.setFont('helvetica', 'normal'); };
   head();
   rows.forEach(r => {
     if (y > 196){ doc.addPage(); logo(); y = 16; head(); }
-    const v = [r[0], r[1], r[3], r[4], r[5], r[8], r[9], r[11], r[12], r[13], r[14], r[15]]; let x = ML + 1;
+    const v = [r[0], r[1], r[16], r[3], r[4], r[5], r[8], r[9], r[11], r[12], r[13], r[14], r[15]].map(a8); let x = ML + 1;
     v.forEach((t, i) => { doc.text(String(t).slice(0, Math.floor(cols[i][1] / 1.7)), x, y); x += cols[i][1]; }); y += 5.2;
   });
   }
-  if (want('bom')){ if (want('sched')){ y += 8; if (y > 180){ doc.addPage(); logo(); y = 16; } } else y = 14;
+  if (want('lighting')){
+    const ls = S.circuits.filter(c => c.type === 'lighting' || c.ctl || c.mod), lr = lightRows();
+    newPage(); logo(); y = 14; doc.setFont('helvetica', 'bold'); doc.setFontSize(13); doc.setTextColor(0); doc.text(PT('Lighting schedule'), ML, y); y += 8;
+    const tbl = (cols, data) => {
+      const head = () => { doc.setFontSize(7.5); doc.setFont('helvetica', 'bold'); doc.setFillColor(230, 234, 238); doc.rect(ML, y - 4, PW - 2 * ML, 6, 'F'); let x = ML + 1; cols.forEach(c => { doc.text(String(PT(c[0])).slice(0, Math.max(3, Math.floor(c[1] / 1.45))), x, y); x += c[1]; }); y += 6; doc.setFont('helvetica', 'normal'); };
+      head();
+      if (!data.length){ doc.setFontSize(8); doc.text(PT('No lighting circuits yet. Add one to start.'), ML + 1, y); y += 6; }
+      data.forEach(v => { if (y > 196){ doc.addPage(); logo(); y = 16; head(); } let x = ML + 1; doc.setFontSize(7.5); v.forEach((t, i) => { doc.text(a8(t).slice(0, Math.floor(cols[i][1] / 1.7)), x, y); x += cols[i][1]; }); y += 5.2; });
+    };
+    tbl([['Ref', 14], ['Description', 52], ['Area', 46], ['Load W', 16], ['Controlled by', 52], ['Phase', 14], ['Ib A', 14], ['Protection', 30], ['Cable', 34]],
+      ls.map(c => { const r = R.c[c.id], row = schedRows()[S.circuits.indexOf(c)]; return [c.ref, c.name, c.area || '', +num(c.P, 0), c.mod || c.ctl ? ctlLabel(c) : PT('Direct breaker'), row[4], row[8], row[9], row[11]]; }));
+    y += 8; if (y > 170){ doc.addPage(); logo(); y = 16; }
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(11); doc.setTextColor(0); doc.text(PT('What each output controls'), ML, y); y += 7;
+    tbl([['Device', 50], ['Output', 40], ['Area controlled', 50], ['Circuits', 70], ['Total W', 18], ['Limit W', 18]],
+      lr.map(r => [r.dev, r.out, r.area, r.cs.map(c => c.ref).join(', '), r.W, r.lim ? r.lim + (r.W > r.lim ? ' (over)' : '') : '-']));
+  }
+  if (want('bom')){ if (want('sched') || want('lighting')){ y += 8; if (y > 180){ doc.addPage(); logo(); y = 16; } } else y = 14;
   doc.setFont('helvetica', 'bold'); doc.setFontSize(13); doc.text(PT('Bill of materials'), ML, y); y += 7; doc.setFontSize(8); doc.setFont('helvetica', 'normal');
   bomRows().forEach(b => { if (y > 196){ doc.addPage(); y = 16; } doc.text(String(b[1]) + ' x', ML, y); doc.text(b[0], ML + 14, y); y += 5; }); }
   if (want('sched') || want('bom')){ y += 4; doc.setFontSize(7); doc.setTextColor(110); doc.text(PT('Design aid. Verify ratings against the standard edition, manufacturer datasheets and a qualified engineer before building.'), ML, Math.min(y, 200)); }

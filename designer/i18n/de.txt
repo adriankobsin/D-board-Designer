@@ -1383,3 +1383,5 @@
 1383|Stromkreise öffnen
 1384|Einstellungen öffnen
 1385|DALI öffnen
+1386|Beleuchtungsliste
+1387|Beleuchtungsliste (Bereich und Ansteuerung jedes Stromkreises)

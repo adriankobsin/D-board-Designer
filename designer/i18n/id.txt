@@ -1383,3 +1383,5 @@
 1383|Buka Sirkuit
 1384|Buka Pengaturan
 1385|Buka DALI
+1386|Jadwal pencahayaan
+1387|Jadwal pencahayaan (area dan apa yang mengendalikan setiap sirkuit)

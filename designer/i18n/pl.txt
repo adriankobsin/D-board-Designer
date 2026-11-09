@@ -1383,3 +1383,5 @@
 1383|Otwórz Obwody
 1384|Otwórz Ustawienia
 1385|Otwórz DALI
+1386|Zestawienie oświetlenia
+1387|Zestawienie oświetlenia (strefa i element sterujący każdym obwodem)

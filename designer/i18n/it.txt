@@ -1383,3 +1383,5 @@
 1383|Apri Circuiti
 1384|Apri Impostazioni
 1385|Apri DALI
+1386|Schema illuminazione
+1387|Schema illuminazione (area e cosa comanda ogni circuito)

@@ -1383,3 +1383,5 @@
 1383|Abrir Circuitos
 1384|Abrir Configuração
 1385|Abrir DALI
+1386|Quadro de iluminação
+1387|Quadro de iluminação (área e o que controla cada circuito)

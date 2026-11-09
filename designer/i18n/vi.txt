@@ -1383,3 +1383,5 @@
 1383|Mở Mạch
 1384|Mở Thiết lập
 1385|Mở DALI
+1386|Bảng mạch chiếu sáng
+1387|Bảng mạch chiếu sáng (khu vực và thiết bị điều khiển từng mạch)

@@ -1358,3 +1358,20 @@
 1358|Link do płatności PayPal
 1359|Link do płatności Revolut
 1360|Linki PayPal i Revolut nie działają automatycznie. Gdy wpłata dotrze, ustaw użytkownikowi plan Płatny na liście użytkowników (Edytuj plan).
+1361|kanał
+1362|Kanały ściemniacza w rozdzielnicy
+1363|Sterowniki i przekaźniki DALI
+1364|Inne urządzenia
+1365|Razem W
+1366|Limit W
+1367|przekroczono
+1368|Żaden obwód oświetleniowy nie jest jeszcze przypisany do kanału ściemniacza, sterownika DALI ani urządzenia.
+1369|Strefa
+1370|Sterowany przez
+1371|Obwody oświetleniowe
+1372|Dodaj obwód oświetleniowy
+1373|Dodaj każdy obwód oświetleniowy, wskaż strefę, którą oświetla, i wybierz, co nim steruje: kanał ściemniacza w rozdzielnicy, sterownik lub przekaźnik DALI (dodaj je na karcie DALI) albo inne urządzenie. Te same obwody są na karcie Obwody, gdzie ustawiasz kabel i zabezpieczenie.
+1374|Brak obwodów oświetleniowych. Dodaj jeden, aby zacząć.
+1375|Czym steruje każde wyjście
+1376|Przypisz obwody oświetleniowe
+1377|Otwórz <b>Oświetlenie</b> i naciśnij <b>Dodaj obwód oświetleniowy</b>. Nadaj każdemu obwodowi opis, <b>Strefę</b>, którą oświetla, i obciążenie w watach, a następnie wybierz w <b>Sterowany przez</b>, co go napędza: kanał ściemniacza modułu w rozdzielnicy, sterownik lub przekaźnik DALI dodany na karcie DALI albo inne urządzenie dodane jako urządzenie własne. Tabela poniżej pokazuje dla każdego kanału ściemniacza, sterownika i urządzenia, jakimi obwodami steruje, oraz sumę watów względem limitu kanału. Te same obwody są na karcie <b>Obwody</b>, gdzie ustawiasz kabel i zabezpieczenie, oraz w pliku Excel na arkuszu Oświetlenie.

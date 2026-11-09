@@ -1358,3 +1358,20 @@
 1358|Link de plată PayPal
 1359|Link de plată Revolut
 1360|Linkurile PayPal și Revolut nu sunt automate. Când sosește o plată, setează planul utilizatorului pe Plătit din lista de utilizatori (Editează planul).
+1361|canal
+1362|Canale de dimmer în tablou
+1363|Drivere și relee DALI
+1364|Alte dispozitive
+1365|Total W
+1366|Limită W
+1367|depășit
+1368|Niciun circuit de iluminat nu este atribuit încă unui canal de dimmer, driver DALI sau dispozitiv.
+1369|Zonă
+1370|Controlat de
+1371|Circuite de iluminat
+1372|Adaugă circuit de iluminat
+1373|Adaugă fiecare circuit de iluminat, indică zona pe care o luminează și alege ce îl controlează: un canal de dimmer din tablou, un driver sau releu DALI (adaugă-le în fila DALI) sau alt dispozitiv. Aceleași circuite sunt în fila Circuite, unde setezi cablul și protecția.
+1374|Niciun circuit de iluminat încă. Adaugă unul pentru a începe.
+1375|Ce controlează fiecare ieșire
+1376|Atribuie circuite de iluminat
+1377|Deschide <b>Iluminat</b> și apasă <b>Adaugă circuit de iluminat</b>. Dă fiecărui circuit o descriere, <b>Zona</b> pe care o luminează și puterea în wați, apoi alege în <b>Controlat de</b> ce îl comandă: un canal de dimmer al unui modul din tablou, un driver sau releu DALI adăugat în fila DALI sau alt dispozitiv adăugat ca dispozitiv personalizat. Tabelul de dedesubt arată, pentru fiecare canal de dimmer, driver și dispozitiv, ce circuite controlează și totalul de wați față de limita canalului. Aceleași circuite apar în fila <b>Circuite</b>, unde setezi cablul și protecția, și în fișierul Excel pe o foaie Iluminat.

@@ -1358,3 +1358,20 @@
 1358|Enlace de pago de PayPal
 1359|Enlace de pago de Revolut
 1360|Los enlaces de PayPal y Revolut no son automáticos. Cuando llegue un pago, cambia el plan del usuario a De pago desde la lista de usuarios (Editar plan).
+1361|canal
+1362|Canales de regulador en el cuadro
+1363|Drivers y relés DALI
+1364|Otros dispositivos
+1365|Total W
+1366|Límite W
+1367|excedido
+1368|Todavía no hay ningún circuito de iluminación asignado a un canal de regulador, driver DALI o dispositivo.
+1369|Zona
+1370|Controlado por
+1371|Circuitos de iluminación
+1372|Añadir circuito de iluminación
+1373|Añade cada circuito de iluminación, indica qué zona ilumina y elige qué lo controla: un canal de regulador del cuadro, un driver o relé DALI (añádelos en la pestaña DALI) u otro dispositivo. Los mismos circuitos están en la pestaña Circuitos, donde ajustas cable y protección.
+1374|Aún no hay circuitos de iluminación. Añade uno para empezar.
+1375|Qué controla cada salida
+1376|Asignar circuitos de iluminación
+1377|Abre <b>Iluminación</b> y pulsa <b>Añadir circuito de iluminación</b>. Da a cada circuito una descripción, la <b>Zona</b> que ilumina y su carga en vatios; luego elige en <b>Controlado por</b> qué lo maneja: un canal de regulador de un módulo del cuadro, un driver o relé DALI añadido en la pestaña DALI u otro dispositivo añadido como dispositivo personalizado. La tabla de abajo muestra, para cada canal de regulador, driver y dispositivo, qué circuitos controla y los vatios totales frente al límite del canal. Los mismos circuitos aparecen en la pestaña <b>Circuitos</b>, donde ajustas cable y protección, y en el archivo Excel en una hoja Iluminación.

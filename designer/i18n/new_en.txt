@@ -549,3 +549,20 @@
 1358|PayPal payment link
 1359|Revolut payment link
 1360|PayPal and Revolut links are not automatic. When a payment arrives, set the user's plan to Paid from the user list (Edit plan).
+1361|channel
+1362|Dimmer channels in the panel
+1363|DALI drivers and relays
+1364|Other devices
+1365|Total W
+1366|Limit W
+1367|over
+1368|No lighting circuit is assigned to a dimmer channel, DALI driver or device yet.
+1369|Area
+1370|Controlled by
+1371|Lighting circuits
+1372|Add lighting circuit
+1373|Add each lighting circuit, say which area it lights, and choose what controls it: a dimmer channel in the panel, a DALI driver or relay (add them on the DALI tab), or another device. The same circuits are in the Circuits tab, where you set cable and protection.
+1374|No lighting circuits yet. Add one to start.
+1375|What each output controls
+1376|Assign lighting circuits
+1377|Open <b>Lighting</b> and press <b>Add lighting circuit</b>. Give each circuit a description, the <b>Area</b> it lights and its load in watts, then choose in <b>Controlled by</b> what drives it: a dimmer channel of a module in the panel, a DALI driver or relay added on the DALI tab, or another device you added as a custom device. The table below shows, for every dimmer channel, driver and device, which circuits it controls and the total watts against the channel limit. The same circuits appear in the <b>Circuits</b> tab, where you set their cable and protection, and in the Excel file on a Lighting sheet.

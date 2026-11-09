@@ -1358,3 +1358,20 @@
 1358|Lien de paiement PayPal
 1359|Lien de paiement Revolut
 1360|Les liens PayPal et Revolut ne sont pas automatiques. Quand un paiement arrive, passez le forfait de l'utilisateur sur Payant depuis la liste des utilisateurs (Modifier le forfait).
+1361|canal
+1362|Canaux de variateur dans le tableau
+1363|Drivers et relais DALI
+1364|Autres appareils
+1365|Total W
+1366|Limite W
+1367|dépassé
+1368|Aucun circuit d'éclairage n'est encore affecté à un canal de variateur, un driver DALI ou un appareil.
+1369|Zone
+1370|Commandé par
+1371|Circuits d'éclairage
+1372|Ajouter un circuit d'éclairage
+1373|Ajoutez chaque circuit d'éclairage, indiquez la zone qu'il éclaire et choisissez ce qui le commande : un canal de variateur du tableau, un driver ou relais DALI (à ajouter dans l'onglet DALI) ou un autre appareil. Les mêmes circuits sont dans l'onglet Circuits, où vous réglez câble et protection.
+1374|Aucun circuit d'éclairage pour l'instant. Ajoutez-en un pour commencer.
+1375|Ce que commande chaque sortie
+1376|Affecter les circuits d'éclairage
+1377|Ouvrez <b>Éclairage</b> et appuyez sur <b>Ajouter un circuit d'éclairage</b>. Donnez à chaque circuit une description, la <b>Zone</b> qu'il éclaire et sa charge en watts, puis choisissez dans <b>Commandé par</b> ce qui le pilote : un canal de variateur d'un module du tableau, un driver ou relais DALI ajouté dans l'onglet DALI, ou un autre appareil ajouté comme appareil personnalisé. Le tableau ci-dessous indique, pour chaque canal de variateur, driver et appareil, les circuits qu'il commande et le total en watts par rapport à la limite du canal. Les mêmes circuits figurent dans l'onglet <b>Circuits</b>, où vous réglez câble et protection, et dans le fichier Excel sur une feuille Éclairage.

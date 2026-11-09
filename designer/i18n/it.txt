@@ -1358,3 +1358,20 @@
 1358|Link di pagamento PayPal
 1359|Link di pagamento Revolut
 1360|I link PayPal e Revolut non sono automatici. Quando arriva un pagamento, imposta il piano dell'utente su A pagamento dall'elenco utenti (Modifica piano).
+1361|canale
+1362|Canali dimmer nel quadro
+1363|Driver e relè DALI
+1364|Altri dispositivi
+1365|Totale W
+1366|Limite W
+1367|oltre
+1368|Nessun circuito di illuminazione è ancora assegnato a un canale dimmer, driver DALI o dispositivo.
+1369|Area
+1370|Controllato da
+1371|Circuiti di illuminazione
+1372|Aggiungi circuito di illuminazione
+1373|Aggiungi ogni circuito di illuminazione, indica quale area illumina e scegli cosa lo controlla: un canale dimmer nel quadro, un driver o relè DALI (aggiungili nella scheda DALI) o un altro dispositivo. Gli stessi circuiti sono nella scheda Circuiti, dove imposti cavo e protezione.
+1374|Ancora nessun circuito di illuminazione. Aggiungine uno per iniziare.
+1375|Cosa controlla ogni uscita
+1376|Assegna i circuiti di illuminazione
+1377|Apri <b>Illuminazione</b> e premi <b>Aggiungi circuito di illuminazione</b>. Dai a ogni circuito una descrizione, l'<b>Area</b> che illumina e il carico in watt, poi scegli in <b>Controllato da</b> cosa lo comanda: un canale dimmer di un modulo nel quadro, un driver o relè DALI aggiunto nella scheda DALI o un altro dispositivo aggiunto come dispositivo personalizzato. La tabella sotto mostra, per ogni canale dimmer, driver e dispositivo, quali circuiti controlla e i watt totali rispetto al limite del canale. Gli stessi circuiti compaiono nella scheda <b>Circuiti</b>, dove imposti cavo e protezione, e nel file Excel in un foglio Illuminazione.

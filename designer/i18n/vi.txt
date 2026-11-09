@@ -1358,3 +1358,20 @@
 1358|Liên kết thanh toán PayPal
 1359|Liên kết thanh toán Revolut
 1360|Liên kết PayPal và Revolut không tự động. Khi nhận được thanh toán, hãy đặt gói của người dùng thành Trả phí trong danh sách người dùng (Sửa gói).
+1361|kênh
+1362|Kênh dimmer trong tủ
+1363|Driver và rơ-le DALI
+1364|Thiết bị khác
+1365|Tổng W
+1366|Giới hạn W
+1367|vượt
+1368|Chưa có mạch chiếu sáng nào được gán cho kênh dimmer, driver DALI hoặc thiết bị.
+1369|Khu vực
+1370|Điều khiển bởi
+1371|Mạch chiếu sáng
+1372|Thêm mạch chiếu sáng
+1373|Thêm từng mạch chiếu sáng, cho biết khu vực nó chiếu sáng và chọn thứ điều khiển nó: một kênh dimmer trong tủ, một driver hoặc rơ-le DALI (thêm ở tab DALI) hoặc thiết bị khác. Các mạch này cũng nằm trong tab Mạch, nơi bạn đặt cáp và bảo vệ.
+1374|Chưa có mạch chiếu sáng. Hãy thêm một mạch để bắt đầu.
+1375|Mỗi đầu ra điều khiển gì
+1376|Gán mạch chiếu sáng
+1377|Mở <b>Chiếu sáng</b> và nhấn <b>Thêm mạch chiếu sáng</b>. Đặt mô tả cho từng mạch, <b>Khu vực</b> nó chiếu sáng và công suất tính bằng watt, rồi chọn trong <b>Điều khiển bởi</b> thứ điều khiển nó: một kênh dimmer của module trong tủ, một driver hoặc rơ-le DALI đã thêm ở tab DALI, hoặc thiết bị khác đã thêm làm thiết bị tùy chỉnh. Bảng bên dưới cho biết với mỗi kênh dimmer, driver và thiết bị, nó điều khiển những mạch nào và tổng watt so với giới hạn của kênh. Các mạch này cũng xuất hiện trong tab <b>Mạch</b>, nơi bạn đặt cáp và bảo vệ, và trong tệp Excel ở một trang Chiếu sáng.

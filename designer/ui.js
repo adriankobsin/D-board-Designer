@@ -21,6 +21,7 @@ function fix(){
   S.circuits.forEach(c => { if (S.phases === 1) c.phase = 'L1'; if (c.phase === '3P' && S.phases === 1) c.phase = 'L1'; });
   S.modules.forEach(m => { if (S.phases === 1) m.phase = 'L1'; });
   S.circuits.forEach(c => { if (c.mod){ const m = S.modules.find(x => x.id === c.mod), z = m && (libOf(m.model) || {}).zones; if (!z) c.mod = ''; else if (c.zone > z) c.zone = z; } });
+  S.circuits.forEach(c => { c.area = typeof c.area === 'string' ? c.area : ''; if (c.mod || !ctlOk(c.ctl)) c.ctl = ''; });
   const std = STD[S.std];
   S.circuits.forEach(c => { if (!std.curves.includes(c.curve)) c.curve = std.curves[0]; });
   try { daliFix(); } catch (e) { console.warn('DALI data skipped', e); }
@@ -271,11 +272,13 @@ function inspector(){
      <div style="grid-column:1/-1">${fl('Model', `<select data-dk="model" data-id="${du.id}">${dModelOpts(du.model)}</select>`)}</div>
      ${dc.k === 'master' ? '' : `<div style="grid-column:1/-1">${fl('DALI link', dLinkSelect(du, DA))}</div>`}</div>`;
     dl = (du.area ? row('Controls', esc(du.area)) : '') + row('Type', DKIND[dc.k]) + row('Width', `${dc.du} DU · ${(dc.du * 17.5).toFixed(0)} mm`) + (dc.k === 'master' ? row('Lines', dc.ln) : dc.k === 'psu' ? row('Bus supply', dc.sup + ' mA') : row('Address', d.addr || '–') + row('DALI current', dc.ma + ' mA')) + (dl2 ? row('Line load', `${dl2.addr}/${dl2.max} addr · ${+dl2.mA.toFixed(1)}/${dl2.sup || '?'} mA`) : '');
+    { const ls = loadsOf('d:' + du.id); if (ls.length) dl += row('Lighting circuits', esc(ls.map(c => c.ref + ' ' + c.name).join(', '))); }
     acts = `<button class="btn sm" data-a="tab" data-t="dali">DALI page</button>`;
     delTxt = 'Delete DALI module'; delNote = dc.k === 'master' ? 'Devices connected to its lines will become not connected.' : '';
   } else if (d.kind === 'custom'){
     const x = S.custom.find(q => q.id === d.cx), three = S.phases === 3;
     ttl = x.id + ' · ' + (x.name || 'Custom device');
+    { const ls = loadsOf('x:' + x.id); dl = ls.length ? row('Lighting circuits', esc(ls.map(c => c.ref + ' ' + c.name).join(', '))) : ''; }
     form = `<div class="iform"><div style="grid-column:1/-1">${fl('Name', inp('x', x.id, 'name', x.name))}</div><div style="grid-column:1/-1">${fl('Area controlled', inp('x', x.id, 'area', x.area || '', 'text', 'maxlength="80" placeholder="e.g. Main saloon, dining"'))}</div><div style="grid-column:1/-1">${fl('Manufacturer, part number or note', inp('x', x.id, 'note', x.note || ''))}</div>
      ${fl('Width (modules)', inp('x', x.id, 'w', x.w, 'number', 'step="1" min="1" max="36"'))}${fl('Rating A', inp('x', x.id, 'rating', x.rating == null ? '' : x.rating, 'number', 'step="1" min="0"'))}
      ${fl('Heat W', inp('x', x.id, 'heatW', x.heatW || 0, 'number', 'step="0.5" min="0"'))}${fl('Colour band', sl('x', x.id, 'ph', three ? ['L1', 'L2', 'L3', '3P', 'N'] : ['L1', 'N'], x.ph || 'N'))}</div>`;
@@ -370,12 +373,56 @@ function bindPanel(){
 }
 
 /* ---------- circuits ---------- */
+/* Lighting: what a circuit is controlled by (a dimmer channel on the panel, a DALI driver or relay, or another device) */
+function ctlTargets(){
+  const out = [];
+  try { dS().units.forEach(u => { const k = (dCat(u.model) || {}).k; if (k === 'driver' || k === 'relay') out.push({v: 'd:' + u.id, id: u.id, name: u.label || '', kind: 'DALI', model: u.model, area: u.area || ''}); }); } catch (e) {}
+  (S.custom || []).forEach(x => out.push({v: 'x:' + x.id, id: x.id, name: x.name || '', kind: 'Device', model: x.note || '', area: x.area || ''}));
+  return out;
+}
+function ctlOk(v){ return !v || ctlTargets().some(t => t.v === v); }
+function ctlLabel(c){
+  if (c.mod){ const m = S.modules.find(x => x.id === c.mod); return `${c.mod}${m && m.name ? ' ' + m.name : ''} zone ${c.zone}`; }
+  const t = c.ctl && ctlTargets().find(x => x.v === c.ctl); return t ? `${t.id}${t.name ? ' ' + t.name : ''}` : 'Direct breaker';
+}
+function fedOptions(c){
+  const mods = S.modules.map(m => { const lib = libOf(m.model) || {}; if (!lib.power) return ''; return Array.from({length: lib.zones}, (_, z) => `<option value="${m.id}|${z + 1}" ${c.mod === m.id && c.zone === z + 1 ? 'selected' : ''}>${m.id}${m.name ? ' ' + esc(m.name) : ''} ${T('channel')} ${z + 1}</option>`).join(''); }).join('');
+  const tg = ctlTargets(), grp = (k, lab) => { const l = tg.filter(t => t.kind === k); return l.length ? `<optgroup label="${esc(T(lab))}">${l.map(t => `<option value="${t.v}" ${c.ctl === t.v ? 'selected' : ''}>${esc(t.id + (t.name ? ' ' + t.name : '') + (t.model ? ' · ' + t.model : ''))}</option>`).join('')}</optgroup>` : ''; };
+  return `<option value="" ${!c.mod && !c.ctl ? 'selected' : ''}>${T('Direct breaker')}</option>${mods ? `<optgroup label="${esc(T('Dimmer channels in the panel'))}">${mods}</optgroup>` : ''}${grp('DALI', 'DALI drivers and relays')}${grp('Device', 'Other devices')}`;
+}
+function loadsOf(key){ return S.circuits.filter(c => c.ctl === key); }
+function lightSummary(){
+  const rows = [];
+  S.modules.forEach(m => { const lib = libOf(m.model) || {}; if (!lib.power) return; for (let z = 1; z <= lib.zones; z++){ const cs = S.circuits.filter(c => c.mod === m.id && c.zone === z); if (cs.length){ const W = cs.reduce((a, c) => a + num(c.P, 0), 0), lim = Array.isArray(lib.zoneW) ? lib.zoneW[z - 1] : null; rows.push({dev: `${m.id}${m.name ? ' ' + m.name : ''}`, out: `${T('channel')} ${z}`, area: m.area || '', cs, W, lim}); } } });
+  ctlTargets().forEach(t => { const cs = S.circuits.filter(c => c.ctl === t.v); if (cs.length) rows.push({dev: `${t.id}${t.name ? ' ' + t.name : ''}`, out: t.model || '', area: t.area || '', cs, W: cs.reduce((a, c) => a + num(c.P, 0), 0), lim: null}); });
+  if (!rows.length) return `<p class="muted" style="padding:12px 0">${T('No lighting circuit is assigned to a dimmer channel, DALI driver or device yet.')}</p>`;
+  return `<div class="scroll"><table class="stack" style="min-width:640px"><thead><tr><th>${T('Device')}</th><th>${T('Output')}</th><th>${T('Area controlled')}</th><th>${T('Circuits')}</th><th>${T('Total W')}</th><th>${T('Limit W')}</th></tr></thead><tbody>${rows.map(r => `<tr><td><b>${esc(r.dev)}</b></td><td>${esc(r.out)}</td><td>${esc(r.area)}</td><td>${esc(r.cs.map(c => c.ref + ' ' + c.name).join(', '))}</td><td>${r.W}</td><td>${r.lim ? (r.W > r.lim ? `<span class="tag bad">${r.lim} · ${T('over')}</span>` : r.lim) : '–'}</td></tr>`).join('')}</tbody></table></div>`;
+}
+function lightRow(c){
+  const inp2 = (f, v, ph, ml) => `<input type="text" data-k="c" data-id="${c.id}" data-f="${f}" value="${esc(v || '')}" maxlength="${ml}" placeholder="${esc(ph)}" aria-label="${esc(ph)}">`;
+  return `<tr data-row="${c.id}"><td style="width:44px"><button class="btn sm" data-a="delc" data-id="${c.id}" aria-label="${T('Delete circuit')} ${esc(c.ref)}">✕</button></td>
+   <td style="width:62px"><input type="text" data-k="c" data-id="${c.id}" data-f="ref" value="${esc(c.ref)}" aria-label="${T('Reference')}"></td>
+   <td style="min-width:190px">${inp2('name', c.name, T('Description'), 60)}</td>
+   <td style="min-width:170px">${inp2('area', c.area, T('Area'), 80)}</td>
+   <td style="width:90px"><input type="number" data-k="c" data-id="${c.id}" data-f="P" data-t="n" value="${c.P}" step="10" aria-label="${T('Load W')}"></td>
+   <td style="min-width:230px"><select data-k="c" data-id="${c.id}" data-f="fed" aria-label="${T('Controlled by')}">${fedOptions(c)}</select></td></tr>`;
+}
+function renderLighting(){
+  const ls = S.circuits.filter(c => c.type === 'lighting' || c.ctl || c.mod);
+  return `<div class="card"><div class="row" style="justify-content:space-between"><h2>${T('Lighting circuits')}</h2><div class="row"><button class="btn pri" data-a="addl">${T('Add lighting circuit')}</button></div></div>
+    <p class="note" style="margin:6px 0 10px">${T('Add each lighting circuit, say which area it lights, and choose what controls it: a dimmer channel in the panel, a DALI driver or relay (add them on the DALI tab), or another device. The same circuits are in the Circuits tab, where you set cable and protection.')}</p>
+    <div class="scroll"><table class="tbl-c stack" style="min-width:760px"><thead><tr><th></th><th>${T('Ref')}</th><th>${T('Description')}</th><th>${T('Area')}</th><th>${T('Load W')}</th><th>${T('Controlled by')}</th></tr></thead>
+    <tbody>${ls.map(lightRow).join('') || `<tr><td colspan="6" class="muted" style="padding:20px">${T('No lighting circuits yet. Add one to start.')}</td></tr>`}</tbody></table></div></div>
+    <div class="card"><h2>${T('What each output controls')}</h2><div id="lsum">${lightSummary()}</div></div>`;
+}
+function softLight(){ const e = $('#lsum'); if (e) e.innerHTML = lightSummary(); }
+function addLight(){
+  const id = nextId(S.circuits, 'c'), n = S.circuits.length + 1, std = STD[S.std], t = TYPES.lighting;
+  S.circuits.push({id, ref:'C' + n, name:'New lighting circuit', type:'lighting', mod:'', ctl:'', area:'', zone:1, P:200, pf:t.pf, phase:'L1', len:10, prot:(t.rcd && !isLV(S)) ? 'RCBO' : 'MCB', curve:std.curves.includes(t.curve) ? t.curve : std.curves[0], dem:1, grp:1, cable:'pvc', size:'auto', inO:0});
+}
 function circuitRow(c){
   const std = STD[S.std], mod = c.mod, three = S.phases === 3;
-  const fedOpts = `<option value="" ${!mod ? 'selected' : ''}>Direct breaker</option>` + S.modules.map(m => {
-    const lib = libOf(m.model) || {}; if (!lib.power) return '';
-    return Array.from({length: lib.zones}, (_, z) => `<option value="${m.id}|${z + 1}" ${mod === m.id && c.zone === z + 1 ? 'selected' : ''}>${m.id}${m.name ? ' ' + esc(m.name) : ''} zone ${z + 1}</option>`).join('');
-  }).join('');
+  const fedOpts = fedOptions(c);
   const ph = three ? ['L1', 'L2', 'L3', '3P'] : ['L1'];
   const sizes = ['auto'].concat(SZ);
   const tl = Object.fromEntries(Object.keys(TYPES).map(k => [k, TYPES[k].l])), cl = {pvc:'PVC 70', xlpe:'XLPE 90'};
@@ -628,7 +675,7 @@ function slug(){ return (S.name || 'board').toLowerCase().replace(/[^a-z0-9]+/g,
 function schedRows(){
   return S.circuits.map(c => {
     const r = R.c[c.id], m = c.mod;
-    return [c.ref, c.name, T(TYPES[c.type].l), m ? T(`${m} zone ${c.zone}`) : T('Direct'), r.thr ? 'L1L2L3' : r.ph, +num(c.P, 0), +r.pf.toFixed(2), +num(c.dem, 1), +r.Ib.toFixed(2),
+    return [c.ref, c.name, T(TYPES[c.type].l), m ? T(`${m} zone ${c.zone}`) : c.ctl ? ctlLabel(c) : T('Direct'), r.thr ? 'L1L2L3' : r.ph, +num(c.P, 0), +r.pf.toFixed(2), +num(c.dem, 1), +r.Ib.toFixed(2),
       m ? T(`Via ${m} feed`) : `${c.prot} ${r.curve === 'Std' ? '' : r.curve}${r.In}${c.prot === 'RCBO' ? ' ' + (r.rcdMA || '30 mA').replace(' mA', 'mA') : ''}`.replace('  ', ' '), r.In || '', `${r.thr ? 4 : 3}x${r.cab.size} mm2 ${c.cable === 'xlpe' ? 'XLPE' : 'PVC'}`, +num(c.len, 0), +r.cab.Iz.toFixed(1), +r.vdTot.toFixed(2), T(stLabel[statusOf(c.ref)])];
   });
 }
@@ -676,6 +723,7 @@ function exportXLSX(){
   const sheetName = s => T(s).replace(/[\[\]:*?\/\\]/g, ' ').slice(0, 31);
   const mk = (rows, widths) => { const ws = XLSX.utils.aoa_to_sheet(rows); ws['!cols'] = widths.map(w => ({wch: w})); return ws; };
   XLSX.utils.book_append_sheet(wb, mk([SCHED_HEAD.map(h => T(h))].concat(schedRows()), [6, 28, 16, 14, 8, 9, 6, 8, 8, 18, 6, 20, 9, 12, 7, 8]), sheetName('Schedule'));
+  XLSX.utils.book_append_sheet(wb, mk([['Ref', 'Description', 'Area', 'Load W', 'Controlled by', 'Phase'].map(h => T(h))].concat(S.circuits.filter(c => c.type === 'lighting' || c.ctl || c.mod).map(c => [c.ref, c.name, c.area || '', +num(c.P, 0), c.mod || c.ctl ? ctlLabel(c) : T('Direct breaker'), R.c[c.id].thr ? 'L1L2L3' : R.c[c.id].ph])), [6, 30, 28, 9, 32, 8]), sheetName('Lighting'));
   const eq = [['Ref', 'Model', 'Family', 'Feed phase', 'Feed A', 'Feed breaker A', 'Feed cable mm2', 'Modules (18 mm)', 'Heat BTU/h', 'Name / location', 'Area controlled'].map(h => T(h))].concat(S.modules.map(m => { const r = R.m[m.id]; return [m.id, m.model, r.lib.fam, r.ph, +r.Ib.toFixed(2), r.In, r.cab.size, r.lib.din, r.lib.btu, m.name || '', m.area || '']; }));
   XLSX.utils.book_append_sheet(wb, mk(eq, [6, 20, 24, 10, 8, 14, 14, 14, 11, 24, 32]), sheetName('DIN modules'));
   if (dS().units.length){ const A = dAnalyse(); XLSX.utils.book_append_sheet(wb, mk([['Ref', 'Model', 'Brand', 'Article', 'Type', 'Mounting', 'DIN DU', 'DALI line', 'Address', 'DALI mA', 'Name / location', 'Area controlled'].map(h => T(h))].concat(A.units.map(x => { const c = dCat(x.model), l = A.by[x.link]; return [x.id, c.m, c.b, c.art, DKIND[c.k], DMOUNT[c.mt], c.du || '', l ? l.label : '', l && c.k !== 'psu' ? dAddr(l, x) : '', c.k === 'master' || c.k === 'psu' ? '' : c.ma, x.label || '', x.area || '']; })), [6, 36, 10, 16, 24, 22, 8, 14, 10, 8, 24, 32]), sheetName('DALI')); XLSX.utils.book_append_sheet(wb, mk([['Line', 'Master', 'Devices', 'Addresses (max 64)', 'Bus load mA', 'Bus supply mA', 'Supply from'].map(h => T(h))].concat(A.lines.map(l => [l.label, l.c.m, l.members.length, l.addr, +l.mA.toFixed(1), l.sup || '', l.supBy || ''])), [14, 30, 9, 18, 12, 14, 18]), sheetName('DALI lines')); }
@@ -932,11 +980,12 @@ function renderExport(){
 }
 
 /* ---------- router and events ---------- */
-const TABS = [['setup', 'Setup'], ['panel', 'Panel'], ['circuits', 'Circuits'], ['equipment', 'Equipment'], ['checks', 'Checks'], ['diagram', 'Diagram'], ['dali', 'DALI'], ['tools', 'Tools'], ['export', 'Export']];
+const TABS = [['setup', 'Setup'], ['panel', 'Panel'], ['circuits', 'Circuits'], ['lighting', 'Lighting'], ['equipment', 'Equipment'], ['checks', 'Checks'], ['diagram', 'Diagram'], ['dali', 'DALI'], ['tools', 'Tools'], ['export', 'Export']];
 const TICON = {
   setup:'<path d="M4 6h10M18 6h2M4 12h2M10 12h10M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="8" cy="12" r="2"/><circle cx="18" cy="18" r="2"/>',
   panel:'<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M8 5v2M12 5v2M16 5v2M8 11v2M12 11v2M8 17v2M12 17v2"/>',
   circuits:'<path d="M8 6h13M8 12h13M8 18h13"/><circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/>',
+  lighting:'<path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/>',
   equipment:'<path d="M12 3v4M9 3v4M15 3v4"/><rect x="6" y="7" width="12" height="7" rx="2"/><path d="M12 14v4a3 3 0 0 0 3 3h2"/>',
   checks:'<circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16 9.5"/>',
   diagram:'<path d="M3 5h5M3 12h5M3 19h5M8 5v14M8 12h6M14 9h7v6h-7zM8 19h13"/>',
@@ -949,6 +998,7 @@ function renderHelp(){
    ['Sign in, start or import a board', 'On the hosted version you start from your <b>Dashboard</b> after you sign in. Press <b>New board</b> to start from scratch, open a saved project, or press <b>Import a panel</b> to build a board from a photo of a built panel or from a PDF schematic or circuit schedule. Add up to four photos of one panel, or one PDF, then press <b>Read panel</b>. The reader lists every device it can see (breaker kind, rating, curve, poles, RCD, circuit name, load, phase, cable, make and model) next to your picture. <b>Check and correct the table</b>, then press <b>Create board</b>. The new board opens on <b>Circuits</b> and works like any other, so you can add or edit circuits and labels and export the schematic, bill of materials, PDF and Excel. Anything the reader could not see is left blank and flagged for you to fill in.'],
    ['Set up the project', 'Open <b>Setup</b>. Give the board a name, add your company name and logo (they appear at the top of the page and on the PDF), and pick the <b>standard</b> and <b>supply type</b>: single phase, three phase, or low voltage AC / DC (12, 24, 48 V DC or 24 V AC for marine and similar boards). Then set ambient temperatures, diversity factor, the incomer cable, voltage-drop limits, the breaker series you want to use, how many modules fit on a DIN rail, and whether RCBOs take 1 or 2 modules.'],
    ['Add your circuits', 'Open <b>Circuits</b> and press <b>Add circuit</b>. For each circuit enter a name, type, power in watts, power factor, phase, cable length, protection (MCB or RCBO) and curve. The tool sizes the cable, picks the breaker rating and works out current and voltage drop. <b>Auto-balance phases</b> spreads the load over L1, L2 and L3, and <b>Renumber</b> tidies the references. On a low-voltage board, the quick calculator at the top gives the breaker for a load straight away.'],
+   ['Assign lighting circuits', 'Open <b>Lighting</b> and press <b>Add lighting circuit</b>. Give each circuit a description, the <b>Area</b> it lights and its load in watts, then choose in <b>Controlled by</b> what drives it: a dimmer channel of a module in the panel, a DALI driver or relay added on the DALI tab, or another device you added as a custom device. The table below shows, for every dimmer channel, driver and device, which circuits it controls and the total watts against the channel limit. The same circuits appear in the <b>Circuits</b> tab, where you set their cable and protection, and in the Excel file on a Lighting sheet.'],
    ['Add DIN modules', 'Open <b>Equipment</b> to browse DIN-rail control equipment from Lutron, Crestron, Control4 and MDT KNX (processors, interfaces, power supplies, dimming, switching and shutter modules, gateways) with a brand filter, and the breaker library (Schneider, ABB, Siemens, Legrand, Hager, Eaton, Chint). Press <b>Add</b> on a module to place it on the board. Back in <b>Circuits</b>, choose the module and zone (channel) a circuit is fed from. Each module also gets its own feed breaker. Press <b>Use</b> on a breaker series to make it the default for MCBs, RCBOs or the main.'],
    ['Check the panel layout', 'Open <b>Panel</b> to see the DIN rails drawn with every device and its circuit name. Click a device to open the inspector: edit it, move it along the rail or to another rail, or delete it. Use <b>+ Circuit</b>, <b>+ DIN module</b> or <b>+ Custom device</b> to add things here too. You can change the main breaker, and bring back a deleted main or surge protector with the restore buttons. <b>Fit to screen</b> and <b>Full size</b> switch the zoom.'],
    ['Read the checks', 'Open <b>Checks</b>. The tool tests that each breaker covers the load and protects its cable, that voltage drop stays under your limit, that RCD protection is present where the standard asks for it, that breaker breaking capacity covers the fault level, and that Lutron module and zone limits (load, current, voltage, temperature) are respected. It also checks the incomer rating and cable, phase imbalance and enclosure heat. <b>Fail</b> means fix it before building, <b>Review</b> means look at it and decide, and notes are for information.'],
@@ -987,7 +1037,7 @@ function labelTables(){
 }
 function draw(){
   const v = $('#view');
-  v.innerHTML = ({setup: renderSetup, panel: renderPanel, circuits: renderCircuits, equipment: renderEquipment, checks: renderChecks, diagram: renderDiagram, dali: () => { try { return renderDali(); } catch (e) { return '<div class="card"><p class="muted">The DALI page could not be drawn for this board.</p></div>'; } }, tools: renderTools, export: renderExport, help: renderHelp})[tab]();
+  v.innerHTML = ({setup: renderSetup, panel: renderPanel, circuits: renderCircuits, lighting: renderLighting, equipment: renderEquipment, checks: renderChecks, diagram: renderDiagram, dali: () => { try { return renderDali(); } catch (e) { return '<div class="card"><p class="muted">The DALI page could not be drawn for this board.</p></div>'; } }, tools: renderTools, export: renderExport, help: renderHelp})[tab]();
   if (tab === 'panel') bindPanel();
   if (tab === 'circuits') updateCircuitCells();
   labelTables();
@@ -1023,7 +1073,7 @@ function applyField(el){
     structural = true;
   } else if (k === 'c'){
     const c = S.circuits.find(x => x.id === el.dataset.id); if (!c) return;
-    if (f === 'fed'){ if (!v) c.mod = ''; else { const [m, z] = v.split('|'); c.mod = m; c.zone = +z; } structural = true; }
+    if (f === 'fed'){ c.ctl = ''; if (!v) c.mod = ''; else if (/^[dx]:/.test(v)){ c.mod = ''; c.ctl = v; } else { const [m, z] = v.split('|'); c.mod = m; c.zone = +z; } structural = true; }
     else if (f === 'type'){ c.type = v; const t = TYPES[v]; c.pf = t.pf; c.prot = (t.rcd && !isLV(S)) ? 'RCBO' : 'MCB'; const cs = STD[S.std].curves; c.curve = cs.includes(t.curve) ? t.curve : cs[0]; structural = true; }
     else { c[f] = (f === 'size' && v !== 'auto') ? +v : v; if (['phase', 'prot'].includes(f)) structural = false; }
   } else if (k === 'x'){
@@ -1072,9 +1122,10 @@ function onField(e){
   const el = e.target.closest('[data-k]'); if (!el) return;
   if (e.type === 'input' && el.tagName === 'SELECT') return;
   const structural = applyField(el);
-  if (e.type === 'input'){ calc(); persist(); if (tab === 'circuits') updateCircuitCells(); else if (tab === 'panel') softPanel(false); return; }
+  if (e.type === 'input'){ calc(); persist(); if (tab === 'circuits') updateCircuitCells(); else if (tab === 'lighting') softLight(); else if (tab === 'panel') softPanel(false); return; }
   if (tab === 'setup'){ calc(); persist(); return; }
   if (tab === 'panel'){ calc(); persist(); if (el.tagName === 'SELECT') softPanel(true); return; }
+  if (tab === 'lighting'){ if (structural) refresh(true); else { calc(); persist(); softLight(); } return; }
   refresh(structural || tab !== 'circuits');
 }
 document.addEventListener('input', e => { if (e.target.id && e.target.id.indexOf('qc') === 0){ quickCalc(); return; } if (e.target.id === 'brkq'){ brkQ = e.target.value; $('#brkbody').innerHTML = brkRows(); return; } if (e.target.id === 'libq'){ libQ = e.target.value; $('#libbody').innerHTML = libRows(); return; } if (e.target.closest('#view')) onField(e); });
@@ -1096,7 +1147,9 @@ document.addEventListener('click', e => {
   const b = e.target.closest('[data-a]'); if (!b) return;
   const a = b.dataset.a;
   if (a === 'tab'){ tab = b.dataset.t; draw(); renderTabs(); return; }
-  if (a === 'addc'){ addCircuit(); if (tab === 'panel') sel = 'c:' + S.circuits[S.circuits.length - 1].id; refresh(true); }
+  if (a === 'addl'){ addLight(); refresh(true); }
+  else if (a === 'addl'){ addLight(); refresh(true); }
+  else if (a === 'addc'){ addCircuit(); if (tab === 'panel') sel = 'c:' + S.circuits[S.circuits.length - 1].id; refresh(true); }
   else if (a === 'zoomP'){ fitP = !fitP; softPanel(false); }
   else if (a === 'zoomD'){ fitD = !fitD; draw(); }
   else if (a === 'phase') setPhases(b.dataset.p === 'lv' ? 'lv' : +b.dataset.p);

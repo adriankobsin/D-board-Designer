@@ -1358,3 +1358,20 @@
 1358|PayPal-Zahlungslink
 1359|Revolut-Zahlungslink
 1360|PayPal- und Revolut-Links arbeiten nicht automatisch. Sobald eine Zahlung eingeht, setzen Sie den Tarif des Nutzers in der Nutzerliste (Tarif bearbeiten) auf Bezahlt.
+1361|Kanal
+1362|Dimmerkanäle im Verteiler
+1363|DALI-Treiber und -Relais
+1364|Andere Geräte
+1365|Gesamt W
+1366|Grenze W
+1367|überschritten
+1368|Noch kein Lichtkreis ist einem Dimmerkanal, DALI-Treiber oder Gerät zugeordnet.
+1369|Bereich
+1370|Gesteuert von
+1371|Lichtkreise
+1372|Lichtkreis hinzufügen
+1373|Fügen Sie jeden Lichtkreis hinzu, geben Sie den beleuchteten Bereich an und wählen Sie, was ihn steuert: einen Dimmerkanal im Verteiler, einen DALI-Treiber oder ein Relais (auf dem Tab DALI hinzufügen) oder ein anderes Gerät. Dieselben Kreise stehen auf dem Tab Stromkreise, wo Sie Kabel und Schutz festlegen.
+1374|Noch keine Lichtkreise. Fügen Sie einen hinzu, um zu beginnen.
+1375|Was jeder Ausgang steuert
+1376|Lichtkreise zuordnen
+1377|Öffnen Sie <b>Beleuchtung</b> und drücken Sie <b>Lichtkreis hinzufügen</b>. Geben Sie jedem Kreis eine Beschreibung, den <b>Bereich</b>, den er beleuchtet, und seine Last in Watt, und wählen Sie dann unter <b>Gesteuert von</b>, was ihn ansteuert: einen Dimmerkanal eines Moduls im Verteiler, einen DALI-Treiber oder ein Relais, das Sie auf dem Tab DALI hinzugefügt haben, oder ein anderes Gerät, das Sie als eigenes Gerät angelegt haben. Die Tabelle darunter zeigt für jeden Dimmerkanal, Treiber und jedes Gerät, welche Kreise er steuert und die Gesamtwatt im Vergleich zur Kanalgrenze. Dieselben Kreise erscheinen auf dem Tab <b>Stromkreise</b>, wo Sie Kabel und Schutz festlegen, und in der Excel-Datei auf einem Blatt Beleuchtung.

@@ -1358,3 +1358,20 @@
 1358|Tautan pembayaran PayPal
 1359|Tautan pembayaran Revolut
 1360|Tautan PayPal dan Revolut tidak otomatis. Saat pembayaran masuk, ubah paket pengguna menjadi Berbayar dari daftar pengguna (Ubah paket).
+1361|kanal
+1362|Kanal dimmer di panel
+1363|Driver dan relai DALI
+1364|Perangkat lain
+1365|Total W
+1366|Batas W
+1367|melebihi
+1368|Belum ada sirkuit pencahayaan yang ditetapkan ke kanal dimmer, driver DALI, atau perangkat.
+1369|Area
+1370|Dikontrol oleh
+1371|Sirkuit pencahayaan
+1372|Tambah sirkuit pencahayaan
+1373|Tambahkan setiap sirkuit pencahayaan, sebutkan area yang diterangi, dan pilih apa yang mengontrolnya: kanal dimmer di panel, driver atau relai DALI (tambahkan di tab DALI), atau perangkat lain. Sirkuit yang sama ada di tab Sirkuit, tempat Anda mengatur kabel dan proteksi.
+1374|Belum ada sirkuit pencahayaan. Tambahkan satu untuk memulai.
+1375|Apa yang dikontrol setiap keluaran
+1376|Tetapkan sirkuit pencahayaan
+1377|Buka <b>Pencahayaan</b> dan tekan <b>Tambah sirkuit pencahayaan</b>. Beri setiap sirkuit deskripsi, <b>Area</b> yang diterangi, dan beban dalam watt, lalu pilih di <b>Dikontrol oleh</b> apa yang menggerakkannya: kanal dimmer dari modul di panel, driver atau relai DALI yang ditambahkan di tab DALI, atau perangkat lain yang ditambahkan sebagai perangkat khusus. Tabel di bawah menunjukkan, untuk setiap kanal dimmer, driver, dan perangkat, sirkuit apa yang dikontrolnya dan total watt terhadap batas kanal. Sirkuit yang sama muncul di tab <b>Sirkuit</b>, tempat Anda mengatur kabel dan proteksi, dan di file Excel pada lembar Pencahayaan.

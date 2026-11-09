@@ -1298,3 +1298,9 @@ window.addEventListener('resize', () => { clearTimeout(rzT); rzT = setTimeout(()
 bp = window.innerWidth < 700 ? 'p' : window.innerWidth < 1100 ? 't' : 'd'; document.documentElement.dataset.bp = bp;
 S = load(); syncHeader(); calc(); draw(); renderTabs();
 initLang();
+
+/* introduction above the tool: can be hidden, remembered per device */
+(function(){ const h = document.getElementById('hero'), x = document.getElementById('heroX'); if (!h || !x) return;
+  try { if (localStorage.getItem('dbd_hero_hidden') === '1') h.hidden = true; } catch (e) {}
+  x.addEventListener('click', () => { h.hidden = true; try { localStorage.setItem('dbd_hero_hidden', '1'); } catch (e) {} });
+})();

@@ -310,6 +310,14 @@ select{text-overflow:ellipsis}
 .how{display:block;margin-top:5px;color:var(--ink-2);font-size:13px}.how b{color:var(--ink)}
 .insp .issues{border:1px solid var(--bad);border-radius:6px;padding:8px 10px;margin:8px 0;background:var(--surface-2)}.insp .issues ul.checks li{grid-template-columns:auto minmax(0,1fr)}
 
+.hero{position:relative;padding:18px 70px 14px 4px;max-width:96ch}
+.hero h1{font-size:26px;line-height:1.2;margin:0 0 8px;text-wrap:balance}
+.hero p{margin:0 0 6px;color:var(--ink-2);font-size:15px;line-height:1.5}
+.hero .hero-std{font-size:13px}
+.hero-x{position:absolute;top:14px;right:0;background:transparent;border:1px solid var(--line);border-radius:6px;color:var(--ink-2);font:inherit;font-size:12px;padding:3px 9px;cursor:pointer}
+.hero[hidden]{display:none}
+@media(max-width:600px){.hero{padding-right:4px;padding-top:44px}.hero h1{font-size:21px}}
+
 /* ---------- accounts, dashboard, admin ---------- */
 html.sa-hold .wrap{visibility:hidden}
 html.sa-page .wrap{display:none}
@@ -658,6 +666,13 @@ html:lang(km) .sa-prow .nm{line-height:1.7}
 .sa-theme .i-sun{display:none}.sa-theme[data-mode=dark] .i-sun{display:block}.sa-theme[data-mode=dark] .i-moon{display:none}
 </style>
 <div class="wrap">
+  <header class="hero" id="hero">
+    <h1>Design your distribution board, then print the drawings and schedule</h1>
+    <p class="hero-sub">Lay out the DIN rail, size every circuit and cable, check it against your standard, and export the circuit schedule, multi-line diagram and PDF from one model. For electricians, marine electricians and panel builders.</p>
+    <p class="hero-pain">No wiring diagram for the board you inherited, or one still to draw? Build it here and hand it over.</p>
+    <p class="hero-std">IEC 60364 &middot; BS 7671 &middot; NEC (NFPA 70) &middot; AS/NZS 3000 &middot; ISO 13297 (marine AC) &middot; ABYC E-11 (marine AC). AC and DC boards, Lutron dimmers, DALI.</p>
+    <button type="button" class="hero-x" id="heroX" aria-label="Hide this introduction">Hide</button>
+  </header>
   <div class="bar">
     <div class="bar-top">
       <div class="brand"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#0B6B8E"/><rect x="5" y="7" width="22" height="18" rx="2.5" fill="#F5F7F9"/><rect x="7.5" y="9.5" width="3.6" height="5" rx=".8" fill="#9A6330"/><rect x="12" y="9.5" width="3.6" height="5" rx=".8" fill="#2A2F36"/><rect x="16.5" y="9.5" width="3.6" height="5" rx=".8" fill="#8F99A4"/><rect x="21" y="9.5" width="3.6" height="5" rx=".8" fill="#0B6B8E"/><rect x="7.5" y="17" width="7.6" height="5.5" rx=".8" fill="#2B343D"/><rect x="16.5" y="17" width="3.6" height="5.5" rx=".8" fill="#C9D0D6"/><rect x="21" y="17" width="3.6" height="5.5" rx=".8" fill="#C9D0D6"/></svg><img id="logo" alt="Company logo" hidden><div class="cobox"><b>DBoard<span class="acc"> Designer</span></b><span id="co" class="co" hidden></span></div><input id="pname" type="text" aria-label="Project name" spellcheck="false"></div>
@@ -3452,6 +3467,12 @@ window.addEventListener('resize', () => { clearTimeout(rzT); rzT = setTimeout(()
 bp = window.innerWidth < 700 ? 'p' : window.innerWidth < 1100 ? 't' : 'd'; document.documentElement.dataset.bp = bp;
 S = load(); syncHeader(); calc(); draw(); renderTabs();
 initLang();
+
+/* introduction above the tool: can be hidden, remembered per device */
+(function(){ const h = document.getElementById('hero'), x = document.getElementById('heroX'); if (!h || !x) return;
+  try { if (localStorage.getItem('dbd_hero_hidden') === '1') h.hidden = true; } catch (e) {}
+  x.addEventListener('click', () => { h.hidden = true; try { localStorage.setItem('dbd_hero_hidden', '1'); } catch (e) {} });
+})();
 
 /* ---------- running inside the Android / iPhone app (Capacitor) ----------
    On the website everything below is inert: SA_NATIVE is false and saUrl()/saSite() return the site's own addresses.
